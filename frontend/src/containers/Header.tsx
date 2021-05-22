@@ -2,39 +2,67 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
+import { createStyles, makeStyles, Theme, fade } from '@material-ui/core/styles';
 import { Domains } from 'typings';
 import { AppActions } from '@actions';
+import InputBase from '@material-ui/core/InputBase';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import SearchIcon from '@material-ui/icons/Search';
 
-const drawerWidth = 240;
+// const drawerWidth = 240;
 
-const useStyles = makeStyles(({ transitions, spacing }: Theme) =>
+const useStyles = makeStyles(({ transitions, spacing, palette, shape }: Theme) =>
   createStyles({
     appBar: {
       transition: transitions.create(['margin', 'width'], {
         easing: transitions.easing.sharp,
         duration: transitions.duration.leavingScreen,
       }),
-      zIndex: 1300,
     },
-    appBarShift: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-      transition: transitions.create(['margin', 'width'], {
-        easing: transitions.easing.easeOut,
-        duration: transitions.duration.enteringScreen,
-      }),
-      zIndex: 1300,
-    },
+    // appBarShift: {
+    //   width: `calc(100% - ${drawerWidth}px)`,
+    //   marginLeft: drawerWidth,
+    //   transition: transitions.create(['margin', 'width'], {
+    //     easing: transitions.easing.easeOut,
+    //     duration: transitions.duration.enteringScreen,
+    //   }),
+    // },
     menuButton: { marginRight: spacing(2) },
     hide: { display: 'none' },
-    title: { flexGrow: 1, textAlign: 'center' },
+    title: {
+      flexGrow: 1,
+      fontSize: '1.5rem',
+      fontWeight: 600,
+      wordSpacing: spacing(1),
+    },
+    search: {
+      position: 'relative',
+      borderRadius: shape.borderRadius,
+      backgroundColor: fade(palette.common.white, 0.15),
+      '&:hover': { backgroundColor: fade(palette.common.white, 0.25) },
+      marginLeft: 0,
+      width: 'auto',
+    },
+    searchIcon: {
+      padding: spacing(0, 2),
+      height: '100%',
+      position: 'absolute',
+      pointerEvents: 'none',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    inputRoot: { color: 'inherit' },
+    inputInput: {
+      padding: spacing(1, 1, 1, 0),
+      paddingLeft: `calc(1em + ${spacing(4)}px)`,
+      transition: transitions.create('width'),
+      width: '100%',
+    },
   })
 );
 
@@ -43,33 +71,35 @@ const appState = (state: Domains.State) => state.app;
 export const Header = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { open } = useSelector(appState);
+  const { title } = useSelector(appState);
   const actions = bindActionCreators(AppActions, dispatch);
-
-  const handleDrawerOpen = () => {
-    actions.sidemenu(true);
-  };
 
   return (
     <AppBar
-      position="fixed"
+      position="static"
       className={clsx(classes.appBar, {
-        [classes.appBarShift]: open,
+        // [classes.appBarShift]: open,
       })}>
       <Toolbar>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          edge="start"
-          className={clsx(classes.menuButton, open && classes.hide)}>
-          <MenuIcon />
-        </IconButton>
         <Typography variant="h6" noWrap className={classes.title}>
-          AWS RESOURCE MANAGEMENT SYSTEM
+          {title}
         </Typography>
-        <Button color="inherit" size="large">
-          LOGOUT
-        </Button>
+        <div className={classes.search}>
+          <div className={classes.searchIcon}>
+            <SearchIcon />
+          </div>
+          <InputBase
+            placeholder="Search…"
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput,
+            }}
+            inputProps={{ 'aria-label': 'search' }}
+          />
+        </div>
+        <IconButton color="inherit">
+          <ExitToAppIcon fontSize="large" />
+        </IconButton>
       </Toolbar>
     </AppBar>
   );

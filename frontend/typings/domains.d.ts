@@ -7,6 +7,7 @@ export interface State {
 /** Application State */
 export interface App {
   open: boolean;
+  title: string;
 }
 
 /** Resources State */

@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, MouseEventHandler } from 'react';
+import { Link } from 'react-router-dom';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import MListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -25,7 +26,7 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
   })
 );
 
-export const ListItem: FunctionComponent<ListItemProps> = ({ children, text }) => {
+export const ListItem: FunctionComponent<ListItemProps> = ({ children, text, path, onClick }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
@@ -37,18 +38,19 @@ export const ListItem: FunctionComponent<ListItemProps> = ({ children, text }) =
     setAnchorEl(null);
   };
 
-  const handleClick = () => {};
-
   const open = Boolean(anchorEl);
 
   return (
     <React.Fragment>
       <MListItem
         button
+        //@ts-ignore
+        component={Link}
+        to={path}
         classes={{ button: classes.listItemButton }}
         onMouseEnter={handlePopoverOpen}
         onMouseLeave={handlePopoverClose}
-        onClick={handleClick}>
+        onClick={onClick}>
         <ListItemIcon>{children}</ListItemIcon>
       </MListItem>
       <Popover
@@ -76,4 +78,6 @@ export const ListItem: FunctionComponent<ListItemProps> = ({ children, text }) =
 
 export interface ListItemProps {
   text?: string;
+  path?: string;
+  onClick?: MouseEventHandler;
 }

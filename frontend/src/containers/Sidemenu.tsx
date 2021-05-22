@@ -2,57 +2,52 @@ import React from 'react';
 import clsx from 'clsx';
 import { bindActionCreators } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
-import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
-import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import MenuIcon from '@material-ui/icons/Menu';
+import Box from '@material-ui/core/Box';
 import { Domains } from 'typings';
 import { AppActions } from '@actions';
+import { ListItem } from '@comp';
 import EC2Icon from '../constants/svg/AmazonEC2.svg';
 import RDSIcon from '../constants/svg/AmazonRDS.svg';
-import { ListItem } from '@comp';
+import { Paths } from '@constants';
 
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(({ spacing, transitions, mixins, palette }: Theme) =>
   createStyles({
-    drawer: {
-      width: drawerWidth,
-      flexShrink: 0,
-      whiteSpace: 'nowrap',
+    root: {
+      width: spacing(8),
+      backgroundColor: palette.secondary.main,
+      borderRadius: 0,
+      height: '100%',
     },
-    drawerOpen: {
-      width: drawerWidth,
-      transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
-    drawerClose: {
-      transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      overflowX: 'hidden',
-      width: theme.spacing(8),
-    },
-    toolbar: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'flex-end',
-      padding: theme.spacing(0, 1),
-      // necessary for content to be below app bar
-      ...theme.mixins.toolbar,
-    },
-    itemIcon: { minWidth: '40px' },
     listItemButton: {
-      '&:hover': {
-        backgroundColor: 'rgba(111, 44, 145, 0.8)',
-      },
+      '&:hover': { backgroundColor: 'rgba(111, 44, 145, 0.8)' },
     },
+    menuIcon: { color: 'white' },
+    list: {},
+    // drawer: {
+    //   width: drawerWidth,
+    //   flexShrink: 0,
+    //   whiteSpace: 'nowrap',
+    // },
+    // drawerOpen: {
+    //   width: drawerWidth,
+    //   transition: transitions.create('width', {
+    //     easing: transitions.easing.sharp,
+    //     duration: transitions.duration.enteringScreen,
+    //   }),
+    // },
+    // drawerClose: {
+    //   transition: transitions.create('width', {
+    //     easing: transitions.easing.sharp,
+    //     duration: transitions.duration.leavingScreen,
+    //   }),
+    //   overflowX: 'hidden',
+    //   width: spacing(0),
+    // },
   })
 );
 
@@ -60,42 +55,57 @@ const appState = (state: Domains.State) => state.app;
 
 export const Sidemenu = () => {
   const classes = useStyles();
-  const theme = useTheme();
   const dispatch = useDispatch();
   const { open } = useSelector(appState);
   const actions = bindActionCreators(AppActions, dispatch);
 
-  const handleDrawerClose = () => {
+  const handlerOpen = () => {
+    actions.sidemenu(true);
+  };
+
+  const handleClose = () => {
     actions.sidemenu(false);
   };
 
   return (
-    <Drawer
-      variant="permanent"
-      className={clsx(classes.drawer, {
-        [classes.drawerOpen]: open,
-        [classes.drawerClose]: !open,
-      })}
-      classes={{
-        paper: clsx({
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        }),
-      }}>
-      <div className={classes.toolbar}>
-        <IconButton onClick={handleDrawerClose}>
-          {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+    <Paper elevation={2} classes={{ root: classes.root }}>
+      <Box display="flex" alignItems="center" justifyContent="center" height="64px">
+        <IconButton color="inherit" aria-label="open drawer" onClick={handlerOpen}>
+          <MenuIcon className={classes.menuIcon} fontSize="large" />
         </IconButton>
-      </div>
-      <Divider />
+      </Box>
       <List>
-        <ListItem text="Amazon EC2">
+        <ListItem
+          text="Amazon EC2"
+          path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.EC2]}
+          onClick={() => {
+            actions.title('Amazon EC2');
+          }}>
           <EC2Icon />
         </ListItem>
-        <ListItem text="Amazon RDS">
+        <ListItem
+          text="Amazon RDS"
+          path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.RDS]}
+          onClick={() => {
+            actions.title('Amazon RDS');
+          }}>
           <RDSIcon />
         </ListItem>
       </List>
-    </Drawer>
+    </Paper>
+    // <Drawer
+    //   variant="permanent"
+    //   className={clsx(classes.drawer, {
+    //     [classes.drawerOpen]: open,
+    //     [classes.drawerClose]: !open,
+    //   })}
+    //   classes={{
+    //     paper: clsx({
+    //       [classes.drawerOpen]: open,
+    //       [classes.drawerClose]: !open,
+    //     }),
+    //   }}>
+
+    // </Drawer>
   );
 };

@@ -2,14 +2,18 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import { render } from 'react-dom';
 import { MuiThemeProvider } from '@material-ui/core';
-import store from './store';
+import { ConnectedRouter } from 'connected-react-router';
+import store, { history } from './store';
 import theme from './Theme';
+// import Router from './Router';
 import App from './containers/App';
 
 const provider = (
   <Provider store={store}>
     <MuiThemeProvider theme={theme}>
-      <App />
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
     </MuiThemeProvider>
   </Provider>
 );
