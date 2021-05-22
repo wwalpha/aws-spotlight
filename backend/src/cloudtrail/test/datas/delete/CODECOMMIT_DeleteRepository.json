@@ -1,0 +1,39 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLITWDCZF4E",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-08T00:22:39Z" }
+    }
+  },
+  "eventTime": "2021-04-08T02:45:04Z",
+  "eventSource": "codecommit.amazonaws.com",
+  "eventName": "DeleteRepository",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.984 Linux/5.4.95-47.164.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "requestParameters": { "repositoryName": "nissan_auto_notification" },
+  "responseElements": { "repositoryId": "540aeb26-5a18-4d4d-a968-de1dbb6ae2ab" },
+  "requestID": "361d8aa7-c78b-4ff3-ae51-04f43fd54a74",
+  "eventID": "e0bb7cac-af96-4bc4-afeb-955910ae8a6e",
+  "readOnly": false,
+  "resources": [
+    {
+      "accountId": "999999999999",
+      "type": "AWS::CodeCommit::Repository",
+      "ARN": "arn:aws:codecommit:ap-northeast-1:999999999999:nissan_auto_notification"
+    }
+  ],
+  "eventType": "AwsApiCall",
+  "apiVersion": "2015-04-13",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

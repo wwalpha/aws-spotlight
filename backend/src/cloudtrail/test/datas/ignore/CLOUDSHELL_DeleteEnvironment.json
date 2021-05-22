@@ -1,0 +1,31 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIWODBMIFD5",
+    "arn": "arn:aws:iam::999999999999:user/kota.murakami",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI5RRZJV7J",
+    "userName": "kota.murakami",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-19T07:21:26Z" }
+    }
+  },
+  "eventTime": "2021-04-19T07:21:46Z",
+  "eventSource": "cloudshell.amazonaws.com",
+  "eventName": "DeleteEnvironment",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "125.14.240.91",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36",
+  "requestParameters": { "EnvironmentId": "35d908f9-3db2-4a05-adf6-9fd2063c2864" },
+  "responseElements": null,
+  "requestID": "c4669869-2464-4b34-8594-930a20b921ce",
+  "eventID": "657590a5-1991-4dc7-9879-d50cc3c53634",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

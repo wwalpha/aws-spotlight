@@ -1,0 +1,17 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "./tsconfig.json",
+    "useJSXTextNode": true
+  },
+  "plugins": ["@typescript-eslint"],
+  "extends": ["airbnb", "plugin:@typescript-eslint/recommended", "prettier", "prettier/@typescript-eslint"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  }
+}

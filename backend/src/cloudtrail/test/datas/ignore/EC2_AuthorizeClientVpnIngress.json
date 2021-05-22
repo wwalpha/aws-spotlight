@@ -1,0 +1,49 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
+    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI7GHCIZU5",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2OU3QHN26",
+        "arn": "arn:aws:iam::999999999999:role/KTOU_SwitchRole",
+        "accountId": "999999999999",
+        "userName": "KTOU_SwitchRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-01T08:26:56Z" }
+    }
+  },
+  "eventTime": "2021-04-01T08:31:37Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "AuthorizeClientVpnIngress",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.147",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "AuthorizeClientVpnIngressRequest": {
+      "ClientVpnEndpointId": "cvpn-endpoint-00979964d0389482a",
+      "Description": "MySQL-sjis",
+      "TargetNetworkCidr": "10.0.0.121/32",
+      "AuthorizeAllGroups": true
+    }
+  },
+  "responseElements": {
+    "AuthorizeClientVpnIngressResponse": {
+      "xmlns": "http://ec2.amazonaws.com/doc/2016-11-15/",
+      "requestId": "6290f53f-f43c-460d-a60d-486ed766bac9",
+      "status": { "code": "authorizing" }
+    }
+  },
+  "requestID": "6290f53f-f43c-460d-a60d-486ed766bac9",
+  "eventID": "f7fcd623-46ae-49d7-a7f9-1705baee9953",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

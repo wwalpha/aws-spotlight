@@ -1,0 +1,123 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLI473YYFTJB",
+    "arn": "arn:aws:iam::999999999999:user/eric.agnew",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI5OPNZOXI",
+    "userName": "eric.agnew",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-20T01:38:47Z" }
+    }
+  },
+  "eventTime": "2021-04-20T05:33:56Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "CreateLaunchTemplateVersion",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.50",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "CreateLaunchTemplateVersionRequest": {
+      "LaunchTemplateName": "",
+      "LaunchTemplateData": {
+        "HibernationOptions": { "Configured": false },
+        "MetadataOptions": { "HttpPutResponseHopLimit": 1, "HttpTokens": "optional", "HttpEndpoint": "enabled" },
+        "InstanceInitiatedShutdownBehavior": "stop",
+        "NetworkInterface": {
+          "DeviceIndex": 0,
+          "SecurityGroupId": { "tag": 1, "content": "sg-0e8ab234f9cc51b29" },
+          "tag": 1,
+          "SubnetId": "subnet-03e1fed1e356cec71",
+          "AssociatePublicIpAddress": true
+        },
+        "TagSpecification": {
+          "ResourceType": "instance",
+          "tag": 1,
+          "Tag": { "Value": "agnew-rhel6test", "tag": 1, "Key": "Name" }
+        },
+        "EbsOptimized": false,
+        "DisableApiTermination": false,
+        "KeyName": "agnew-sshkey",
+        "Placement": { "Tenancy": "default" },
+        "ImageId": "ami-2c14b44d",
+        "BlockDeviceMapping": {
+          "Ebs": {
+            "SnapshotId": "snap-0013928e",
+            "VolumeType": "gp2",
+            "Encrypted": false,
+            "VolumeSize": 15,
+            "DeleteOnTermination": true
+          },
+          "tag": 1,
+          "DeviceName": "/dev/sda1"
+        },
+        "InstanceType": "t2.micro",
+        "CapacityReservationSpecification": { "CapacityReservationPreference": "open" },
+        "CreditSpecification": { "CpuCredits": "standard" },
+        "Monitoring": { "Enabled": false }
+      },
+      "LaunchTemplateId": "lt-0aae391c61dad27d8"
+    }
+  },
+  "responseElements": {
+    "CreateLaunchTemplateVersionResponse": {
+      "xmlns": "http://ec2.amazonaws.com/doc/2016-11-15/",
+      "requestId": "f667e056-5a3f-4b0a-8996-72482596be1d",
+      "launchTemplateVersion": {
+        "createTime": "2021-04-20T05:33:56.000Z",
+        "createdBy": "arn:aws:iam::999999999999:user/eric.agnew",
+        "launchTemplateId": "lt-0aae391c61dad27d8",
+        "launchTemplateData": {
+          "ebsOptimized": false,
+          "imageId": "ami-2c14b44d",
+          "networkInterfaceSet": {
+            "item": {
+              "subnetId": "subnet-03e1fed1e356cec71",
+              "associatePublicIpAddress": true,
+              "deviceIndex": 0,
+              "groupSet": { "groupId": "sg-0e8ab234f9cc51b29" }
+            }
+          },
+          "capacityReservationSpecification": { "capacityReservationPreference": "open" },
+          "tagSpecificationSet": {
+            "item": { "tagSet": { "item": { "value": "agnew-rhel6test", "key": "Name" } }, "resourceType": "instance" }
+          },
+          "instanceType": "t2.micro",
+          "keyName": "agnew-sshkey",
+          "creditSpecification": { "cpuCredits": "standard" },
+          "monitoring": { "enabled": false },
+          "hibernationOptions": { "configured": false },
+          "instanceInitiatedShutdownBehavior": "stop",
+          "disableApiTermination": false,
+          "blockDeviceMappingSet": {
+            "item": {
+              "ebs": {
+                "volumeType": "gp2",
+                "snapshotId": "snap-0013928e",
+                "encrypted": false,
+                "deleteOnTermination": true,
+                "volumeSize": 15
+              },
+              "deviceName": "/dev/sda1"
+            }
+          },
+          "metadataOptions": { "httpPutResponseHopLimit": 1, "httpEndpoint": "enabled", "httpTokens": "optional" },
+          "placement": { "tenancy": "default" }
+        },
+        "defaultVersion": false,
+        "launchTemplateName": "agnew-rhel6test",
+        "versionNumber": 2
+      }
+    }
+  },
+  "requestID": "f667e056-5a3f-4b0a-8996-72482596be1d",
+  "eventID": "9f1d5316-2255-4f11-a0ad-8be198348f97",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

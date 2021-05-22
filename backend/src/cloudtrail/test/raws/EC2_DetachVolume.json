@@ -1,0 +1,43 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLIQNOCCAZIP:ebs_eni_switch_AAC",
+    "arn": "arn:aws:sts::999999999999:assumed-role/NML-Lambda-ebs_eni_switch/ebs_eni_switch_AAC",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLITDYEVLEB",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLIQNOCCAZIP",
+        "arn": "arn:aws:iam::999999999999:role/NML-Lambda-ebs_eni_switch",
+        "accountId": "999999999999",
+        "userName": "NML-Lambda-ebs_eni_switch"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-27T12:29:49Z" }
+    }
+  },
+  "eventTime": "2021-04-27T12:29:51Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "DetachVolume",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "18.177.149.112",
+  "userAgent": "Boto3/1.17.42 Python/3.7.10 Linux/4.14.225-175.364.amzn2.x86_64 exec-env/AWS_Lambda_python3.7 Botocore/1.20.42",
+  "requestParameters": { "volumeId": "vol-02c10167c184a66c5", "force": false },
+  "responseElements": {
+    "requestId": "f9e61b8a-31b3-4b80-bd3a-a74818df1337",
+    "volumeId": "vol-02c10167c184a66c5",
+    "instanceId": "i-01872ccfd259368df",
+    "device": "/dev/sdf",
+    "status": "detaching",
+    "attachTime": 1619525698000
+  },
+  "requestID": "f9e61b8a-31b3-4b80-bd3a-a74818df1337",
+  "eventID": "bf863178-971d-45f6-9b64-75f7fe2f3211",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

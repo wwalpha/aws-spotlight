@@ -1,0 +1,58 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
+    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIQYQXIK5K",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2OU3QHN26",
+        "arn": "arn:aws:iam::999999999999:role/KTOU_SwitchRole",
+        "accountId": "999999999999",
+        "userName": "KTOU_SwitchRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-01T22:30:19Z" }
+    }
+  },
+  "eventTime": "2021-02-01T23:18:29Z",
+  "eventSource": "appmesh.amazonaws.com",
+  "eventName": "CreateVirtualRouter",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.942 Linux/4.9.230-0.1.ac.223.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+  "requestParameters": {
+    "meshName": "fargate-microservice-mesh",
+    "meshOwner": "999999999999",
+    "spec": { "listeners": [{ "portMapping": { "port": 8090, "protocol": "http" } }] },
+    "virtualRouterName": "auth-router"
+  },
+  "responseElements": {
+    "virtualRouter": {
+      "meshName": "fargate-microservice-mesh",
+      "metadata": {
+        "arn": "arn:aws:appmesh:ap-northeast-1:999999999999:mesh/fargate-microservice-mesh/virtualRouter/auth-router",
+        "createdAt": "Feb 1, 2021 11:18:29 PM",
+        "lastUpdatedAt": "Feb 1, 2021 11:18:29 PM",
+        "meshOwner": "999999999999",
+        "resourceOwner": "999999999999",
+        "uid": "ff7ff49d-a531-4852-8e84-7c3a1441efd9",
+        "version": 1
+      },
+      "spec": { "listeners": [{ "portMapping": { "port": 8090, "protocol": "http" } }] },
+      "status": { "status": "ACTIVE" },
+      "virtualRouterName": "auth-router"
+    }
+  },
+  "requestID": "9606b1a7-24e2-41ff-bf57-ed89c2859ccb",
+  "eventID": "68460c64-fea4-4213-bb20-820b7b5775e3",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2019-01-25",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

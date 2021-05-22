@@ -1,0 +1,15 @@
+import { Config } from '@jest/types';
+
+const config: Config.InitialOptions = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  moduleNameMapper: {
+    '@src/(.*)': '<rootDir>/src/$1',
+    'test/(.*)': '<rootDir>/test/$1',
+  },
+  // globalSetup: './test/configs/env.ts',
+  globalSetup: './test/configs/setup.ts',
+  globalTeardown: './test/configs/teardown.ts',
+};
+
+export default config;

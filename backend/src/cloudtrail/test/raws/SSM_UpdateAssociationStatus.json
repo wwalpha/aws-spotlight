@@ -1,0 +1,39 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI3XMFZ5SQC:i-0e3aaeca42760fa94",
+    "arn": "arn:aws:sts::999999999999:assumed-role/EC2FacialAnalysisRole/i-0e3aaeca42760fa94",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIZY6DRF3R",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI3XMFZ5SQC",
+        "arn": "arn:aws:iam::999999999999:role/EC2FacialAnalysisRole",
+        "accountId": "999999999999",
+        "userName": "EC2FacialAnalysisRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-18T07:41:46Z" },
+      "ec2RoleDelivery": "2.0"
+    }
+  },
+  "eventTime": "2021-04-18T07:48:30Z",
+  "eventSource": "ssm.amazonaws.com",
+  "eventName": "UpdateAssociationStatus",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "3.112.7.63",
+  "userAgent": "aws-sdk-go/1.35.23 (go1.15.7; linux; amd64) amazon-ssm-agent/",
+  "errorCode": "AccessDenied",
+  "errorMessage": "User: arn:aws:sts::999999999999:assumed-role/EC2FacialAnalysisRole/i-0e3aaeca42760fa94 is not authorized to perform: ssm:UpdateAssociationStatus on resource: arn:aws:ec2:ap-northeast-1:999999999999:instance/i-0e3aaeca42760fa94",
+  "requestParameters": null,
+  "responseElements": null,
+  "requestID": "38b13681-cfbf-4c61-a881-fd5523757af2",
+  "eventID": "595e9701-c650-48e2-98a2-bbca8001cf17",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

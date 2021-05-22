@@ -1,0 +1,33 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI3DBITBDT",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-17T01:05:15Z" }
+    }
+  },
+  "eventTime": "2021-04-17T01:06:29Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "DisassociateAddress",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "console.ec2.amazonaws.com",
+  "errorCode": "Client.InvalidAssociationID.NotFound",
+  "errorMessage": "The association ID 'eipassoc-048ec917c60c7a190' does not exist",
+  "requestParameters": { "associationId": "eipassoc-048ec917c60c7a190" },
+  "responseElements": null,
+  "requestID": "a9c2862d-fe66-478c-bc7d-f6938faaa3c0",
+  "eventID": "b85379d9-eb2f-4ccb-ade2-d5d15319f44a",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

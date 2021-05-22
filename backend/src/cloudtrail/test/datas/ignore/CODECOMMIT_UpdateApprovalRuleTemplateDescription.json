@@ -1,0 +1,43 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLI3YFKAM3HW",
+    "arn": "arn:aws:iam::999999999999:user/kazuya.tanaka",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIULNZU4GS",
+    "userName": "kazuya.tanaka",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-21T13:13:24Z" }
+    }
+  },
+  "eventTime": "2021-03-21T14:10:48Z",
+  "eventSource": "codecommit.amazonaws.com",
+  "eventName": "UpdateApprovalRuleTemplateDescription",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "112.69.148.215",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.962 Linux/5.4.95-47.164.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+  "requestParameters": { "approvalRuleTemplateName": "approve flow", "approvalRuleTemplateDescription": "" },
+  "responseElements": {
+    "approvalRuleTemplate": {
+      "approvalRuleTemplateId": "c74b6167-adca-4d50-9e74-b690ad4268bb",
+      "approvalRuleTemplateName": "approve flow",
+      "approvalRuleTemplateDescription": "",
+      "approvalRuleTemplateContent": "{\"Version\":\"2018-11-08\",\"DestinationReferences\":\"*\",\"Statements\":[{\"Type\":\"Approvers\",\"NumberOfApprovalsNeeded\":2,\"ApprovalPoolMembers\":[\"CodeCommitApprovers:kazuya.tanaka\"]}]}",
+      "ruleContentSha256": "a1c6460577f6c0ed825f643c3427e80357b97a4104e22d686ca8afa037116217",
+      "lastModifiedDate": "Mar 21, 2021 2:10:48 PM",
+      "creationDate": "Mar 21, 2021 2:09:00 PM",
+      "lastModifiedUser": "arn:aws:iam::999999999999:user/kazuya.tanaka"
+    }
+  },
+  "requestID": "e7225809-1167-4600-9228-f37b5ea9a27b",
+  "eventID": "b1311b12-7145-4a97-bad2-ad6678317142",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2015-04-13",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

@@ -1,0 +1,39 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAJBNMCCKLPQ6JUFJA",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-08T00:22:39Z" }
+    },
+    "invokedBy": "cloudformation.amazonaws.com"
+  },
+  "eventTime": "2021-04-08T01:56:39Z",
+  "eventSource": "events.amazonaws.com",
+  "eventName": "RemoveTargets",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "errorCode": "ResourceNotFoundException",
+  "errorMessage": "Rule serverlessrepo-AmazonConn-sfRealTimeQueueMetricsCr-1E90MX9VQD0KG does not exist on EventBus default.",
+  "requestParameters": {
+    "rule": "serverlessrepo-AmazonConn-sfRealTimeQueueMetricsCr-1E90MX9VQD0KG",
+    "ids": ["serverlessrepo-AmazonConnectSalesforceLambda-sfRealTimeQueue"],
+    "force": false
+  },
+  "responseElements": null,
+  "requestID": "259cf62e-c86c-44c2-9e6b-8eea52b277d7",
+  "eventID": "36e04d54-13cb-438f-9ef2-45ecb0dcbd0f",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2015-10-07",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

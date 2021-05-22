@@ -1,0 +1,35 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIWO4FT5WE",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-08T00:22:39Z" }
+    }
+  },
+  "eventTime": "2021-04-08T00:56:53Z",
+  "eventSource": "fsx.amazonaws.com",
+  "eventName": "DeleteFileSystem",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.976 Linux/4.9.230-0.1.ac.223.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "requestParameters": {
+    "fileSystemId": "fs-018556c5d39705e5e",
+    "windowsConfiguration": { "skipFinalBackup": true }
+  },
+  "responseElements": { "fileSystemId": "fs-018556c5d39705e5e", "lifecycle": "DELETING", "windowsResponse": {} },
+  "requestID": "900fc34f-7447-4ef7-8f9f-aaa816a6008c",
+  "eventID": "5975c80e-89a2-4657-802a-d31878bf0c81",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2018-03-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

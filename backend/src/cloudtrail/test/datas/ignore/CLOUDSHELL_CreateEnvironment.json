@@ -1,0 +1,31 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLITFXACZIG",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-07T12:47:24Z" }
+    }
+  },
+  "eventTime": "2021-04-07T12:47:25Z",
+  "eventSource": "cloudshell.amazonaws.com",
+  "eventName": "CreateEnvironment",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36",
+  "requestParameters": null,
+  "responseElements": { "Status": "CREATING", "EnvironmentId": "f4f883e0-7e4b-4c7b-b131-91100b615ec3" },
+  "requestID": "50fb8598-74f8-45df-af9e-e40b5c605bd1",
+  "eventID": "1410e191-f656-415a-834c-af957aafe558",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

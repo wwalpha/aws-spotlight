@@ -1,0 +1,20 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": { "accountId": "999999999999", "invokedBy": "ec2.amazonaws.com" },
+  "eventTime": "2021-04-05T07:12:45Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "SharedSnapshotVolumeCreated",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "ec2.amazonaws.com",
+  "userAgent": "ec2.amazonaws.com",
+  "requestParameters": null,
+  "responseElements": null,
+  "eventID": "89b67cf8-814f-41b8-8824-c69e61e35d5e",
+  "readOnly": false,
+  "eventType": "AwsServiceEvent",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999",
+  "sharedEventID": "3320a76d-4727-45d2-b03f-20699038cb1d",
+  "serviceEventDetails": { "snapshotId": "snap-0af666d553d7bf7a0" }
+}

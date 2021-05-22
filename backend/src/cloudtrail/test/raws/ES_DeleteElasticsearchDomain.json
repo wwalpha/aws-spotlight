@@ -1,0 +1,74 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI5EGZO6WM",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-08T00:22:39Z" }
+    }
+  },
+  "eventTime": "2021-04-08T02:48:45Z",
+  "eventSource": "es.amazonaws.com",
+  "eventName": "DeleteElasticsearchDomain",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.976 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "requestParameters": { "domainName": "hands0n-minilake" },
+  "responseElements": {
+    "domainStatus": {
+      "created": true,
+      "serviceSoftwareOptions": {
+        "description": "A newer release R20210201-P2 is available. Your domain is not eligible to be updated. Please refer to the public documentation.",
+        "optionalDeployment": true,
+        "currentVersion": "R20201019",
+        "newVersion": "R20210201-P2",
+        "updateAvailable": false,
+        "automatedUpdateDate": "Dec 31, 1969 4:00:00 PM",
+        "updateStatus": "NOT_ELIGIBLE",
+        "cancellable": false
+      },
+      "endpoint": "search-hands0n-minilake-v3x4l4bzn6rbmce5477z3icmuy.ap-northeast-1.es.amazonaws.com",
+      "domainEndpointOptions": {
+        "enforceHTTPS": false,
+        "tLSSecurityPolicy": "Policy-Min-TLS-1-0-2019-07",
+        "customEndpointEnabled": false
+      },
+      "elasticsearchClusterConfig": {
+        "zoneAwarenessEnabled": false,
+        "instanceType": "t2.small.elasticsearch",
+        "coldStorageOptions": { "enabled": false },
+        "dedicatedMasterEnabled": false,
+        "instanceCount": 1
+      },
+      "cognitoOptions": { "enabled": false },
+      "encryptionAtRestOptions": { "enabled": false },
+      "advancedOptions": { "rest.action.multi.allow_explicit_index": "true" },
+      "upgradeProcessing": false,
+      "snapshotOptions": { "automatedSnapshotStartHour": 0 },
+      "eBSOptions": { "eBSEnabled": true, "volumeSize": 10, "volumeType": "gp2" },
+      "elasticsearchVersion": "6.2",
+      "nodeToNodeEncryptionOptions": { "enabled": false },
+      "processing": true,
+      "aRN": "arn:aws:es:ap-northeast-1:999999999999:domain/hands0n-minilake",
+      "domainId": "999999999999/hands0n-minilake",
+      "deleted": true,
+      "domainName": "hands0n-minilake",
+      "accessPolicies": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"*\"},\"Action\":\"es:*\",\"Resource\":\"arn:aws:es:ap-northeast-1:999999999999:domain/hands0n-minilake/*\"}]}",
+      "autoTuneOptions": { "state": "DISABLED" },
+      "advancedSecurityOptions": { "internalUserDatabaseEnabled": false, "enabled": false }
+    }
+  },
+  "requestID": "31e77f01-fe19-420d-8baf-a54b3d277338",
+  "eventID": "0292877c-de04-4498-a07a-669c204ffb30",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

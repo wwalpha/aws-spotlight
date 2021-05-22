@@ -1,0 +1,87 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLITO5CX4XU",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-07T10:31:17Z" }
+    }
+  },
+  "eventTime": "2021-04-07T10:46:46Z",
+  "eventSource": "dms.amazonaws.com",
+  "eventName": "DeleteReplicationInstance",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.984 Linux/5.4.95-47.164.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "requestParameters": {
+    "replicationInstanceArn": "arn:aws:dms:ap-northeast-1:999999999999:rep:H6YA5ECH6CTCZUHGCBILQF4HP3MS26OUKWFRPJY"
+  },
+  "responseElements": {
+    "replicationInstance": {
+      "replicationInstanceIdentifier": "onecloud-lawson-replication",
+      "replicationInstanceClass": "dms.t3.large",
+      "replicationInstanceStatus": "deleting",
+      "allocatedStorage": 50,
+      "instanceCreateTime": "Mar 2, 2021 7:38:30 AM",
+      "vpcSecurityGroups": [{ "vpcSecurityGroupId": "sg-02c8769865262abbd", "status": "active" }],
+      "availabilityZone": "ap-northeast-1a",
+      "replicationSubnetGroup": {
+        "replicationSubnetGroupIdentifier": "default-vpc-0f1e12c219f232b46",
+        "replicationSubnetGroupDescription": "default group created by console for vpc id vpc-0f1e12c219f232b46",
+        "vpcId": "vpc-0f1e12c219f232b46",
+        "subnetGroupStatus": "Complete",
+        "subnets": [
+          {
+            "subnetIdentifier": "subnet-02f400a0a5738ef8a",
+            "subnetAvailabilityZone": { "name": "ap-northeast-1c" },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-02043047a2857a526",
+            "subnetAvailabilityZone": { "name": "ap-northeast-1c" },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-0681d2c492225dea3",
+            "subnetAvailabilityZone": { "name": "ap-northeast-1a" },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-0463e28fe18a6f599",
+            "subnetAvailabilityZone": { "name": "ap-northeast-1a" },
+            "subnetStatus": "Active"
+          }
+        ],
+        "replicationSubnetGroupArn": "arn:aws:dms:ap-northeast-1:999999999999:subgrp:WVFR26CKCU4KTKYE5QBKAVMVEBTNDPAUF4N45ZA"
+      },
+      "preferredMaintenanceWindow": "mon:05:54-mon:06:24",
+      "pendingModifiedValues": {},
+      "multiAZ": false,
+      "engineVersion": "3.4.3",
+      "autoMinorVersionUpgrade": true,
+      "kmsKeyId": "arn:aws:kms:ap-northeast-1:999999999999:key/127c5c76-20e3-4216-bcff-08bbbf9aab0b",
+      "replicationInstanceArn": "arn:aws:dms:ap-northeast-1:999999999999:rep:H6YA5ECH6CTCZUHGCBILQF4HP3MS26OUKWFRPJY",
+      "replicationInstancePublicIpAddress": "18.176.73.98",
+      "replicationInstancePrivateIpAddress": "10.0.2.63",
+      "replicationInstancePublicIpAddresses": ["18.176.73.98"],
+      "replicationInstancePrivateIpAddresses": ["10.0.2.63"],
+      "publiclyAccessible": true,
+      "replicationInstanceEniId": "eni-0bba6da089b69c8af",
+      "replicationInstanceEniIds": ["eni-0bba6da089b69c8af"],
+      "patchingPrecedence": 0
+    }
+  },
+  "requestID": "e0989f17-50a8-457d-86af-99c4c5286ded",
+  "eventID": "bf080f23-17d6-4eac-80e7-237cccb186ea",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

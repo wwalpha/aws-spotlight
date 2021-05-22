@@ -1,0 +1,55 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIQ5BMNRFHI",
+    "arn": "arn:aws:iam::999999999999:user/demo-user10",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIV6AW5CSP",
+    "userName": "demo-user10",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-14T13:44:20Z" }
+    }
+  },
+  "eventTime": "2021-04-14T14:35:50Z",
+  "eventSource": "lambda.amazonaws.com",
+  "eventName": "UpdateFunctionCode20150331v2",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "58.98.107.229",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36",
+  "requestParameters": {
+    "functionName": "arn:aws:lambda:ap-northeast-1:999999999999:function:get_ec2_rds_list",
+    "publish": false,
+    "dryRun": false
+  },
+  "responseElements": {
+    "functionName": "get_ec2_rds_list",
+    "functionArn": "arn:aws:lambda:ap-northeast-1:999999999999:function:get_ec2_rds_list",
+    "runtime": "python3.6",
+    "role": "arn:aws:iam::999999999999:role/assumerole_lambda",
+    "handler": "lambda_function.lambda_handler",
+    "codeSize": 48290781,
+    "description": "",
+    "timeout": 900,
+    "memorySize": 256,
+    "lastModified": "2021-04-14T14:35:50.579+0000",
+    "codeSha256": "LmaV3EulqKhVFTjYN5c8AJWs5NG0IpzaTikJxBuanQ4=",
+    "version": "$LATEST",
+    "vpcConfig": { "subnetIds": [], "securityGroupIds": [], "vpcId": "" },
+    "environment": {},
+    "tracingConfig": { "mode": "PassThrough" },
+    "revisionId": "b3a6dccf-c366-485e-86dc-3cf02345b8e7",
+    "state": "Active",
+    "lastUpdateStatus": "Successful",
+    "packageType": "Zip"
+  },
+  "requestID": "54ab0c4a-5634-4961-b163-962203f80bb7",
+  "eventID": "fe4c6c8c-f653-4c4d-bff3-a593ffcddca3",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

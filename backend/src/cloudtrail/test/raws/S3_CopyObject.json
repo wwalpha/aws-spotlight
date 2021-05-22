@@ -1,0 +1,50 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIQ5BMNRFHI",
+    "arn": "arn:aws:iam::999999999999:user/demo-user10",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLISVDH6T4M",
+    "userName": "demo-user10",
+    "sessionContext": { "attributes": { "creationDate": "2021-04-17T17:21:21Z", "mfaAuthenticated": "false" } }
+  },
+  "eventTime": "2021-04-17T20:05:03Z",
+  "eventSource": "s3.amazonaws.com",
+  "eventName": "CopyObject",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.53",
+  "userAgent": "[S3Console/0.4, aws-internal/3 aws-sdk-java/1.11.991 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy]",
+  "requestParameters": {
+    "bucketName": "autotool-ec2-rds-sg",
+    "Host": "autotool-ec2-rds-sg.s3.ap-northeast-1.amazonaws.com",
+    "x-amz-copy-source": "/autotool-ec2-rds-sg/facialanalysis/FY22FreshGrads%20.jpg",
+    "accessControlList": {
+      "x-amz-grant-full-control": "id=\"96ae2fc8d6f857e33d94760303febd6326334d97cd7f1cfa4325a85a0574001a\""
+    },
+    "key": "facialanalysis/FY22FreshGrads.jpg"
+  },
+  "responseElements": null,
+  "additionalEventData": {
+    "SignatureVersion": "SigV4",
+    "CipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
+    "bytesTransferredIn": 0,
+    "AuthenticationMethod": "AuthHeader",
+    "x-amz-id-2": "gbWT/hZ8UETz3CGi58hdK32HfQz67UxrWayZA9KsdXZShmNkIJ5XZUwDuK2u6l3u23Lo/LbI1Io=",
+    "bytesTransferredOut": 234
+  },
+  "requestID": "F07J4DP2TW7PKHA7",
+  "eventID": "a6b19ef7-f877-4f5a-a53f-28ec8bbcc77a",
+  "readOnly": false,
+  "resources": [
+    { "type": "AWS::S3::Object", "ARN": "arn:aws:s3:::autotool-ec2-rds-sg/facialanalysis/FY22FreshGrads.jpg" },
+    { "accountId": "999999999999", "type": "AWS::S3::Bucket", "ARN": "arn:aws:s3:::autotool-ec2-rds-sg" },
+    { "accountId": "999999999999", "type": "AWS::S3::Bucket", "ARN": "arn:aws:s3:::autotool-ec2-rds-sg" },
+    { "type": "AWS::S3::Object", "ARN": "arn:aws:s3:::autotool-ec2-rds-sg/facialanalysis/FY22FreshGrads .jpg" }
+  ],
+  "eventType": "AwsApiCall",
+  "managementEvent": false,
+  "recipientAccountId": "999999999999",
+  "vpcEndpointId": "vpce-c8e61da1",
+  "eventCategory": "Data"
+}

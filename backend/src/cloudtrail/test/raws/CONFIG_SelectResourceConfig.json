@@ -1,0 +1,40 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLIVSJY4WEOK:SSM",
+    "arn": "arn:aws:sts::999999999999:assumed-role/AWSServiceRoleForAmazonSSM/SSM",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI3JI63JUO",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLIVSJY4WEOK",
+        "arn": "arn:aws:iam::999999999999:role/aws-service-role/ssm.amazonaws.com/AWSServiceRoleForAmazonSSM",
+        "accountId": "999999999999",
+        "userName": "AWSServiceRoleForAmazonSSM"
+      },
+      "webIdFederationData": {},
+      "attributes": { "creationDate": "2021-04-14T11:18:50Z", "mfaAuthenticated": "false" }
+    },
+    "invokedBy": "ssm.amazonaws.com"
+  },
+  "eventTime": "2021-04-14T11:18:50Z",
+  "eventSource": "config.amazonaws.com",
+  "eventName": "SelectResourceConfig",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "ssm.amazonaws.com",
+  "userAgent": "ssm.amazonaws.com",
+  "requestParameters": {
+    "limit": 5,
+    "expression": "SELECT resourceId,resourceType,configuration.instanceType,configuration.imageId,configuration.architecture,configuration.launchTime,configuration.platform,configuration.iamInstanceProfile,availabilityZone,configuration.state.name WHERE resourceType = 'AWS::EC2::Instance' AND configuration.state.name = 'running'"
+  },
+  "responseElements": null,
+  "requestID": "6134fba4-4682-4c45-b6be-c028010a7c1c",
+  "eventID": "b4363cb2-0aa9-4604-a607-1f3ecd318cbb",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management"
+}

@@ -1,0 +1,82 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLI6DETSD4FR",
+    "arn": "arn:aws:iam::999999999999:user/wlim40",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAIWZNXFSGLHSFIDDA",
+    "userName": "wlim40",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-15T07:31:59Z" }
+    },
+    "invokedBy": "cloudformation.amazonaws.com"
+  },
+  "eventTime": "2021-04-15T07:55:31Z",
+  "eventSource": "apigateway.amazonaws.com",
+  "eventName": "UpdateRestApi",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "requestParameters": {
+    "restApiId": "lyppg996u0",
+    "updateRestApiInput": {
+      "patchOperations": [{ "path": "/endpointConfiguration/types/EDGE", "value": "REGIONAL", "op": "replace" }]
+    },
+    "template": false
+  },
+  "responseElements": {
+    "restapiUpdate": { "restApiId": "lyppg996u0", "template": false },
+    "restapiStages": { "restApiId": "lyppg996u0", "template": true, "templateSkipList": ["position"] },
+    "documentationversionByVersion": { "restApiId": "lyppg996u0", "template": true },
+    "deploymentById": { "restApiId": "lyppg996u0", "template": true, "templateSkipList": ["position"] },
+    "stageCreate": { "restApiId": "lyppg996u0", "template": false },
+    "documentationpartById": { "restApiId": "lyppg996u0", "template": true },
+    "restapiAuthorizers": { "restApiId": "lyppg996u0", "template": false },
+    "stageByName": { "restApiId": "lyppg996u0", "template": true },
+    "deploymentCreate": { "restApiId": "lyppg996u0", "template": false },
+    "authorizerCreate": { "restApiId": "lyppg996u0", "template": false },
+    "restapiDelete": { "restApiId": "lyppg996u0", "template": false },
+    "modelCreate": { "restApiId": "lyppg996u0", "template": false },
+    "restapiResources": { "restApiId": "lyppg996u0", "template": true, "templateSkipList": ["position"] },
+    "endpointConfiguration": { "types": ["REGIONAL"], "ipv6": false },
+    "requestvalidatorCreate": { "restApiId": "lyppg996u0", "template": false },
+    "version": "1.0",
+    "restapiDocumentationVersions": { "restApiId": "lyppg996u0", "template": false },
+    "resourceCreate": { "parentId": "he0p11md41", "restApiId": "lyppg996u0", "template": false },
+    "documentationpartCreate": { "restApiId": "lyppg996u0", "template": false },
+    "documentationpartImport": { "restApiId": "lyppg996u0", "failOnWarnings": false, "template": true },
+    "gatewayresponsePut": { "restApiId": "lyppg996u0", "template": true },
+    "tags": {
+      "aws:cloudformation:stack-name": "EngagementMeter",
+      "aws:cloudformation:stack-id": "arn:aws:cloudformation:ap-northeast-1:999999999999:stack/EngagementMeter/d17d8270-9dbf-11eb-9a3b-0ed2cfff1a51",
+      "aws:cloudformation:logical-id": "RestApi"
+    },
+    "restapiRequestValidators": { "restApiId": "lyppg996u0", "template": false },
+    "documentationversionCreate": { "restApiId": "lyppg996u0", "template": false },
+    "name": "RekogDemo-EngagementMeter",
+    "modelByName": { "flatten": false, "restApiId": "lyppg996u0", "template": true },
+    "gatewayresponseByType": { "restApiId": "lyppg996u0", "template": true },
+    "requestvalidatorById": { "restApiId": "lyppg996u0", "template": true },
+    "id": "lyppg996u0",
+    "restapiDeployments": { "restApiId": "lyppg996u0", "template": true, "templateSkipList": ["position"] },
+    "createdDate": "Apr 15, 2021 7:55:29 AM",
+    "disableExecuteApiEndpoint": false,
+    "restapiModels": { "restApiId": "lyppg996u0", "template": false },
+    "restapiDocumentationParts": { "restApiId": "lyppg996u0", "template": false },
+    "restapiGatewayResponses": { "restApiId": "lyppg996u0", "template": false },
+    "apiKeySource": "HEADER",
+    "authorizerById": { "restApiId": "lyppg996u0", "template": true },
+    "resourceById": { "restApiId": "lyppg996u0", "template": true },
+    "self": { "restApiId": "lyppg996u0", "template": false }
+  },
+  "requestID": "579e5f9b-9106-4201-b8a8-0330ef9a673b",
+  "eventID": "8230db74-57e3-4c26-ae86-c49a69e3910a",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

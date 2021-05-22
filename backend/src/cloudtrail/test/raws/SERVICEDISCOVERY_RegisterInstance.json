@@ -1,0 +1,51 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI6XLOHRBL2:ecs-service-discovery-provisioning",
+    "arn": "arn:aws:sts::999999999999:assumed-role/AWSServiceRoleForECS/ecs-service-discovery-provisioning",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIUOT73MU5",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI6XLOHRBL2",
+        "arn": "arn:aws:iam::999999999999:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+        "accountId": "999999999999",
+        "userName": "AWSServiceRoleForECS"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-01T00:25:04Z" }
+    },
+    "invokedBy": "ecs.amazonaws.com"
+  },
+  "eventTime": "2021-02-01T00:25:04Z",
+  "eventSource": "servicediscovery.amazonaws.com",
+  "eventName": "RegisterInstance",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "ecs.amazonaws.com",
+  "userAgent": "ecs.amazonaws.com",
+  "requestParameters": {
+    "serviceId": "srv-mob6x3hx27m3trry",
+    "instanceId": "cc5e0a62cce040b2aeca297a0780301a",
+    "creatorRequestId": "cc5e0a62cce040b2aeca297a0780301a",
+    "attributes": {
+      "ECS_TASK_DEFINITION_FAMILY": "onecloud-fargate-backend-private",
+      "ECS_CLUSTER_NAME": "onecloud-fargate-microservice",
+      "AVAILABILITY_ZONE": "ap-northeast-1a",
+      "ECS_SERVICE_NAME": "backend_private",
+      "AWS_INSTANCE_IPV4": "10.0.2.24",
+      "AWS_INIT_HEALTH_STATUS": "HEALTHY",
+      "REGION": "ap-northeast-1"
+    },
+    "verifyDnsPropagation": false
+  },
+  "responseElements": { "operationId": "w7sjbeyc2zgdmxq6uq2icwxqdtpf2s5h-kkltzyi2" },
+  "requestID": "4973d1f7-941f-4517-9d66-14166f7df567",
+  "eventID": "8b48a074-611d-4430-90bd-a3ad24811c57",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

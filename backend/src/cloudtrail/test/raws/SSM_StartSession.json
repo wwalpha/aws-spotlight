@@ -1,0 +1,35 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIUZVVMUQNP",
+    "arn": "arn:aws:iam::999999999999:user/demo-user11",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIRFE2J4PK",
+    "userName": "demo-user11",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-22T05:44:04Z" }
+    }
+  },
+  "eventTime": "2021-04-22T07:54:26Z",
+  "eventSource": "ssm.amazonaws.com",
+  "eventName": "StartSession",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "36.12.164.108",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.984 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "requestParameters": { "target": "i-09066d75e00ddd391" },
+  "responseElements": {
+    "sessionId": "demo-user11-059d0360f897e5bd9",
+    "tokenValue": "Value hidden due to security reasons.",
+    "streamUrl": "wss://ssmmessages.ap-northeast-1.amazonaws.com/v1/data-channel/demo-user11-059d0360f897e5bd9?role=publish_subscribe"
+  },
+  "requestID": "2c55e7ea-d523-436f-9133-b4d37acae251",
+  "eventID": "e052d5f5-a2de-439c-8360-9eb6b776ea5b",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

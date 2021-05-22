@@ -1,0 +1,44 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLISTTQYGPJ",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-02T00:23:52Z" }
+    }
+  },
+  "eventTime": "2021-03-02T10:08:49Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "CreateClientVpnRoute",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "CreateClientVpnRouteRequest": {
+      "ClientVpnEndpointId": "cvpn-endpoint-00979964d0389482a",
+      "Description": "internet",
+      "TargetVpcSubnetId": "subnet-0681d2c492225dea3",
+      "DestinationCidrBlock": "0.0.0.0/0"
+    }
+  },
+  "responseElements": {
+    "CreateClientVpnRouteResponse": {
+      "xmlns": "http://ec2.amazonaws.com/doc/2016-11-15/",
+      "requestId": "124ea5d3-7e26-4656-9b22-f01898b3214b",
+      "status": { "code": "creating" }
+    }
+  },
+  "requestID": "124ea5d3-7e26-4656-9b22-f01898b3214b",
+  "eventID": "5bc51246-6ecd-41d9-9839-afce8f797afd",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

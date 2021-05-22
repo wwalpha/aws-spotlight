@@ -1,0 +1,72 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLI3YFKAM3HW",
+    "arn": "arn:aws:iam::999999999999:user/kazuya.tanaka",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIULNZU4GS",
+    "userName": "kazuya.tanaka",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-21T13:13:24Z" }
+    }
+  },
+  "eventTime": "2021-03-21T13:53:23Z",
+  "eventSource": "codecommit.amazonaws.com",
+  "eventName": "CreatePullRequest",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "112.69.148.215",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36",
+  "requestParameters": {
+    "title": "b.txtをmainにマージしてください。",
+    "description": "",
+    "targets": [
+      {
+        "repositoryName": "One-Cloud-tanaka",
+        "sourceReference": "refs/heads/develop",
+        "destinationReference": "refs/heads/main"
+      }
+    ]
+  },
+  "responseElements": {
+    "pullRequest": {
+      "pullRequestId": "1",
+      "title": "b.txtをmainにマージしてください。",
+      "description": "",
+      "lastActivityDate": "Mar 21, 2021 1:53:22 PM",
+      "creationDate": "Mar 21, 2021 1:53:22 PM",
+      "pullRequestStatus": "OPEN",
+      "authorArn": "arn:aws:iam::999999999999:user/kazuya.tanaka",
+      "pullRequestTargets": [
+        {
+          "repositoryName": "One-Cloud-tanaka",
+          "sourceReference": "refs/heads/develop",
+          "destinationReference": "refs/heads/main",
+          "destinationCommit": "719c4f83882db7d52768378954b4446922b301f6",
+          "mergeBase": "719c4f83882db7d52768378954b4446922b301f6",
+          "sourceCommit": "cca771f0e45f82ec73bcc03c6291eacef008f75f",
+          "mergeMetadata": { "isMerged": false }
+        }
+      ],
+      "revisionId": "59cdd25fd62247a22b380d9884465be9399bae3c180a151ca255afed70f1030f",
+      "approvalRules": []
+    }
+  },
+  "requestID": "9de9096a-990f-4b41-b1bf-572c747e8dfe",
+  "eventID": "3e9fcb3c-6dc6-47d4-987d-a26c4b291dd7",
+  "readOnly": false,
+  "resources": [
+    {
+      "accountId": "999999999999",
+      "type": "AWS::CodeCommit::Repository",
+      "ARN": "arn:aws:codecommit:ap-northeast-1:999999999999:One-Cloud-tanaka"
+    }
+  ],
+  "eventType": "AwsApiCall",
+  "apiVersion": "2015-04-13",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

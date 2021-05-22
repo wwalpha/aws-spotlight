@@ -1,0 +1,51 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI6BFOFT4P",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-24T01:56:45Z" }
+    }
+  },
+  "eventTime": "2021-04-24T02:06:13Z",
+  "eventSource": "s3.amazonaws.com",
+  "eventName": "PutBucketWebsite",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "[S3Console/0.4, aws-internal/3 aws-sdk-java/1.11.991 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy]",
+  "requestParameters": {
+    "WebsiteConfiguration": {
+      "IndexDocument": { "Suffix": "index.html" },
+      "xmlns": "http://s3.amazonaws.com/doc/2006-03-01/"
+    },
+    "bucketName": "onecloud-reserved-bucket3",
+    "website": "",
+    "Host": "s3-ap-northeast-1.amazonaws.com"
+  },
+  "responseElements": null,
+  "additionalEventData": {
+    "SignatureVersion": "SigV4",
+    "CipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
+    "bytesTransferredIn": 151,
+    "AuthenticationMethod": "AuthHeader",
+    "x-amz-id-2": "eLpq9ac+5G7gl8EBtOI0U4B67xJVYotQNzGa32hjVg32OHONesqlHYh+rO6UWs4sNw39XoIK/OI=",
+    "bytesTransferredOut": 0
+  },
+  "requestID": "K0T1VJKG8JEN5TYB",
+  "eventID": "1ac69b52-1c4d-4464-9312-c86b6ec85523",
+  "readOnly": false,
+  "resources": [
+    { "accountId": "999999999999", "type": "AWS::S3::Bucket", "ARN": "arn:aws:s3:::onecloud-reserved-bucket3" }
+  ],
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999",
+  "vpcEndpointId": "vpce-c8e61da1"
+}

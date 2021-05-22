@@ -1,0 +1,35 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIUCSBBEPL",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-05T14:03:14Z" }
+    }
+  },
+  "eventTime": "2021-03-05T14:19:20Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "ReplaceRoute",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "routeTableId": "rtb-0c8df2818b03c7fa1",
+    "destinationCidrBlock": "0.0.0.0/0",
+    "vpcEndpointId": "vpce-00fde75695ad9fcb8"
+  },
+  "responseElements": { "requestId": "a6ebb0c8-28d2-4a95-8fe2-b0d553dcbc82", "_return": true },
+  "requestID": "a6ebb0c8-28d2-4a95-8fe2-b0d553dcbc82",
+  "eventID": "9a2c8703-b10c-4dab-9897-35ea3675a3e7",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

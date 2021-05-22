@@ -1,0 +1,54 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI4QBPO4BZ",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-05T14:03:14Z" }
+    }
+  },
+  "eventTime": "2021-03-05T14:10:29Z",
+  "eventSource": "network-firewall.amazonaws.com",
+  "eventName": "CreateRuleGroup",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "ruleGroupName": "stateful-rules",
+    "ruleGroup": {
+      "rulesSource": {
+        "rulesSourceList": {
+          "targetTypes": ["HTTP_HOST", "TLS_SNI"],
+          "generatedRulesType": "ALLOWLIST",
+          "targets": ["yahoo.co.jp"]
+        }
+      }
+    },
+    "type": "STATEFUL",
+    "capacity": 100,
+    "dryRun": false
+  },
+  "responseElements": {
+    "ruleGroupResponse": {
+      "ruleGroupArn": "arn:aws:network-firewall:ap-northeast-1:999999999999:stateful-rulegroup/stateful-rules",
+      "ruleGroupName": "stateful-rules",
+      "ruleGroupId": "7532e0c2-8e8f-4d5d-96fc-59b94c405cac",
+      "type": "STATEFUL",
+      "capacity": 100,
+      "ruleGroupStatus": "ACTIVE"
+    }
+  },
+  "requestID": "811eb1f8-b266-4a15-a876-74a055ebf355",
+  "eventID": "6ede0d8e-fadd-40d0-88f7-0b711f465dca",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

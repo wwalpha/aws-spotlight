@@ -1,0 +1,62 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIUIX3R6HC",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-03T01:31:15Z" }
+    }
+  },
+  "eventTime": "2021-03-03T06:05:13Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "AcceptVpcPeeringConnection",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": { "vpcPeeringConnectionId": "pcx-0baa61104a60b0426" },
+  "responseElements": {
+    "requestId": "a80ea6df-8d8e-4d4c-baaf-3fc7561783bc",
+    "vpcPeeringConnection": {
+      "vpcPeeringConnectionId": "pcx-0baa61104a60b0426",
+      "requesterVpcInfo": {
+        "ownerId": "999999999999",
+        "vpcId": "vpc-0a9d69fb140371942",
+        "cidrBlock": "10.10.0.0/24",
+        "region": "ap-northeast-3",
+        "cidrBlockSet": { "items": [{ "cidrBlock": "10.10.0.0/24" }] },
+        "peeringOptions": {
+          "allowEgressFromLocalClassicLinkToRemoteVpc": false,
+          "allowEgressFromLocalVpcToRemoteClassicLink": false,
+          "allowDnsResolutionFromRemoteVpc": false
+        }
+      },
+      "accepterVpcInfo": {
+        "ownerId": "999999999999",
+        "vpcId": "vpc-0f1e12c219f232b46",
+        "cidrBlock": "10.0.0.0/16",
+        "region": "ap-northeast-1",
+        "cidrBlockSet": { "items": [{ "cidrBlock": "10.0.0.0/16" }] },
+        "peeringOptions": {
+          "allowEgressFromLocalClassicLinkToRemoteVpc": false,
+          "allowEgressFromLocalVpcToRemoteClassicLink": false,
+          "allowDnsResolutionFromRemoteVpc": false
+        }
+      },
+      "status": { "code": "provisioning", "message": "Provisioning" },
+      "tagSet": {}
+    }
+  },
+  "requestID": "a80ea6df-8d8e-4d4c-baaf-3fc7561783bc",
+  "eventID": "7eeef996-1a31-4894-81cf-c35b8df67d82",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

@@ -1,0 +1,57 @@
+name: Terraform Services Build
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - terraform/services/**
+      - .github/workflows/terraform_services_dev.yml
+  workflow_run:
+    workflows:
+      - Terraform Setup Build
+    branches:
+      - master
+    types:
+      - completed
+  workflow_dispatch:
+
+env:
+  TF_WORKSPACE: dev
+  TF_VAR_region: ap-northeast-1
+  TF_VAR_admin_email: ${{ secrets.ADMIN_EMAIL }} 
+  AWS_DEFAULT_REGION: ap-northeast-1
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  WORKING_DIR: terraform/services
+
+jobs:
+  Update:
+    runs-on: ubuntu-18.04
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}
+
+    steps:
+      # source checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Install the latest version of Terraform CLI 
+      # and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 0.15.3
+
+      # Service init
+      - name: Terraform Init
+        run: terraform init
+
+      # Service plan
+      - name: Terraform Plan
+        run: terraform plan -out=services
+
+      # Service apply
+      - name: Terraform Apply
+        run: terraform apply "services"

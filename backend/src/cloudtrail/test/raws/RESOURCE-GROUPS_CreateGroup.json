@@ -1,0 +1,47 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLI6HXFBLO7X",
+    "arn": "arn:aws:iam::999999999999:user/mnakanishi",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIV54DTUWJ",
+    "userName": "mnakanishi",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-01-24T18:50:07Z" }
+    }
+  },
+  "eventTime": "2021-01-24T23:45:38Z",
+  "eventSource": "resource-groups.amazonaws.com",
+  "eventName": "CreateGroup",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "147.161.193.23",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.930 Linux/4.9.230-0.1.ac.223.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.275-b01 java/1.8.0_275 vendor/Oracle_Corporation",
+  "requestParameters": {
+    "Name": "AppManager-aws-cloud9-IoTOnAWS-8618aeff1da4459bb8941d1b49c55041",
+    "ResourceQuery": {
+      "Type": "CLOUDFORMATION_STACK_1_0",
+      "Query": "{\"ResourceTypeFilters\":[\"AWS::AllSupported\"],\"StackIdentifier\":\"arn:aws:cloudformation:ap-northeast-1:999999999999:stack/aws-cloud9-IoTOnAWS-8618aeff1da4459bb8941d1b49c55041/6e948340-990e-11ea-8fa8-06c25460bea0\"}"
+    }
+  },
+  "responseElements": {
+    "Group": {
+      "GroupArn": "arn:aws:resource-groups:ap-northeast-1:999999999999:group/AppManager-aws-cloud9-IoTOnAWS-8618aeff1da4459bb8941d1b49c55041",
+      "Name": "AppManager-aws-cloud9-IoTOnAWS-8618aeff1da4459bb8941d1b49c55041",
+      "OwnerId": "999999999999"
+    },
+    "ResourceQuery": {
+      "Type": "CLOUDFORMATION_STACK_1_0",
+      "Query": "{\"ResourceTypeFilters\":[\"AWS::AllSupported\"],\"StackIdentifier\":\"arn:aws:cloudformation:ap-northeast-1:999999999999:stack/aws-cloud9-IoTOnAWS-8618aeff1da4459bb8941d1b49c55041/6e948340-990e-11ea-8fa8-06c25460bea0\"}"
+    }
+  },
+  "requestID": "3b3165e9-5d18-4743-afef-c6c13143de42",
+  "eventID": "93f83b38-055a-445a-9a45-bb980bf5922f",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

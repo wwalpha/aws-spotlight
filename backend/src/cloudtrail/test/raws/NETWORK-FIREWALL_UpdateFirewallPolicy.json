@@ -1,0 +1,50 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI4QBPO4BZ",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-05T14:03:14Z" }
+    }
+  },
+  "eventTime": "2021-03-05T14:11:06Z",
+  "eventSource": "network-firewall.amazonaws.com",
+  "eventName": "UpdateFirewallPolicy",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "firewallPolicyArn": "arn:aws:network-firewall:ap-northeast-1:999999999999:firewall-policy/whitelist",
+    "firewallPolicyName": "whitelist",
+    "firewallPolicy": {
+      "statelessFragmentDefaultActions": ["aws:pass"],
+      "statelessDefaultActions": ["aws:forward_to_sfe"],
+      "statefulRuleGroupReferences": [
+        { "resourceArn": "arn:aws:network-firewall:ap-northeast-1:999999999999:stateful-rulegroup/stateful-rules" }
+      ]
+    },
+    "dryRun": false
+  },
+  "responseElements": {
+    "firewallPolicyResponse": {
+      "firewallPolicyName": "whitelist",
+      "firewallPolicyArn": "arn:aws:network-firewall:ap-northeast-1:999999999999:firewall-policy/whitelist",
+      "firewallPolicyId": "1eaa2b21-ad76-4e60-b9d1-3b58d51f94fb",
+      "firewallPolicyStatus": "ACTIVE",
+      "tags": []
+    }
+  },
+  "requestID": "c9018fcd-1141-4d99-a818-a48921b7f54c",
+  "eventID": "ac81ba24-c7ef-446d-b800-eb191c35ecc4",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

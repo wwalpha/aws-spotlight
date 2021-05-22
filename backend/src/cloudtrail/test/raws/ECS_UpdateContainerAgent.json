@@ -1,0 +1,38 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
+    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI2LE7XADJ",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2OU3QHN26",
+        "arn": "arn:aws:iam::999999999999:role/KTOU_SwitchRole",
+        "accountId": "999999999999",
+        "userName": "KTOU_SwitchRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-01-21T01:35:55Z" }
+    }
+  },
+  "eventTime": "2021-01-21T01:45:56Z",
+  "eventSource": "ecs.amazonaws.com",
+  "eventName": "UpdateContainerAgent",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "console.amazonaws.com",
+  "errorCode": "NoUpdateAvailableException",
+  "errorMessage": "There is no update available for your container agent.",
+  "requestParameters": { "cluster": "ecs-on-ec2", "containerInstance": "e2660179ea144b3b87a2a5ff6279b7f3" },
+  "responseElements": null,
+  "requestID": "df1984e6-a1ce-4622-ac17-622e14797bf7",
+  "eventID": "632db06c-0ca4-4f05-9914-0f90ac37c137",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

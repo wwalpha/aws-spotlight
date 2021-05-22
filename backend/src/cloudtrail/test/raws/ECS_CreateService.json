@@ -1,0 +1,124 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2QCIZFG2K:i-00adf0ee742a14e6a",
+    "arn": "arn:aws:sts::999999999999:assumed-role/yshimitzu_full/i-00adf0ee742a14e6a",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI7MDEOIQI",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2QCIZFG2K",
+        "arn": "arn:aws:iam::999999999999:role/yshimitzu_full",
+        "accountId": "999999999999",
+        "userName": "yshimitzu_full"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-01T12:59:32Z" },
+      "ec2RoleDelivery": "2.0"
+    }
+  },
+  "eventTime": "2021-02-01T13:20:25Z",
+  "eventSource": "ecs.amazonaws.com",
+  "eventName": "CreateService",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "18.177.168.178",
+  "userAgent": "aws-sdk-go/1.36.28 (go1.15.5; linux; amd64) APN/1.0 HashiCorp/1.0 Terraform/0.12.24 (+https://www.terraform.io)",
+  "requestParameters": {
+    "capacityProviderStrategy": [],
+    "cluster": "arn:aws:ecs:ap-northeast-1:999999999999:cluster/onecloud-fargate-microservice",
+    "deploymentConfiguration": { "maximumPercent": 200, "minimumHealthyPercent": 100 },
+    "desiredCount": 2,
+    "enableECSManagedTags": false,
+    "enableExecuteCommand": false,
+    "launchType": "FARGATE",
+    "networkConfiguration": {
+      "awsvpcConfiguration": {
+        "assignPublicIp": "DISABLED",
+        "securityGroups": ["sg-02c8769865262abbd"],
+        "subnets": ["subnet-02f400a0a5738ef8a", "subnet-0463e28fe18a6f599"]
+      }
+    },
+    "platformVersion": "1.4.0",
+    "schedulingStrategy": "REPLICA",
+    "serviceName": "backend_worker",
+    "serviceRegistries": [
+      { "registryArn": "arn:aws:servicediscovery:ap-northeast-1:999999999999:service/srv-ubpis4lzctphgcxs" }
+    ],
+    "tags": [],
+    "taskDefinition": "arn:aws:ecs:ap-northeast-1:999999999999:task-definition/onecloud-fargate-backend-worker:1"
+  },
+  "responseElements": {
+    "service": {
+      "serviceArn": "arn:aws:ecs:ap-northeast-1:999999999999:service/onecloud-fargate-microservice/backend_worker",
+      "serviceName": "backend_worker",
+      "clusterArn": "arn:aws:ecs:ap-northeast-1:999999999999:cluster/onecloud-fargate-microservice",
+      "loadBalancers": [],
+      "serviceRegistries": [
+        { "registryArn": "arn:aws:servicediscovery:ap-northeast-1:999999999999:service/srv-ubpis4lzctphgcxs" }
+      ],
+      "status": "ACTIVE",
+      "desiredCount": 2,
+      "runningCount": 0,
+      "pendingCount": 0,
+      "launchType": "FARGATE",
+      "platformVersion": "1.4.0",
+      "taskDefinition": "arn:aws:ecs:ap-northeast-1:999999999999:task-definition/onecloud-fargate-backend-worker:1",
+      "deploymentConfiguration": {
+        "deploymentCircuitBreaker": { "enable": false, "rollback": false },
+        "maximumPercent": 200,
+        "minimumHealthyPercent": 100
+      },
+      "deployments": [
+        {
+          "id": "ecs-svc/7800293015561499841",
+          "status": "PRIMARY",
+          "taskDefinition": "arn:aws:ecs:ap-northeast-1:999999999999:task-definition/onecloud-fargate-backend-worker:1",
+          "desiredCount": 2,
+          "pendingCount": 0,
+          "runningCount": 0,
+          "failedTasks": 0,
+          "createdAt": "Feb 1, 2021 1:20:25 PM",
+          "updatedAt": "Feb 1, 2021 1:20:25 PM",
+          "launchType": "FARGATE",
+          "platformVersion": "1.4.0",
+          "networkConfiguration": {
+            "awsvpcConfiguration": {
+              "assignPublicIp": "DISABLED",
+              "securityGroups": ["sg-02c8769865262abbd"],
+              "subnets": ["subnet-0463e28fe18a6f599", "subnet-02f400a0a5738ef8a"]
+            }
+          },
+          "rolloutState": "IN_PROGRESS",
+          "rolloutStateReason": "ECS deployment ecs-svc/7800293015561499841 in progress."
+        }
+      ],
+      "roleArn": "arn:aws:iam::999999999999:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+      "version": 0,
+      "events": [],
+      "createdAt": "Feb 1, 2021 1:20:25 PM",
+      "placementConstraints": [],
+      "placementStrategy": [],
+      "networkConfiguration": {
+        "awsvpcConfiguration": {
+          "assignPublicIp": "DISABLED",
+          "securityGroups": ["sg-02c8769865262abbd"],
+          "subnets": ["subnet-0463e28fe18a6f599", "subnet-02f400a0a5738ef8a"]
+        }
+      },
+      "schedulingStrategy": "REPLICA",
+      "createdBy": "arn:aws:iam::999999999999:role/yshimitzu_full",
+      "enableECSManagedTags": false,
+      "propagateTags": "NONE",
+      "enableExecuteCommand": false
+    }
+  },
+  "requestID": "bc87cbf6-5d74-4e11-bd65-f259b757fc92",
+  "eventID": "e0520de7-47b3-4995-851a-55940d71fe36",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

@@ -1,0 +1,29 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": { "accountId": "999999999999", "invokedBy": "backup.amazonaws.com" },
+  "eventTime": "2021-04-06T05:52:42Z",
+  "eventSource": "backup.amazonaws.com",
+  "eventName": "RecoveryPointCreated",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "backup.amazonaws.com",
+  "userAgent": "backup.amazonaws.com",
+  "requestParameters": null,
+  "responseElements": null,
+  "eventID": "21f65626-036c-4736-bc00-c5286c12c7e4",
+  "readOnly": false,
+  "eventType": "AwsServiceEvent",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999",
+  "serviceEventDetails": {
+    "backupJobId": "F90586FD-D017-A37E-60DA-FA35B5BD0AD8",
+    "backupVaultName": "aws/efs/automatic-backup-vault",
+    "backupVaultArn": "arn:aws:backup:ap-northeast-1:999999999999:backup-vault:aws/efs/automatic-backup-vault",
+    "recoveryPointArn": "arn:aws:backup:ap-northeast-1:999999999999:recovery-point:200dbe2a-c8d1-4311-b272-7cccc3cad554",
+    "resourceArn": "arn:aws:elasticfilesystem:ap-northeast-1:999999999999:file-system/fs-d536f8f5",
+    "creationDate": { "seconds": 1617688020, "nanos": 310000000 },
+    "backupSizeInBytes": 0,
+    "iamRoleArn": "arn:aws:iam::999999999999:role/aws-service-role/backup.amazonaws.com/AWSServiceRoleForBackup",
+    "resourceType": "EFS"
+  }
+}

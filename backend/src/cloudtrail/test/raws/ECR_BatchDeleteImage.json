@@ -1,0 +1,63 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
+    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIZAWNZEF2",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2OU3QHN26",
+        "arn": "arn:aws:iam::999999999999:role/KTOU_SwitchRole",
+        "accountId": "999999999999",
+        "userName": "KTOU_SwitchRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-01T00:48:21Z" }
+    }
+  },
+  "eventTime": "2021-02-01T01:20:13Z",
+  "eventSource": "ecr.amazonaws.com",
+  "eventName": "BatchDeleteImage",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.920 Linux/4.9.230-0.1.ac.223.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.275-b01 java/1.8.0_275 vendor/Oracle_Corporation",
+  "requestParameters": {
+    "registryId": "999999999999",
+    "repositoryName": "onecloud-fargate-backend-private",
+    "imageIds": [
+      { "imageDigest": "sha256:c29713d1cada8a39367eed125b8eb50ff65262a78d03a24c4afd956511c3aa65" },
+      { "imageDigest": "sha256:ca0408b389349f42b112c16e4acefc1da2221cf924b1ab14f042224c80d1b10d" },
+      { "imageDigest": "sha256:47aefee75d7fbac71670661c721ed337b65b90a4318368e7bb5f92961c87bc31" },
+      { "imageDigest": "sha256:cd83c481ae811900a24edb79ca41d911172a6c1ea1cfc1a0e90f4732d7104f0b" },
+      { "imageDigest": "sha256:4de333a8749d7911e51b908ab6b7cb7c244d8d57e8c6b8723714b827bd924074" },
+      { "imageDigest": "sha256:04ae662b5054bfe9fd0bd202c00f8afd55294d40506076441321ea25630fe381" }
+    ]
+  },
+  "responseElements": {
+    "imageIds": [
+      { "imageDigest": "sha256:04ae662b5054bfe9fd0bd202c00f8afd55294d40506076441321ea25630fe381" },
+      { "imageDigest": "sha256:47aefee75d7fbac71670661c721ed337b65b90a4318368e7bb5f92961c87bc31" },
+      { "imageDigest": "sha256:4de333a8749d7911e51b908ab6b7cb7c244d8d57e8c6b8723714b827bd924074" },
+      { "imageDigest": "sha256:c29713d1cada8a39367eed125b8eb50ff65262a78d03a24c4afd956511c3aa65" },
+      { "imageDigest": "sha256:ca0408b389349f42b112c16e4acefc1da2221cf924b1ab14f042224c80d1b10d" },
+      { "imageDigest": "sha256:cd83c481ae811900a24edb79ca41d911172a6c1ea1cfc1a0e90f4732d7104f0b" }
+    ],
+    "failures": []
+  },
+  "requestID": "2ba63e3d-0bfa-464c-9893-19e3e21239bb",
+  "eventID": "d38dd585-18ce-4a19-b2b0-acf8f7f2451c",
+  "readOnly": false,
+  "resources": [
+    {
+      "accountId": "999999999999",
+      "ARN": "arn:aws:ecr:ap-northeast-1:999999999999:repository/onecloud-fargate-backend-private"
+    }
+  ],
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

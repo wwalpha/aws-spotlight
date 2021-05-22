@@ -1,0 +1,56 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLITI5P6BZ4",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-27T02:05:41Z" }
+    }
+  },
+  "eventTime": "2021-04-27T02:24:41Z",
+  "eventSource": "dms.amazonaws.com",
+  "eventName": "CreateReplicationSubnetGroup",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.984 Linux/5.4.109-57.182.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "requestParameters": {
+    "replicationSubnetGroupIdentifier": "onecloud-subnet-group",
+    "replicationSubnetGroupDescription": "onecloud subnet group",
+    "subnetIds": ["subnet-02f400a0a5738ef8a", "subnet-0463e28fe18a6f599"],
+    "tags": []
+  },
+  "responseElements": {
+    "replicationSubnetGroup": {
+      "replicationSubnetGroupIdentifier": "onecloud-subnet-group",
+      "replicationSubnetGroupDescription": "onecloud subnet group",
+      "vpcId": "vpc-0f1e12c219f232b46",
+      "subnetGroupStatus": "Complete",
+      "subnets": [
+        {
+          "subnetIdentifier": "subnet-02f400a0a5738ef8a",
+          "subnetAvailabilityZone": { "name": "ap-northeast-1c" },
+          "subnetStatus": "Active"
+        },
+        {
+          "subnetIdentifier": "subnet-0463e28fe18a6f599",
+          "subnetAvailabilityZone": { "name": "ap-northeast-1a" },
+          "subnetStatus": "Active"
+        }
+      ],
+      "replicationSubnetGroupArn": "arn:aws:dms:ap-northeast-1:999999999999:subgrp:IQXHOKU27QKMVJEBSUC3VCSX67EVZT3OKYE333I"
+    }
+  },
+  "requestID": "4ea4905a-ab90-4af2-9f5f-fcf58e696177",
+  "eventID": "5ea23556-c7f1-4264-8bea-d254cd08631d",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

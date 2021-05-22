@@ -1,0 +1,44 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI6EMTBKCCX:0d3c780896413e9c834bf4d17479271f",
+    "arn": "arn:aws:sts::999999999999:assumed-role/serverlessrepo-AmazonConn-sfRealTimeQueueMetricsCr-1NIADI2BH719H/0d3c780896413e9c834bf4d17479271f",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIY47KK4GX",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI6EMTBKCCX",
+        "arn": "arn:aws:iam::999999999999:role/service-role/serverlessrepo-AmazonConn-sfRealTimeQueueMetricsCr-1NIADI2BH719H",
+        "accountId": "999999999999",
+        "userName": "serverlessrepo-AmazonConn-sfRealTimeQueueMetricsCr-1NIADI2BH719H"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-01-31T23:38:17Z" }
+    },
+    "invokedBy": "events.amazonaws.com"
+  },
+  "eventTime": "2021-01-31T23:57:17Z",
+  "eventSource": "states.amazonaws.com",
+  "eventName": "StartExecution",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "events.amazonaws.com",
+  "userAgent": "events.amazonaws.com",
+  "requestParameters": {
+    "input": "HIDDEN_DUE_TO_SECURITY_REASONS",
+    "stateMachineArn": "arn:aws:states:ap-northeast-1:999999999999:stateMachine:sfRealTimeQueueMetricsLoopJobStateMachine-yjFV5YxLrz0f",
+    "name": "ec212923-6273-579f-9786-1d9f9f4f612d_da98fdc6-9ce3-7891-2733-5243ca14b49e"
+  },
+  "responseElements": {
+    "startDate": "Jan 31, 2021 11:57:17 PM",
+    "executionArn": "arn:aws:states:ap-northeast-1:999999999999:execution:sfRealTimeQueueMetricsLoopJobStateMachine-yjFV5YxLrz0f:ec212923-6273-579f-9786-1d9f9f4f612d_da98fdc6-9ce3-7891-2733-5243ca14b49e"
+  },
+  "requestID": "c23d8e4e-6e97-4be0-83ac-e98f47997119",
+  "eventID": "dd75c095-7b28-4f9c-9aeb-cc1287bdb09d",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

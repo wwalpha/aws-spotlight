@@ -1,0 +1,41 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI6XLOHRBL2:ECS_STS_Session",
+    "arn": "arn:aws:sts::999999999999:assumed-role/AWSServiceRoleForECS/ECS_STS_Session",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIZYT5AIEH",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI6XLOHRBL2",
+        "arn": "arn:aws:iam::999999999999:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+        "accountId": "999999999999",
+        "userName": "AWSServiceRoleForECS"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-01-27T10:20:06Z" }
+    },
+    "invokedBy": "ecs.amazonaws.com"
+  },
+  "eventTime": "2021-01-27T10:21:20Z",
+  "eventSource": "logs.amazonaws.com",
+  "eventName": "PutRetentionPolicy",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "ecs.amazonaws.com",
+  "userAgent": "ecs.amazonaws.com",
+  "requestParameters": {
+    "retentionInDays": 1,
+    "logGroupName": "/aws/ecs/containerinsights/CapacityProviderDemo/performance"
+  },
+  "responseElements": null,
+  "requestID": "80a585a8-a563-4f4f-847c-972fd077e268",
+  "eventID": "9801d649-ba08-4b33-ae85-3b9c5a288583",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "20140328",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

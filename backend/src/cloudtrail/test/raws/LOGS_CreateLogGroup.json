@@ -1,0 +1,39 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI7BGOYP337:dbi-id-db-GB4AJAKFMWMIIS3R5YK4LBBFBA",
+    "arn": "arn:aws:sts::999999999999:assumed-role/rds-monitoring-role/dbi-id-db-GB4AJAKFMWMIIS3R5YK4LBBFBA",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIUSEN5TTY",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI7BGOYP337",
+        "arn": "arn:aws:iam::999999999999:role/rds-monitoring-role",
+        "accountId": "999999999999",
+        "userName": "rds-monitoring-role"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-04T06:40:50Z" }
+    }
+  },
+  "eventTime": "2021-04-04T15:50:16Z",
+  "eventSource": "logs.amazonaws.com",
+  "eventName": "CreateLogGroup",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "18.177.29.142",
+  "userAgent": "RDS:EnhancedMonitoringAgent/1.0 (Windows; MSSQL; rv:5.0) native",
+  "errorCode": "ResourceAlreadyExistsException",
+  "errorMessage": "The specified log group already exists",
+  "requestParameters": { "logGroupName": "RDSOSMetrics" },
+  "responseElements": null,
+  "requestID": "3fefb9dc-f55e-44fc-8b91-5ce51dc82c9c",
+  "eventID": "7d58b24e-79f6-42e1-afbb-53e537d2c609",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "20140328",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

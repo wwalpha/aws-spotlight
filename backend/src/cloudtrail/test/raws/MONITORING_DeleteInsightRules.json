@@ -1,0 +1,36 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
+    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI5SUVCKUW",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2OU3QHN26",
+        "arn": "arn:aws:iam::999999999999:role/KTOU_SwitchRole",
+        "accountId": "999999999999",
+        "userName": "KTOU_SwitchRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-01T06:40:09Z" }
+    }
+  },
+  "eventTime": "2021-02-01T07:01:56Z",
+  "eventSource": "monitoring.amazonaws.com",
+  "eventName": "DeleteInsightRules",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36",
+  "requestParameters": { "ruleNames": ["demo-rule"] },
+  "responseElements": { "failures": [] },
+  "requestID": "12b4f061-00b5-4e1a-a6ec-d5211eb81fdb",
+  "eventID": "c3ff5320-5d6c-49cf-a85d-df3e8903ce30",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

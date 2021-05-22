@@ -1,0 +1,43 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2QCIZFG2K:i-00adf0ee742a14e6a",
+    "arn": "arn:aws:sts::999999999999:assumed-role/yshimitzu_full/i-00adf0ee742a14e6a",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIS3ZQDPV7",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2QCIZFG2K",
+        "arn": "arn:aws:iam::999999999999:role/yshimitzu_full",
+        "accountId": "999999999999",
+        "userName": "yshimitzu_full"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-04T04:44:52Z" },
+      "ec2RoleDelivery": "2.0"
+    }
+  },
+  "eventTime": "2021-02-04T04:57:09Z",
+  "eventSource": "servicediscovery.amazonaws.com",
+  "eventName": "CreatePrivateDnsNamespace",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "18.177.168.178",
+  "userAgent": "aws-sdk-go/1.36.28 (go1.15.5; linux; amd64) APN/1.0 HashiCorp/1.0 Terraform/0.12.24 (+https://www.terraform.io)",
+  "requestParameters": {
+    "name": "microservice.local",
+    "creatorRequestId": "microservice.local20210204045709104400000001",
+    "description": "microservice.local",
+    "vpc": "vpc-0f1e12c219f232b46",
+    "tags": []
+  },
+  "responseElements": { "operationId": "nmsyjexuatvnv5cukfncqplo7jswyr7p-kkqe1eg4" },
+  "requestID": "85c00b4a-1041-468d-a948-44d3bdae3c12",
+  "eventID": "67a74333-6ab8-4b50-b140-375a93c2c5a5",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

@@ -1,0 +1,43 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLIR6UKLVKZS:db5de5fc-ea68-4ebd-baf8-4388e221a0b6",
+    "arn": "arn:aws:sts::999999999999:assumed-role/AWS-QuickSetup-StackSet-Local-ExecutionRole/db5de5fc-ea68-4ebd-baf8-4388e221a0b6",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAIVFABQFUMUFLPJPQ",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLIR6UKLVKZS",
+        "arn": "arn:aws:iam::999999999999:role/AWS-QuickSetup-StackSet-Local-ExecutionRole",
+        "accountId": "999999999999",
+        "userName": "AWS-QuickSetup-StackSet-Local-ExecutionRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-14T14:08:57Z" }
+    },
+    "invokedBy": "cloudformation.amazonaws.com"
+  },
+  "eventTime": "2021-04-14T14:09:01Z",
+  "eventSource": "ssm.amazonaws.com",
+  "eventName": "DeleteAssociation",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "requestParameters": { "associationId": "c1056953-3f9f-404f-9f50-29eb948d48da" },
+  "responseElements": null,
+  "requestID": "82936ee5-e8a7-4926-82ec-59e2ab47c8e5",
+  "eventID": "a762151f-fe7c-49d8-8ad8-27a9ef648b91",
+  "readOnly": false,
+  "resources": [
+    {
+      "accountId": "999999999999",
+      "ARN": "arn:aws:ssm:ap-northeast-1:999999999999:association/c1056953-3f9f-404f-9f50-29eb948d48da"
+    }
+  ],
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

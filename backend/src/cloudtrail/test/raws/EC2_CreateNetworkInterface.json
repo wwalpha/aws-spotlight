@@ -1,0 +1,71 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI6NH6WNL4G:AWSServiceRoleForClientVPN",
+    "arn": "arn:aws:sts::999999999999:assumed-role/AWSServiceRoleForClientVPN/AWSServiceRoleForClientVPN",
+    "accountId": "999999999999",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI6NH6WNL4G",
+        "arn": "arn:aws:iam::999999999999:role/aws-service-role/clientvpn.amazonaws.com/AWSServiceRoleForClientVPN",
+        "accountId": "999999999999",
+        "userName": "AWSServiceRoleForClientVPN"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-04T08:24:23Z" }
+    },
+    "invokedBy": "clientvpn.amazonaws.com"
+  },
+  "eventTime": "2021-04-04T08:24:23Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "CreateNetworkInterface",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "clientvpn.amazonaws.com",
+  "userAgent": "clientvpn.amazonaws.com",
+  "requestParameters": {
+    "subnetId": "subnet-02043047a2857a526",
+    "description": "ClientVPN Endpoint resource. EndpointId: cvpn-endpoint-00979964d0389482a",
+    "groupSet": { "items": [{ "groupId": "sg-0fa72d6ba38a0ca4a" }] },
+    "privateIpAddressesSet": {}
+  },
+  "responseElements": {
+    "requestId": "c056b7b8-3171-4356-9a1f-f29589c0dc1f",
+    "networkInterface": {
+      "networkInterfaceId": "eni-073a669f35f9ca28f",
+      "subnetId": "subnet-02043047a2857a526",
+      "vpcId": "vpc-0f1e12c219f232b46",
+      "availabilityZone": "ap-northeast-1c",
+      "description": "ClientVPN Endpoint resource. EndpointId: cvpn-endpoint-00979964d0389482a",
+      "ownerId": "999999999999",
+      "requesterId": "276640249861",
+      "requesterManaged": false,
+      "status": "pending",
+      "macAddress": "0a:f4:76:df:f5:33",
+      "privateIpAddress": "10.0.1.55",
+      "privateDnsName": "ip-10-0-1-55.ap-northeast-1.compute.internal",
+      "sourceDestCheck": true,
+      "interfaceType": "interface",
+      "groupSet": { "items": [{ "groupId": "sg-0fa72d6ba38a0ca4a", "groupName": "onecloud-lawson-vpn" }] },
+      "privateIpAddressesSet": {
+        "item": [
+          {
+            "privateIpAddress": "10.0.1.55",
+            "privateDnsName": "ip-10-0-1-55.ap-northeast-1.compute.internal",
+            "primary": true
+          }
+        ]
+      },
+      "ipv6AddressesSet": {},
+      "tagSet": {}
+    }
+  },
+  "requestID": "c056b7b8-3171-4356-9a1f-f29589c0dc1f",
+  "eventID": "977e2183-6d32-428b-a632-350895d2e9b9",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

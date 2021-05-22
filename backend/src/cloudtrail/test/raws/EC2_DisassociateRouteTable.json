@@ -1,0 +1,31 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-17T01:05:15Z" }
+    },
+    "invokedBy": "cloudformation.amazonaws.com"
+  },
+  "eventTime": "2021-04-17T01:11:19Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "DisassociateRouteTable",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "requestParameters": { "associationId": "rtbassoc-0e6b4a5fe5bb5f83f" },
+  "responseElements": { "requestId": "2803dea8-3de0-41d1-95e3-81f12b09725b", "_return": true },
+  "requestID": "2803dea8-3de0-41d1-95e3-81f12b09725b",
+  "eventID": "5b09b5e6-da3c-47b3-826f-2e4f14d2d024",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

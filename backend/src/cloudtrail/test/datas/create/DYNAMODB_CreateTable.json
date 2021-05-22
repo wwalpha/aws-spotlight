@@ -1,0 +1,97 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLI6DETSD4FR",
+    "arn": "arn:aws:iam::999999999999:user/wlim40",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAIWZNXFSGLHSFIDDA",
+    "userName": "wlim40",
+    "sessionContext": { "attributes": { "creationDate": "2021-04-15T07:31:59Z", "mfaAuthenticated": "false" } },
+    "invokedBy": "cloudformation.amazonaws.com"
+  },
+  "eventTime": "2021-04-15T07:54:51Z",
+  "eventSource": "dynamodb.amazonaws.com",
+  "eventName": "CreateTable",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "requestParameters": {
+    "attributeDefinitions": [
+      { "attributeName": "CollectionId", "attributeType": "S" },
+      { "attributeName": "ExternalImageId", "attributeType": "S" },
+      { "attributeName": "JobTitle", "attributeType": "S" },
+      { "attributeName": "MemberName", "attributeType": "S" }
+    ],
+    "tableName": "RekogFacesEngagementMeter",
+    "keySchema": [
+      { "attributeName": "CollectionId", "keyType": "HASH" },
+      { "attributeName": "ExternalImageId", "keyType": "RANGE" }
+    ],
+    "globalSecondaryIndexes": [
+      {
+        "indexName": "geGSI",
+        "keySchema": [
+          { "attributeName": "JobTitle", "keyType": "HASH" },
+          { "attributeName": "MemberName", "keyType": "RANGE" }
+        ],
+        "projection": { "projectionType": "INCLUDE", "nonKeyAttributes": ["CollectionId", "ExternalImageId"] }
+      }
+    ],
+    "billingMode": "PAY_PER_REQUEST"
+  },
+  "responseElements": {
+    "tableDescription": {
+      "attributeDefinitions": [
+        { "attributeName": "CollectionId", "attributeType": "S" },
+        { "attributeName": "ExternalImageId", "attributeType": "S" },
+        { "attributeName": "JobTitle", "attributeType": "S" },
+        { "attributeName": "MemberName", "attributeType": "S" }
+      ],
+      "tableName": "RekogFacesEngagementMeter",
+      "keySchema": [
+        { "attributeName": "CollectionId", "keyType": "HASH" },
+        { "attributeName": "ExternalImageId", "keyType": "RANGE" }
+      ],
+      "tableStatus": "CREATING",
+      "creationDateTime": "Apr 15, 2021, 7:54:51 AM",
+      "provisionedThroughput": { "numberOfDecreasesToday": 0, "readCapacityUnits": 0, "writeCapacityUnits": 0 },
+      "tableSizeBytes": 0,
+      "itemCount": 0,
+      "tableArn": "arn:aws:dynamodb:ap-northeast-1:999999999999:table/RekogFacesEngagementMeter",
+      "tableId": "2e3c5295-ffeb-4a7b-8741-cf0af23706db",
+      "tableThroughputModeSummary": { "tableThroughputMode": "PAY_PER_REQUEST" },
+      "billingModeSummary": { "billingMode": "PAY_PER_REQUEST" },
+      "globalSecondaryIndexes": [
+        {
+          "indexName": "geGSI",
+          "keySchema": [
+            { "attributeName": "JobTitle", "keyType": "HASH" },
+            { "attributeName": "MemberName", "keyType": "RANGE" }
+          ],
+          "projection": { "projectionType": "INCLUDE", "nonKeyAttributes": ["CollectionId", "ExternalImageId"] },
+          "indexStatus": "CREATING",
+          "provisionedThroughput": { "numberOfDecreasesToday": 0, "readCapacityUnits": 0, "writeCapacityUnits": 0 },
+          "indexSizeBytes": 0,
+          "itemCount": 0,
+          "indexArn": "arn:aws:dynamodb:ap-northeast-1:999999999999:table/RekogFacesEngagementMeter/index/geGSI"
+        }
+      ]
+    }
+  },
+  "requestID": "18TL5P8DBPRPSOGKA56ORQRASBVV4KQNSO5AEMVJF66Q9ASUAAJG",
+  "eventID": "696c84dc-ad34-4abe-90dd-b69189934170",
+  "readOnly": false,
+  "resources": [
+    {
+      "accountId": "999999999999",
+      "type": "AWS::DynamoDB::Table",
+      "ARN": "arn:aws:dynamodb:ap-northeast-1:999999999999:table/RekogFacesEngagementMeter"
+    }
+  ],
+  "eventType": "AwsApiCall",
+  "apiVersion": "2012-08-10",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management"
+}

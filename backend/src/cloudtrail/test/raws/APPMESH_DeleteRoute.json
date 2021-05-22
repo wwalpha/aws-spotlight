@@ -1,0 +1,65 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
+    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI7Z3OT2YZ",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2OU3QHN26",
+        "arn": "arn:aws:iam::999999999999:role/KTOU_SwitchRole",
+        "accountId": "999999999999",
+        "userName": "KTOU_SwitchRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-01T11:40:58Z" }
+    }
+  },
+  "eventTime": "2021-02-01T12:38:01Z",
+  "eventSource": "appmesh.amazonaws.com",
+  "eventName": "DeleteRoute",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.942 Linux/4.9.230-0.1.ac.223.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+  "requestParameters": {
+    "meshName": "ecs-mesh",
+    "meshOwner": "999999999999",
+    "routeName": "mesh-route-config",
+    "virtualRouterName": "mesh-virtual-router"
+  },
+  "responseElements": {
+    "route": {
+      "meshName": "ecs-mesh",
+      "metadata": {
+        "arn": "arn:aws:appmesh:ap-northeast-1:999999999999:mesh/ecs-mesh/virtualRouter/mesh-virtual-router/route/mesh-route-config",
+        "createdAt": "Jan 31, 2021 12:25:35 PM",
+        "lastUpdatedAt": "Feb 1, 2021 12:38:01 PM",
+        "meshOwner": "999999999999",
+        "resourceOwner": "999999999999",
+        "uid": "80caea18-144b-4f0c-8bfc-9833db571417",
+        "version": 2
+      },
+      "routeName": "mesh-route-config",
+      "spec": {
+        "httpRoute": {
+          "action": { "weightedTargets": [{ "virtualNode": "mesh-virtual-node", "weight": 1 }] },
+          "match": { "prefix": "/" }
+        },
+        "priority": 1
+      },
+      "status": { "status": "DELETED" },
+      "virtualRouterName": "mesh-virtual-router"
+    }
+  },
+  "requestID": "27ab025a-7cc3-4eef-abe7-eec69a385ca9",
+  "eventID": "3e914445-3745-41c7-89d6-b439eab96ac9",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2019-01-25",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

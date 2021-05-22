@@ -1,0 +1,61 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIUJQCG674",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-03T01:31:15Z" }
+    }
+  },
+  "eventTime": "2021-03-03T06:29:50Z",
+  "eventSource": "dms.amazonaws.com",
+  "eventName": "ModifyEndpoint",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.946 Linux/5.4.80-46.140.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+  "requestParameters": {
+    "endpointArn": "arn:aws:dms:ap-northeast-1:999999999999:endpoint:C7MK2MEEKVSLJ3EZCEQMV4N7UCUV2AUIR6XXTXQ",
+    "endpointIdentifier": "onecloud-lawson-target-mysql",
+    "endpointType": "target",
+    "engineName": "mysql",
+    "password": "HIDDEN_DUE_TO_SECURITY_REASONS",
+    "extraConnectionAttributes": "parallelLoadThreads=1; initstmt=SET FOREIGN_KEY_CHECKS=0",
+    "sslMode": "none",
+    "mySQLSettings": {
+      "secretsManagerAccessRoleArn": "arn:aws:iam::999999999999:role/OneCloud_DMS_Admin",
+      "secretsManagerSecretId": "arn:aws:secretsmanager:ap-northeast-1:999999999999:secret:onecloud/lawson/mysql-W59oF6"
+    }
+  },
+  "responseElements": {
+    "endpoint": {
+      "endpointIdentifier": "onecloud-lawson-target-mysql",
+      "endpointType": "TARGET",
+      "engineName": "mysql",
+      "engineDisplayName": "MySQL",
+      "transferFiles": false,
+      "receiveTransferredFiles": false,
+      "extraConnectionAttributes": "parallelLoadThreads=1; initstmt=SET FOREIGN_KEY_CHECKS=0",
+      "status": "active",
+      "kmsKeyId": "arn:aws:kms:ap-northeast-1:999999999999:key/127c5c76-20e3-4216-bcff-08bbbf9aab0b",
+      "endpointArn": "arn:aws:dms:ap-northeast-1:999999999999:endpoint:C7MK2MEEKVSLJ3EZCEQMV4N7UCUV2AUIR6XXTXQ",
+      "sslMode": "none",
+      "mySQLSettings": {
+        "secretsManagerAccessRoleArn": "arn:aws:iam::999999999999:role/OneCloud_DMS_Admin",
+        "secretsManagerSecretId": "arn:aws:secretsmanager:ap-northeast-1:999999999999:secret:onecloud/lawson/mysql-W59oF6"
+      }
+    }
+  },
+  "requestID": "024a9693-661d-4a9f-9338-257be86e0854",
+  "eventID": "526cbb85-e3a0-484c-b5ac-0fd57c93e99d",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

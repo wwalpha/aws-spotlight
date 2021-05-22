@@ -1,0 +1,56 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI5HBSFYD3",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-02T00:23:52Z" }
+    }
+  },
+  "eventTime": "2021-03-02T01:56:59Z",
+  "eventSource": "rds.amazonaws.com",
+  "eventName": "CreateDBSubnetGroup",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.848 Linux/4.9.230-0.1.ac.223.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.202-b08 java/1.8.0_202 vendor/Oracle_Corporation",
+  "requestParameters": {
+    "dBSubnetGroupName": "onecloud-subnet-group",
+    "dBSubnetGroupDescription": "onecloud-subnet-group",
+    "subnetIds": ["subnet-02043047a2857a526", "subnet-0681d2c492225dea3"],
+    "dryRun": false
+  },
+  "responseElements": {
+    "dBSubnetGroupName": "onecloud-subnet-group",
+    "dBSubnetGroupDescription": "onecloud-subnet-group",
+    "vpcId": "vpc-0f1e12c219f232b46",
+    "subnetGroupStatus": "Complete",
+    "subnets": [
+      {
+        "subnetIdentifier": "subnet-02043047a2857a526",
+        "subnetAvailabilityZone": { "name": "ap-northeast-1c" },
+        "subnetOutpost": {},
+        "subnetStatus": "Active"
+      },
+      {
+        "subnetIdentifier": "subnet-0681d2c492225dea3",
+        "subnetAvailabilityZone": { "name": "ap-northeast-1a" },
+        "subnetOutpost": {},
+        "subnetStatus": "Active"
+      }
+    ],
+    "dBSubnetGroupArn": "arn:aws:rds:ap-northeast-1:999999999999:subgrp:onecloud-subnet-group"
+  },
+  "requestID": "23256e92-d0d4-4a87-a98a-b280f9413fbb",
+  "eventID": "e49c897d-217b-4f55-9965-b1b8804c2dd4",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

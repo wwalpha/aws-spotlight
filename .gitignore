@@ -1,0 +1,6 @@
+.terraform
+.terraform.lock*
+.secrets
+local.auto.tfvars
+dist
+build

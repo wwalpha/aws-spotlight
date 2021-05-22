@@ -1,0 +1,36 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAIA2W7X7XGSTCHREQ",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-09T03:13:45Z" }
+    },
+    "invokedBy": "cloudformation.amazonaws.com"
+  },
+  "eventTime": "2021-04-09T03:24:35Z",
+  "eventSource": "autoscaling.amazonaws.com",
+  "eventName": "UpdateAutoScalingGroup",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "requestParameters": {
+    "maxSize": 0,
+    "minSize": 0,
+    "autoScalingGroupName": "awseb-e-tsea7by9ub-stack-AWSEBAutoScalingGroup-1TS3CYXZTEM3R"
+  },
+  "responseElements": null,
+  "requestID": "2fe3fab5-1680-49c0-9bb0-b6f635daeed9",
+  "eventID": "81cd06be-c491-468f-b219-c0189ee9ed62",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

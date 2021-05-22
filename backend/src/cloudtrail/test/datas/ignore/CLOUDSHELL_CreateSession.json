@@ -1,0 +1,35 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLITFXACZIG",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-07T12:47:24Z" }
+    }
+  },
+  "eventTime": "2021-04-07T12:48:23Z",
+  "eventSource": "cloudshell.amazonaws.com",
+  "eventName": "CreateSession",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36",
+  "requestParameters": { "EnvironmentId": "f4f883e0-7e4b-4c7b-b131-91100b615ec3" },
+  "responseElements": {
+    "EnvironmentId": "f4f883e0-7e4b-4c7b-b131-91100b615ec3",
+    "SessionId": "1617796597842495538-0bcc4e95dc5a0965c",
+    "StreamUrl": "wss://ssmmessages.ap-northeast-1.amazonaws.com/v1/data-channel/1617796597842495538-0bcc4e95dc5a0965c?role=publish_subscribe"
+  },
+  "requestID": "fb09c197-b171-47cd-b53a-cd76c10be8d0",
+  "eventID": "c99d6119-1f64-4e88-acf8-6137c1840e59",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

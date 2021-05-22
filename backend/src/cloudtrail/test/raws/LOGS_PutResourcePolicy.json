@@ -1,0 +1,42 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAJSF7THP22ZLM6IEA",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-05T14:03:14Z" }
+    },
+    "invokedBy": "AWS Internal"
+  },
+  "eventTime": "2021-03-05T22:49:52Z",
+  "eventSource": "logs.amazonaws.com",
+  "eventName": "PutResourcePolicy",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "AWS Internal",
+  "userAgent": "AWS Internal",
+  "requestParameters": {
+    "policyDocument": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"AWSLogDeliveryWrite\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"delivery.logs.amazonaws.com\"},\"Action\":[\"logs:CreateLogStream\",\"logs:PutLogEvents\"],\"Resource\":[\"arn:aws:logs:ap-northeast-1:999999999999:log-group:/aws/states/SecureGate-CloudWatchLogsExport-Logs:log-stream:*\",\"arn:aws:logs:ap-northeast-1:999999999999:log-group:/aws/states/SecureGate-CloudWatchLogsExport:log-stream:*\",\"arn:aws:logs:ap-northeast-1:999999999999:log-group:/aws/vpc/firewall:log-stream:*\"]}]}",
+    "policyName": "AWSLogDeliveryWrite20150319"
+  },
+  "responseElements": {
+    "resourcePolicy": {
+      "policyName": "AWSLogDeliveryWrite20150319",
+      "lastUpdatedTime": 1614984592006,
+      "policyDocument": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"AWSLogDeliveryWrite\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"delivery.logs.amazonaws.com\"},\"Action\":[\"logs:CreateLogStream\",\"logs:PutLogEvents\"],\"Resource\":[\"arn:aws:logs:ap-northeast-1:999999999999:log-group:/aws/states/SecureGate-CloudWatchLogsExport-Logs:log-stream:*\",\"arn:aws:logs:ap-northeast-1:999999999999:log-group:/aws/states/SecureGate-CloudWatchLogsExport:log-stream:*\",\"arn:aws:logs:ap-northeast-1:999999999999:log-group:/aws/vpc/firewall:log-stream:*\"]}]}"
+    }
+  },
+  "requestID": "8e0cc5a8-c3d1-4a7a-8d32-2f2333492822",
+  "eventID": "d25d0974-dabc-4a89-be6d-72eae9b5c8ea",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "20140328",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

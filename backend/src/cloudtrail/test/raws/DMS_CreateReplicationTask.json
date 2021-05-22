@@ -1,0 +1,41 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIVQRJ6SEV",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-02T00:23:52Z" }
+    }
+  },
+  "eventTime": "2021-03-02T08:01:18Z",
+  "eventSource": "dms.amazonaws.com",
+  "eventName": "CreateReplicationTask",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.946 Linux/5.4.80-46.140.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+  "errorCode": "InvalidParameterValueException",
+  "errorMessage": "Error in mapping rules. At least one selection rule is required.",
+  "requestParameters": {
+    "replicationTaskIdentifier": "onecloud-lawson-oracle-to-mysql",
+    "sourceEndpointArn": "arn:aws:dms:ap-northeast-1:999999999999:endpoint:PMI5VDJW2SCSZYMRGEREJKZXVP55BP77ZRY2CFQ",
+    "targetEndpointArn": "arn:aws:dms:ap-northeast-1:999999999999:endpoint:C7MK2MEEKVSLJ3EZCEQMV4N7UCUV2AUIR6XXTXQ",
+    "replicationInstanceArn": "arn:aws:dms:ap-northeast-1:999999999999:rep:H6YA5ECH6CTCZUHGCBILQF4HP3MS26OUKWFRPJY",
+    "migrationType": "full-load",
+    "tableMappings": "{\"rules\":[]}",
+    "replicationTaskSettings": "{\"TargetMetadata\":{\"SupportLobs\":true,\"FullLobMode\":false,\"LobChunkSize\":0,\"LimitedSizeLobMode\":true,\"LobMaxSize\":32,\"TaskRecoveryTableEnabled\":false},\"Logging\":{\"EnableLogging\":true,\"LogComponents\":[{\"Id\":\"SOURCE_UNLOAD\",\"Severity\":\"LOGGER_SEVERITY_DEFAULT\"},{\"Id\":\"TARGET_LOAD\",\"Severity\":\"LOGGER_SEVERITY_DEFAULT\"},{\"Id\":\"SOURCE_CAPTURE\",\"Severity\":\"LOGGER_SEVERITY_DEFAULT\"},{\"Id\":\"TARGET_APPLY\",\"Severity\":\"LOGGER_SEVERITY_DEFAULT\"},{\"Id\":\"TASK_MANAGER\",\"Severity\":\"LOGGER_SEVERITY_DEFAULT\"}]},\"ValidationSettings\":{\"EnableValidation\":false},\"FullLoadSettings\":{\"TargetTablePrepMode\":\"DROP_AND_CREATE\",\"StopTaskCachedChangesNotApplied\":false,\"StopTaskCachedChangesApplied\":false,\"MaxFullLoadSubTasks\":8,\"TransactionConsistencyTimeout\":600,\"CommitRate\":10000},\"ControlTablesSettings\":{\"ControlSchema\":\"\",\"StatusTableEnabled\":false,\"SuspendedTablesTableEnabled\":false,\"HistoryTableEnabled\":false,\"HistoryTimeslotInMinutes\":5}}"
+  },
+  "responseElements": null,
+  "requestID": "bc27ebf0-50d4-448d-9a07-20b5e180d8ce",
+  "eventID": "7bca0547-5991-4dca-ba66-d753735e3115",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

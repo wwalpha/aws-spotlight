@@ -1,0 +1,31 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIXXFLFHR4",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-03T01:31:15Z" }
+    }
+  },
+  "eventTime": "2021-03-03T12:50:08Z",
+  "eventSource": "cognito-idp.amazonaws.com",
+  "eventName": "DeleteUserPool",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.952 Linux/4.9.230-0.1.ac.223.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+  "requestParameters": { "userPoolId": "ap-northeast-1_WBOlcBT89" },
+  "responseElements": null,
+  "requestID": "cef43e11-8de3-4498-846e-d3f591e6bb9d",
+  "eventID": "912d028c-474d-4f04-9751-90f6bdf01921",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

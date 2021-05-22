@@ -1,0 +1,125 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI22V6VBXC",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-02T00:23:52Z" }
+    }
+  },
+  "eventTime": "2021-03-02T01:29:14Z",
+  "eventSource": "rds.amazonaws.com",
+  "eventName": "ModifyDBInstance",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.848 Linux/4.9.230-0.1.ac.223.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.202-b08 java/1.8.0_202 vendor/Oracle_Corporation",
+  "requestParameters": {
+    "dBInstanceIdentifier": "onecloud-lawson-mysql",
+    "vpcSecurityGroupIds": ["sg-0e34ce3ea84a3decd"],
+    "applyImmediately": false,
+    "allowMajorVersionUpgrade": false,
+    "maxAllocatedStorage": 1000,
+    "dryRun": false
+  },
+  "responseElements": {
+    "dBInstanceIdentifier": "onecloud-lawson-mysql",
+    "dBInstanceClass": "db.m6g.large",
+    "engine": "mysql",
+    "dBInstanceStatus": "available",
+    "masterUsername": "admin",
+    "endpoint": {
+      "address": "onecloud-lawson-mysql.chfwcyt520af.ap-northeast-1.rds.amazonaws.com",
+      "port": 3306,
+      "hostedZoneId": "Z24O6O9L7SGTNB"
+    },
+    "allocatedStorage": 50,
+    "instanceCreateTime": "Mar 2, 2021 1:18:13 AM",
+    "preferredBackupWindow": "13:21-13:51",
+    "backupRetentionPeriod": 7,
+    "dBSecurityGroups": [],
+    "vpcSecurityGroups": [
+      { "vpcSecurityGroupId": "sg-018312fd1a0786b15", "status": "removing" },
+      { "vpcSecurityGroupId": "sg-0e34ce3ea84a3decd", "status": "adding" }
+    ],
+    "dBParameterGroups": [{ "dBParameterGroupName": "default.mysql8.0", "parameterApplyStatus": "in-sync" }],
+    "availabilityZone": "ap-northeast-1a",
+    "dBSubnetGroup": {
+      "dBSubnetGroupName": "default-vpc-0f1e12c219f232b46",
+      "dBSubnetGroupDescription": "Created from the RDS Management Console",
+      "vpcId": "vpc-0f1e12c219f232b46",
+      "subnetGroupStatus": "Complete",
+      "subnets": [
+        {
+          "subnetIdentifier": "subnet-02f400a0a5738ef8a",
+          "subnetAvailabilityZone": { "name": "ap-northeast-1c" },
+          "subnetOutpost": {},
+          "subnetStatus": "Active"
+        },
+        {
+          "subnetIdentifier": "subnet-02043047a2857a526",
+          "subnetAvailabilityZone": { "name": "ap-northeast-1c" },
+          "subnetOutpost": {},
+          "subnetStatus": "Active"
+        },
+        {
+          "subnetIdentifier": "subnet-0681d2c492225dea3",
+          "subnetAvailabilityZone": { "name": "ap-northeast-1a" },
+          "subnetOutpost": {},
+          "subnetStatus": "Active"
+        },
+        {
+          "subnetIdentifier": "subnet-0463e28fe18a6f599",
+          "subnetAvailabilityZone": { "name": "ap-northeast-1a" },
+          "subnetOutpost": {},
+          "subnetStatus": "Active"
+        }
+      ]
+    },
+    "preferredMaintenanceWindow": "thu:18:25-thu:18:55",
+    "pendingModifiedValues": {},
+    "latestRestorableTime": "Mar 2, 2021 1:25:00 AM",
+    "multiAZ": false,
+    "engineVersion": "8.0.20",
+    "autoMinorVersionUpgrade": true,
+    "readReplicaDBInstanceIdentifiers": [],
+    "licenseModel": "general-public-license",
+    "optionGroupMemberships": [{ "optionGroupName": "default:mysql-8-0", "status": "in-sync" }],
+    "publiclyAccessible": true,
+    "storageType": "gp2",
+    "dbInstancePort": 0,
+    "storageEncrypted": true,
+    "kmsKeyId": "arn:aws:kms:ap-northeast-1:999999999999:key/661f33ba-391e-4ca4-83ab-4e6e296c015c",
+    "dbiResourceId": "db-43ZBYI2HD55FKGERROVJHVLVJU",
+    "cACertificateIdentifier": "rds-ca-2019",
+    "domainMemberships": [],
+    "copyTagsToSnapshot": true,
+    "monitoringInterval": 60,
+    "enhancedMonitoringResourceArn": "arn:aws:logs:ap-northeast-1:999999999999:log-group:RDSOSMetrics:log-stream:db-43ZBYI2HD55FKGERROVJHVLVJU",
+    "monitoringRoleArn": "arn:aws:iam::999999999999:role/rds-monitoring-role",
+    "dBInstanceArn": "arn:aws:rds:ap-northeast-1:999999999999:db:onecloud-lawson-mysql",
+    "iAMDatabaseAuthenticationEnabled": false,
+    "performanceInsightsEnabled": true,
+    "performanceInsightsKMSKeyId": "arn:aws:kms:ap-northeast-1:999999999999:key/661f33ba-391e-4ca4-83ab-4e6e296c015c",
+    "performanceInsightsRetentionPeriod": 7,
+    "deletionProtection": false,
+    "associatedRoles": [],
+    "httpEndpointEnabled": false,
+    "maxAllocatedStorage": 1000,
+    "tagList": [],
+    "customerOwnedIpEnabled": false,
+    "networkType": "IPV4"
+  },
+  "requestID": "f68460ab-01fd-4c7a-841d-ba70f9ed1e3c",
+  "eventID": "8dd38cd7-f042-41a0-9f56-26c549c97d38",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

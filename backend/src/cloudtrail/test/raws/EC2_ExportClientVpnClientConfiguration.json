@@ -1,0 +1,39 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI53OAV7NI",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-02T00:23:52Z" }
+    }
+  },
+  "eventTime": "2021-03-02T08:56:48Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "ExportClientVpnClientConfiguration",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "ExportClientVpnClientConfigurationRequest": { "ClientVpnEndpointId": "cvpn-endpoint-00979964d0389482a" }
+  },
+  "responseElements": {
+    "ExportClientVpnClientConfigurationResponse": {
+      "xmlns": "http://ec2.amazonaws.com/doc/2016-11-15/",
+      "requestId": "8d1e8254-1d9d-46fe-9830-674a539f3ce6",
+      "clientConfiguration": "client\ndev tun\nproto udp\nremote cvpn-endpoint-00979964d0389482a.prod.clientvpn.ap-northeast-1.amazonaws.com 443\nremote-random-hostname\nresolv-retry infinite\nnobind\nremote-cert-tls server\ncipher AES-256-GCM\nverb 3\n<ca>\n-----BEGIN CERTIFICATE-----\nMIIDJDCCAgygAwIBAgIJAMmwYtKoPpgaMA0GCSqGSIb3DQEBCwUAMBExDzANBgNV\nBAMMBmxhd3NvbjAeFw0yMTAzMDIwODQyMTNaFw0zMTAyMjgwODQyMTNaMBExDzAN\nBgNVBAMMBmxhd3NvbjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALO+\nUyS7SVI+q9t7iW1ENJvNDKzM3ZTbWPoKSfFA0pW+oCO+leaQfjiWDDo02Md2n5eX\nX2JDDhU3ZFpLeCbU1E/NAbIN6QvV3+dMNU8yhSLYQvy4TIor6d1i4SXgBNgMfoZo\nbMzFJVeJabUFMERFda4hVtSCkxSQMiW63stfZTbBDLFEEfTOjKeexcmyV7kahGxM\nmGdRbFFjGdueRqvvPkRFu9hv86TdCNNhQZl8UBBzielcweKjczEy5kXxrsOerYbi\nfQgbMLinZZHesKwxgjHkO7pMAEQNNGDZQVoMqi40tGkEJv6vqjLqFm4KvchX9Y23\nGivJZp0hS6+Yq0nL64kCAwEAAaN/MH0wHQYDVR0OBBYEFKaYRGb5YlN4b4fTDr1O\nSAa3lbIBMEEGA1UdIwQ6MDiAFKaYRGb5YlN4b4fTDr1OSAa3lbIBoRWkEzARMQ8w\nDQYDVQQDDAZsYXdzb26CCQDJsGLSqD6YGjAMBgNVHRMEBTADAQH/MAsGA1UdDwQE\nAwIBBjANBgkqhkiG9w0BAQsFAAOCAQEAXHNEkwdJZtCz3wLABc7Ytal8w3mcvbgx\nnJLTDlq2wy65vXnHIiE85HRmbdTZIYykrVTGNStbv7XQgkM8NqFG1l3mdmLtNqXY\nIWtFKIiwVjncjoam4YEII9yD8/bZoeqP+jh4/8WtxHUNY92bB/ctPeYFPeuFwrux\nHQ51tfrjCC5A61Pm5m4bcKpe6QLAZ63Tya2JgraNWK7tShMsDGr6wUImnq6JiEHW\nzG8Lf5P2bNSo1zinyZ4ESnjqKaeF6cx9irB+JhKwU699gPsBAtwb/qGvKcoxiKlE\nmjoIsPSG2B79rSi0u9QxRMP7hjlNoawlgiD3oLguRDkVRS6RIlYsgQ==\n-----END CERTIFICATE-----\n\n</ca>\n\n\nreneg-sec 0"
+    }
+  },
+  "requestID": "8d1e8254-1d9d-46fe-9830-674a539f3ce6",
+  "eventID": "af18f88b-dae6-4a0e-9591-73a9a7dac9ec",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

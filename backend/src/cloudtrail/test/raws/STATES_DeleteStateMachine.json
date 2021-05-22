@@ -1,0 +1,34 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAJ2JI7HAGC7KND6WQ",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-08T00:22:39Z" }
+    },
+    "invokedBy": "cloudformation.amazonaws.com"
+  },
+  "eventTime": "2021-04-08T01:56:50Z",
+  "eventSource": "states.amazonaws.com",
+  "eventName": "DeleteStateMachine",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "requestParameters": {
+    "stateMachineArn": "arn:aws:states:ap-northeast-1:999999999999:stateMachine:sfTranscribeStateMachine-FkDM9V6XMGNc"
+  },
+  "responseElements": null,
+  "requestID": "aae9866d-f330-49a9-884f-2fed3c199800",
+  "eventID": "cd554d63-5364-412e-878d-fe2d66d4b4a5",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

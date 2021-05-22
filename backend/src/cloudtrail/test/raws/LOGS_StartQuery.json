@@ -1,0 +1,37 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLI6DETSD4FR",
+    "arn": "arn:aws:iam::999999999999:user/wlim40",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIVYFPMD4N",
+    "userName": "wlim40",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-06T03:06:00Z" }
+    }
+  },
+  "eventTime": "2021-04-06T03:53:26Z",
+  "eventSource": "logs.amazonaws.com",
+  "eventName": "StartQuery",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "103.6.150.224",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36",
+  "requestParameters": {
+    "queryString": "\n        filter @type = \"REPORT\"\n        \n        | fields @timestamp as Timestamp, @requestId as RequestID, @logStream as LogStream, @billedDuration as BilledDurationInMS, @memorySize/1000000 as MemorySetInMB, @billedDuration/1000*MemorySetInMB/1024 as BilledDurationInGBSeconds\n        | sort BilledDurationInGBSeconds desc\n        | head 9\n    ",
+    "logGroupNames": ["/aws/lambda/RekogDemoSetupRekogDemo"],
+    "startTime": 1617670405,
+    "endTime": 1617681205
+  },
+  "responseElements": { "queryId": "f47dbbf2-82c1-464c-9ae5-42c7dc45b9ae" },
+  "requestID": "f47dbbf2-82c1-464c-9ae5-42c7dc45b9ae",
+  "eventID": "d1df840c-8888-488b-8cc6-023eb60237fd",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "20140328",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

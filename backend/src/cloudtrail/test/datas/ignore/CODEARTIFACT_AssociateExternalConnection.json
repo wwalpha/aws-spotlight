@@ -1,0 +1,49 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLI3YFKAM3HW",
+    "arn": "arn:aws:iam::999999999999:user/kazuya.tanaka",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIQR2OEAO2",
+    "userName": "kazuya.tanaka",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-26T11:36:19Z" }
+    }
+  },
+  "eventTime": "2021-03-26T11:38:44Z",
+  "eventSource": "codeartifact.amazonaws.com",
+  "eventName": "AssociateExternalConnection",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "112.69.148.215",
+  "userAgent": "112.69.148.215",
+  "requestParameters": {
+    "domain": "codeartifact-zukaya-domain",
+    "domainOwner": "999999999999",
+    "repository": "maven-central-store",
+    "externalConnection": "public:maven-central"
+  },
+  "responseElements": {
+    "repository": {
+      "name": "maven-central-store",
+      "administratorAccount": "999999999999",
+      "domainName": "codeartifact-zukaya-domain",
+      "domainOwner": "999999999999",
+      "arn": "arn:aws:codeartifact:ap-northeast-1:999999999999:repository/codeartifact-zukaya-domain/maven-central-store",
+      "description": "Provides Maven artifacts from Maven Central Repository.",
+      "upstreams": [],
+      "externalConnections": [
+        { "externalConnectionName": "public:maven-central", "packageFormat": "maven", "status": "AVAILABLE" }
+      ]
+    }
+  },
+  "requestID": "d49a535a-88ea-4e6a-99d4-da4ae52435ca",
+  "eventID": "2b7631ed-3449-4529-93a7-f7589b11c494",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

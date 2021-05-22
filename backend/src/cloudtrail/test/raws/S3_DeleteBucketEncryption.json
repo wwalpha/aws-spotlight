@@ -1,0 +1,47 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIRE5EM6PY",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-24T01:56:45Z" }
+    }
+  },
+  "eventTime": "2021-04-24T02:09:42Z",
+  "eventSource": "s3.amazonaws.com",
+  "eventName": "DeleteBucketEncryption",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "[S3Console/0.4, aws-internal/3 aws-sdk-java/1.11.991 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy]",
+  "requestParameters": {
+    "bucketName": "onecloud-reserved-bucket3",
+    "Host": "s3-ap-northeast-1.amazonaws.com",
+    "encryption": ""
+  },
+  "responseElements": null,
+  "additionalEventData": {
+    "SignatureVersion": "SigV4",
+    "CipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
+    "bytesTransferredIn": 0,
+    "AuthenticationMethod": "AuthHeader",
+    "x-amz-id-2": "SCSzECa6ABeJWEShlEvHVEROpwR20ayg7jM8B7SCiZbFqrIOXUUd98w9CP9kkxz/jduwVCJx4WY=",
+    "bytesTransferredOut": 0
+  },
+  "requestID": "RB4P68RYMS1ECWT2",
+  "eventID": "f4158b08-060a-4e0a-917d-dad3687c08c1",
+  "readOnly": false,
+  "resources": [
+    { "accountId": "999999999999", "type": "AWS::S3::Bucket", "ARN": "arn:aws:s3:::onecloud-reserved-bucket3" }
+  ],
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999",
+  "vpcEndpointId": "vpce-c8e61da1"
+}

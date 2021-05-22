@@ -1,0 +1,32 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLI6HXFBLO7X",
+    "arn": "arn:aws:iam::999999999999:user/mnakanishi",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAJ4JMPE7AIQN7MLJQ",
+    "userName": "mnakanishi",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-01-24T18:50:07Z" }
+    },
+    "invokedBy": "ssm.amazonaws.com"
+  },
+  "eventTime": "2021-01-25T00:04:32Z",
+  "eventSource": "ssm.amazonaws.com",
+  "eventName": "UpdateDocumentDefaultVersion",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "ssm.amazonaws.com",
+  "userAgent": "ssm.amazonaws.com",
+  "requestParameters": { "name": "sample001", "documentVersion": "2" },
+  "responseElements": { "description": { "name": "sample001", "defaultVersion": "2" } },
+  "requestID": "92adae9c-0d5e-4fb8-8a3d-4e1b6b5fb8f3",
+  "eventID": "29430c88-e84d-4337-9d60-d26d6ce2f2f9",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

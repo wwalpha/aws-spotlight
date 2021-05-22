@@ -1,0 +1,31 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYAZV2FQN4",
+    "arn": "arn:aws:iam::999999999999:user/masatsugu.miura",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLITM3LWOGP",
+    "userName": "masatsugu.miura",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-19T05:34:30Z" }
+    }
+  },
+  "eventTime": "2021-02-19T05:37:06Z",
+  "eventSource": "macie2.amazonaws.com",
+  "eventName": "EnableMacie",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.158",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.946 Linux/5.4.80-46.140.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+  "requestParameters": {},
+  "responseElements": null,
+  "requestID": "c49e7ec9-27fd-4f90-baf6-cdb26530dbf8",
+  "eventID": "4a305d69-8aee-482d-8d27-85a71cc8dd97",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

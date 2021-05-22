@@ -1,0 +1,55 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIUJQXPCEL",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-06T04:14:08Z" }
+    }
+  },
+  "eventTime": "2021-04-06T04:18:15Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "RevokeSecurityGroupEgress",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "groupId": "sg-0299796957cc35b44",
+    "ipPermissions": {
+      "items": [
+        {
+          "ipProtocol": "tcp",
+          "fromPort": 22,
+          "toPort": 22,
+          "groups": {},
+          "ipRanges": { "items": [{ "cidrIp": "202.32.14.177/32" }] },
+          "ipv6Ranges": {},
+          "prefixListIds": {}
+        },
+        {
+          "ipProtocol": "tcp",
+          "fromPort": 3389,
+          "toPort": 3389,
+          "groups": {},
+          "ipRanges": { "items": [{ "cidrIp": "202.32.14.177/32" }] },
+          "ipv6Ranges": {},
+          "prefixListIds": {}
+        }
+      ]
+    }
+  },
+  "responseElements": { "requestId": "dc3355b4-d522-4f9f-b46a-9b999f832abe", "_return": true },
+  "requestID": "dc3355b4-d522-4f9f-b46a-9b999f832abe",
+  "eventID": "e0527dd2-b7bc-49fd-820f-1c09c77638ff",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

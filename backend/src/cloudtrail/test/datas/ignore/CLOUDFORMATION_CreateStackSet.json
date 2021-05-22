@@ -1,0 +1,43 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIQ5BMNRFHI",
+    "arn": "arn:aws:iam::999999999999:user/demo-user10",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI4QXFTRND",
+    "userName": "demo-user10",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-14T09:15:53Z" }
+    }
+  },
+  "eventTime": "2021-04-14T11:17:45Z",
+  "eventSource": "cloudformation.amazonaws.com",
+  "eventName": "CreateStackSet",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.61",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.984 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "requestParameters": {
+    "executionRoleName": "AWS-QuickSetup-StackSet-Local-ExecutionRole",
+    "stackSetName": "AWS-QuickSetup-SSMHostMgmt-LA-qm255",
+    "tags": [
+      { "value": "qm255", "key": "QuickSetupID" },
+      { "value": "Host Management", "key": "QuickSetupType" },
+      { "value": "1.1", "key": "QuickSetupVersion" }
+    ],
+    "description": "Configures IAM roles and enables commonly used Systems Manager capabilities to securely manage your Amazon EC2 instances.",
+    "permissionModel": "SELF_MANAGED",
+    "capabilities": ["CAPABILITY_IAM", "CAPABILITY_NAMED_IAM"],
+    "administrationRoleARN": "arn:aws:iam::999999999999:role/AWS-QuickSetup-StackSet-Local-AdministrationRole"
+  },
+  "responseElements": { "stackSetId": "AWS-QuickSetup-SSMHostMgmt-LA-qm255:b57f709b-1b38-4deb-a876-8e7d3161e5f5" },
+  "requestID": "57a810ba-d190-4e59-ac55-c7915c7a8574",
+  "eventID": "46a3e2d8-ec95-46b1-866f-9d0b02504a0c",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

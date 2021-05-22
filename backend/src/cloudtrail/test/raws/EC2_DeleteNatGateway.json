@@ -1,0 +1,37 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIYORVS35M",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-17T01:05:15Z" }
+    }
+  },
+  "eventTime": "2021-04-17T01:23:30Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "DeleteNatGateway",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": { "DeleteNatGatewayRequest": { "NatGatewayId": "nat-022fc099b62e1e534" } },
+  "responseElements": {
+    "DeleteNatGatewayResponse": {
+      "xmlns": "http://ec2.amazonaws.com/doc/2016-11-15/",
+      "requestId": "607b3af8-8393-4c5c-800b-6b1d048d4ccb",
+      "natGatewayId": "nat-022fc099b62e1e534"
+    }
+  },
+  "requestID": "607b3af8-8393-4c5c-800b-6b1d048d4ccb",
+  "eventID": "178a7cbd-de61-49f7-bd54-ad61d7f62a89",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

@@ -1,0 +1,39 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
+    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIXAZTU5GN",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2OU3QHN26",
+        "arn": "arn:aws:iam::999999999999:role/KTOU_SwitchRole",
+        "accountId": "999999999999",
+        "userName": "KTOU_SwitchRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-01-28T12:31:10Z" }
+    }
+  },
+  "eventTime": "2021-01-28T12:38:05Z",
+  "eventSource": "monitoring.amazonaws.com",
+  "eventName": "PutDashboard",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "AWS CloudWatch Console",
+  "requestParameters": {
+    "dashboardBody": "{\"widgets\":[{\"type\":\"log\",\"x\":0,\"y\":0,\"width\":24,\"height\":6,\"properties\":{\"query\":\"SOURCE '/aws/ecs/containerinsights/onecloud-lawson/performance' | fields @timestamp, @message\\n| sort @timestamp desc\\n| limit 20\",\"region\":\"ap-northeast-1\",\"stacked\":false,\"view\":\"timeSeries\"}}]}",
+    "dashboardName": "InsightBoard"
+  },
+  "responseElements": { "dashboardValidationMessages": [] },
+  "requestID": "ebc9d6a4-6411-4265-8d42-2936e2821d33",
+  "eventID": "b4e7267c-4159-4633-a999-50def7453fff",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

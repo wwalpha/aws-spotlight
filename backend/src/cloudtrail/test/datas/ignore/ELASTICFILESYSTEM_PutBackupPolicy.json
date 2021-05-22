@@ -1,0 +1,37 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
+    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIV3QTDWCS",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2OU3QHN26",
+        "arn": "arn:aws:iam::999999999999:role/KTOU_SwitchRole",
+        "accountId": "999999999999",
+        "userName": "KTOU_SwitchRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-19T10:39:22Z" }
+    }
+  },
+  "eventTime": "2021-02-19T10:39:46Z",
+  "eventSource": "elasticfilesystem.amazonaws.com",
+  "eventName": "PutBackupPolicy",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36",
+  "requestParameters": { "fileSystemId": "fs-d536f8f5", "backupPolicy": { "status": "ENABLED" } },
+  "responseElements": { "backupPolicy": { "status": "ENABLING" } },
+  "requestID": "7fc64f7d-4e52-4681-96b7-1ed8f7847dc0",
+  "eventID": "aad4a499-a362-425b-8b21-b39065fa837c",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2015-02-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

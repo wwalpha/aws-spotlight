@@ -1,0 +1,49 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIZTSHQEXB",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-23T00:35:29Z" }
+    }
+  },
+  "eventTime": "2021-02-23T02:45:52Z",
+  "eventSource": "amplify.amazonaws.com",
+  "eventName": "CreateApp",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.898 Linux/4.9.230-0.1.ac.223.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.275-b01 java/1.8.0_275 vendor/Oracle_Corporation",
+  "requestParameters": { "name": "ktou" },
+  "responseElements": {
+    "app": {
+      "appArn": "arn:aws:amplify:ap-northeast-1:999999999999:apps/d3rmh3nhqy26nl",
+      "appId": "d3rmh3nhqy26nl",
+      "basicAuthCredentials": "***",
+      "createTime": 1614048352.608,
+      "customHeaders": "",
+      "customRules": [],
+      "defaultDomain": "d3rmh3nhqy26nl.amplifyapp.com",
+      "enableAutoBranchCreation": false,
+      "enableBasicAuth": false,
+      "enableBranchAutoBuild": false,
+      "enableBranchAutoDeletion": false,
+      "environmentVariables": "***",
+      "name": "ktou",
+      "platform": "WEB",
+      "updateTime": 1614048352.608
+    }
+  },
+  "requestID": "2536bf0d-bbf8-4474-b9a7-ed5d79dc2003",
+  "eventID": "e4759999-efd8-4853-ae86-bcf3334cde6d",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

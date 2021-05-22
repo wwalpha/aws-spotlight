@@ -1,0 +1,31 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-17T01:05:15Z" }
+    },
+    "invokedBy": "cloudformation.amazonaws.com"
+  },
+  "eventTime": "2021-04-17T01:11:35Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "DeleteRouteTable",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "requestParameters": { "routeTableId": "rtb-02e2ece48676abbf6" },
+  "responseElements": { "requestId": "daabd020-5ea8-483b-8ca8-8761e430b07c", "_return": true },
+  "requestID": "daabd020-5ea8-483b-8ca8-8761e430b07c",
+  "eventID": "e4ff78ec-0685-4eea-8fc6-f2f800e40237",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

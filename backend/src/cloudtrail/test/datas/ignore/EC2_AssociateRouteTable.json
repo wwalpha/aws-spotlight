@@ -1,0 +1,35 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIWODBMIFD5",
+    "arn": "arn:aws:iam::999999999999:user/kota.murakami",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI2OWH7CWR",
+    "userName": "kota.murakami",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-19T01:06:57Z" }
+    }
+  },
+  "eventTime": "2021-04-19T06:57:15Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "AssociateRouteTable",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "125.14.240.91",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": { "routeTableId": "rtb-09f392b007354c0e9", "subnetId": "subnet-0565e3982d40bc80d" },
+  "responseElements": {
+    "requestId": "99846af0-8804-4df0-b148-d77d4a5aa578",
+    "associationId": "rtbassoc-08235093b39641b9d",
+    "associationState": { "state": "associated" }
+  },
+  "requestID": "99846af0-8804-4df0-b148-d77d4a5aa578",
+  "eventID": "85622693-0f15-4f0b-8200-544736459e6d",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

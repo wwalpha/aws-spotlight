@@ -1,0 +1,103 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI5NR4ZH7G",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-07T10:31:17Z" }
+    }
+  },
+  "eventTime": "2021-04-07T10:39:28Z",
+  "eventSource": "rds.amazonaws.com",
+  "eventName": "StopDBInstance",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.975 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.242-b08 java/1.8.0_242 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "requestParameters": { "dryRun": false, "dBInstanceIdentifier": "onecloud-lawson-mysql" },
+  "responseElements": {
+    "dBInstanceArn": "arn:aws:rds:ap-northeast-1:999999999999:db:onecloud-lawson-mysql",
+    "storageEncrypted": true,
+    "preferredBackupWindow": "13:46-14:16",
+    "preferredMaintenanceWindow": "wed:19:49-wed:20:19",
+    "backupRetentionPeriod": 7,
+    "allocatedStorage": 132,
+    "storageType": "gp2",
+    "engineVersion": "8.0.20",
+    "dbInstancePort": 0,
+    "associatedRoles": [],
+    "optionGroupMemberships": [{ "status": "in-sync", "optionGroupName": "default:mysql-8-0" }],
+    "dBParameterGroups": [{ "dBParameterGroupName": "default.mysql8.0", "parameterApplyStatus": "in-sync" }],
+    "instanceCreateTime": "Mar 2, 2021 2:46:13 AM",
+    "maxAllocatedStorage": 1000,
+    "performanceInsightsKMSKeyId": "arn:aws:kms:ap-northeast-1:999999999999:key/661f33ba-391e-4ca4-83ab-4e6e296c015c",
+    "monitoringInterval": 60,
+    "dBInstanceClass": "db.t3.medium",
+    "readReplicaDBInstanceIdentifiers": [],
+    "dBSubnetGroup": {
+      "dBSubnetGroupName": "onecloud-subnet-group",
+      "dBSubnetGroupDescription": "onecloud-subnet-group",
+      "subnets": [
+        {
+          "subnetAvailabilityZone": { "name": "ap-northeast-1c" },
+          "subnetIdentifier": "subnet-02043047a2857a526",
+          "subnetOutpost": {},
+          "subnetStatus": "Active"
+        },
+        {
+          "subnetAvailabilityZone": { "name": "ap-northeast-1a" },
+          "subnetIdentifier": "subnet-0681d2c492225dea3",
+          "subnetOutpost": {},
+          "subnetStatus": "Active"
+        }
+      ],
+      "vpcId": "vpc-0f1e12c219f232b46",
+      "subnetGroupStatus": "Complete"
+    },
+    "masterUsername": "admin",
+    "multiAZ": false,
+    "autoMinorVersionUpgrade": true,
+    "latestRestorableTime": "Apr 7, 2021 10:35:00 AM",
+    "engine": "mysql",
+    "httpEndpointEnabled": false,
+    "cACertificateIdentifier": "rds-ca-2019",
+    "dbiResourceId": "db-E76GVAGU55YHUQITLXH4SA2BCU",
+    "deletionProtection": false,
+    "endpoint": {
+      "address": "onecloud-lawson-mysql.chfwcyt520af.ap-northeast-1.rds.amazonaws.com",
+      "port": 3306,
+      "hostedZoneId": "Z24O6O9L7SGTNB"
+    },
+    "dBSecurityGroups": [],
+    "performanceInsightsRetentionPeriod": 7,
+    "pendingModifiedValues": {},
+    "customerOwnedIpEnabled": false,
+    "dBInstanceStatus": "stopping",
+    "publiclyAccessible": true,
+    "enhancedMonitoringResourceArn": "arn:aws:logs:ap-northeast-1:999999999999:log-group:RDSOSMetrics:log-stream:db-E76GVAGU55YHUQITLXH4SA2BCU",
+    "domainMemberships": [],
+    "copyTagsToSnapshot": true,
+    "monitoringRoleArn": "arn:aws:iam::999999999999:role/rds-monitoring-role",
+    "dBInstanceIdentifier": "onecloud-lawson-mysql",
+    "licenseModel": "general-public-license",
+    "tagList": [],
+    "networkType": "IPV4",
+    "iAMDatabaseAuthenticationEnabled": false,
+    "performanceInsightsEnabled": true,
+    "vpcSecurityGroups": [{ "status": "active", "vpcSecurityGroupId": "sg-0e34ce3ea84a3decd" }],
+    "availabilityZone": "ap-northeast-1a",
+    "kmsKeyId": "arn:aws:kms:ap-northeast-1:999999999999:key/661f33ba-391e-4ca4-83ab-4e6e296c015c"
+  },
+  "requestID": "f608fd3b-4a0d-41bf-b274-8c93f8fa5843",
+  "eventID": "dddd5b15-9200-4072-8e20-3855c3a754ab",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

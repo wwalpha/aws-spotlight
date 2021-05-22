@@ -1,0 +1,39 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2JYAL45WU:AmazonEKS",
+    "arn": "arn:aws:sts::999999999999:assumed-role/AWSServiceRoleForAmazonEKS/AmazonEKS",
+    "accountId": "999999999999",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2JYAL45WU",
+        "arn": "arn:aws:iam::999999999999:role/aws-service-role/eks.amazonaws.com/AWSServiceRoleForAmazonEKS",
+        "accountId": "999999999999",
+        "userName": "AWSServiceRoleForAmazonEKS"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-07T11:57:16Z" }
+    },
+    "invokedBy": "eks.amazonaws.com"
+  },
+  "eventTime": "2021-04-07T11:57:16Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "DeleteTags",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "eks.amazonaws.com",
+  "userAgent": "eks.amazonaws.com",
+  "requestParameters": {
+    "resourcesSet": { "items": [{ "resourceId": "subnet-02f400a0a5738ef8a" }] },
+    "tagSet": { "items": [{ "key": "kubernetes.io/cluster/eks-cluster" }] }
+  },
+  "responseElements": { "requestId": "e2f6cb07-3159-47d2-a1da-1b602a3ee56f", "_return": true },
+  "requestID": "e2f6cb07-3159-47d2-a1da-1b602a3ee56f",
+  "eventID": "a591e955-89a5-427f-9c67-9a41c1953b6a",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

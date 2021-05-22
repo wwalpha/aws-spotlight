@@ -1,0 +1,55 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI6JSLZVP3",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-03T01:31:15Z" }
+    }
+  },
+  "eventTime": "2021-03-03T01:34:50Z",
+  "eventSource": "dms.amazonaws.com",
+  "eventName": "StartReplicationTaskAssessmentRun",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.946 Linux/5.4.80-46.140.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+  "requestParameters": {
+    "replicationTaskArn": "arn:aws:dms:ap-northeast-1:999999999999:task:GQ466P4CCYT2BT3SOVXMTGXTQ4QGI6HWMBNQEKI",
+    "serviceAccessRoleArn": "arn:aws:iam::999999999999:role/OneCloud_DMS_Admin",
+    "resultLocationBucket": "onecloud-reserved-bucket4",
+    "resultLocationFolder": "",
+    "assessmentRunName": "Assessment-run-2021-03-03-10-33-56",
+    "includeOnly": [
+      "full-lob-not-nullable-at-target",
+      "table-with-lob-but-without-primary-key-or-unique-constraint",
+      "unsupported-data-types-in-source"
+    ]
+  },
+  "responseElements": {
+    "replicationTaskAssessmentRun": {
+      "replicationTaskAssessmentRunArn": "arn:aws:dms:ap-northeast-1:999999999999:assessment-run:PMKSQO7PVMMXSHDOFXHLAMKUD63NZJHG4J2BNTY",
+      "replicationTaskArn": "arn:aws:dms:ap-northeast-1:999999999999:task:GQ466P4CCYT2BT3SOVXMTGXTQ4QGI6HWMBNQEKI",
+      "status": "starting",
+      "replicationTaskAssessmentRunCreationDate": "Mar 3, 2021 1:34:50 AM",
+      "assessmentProgress": { "individualAssessmentCount": 3, "individualAssessmentCompletedCount": 0 },
+      "serviceAccessRoleArn": "arn:aws:iam::999999999999:role/OneCloud_DMS_Admin",
+      "resultLocationBucket": "onecloud-reserved-bucket4",
+      "resultLocationFolder": "",
+      "resultEncryptionMode": "NONE",
+      "assessmentRunName": "Assessment-run-2021-03-03-10-33-56"
+    }
+  },
+  "requestID": "f0a3bf0d-f7fd-4dd0-b420-ba9933fe796d",
+  "eventID": "3bef70a3-77f3-47ec-af8b-c51561f05aa7",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

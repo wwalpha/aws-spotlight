@@ -1,0 +1,42 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROAIANJ3E5XZD4NDJ3UY:vm_import_image-999999999999",
+    "arn": "arn:aws:sts::999999999999:assumed-role/vmimport/vm_import_image-999999999999",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI4DJHO7YL",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROAIANJ3E5XZD4NDJ3UY",
+        "arn": "arn:aws:iam::999999999999:role/vmimport",
+        "accountId": "999999999999",
+        "userName": "vmimport"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-01T06:20:56Z" }
+    }
+  },
+  "eventTime": "2021-03-01T06:20:56Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "CopySnapshot",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "54.240.200.43",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.955 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+  "errorCode": "Client.DryRunOperation",
+  "errorMessage": "Request would have succeeded, but DryRun flag is set.",
+  "requestParameters": {
+    "sourceRegion": "ap-northeast-1",
+    "sourceSnapshotId": "snap-11111111",
+    "destinationRegion": "ap-northeast-1"
+  },
+  "responseElements": null,
+  "requestID": "26b2895a-5685-4515-9b7f-47baeb815f5d",
+  "eventID": "3c2b9301-f7b1-4865-bad4-fa41e5b782bd",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

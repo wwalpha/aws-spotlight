@@ -1,0 +1,46 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLI473YYFTJB",
+    "arn": "arn:aws:iam::999999999999:user/eric.agnew",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI5OPNZOXI",
+    "userName": "eric.agnew",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-20T01:38:47Z" }
+    }
+  },
+  "eventTime": "2021-04-20T05:35:21Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "ModifyLaunchTemplate",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.50",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "ModifyLaunchTemplateRequest": { "SetDefaultVersion": 2, "LaunchTemplateId": "lt-0aae391c61dad27d8" }
+  },
+  "responseElements": {
+    "ModifyLaunchTemplateResponse": {
+      "xmlns": "http://ec2.amazonaws.com/doc/2016-11-15/",
+      "requestId": "4aa3bf64-bb7f-4b28-9be7-6eeb5b5fba12",
+      "launchTemplate": {
+        "createTime": "1970-01-01T00:00:00.000Z",
+        "createdBy": "arn:aws:iam::999999999999:user/eric.agnew",
+        "launchTemplateId": "lt-0aae391c61dad27d8",
+        "latestVersionNumber": 2,
+        "defaultVersionNumber": 2,
+        "launchTemplateName": "agnew-rhel6test"
+      }
+    }
+  },
+  "requestID": "4aa3bf64-bb7f-4b28-9be7-6eeb5b5fba12",
+  "eventID": "c35c51f6-edc9-491c-b329-93ec5eaec67d",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

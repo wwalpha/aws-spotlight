@@ -1,0 +1,72 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIZ4UO7A5J",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-03T01:31:15Z" }
+    }
+  },
+  "eventTime": "2021-03-03T07:16:42Z",
+  "eventSource": "rds.amazonaws.com",
+  "eventName": "ModifyDBParameterGroup",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "console.amazonaws.com",
+  "requestParameters": {
+    "dBParameterGroupName": "onecloud-lawson-mysql",
+    "parameters": [
+      {
+        "parameterName": "character_set_client",
+        "parameterValue": "sjis",
+        "isModifiable": false,
+        "applyMethod": "immediate"
+      },
+      {
+        "parameterName": "character_set_connection",
+        "parameterValue": "sjis",
+        "isModifiable": false,
+        "applyMethod": "immediate"
+      },
+      {
+        "parameterName": "character_set_database",
+        "parameterValue": "sjis",
+        "isModifiable": false,
+        "applyMethod": "immediate"
+      },
+      {
+        "parameterName": "character_set_filesystem",
+        "parameterValue": "sjis",
+        "isModifiable": false,
+        "applyMethod": "immediate"
+      },
+      {
+        "parameterName": "character_set_results",
+        "parameterValue": "sjis",
+        "isModifiable": false,
+        "applyMethod": "immediate"
+      },
+      {
+        "parameterName": "character_set_server",
+        "parameterValue": "sjis",
+        "isModifiable": false,
+        "applyMethod": "immediate"
+      }
+    ],
+    "dryRun": false
+  },
+  "responseElements": { "dBParameterGroupName": "onecloud-lawson-mysql" },
+  "requestID": "82d2f1df-8851-4375-bde3-4f95ee33a764",
+  "eventID": "60826f4c-7116-4af4-9f5e-1a05aa43d0c5",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

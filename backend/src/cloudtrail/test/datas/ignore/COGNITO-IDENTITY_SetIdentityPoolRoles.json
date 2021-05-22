@@ -1,0 +1,32 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLI6DETSD4FR",
+    "arn": "arn:aws:iam::999999999999:user/wlim40",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAI236L2SJXI7OAS2A",
+    "userName": "wlim40",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-14T11:13:28Z" }
+    },
+    "invokedBy": "cloudformation.amazonaws.com"
+  },
+  "eventTime": "2021-04-14T11:22:17Z",
+  "eventSource": "cognito-identity.amazonaws.com",
+  "eventName": "SetIdentityPoolRoles",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "requestParameters": { "identityPoolId": "ap-northeast-1:59f0c1cd-f764-475a-bc97-aa9b6d9f40cb", "roles": {} },
+  "responseElements": null,
+  "requestID": "be918af5-3719-4baf-9f34-060bd19e4ddd",
+  "eventID": "5a4d7112-8521-4ee6-88b6-5cd5c59aab58",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

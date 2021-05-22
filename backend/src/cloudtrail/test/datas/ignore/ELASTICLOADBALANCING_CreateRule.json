@@ -1,0 +1,76 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2QCIZFG2K:i-00adf0ee742a14e6a",
+    "arn": "arn:aws:sts::999999999999:assumed-role/yshimitzu_full/i-00adf0ee742a14e6a",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI7MDEOIQI",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2QCIZFG2K",
+        "arn": "arn:aws:iam::999999999999:role/yshimitzu_full",
+        "accountId": "999999999999",
+        "userName": "yshimitzu_full"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-01T12:59:32Z" },
+      "ec2RoleDelivery": "2.0"
+    }
+  },
+  "eventTime": "2021-02-01T13:12:49Z",
+  "eventSource": "elasticloadbalancing.amazonaws.com",
+  "eventName": "CreateRule",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "18.177.168.178",
+  "userAgent": "aws-sdk-go/1.36.28 (go1.15.5; linux; amd64) APN/1.0 HashiCorp/1.0 Terraform/0.12.24 (+https://www.terraform.io)",
+  "requestParameters": {
+    "conditions": [{ "field": "path-pattern", "pathPatternConfig": { "values": ["/api/*"] } }],
+    "priority": 1,
+    "listenerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:999999999999:listener/app/onecloud-fargate-public/0c34ae9fd000e24d/4917974198a69c54",
+    "actions": [
+      {
+        "targetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:999999999999:targetgroup/onecloud-fargate-backend-api/0174c2387c78d361",
+        "order": 1,
+        "type": "forward"
+      }
+    ]
+  },
+  "responseElements": {
+    "rules": [
+      {
+        "priority": "1",
+        "actions": [
+          {
+            "targetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:999999999999:targetgroup/onecloud-fargate-backend-api/0174c2387c78d361",
+            "order": 1,
+            "type": "forward",
+            "forwardConfig": {
+              "targetGroups": [
+                {
+                  "weight": 1,
+                  "targetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:999999999999:targetgroup/onecloud-fargate-backend-api/0174c2387c78d361"
+                }
+              ],
+              "targetGroupStickinessConfig": { "enabled": false }
+            }
+          }
+        ],
+        "conditions": [
+          { "values": ["/api/*"], "field": "path-pattern", "pathPatternConfig": { "values": ["/api/*"] } }
+        ],
+        "ruleArn": "arn:aws:elasticloadbalancing:ap-northeast-1:999999999999:listener-rule/app/onecloud-fargate-public/0c34ae9fd000e24d/4917974198a69c54/8833446985abaa96",
+        "isDefault": false
+      }
+    ]
+  },
+  "requestID": "83dbcc8b-365a-49a8-a148-69065f81ea4d",
+  "eventID": "8bc654ad-94b6-43ce-b21c-0be1907b97ff",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2015-12-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

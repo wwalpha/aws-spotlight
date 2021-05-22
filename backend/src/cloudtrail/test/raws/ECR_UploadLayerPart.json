@@ -1,0 +1,43 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAJIGYNBKIMJWQF54A",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-01T00:23:39Z" }
+    },
+    "invokedBy": "AWS Internal"
+  },
+  "eventTime": "2021-02-01T00:24:24Z",
+  "eventSource": "ecr.amazonaws.com",
+  "eventName": "UploadLayerPart",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "AWS Internal",
+  "userAgent": "AWS Internal",
+  "requestParameters": null,
+  "responseElements": {
+    "registryId": "999999999999",
+    "repositoryName": "onecloud-fargate-backend-public",
+    "uploadId": "e117b1c6-fa08-4ae3-9dbe-8f358dff0832",
+    "lastByteReceived": 7873
+  },
+  "requestID": "8cfeb51a-92d4-480d-9aa3-7704ba8d9163",
+  "eventID": "ef387475-02a0-4488-8e68-6866ac8de4c4",
+  "readOnly": false,
+  "resources": [
+    {
+      "accountId": "999999999999",
+      "ARN": "arn:aws:ecr:ap-northeast-1:999999999999:repository/onecloud-fargate-backend-public"
+    }
+  ],
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

@@ -1,0 +1,42 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLI3YFKAM3HW",
+    "arn": "arn:aws:iam::999999999999:user/kazuya.tanaka",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIULNZU4GS",
+    "userName": "kazuya.tanaka",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-21T13:13:24Z" }
+    }
+  },
+  "eventTime": "2021-03-21T13:57:10Z",
+  "eventSource": "codecommit.amazonaws.com",
+  "eventName": "PutCommentReaction",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "112.69.148.215",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.962 Linux/5.4.95-47.164.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+  "requestParameters": {
+    "commentId": "7ce8289d-3764-420c-bd6d-ef27617e92f4:32869ae2-206a-4d13-a6bf-0c0a1827d3f7",
+    "reactionValue": ":thumbsup:"
+  },
+  "responseElements": null,
+  "requestID": "67522d13-7318-49e6-b016-add2043cae28",
+  "eventID": "f5ff7bdf-e774-41f5-a63a-46e641ca00ad",
+  "readOnly": false,
+  "resources": [
+    {
+      "accountId": "999999999999",
+      "type": "AWS::CodeCommit::Repository",
+      "ARN": "arn:aws:codecommit:ap-northeast-1:999999999999:One-Cloud-tanaka"
+    }
+  ],
+  "eventType": "AwsApiCall",
+  "apiVersion": "2015-04-13",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

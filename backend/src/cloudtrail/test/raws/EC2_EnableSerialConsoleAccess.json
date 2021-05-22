@@ -1,0 +1,37 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLI473YYFTJB",
+    "arn": "arn:aws:iam::999999999999:user/eric.agnew",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI7DYSJMM3",
+    "userName": "eric.agnew",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-19T00:40:33Z" }
+    }
+  },
+  "eventTime": "2021-04-19T01:31:33Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "EnableSerialConsoleAccess",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": { "EnableSerialConsoleAccessRequest": "" },
+  "responseElements": {
+    "EnableSerialConsoleAccessResponse": {
+      "xmlns": "http://ec2.amazonaws.com/doc/2016-11-15/",
+      "requestId": "66450977-f38b-49c7-ba72-5768a1c9eb02",
+      "serialConsoleAccessEnabled": true
+    }
+  },
+  "requestID": "66450977-f38b-49c7-ba72-5768a1c9eb02",
+  "eventID": "9ba20b42-f370-4030-991a-4b4960b24715",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

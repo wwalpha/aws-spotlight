@@ -1,0 +1,59 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIQ5BMNRFHI",
+    "arn": "arn:aws:iam::999999999999:user/demo-user10",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLITWMQUR72",
+    "userName": "demo-user10",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-17T17:21:21Z" }
+    }
+  },
+  "eventTime": "2021-04-17T18:03:05Z",
+  "eventSource": "apigateway.amazonaws.com",
+  "eventName": "PutMethod",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "222.224.143.21",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.984 Linux/5.4.102-52.177.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "requestParameters": {
+    "restApiId": "jrrfh5tt86",
+    "putMethodInput": { "apiKeyRequired": false, "authorizationType": "NONE", "requestParameters": {} },
+    "httpMethod": "GET",
+    "resourceId": "64nivyyz8c",
+    "template": false
+  },
+  "responseElements": {
+    "httpMethod": "GET",
+    "apiKeyRequired": false,
+    "methodDelete": { "resourceId": "64nivyyz8c", "httpMethod": "GET", "restApiId": "jrrfh5tt86", "template": false },
+    "requestParameters": {},
+    "methodresponsePut": {
+      "restApiId": "jrrfh5tt86",
+      "httpMethod": "GET",
+      "resourceId": "64nivyyz8c",
+      "template": true
+    },
+    "methodUpdate": { "httpMethod": "GET", "resourceId": "64nivyyz8c", "restApiId": "jrrfh5tt86", "template": false },
+    "authorizationType": "NONE",
+    "integrationPut": { "resourceId": "64nivyyz8c", "httpMethod": "GET", "restApiId": "jrrfh5tt86", "template": false },
+    "self": {
+      "resourceId": "64nivyyz8c",
+      "httpMethod": "GET",
+      "restApiId": "jrrfh5tt86",
+      "template": false,
+      "name": "GET",
+      "title": "GET"
+    }
+  },
+  "requestID": "37f9276c-7904-43ec-b0ee-759173852c29",
+  "eventID": "e129e7a8-e752-46ab-b0e7-009e8028ab3e",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

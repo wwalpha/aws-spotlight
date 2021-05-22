@@ -1,0 +1,53 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI3UYUEVIJM:configLambdaExecution",
+    "arn": "arn:aws:sts::999999999999:assumed-role/Config-role/configLambdaExecution",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI2SCP7WXS",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI3UYUEVIJM",
+        "arn": "arn:aws:iam::999999999999:role/Config-role",
+        "accountId": "999999999999",
+        "userName": "Config-role"
+      },
+      "webIdFederationData": {},
+      "attributes": { "creationDate": "2021-04-01T01:40:39Z", "mfaAuthenticated": "false" }
+    },
+    "invokedBy": "config.amazonaws.com"
+  },
+  "eventTime": "2021-04-01T01:40:39Z",
+  "eventSource": "config.amazonaws.com",
+  "eventName": "PutEvaluations",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "config.amazonaws.com",
+  "userAgent": "config.amazonaws.com",
+  "requestParameters": {
+    "testMode": false,
+    "evaluations": [
+      {
+        "orderingTimestamp": "Apr 1, 2021 1:40:21 AM",
+        "complianceResourceType": "AWS::EC2::SecurityGroup",
+        "complianceResourceId": "sg-0e34ce3ea84a3decd",
+        "complianceType": "COMPLIANT"
+      }
+    ]
+  },
+  "responseElements": null,
+  "additionalEventData": {
+    "configRuleName": "restricted-ssh",
+    "configRuleArn": "arn:aws:config:ap-northeast-1:999999999999:config-rule/config-rule-z2fkpq",
+    "notificationJobType": "NOTIFIED",
+    "managedRuleIdentifier": "INCOMING_SSH_DISABLED"
+  },
+  "requestID": "791ce77b-a2fb-466f-8407-6ed1d803b3d3",
+  "eventID": "41a1ed7d-8d3e-47fa-be4e-da4a90edcaaa",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management"
+}

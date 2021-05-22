@@ -1,0 +1,55 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIRXKQODON",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-05T14:03:14Z" }
+    }
+  },
+  "eventTime": "2021-03-05T22:51:05Z",
+  "eventSource": "network-firewall.amazonaws.com",
+  "eventName": "UpdateRuleGroup",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "ruleGroupArn": "arn:aws:network-firewall:ap-northeast-1:999999999999:stateful-rulegroup/stateful-rules",
+    "ruleGroupName": "stateful-rules",
+    "ruleGroup": {
+      "rulesSource": {
+        "rulesSourceList": {
+          "targetTypes": ["TLS_SNI", "HTTP_HOST"],
+          "generatedRulesType": "DENYLIST",
+          "targets": ["yahoo.co.jp"]
+        }
+      }
+    },
+    "type": "STATEFUL",
+    "dryRun": false
+  },
+  "responseElements": {
+    "ruleGroupResponse": {
+      "ruleGroupArn": "arn:aws:network-firewall:ap-northeast-1:999999999999:stateful-rulegroup/stateful-rules",
+      "ruleGroupName": "stateful-rules",
+      "ruleGroupId": "7532e0c2-8e8f-4d5d-96fc-59b94c405cac",
+      "type": "STATEFUL",
+      "capacity": 100,
+      "ruleGroupStatus": "ACTIVE",
+      "tags": []
+    }
+  },
+  "requestID": "ac20c8f9-b2b9-4421-99f9-9e71555351c7",
+  "eventID": "e412d987-973e-4087-884f-1172f34a1499",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

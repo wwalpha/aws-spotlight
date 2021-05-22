@@ -1,0 +1,74 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
+    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIW7WHEGUY",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2OU3QHN26",
+        "arn": "arn:aws:iam::999999999999:role/KTOU_SwitchRole",
+        "accountId": "999999999999",
+        "userName": "KTOU_SwitchRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-02T00:53:59Z" }
+    }
+  },
+  "eventTime": "2021-02-02T01:31:21Z",
+  "eventSource": "appmesh.amazonaws.com",
+  "eventName": "UpdateVirtualNode",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.942 Linux/4.9.230-0.1.ac.223.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+  "requestParameters": {
+    "meshName": "fargate-microservice-mesh",
+    "meshOwner": "999999999999",
+    "spec": {
+      "backendDefaults": { "clientPolicy": {} },
+      "backends": [],
+      "listeners": [{ "portMapping": { "port": 80, "protocol": "http" } }],
+      "logging": {},
+      "serviceDiscovery": {
+        "awsCloudMap": { "attributes": [], "namespaceName": "microservice.local", "serviceName": "worker.backend" }
+      }
+    },
+    "virtualNodeName": "worker-node"
+  },
+  "responseElements": {
+    "virtualNode": {
+      "meshName": "fargate-microservice-mesh",
+      "metadata": {
+        "arn": "arn:aws:appmesh:ap-northeast-1:999999999999:mesh/fargate-microservice-mesh/virtualNode/worker-node",
+        "createdAt": "Feb 1, 2021 11:22:55 PM",
+        "lastUpdatedAt": "Feb 2, 2021 1:31:21 AM",
+        "meshOwner": "999999999999",
+        "resourceOwner": "999999999999",
+        "uid": "2adb5a27-2642-4142-9996-adbe42f853d3",
+        "version": 2
+      },
+      "spec": {
+        "backendDefaults": { "clientPolicy": {} },
+        "backends": [],
+        "listeners": [{ "portMapping": { "port": 80, "protocol": "http" } }],
+        "logging": {},
+        "serviceDiscovery": {
+          "awsCloudMap": { "attributes": [], "namespaceName": "microservice.local", "serviceName": "worker.backend" }
+        }
+      },
+      "status": { "status": "ACTIVE" },
+      "virtualNodeName": "worker-node"
+    }
+  },
+  "requestID": "68823f6e-1431-4b97-9285-15f8dcc0e854",
+  "eventID": "8cefd022-9ae1-402b-a22c-e4752427ec0a",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2019-01-25",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

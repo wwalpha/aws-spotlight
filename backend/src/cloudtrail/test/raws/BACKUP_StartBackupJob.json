@@ -1,0 +1,41 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIXJU47A7C",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-24T03:18:48Z" }
+    }
+  },
+  "eventTime": "2021-02-24T11:52:36Z",
+  "eventSource": "backup.amazonaws.com",
+  "eventName": "StartBackupJob",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.946 Linux/4.9.230-0.1.ac.223.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+  "requestParameters": {
+    "backupVaultName": "Default",
+    "resourceArn": "arn:aws:ec2:ap-northeast-1:999999999999:instance/i-00adf0ee742a14e6a",
+    "iamRoleArn": "arn:aws:iam::999999999999:role/service-role/AWSBackupDefaultServiceRole",
+    "startWindowMinutes": 60,
+    "completeWindowMinutes": 10080,
+    "lifecycle": { "deleteAfterDays": 7 }
+  },
+  "responseElements": {
+    "backupJobId": "eff6e4f8-c860-4db5-89e3-fa3ef438fc03",
+    "creationDate": "Feb 24, 2021 11:52:36 AM"
+  },
+  "requestID": "71508299-0856-4985-814d-c0f0beebe2f1",
+  "eventID": "919b499d-5d65-4301-80be-9ca369491e3e",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

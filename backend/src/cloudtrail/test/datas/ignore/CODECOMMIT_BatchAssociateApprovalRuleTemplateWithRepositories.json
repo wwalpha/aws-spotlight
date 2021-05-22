@@ -1,0 +1,39 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLI3YFKAM3HW",
+    "arn": "arn:aws:iam::999999999999:user/kazuya.tanaka",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIULNZU4GS",
+    "userName": "kazuya.tanaka",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-21T13:13:24Z" }
+    }
+  },
+  "eventTime": "2021-03-21T14:09:00Z",
+  "eventSource": "codecommit.amazonaws.com",
+  "eventName": "BatchAssociateApprovalRuleTemplateWithRepositories",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "112.69.148.215",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.962 Linux/5.4.95-47.164.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+  "requestParameters": { "approvalRuleTemplateName": "approve flow", "repositoryNames": ["One-Cloud-tanaka"] },
+  "responseElements": { "associatedRepositoryNames": ["One-Cloud-tanaka"], "errors": [] },
+  "requestID": "bbcc4bc6-48b1-40a9-aa1b-b9cf94bf8d3a",
+  "eventID": "dcad1df4-1287-4acc-b16e-e44db6a6bc19",
+  "readOnly": false,
+  "resources": [
+    {
+      "accountId": "999999999999",
+      "type": "AWS::CodeCommit::Repository",
+      "ARN": "arn:aws:codecommit:ap-northeast-1:999999999999:One-Cloud-tanaka"
+    }
+  ],
+  "eventType": "AwsApiCall",
+  "apiVersion": "2015-04-13",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

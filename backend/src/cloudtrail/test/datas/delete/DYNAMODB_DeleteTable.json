@@ -1,0 +1,56 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIZDIDV7UY",
+    "userName": "ktou",
+    "sessionContext": { "attributes": { "creationDate": "2021-04-07T10:31:17Z", "mfaAuthenticated": "false" } }
+  },
+  "eventTime": "2021-04-07T11:46:29Z",
+  "eventSource": "dynamodb.amazonaws.com",
+  "eventName": "DeleteTable",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "console.amazonaws.com",
+  "requestParameters": { "tableName": "AutoNotification_AlarmConfigs" },
+  "responseElements": {
+    "tableDescription": {
+      "tableName": "AutoNotification_AlarmConfigs",
+      "tableStatus": "DELETING",
+      "provisionedThroughput": { "numberOfDecreasesToday": 0, "readCapacityUnits": 0, "writeCapacityUnits": 0 },
+      "tableSizeBytes": 0,
+      "itemCount": 0,
+      "tableArn": "arn:aws:dynamodb:ap-northeast-1:999999999999:table/AutoNotification_AlarmConfigs",
+      "tableId": "b6543e2b-07f7-4239-8851-77fdd5d8a26c",
+      "tableThroughputModeSummary": {
+        "tableThroughputMode": "PAY_PER_REQUEST",
+        "lastUpdateToPayPerRequestDateTime": "Sep 9, 2019, 12:36:57 PM"
+      },
+      "billingModeSummary": {
+        "billingMode": "PAY_PER_REQUEST",
+        "lastUpdateToPayPerRequestDateTime": "Sep 9, 2019, 12:36:57 PM"
+      },
+      "streamSpecification": { "streamEnabled": true, "streamViewType": "NEW_AND_OLD_IMAGES" },
+      "latestStreamLabel": "2019-09-23T02:54:53.691",
+      "latestStreamArn": "arn:aws:dynamodb:ap-northeast-1:999999999999:table/AutoNotification_AlarmConfigs/stream/2019-09-23T02:54:53.691"
+    }
+  },
+  "requestID": "EO8MLCT17O55U025LE27T87USBVV4KQNSO5AEMVJF66Q9ASUAAJG",
+  "eventID": "7bae1976-dd8e-4332-bc95-83c7844d515d",
+  "readOnly": false,
+  "resources": [
+    {
+      "accountId": "999999999999",
+      "type": "AWS::DynamoDB::Table",
+      "ARN": "arn:aws:dynamodb:ap-northeast-1:999999999999:table/AutoNotification_AlarmConfigs"
+    }
+  ],
+  "eventType": "AwsApiCall",
+  "apiVersion": "2012-08-10",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management"
+}

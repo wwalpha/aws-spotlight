@@ -1,0 +1,37 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIZDIDV7UY",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-07T10:31:17Z" }
+    }
+  },
+  "eventTime": "2021-04-07T11:47:25Z",
+  "eventSource": "autoscaling.amazonaws.com",
+  "eventName": "DeleteScalingPolicy",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "console.amazonaws.com",
+  "requestParameters": {
+    "policyName": "DynamoDBWriteCapacityUtilization:table/BootCamp1020-History",
+    "resourceId": "table/BootCamp1020-History",
+    "scalableDimension": "dynamodb:table:WriteCapacityUnits",
+    "serviceNamespace": "dynamodb"
+  },
+  "responseElements": null,
+  "additionalEventData": { "service": "application-autoscaling" },
+  "requestID": "6c6af1ea-1c50-4cba-992a-966ffdb8762f",
+  "eventID": "5cac07f3-4cd2-40b3-b773-06ed37b09440",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

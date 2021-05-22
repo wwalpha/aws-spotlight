@@ -1,0 +1,82 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIWODBMIFD5",
+    "arn": "arn:aws:iam::999999999999:user/kota.murakami",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIW6OAYYGK",
+    "userName": "kota.murakami",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-02T00:52:55Z" }
+    }
+  },
+  "eventTime": "2021-04-02T01:13:31Z",
+  "eventSource": "s3.amazonaws.com",
+  "eventName": "PutBucketAcl",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.138",
+  "userAgent": "[S3Console/0.4, aws-internal/3 aws-sdk-java/1.11.965 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation]",
+  "requestParameters": {
+    "bucketName": "test-backt-testfile01",
+    "Host": "s3-ap-northeast-1.amazonaws.com",
+    "AccessControlPolicy": {
+      "AccessControlList": {
+        "Grant": [
+          {
+            "Grantee": {
+              "xsi:type": "CanonicalUser",
+              "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+              "ID": "96ae2fc8d6f857e33d94760303febd6326334d97cd7f1cfa4325a85a0574001a"
+            },
+            "Permission": "FULL_CONTROL"
+          },
+          {
+            "Grantee": {
+              "xsi:type": "Group",
+              "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+              "URI": "http://acs.amazonaws.com/groups/global/AllUsers"
+            },
+            "Permission": "READ"
+          },
+          {
+            "Grantee": {
+              "xsi:type": "Group",
+              "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+              "URI": "http://acs.amazonaws.com/groups/global/AllUsers"
+            },
+            "Permission": "READ_ACP"
+          }
+        ]
+      },
+      "xmlns": "http://s3.amazonaws.com/doc/2006-03-01/",
+      "Owner": {
+        "DisplayName": "aws-ppa-dxc-asiablockchain-demo",
+        "ID": "96ae2fc8d6f857e33d94760303febd6326334d97cd7f1cfa4325a85a0574001a"
+      }
+    },
+    "acl": ""
+  },
+  "responseElements": null,
+  "additionalEventData": {
+    "SignatureVersion": "SigV4",
+    "CipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
+    "bytesTransferredIn": 887,
+    "AuthenticationMethod": "AuthHeader",
+    "x-amz-id-2": "r8C34E/74750Nc3rvzNNEgkHE2lhnWhUi30RzDl6co5aN2146NMndVmadoxInRXjMvlj1YeT/xY=",
+    "bytesTransferredOut": 0
+  },
+  "requestID": "9KCE15B6YZ7P1NKM",
+  "eventID": "8ccc1c57-1ba8-4e24-a202-75d245753cbc",
+  "readOnly": false,
+  "resources": [
+    { "accountId": "999999999999", "type": "AWS::S3::Bucket", "ARN": "arn:aws:s3:::test-backt-testfile01" }
+  ],
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999",
+  "vpcEndpointId": "vpce-c8e61da1"
+}

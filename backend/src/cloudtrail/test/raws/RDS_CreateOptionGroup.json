@@ -1,0 +1,50 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
+    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI2K7ECAL5",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2OU3QHN26",
+        "arn": "arn:aws:iam::999999999999:role/KTOU_SwitchRole",
+        "accountId": "999999999999",
+        "userName": "KTOU_SwitchRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-08T08:01:41Z" }
+    }
+  },
+  "eventTime": "2021-02-08T08:16:20Z",
+  "eventSource": "rds.amazonaws.com",
+  "eventName": "CreateOptionGroup",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "console.amazonaws.com",
+  "requestParameters": {
+    "optionGroupName": "sql-ex-optiongroup",
+    "engineName": "sqlserver-ex",
+    "majorEngineVersion": "15.00",
+    "optionGroupDescription": "sql-ex-optiongroup",
+    "dryRun": false
+  },
+  "responseElements": {
+    "optionGroupName": "sql-ex-optiongroup",
+    "optionGroupDescription": "sql-ex-optiongroup",
+    "engineName": "sqlserver-ex",
+    "majorEngineVersion": "15.00",
+    "options": [],
+    "allowsVpcAndNonVpcInstanceMemberships": true,
+    "optionGroupArn": "arn:aws:rds:ap-northeast-1:999999999999:og:sql-ex-optiongroup"
+  },
+  "requestID": "828ec07e-766c-43ae-9b7f-bd33a1367ddc",
+  "eventID": "6d733d23-0a58-4769-818a-5e9d6cd20fe5",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

@@ -1,0 +1,35 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIXJY644AY",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-12T04:58:48Z" }
+    }
+  },
+  "eventTime": "2021-04-12T05:19:42Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "ModifyImageAttribute",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "192.46.52.31",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "imageId": "ami-0eb68d3a878c20f09",
+    "launchPermission": { "add": { "items": [{ "userId": "701741525875" }] } },
+    "attributeType": "launchPermission"
+  },
+  "responseElements": { "requestId": "2600c45e-1afe-4b10-82d4-d175e74539d0", "_return": true },
+  "requestID": "2600c45e-1afe-4b10-82d4-d175e74539d0",
+  "eventID": "4fe133aa-2317-4ad1-890e-d1a799f9e827",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

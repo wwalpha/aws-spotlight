@@ -1,0 +1,51 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIQ5BMNRFHI",
+    "arn": "arn:aws:iam::999999999999:user/demo-user10",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI6IKCVG6O",
+    "userName": "demo-user10",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-14T13:44:20Z" }
+    }
+  },
+  "eventTime": "2021-04-14T14:40:01Z",
+  "eventSource": "lambda.amazonaws.com",
+  "eventName": "UpdateFunctionConfiguration20150331v2",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.61",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.984 Linux/5.4.102-52.177.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy, AWSLambdaConsole/1.1",
+  "requestParameters": { "functionName": "get_ec2_rds_list", "environment": {}, "kMSKeyArn": "" },
+  "responseElements": {
+    "functionName": "get_ec2_rds_list",
+    "functionArn": "arn:aws:lambda:ap-northeast-1:999999999999:function:get_ec2_rds_list",
+    "runtime": "python3.6",
+    "role": "arn:aws:iam::999999999999:role/assumerole_lambda",
+    "handler": "lambda_function.lambda_handler",
+    "codeSize": 48290781,
+    "description": "",
+    "timeout": 900,
+    "memorySize": 256,
+    "lastModified": "2021-04-14T14:40:01.048+0000",
+    "codeSha256": "LmaV3EulqKhVFTjYN5c8AJWs5NG0IpzaTikJxBuanQ4=",
+    "version": "$LATEST",
+    "vpcConfig": { "subnetIds": [], "securityGroupIds": [], "vpcId": "" },
+    "environment": {},
+    "tracingConfig": { "mode": "PassThrough" },
+    "revisionId": "ac19cb06-e7b1-4f51-a8de-281460ea98fe",
+    "state": "Active",
+    "lastUpdateStatus": "Successful",
+    "packageType": "Zip"
+  },
+  "requestID": "843856d6-c8d5-44bb-85b2-19443d9ee273",
+  "eventID": "0464be87-ee00-4403-990c-c7e173a45126",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

@@ -1,0 +1,48 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
+    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAJRDUVA6TZHSNIEPA",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2OU3QHN26",
+        "arn": "arn:aws:iam::999999999999:role/KTOU_SwitchRole",
+        "accountId": "999999999999",
+        "userName": "KTOU_SwitchRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-01-21T01:35:55Z" }
+    },
+    "invokedBy": "cloudformation.amazonaws.com"
+  },
+  "eventTime": "2021-01-21T01:38:06Z",
+  "eventSource": "autoscaling.amazonaws.com",
+  "eventName": "CreateLaunchConfiguration",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "requestParameters": {
+    "ebsOptimized": false,
+    "instanceMonitoring": { "enabled": true },
+    "instanceType": "t3.small",
+    "associatePublicIpAddress": true,
+    "blockDeviceMappings": [{ "deviceName": "/dev/xvda", "ebs": { "volumeSize": 30, "volumeType": "gp2" } }],
+    "launchConfigurationName": "EC2ContainerService-ecs-on-ec2-EcsInstanceLc-M1GQHZ0VYK8Z",
+    "imageId": "ami-0ccf28d7b4966979d",
+    "userData": "<sensitiveDataRemoved>",
+    "securityGroups": ["sg-0186ded029758b478"],
+    "iamInstanceProfile": "arn:aws:iam::999999999999:instance-profile/ecsInstanceRole"
+  },
+  "responseElements": null,
+  "requestID": "02c3f4b4-7a5c-4a53-b6c0-22086c499924",
+  "eventID": "e83048f7-03ba-481e-ba4c-44e273cda8a9",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

@@ -1,0 +1,36 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIQ5BMNRFHI",
+    "arn": "arn:aws:iam::999999999999:user/demo-user10",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI6A7XJLP2",
+    "userName": "demo-user10",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-17T17:21:21Z" }
+    }
+  },
+  "eventTime": "2021-04-17T19:09:20Z",
+  "eventSource": "apigateway.amazonaws.com",
+  "eventName": "DeleteMethod",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.146",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.984 Linux/5.4.102-52.177.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "requestParameters": {
+    "resourceId": "yib4udxw7a",
+    "httpMethod": "POST",
+    "restApiId": "tu73o1jfvi",
+    "template": false
+  },
+  "responseElements": null,
+  "requestID": "534ebf81-fcbc-495a-8c47-bff9aaf40e85",
+  "eventID": "e487738e-0cde-4bf9-b67f-93a1237f5207",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

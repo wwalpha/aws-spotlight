@@ -1,0 +1,55 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAJQZO72CPKJSB7BQA",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-01T00:23:41Z" }
+    },
+    "invokedBy": "AWS Internal"
+  },
+  "eventTime": "2021-02-01T00:24:29Z",
+  "eventSource": "ecr.amazonaws.com",
+  "eventName": "PutImage",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "AWS Internal",
+  "userAgent": "AWS Internal",
+  "requestParameters": {
+    "registryId": "999999999999",
+    "repositoryName": "onecloud-fargate-backend-private",
+    "imageManifest": "{\n   \"schemaVersion\": 2,\n   \"mediaType\": \"application/vnd.docker.distribution.manifest.v2+json\",\n   \"config\": {\n      \"mediaType\": \"application/vnd.docker.container.image.v1+json\",\n      \"size\": 7870,\n      \"digest\": \"sha256:afa6a4b1dcc9b8820137d03837396251db002d4f15befa26c4741f3cbbd0df37\"\n   },\n   \"layers\": [\n      {\n         \"mediaType\": \"application/vnd.docker.image.rootfs.diff.tar.gzip\",\n         \"size\": 2814864,\n         \"digest\": \"sha256:0a6724ff3fcd51338afdfdc2b1d4ffd04569818e31efad957213d67c29b45101\"\n      },\n      {\n         \"mediaType\": \"application/vnd.docker.image.rootfs.diff.tar.gzip\",\n         \"size\": 35765655,\n         \"digest\": \"sha256:7ceedf9dd120e0c6c394bc8dcd700ff8f346a652463d28985c2e4bb01beb3929\"\n      },\n      {\n         \"mediaType\": \"application/vnd.docker.image.rootfs.diff.tar.gzip\",\n         \"size\": 2239608,\n         \"digest\": \"sha256:ce91790a06ab7a92acaa638f0fa4867c34ec18cdcb0858884ddf7ffb7535038c\"\n      },\n      {\n         \"mediaType\": \"application/vnd.docker.image.rootfs.diff.tar.gzip\",\n         \"size\": 281,\n         \"digest\": \"sha256:15917197957b36ef113afda7c169c539214d0c1e70ce782d4a3d2e59e9ce77a0\"\n      },\n      {\n         \"mediaType\": \"application/vnd.docker.image.rootfs.diff.tar.gzip\",\n         \"size\": 92,\n         \"digest\": \"sha256:232a75bf026f17282e8b3381f3b22ba89625e23b8660922dd6c229038b1ff773\"\n      },\n      {\n         \"mediaType\": \"application/vnd.docker.image.rootfs.diff.tar.gzip\",\n         \"size\": 722,\n         \"digest\": \"sha256:6aaa3b870446719905fba687f4906dc36edeaa46923564e0094a2401e1d66326\"\n      },\n      {\n         \"mediaType\": \"application/vnd.docker.image.rootfs.diff.tar.gzip\",\n         \"size\": 324,\n         \"digest\": \"sha256:9c8e1ee7f4afd17af02e5b94bf1b88cb04b3175d4d31d39e658db0bb291341f4\"\n      },\n      {\n         \"mediaType\": \"application/vnd.docker.image.rootfs.diff.tar.gzip\",\n         \"size\": 24525828,\n         \"digest\": \"sha256:600afe933fdc9ed4a06909e632315533620b93285289d02dedf1b5228641f8d9\"\n      }\n   ]\n}",
+    "imageManifestMediaType": "application/vnd.docker.distribution.manifest.v2+json",
+    "imageTag": "686d39c048be7e44f5016d8e585f021fe755f5fa"
+  },
+  "responseElements": {
+    "image": {
+      "registryId": "999999999999",
+      "repositoryName": "onecloud-fargate-backend-private",
+      "imageId": {
+        "imageDigest": "sha256:24785fa3ed952bbf4728df5a3b842c24eb4d98ace98ffd492c8e5ca029b0451f",
+        "imageTag": "686d39c048be7e44f5016d8e585f021fe755f5fa"
+      },
+      "imageManifest": "{\n   \"schemaVersion\": 2,\n   \"mediaType\": \"application/vnd.docker.distribution.manifest.v2+json\",\n   \"config\": {\n      \"mediaType\": \"application/vnd.docker.container.image.v1+json\",\n      \"size\": 7870,\n      \"digest\": \"sha256:afa6a4b1dcc9b8820137d03837396251db002d4f15befa26c4741f3cbbd0df37\"\n   },\n   \"layers\": [\n      {\n         \"mediaType\": \"application/vnd.docker.image.rootfs.diff.tar.gzip\",\n         \"size\": 2814864,\n         \"digest\": \"sha256:0a6724ff3fcd51338afdfdc2b1d4ffd04569818e31efad957213d67c29b45101\"\n      },\n      {\n         \"mediaType\": \"application/vnd.docker.image.rootfs.diff.tar.gzip\",\n         \"size\": 35765655,\n         \"digest\": \"sha256:7ceedf9dd120e0c6c394bc8dcd700ff8f346a652463d28985c2e4bb01beb3929\"\n      },\n      {\n         \"mediaType\": \"application/vnd.docker.image.rootfs.diff.tar.gzip\",\n         \"size\": 2239608,\n         \"digest\": \"sha256:ce91790a06ab7a92acaa638f0fa4867c34ec18cdcb0858884ddf7ffb7535038c\"\n      },\n      {\n         \"mediaType\": \"application/vnd.docker.image.rootfs.diff.tar.gzip\",\n         \"size\": 281,\n         \"digest\": \"sha256:15917197957b36ef113afda7c169c539214d0c1e70ce782d4a3d2e59e9ce77a0\"\n      },\n      {\n         \"mediaType\": \"application/vnd.docker.image.rootfs.diff.tar.gzip\",\n         \"size\": 92,\n         \"digest\": \"sha256:232a75bf026f17282e8b3381f3b22ba89625e23b8660922dd6c229038b1ff773\"\n      },\n      {\n         \"mediaType\": \"application/vnd.docker.image.rootfs.diff.tar.gzip\",\n         \"size\": 722,\n         \"digest\": \"sha256:6aaa3b870446719905fba687f4906dc36edeaa46923564e0094a2401e1d66326\"\n      },\n      {\n         \"mediaType\": \"application/vnd.docker.image.rootfs.diff.tar.gzip\",\n         \"size\": 324,\n         \"digest\": \"sha256:9c8e1ee7f4afd17af02e5b94bf1b88cb04b3175d4d31d39e658db0bb291341f4\"\n      },\n      {\n         \"mediaType\": \"application/vnd.docker.image.rootfs.diff.tar.gzip\",\n         \"size\": 24525828,\n         \"digest\": \"sha256:600afe933fdc9ed4a06909e632315533620b93285289d02dedf1b5228641f8d9\"\n      }\n   ]\n}",
+      "imageManifestMediaType": "application/vnd.docker.distribution.manifest.v2+json"
+    }
+  },
+  "requestID": "8276cca1-b17c-42c9-8786-e721a5bea05d",
+  "eventID": "7bdeb92d-8a7d-4978-9be8-87456ec1935e",
+  "readOnly": false,
+  "resources": [
+    {
+      "accountId": "999999999999",
+      "ARN": "arn:aws:ecr:ap-northeast-1:999999999999:repository/onecloud-fargate-backend-private"
+    }
+  ],
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

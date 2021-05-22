@@ -1,0 +1,37 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2QCIZFG2K:i-00adf0ee742a14e6a",
+    "arn": "arn:aws:sts::999999999999:assumed-role/yshimitzu_full/i-00adf0ee742a14e6a",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAJ7JIYIQ6X3GZKWTA",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2QCIZFG2K",
+        "arn": "arn:aws:iam::999999999999:role/yshimitzu_full",
+        "accountId": "999999999999",
+        "userName": "yshimitzu_full"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-27T04:46:24Z" },
+      "ec2RoleDelivery": "2.0"
+    }
+  },
+  "eventTime": "2021-04-27T05:46:26Z",
+  "eventSource": "glue.amazonaws.com",
+  "eventName": "DeleteConnection",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "18.177.168.178",
+  "userAgent": "APN/1.0 HashiCorp/1.0 Terraform/0.15.1 (+https://www.terraform.io) terraform-provider-aws/dev (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.38.19 (go1.16; linux; amd64)",
+  "requestParameters": { "catalogId": "999999999999", "connectionName": "s3-connection" },
+  "responseElements": null,
+  "requestID": "9b83cae9-6c4e-48e8-ad4d-cacfae5f2275",
+  "eventID": "7768d120-6870-4b02-86a1-6a7b84903fc1",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

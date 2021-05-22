@@ -1,0 +1,32 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLI6DETSD4FR",
+    "arn": "arn:aws:iam::999999999999:user/wlim40",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAI4AZLLGB3OTFGK3A",
+    "userName": "wlim40",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-14T11:13:28Z" }
+    },
+    "invokedBy": "cloudformation.amazonaws.com"
+  },
+  "eventTime": "2021-04-14T11:22:26Z",
+  "eventSource": "cognito-identity.amazonaws.com",
+  "eventName": "DeleteIdentityPool",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "requestParameters": { "identityPoolId": "ap-northeast-1:59f0c1cd-f764-475a-bc97-aa9b6d9f40cb" },
+  "responseElements": null,
+  "requestID": "b40a4c6f-1863-4f8a-a0ac-cf0c12fa86af",
+  "eventID": "33f638e9-5704-47e0-943a-3665fc05ff8d",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

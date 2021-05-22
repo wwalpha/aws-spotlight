@@ -1,0 +1,37 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLIR6UKLVKZS:db5de5fc-ea68-4ebd-baf8-4388e221a0b6",
+    "arn": "arn:aws:sts::999999999999:assumed-role/AWS-QuickSetup-StackSet-Local-ExecutionRole/db5de5fc-ea68-4ebd-baf8-4388e221a0b6",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAJ7FRM65LOIEVUZ4Q",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLIR6UKLVKZS",
+        "arn": "arn:aws:iam::999999999999:role/AWS-QuickSetup-StackSet-Local-ExecutionRole",
+        "accountId": "999999999999",
+        "userName": "AWS-QuickSetup-StackSet-Local-ExecutionRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-14T14:08:57Z" }
+    },
+    "invokedBy": "cloudformation.amazonaws.com"
+  },
+  "eventTime": "2021-04-14T14:09:03Z",
+  "eventSource": "ssm.amazonaws.com",
+  "eventName": "DeleteDocument",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "requestParameters": { "name": "AWSQuickSetup-CreateAndAttachIAMToInstance-qm255", "force": false },
+  "responseElements": null,
+  "requestID": "fdc8debe-0031-40fe-b3cf-255367018837",
+  "eventID": "c8a3d38b-db8a-4186-a906-f514acc0bb34",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

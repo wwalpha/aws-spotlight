@@ -1,0 +1,48 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAISPFV6BWFKE6SM2A",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-23T00:35:29Z" }
+    },
+    "invokedBy": "apigateway.amazonaws.com"
+  },
+  "eventTime": "2021-02-23T02:46:08Z",
+  "eventSource": "cognito-idp.amazonaws.com",
+  "eventName": "CreateGroup",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "apigateway.amazonaws.com",
+  "userAgent": "apigateway.amazonaws.com",
+  "requestParameters": {
+    "groupName": "Full-access",
+    "userPoolId": "ap-northeast-1_IzedE7sM1",
+    "description": "Auto-created Group for managing Amplify Backends",
+    "roleArn": "arn:aws:iam::999999999999:role/ap-northeast-1_IzedE7sM1_Full-access",
+    "precedence": 1
+  },
+  "responseElements": {
+    "group": {
+      "groupName": "Full-access",
+      "userPoolId": "ap-northeast-1_IzedE7sM1",
+      "description": "Auto-created Group for managing Amplify Backends",
+      "roleArn": "arn:aws:iam::999999999999:role/ap-northeast-1_IzedE7sM1_Full-access",
+      "precedence": 1,
+      "lastModifiedDate": "Feb 23, 2021 2:46:08 AM",
+      "creationDate": "Feb 23, 2021 2:46:08 AM"
+    }
+  },
+  "requestID": "a54512ec-9df7-4784-beb7-d69b411f8b2e",
+  "eventID": "2647857e-4932-49af-bd61-3d23cef8ee85",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

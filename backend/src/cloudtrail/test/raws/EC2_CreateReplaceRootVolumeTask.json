@@ -1,0 +1,47 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIRRBCMUZZM",
+    "arn": "arn:aws:iam::999999999999:user/demo-user08",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI2FRVK4GG",
+    "userName": "demo-user08",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-28T02:41:55Z" }
+    }
+  },
+  "eventTime": "2021-04-28T05:05:12Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "CreateReplaceRootVolumeTask",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "118.1.96.178",
+  "userAgent": "EC2ConsoleFrontend, aws-internal/3 aws-sdk-java/1.11.946 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+  "requestParameters": {
+    "CreateReplaceRootVolumeTaskRequest": {
+      "InstanceId": "i-0c424a66ab9f64345"
+    }
+  },
+  "responseElements": {
+    "CreateReplaceRootVolumeTaskResponse": {
+      "xmlns": "http://ec2.amazonaws.com/doc/2016-11-15/",
+      "requestId": "442b6dbc-9839-46d8-9c07-49ff01b3f47a",
+      "replaceRootVolumeTask": {
+        "replaceRootVolumeTaskId": "replacevol-0087d2d339e00e95e",
+        "tagSet": "",
+        "instanceId": "i-0c424a66ab9f64345",
+        "taskState": "pending",
+        "startTime": "2021-04-28T05:05:12Z"
+      }
+    }
+  },
+  "requestID": "442b6dbc-9839-46d8-9c07-49ff01b3f47a",
+  "eventID": "3a03d349-3362-4222-a337-f412e0265800",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

@@ -1,0 +1,31 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAJLIXP6A4JOAFCLYA",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-27T02:05:41Z" }
+    }
+  },
+  "eventTime": "2021-04-27T03:58:57Z",
+  "eventSource": "glue.amazonaws.com",
+  "eventName": "BatchDeleteConnection",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "console.amazonaws.com",
+  "requestParameters": { "connectionNameList": ["s3-connection"] },
+  "responseElements": { "succeeded": ["s3-connection"], "errors": {} },
+  "requestID": "359427c5-183f-4eee-a186-b1e33853b7a4",
+  "eventID": "f45f1a9e-4916-4931-9a00-c3432caed415",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

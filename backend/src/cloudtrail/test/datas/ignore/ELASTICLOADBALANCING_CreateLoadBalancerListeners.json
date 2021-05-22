@@ -1,0 +1,49 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2QCIZFG2K:i-00adf0ee742a14e6a",
+    "arn": "arn:aws:sts::999999999999:assumed-role/yshimitzu_full/i-00adf0ee742a14e6a",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI747WSXXJ",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2QCIZFG2K",
+        "arn": "arn:aws:iam::999999999999:role/yshimitzu_full",
+        "accountId": "999999999999",
+        "userName": "yshimitzu_full"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-01-28T07:55:18Z" },
+      "ec2RoleDelivery": "2.0"
+    }
+  },
+  "eventTime": "2021-01-28T08:48:28Z",
+  "eventSource": "elasticloadbalancing.amazonaws.com",
+  "eventName": "CreateLoadBalancerListeners",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "18.177.168.178",
+  "userAgent": "aws-sdk-go/1.36.28 (go1.15.5; linux; amd64) APN/1.0 HashiCorp/1.0 Terraform/0.12.24 (+https://www.terraform.io)",
+  "requestParameters": {
+    "listeners": [
+      {
+        "sSLCertificateId": "",
+        "protocol": "HTTP",
+        "loadBalancerPort": 80,
+        "instanceProtocol": "HTTP",
+        "instancePort": 80
+      }
+    ],
+    "loadBalancerName": "onecloud-fargate-alb"
+  },
+  "responseElements": null,
+  "requestID": "c7ac07c2-9cc7-43e9-a45b-e25c1c377f69",
+  "eventID": "acb8ad2f-b0e6-4276-afc3-9755c9552611",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2012-06-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

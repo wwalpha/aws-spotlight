@@ -1,0 +1,31 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI6NQE4VCU",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-28T05:45:51Z" }
+    }
+  },
+  "eventTime": "2021-04-28T05:52:15Z",
+  "eventSource": "glue.amazonaws.com",
+  "eventName": "DeleteDag",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36",
+  "requestParameters": { "jobName": "ParquetJob" },
+  "responseElements": { "jobName": "ParquetJob" },
+  "requestID": "ed16cf81-1494-4be5-8010-5440b3024959",
+  "eventID": "ac158c2e-82e7-4efe-b431-1b5c69d6a788",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

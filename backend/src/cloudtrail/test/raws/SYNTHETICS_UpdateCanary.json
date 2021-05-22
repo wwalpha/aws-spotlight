@@ -1,0 +1,44 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
+    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI36WZAS5V",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2OU3QHN26",
+        "arn": "arn:aws:iam::999999999999:role/KTOU_SwitchRole",
+        "accountId": "999999999999",
+        "userName": "KTOU_SwitchRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-01T22:30:19Z" }
+    }
+  },
+  "eventTime": "2021-02-01T22:48:17Z",
+  "eventSource": "synthetics.amazonaws.com",
+  "eventName": "UpdateCanary",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.930 Linux/4.9.230-0.1.ac.223.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.275-b01 java/1.8.0_275 vendor/Oracle_Corporation",
+  "requestParameters": {
+    "Schedule": { "Expression": "rate(1 minute)" },
+    "name": "fargate-saas",
+    "RunConfig": { "EnvironmentVariables": {} },
+    "Code": {
+      "Handler": "apiCanaryBlueprint.handler",
+      "ZipFile": "UEsDBAoAAAAAAAi2QVIAAAAAAAAAAAAAAAAHAAAAbm9kZWpzL1BLAwQKAAAAAAAItkFSAAAAAAAAAAAAAAAAFAAAAG5vZGVqcy9ub2RlX21vZHVsZXMvUEsDBAoAAAAAAAi2QVJasOkJuQYAALkGAAApAAAAbm9kZWpzL25vZGVfbW9kdWxlcy9hcGlDYW5hcnlCbHVlcHJpbnQuanN2YXIgc3ludGhldGljcyA9IHJlcXVpcmUoJ1N5bnRoZXRpY3MnKTsKY29uc3QgbG9nID0gcmVxdWlyZSgnU3ludGhldGljc0xvZ2dlcicpOwoKY29uc3QgYXBpQ2FuYXJ5Qmx1ZXByaW50ID0gYXN5bmMgZnVuY3Rpb24gKCkgewogICAgCiAgICAvLyBIYW5kbGUgdmFsaWRhdGlvbiBmb3IgcG9zaXRpdmUgc2NlbmFyaW8KICAgIGNvbnN0IHZhbGlkYXRlU3VjY2Vzc2Z1bGwgPSBhc3luYyBmdW5jdGlvbihyZXMpIHsKICAgICAgICByZXR1cm4gbmV3IFByb21pc2UoKHJlc29sdmUsIHJlamVjdCkgPT4gewogICAgICAgICAgICBpZiAocmVzLnN0YXR1c0NvZGUgPCAyMDAgfHwgcmVzLnN0YXR1c0NvZGUgPiAyOTkpIHsKICAgICAgICAgICAgICAgIHRocm93IHJlcy5zdGF0dXNDb2RlICsgJyAnICsgcmVzLnN0YXR1c01lc3NhZ2U7CiAgICAgICAgICAgIH0KICAgICAKICAgICAgICAgICAgbGV0IHJlc3BvbnNlQm9keSA9ICcnOwogICAgICAgICAgICByZXMub24oJ2RhdGEnLCAoZCkgPT4gewogICAgICAgICAgICAgICAgcmVzcG9uc2VCb2R5ICs9IGQ7CiAgICAgICAgICAgIH0pOwogICAgIAogICAgICAgICAgICByZXMub24oJ2VuZCcsICgpID0+IHsKICAgICAgICAgICAgICAgIC8vIEFkZCB2YWxpZGF0aW9uIG9uICdyZXNwb25zZUJvZHknIGhlcmUgaWYgcmVxdWlyZWQuCiAgICAgICAgICAgICAgICByZXNvbHZlKCk7CiAgICAgICAgICAgIH0pOwogICAgICAgIH0pOwogICAgfTsKICAgIAoKICAgIC8vIFNldCByZXF1ZXN0IG9wdGlvbiBmb3IgVmVyaWZ5IHNhYXMuZGlnaXRhbGxhYi1qcC5jb20vYXBpL3B1YmxpYwogICAgbGV0IHJlcXVlc3RPcHRpb25zU3RlcDEgPSB7CiAgICAgICAgaG9zdG5hbWU6ICdzYWFzLmRpZ2l0YWxsYWItanAuY29tJywKICAgICAgICBtZXRob2Q6ICdHRVQnLAogICAgICAgIHBhdGg6ICcvYXBpL2xvY2FsJywKICAgICAgICBwb3J0OiAnNDQzJywKICAgICAgICBwcm90b2NvbDogJ2h0dHBzOicsCiAgICAgICAgYm9keTogIiIsCiAgICAgICAgaGVhZGVyczoge30KICAgIH07CiAgICByZXF1ZXN0T3B0aW9uc1N0ZXAxWydoZWFkZXJzJ11bJ1VzZXItQWdlbnQnXSA9IFtzeW50aGV0aWNzLmdldENhbmFyeVVzZXJBZ2VudFN0cmluZygpLCByZXF1ZXN0T3B0aW9uc1N0ZXAxWydoZWFkZXJzJ11bJ1VzZXItQWdlbnQnXV0uam9pbignICcpOwoKICAgIC8vIFNldCBzdGVwIGNvbmZpZyBvcHRpb24gZm9yIFZlcmlmeSBzYWFzLmRpZ2l0YWxsYWItanAuY29tL2FwaS9wdWJsaWMKICAgbGV0IHN0ZXBDb25maWcxID0gewogICAgICAgIGluY2x1ZGVSZXF1ZXN0SGVhZGVyczogZmFsc2UsCiAgICAgICAgaW5jbHVkZVJlc3BvbnNlSGVhZGVyczogZmFsc2UsCiAgICAgICAgaW5jbHVkZVJlcXVlc3RCb2R5OiBmYWxzZSwKICAgICAgICBpbmNsdWRlUmVzcG9uc2VCb2R5OiBmYWxzZSwKICAgICAgICByZXN0cmljdGVkSGVhZGVyczogW10sCiAgICAgICAgY29udGludWVPbkh0dHBTdGVwRmFpbHVyZTogdHJ1ZQogICAgfTsKCiAgICBhd2FpdCBzeW50aGV0aWNzLmV4ZWN1dGVIdHRwU3RlcCgnVmVyaWZ5IHNhYXMuZGlnaXRhbGxhYi1qcC5jb20vYXBpL3B1YmxpYycsIHJlcXVlc3RPcHRpb25zU3RlcDEsIHZhbGlkYXRlU3VjY2Vzc2Z1bGwsIHN0ZXBDb25maWcxKTsKCiAgICAKfTsKCmV4cG9ydHMuaGFuZGxlciA9IGFzeW5jICgpID0+IHsKICAgIHJldHVybiBhd2FpdCBhcGlDYW5hcnlCbHVlcHJpbnQoKTsKfTsKClBLAQIUAAoAAAAAAAi2QVIAAAAAAAAAAAAAAAAHAAAAAAAAAAAAEAAAAAAAAABub2RlanMvUEsBAhQACgAAAAAACLZBUgAAAAAAAAAAAAAAABQAAAAAAAAAAAAQAAAAJQAAAG5vZGVqcy9ub2RlX21vZHVsZXMvUEsBAhQACgAAAAAACLZBUlqw6Qm5BgAAuQYAACkAAAAAAAAAAAAAAAAAVwAAAG5vZGVqcy9ub2RlX21vZHVsZXMvYXBpQ2FuYXJ5Qmx1ZXByaW50LmpzUEsFBgAAAAADAAMAzgAAAFcHAAAAAA=="
+    }
+  },
+  "responseElements": null,
+  "requestID": "8296bda7-9b70-4a10-b95e-cec7069f0ffa",
+  "eventID": "5927ff78-829b-4ddc-858c-ea70500d67ab",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

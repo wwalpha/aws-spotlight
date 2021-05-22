@@ -1,0 +1,33 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAJ43QL7VTFXLJDPMQ",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-08T00:22:39Z" }
+    },
+    "invokedBy": "cloudformation.amazonaws.com"
+  },
+  "eventTime": "2021-04-08T02:08:15Z",
+  "eventSource": "logs.amazonaws.com",
+  "eventName": "DeleteLogGroup",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "requestParameters": { "logGroupName": "/aws/states/SecureGate-CloudWatchLogsExport" },
+  "responseElements": null,
+  "requestID": "a903dd67-a062-4c0b-9cb6-2ec8d0be5731",
+  "eventID": "11b6ec53-30a3-4d51-a7cb-e51d3119d314",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "20140328",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

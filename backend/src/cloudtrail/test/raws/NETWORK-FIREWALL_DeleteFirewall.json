@@ -1,0 +1,36 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI7JWI3FNM",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-27T02:05:41Z" }
+    }
+  },
+  "eventTime": "2021-04-27T02:54:57Z",
+  "eventSource": "network-firewall.amazonaws.com",
+  "eventName": "DeleteFirewall",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "console.ec2.amazonaws.com",
+  "errorCode": "InvalidRequestException",
+  "errorMessage": "Unable to fulfill request because the following related VPC endpoint(s) still exist in route table(s): [vpce-0b669512d54fea914, vpce-0c5b28b0ec70d332c]",
+  "requestParameters": {
+    "firewallName": "onecloud-firewall",
+    "firewallArn": "arn:aws:network-firewall:ap-northeast-1:999999999999:firewall/onecloud-firewall"
+  },
+  "responseElements": null,
+  "requestID": "aea1c54a-1798-4d35-bd71-309feeab782b",
+  "eventID": "bdda91c0-d6c3-49f9-8a46-1b79671659da",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

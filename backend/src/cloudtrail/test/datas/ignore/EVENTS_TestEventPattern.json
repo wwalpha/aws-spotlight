@@ -1,0 +1,35 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIX2OZK6ND",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-06T04:14:08Z" }
+    }
+  },
+  "eventTime": "2021-04-06T04:48:05Z",
+  "eventSource": "events.amazonaws.com",
+  "eventName": "TestEventPattern",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "AWS CloudWatch Console",
+  "requestParameters": {
+    "event": "{\"id\":\"e00c66cb-fe7a-4fcc-81ad-58eb60f5d96b\",\"time\":\"2015-05-05T01:29:23Z\",\"received-at\":\"2015-05-05T01:29:23Z\",\"region\":\"us-east-1\",\"account\":\"123456789012\",\"source\":\"aws.ec2\",\"detail-type\":\"text/plain\",\"detail\":{\"foo\": \"bar\"}}",
+    "eventPattern": "{ \"detail.foo\": [\"bar\"] }"
+  },
+  "responseElements": null,
+  "requestID": "954ccdd6-92b3-4bfc-9050-01f8d33db4fb",
+  "eventID": "b1818993-5cae-4941-8b44-7911d9a17ecf",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2015-10-07",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

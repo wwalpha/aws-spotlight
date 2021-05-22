@@ -1,0 +1,37 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2QCIZFG2K:i-00adf0ee742a14e6a",
+    "arn": "arn:aws:sts::999999999999:assumed-role/yshimitzu_full/i-00adf0ee742a14e6a",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIZBYZOVF3",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2QCIZFG2K",
+        "arn": "arn:aws:iam::999999999999:role/yshimitzu_full",
+        "accountId": "999999999999",
+        "userName": "yshimitzu_full"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-27T05:47:22Z" },
+      "ec2RoleDelivery": "2.0"
+    }
+  },
+  "eventTime": "2021-04-27T06:38:13Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "ModifySubnetAttribute",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "18.177.168.178",
+  "userAgent": "APN/1.0 HashiCorp/1.0 Terraform/0.15.1 (+https://www.terraform.io) terraform-provider-aws/dev (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.38.19 (go1.16; linux; amd64)",
+  "requestParameters": { "subnetId": "subnet-0cde94d6014b5be2b", "mapPublicIpOnLaunch": { "value": true } },
+  "responseElements": { "requestId": "88a02c55-4429-402a-900c-8f987a478462", "_return": true },
+  "requestID": "88a02c55-4429-402a-900c-8f987a478462",
+  "eventID": "2bcd8368-c1d2-46bc-ad42-595f711861c8",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

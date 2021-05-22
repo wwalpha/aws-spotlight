@@ -1,0 +1,43 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIWQTQWBHY",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-08T00:22:39Z" }
+    }
+  },
+  "eventTime": "2021-04-08T02:29:46Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "DisassociateClientVpnTargetNetwork",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "DisassociateClientVpnTargetNetworkRequest": {
+      "ClientVpnEndpointId": "cvpn-endpoint-00979964d0389482a",
+      "AssociationId": "cvpn-assoc-0292bc73b8b7947ee"
+    }
+  },
+  "responseElements": {
+    "DisassociateClientVpnTargetNetworkResponse": {
+      "xmlns": "http://ec2.amazonaws.com/doc/2016-11-15/",
+      "requestId": "a2853e92-12e2-445a-9137-75016cc77996",
+      "status": { "code": "disassociating" },
+      "associationId": "cvpn-assoc-0292bc73b8b7947ee"
+    }
+  },
+  "requestID": "a2853e92-12e2-445a-9137-75016cc77996",
+  "eventID": "d618b4b4-cf2e-4674-874b-3af9bb2b89a9",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

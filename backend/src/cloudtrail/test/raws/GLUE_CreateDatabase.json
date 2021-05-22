@@ -1,0 +1,35 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAJGG2DWZOOEA7YCYA",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-24T01:56:45Z" }
+    }
+  },
+  "eventTime": "2021-04-24T02:28:05Z",
+  "eventSource": "glue.amazonaws.com",
+  "eventName": "CreateDatabase",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "console.amazonaws.com",
+  "requestParameters": { "databaseInput": { "name": "cloudtrail" } },
+  "responseElements": null,
+  "additionalEventData": {
+    "insufficientLakeFormationPermissions": [],
+    "lakeFormationPrincipal": "arn:aws:iam::999999999999:user/ktou"
+  },
+  "requestID": "47566379-b074-49f5-a924-17c085a9a2b5",
+  "eventID": "5d9568d5-633c-498a-9128-193cdd504fb9",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

@@ -1,0 +1,12 @@
+{
+  "IdentityType": "IAMUser",
+  "EventSource": "apigateway.amazonaws.com",
+  "UserName": "wlim40",
+  "ResourceId": "lyppg996u0",
+  "ResourceName": "RekogDemo-EngagementMeter",
+  "EventTime": "2021-04-15T07:55:30Z",
+  "UserAgent": "cloudformation.amazonaws.com",
+  "AWSRegion": "ap-northeast-1",
+  "EventId": "86a4e780-56fc-422a-b95d-9f19ca5e2c11",
+  "EventName": "ImportRestApi"
+}

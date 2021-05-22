@@ -1,0 +1,33 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI7RKWL5YB",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-02T00:23:52Z" }
+    }
+  },
+  "eventTime": "2021-03-02T08:47:38Z",
+  "eventSource": "acm.amazonaws.com",
+  "eventName": "DeleteCertificate",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "Coral/Netty4",
+  "requestParameters": {
+    "certificateArn": "arn:aws:acm:ap-northeast-1:999999999999:certificate/fe02f291-0880-4f56-9c8d-a8018416a685"
+  },
+  "responseElements": null,
+  "requestID": "99a2c129-8573-4b4d-8b68-82450ff35936",
+  "eventID": "56364d1f-4818-48cc-82d2-69de33d5478c",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

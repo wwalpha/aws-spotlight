@@ -1,0 +1,49 @@
+name: Terraform Setup Build
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - terraform/setup/**
+      - .github/workflows/terraform_setup_dev.yml
+  workflow_dispatch:
+
+env:
+  AWS_DEFAULT_REGION: ap-northeast-1
+  TF_VAR_region: ap-northeast-1
+  TF_WORKSPACE: dev
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+jobs:
+  Update:
+    runs-on: ubuntu-18.04
+
+    defaults:
+      run:
+        working-directory: backend/terraform
+
+    steps:
+      # source checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Install the latest version of Terraform CLI 
+      # and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 0.15.3
+
+      # Setup init
+      - name: Terraform Init
+        run: terraform init
+
+      # Setup plan
+      - name: Terraform Plan
+        run: terraform plan -out=setup
+
+      # Setup apply
+      - name: Terraform Apply
+        run: terraform apply "setup"

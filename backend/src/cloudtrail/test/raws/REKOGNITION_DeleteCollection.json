@@ -1,0 +1,37 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLIYIJTYPWND:RekogDemoSetupRekogDemo",
+    "arn": "arn:aws:sts::999999999999:assumed-role/EngagementMeter-CustomResourceRole-CBGQJV1SASX0/RekogDemoSetupRekogDemo",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI4RRMFWNJ",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLIYIJTYPWND",
+        "arn": "arn:aws:iam::999999999999:role/EngagementMeter-CustomResourceRole-CBGQJV1SASX0",
+        "accountId": "999999999999",
+        "userName": "EngagementMeter-CustomResourceRole-CBGQJV1SASX0"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-14T11:22:17Z" }
+    }
+  },
+  "eventTime": "2021-04-14T11:22:19Z",
+  "eventSource": "rekognition.amazonaws.com",
+  "eventName": "DeleteCollection",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "54.248.38.91",
+  "userAgent": "aws-sdk-nodejs/2.369.0 linux/v10.24.1 exec-env/AWS_Lambda_nodejs10.x promise",
+  "requestParameters": { "collectionId": "RekogDemo" },
+  "responseElements": { "statusCode": 200 },
+  "requestID": "ddb3e66c-ae73-4833-bb10-154659f4d976",
+  "eventID": "5c98bc56-dbfd-49c5-ac4f-b6ac4b139900",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999",
+  "tlsDetails": { "clientProvidedHostHeader": "rekognition.ap-northeast-1.amazonaws.com" }
+}

@@ -1,0 +1,31 @@
+<mxfile>
+    <diagram id="xbIxoakD3NYfS2Bh0lLU" name="Page-1">
+        <mxGraphModel dx="990" dy="575" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="190" y="100" width="610" height="460" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="TITLE" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#000000;fontColor=#FFFFFF;fontStyle=1;fontSize=16;strokeColor=#FFFFFF;strokeWidth=2;" vertex="1" parent="1">
+                    <mxGeometry x="190" y="100" width="610" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;fillColor=#6F2C91;strokeWidth=2;strokeColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="190" y="160" width="170" height="400" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Compute" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FFFFFF;strokeWidth=2;fillColor=#6F2C91;fontSize=16;fontColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="190" y="160" width="170" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Storage" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FFFFFF;strokeWidth=2;fillColor=#6F2C91;fontSize=16;fontColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="190" y="200" width="170" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="RDS" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FFFFFF;strokeWidth=2;fillColor=#6F2C91;fontSize=16;fontColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="190" y="240" width="170" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="LOGOUT" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FFFFFF;strokeWidth=2;fillColor=#6F2C91;fontSize=16;fontColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="710" y="100" width="90" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

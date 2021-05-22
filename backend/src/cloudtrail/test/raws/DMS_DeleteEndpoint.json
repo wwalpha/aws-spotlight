@@ -1,0 +1,51 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLITO5CX4XU",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-07T10:31:17Z" }
+    }
+  },
+  "eventTime": "2021-04-07T10:46:56Z",
+  "eventSource": "dms.amazonaws.com",
+  "eventName": "DeleteEndpoint",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.984 Linux/5.4.95-47.164.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "requestParameters": {
+    "endpointArn": "arn:aws:dms:ap-northeast-1:999999999999:endpoint:CBV26OZ5GGTB63LCW35XCBF7XMRHQJ2SLF2JN3A"
+  },
+  "responseElements": {
+    "endpoint": {
+      "endpointIdentifier": "onecloud-lawson-target-mysql-sjis",
+      "endpointType": "TARGET",
+      "engineName": "mysql",
+      "engineDisplayName": "MySQL",
+      "transferFiles": false,
+      "receiveTransferredFiles": false,
+      "extraConnectionAttributes": "initstmt=SET FOREIGN_KEY_CHECKS=0;parallelLoadThreads=1",
+      "status": "deleting",
+      "kmsKeyId": "arn:aws:kms:ap-northeast-1:999999999999:key/127c5c76-20e3-4216-bcff-08bbbf9aab0b",
+      "endpointArn": "arn:aws:dms:ap-northeast-1:999999999999:endpoint:CBV26OZ5GGTB63LCW35XCBF7XMRHQJ2SLF2JN3A",
+      "sslMode": "none",
+      "mySQLSettings": {
+        "secretsManagerAccessRoleArn": "arn:aws:iam::999999999999:role/OneCloud_DMS_Admin",
+        "secretsManagerSecretId": "arn:aws:secretsmanager:ap-northeast-1:999999999999:secret:onecloud/lawson/mysql-sjis-Yr0udY"
+      }
+    }
+  },
+  "requestID": "d9e064c3-7578-441d-a31a-adac14832b7e",
+  "eventID": "312421e3-a3cc-4259-91a4-48e49a013791",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

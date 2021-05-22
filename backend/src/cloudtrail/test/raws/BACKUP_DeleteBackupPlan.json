@@ -1,0 +1,33 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIU7THCRN7",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-08T00:22:39Z" }
+    }
+  },
+  "eventTime": "2021-04-08T02:56:50Z",
+  "eventSource": "backup.amazonaws.com",
+  "eventName": "DeleteBackupPlan",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.984 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "errorCode": "AccessDenied",
+  "errorMessage": "An unknown error occurred",
+  "requestParameters": { "backupPlanId": "aws/efs/73d922fb-9312-3a70-99c3-e69367f9fdad" },
+  "responseElements": null,
+  "requestID": "c8d9f2b9-b974-4a7c-b86b-b294cc67a60b",
+  "eventID": "5c911311-efbd-4eae-a836-e6b0e1b8efe0",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

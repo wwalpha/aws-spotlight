@@ -1,0 +1,103 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2QCIZFG2K:i-00adf0ee742a14e6a",
+    "arn": "arn:aws:sts::999999999999:assumed-role/yshimitzu_full/i-00adf0ee742a14e6a",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI42IJT2CW",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2QCIZFG2K",
+        "arn": "arn:aws:iam::999999999999:role/yshimitzu_full",
+        "accountId": "999999999999",
+        "userName": "yshimitzu_full"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-03T12:27:10Z" },
+      "ec2RoleDelivery": "2.0"
+    }
+  },
+  "eventTime": "2021-03-03T12:47:46Z",
+  "eventSource": "cognito-idp.amazonaws.com",
+  "eventName": "CreateUserPool",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "18.177.168.178",
+  "userAgent": "aws-sdk-nodejs/2.853.0 linux/v12.16.2 promise",
+  "errorCode": "InvalidParameterException",
+  "errorMessage": "SMS configuration is required when phone_number is selected for auto verification",
+  "requestParameters": {
+    "poolName": "TENANT1234567890",
+    "policies": {
+      "passwordPolicy": {
+        "minimumLength": 8,
+        "requireUppercase": true,
+        "requireLowercase": true,
+        "requireNumbers": true,
+        "requireSymbols": false,
+        "temporaryPasswordValidityDays": 0
+      }
+    },
+    "autoVerifiedAttributes": ["email", "phone_number"],
+    "aliasAttributes": ["phone_number"],
+    "mfaConfiguration": "OFF",
+    "adminCreateUserConfig": { "allowAdminCreateUserOnly": true, "unusedAccountValidityDays": 90 },
+    "schema": [
+      {
+        "name": "tenant_id",
+        "attributeDataType": "String",
+        "developerOnlyAttribute": false,
+        "mutable": false,
+        "required": false,
+        "numberAttributeConstraints": { "minValue": "1", "maxValue": "256" },
+        "stringAttributeConstraints": { "minLength": "1", "maxLength": "256" }
+      },
+      {
+        "name": "tier",
+        "attributeDataType": "String",
+        "developerOnlyAttribute": false,
+        "mutable": true,
+        "required": false,
+        "numberAttributeConstraints": { "minValue": "1", "maxValue": "256" },
+        "stringAttributeConstraints": { "minLength": "1", "maxLength": "256" }
+      },
+      { "name": "email", "required": true },
+      {
+        "name": "company_name",
+        "attributeDataType": "String",
+        "developerOnlyAttribute": false,
+        "mutable": true,
+        "required": false,
+        "numberAttributeConstraints": { "minValue": "1", "maxValue": "256" },
+        "stringAttributeConstraints": { "minLength": "1", "maxLength": "256" }
+      },
+      {
+        "name": "role",
+        "attributeDataType": "String",
+        "developerOnlyAttribute": false,
+        "mutable": true,
+        "required": false,
+        "numberAttributeConstraints": { "minValue": "1", "maxValue": "256" },
+        "stringAttributeConstraints": { "minLength": "1", "maxLength": "256" }
+      },
+      {
+        "name": "account_name",
+        "attributeDataType": "String",
+        "developerOnlyAttribute": false,
+        "mutable": true,
+        "required": false,
+        "numberAttributeConstraints": { "minValue": "1", "maxValue": "256" },
+        "stringAttributeConstraints": { "minLength": "1", "maxLength": "256" }
+      }
+    ]
+  },
+  "responseElements": null,
+  "requestID": "29700c65-7a28-47c3-ada4-0c643dc56c8c",
+  "eventID": "cac6b968-83f0-46cf-826a-4b94c19ae077",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

@@ -1,0 +1,32 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAI5FSUTPYSUKMH2TA",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-23T00:35:29Z" }
+    },
+    "invokedBy": "apigateway.amazonaws.com"
+  },
+  "eventTime": "2021-02-23T02:47:28Z",
+  "eventSource": "amplifybackend.amazonaws.com",
+  "eventName": "GetBackend",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "apigateway.amazonaws.com",
+  "userAgent": "apigateway.amazonaws.com",
+  "requestParameters": { "appId": "d3rmh3nhqy26nl", "backendEnvironmentName": "staging" },
+  "responseElements": { "error": "The specified key does not exist." },
+  "requestID": "0e76a58e-702c-437f-a370-145be2c817c8",
+  "eventID": "3939f8ad-b7ee-45b2-b284-d58f9e144a35",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

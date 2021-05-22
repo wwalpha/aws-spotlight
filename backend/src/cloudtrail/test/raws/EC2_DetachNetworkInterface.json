@@ -1,0 +1,36 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2JYAL45WU:AmazonEKS",
+    "arn": "arn:aws:sts::999999999999:assumed-role/AWSServiceRoleForAmazonEKS/AmazonEKS",
+    "accountId": "999999999999",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2JYAL45WU",
+        "arn": "arn:aws:iam::999999999999:role/aws-service-role/eks.amazonaws.com/AWSServiceRoleForAmazonEKS",
+        "accountId": "999999999999",
+        "userName": "AWSServiceRoleForAmazonEKS"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-07T11:56:58Z" }
+    },
+    "invokedBy": "eks.amazonaws.com"
+  },
+  "eventTime": "2021-04-07T11:56:59Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "DetachNetworkInterface",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "eks.amazonaws.com",
+  "userAgent": "eks.amazonaws.com",
+  "requestParameters": { "attachmentId": "eni-attach-0a7caa4a87869b9fa" },
+  "responseElements": { "requestId": "3ee3d243-5e45-484a-a965-819f11c13221", "_return": true },
+  "requestID": "3ee3d243-5e45-484a-a965-819f11c13221",
+  "eventID": "5e89b46b-d38c-427f-88f4-7f3b6aac0c3c",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

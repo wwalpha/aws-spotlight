@@ -1,0 +1,61 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIWODBMIFD5",
+    "arn": "arn:aws:iam::999999999999:user/kota.murakami",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIUTCF2M4O",
+    "userName": "kota.murakami",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-02T00:52:55Z" }
+    }
+  },
+  "eventTime": "2021-04-02T00:58:03Z",
+  "eventSource": "s3.amazonaws.com",
+  "eventName": "PutBucketPolicy",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.138",
+  "userAgent": "[S3Console/0.4, aws-internal/3 aws-sdk-java/1.11.965 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation]",
+  "requestParameters": {
+    "bucketPolicy": {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Sid": "SourceIP",
+          "Action": "s3:*",
+          "Effect": "Deny",
+          "Resource": ["arn:aws:s3:::test-backt-testfile01", "arn:aws:s3:::test-backt-testfile01/*"],
+          "Condition": { "NotIpAddress": { "aws:SourceIp": ["165.225.110.138/32"] } },
+          "Principal": "*"
+        }
+      ],
+      "Id": "SourceIP"
+    },
+    "bucketName": "test-backt-testfile01",
+    "Host": "s3-ap-northeast-1.amazonaws.com",
+    "policy": ""
+  },
+  "responseElements": null,
+  "additionalEventData": {
+    "SignatureVersion": "SigV4",
+    "CipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
+    "bytesTransferredIn": 279,
+    "AuthenticationMethod": "AuthHeader",
+    "x-amz-id-2": "PdrM1pX3hLE2I2CC8rGjHT37UI916eOYTED+LavQiPFv6kthye/tuYXXgbdMENajb8rQggPpkrY=",
+    "bytesTransferredOut": 0
+  },
+  "requestID": "Y8E0TRZJ32J8ZDJJ",
+  "eventID": "347eaf1e-8245-4b89-9900-e783e2c450ba",
+  "readOnly": false,
+  "resources": [
+    { "accountId": "999999999999", "type": "AWS::S3::Bucket", "ARN": "arn:aws:s3:::test-backt-testfile01" }
+  ],
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999",
+  "vpcEndpointId": "vpce-c8e61da1"
+}

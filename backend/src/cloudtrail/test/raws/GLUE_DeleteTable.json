@@ -1,0 +1,36 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAIG77K4KVIKUJ3UBQ",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-26T00:30:26Z" }
+    },
+    "invokedBy": "glue.amazonaws.com"
+  },
+  "eventTime": "2021-04-26T00:39:03Z",
+  "eventSource": "glue.amazonaws.com",
+  "eventName": "DeleteTable",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "glue.amazonaws.com",
+  "userAgent": "glue.amazonaws.com",
+  "requestParameters": { "catalogId": "999999999999", "databaseName": "cloudtrail", "name": "all_region" },
+  "responseElements": null,
+  "additionalEventData": {
+    "insufficientLakeFormationPermissions": ["cloudtrail:all_region"],
+    "lakeFormationPrincipal": "arn:aws:iam::999999999999:user/ktou"
+  },
+  "requestID": "2845d93e-9751-46ef-89f8-4f397e4a4d53",
+  "eventID": "86a8d765-fe86-4572-8cf4-c485416cb104",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

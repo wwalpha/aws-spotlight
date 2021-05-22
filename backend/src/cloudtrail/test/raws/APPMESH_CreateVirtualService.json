@@ -1,0 +1,58 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
+    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIVKLWHAU6",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2OU3QHN26",
+        "arn": "arn:aws:iam::999999999999:role/KTOU_SwitchRole",
+        "accountId": "999999999999",
+        "userName": "KTOU_SwitchRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-01T22:30:19Z" }
+    }
+  },
+  "eventTime": "2021-02-01T23:20:40Z",
+  "eventSource": "appmesh.amazonaws.com",
+  "eventName": "CreateVirtualService",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.942 Linux/4.9.230-0.1.ac.223.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+  "requestParameters": {
+    "meshName": "fargate-microservice-mesh",
+    "meshOwner": "999999999999",
+    "spec": {},
+    "virtualServiceName": "auth-service"
+  },
+  "responseElements": {
+    "virtualService": {
+      "meshName": "fargate-microservice-mesh",
+      "metadata": {
+        "arn": "arn:aws:appmesh:ap-northeast-1:999999999999:mesh/fargate-microservice-mesh/virtualService/auth-service",
+        "createdAt": "Feb 1, 2021 11:20:40 PM",
+        "lastUpdatedAt": "Feb 1, 2021 11:20:40 PM",
+        "meshOwner": "999999999999",
+        "resourceOwner": "999999999999",
+        "uid": "c460a85d-85d7-45e9-995a-9b042092b8f1",
+        "version": 1
+      },
+      "spec": {},
+      "status": { "status": "ACTIVE" },
+      "virtualServiceName": "auth-service"
+    }
+  },
+  "requestID": "33c98efa-a28c-4074-b44b-b9ed72164982",
+  "eventID": "a6694d5b-1be4-49fa-ab05-99411dd303c1",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2019-01-25",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

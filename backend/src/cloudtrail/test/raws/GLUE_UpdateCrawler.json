@@ -1,0 +1,49 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2QCIZFG2K:i-00adf0ee742a14e6a",
+    "arn": "arn:aws:sts::999999999999:assumed-role/yshimitzu_full/i-00adf0ee742a14e6a",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAJKQBDJHX3RSHEBLQ",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2QCIZFG2K",
+        "arn": "arn:aws:iam::999999999999:role/yshimitzu_full",
+        "accountId": "999999999999",
+        "userName": "yshimitzu_full"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-27T09:37:27Z" },
+      "ec2RoleDelivery": "2.0"
+    }
+  },
+  "eventTime": "2021-04-27T09:59:47Z",
+  "eventSource": "glue.amazonaws.com",
+  "eventName": "UpdateCrawler",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "18.177.168.178",
+  "userAgent": "APN/1.0 HashiCorp/1.0 Terraform/0.15.1 (+https://www.terraform.io) terraform-provider-aws/dev (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.38.19 (go1.16; linux; amd64)",
+  "errorCode": "InvalidInputException",
+  "errorMessage": "Service is unable to assume role arn:aws:iam::999999999999:role/service-role/AWSGlueServiceRole-CloudTrail-6l9eub. Please verify role's TrustPolicy",
+  "requestParameters": {
+    "role": "arn:aws:iam::999999999999:role/service-role/AWSGlueServiceRole-CloudTrail-6l9eub",
+    "name": "crawler_6l9eub",
+    "databaseName": "cloudtrail_6l9eub",
+    "targets": { "s3Targets": [{ "exclusions": [], "connectionName": "", "path": "s3://glue-bucket-6l9eub" }] },
+    "schedule": "",
+    "lineageConfiguration": { "crawlerLineageSettings": "DISABLE" },
+    "recrawlPolicy": { "recrawlBehavior": "CRAWL_EVERYTHING" },
+    "schemaChangePolicy": { "updateBehavior": "UPDATE_IN_DATABASE", "deleteBehavior": "DEPRECATE_IN_DATABASE" },
+    "tablePrefix": ""
+  },
+  "responseElements": null,
+  "requestID": "66da97ba-0d33-4856-badf-f2fb9000ce28",
+  "eventID": "cf28c3c6-2085-436e-bb15-d3bafa10e95a",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

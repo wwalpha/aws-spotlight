@@ -1,0 +1,71 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIUWNLDPYIJ",
+    "arn": "arn:aws:iam::999999999999:user/lin.ma",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLITAWJZD4H",
+    "userName": "lin.ma",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-01T12:43:44Z" }
+    }
+  },
+  "eventTime": "2021-03-01T12:45:25Z",
+  "eventSource": "wafv2.amazonaws.com",
+  "eventName": "CreateWebACL",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.137",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.946 Linux/5.4.80-46.140.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+  "requestParameters": {
+    "name": "ADtestWAF",
+    "scope": "REGIONAL",
+    "defaultAction": { "allow": {} },
+    "rules": [
+      {
+        "name": "rule01",
+        "priority": 0,
+        "statement": {
+          "byteMatchStatement": {
+            "searchString": {
+              "hb": [121, 97, 104, 111, 111, 46, 99, 111, 46, 106, 112],
+              "offset": 0,
+              "isReadOnly": false,
+              "bigEndian": true,
+              "nativeByteOrder": false,
+              "mark": -1,
+              "position": 0,
+              "limit": 11,
+              "capacity": 11,
+              "address": 0
+            },
+            "fieldToMatch": { "uriPath": {} },
+            "textTransformations": [{ "priority": 0, "type": "NONE" }],
+            "positionalConstraint": "CONTAINS"
+          }
+        },
+        "action": { "block": {} },
+        "visibilityConfig": { "sampledRequestsEnabled": true, "cloudWatchMetricsEnabled": true, "metricName": "rule01" }
+      }
+    ],
+    "visibilityConfig": { "sampledRequestsEnabled": true, "cloudWatchMetricsEnabled": true, "metricName": "ADtestWAF" }
+  },
+  "responseElements": {
+    "summary": {
+      "name": "ADtestWAF",
+      "id": "fbc8d821-072c-4e24-96b4-4812339c0b38",
+      "description": "",
+      "aRN": "arn:aws:wafv2:ap-northeast-1:999999999999:regional/webacl/ADtestWAF/fbc8d821-072c-4e24-96b4-4812339c0b38"
+    }
+  },
+  "requestID": "be46456b-c056-4d42-8baf-b27330334c98",
+  "eventID": "34301ec2-f74c-44b4-b88a-d6985076fe6a",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2019-04-23",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

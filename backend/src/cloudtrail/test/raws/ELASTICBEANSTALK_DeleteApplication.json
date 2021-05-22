@@ -1,0 +1,31 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIX6RBODHA",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-24T01:56:45Z" }
+    }
+  },
+  "eventTime": "2021-04-24T01:59:46Z",
+  "eventSource": "elasticbeanstalk.amazonaws.com",
+  "eventName": "DeleteApplication",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "console.amazonaws.com",
+  "requestParameters": { "applicationName": "Test_APL", "terminateEnvByForce": true },
+  "responseElements": null,
+  "requestID": "140023b6-65f0-4674-9d34-2006a5532932",
+  "eventID": "759323a6-c8b8-41ed-b6b9-5e31b8127e39",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

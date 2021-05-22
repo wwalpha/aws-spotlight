@@ -1,0 +1,33 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIU7THCRN7",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-08T00:22:39Z" }
+    }
+  },
+  "eventTime": "2021-04-08T02:56:27Z",
+  "eventSource": "backup.amazonaws.com",
+  "eventName": "DeleteRecoveryPoint",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.984 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "errorCode": "AccessDenied",
+  "errorMessage": "User: arn:aws:iam::999999999999:user/ktou is not authorized to perform: backup:DeleteRecoveryPoint on resource: arn:aws:backup:ap-northeast-1:999999999999:recovery-point:28ae0c67-3478-4a0f-98f1-2cfb4545d59e with an explicit deny",
+  "requestParameters": null,
+  "responseElements": null,
+  "requestID": "ca2932c5-27bd-4667-a355-08e9dc93a99c",
+  "eventID": "2c8695ac-bce6-4e14-bbbf-a32bbc8592e9",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

@@ -1,0 +1,35 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIUZVVMUQNP",
+    "arn": "arn:aws:iam::999999999999:user/demo-user11",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIRLYAO5W6",
+    "userName": "demo-user11",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-17T08:32:47Z" }
+    }
+  },
+  "eventTime": "2021-03-17T08:37:10Z",
+  "eventSource": "elasticloadbalancing.amazonaws.com",
+  "eventName": "RegisterTargets",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.52",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "targets": [{ "id": "10.1.1.1", "port": 8081, "availabilityZone": "all" }],
+    "targetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:999999999999:targetgroup/TESTfontback-tgt/297bf72439f1364c"
+  },
+  "responseElements": null,
+  "requestID": "d5867fec-7270-4a11-8c24-449ad6b4baa6",
+  "eventID": "3d2eb596-e8d3-4207-baaf-c1f19c40002a",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2015-12-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

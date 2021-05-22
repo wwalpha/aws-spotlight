@@ -1,0 +1,42 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLI6DETSD4FR",
+    "arn": "arn:aws:iam::999999999999:user/wlim40",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAIWZNXFSGLHSFIDDA",
+    "userName": "wlim40",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-15T07:31:59Z" }
+    },
+    "invokedBy": "cloudformation.amazonaws.com"
+  },
+  "eventTime": "2021-04-15T07:55:30Z",
+  "eventSource": "apigateway.amazonaws.com",
+  "eventName": "TagResource",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "requestParameters": {
+    "tagResourceInput": {
+      "tags": {
+        "aws:cloudformation:stack-name": "EngagementMeter",
+        "aws:cloudformation:stack-id": "arn:aws:cloudformation:ap-northeast-1:999999999999:stack/EngagementMeter/d17d8270-9dbf-11eb-9a3b-0ed2cfff1a51",
+        "aws:cloudformation:logical-id": "RestApi"
+      }
+    },
+    "resourceArn": "arn:aws:apigateway:ap-northeast-1::/restapis/lyppg996u0",
+    "template": false
+  },
+  "responseElements": null,
+  "requestID": "5ecf63d4-9840-4cb0-8ec3-14268efbb25e",
+  "eventID": "a288582b-fb45-426b-8803-53abed1a787b",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

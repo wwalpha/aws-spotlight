@@ -1,0 +1,40 @@
+{
+  "name": "cloudtrail",
+  "version": "1.0.0",
+  "description": "process sqs message from cloudtrail",
+  "repository": "https://github.com/wwalpha/aws-spotlight.git",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
+    "debug": "ts-node -r tsconfig-paths/register -r dotenv/config test/debug.ts",
+    "prep": "ts-node -r tsconfig-paths/register -r dotenv/config test/configs/prepare.ts",
+    "build:c": "docker build -f Dockerfile.CloudTrail -t arms-cloudtrail .",
+    "build:u": "docker build -f Dockerfile.Unprocessed -t arms-unprocessed .",
+    "testnow": "jest --forceExit --passWithNoTests",
+    "pretest": "docker-compose up -d --build && sleep 10",
+    "test": "jest --forceExit --passWithNoTests",
+    "posttest": "docker-compose down",
+    "setup": "ts-node -r tsconfig-paths/register test/configs/setup.ts"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.76",
+    "@types/jest": "^26.0.23",
+    "@types/lodash": "^4.14.169",
+    "@types/node": "^15.3.0",
+    "@types/uuid": "^8.3.0",
+    "dotenv": "^9.0.2",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.6",
+    "ts-node": "^9.1.1",
+    "tsc-alias": "^1.2.10",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "@alphax/dynamodb": "^1.1.1",
+    "aws-sdk": "^2.907.0",
+    "lodash": "^4.17.21"
+  }
+}

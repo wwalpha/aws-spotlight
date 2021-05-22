@@ -1,0 +1,50 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
+    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIRLSOHO64",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2OU3QHN26",
+        "arn": "arn:aws:iam::999999999999:role/KTOU_SwitchRole",
+        "accountId": "999999999999",
+        "userName": "KTOU_SwitchRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-01T11:40:58Z" }
+    }
+  },
+  "eventTime": "2021-02-01T11:42:18Z",
+  "eventSource": "batch.amazonaws.com",
+  "eventName": "CreateComputeEnvironment",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.937 Linux/4.9.230-0.1.ac.223.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.275-b01 java/1.8.0_275 vendor/Oracle_Corporation",
+  "requestParameters": {
+    "computeResources": {
+      "type": "FARGATE",
+      "subnets": ["subnet-02f400a0a5738ef8a", "subnet-0463e28fe18a6f599"],
+      "securityGroupIds": ["sg-02c8769865262abbd"],
+      "maxvCpus": 256
+    },
+    "state": "ENABLED",
+    "type": "MANAGED",
+    "serviceRole": "arn:aws:iam::999999999999:role/service-role/AWSBatchServiceRole",
+    "computeEnvironmentName": "fargate-batch"
+  },
+  "responseElements": {
+    "computeEnvironmentName": "fargate-batch",
+    "computeEnvironmentArn": "arn:aws:batch:ap-northeast-1:999999999999:compute-environment/fargate-batch"
+  },
+  "requestID": "19e28efe-e705-4d44-a6e5-54799fc26a37",
+  "eventID": "54db75bf-3052-457f-bc04-5924f18051e3",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

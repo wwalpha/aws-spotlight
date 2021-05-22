@@ -1,0 +1,39 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIQ5BMNRFHI",
+    "arn": "arn:aws:iam::999999999999:user/demo-user10",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI44GYDYXY",
+    "userName": "demo-user10",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-17T17:21:21Z" }
+    }
+  },
+  "eventTime": "2021-04-17T18:03:58Z",
+  "eventSource": "lambda.amazonaws.com",
+  "eventName": "AddPermission20150331v2",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.146",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.984 Linux/5.4.102-52.177.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "requestParameters": {
+    "functionName": "arn:aws:lambda:ap-northeast-1:999999999999:function:facialanalysis",
+    "statementId": "524f8f66-de33-4e2e-ad3b-eabadc692b7c",
+    "action": "lambda:InvokeFunction",
+    "principal": "apigateway.amazonaws.com",
+    "sourceArn": "arn:aws:execute-api:ap-northeast-1:999999999999:jrrfh5tt86/*/GET/"
+  },
+  "responseElements": {
+    "statement": "{\"Sid\":\"524f8f66-de33-4e2e-ad3b-eabadc692b7c\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"apigateway.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:ap-northeast-1:999999999999:function:facialanalysis\",\"Condition\":{\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:execute-api:ap-northeast-1:999999999999:jrrfh5tt86/*/GET/\"}}}"
+  },
+  "requestID": "29238410-2f78-4b7e-8a21-646ad1e3ed2b",
+  "eventID": "c3051015-30aa-4eff-81af-303bc62ef2e9",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

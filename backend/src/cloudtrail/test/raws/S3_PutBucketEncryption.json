@@ -1,0 +1,49 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIRRBCMUZZM",
+    "arn": "arn:aws:iam::999999999999:user/demo-user08",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIWWMVJANV",
+    "userName": "demo-user08",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-20T09:00:43Z" }
+    }
+  },
+  "eventTime": "2021-04-20T09:02:25Z",
+  "eventSource": "s3.amazonaws.com",
+  "eventName": "PutBucketEncryption",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.145",
+  "userAgent": "[S3Console/0.4, aws-internal/3 aws-sdk-java/1.11.991 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy]",
+  "requestParameters": {
+    "bucketName": "testtesttestys",
+    "Host": "s3-ap-northeast-1.amazonaws.com",
+    "ServerSideEncryptionConfiguration": {
+      "xmlns": "http://s3.amazonaws.com/doc/2006-03-01/",
+      "Rule": { "ApplyServerSideEncryptionByDefault": { "SSEAlgorithm": "AES256" } }
+    },
+    "encryption": ""
+  },
+  "responseElements": null,
+  "additionalEventData": {
+    "SignatureVersion": "SigV4",
+    "CipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
+    "bytesTransferredIn": 240,
+    "AuthenticationMethod": "AuthHeader",
+    "x-amz-id-2": "O4AjFGtNl1LDgOzMZfeUCeUfdyrse8YPsYN397tE96RYFqfO22o/UuuCdb4uUHYtvuWLKqvFXh4=",
+    "bytesTransferredOut": 0
+  },
+  "requestID": "VSTWZ1259AZATH29",
+  "eventID": "5ad03947-2aff-4e4c-b623-0d6dd2e114de",
+  "readOnly": false,
+  "resources": [{ "accountId": "999999999999", "type": "AWS::S3::Bucket", "ARN": "arn:aws:s3:::testtesttestys" }],
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999",
+  "vpcEndpointId": "vpce-c8e61da1"
+}

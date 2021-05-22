@@ -1,0 +1,46 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI3QCFUU2R6:b3128b7b-0310-4d47-8b21-a3b9f57ad64b",
+    "arn": "arn:aws:sts::999999999999:assumed-role/AmazonSSMRoleForAutomationAssumeQuickSetup/b3128b7b-0310-4d47-8b21-a3b9f57ad64b",
+    "accountId": "999999999999",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI3QCFUU2R6",
+        "arn": "arn:aws:iam::999999999999:role/AmazonSSMRoleForAutomationAssumeQuickSetup",
+        "accountId": "999999999999",
+        "userName": "AmazonSSMRoleForAutomationAssumeQuickSetup"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-08T05:42:17Z" }
+    },
+    "invokedBy": "ssm.amazonaws.com"
+  },
+  "eventTime": "2021-04-08T05:42:18Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "AssociateIamInstanceProfile",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "ssm.amazonaws.com",
+  "userAgent": "ssm.amazonaws.com",
+  "errorCode": "Client.IncorrectInstanceState",
+  "errorMessage": "The instance 'i-002bd51cab3fc334c' is not in the 'running' or 'stopped' states.",
+  "requestParameters": {
+    "AssociateIamInstanceProfileRequest": {
+      "InstanceId": "i-002bd51cab3fc334c",
+      "IamInstanceProfile": {
+        "Arn": "arn:aws:iam::999999999999:instance-profile/AmazonSSMRoleForInstancesQuickSetup",
+        "Name": "AmazonSSMRoleForInstancesQuickSetup"
+      }
+    }
+  },
+  "responseElements": null,
+  "requestID": "44f7c3c7-fc2e-48bf-af75-36f81b943d0d",
+  "eventID": "0eb64db2-7073-4e66-a0d5-addb006fe746",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

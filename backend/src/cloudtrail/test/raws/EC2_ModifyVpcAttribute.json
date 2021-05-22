@@ -1,0 +1,31 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIWODBMIFD5",
+    "arn": "arn:aws:iam::999999999999:user/kota.murakami",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIY73622U2",
+    "userName": "kota.murakami",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-19T01:06:57Z" }
+    }
+  },
+  "eventTime": "2021-04-19T06:59:18Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "ModifyVpcAttribute",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.162",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": { "vpcId": "vpc-017d83801e79e7023", "enableDnsSupport": { "value": true } },
+  "responseElements": { "requestId": "3967b413-1891-416b-b8bd-5a831765732e", "_return": true },
+  "requestID": "3967b413-1891-416b-b8bd-5a831765732e",
+  "eventID": "d75ab1c8-d2f7-419b-97b3-a8561bd83e27",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

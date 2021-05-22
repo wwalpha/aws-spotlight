@@ -1,0 +1,62 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAJKCEHJI7ZXFAOL5A",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-24T02:41:27Z" }
+    },
+    "invokedBy": "glue.amazonaws.com"
+  },
+  "eventTime": "2021-04-24T02:46:00Z",
+  "eventSource": "glue.amazonaws.com",
+  "eventName": "CreateJob",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "glue.amazonaws.com",
+  "userAgent": "glue.amazonaws.com",
+  "requestParameters": {
+    "name": "Untitled job",
+    "defaultArguments": {
+      "--class": "GlueApp",
+      "--enable-metrics": "true",
+      "--enable-spark-ui": "true",
+      "--encryption-type": "sse-s3",
+      "--spark-event-logs-path": "s3://aws-glue-assets-999999999999-ap-northeast-1/sparkHistoryLogs/",
+      "--enable-glue-datacatalog": "true",
+      "--enable-continuous-cloudwatch-log": "true",
+      "--job-bookmark-option": "job-bookmark-enable",
+      "--job-language": "python",
+      "--TempDir": "s3://aws-glue-assets-999999999999-ap-northeast-1/temporary/"
+    },
+    "allocatedCapacity": 0,
+    "description": "",
+    "workerType": "G.1X",
+    "role": "arn:aws:iam::999999999999:role/service-role/AWSGlueServiceRole-CloudTrail",
+    "tags": {},
+    "command": {
+      "pythonVersion": "3",
+      "name": "glueetl",
+      "scriptLocation": "s3://aws-glue-assets-999999999999-ap-northeast-1/scripts/Untitled job.py"
+    },
+    "maxRetries": 3,
+    "glueVersion": "2.0",
+    "notificationProperty": {},
+    "executionProperty": { "maxConcurrentRuns": 1 },
+    "numberOfWorkers": 10,
+    "timeout": 2880
+  },
+  "responseElements": { "name": "Untitled job" },
+  "requestID": "51cca3c2-bf8d-41d0-bbff-d54b5e4d0785",
+  "eventID": "2270a1f3-cac7-4dfa-9a3e-830a4619223a",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

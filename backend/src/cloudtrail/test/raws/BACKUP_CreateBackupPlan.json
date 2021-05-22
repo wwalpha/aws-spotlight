@@ -1,0 +1,56 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI2BBTUKWE",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-22T00:53:17Z" }
+    }
+  },
+  "eventTime": "2021-04-22T00:56:40Z",
+  "eventSource": "backup.amazonaws.com",
+  "eventName": "CreateBackupPlan",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.984 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "requestParameters": {
+    "backupPlan": {
+      "backupPlanName": "Backup2Osaka",
+      "rules": [
+        {
+          "ruleName": "Daily_7_Retention",
+          "targetBackupVaultName": "Default",
+          "scheduleExpression": "cron(0 5 ? * * *)",
+          "startWindowMinutes": 480,
+          "completionWindowMinutes": 10080,
+          "lifecycle": { "deleteAfterDays": 7 },
+          "recoveryPointTags": "HIDDEN_DUE_TO_SECURITY_REASONS",
+          "copyActions": [
+            { "destinationBackupVaultArn": "arn:aws:backup:ap-northeast-3:999999999999:backup-vault:Default" }
+          ],
+          "enableContinuousBackup": false
+        }
+      ],
+      "advancedBackupSettings": []
+    }
+  },
+  "responseElements": {
+    "backupPlanId": "90818428-97ed-4e3a-973a-d3b50552d790",
+    "backupPlanArn": "arn:aws:backup:ap-northeast-1:999999999999:backup-plan:90818428-97ed-4e3a-973a-d3b50552d790",
+    "creationDate": "Apr 22, 2021 12:56:40 AM",
+    "versionId": "OTg3ZDMxZjAtOGM1NC00YzZiLWFjOGEtY2E3YzE4ODMzNDNk"
+  },
+  "requestID": "3b5436f2-bd06-4fec-8d6b-8bcb93c97308",
+  "eventID": "020732b1-b24b-4344-9f24-5bce6fc184cb",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

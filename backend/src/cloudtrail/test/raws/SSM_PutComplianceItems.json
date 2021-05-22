@@ -1,0 +1,52 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI7UOBH7YKQ:i-00397546b9d1f84c9",
+    "arn": "arn:aws:sts::999999999999:assumed-role/AllAccess_forEC2/i-00397546b9d1f84c9",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIV43UBP2Y",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI7UOBH7YKQ",
+        "arn": "arn:aws:iam::999999999999:role/AllAccess_forEC2",
+        "accountId": "999999999999",
+        "userName": "AllAccess_forEC2"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-31T22:42:00Z" },
+      "ec2RoleDelivery": "2.0"
+    }
+  },
+  "eventTime": "2021-03-31T23:55:03Z",
+  "eventSource": "ssm.amazonaws.com",
+  "eventName": "PutComplianceItems",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "35.72.7.19",
+  "userAgent": "aws-sdk-go/1.35.23 (go1.15.7; linux; amd64) amazon-ssm-agent/",
+  "requestParameters": {
+    "resourceId": "i-00397546b9d1f84c9",
+    "resourceType": "ManagedInstance",
+    "complianceType": "Association",
+    "executionSummary": { "executionTime": "Mar 31, 2021 11:55:03 PM", "executionId": "", "executionType": "" },
+    "items": [
+      {
+        "id": "329f7f9e-77fa-496a-a684-011c8cbdd2a1",
+        "title": "",
+        "severity": "UNSPECIFIED",
+        "status": "COMPLIANT",
+        "details": { "DocumentVersion": "1", "DocumentName": "AWS-GatherSoftwareInventory" }
+      }
+    ],
+    "itemContentHash": "b046dnXyHM+tzQ2E/7wuYQ=="
+  },
+  "responseElements": null,
+  "requestID": "efb3a796-b992-4bc0-bc71-75700f7c735d",
+  "eventID": "9330316a-eda7-478e-9425-17b0e8cb89b9",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

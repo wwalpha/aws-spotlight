@@ -1,0 +1,42 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLITXUJMHVE",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-07T10:31:17Z" }
+    }
+  },
+  "eventTime": "2021-04-07T10:32:33Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "StopInstances",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": { "instancesSet": { "items": [{ "instanceId": "i-0d4504223fa0c3602" }] }, "force": false },
+  "responseElements": {
+    "requestId": "0bf0396d-cad4-4ef2-b812-318166f4287d",
+    "instancesSet": {
+      "items": [
+        {
+          "instanceId": "i-0d4504223fa0c3602",
+          "currentState": { "code": 64, "name": "stopping" },
+          "previousState": { "code": 16, "name": "running" }
+        }
+      ]
+    }
+  },
+  "requestID": "0bf0396d-cad4-4ef2-b812-318166f4287d",
+  "eventID": "b7be5638-aa90-4b3b-ab10-6d6f774824db",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

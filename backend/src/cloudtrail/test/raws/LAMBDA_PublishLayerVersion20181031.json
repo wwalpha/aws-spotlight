@@ -1,0 +1,55 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
+    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAJ4PTHHPBDRA2VIWQ",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2OU3QHN26",
+        "arn": "arn:aws:iam::999999999999:role/KTOU_SwitchRole",
+        "accountId": "999999999999",
+        "userName": "KTOU_SwitchRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-01T22:30:19Z" }
+    },
+    "invokedBy": "apigateway.amazonaws.com"
+  },
+  "eventTime": "2021-02-01T22:48:18Z",
+  "eventSource": "lambda.amazonaws.com",
+  "eventName": "PublishLayerVersion20181031",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "apigateway.amazonaws.com",
+  "userAgent": "apigateway.amazonaws.com",
+  "requestParameters": {
+    "layerName": "cwsyn-fargate-saas-e7110413-b75d-4bf2-890d-7d48f3faeae3",
+    "description": "Created by CloudWatch Synthetics for a wonderful customer. Thank you!",
+    "content": {},
+    "compatibleRuntimes": ["nodejs10.x"]
+  },
+  "responseElements": {
+    "content": {
+      "codeSha256": "V9fhJylV6/VH86sY149HCK4i9EQu3dODXIsDwxXkXz4=",
+      "codeSize": 2107,
+      "uncompressedCodeSize": 0
+    },
+    "layerArn": "arn:aws:lambda:ap-northeast-1:999999999999:layer:cwsyn-fargate-saas-e7110413-b75d-4bf2-890d-7d48f3faeae3",
+    "layerVersionArn": "arn:aws:lambda:ap-northeast-1:999999999999:layer:cwsyn-fargate-saas-e7110413-b75d-4bf2-890d-7d48f3faeae3:2",
+    "description": "Created by CloudWatch Synthetics for a wonderful customer. Thank you!",
+    "createdDate": "2021-02-01T22:48:18.710+0000",
+    "version": 2,
+    "compatibleRuntimes": ["nodejs10.x"]
+  },
+  "additionalEventData": { "signatureStatus": "VALID" },
+  "requestID": "c0c26250-987b-4269-9ab8-038b1fd0dc3a",
+  "eventID": "97210ce2-77b3-45b2-bd3d-35a3760dd1e6",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

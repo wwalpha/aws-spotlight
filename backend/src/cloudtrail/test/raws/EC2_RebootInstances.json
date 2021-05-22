@@ -1,0 +1,31 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI5C6Z6WNK",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-02T00:23:52Z" }
+    }
+  },
+  "eventTime": "2021-03-02T05:22:38Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "RebootInstances",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": { "instancesSet": { "items": [{ "instanceId": "i-053b487f19894092c" }] } },
+  "responseElements": { "requestId": "ee1421d8-7eb0-408b-a3ca-b75b83f1e22f", "_return": true },
+  "requestID": "ee1421d8-7eb0-408b-a3ca-b75b83f1e22f",
+  "eventID": "1e50c899-c01f-46d7-9b5a-bfc118766d8e",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

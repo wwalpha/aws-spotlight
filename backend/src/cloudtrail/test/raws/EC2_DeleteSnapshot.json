@@ -1,0 +1,31 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI4RDW6ZOW",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-07T10:31:17Z" }
+    }
+  },
+  "eventTime": "2021-04-07T15:53:25Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "DeleteSnapshot",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": { "snapshotId": "snap-07ee9339e684b4179", "force": false },
+  "responseElements": { "requestId": "7a7907b4-6109-4629-af2f-4f18c5e093e8", "_return": true },
+  "requestID": "7a7907b4-6109-4629-af2f-4f18c5e093e8",
+  "eventID": "fdd36f8d-946c-4731-93f1-c4918d13580d",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

@@ -1,0 +1,41 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2QCIZFG2K:i-00adf0ee742a14e6a",
+    "arn": "arn:aws:sts::999999999999:assumed-role/yshimitzu_full/i-00adf0ee742a14e6a",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIS3ZQDPV7",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2QCIZFG2K",
+        "arn": "arn:aws:iam::999999999999:role/yshimitzu_full",
+        "accountId": "999999999999",
+        "userName": "yshimitzu_full"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-04T04:44:52Z" },
+      "ec2RoleDelivery": "2.0"
+    }
+  },
+  "eventTime": "2021-02-04T04:57:40Z",
+  "eventSource": "elasticloadbalancing.amazonaws.com",
+  "eventName": "SetSecurityGroups",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "18.177.168.178",
+  "userAgent": "aws-sdk-go/1.36.28 (go1.15.5; linux; amd64) APN/1.0 HashiCorp/1.0 Terraform/0.12.24 (+https://www.terraform.io)",
+  "requestParameters": {
+    "securityGroups": ["sg-02c8769865262abbd"],
+    "loadBalancerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:999999999999:loadbalancer/app/onecloud-fargate-public/b200ae207f9372e0"
+  },
+  "responseElements": { "securityGroupIds": ["sg-02c8769865262abbd"] },
+  "requestID": "de0cba35-c52c-49bc-952a-63ff31677d87",
+  "eventID": "f5ae5538-e53c-43c2-8e92-77f0866ca50b",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2015-12-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

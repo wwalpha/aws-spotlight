@@ -1,0 +1,43 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI5KEDICSF4:856ae07a-dc86-4f99-84e7-6a3d7440310a",
+    "arn": "arn:aws:sts::999999999999:assumed-role/AWS-QuickSetup-HostMgmtRole-ap-northeast-1-qm255/856ae07a-dc86-4f99-84e7-6a3d7440310a",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLITNUUL4EO",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI5KEDICSF4",
+        "arn": "arn:aws:iam::999999999999:role/AWS-QuickSetup-HostMgmtRole-ap-northeast-1-qm255",
+        "accountId": "999999999999",
+        "userName": "AWS-QuickSetup-HostMgmtRole-ap-northeast-1-qm255"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-14T11:18:28Z" }
+    },
+    "invokedBy": "ssm.amazonaws.com"
+  },
+  "eventTime": "2021-04-14T11:18:38Z",
+  "eventSource": "ssm.amazonaws.com",
+  "eventName": "UpdateServiceSetting",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "ssm.amazonaws.com",
+  "userAgent": "ssm.amazonaws.com",
+  "requestParameters": { "settingId": "/ssm/opsitem/ssm-patchmanager", "settingValue": "Enabled" },
+  "responseElements": null,
+  "requestID": "9572efe1-9663-4910-b485-942da1d3ea78",
+  "eventID": "89fcd036-20d6-444d-bf3e-807731771dcf",
+  "readOnly": false,
+  "resources": [
+    {
+      "accountId": "999999999999",
+      "ARN": "arn:aws:ssm:ap-northeast-1:999999999999:servicesetting/ssm/opsitem/ssm-patchmanager"
+    }
+  ],
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

@@ -1,0 +1,61 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLIR6UKLVKZS:80ab9ef6-3b36-4dcb-8b8f-fe6b4b783856",
+    "arn": "arn:aws:sts::999999999999:assumed-role/AWS-QuickSetup-StackSet-Local-ExecutionRole/80ab9ef6-3b36-4dcb-8b8f-fe6b4b783856",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAISJVYI2P4RZGODUA",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLIR6UKLVKZS",
+        "arn": "arn:aws:iam::999999999999:role/AWS-QuickSetup-StackSet-Local-ExecutionRole",
+        "accountId": "999999999999",
+        "userName": "AWS-QuickSetup-StackSet-Local-ExecutionRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-14T11:17:49Z" }
+    },
+    "invokedBy": "cloudformation.amazonaws.com"
+  },
+  "eventTime": "2021-04-14T11:18:27Z",
+  "eventSource": "ssm.amazonaws.com",
+  "eventName": "CreateAssociation",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "requestParameters": {
+    "name": "AWS-EnableExplorer",
+    "parameters": {
+      "AutomationAssumeRole": ["arn:aws:iam::999999999999:role/AWS-QuickSetup-HostMgmtRole-ap-northeast-1-qm255"]
+    },
+    "associationName": "AWS-QuickSetup-SSMHostMgmt-EnableExplorer-qm255",
+    "applyOnlyAtCronInterval": false
+  },
+  "responseElements": {
+    "associationDescription": {
+      "name": "AWS-EnableExplorer",
+      "associationVersion": "1",
+      "date": "Apr 14, 2021 11:18:27 AM",
+      "lastUpdateAssociationDate": "Apr 14, 2021 11:18:27 AM",
+      "overview": { "status": "Pending", "detailedStatus": "Creating" },
+      "documentVersion": "$DEFAULT",
+      "parameters": {
+        "AutomationAssumeRole": ["arn:aws:iam::999999999999:role/AWS-QuickSetup-HostMgmtRole-ap-northeast-1-qm255"]
+      },
+      "associationId": "29de9b3e-9b9f-4ea8-aafa-42efd03e5651",
+      "targets": [{ "key": "aws:NoOpAutomationTag", "values": ["AWS-NoOpAutomationTarget-Value"] }],
+      "associationName": "AWS-QuickSetup-SSMHostMgmt-EnableExplorer-qm255",
+      "applyOnlyAtCronInterval": false
+    }
+  },
+  "requestID": "f1b95bba-56c3-4ebc-98cc-a562841d2bcc",
+  "eventID": "e7a74ac6-e6e1-4253-854b-0e2409aa953e",
+  "readOnly": false,
+  "resources": [{ "accountId": "999999999999", "ARN": "arn:aws:ssm:ap-northeast-1::document/AWS-EnableExplorer" }],
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

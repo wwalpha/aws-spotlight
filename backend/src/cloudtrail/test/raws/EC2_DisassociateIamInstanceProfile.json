@@ -1,0 +1,45 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIQ5BMNRFHI",
+    "arn": "arn:aws:iam::999999999999:user/demo-user10",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIRVPEI7BZ",
+    "userName": "demo-user10",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-18T06:01:42Z" }
+    }
+  },
+  "eventTime": "2021-04-18T07:38:11Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "DisassociateIamInstanceProfile",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "124.44.162.242",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": { "DisassociateIamInstanceProfileRequest": { "AssociationId": "iip-assoc-098498f3255f99107" } },
+  "responseElements": {
+    "DisassociateIamInstanceProfileResponse": {
+      "xmlns": "http://ec2.amazonaws.com/doc/2016-11-15/",
+      "requestId": "cdb83b6d-6593-42b8-a5ba-be899e480fc5",
+      "iamInstanceProfileAssociation": {
+        "instanceId": "i-0e3aaeca42760fa94",
+        "state": "disassociating",
+        "iamInstanceProfile": {
+          "id": "AIPA2KEX3JLIZKNYKRYVW",
+          "arn": "arn:aws:iam::999999999999:instance-profile/AllAccess_forEC2"
+        },
+        "associationId": "iip-assoc-098498f3255f99107"
+      }
+    }
+  },
+  "requestID": "cdb83b6d-6593-42b8-a5ba-be899e480fc5",
+  "eventID": "58715bd3-ee16-4d99-8e57-65903f6fff4f",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

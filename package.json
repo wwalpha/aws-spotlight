@@ -1,0 +1,11 @@
+{
+  "name": "aws-spotlight",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/wwalpha/aws-spotlight.git",
+  "author": "wwalpha <wwalpha@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "actions": "act push --secret-file .secrets --platform ubuntu-18.04=wwalpha/act-ubuntu:18.04 -W ./.github/test/"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIRWN2W7YM",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-27T02:05:41Z" }
+    }
+  },
+  "eventTime": "2021-04-27T02:28:02Z",
+  "eventSource": "dms.amazonaws.com",
+  "eventName": "ModifyReplicationSubnetGroup",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.984 Linux/5.4.102-52.177.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "requestParameters": {
+    "replicationSubnetGroupIdentifier": "onecloud-subnet-group",
+    "replicationSubnetGroupDescription": "onecloud subnet group",
+    "subnetIds": [
+      "subnet-02f400a0a5738ef8a",
+      "subnet-0463e28fe18a6f599",
+      "subnet-0681d2c492225dea3",
+      "subnet-02043047a2857a526"
+    ]
+  },
+  "responseElements": {
+    "replicationSubnetGroup": {
+      "replicationSubnetGroupIdentifier": "onecloud-subnet-group",
+      "replicationSubnetGroupDescription": "onecloud subnet group",
+      "vpcId": "vpc-0f1e12c219f232b46",
+      "subnetGroupStatus": "Complete",
+      "subnets": [
+        {
+          "subnetIdentifier": "subnet-02043047a2857a526",
+          "subnetAvailabilityZone": { "name": "ap-northeast-1c" },
+          "subnetStatus": "Active"
+        },
+        {
+          "subnetIdentifier": "subnet-0681d2c492225dea3",
+          "subnetAvailabilityZone": { "name": "ap-northeast-1a" },
+          "subnetStatus": "Active"
+        },
+        {
+          "subnetIdentifier": "subnet-02f400a0a5738ef8a",
+          "subnetAvailabilityZone": { "name": "ap-northeast-1c" },
+          "subnetStatus": "Active"
+        },
+        {
+          "subnetIdentifier": "subnet-0463e28fe18a6f599",
+          "subnetAvailabilityZone": { "name": "ap-northeast-1a" },
+          "subnetStatus": "Active"
+        }
+      ],
+      "replicationSubnetGroupArn": "arn:aws:dms:ap-northeast-1:999999999999:subgrp:IQXHOKU27QKMVJEBSUC3VCSX67EVZT3OKYE333I"
+    }
+  },
+  "requestID": "ac455a47-fd40-49f3-b853-33c8702d2c63",
+  "eventID": "2fecf9e9-4ee7-4df3-a679-cac099bfbe7a",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

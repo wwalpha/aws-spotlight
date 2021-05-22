@@ -1,0 +1,53 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI4QBPO4BZ",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-05T14:03:14Z" }
+    }
+  },
+  "eventTime": "2021-03-05T14:07:33Z",
+  "eventSource": "network-firewall.amazonaws.com",
+  "eventName": "CreateFirewall",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "firewallName": "onecloud-firewall",
+    "firewallPolicyArn": "arn:aws:network-firewall:ap-northeast-1:999999999999:firewall-policy/whitelist",
+    "vpcId": "vpc-0f1e12c219f232b46",
+    "subnetMappings": [{ "subnetId": "subnet-0681d2c492225dea3" }, { "subnetId": "subnet-02043047a2857a526" }],
+    "deleteProtection": false,
+    "subnetChangeProtection": false,
+    "firewallPolicyChangeProtection": false,
+    "description": "HIDDEN_DUE_TO_SECURITY_REASONS"
+  },
+  "responseElements": {
+    "firewall": {
+      "firewallName": "onecloud-firewall",
+      "firewallArn": "arn:aws:network-firewall:ap-northeast-1:999999999999:firewall/onecloud-firewall",
+      "firewallPolicyArn": "arn:aws:network-firewall:ap-northeast-1:999999999999:firewall-policy/whitelist",
+      "vpcId": "vpc-0f1e12c219f232b46",
+      "subnetMappings": [{ "subnetId": "subnet-02043047a2857a526" }, { "subnetId": "subnet-0681d2c492225dea3" }],
+      "deleteProtection": false,
+      "subnetChangeProtection": false,
+      "firewallPolicyChangeProtection": false,
+      "firewallId": "8cd9c35d-d0d2-4c81-8bb4-8485d2bd95ad"
+    },
+    "firewallStatus": { "status": "PROVISIONING", "configurationSyncStateSummary": "PENDING" }
+  },
+  "requestID": "054089c2-2785-4d19-9896-1081d22cca9e",
+  "eventID": "1fedf8e0-c9a0-4782-8d2b-3ab1dfa41641",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

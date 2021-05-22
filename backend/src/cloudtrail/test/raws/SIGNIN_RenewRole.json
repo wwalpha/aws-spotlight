@@ -1,0 +1,27 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
+    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "accountId": "999999999999"
+  },
+  "eventTime": "2021-04-01T09:27:46Z",
+  "eventSource": "signin.amazonaws.com",
+  "eventName": "RenewRole",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36",
+  "requestParameters": null,
+  "responseElements": { "RenewRole": "Success" },
+  "additionalEventData": {
+    "RenewedBy": "arn:aws:iam::925866981400:user/ktou",
+    "RedirectTo": "https://ap-northeast-1.console.aws.amazon.com/rds/?&isauthcode=true"
+  },
+  "eventID": "020efb8f-b548-44c4-a78e-596b40065767",
+  "readOnly": false,
+  "eventType": "AwsConsoleSignIn",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

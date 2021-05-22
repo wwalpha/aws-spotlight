@@ -1,0 +1,38 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLITV4A3YML",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-05T14:03:14Z" }
+    }
+  },
+  "eventTime": "2021-03-05T23:15:00Z",
+  "eventSource": "network-firewall.amazonaws.com",
+  "eventName": "AssociateFirewallPolicy",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "firewallArn": "arn:aws:network-firewall:ap-northeast-1:999999999999:firewall/onecloud-firewall",
+    "firewallPolicyArn": "arn:aws:network-firewall:ap-northeast-1:999999999999:firewall-policy/whitelist"
+  },
+  "responseElements": {
+    "firewallArn": "arn:aws:network-firewall:ap-northeast-1:999999999999:firewall/onecloud-firewall",
+    "firewallName": "onecloud-firewall",
+    "firewallPolicyArn": "arn:aws:network-firewall:ap-northeast-1:999999999999:firewall-policy/whitelist"
+  },
+  "requestID": "662de42b-974a-436c-96d8-acd7d5d94da7",
+  "eventID": "97da141f-0003-410f-9017-d20a24c952f8",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

@@ -1,0 +1,40 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI3SG2MWKG3:999999999999",
+    "arn": "arn:aws:sts::999999999999:assumed-role/AWSServiceRoleForAmazonElasticFileSystem/999999999999",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI6TL225E7",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI3SG2MWKG3",
+        "arn": "arn:aws:iam::999999999999:role/aws-service-role/elasticfilesystem.amazonaws.com/AWSServiceRoleForAmazonElasticFileSystem",
+        "accountId": "999999999999",
+        "userName": "AWSServiceRoleForAmazonElasticFileSystem"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-19T10:39:48Z" }
+    },
+    "invokedBy": "elasticfilesystem.amazonaws.com"
+  },
+  "eventTime": "2021-02-19T10:39:48Z",
+  "eventSource": "backup.amazonaws.com",
+  "eventName": "PutBackupVaultAccessPolicy",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "elasticfilesystem.amazonaws.com",
+  "userAgent": "elasticfilesystem.amazonaws.com",
+  "requestParameters": {
+    "backupVaultName": "aws/efs/automatic-backup-vault",
+    "policy": "{\"Version\": \"2012-10-17\",\n\"Statement\": [\n    {\n        \"Effect\": \"Deny\",\n        \"Action\": [\n            \"backup:DeleteBackupVault\",\n            \"backup:DeleteBackupVaultAccessPolicy\",\n            \"backup:DeleteRecoveryPoint\",\n            \"backup:StartCopyJob\",\n            \"backup:StartRestoreJob\",\n            \"backup:UpdateRecoveryPointLifecycle\"\n        ],\n        \"Resource\": \"*\",\n        \"Principal\": {            \"AWS\": \"*\"\n        }    }\n]\n}"
+  },
+  "responseElements": null,
+  "requestID": "163aaffd-d740-4139-b52a-ae351c78f422",
+  "eventID": "0bb053ee-b5dc-472e-ae4d-9bdc03832327",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

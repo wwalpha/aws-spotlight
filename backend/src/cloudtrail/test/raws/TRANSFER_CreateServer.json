@@ -1,0 +1,48 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
+    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIXV372SS5",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2OU3QHN26",
+        "arn": "arn:aws:iam::999999999999:role/KTOU_SwitchRole",
+        "accountId": "999999999999",
+        "userName": "KTOU_SwitchRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-19T10:39:21Z" }
+    }
+  },
+  "eventTime": "2021-02-19T10:42:53Z",
+  "eventSource": "transfer.amazonaws.com",
+  "eventName": "CreateServer",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.955 Linux/4.9.230-0.1.ac.223.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+  "requestParameters": {
+    "domain": "EFS",
+    "endpointDetails": {
+      "subnetIds": ["subnet-0463e28fe18a6f599", "subnet-02043047a2857a526"],
+      "vpcId": "vpc-0f1e12c219f232b46",
+      "securityGroupIds": ["sg-02c8769865262abbd"]
+    },
+    "endpointType": "VPC",
+    "hostKey": "HIDDEN_DUE_TO_SECURITY_REASONS",
+    "loggingRole": "arn:aws:iam::999999999999:role/service-role/AWSTransferLoggingAccess",
+    "protocols": ["SFTP"],
+    "securityPolicyName": "TransferSecurityPolicy-2020-06"
+  },
+  "responseElements": { "serverId": "s-3e2471260c3b4b52b" },
+  "requestID": "29c0f849-8759-44dd-83f6-cce0bae48de6",
+  "eventID": "c92a3024-aa66-4dc9-bda2-339a1c6082fe",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

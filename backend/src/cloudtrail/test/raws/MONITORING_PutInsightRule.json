@@ -1,0 +1,40 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
+    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI5SUVCKUW",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI2OU3QHN26",
+        "arn": "arn:aws:iam::999999999999:role/KTOU_SwitchRole",
+        "accountId": "999999999999",
+        "userName": "KTOU_SwitchRole"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-01T06:40:09Z" }
+    }
+  },
+  "eventTime": "2021-02-01T06:56:16Z",
+  "eventSource": "monitoring.amazonaws.com",
+  "eventName": "PutInsightRule",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36",
+  "requestParameters": {
+    "ruleName": "demo-rule",
+    "ruleState": "ENABLED",
+    "ruleDefinition": "{\n    \"Schema\": {\n        \"Name\": \"CloudWatchLogRule\",\n        \"Version\": 1\n    },\n    \"AggregateOn\": \"Sum\",\n    \"Contribution\": {\n        \"Filters\": [],\n        \"Keys\": [\n            \"remote_addr\"\n        ]\n    },\n    \"LogFormat\": \"CLF\",\n    \"LogGroupNames\": [\n        \"/ecs/onecloud-fargate-backend-public\"\n    ],\n    \"Fields\": {\n        \"1\": \"remote_addr\",\n        \"2\": \"remote_user\"\n    }\n}"
+  },
+  "responseElements": null,
+  "requestID": "0d6f9aee-87b4-449d-8a14-ff4b1df4ebfe",
+  "eventID": "560b73fe-27e7-4e46-9da6-816d53418159",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

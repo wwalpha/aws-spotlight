@@ -1,0 +1,74 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLI3YFKAM3HW",
+    "arn": "arn:aws:iam::999999999999:user/kazuya.tanaka",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIVZIRBDWU",
+    "userName": "kazuya.tanaka",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-31T23:24:03Z" }
+    }
+  },
+  "eventTime": "2021-03-31T23:28:05Z",
+  "eventSource": "codebuild.amazonaws.com",
+  "eventName": "CreateProject",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "103.5.140.179",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.970 Linux/5.4.95-47.164.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+  "errorCode": "InvalidInputException",
+  "errorMessage": "CodeBuild is not authorized to perform: sts:AssumeRole on arn:aws:iam::999999999999:role/service-role/codebuild-onecloud-tanaka-service-role",
+  "requestParameters": {
+    "secondarySources": [],
+    "secondarySourceVersions": [],
+    "name": "arn:aws:codebuild:ap-northeast-1:999999999999:project/onecloud-tanaka",
+    "logsConfig": { "cloudWatchLogs": { "status": "ENABLED" }, "s3Logs": { "status": "DISABLED" } },
+    "artifacts": {
+      "type": "S3",
+      "namespaceType": "NONE",
+      "name": "",
+      "overrideArtifactName": false,
+      "packaging": "NONE",
+      "location": "onecloud-tanaka",
+      "path": ""
+    },
+    "cache": { "type": "NO_CACHE" },
+    "source": {
+      "gitSubmodulesConfig": { "fetchSubmodules": false },
+      "insecureSsl": false,
+      "type": "CODECOMMIT",
+      "location": "https://git-codecommit.ap-northeast-1.amazonaws.com/v1/repos/One-Cloud-tanaka",
+      "gitCloneDepth": 1
+    },
+    "sourceVersion": "refs/heads/main",
+    "timeoutInMinutes": 60,
+    "secondaryArtifacts": [],
+    "queuedTimeoutInMinutes": 480,
+    "serviceRole": "arn:aws:iam::999999999999:role/service-role/codebuild-onecloud-tanaka-service-role",
+    "environment": {
+      "environmentVariables": [
+        {
+          "type": "HIDDEN_DUE_TO_SECURITY_REASONS",
+          "value": "HIDDEN_DUE_TO_SECURITY_REASONS",
+          "name": "HIDDEN_DUE_TO_SECURITY_REASONS"
+        }
+      ],
+      "privilegedMode": false,
+      "imagePullCredentialsType": "CODEBUILD",
+      "type": "ARM_CONTAINER",
+      "image": "aws/codebuild/amazonlinux2-aarch64-standard:1.0",
+      "computeType": "BUILD_GENERAL1_LARGE"
+    }
+  },
+  "responseElements": null,
+  "requestID": "9e586973-3d44-45d3-af1f-afdf371fc805",
+  "eventID": "87d3453e-e6a9-41b4-be53-b9cc7163739f",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

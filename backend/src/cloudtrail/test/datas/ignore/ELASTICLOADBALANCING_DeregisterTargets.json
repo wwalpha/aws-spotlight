@@ -1,0 +1,41 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI6XLOHRBL2:ecs-service-scheduler",
+    "arn": "arn:aws:sts::999999999999:assumed-role/AWSServiceRoleForECS/ecs-service-scheduler",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI5IIRVJUZ",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLI6XLOHRBL2",
+        "arn": "arn:aws:iam::999999999999:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+        "accountId": "999999999999",
+        "userName": "AWSServiceRoleForECS"
+      },
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-07T10:33:56Z" }
+    },
+    "invokedBy": "ecs.amazonaws.com"
+  },
+  "eventTime": "2021-04-07T10:37:05Z",
+  "eventSource": "elasticloadbalancing.amazonaws.com",
+  "eventName": "DeregisterTargets",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "ecs.amazonaws.com",
+  "userAgent": "ecs.amazonaws.com",
+  "requestParameters": {
+    "targetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:999999999999:targetgroup/onecloud-fargate-frontend/b5f8b435dd74009f",
+    "targets": [{ "id": "10.0.2.226", "port": 80, "availabilityZone": "ap-northeast-1a" }]
+  },
+  "responseElements": null,
+  "requestID": "f2ec789d-06ff-4b32-af00-89d9a22bc4e5",
+  "eventID": "8477f469-4b97-482f-bda6-72fe768df8dd",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2015-12-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

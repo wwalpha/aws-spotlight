@@ -1,0 +1,39 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIW3X62O47",
+    "userName": "ktou",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-05T07:05:13Z" }
+    }
+  },
+  "eventTime": "2021-04-05T07:12:40Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "CreateSecurityGroup",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "groupName": "onecloud-allow-oracle-sli",
+    "groupDescription": "onecloud-allow-oracle-sli",
+    "vpcId": "vpc-0f1e12c219f232b46"
+  },
+  "responseElements": {
+    "requestId": "b31b51e0-b25d-460e-b116-e667a690e4eb",
+    "_return": true,
+    "groupId": "sg-0e4669b73c6c4c0fd"
+  },
+  "requestID": "b31b51e0-b25d-460e-b116-e667a690e4eb",
+  "eventID": "11111112-292a-4bf7-b013-8caae55c27df",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}
