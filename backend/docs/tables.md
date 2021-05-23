@@ -26,7 +26,7 @@
 | EventName         | Hash  |      |      |      |      |
 | EventTime         | Range |      |      |      |      |
 | EventSource       |       |      |      |      |      |
-| UserName          |       |      |      |      |      |
+| Username          |       |      |      |      |      |
 | AWSRegion         |       |      |      |      |      |
 | ResourceArn       |       |      |      |      |      |
 | ResourceName      |       |      |      |      |      |
@@ -110,3 +110,18 @@
 1. Category = 'RELEASE' SORT DateTime DESC
 2. Category = 'Notice'
 ```
+
+## Category
+
+| Item     | Key   | LSI1 | LSI2 | GSI1 | GSI2 |
+| -------- | ----- | ---- | ---- | ---- | ---- |
+| UserName | HASH  |      |      |      |      |
+| Category | RANGE |      |      |      |      |
+| Text     |       |      |      |      |      |
+
+#### Search Conditions
+
+| Method | Conditions           |
+| ------ | -------------------- |
+| Query  | UserName = :UserName |
+| Scan   |                      |

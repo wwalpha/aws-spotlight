@@ -20,6 +20,7 @@ locals {
   dynamodb_name_unprocessed  = "${local.project_name_uc}_Unprocessed_${local.random_id}"
   dynamodb_name_history      = "${local.project_name_uc}_History_${local.random_id}"
   dynamodb_name_announcement = "${local.project_name_uc}_Announcement_${local.random_id}"
+  dynamodb_name_category     = "${local.project_name_uc}_Category_${local.random_id}"
 
   # ----------------------------------------------------------------------------------------------
   # S3 Bucket

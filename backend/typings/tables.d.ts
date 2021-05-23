@@ -117,3 +117,18 @@ export interface Announcement extends AnnouncementKey {
   Type: string;
   Text: string;
 }
+
+/**
+ * Table - Category Key
+ */
+export interface CategoryKey {
+  UserName: string;
+  Category: string;
+}
+
+/**
+ * Table - Category
+ */
+export interface Category extends CategoryKey {
+  Text: string;
+}

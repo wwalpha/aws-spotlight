@@ -168,3 +168,30 @@ resource "aws_dynamodb_table" "announcement" {
     prevent_destroy = true
   }
 }
+
+
+# ----------------------------------------------------------------------------------------------
+# Dynamodb Table - Category
+# ----------------------------------------------------------------------------------------------
+resource "aws_dynamodb_table" "category" {
+  name           = local.dynamodb_name_category
+  billing_mode   = "PROVISIONED"
+  read_capacity  = 1
+  write_capacity = 1
+  hash_key       = "UserName"
+  range_key      = "Category"
+
+  attribute {
+    name = "UserName"
+    type = "S"
+  }
+
+  attribute {
+    name = "Category"
+    type = "S"
+  }
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}

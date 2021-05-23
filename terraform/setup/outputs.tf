@@ -61,3 +61,10 @@ output "dynamodb_name_announcement" {
   value = aws_dynamodb_table.announcement.name
 }
 
+# ----------------------------------------------------------------------------------------------
+# DynamoDB Name - Category
+# ----------------------------------------------------------------------------------------------
+output "dynamodb_name_category" {
+  value = aws_dynamodb_table.category.name
+}
+
