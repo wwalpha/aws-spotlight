@@ -76,15 +76,15 @@ resource "aws_dynamodb_table" "resource" {
   global_secondary_index {
     name            = "gsiIdx1"
     hash_key        = "UserName"
-    range_key       = "ResourceId"
+    range_key       = "EventSource"
     write_capacity  = 1
     read_capacity   = 1
     projection_type = "ALL"
   }
 
-  lifecycle {
-    prevent_destroy = true
-  }
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 }
 
 # ----------------------------------------------------------------------------------------------

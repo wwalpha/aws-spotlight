@@ -29,17 +29,20 @@ export const getResourceList = async (
   // get service resources
   const result = await helper.query<Tables.Resource>({
     TableName: TABLE_RESOURCE,
-    KeyConditionExpression: '#UserName = :UserName AND EventSource = :EventSource',
+    KeyConditionExpression: '#UserName = :UserName AND #EventSource = :EventSource',
     IndexName: 'gsiIdx1',
     ExpressionAttributeNames: {
       '#UserName': 'UserName',
       '#EventSource': 'EventSource',
     },
     ExpressionAttributeValues: {
-      ':UserName': token['cognito:username'],
+      ':UserName': token.username,
       ':EventSource': `${params.service}.amazonaws.com`,
     },
   });
 
-  res.send(result.Items);
+  // results
+  res.send({
+    items: result.Items,
+  });
 };

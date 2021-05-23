@@ -1,7 +1,13 @@
 import express from 'express';
+import AWS from 'aws-sdk';
 import { json, urlencoded } from 'body-parser';
 import winston from 'winston';
 import { getResourceList, healthCheck } from './app';
+
+AWS.config.update({
+  region: process.env.AWS_REGION,
+  dynamodb: { endpoint: process.env.AWS_ENDPOINT },
+});
 
 // Instantiate application
 var app = express();
@@ -17,7 +23,7 @@ app.use(
 // health check
 app.get('/resources/health', healthCheck);
 // get resource list
-app.get('/resources/:resourceId', getResourceList);
+app.get('/resources/:service', getResourceList);
 
 // Start the servers
 app.listen(8080, () => console.log('Resource manager service started on port 8080'));

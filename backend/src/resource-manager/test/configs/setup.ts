@@ -2,6 +2,7 @@ require('dotenv').config({ path: '.env.test' });
 
 import { DynamodbHelper } from '@alphax/dynamodb';
 import AWS from 'aws-sdk';
+import RESOURCE_DATAS from '../datas/resources.json';
 
 AWS.config.update({
   region: process.env.AWS_REGION,
@@ -47,8 +48,9 @@ const setup = async () => {
       .promise(),
   ]);
 
+  await helper.bulk(TABLE_RESOURCE, RESOURCE_DATAS);
+
   console.log('jest setup end...');
-  // await helper.bulk(TABLE_RESOURCE, Events);
 };
 
 export default setup;

@@ -1,3 +1,5 @@
+import * as Tables from './tables';
+
 /** get service resouce parameter */
 export interface GetResourceParameter {
   service: string;
@@ -5,4 +7,6 @@ export interface GetResourceParameter {
 /** get service resouce request */
 export interface GetResourceRequest {}
 /** get service resouce response */
-export interface GetResourceResponse {}
+export interface GetResourceResponse {
+  items: Tables.Resource[];
+}
