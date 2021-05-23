@@ -26,6 +26,9 @@ app.get('/resources/health', healthCheck);
 app.get('/resources/:service', getResourceList);
 
 // Start the servers
-app.listen(8080, () => console.log('Resource manager service started on port 8080'));
+app.listen(8080, () => {
+  console.log('Resource manager service started on port 8080');
+  console.log(process.env);
+});
 
 export default app;
