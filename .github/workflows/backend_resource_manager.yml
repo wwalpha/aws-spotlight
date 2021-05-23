@@ -1,0 +1,98 @@
+name: Resource Manager Image Build
+
+on:
+  push:
+    paths:
+      - backend/src/resource-manager/**
+      - .github/workflows/backend_resource_manager.yml
+  workflow_dispatch:
+
+env:
+  ECR_REPOSITORY_RESOURCE: arms/resource
+  ECS_CLUSTER_NAME: arms-cluster
+  ECS_SERVICE_NAME: resource_manager
+  ECS_TAKS_DEFINITION: arms-resource
+  ECS_TAKS_DEFINITION_FILE: task_definition.json
+  WORKING_DIR: backend/src/resource-manager
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    defaults:
+      run:
+        # working-directory: ${{ env.WORKING_DIR }}
+        working-directory: backend/src/resource-manager
+
+    steps:
+      # source checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Setup Node.js
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+
+      # Install and Build
+      - name: Build
+        run: |
+          cp -f ../../typings/* ./typings/ --recursive
+          yarn install
+          yarn build
+
+      # Unit Test
+      # - name: Unit Test
+      #   run: |
+      #     docker-compose up -d --build
+      #     sleep 10
+      #     yarn test
+      #     docker-compose down
+
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1
+
+      # Get latest task definition
+      - name: Update ecs task definition
+        id: filepath
+        run: |
+          aws ecs describe-task-definition --task-definition $ECS_TAKS_DEFINITION | jq .taskDefinition > $ECS_TAKS_DEFINITION_FILE
+          echo "::set-output name=definition::$GITHUB_WORKSPACE/$WORKING_DIR/$ECS_TAKS_DEFINITION_FILE"
+
+      # ECR Login
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      # docker build and push
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t $ECR_REPOSITORY_RESOURCE .
+          docker tag $ECR_REPOSITORY_RESOURCE $ECR_REGISTRY/$ECR_REPOSITORY_RESOURCE:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY_RESOURCE:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY_RESOURCE:$IMAGE_TAG"
+
+      # update task definition
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: render-web-container
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: ${{ steps.filepath.outputs.definition }}
+          container-name: ${{ env.ECS_TAKS_DEFINITION }}
+          image: ${{ steps.build-image.outputs.image }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.render-web-container.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE_NAME }}
+          cluster: ${{ env.ECS_CLUSTER_NAME }}
+          wait-for-service-stability: false
