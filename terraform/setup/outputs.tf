@@ -54,4 +54,10 @@ output "dynamodb_name_history" {
   value = aws_dynamodb_table.history.name
 }
 
+# ----------------------------------------------------------------------------------------------
+# DynamoDB Name - Announcement
+# ----------------------------------------------------------------------------------------------
+output "dynamodb_name_announcement" {
+  value = aws_dynamodb_table.announcement.name
+}
 

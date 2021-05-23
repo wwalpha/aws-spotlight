@@ -88,3 +88,25 @@
 | EventName   |      |      |      |      |      |
 | AWSRegion   |      |      |      |      |      |
 | Origin      |      |      |      |      |      |
+
+## Announcement
+
+| Item     | Key   | LSI1 | LSI2 | GSI1 | GSI2 |
+| -------- | ----- | ---- | ---- | ---- | ---- |
+| Category | HASH  |      |      |      |      |
+| DateTIme | RANGE |      |      |      |      |
+| Type     |       |      |      |      |      |
+| Text     |       |      |      |      |      |
+
+#### Search Conditions
+
+| Method | Conditions                                    |
+| ------ | --------------------------------------------- |
+| Query  | Category = :Category AND DateTIme = :DateTIme |
+
+#### Search Example
+
+```
+1. Category = 'RELEASE' SORT DateTime DESC
+2. Category = 'Notice'
+```

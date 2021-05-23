@@ -101,3 +101,19 @@ export interface History extends HistoryKey {
   AWSRegion: string;
   Origin: string;
 }
+
+/**
+ * Table - Announcement Key
+ */
+export interface AnnouncementKey {
+  Category: string;
+  DateTIme: string;
+}
+
+/**
+ * Table - Announcement
+ */
+export interface Announcement extends AnnouncementKey {
+  Type: string;
+  Text: string;
+}

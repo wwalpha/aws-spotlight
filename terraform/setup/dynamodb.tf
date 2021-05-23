@@ -142,3 +142,29 @@ resource "aws_dynamodb_table" "history" {
     prevent_destroy = true
   }
 }
+
+# ----------------------------------------------------------------------------------------------
+# Dynamodb Table - Announcement
+# ----------------------------------------------------------------------------------------------
+resource "aws_dynamodb_table" "announcement" {
+  name           = local.dynamodb_name_announcement
+  billing_mode   = "PROVISIONED"
+  read_capacity  = 1
+  write_capacity = 1
+  hash_key       = "Category"
+  range_key      = "DateTIme"
+
+  attribute {
+    name = "Category"
+    type = "S"
+  }
+
+  attribute {
+    name = "DateTIme"
+    type = "S"
+  }
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
