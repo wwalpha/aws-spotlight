@@ -20,6 +20,17 @@ locals {
   # s3_buckets      = local.remote_setup.s3_buckets
 
   # ----------------------------------------------------------------------------------------------
+  # DynamoDB
+  # ----------------------------------------------------------------------------------------------
+  dynamodb_name_event_type   = local.remote_setup.dynamodb_name_event_type
+  dynamodb_name_notification = local.remote_setup.dynamodb_name_notification
+  dynamodb_name_resource     = local.remote_setup.dynamodb_name_resource
+  dynamodb_name_unprocessed  = local.remote_setup.dynamodb_name_unprocessed
+  dynamodb_name_history      = local.remote_setup.dynamodb_name_history
+  dynamodb_name_announcement = local.remote_setup.dynamodb_name_announcement
+  dynamodb_name_category     = local.remote_setup.dynamodb_name_category
+
+  # ----------------------------------------------------------------------------------------------
   # ECS
   # ----------------------------------------------------------------------------------------------
   task_def_family_auth     = "${local.project_name}-auth"
@@ -38,7 +49,8 @@ locals {
   # ----------------------------------------------------------------------------------------------
   # S3 Bucket
   # ----------------------------------------------------------------------------------------------
-  bucket_name_frontend = local.remote_setup.bucket_name_frontend
+  bucket_name_frontend    = local.remote_setup.bucket_name_frontend
+  bucket_name_environment = local.remote_setup.bucket_name_environment
 
 }
 
@@ -57,6 +69,13 @@ data "aws_caller_identity" "this" {}
 # ----------------------------------------------------------------------------------------------
 data "aws_s3_bucket" "frontend" {
   bucket = local.bucket_name_frontend
+}
+
+# ----------------------------------------------------------------------------------------------
+# Amazon S3 Bucket - Environment
+# ----------------------------------------------------------------------------------------------
+data "aws_s3_bucket" "environment" {
+  bucket = local.bucket_name_environment
 }
 
 # ----------------------------------------------------------------------------------------------

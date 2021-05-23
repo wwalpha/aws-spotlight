@@ -21,7 +21,7 @@ resource "aws_ecs_task_definition" "resource" {
       container_name  = local.task_def_family_resource
       container_image = "${aws_ecr_repository.resource.repository_url}:latest"
       container_port  = 8080
-      env_vars        = aws_ssm_parameter.resource_envs.arn
+      env_file_arn    = "${data.aws_s3_bucket.environment.arn}/${aws_s3_bucket_object.resource.key}"
       # app_mesh_node     = split(":", aws_appmesh_virtual_node.token.arn)[5]
       # dynamodb_tables   = aws_ssm_parameter.tables.arn
       # service_endpoints = aws_ssm_parameter.endpoints.arn

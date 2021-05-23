@@ -3,10 +3,10 @@
     "name": "${container_name}",
     "image": "${container_image}",
     "essential": true,
-    "secrets": [
+    "environmentFiles": [
       {
-        "name": "ENV_VARS",
-        "valueFrom": "${env_vars}"
+        "value": "${env_file_arn}",
+        "type": "s3"
       }
     ],
     "portMappings": [

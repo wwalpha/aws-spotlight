@@ -23,7 +23,7 @@ resource "aws_ssm_parameter" "resource_envs" {
   name = "/${local.project_name}/environment/resource_manager"
   type = "String"
   value = jsonencode({
-    ENV_VARS = "DUMMY"
+    TABLE_RESOURCE = local.dynamodb_name_resource
   })
   overwrite = true
 

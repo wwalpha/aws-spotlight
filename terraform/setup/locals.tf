@@ -25,7 +25,8 @@ locals {
   # ----------------------------------------------------------------------------------------------
   # S3 Bucket
   # ----------------------------------------------------------------------------------------------
-  bucket_name_frontend = "${var.project_name}-frontend-${local.random_id}"
+  bucket_name_frontend    = "${var.project_name}-frontend-${local.random_id}"
+  bucket_name_environment = "${var.project_name}-environment-${local.random_id}"
   mime_types = {
     htm   = "text/html"
     html  = "text/html"
