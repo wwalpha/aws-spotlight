@@ -12,10 +12,7 @@
     "prep": "ts-node -r tsconfig-paths/register -r dotenv/config test/configs/prepare.ts",
     "build:c": "docker build -f Dockerfile.CloudTrail -t arms-cloudtrail .",
     "build:u": "docker build -f Dockerfile.Unprocessed -t arms-unprocessed .",
-    "testnow": "jest --forceExit --passWithNoTests",
-    "pretest": "docker-compose up -d --build && sleep 10",
     "test": "jest --forceExit --passWithNoTests",
-    "posttest": "docker-compose down",
     "setup": "ts-node -r tsconfig-paths/register test/configs/setup.ts"
   },
   "devDependencies": {

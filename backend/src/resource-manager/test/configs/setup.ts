@@ -13,6 +13,7 @@ AWS.config.update({
 const TABLE_RESOURCE = process.env.TABLE_RESOURCE as string;
 
 const setup = async () => {
+  console.log('jest setup start...');
   const helper = new DynamodbHelper({ options: { endpoint: process.env.AWS_ENDPOINT } });
 
   await Promise.all([
@@ -46,6 +47,7 @@ const setup = async () => {
       .promise(),
   ]);
 
+  console.log('jest setup end...');
   // await helper.bulk(TABLE_RESOURCE, Events);
 };
 

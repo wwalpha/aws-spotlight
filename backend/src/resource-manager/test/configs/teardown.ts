@@ -12,7 +12,11 @@ AWS.config.update({
 const dbClient = new DynamoDB();
 
 const teardown = async () => {
+  console.log('jest teardown start...');
+
   await dbClient.deleteTable({ TableName: process.env.TABLE_RESOURCE as string }).promise();
+
+  console.log('jest teardown end...');
 };
 
 export default teardown;
