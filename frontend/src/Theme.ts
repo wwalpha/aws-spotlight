@@ -1,5 +1,4 @@
-import { Theme, createMuiTheme } from '@material-ui/core';
-import { orange } from '@material-ui/core/colors';
+import { createMuiTheme, Theme } from '@material-ui/core/styles';
 
 const theme: Theme = createMuiTheme({
   typography: {

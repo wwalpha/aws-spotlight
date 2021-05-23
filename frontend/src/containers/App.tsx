@@ -1,13 +1,13 @@
 import React, { FunctionComponent } from 'react';
-import { Route, Switch, useLocation } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import { Header, Sidemenu } from '.';
-import ReleaseNotes from './ReleaseNotes';
 import { Paths } from '@constants';
 import { Services } from '@containers';
+import { Header, Sidemenu } from '.';
+import ReleaseNotes from './ReleaseNotes';
 
-const useStyles = makeStyles(({ palette }: Theme) =>
+const useStyles = makeStyles(({}: Theme) =>
   createStyles({
     root: {
       backgroundRepeat: 'no-repeat',
@@ -19,7 +19,6 @@ const useStyles = makeStyles(({ palette }: Theme) =>
 const App: FunctionComponent<any> = () => {
   const classes = useStyles();
 
-  console.log(useLocation());
   return (
     <Box display="flex" height="100vh">
       <Sidemenu />

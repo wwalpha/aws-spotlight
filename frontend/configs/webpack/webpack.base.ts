@@ -18,6 +18,9 @@ const configs: Configuration = {
     mainFields: ['browser', 'main', 'module'],
     extensions: ['.ts', '.tsx', '.js'],
     plugins: [new TsconfigPathsPlugin()],
+    fallback: {
+      crypto: false,
+    },
   },
   module: {
     rules: [

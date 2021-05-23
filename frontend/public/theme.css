@@ -1,0 +1,9 @@
+body {
+  margin: 0px;
+}
+
+:root {
+  --amplify-primary-color: #6f2c91;
+  --amplify-primary-tint: #8b56a7;
+  --amplify-primary-shade: #4d1e65;
+}

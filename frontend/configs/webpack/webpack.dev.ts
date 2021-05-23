@@ -12,7 +12,9 @@ const dev: Configuration = {
   devtool: 'inline-source-map',
   entry: ['webpack-hot-middleware/client'],
   plugins: [
-    new Dotenv(),
+    new Dotenv({
+      path: './.env.dev',
+    }),
     new HtmlWebpackPlugin({
       title: 'development',
       filename: 'index.html',
