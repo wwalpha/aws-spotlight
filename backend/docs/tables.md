@@ -45,8 +45,8 @@
 
 | Item         | Key   | LSI1 | LSI2 | GSI1  | GSI2 |
 | ------------ | ----- | ---- | ---- | ----- | ---- |
-| EventSource  | HASH  |      |      |       |      |
-| ResourceId   | RANGE |      |      | RANGE |      |
+| EventSource  | HASH  |      |      | RANGE |      |
+| ResourceId   | RANGE |      |      |       |      |
 | ResourceName |       |      |      |       |      |
 | UserName     |       |      |      | HASH  |      |
 | EventId      |       |      |      |       |      |
@@ -60,7 +60,7 @@
 | ------ | ----- | ------------------------------------------------------- |
 | Get    |       | EventSource = :EventSource AND ResourceId = :ResourceId |
 | Delete |       | EventSource = :EventSource AND ResourceId = :ResourceId |
-| Query  | GSI1  | UserName = :UserName                                    |
+| Query  | GSI1  | UserName = :UserName AND EventSource = :EventSource     |
 | Query  |       | EventSource = :EventSource                              |
 
 ## Unprocessed
