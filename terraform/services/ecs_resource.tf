@@ -1,29 +1,9 @@
 # ----------------------------------------------------------------------------------------------
-# ECS Cluster
-# ----------------------------------------------------------------------------------------------
-resource "aws_ecs_cluster" "this" {
-  name = "${local.project_name}-cluster"
-
-  capacity_providers = ["FARGATE", "FARGATE_SPOT"]
-
-  default_capacity_provider_strategy {
-    base              = 0
-    capacity_provider = "FARGATE_SPOT"
-    weight            = 1
-  }
-
-  setting {
-    name  = "containerInsights"
-    value = "enabled"
-  }
-}
-
-# ----------------------------------------------------------------------------------------------
 # AWS ECS Service - Token Service Task Definition
 # ----------------------------------------------------------------------------------------------
-resource "aws_ecs_task_definition" "auth" {
-  depends_on         = [null_resource.demo]
-  family             = local.task_def_family_auth
+resource "aws_ecs_task_definition" "resource" {
+  depends_on         = [null_resource.resource]
+  family             = local.task_def_family_resource
   task_role_arn      = aws_iam_role.ecs_task.arn
   execution_role_arn = aws_iam_role.ecs_task_exec.arn
   network_mode       = "awsvpc"
@@ -38,8 +18,8 @@ resource "aws_ecs_task_definition" "auth" {
     "taskdefs/definition.tpl",
     {
       aws_region      = local.region
-      container_name  = local.task_def_family_auth
-      container_image = "${aws_ecr_repository.auth.repository_url}:latest"
+      container_name  = local.task_def_family_resource
+      container_image = "${aws_ecr_repository.resource.repository_url}:latest"
       container_port  = 8080
       env_vars        = aws_ssm_parameter.auth_envs.arn
       # app_mesh_node     = split(":", aws_appmesh_virtual_node.token.arn)[5]
@@ -57,12 +37,12 @@ resource "aws_ecs_task_definition" "auth" {
 # ----------------------------------------------------------------------------------------------
 # ECS Service - Backend Service
 # ----------------------------------------------------------------------------------------------
-resource "aws_ecs_service" "auth_manager" {
-  name                               = "auth_manager"
+resource "aws_ecs_service" "resource" {
+  name                               = "resource_manager"
   cluster                            = aws_ecs_cluster.this.id
   desired_count                      = 0
   platform_version                   = "1.4.0"
-  task_definition                    = "arn:aws:ecs:${local.region}:${local.account_id}:task-definition/${aws_ecs_task_definition.auth.family}:${local.task_def_rev_auth}"
+  task_definition                    = "arn:aws:ecs:${local.region}:${local.account_id}:task-definition/${aws_ecs_task_definition.resource.family}:${local.task_def_rev_resource}"
   deployment_maximum_percent         = 200
   deployment_minimum_healthy_percent = 100
   health_check_grace_period_seconds  = 0
@@ -90,7 +70,7 @@ resource "aws_ecs_service" "auth_manager" {
   }
 
   load_balancer {
-    container_name   = local.task_def_family_auth
+    container_name   = local.task_def_family_resource
     container_port   = 8080
     target_group_arn = aws_lb_target_group.this.arn
   }

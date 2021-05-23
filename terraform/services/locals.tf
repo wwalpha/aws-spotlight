@@ -22,8 +22,11 @@ locals {
   # ----------------------------------------------------------------------------------------------
   # ECS
   # ----------------------------------------------------------------------------------------------
-  task_def_family_auth = "${local.project_name}-auth"
-  task_def_rev_auth    = max(aws_ecs_task_definition.auth.revision, data.aws_ecs_task_definition.auth.revision)
+  task_def_family_auth     = "${local.project_name}-auth"
+  task_def_family_resource = "${local.project_name}-resource"
+
+  task_def_rev_auth     = max(aws_ecs_task_definition.auth.revision, data.aws_ecs_task_definition.auth.revision)
+  task_def_rev_resource = max(aws_ecs_task_definition.resource.revision, data.aws_ecs_task_definition.resource.revision)
 
   # ----------------------------------------------------------------------------------------------
   # CloudFront
@@ -62,4 +65,12 @@ data "aws_s3_bucket" "frontend" {
 data "aws_ecs_task_definition" "auth" {
   depends_on      = [aws_ecs_task_definition.auth]
   task_definition = aws_ecs_task_definition.auth.family
+}
+
+# ----------------------------------------------------------------------------------------------
+# ECS Task Definition
+# ----------------------------------------------------------------------------------------------
+data "aws_ecs_task_definition" "resource" {
+  depends_on      = [aws_ecs_task_definition.resource]
+  task_definition = aws_ecs_task_definition.resource.family
 }
