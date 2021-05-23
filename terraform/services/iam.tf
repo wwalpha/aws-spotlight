@@ -96,3 +96,31 @@ resource "aws_iam_role_policy_attachment" "batch_cloudwatch" {
   role       = aws_iam_role.batch_service.name
   policy_arn = "arn:aws:iam::aws:policy/CloudWatchFullAccess"
 }
+
+# ----------------------------------------------------------------------------------------------
+# AWS IAM Role  - Cognito Authenticated
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role" "cognito_authenticated" {
+  name = "${local.project_name_uc}_Cognito_AuthRole"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          Federated = "cognito-identity.amazonaws.com"
+        }
+        Action = "sts:AssumeRoleWithWebIdentity"
+        Condition = {
+          StringEquals = {
+            "cognito-identity.amazonaws.com:aud" = "${aws_cognito_identity_pool.this.id}"
+          }
+          "ForAnyValue:StringLike" = {
+            "cognito-identity.amazonaws.com:amr" = "authenticated"
+          }
+        }
+      },
+    ]
+  })
+}

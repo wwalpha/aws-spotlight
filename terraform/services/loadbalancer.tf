@@ -10,10 +10,10 @@ resource "aws_lb" "this" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# Application Load Balancer Target Group
+# Application Load Balancer Target Group - Resource
 # ----------------------------------------------------------------------------------------------
-resource "aws_lb_target_group" "this" {
-  name_prefix                        = "bckend"
+resource "aws_lb_target_group" "resource" {
+  name_prefix                        = "resour"
   port                               = 8080
   protocol                           = "HTTP"
   target_type                        = "ip"
@@ -26,7 +26,8 @@ resource "aws_lb_target_group" "this" {
     healthy_threshold   = 5
     interval            = 30
     matcher             = "200"
-    path                = "/"
+    path                = "/resources/health"
+    port                = "8080"
     protocol            = "HTTP"
     timeout             = 5
     unhealthy_threshold = 2
@@ -41,6 +42,9 @@ resource "aws_lb_target_group" "this" {
 # Application Load Balancer Target Group
 # ----------------------------------------------------------------------------------------------
 resource "aws_lb_listener" "this" {
+  depends_on = [
+    aws_lb_target_group.resource
+  ]
   load_balancer_arn = aws_lb.this.arn
   port              = "80"
   protocol          = "HTTP"
@@ -51,6 +55,6 @@ resource "aws_lb_listener" "this" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.this.arn
+    target_group_arn = aws_lb_target_group.resource.arn
   }
 }

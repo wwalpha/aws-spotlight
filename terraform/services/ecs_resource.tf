@@ -72,7 +72,7 @@ resource "aws_ecs_service" "resource" {
   load_balancer {
     container_name   = local.task_def_family_resource
     container_port   = 8080
-    target_group_arn = aws_lb_target_group.this.arn
+    target_group_arn = aws_lb_target_group.resource.arn
   }
 
   scheduling_strategy = "REPLICA"
