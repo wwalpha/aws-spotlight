@@ -93,3 +93,19 @@ data "aws_ecs_task_definition" "resource" {
   depends_on      = [aws_ecs_task_definition.resource]
   task_definition = aws_ecs_task_definition.resource.family
 }
+
+# ----------------------------------------------------------------------------------------------
+# SSM Parameter Store - Auth manager repository url
+# ----------------------------------------------------------------------------------------------
+data "aws_ssm_parameter" "auth_repo_url" {
+  depends_on = [aws_ssm_parameter.auth_repo_url]
+  id         = aws_ssm_parameter.auth_repo_url.id
+}
+
+# ----------------------------------------------------------------------------------------------
+# SSM Parameter Store - Resource manager repository url
+# ----------------------------------------------------------------------------------------------
+data "aws_ssm_parameter" "resource_repo_url" {
+  depends_on = [aws_ssm_parameter.resource_repo_url]
+  id         = aws_ssm_parameter.resource_repo_url.id
+}

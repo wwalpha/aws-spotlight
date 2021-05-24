@@ -1,12 +1,10 @@
 # ----------------------------------------------------------------------------------------------
-# SSM Parameter Store - Environment variables
+# SSM Parameter Store - Auth manager repository url
 # ----------------------------------------------------------------------------------------------
-resource "aws_ssm_parameter" "auth_envs" {
-  name = "/${local.project_name}/environment/auth_manager"
-  type = "String"
-  value = jsonencode({
-    ENV_VARS = "DUMMY"
-  })
+resource "aws_ssm_parameter" "auth_repo_url" {
+  name      = "/${local.project_name}/ecs_repository_url/auth_manager"
+  type      = "String"
+  value     = "${aws_ecr_repository.auth.repository_url}:latest"
   overwrite = true
 
   lifecycle {
@@ -17,14 +15,12 @@ resource "aws_ssm_parameter" "auth_envs" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# SSM Parameter Store - Environment variables
+# SSM Parameter Store - Resource manager repository url
 # ----------------------------------------------------------------------------------------------
-resource "aws_ssm_parameter" "resource_envs" {
-  name = "/${local.project_name}/environment/resource_manager"
-  type = "String"
-  value = jsonencode({
-    TABLE_RESOURCE = local.dynamodb_name_resource
-  })
+resource "aws_ssm_parameter" "resource_repo_url" {
+  name      = "/${local.project_name}/ecs_repository_url/resource_manager"
+  type      = "String"
+  value     = "${aws_ecr_repository.resource.repository_url}:latest"
   overwrite = true
 
   lifecycle {
@@ -33,4 +29,3 @@ resource "aws_ssm_parameter" "resource_envs" {
     ]
   }
 }
-

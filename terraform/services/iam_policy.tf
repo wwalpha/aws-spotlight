@@ -25,3 +25,31 @@ data "aws_iam_policy_document" "batch" {
     }
   }
 }
+
+# ----------------------------------------------------------------------------------------------
+# AWS ECS Task Role Policy
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy" "ecs_task_exec" {
+  name = "s3_policy"
+  role = aws_iam_role.ecs_task_exec.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "s3:GetObject",
+        ]
+        Effect   = "Allow"
+        Resource = "${data.aws_s3_bucket.environment.arn}/*"
+      },
+      {
+        Action = [
+          "s3:GetBucketLocation",
+        ]
+        Effect   = "Allow"
+        Resource = "${data.aws_s3_bucket.environment.arn}"
+      }
+    ]
+  })
+}

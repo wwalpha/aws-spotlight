@@ -39,7 +39,7 @@ resource "aws_ecs_task_definition" "auth" {
     {
       aws_region      = local.region
       container_name  = local.task_def_family_auth
-      container_image = "${aws_ecr_repository.auth.repository_url}:latest"
+      container_image = data.aws_ssm_parameter.auth_repo_url.value
       container_port  = 8080
       env_file_arn    = "${data.aws_s3_bucket.environment.arn}/${aws_s3_bucket_object.auth.key}"
       # app_mesh_node     = split(":", aws_appmesh_virtual_node.token.arn)[5]
