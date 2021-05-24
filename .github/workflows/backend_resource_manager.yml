@@ -13,6 +13,7 @@ env:
   ECS_SERVICE_NAME: resource_manager
   ECS_TAKS_DEFINITION: arms-resource
   ECS_TAKS_DEFINITION_FILE: task_definition.json
+  SSM_PARAMETER_NAME: /arms/ecs_repository_url
   WORKING_DIR: backend/src/resource-manager
 
 jobs:
@@ -95,3 +96,8 @@ jobs:
           service: ${{ env.ECS_SERVICE_NAME }}
           cluster: ${{ env.ECS_CLUSTER_NAME }}
           wait-for-service-stability: false
+
+      # Update Repository URL
+      - name: Update ecs repository url
+        run: |
+          aws ssm put-parameter --name $SSM_PARAMETER_NAME/$ECS_SERVICE_NAME --type "String" --value ${{ steps.build-image.outputs.image }} --overwrite
