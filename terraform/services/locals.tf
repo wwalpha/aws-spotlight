@@ -99,7 +99,7 @@ data "aws_ecs_task_definition" "resource" {
 # ----------------------------------------------------------------------------------------------
 data "aws_ssm_parameter" "auth_repo_url" {
   depends_on = [aws_ssm_parameter.auth_repo_url]
-  id         = aws_ssm_parameter.auth_repo_url.id
+  name         = aws_ssm_parameter.auth_repo_url.name
 }
 
 # ----------------------------------------------------------------------------------------------
@@ -107,5 +107,5 @@ data "aws_ssm_parameter" "auth_repo_url" {
 # ----------------------------------------------------------------------------------------------
 data "aws_ssm_parameter" "resource_repo_url" {
   depends_on = [aws_ssm_parameter.resource_repo_url]
-  id         = aws_ssm_parameter.resource_repo_url.id
+  name         = aws_ssm_parameter.resource_repo_url.name
 }
