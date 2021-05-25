@@ -1,3 +1,5 @@
+import { Tables } from '.';
+
 /** Domain State */
 export interface State {
   app: App;
@@ -8,7 +10,10 @@ export interface State {
 export interface App {
   open: boolean;
   title: string;
+  isLoading: boolean;
 }
 
 /** Resources State */
-export interface Resources {}
+export interface Resources {
+  datas: Record<string, Tables.Resource[]>;
+}

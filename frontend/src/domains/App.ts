@@ -4,6 +4,7 @@ export default class App {
   [immerable] = true;
 
   open: boolean = false;
+  isLoading: boolean = false;
   title: string = 'AWS RESOURCE MANAGEMENT SYSTEM';
 
   /** sidemenu show/hide */
@@ -16,6 +17,12 @@ export default class App {
   setTitle(title: string) {
     return produce(this, (draft) => {
       draft.title = title;
+    });
+  }
+
+  setLoading(isLoading: boolean) {
+    return produce(this, (draft) => {
+      draft.isLoading = isLoading;
     });
   }
 }

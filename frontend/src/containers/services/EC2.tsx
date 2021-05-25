@@ -1,4 +1,6 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
@@ -10,8 +12,11 @@ import Table from '@material-ui/core/Table';
 import TableRow from '@material-ui/core/TableRow';
 import TableBody from '@material-ui/core/TableBody';
 import Paper from '@material-ui/core/Paper';
-import { StyledTableCell } from '@comp';
 import TablePagination from '@material-ui/core/TablePagination';
+import { StyledTableCell } from '@comp';
+import { ResActions } from '@actions';
+import { Domains } from 'typings';
+import { Consts } from '@constants';
 
 const useStyles = makeStyles(({ spacing }: Theme) =>
   createStyles({
@@ -21,37 +26,33 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
   })
 );
 
-function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+const appState = (state: Domains.State) => state.app;
+const resState = (state: Domains.State) => state.resources;
 
 export const EC2 = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector(appState);
+  const { datas } = useSelector(resState);
+  const actions = bindActionCreators(ResActions, dispatch);
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const rows = datas[Consts.SERVICES.EC2] ? datas[Consts.SERVICES.EC2] : [];
+
+  // initialize
+  React.useEffect(() => {
+    if (!Object.keys(datas).includes(Consts.SERVICES.EC2)) {
+      handleSearch();
+      return;
+    }
+
+    setPage(0);
+  }, []);
+
+  const handleSearch = (userName?: string, instanceId?: string) => {
+    actions.getResources('ec2');
+  };
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -62,6 +63,7 @@ export const EC2 = () => {
     setPage(0);
   };
 
+  console.log('row', rows);
   return (
     <React.Fragment>
       <Box display="flex" padding="16px 8px">
@@ -69,7 +71,13 @@ export const EC2 = () => {
           <TextField className={classes.margin} label="Instance Id" />
           <TextField className={classes.margin} label="User Name" />
         </Box>
-        <Button variant="contained" color="primary" className={classes.margin}>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.margin}
+          onClick={() => {
+            handleSearch();
+          }}>
           Search
         </Button>
       </Box>
@@ -78,11 +86,10 @@ export const EC2 = () => {
         <Table className={classes.table} size="small">
           <TableHead>
             <TableRow>
-              <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-              <StyledTableCell align="right">Calories</StyledTableCell>
-              <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-              <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-              <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+              <StyledTableCell>User Name</StyledTableCell>
+              <StyledTableCell>Create Time</StyledTableCell>
+              <StyledTableCell>Instance Id</StyledTableCell>
+              <StyledTableCell>Region</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -90,12 +97,11 @@ export const EC2 = () => {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={`ec2${idx}`}>
                   <StyledTableCell component="th" scope="row">
-                    {row.name}
+                    {row.UserName}
                   </StyledTableCell>
-                  <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                  <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                  <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                  <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                  <StyledTableCell>{row.EventTime}</StyledTableCell>
+                  <StyledTableCell>{row.ResourceId}</StyledTableCell>
+                  <StyledTableCell>{row.AWSRegion}</StyledTableCell>
                 </TableRow>
               );
             })}

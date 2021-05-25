@@ -9,7 +9,7 @@ import List from '@material-ui/core/List';
 import MenuIcon from '@material-ui/icons/Menu';
 import Box from '@material-ui/core/Box';
 import { Domains } from 'typings';
-import { AppActions } from '@actions';
+import { AppActions, ResActions } from '@actions';
 import { ListItem } from '@comp';
 import EC2Icon from '../constants/svg/AmazonEC2.svg';
 import RDSIcon from '../constants/svg/AmazonRDS.svg';

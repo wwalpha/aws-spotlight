@@ -3,3 +3,5 @@ import * as Domains from './domains';
 export * from './types';
 
 export { Actions, Domains };
+
+export * from '../../backend/typings/index';
