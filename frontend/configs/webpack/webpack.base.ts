@@ -11,7 +11,7 @@ const configs: Configuration = {
   output: {
     filename: '[name].bundle.js',
     chunkFilename: '[name].chunk.js',
-    path: path.resolve(__dirname, '../../build'),
+    path: path.resolve(__dirname, '../../dist'),
     publicPath: '/',
   },
   resolve: {
