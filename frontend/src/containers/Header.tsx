@@ -1,7 +1,9 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
 import clsx from 'clsx';
+import Auth from '@aws-amplify/auth';
 import { createStyles, makeStyles, Theme, fade } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import AppBar from '@material-ui/core/AppBar';
@@ -71,8 +73,14 @@ const appState = (state: Domains.State) => state.app;
 export const Header = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const { title } = useSelector(appState);
   const actions = bindActionCreators(AppActions, dispatch);
+
+  const handleExit = async () => {
+    await Auth.signOut();
+    window.location.href = '/';
+  };
 
   return (
     <AppBar
@@ -97,7 +105,7 @@ export const Header = () => {
             inputProps={{ 'aria-label': 'search' }}
           />
         </div>
-        <IconButton color="inherit">
+        <IconButton color="inherit" onClick={handleExit}>
           <ExitToAppIcon fontSize="large" />
         </IconButton>
       </Toolbar>
