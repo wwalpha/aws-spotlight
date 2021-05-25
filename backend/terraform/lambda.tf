@@ -4,7 +4,7 @@
 resource "aws_lambda_function" "cloudtrail" {
   function_name = "${local.project_name}-cloudtrail"
   package_type  = "Image"
-  image_uri     = "${data.aws_ecr_repository.cloudtrail.repository_url}:latest"
+  image_uri     = data.aws_ssm_parameter.cloudtrail_repo_url.value
   memory_size   = 256
   role          = aws_iam_role.cloudtrail.arn
   timeout       = 300
@@ -48,7 +48,7 @@ resource "aws_lambda_event_source_mapping" "cloudtrail" {
 resource "aws_lambda_function" "unprocessed" {
   function_name = "${local.project_name}-unprocessed"
   package_type  = "Image"
-  image_uri     = "${data.aws_ecr_repository.unprocessed.repository_url}:latest"
+  image_uri     = data.aws_ssm_parameter.unprocessed_repo_url.value
   memory_size   = 256
   role          = aws_iam_role.unprocessed.arn
   timeout       = 300

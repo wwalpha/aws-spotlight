@@ -86,3 +86,19 @@ data "aws_ecr_repository" "cloudtrail" {
 data "aws_ecr_repository" "unprocessed" {
   name = local.ecr_repository_unprocessed
 }
+
+# ----------------------------------------------------------------------------------------------
+# SSM Parameter Store - CloudTrail repository url
+# ----------------------------------------------------------------------------------------------
+data "aws_ssm_parameter" "cloudtrail_repo_url" {
+  depends_on = [aws_ssm_parameter.cloudtrail_repo_url]
+  name       = aws_ssm_parameter.cloudtrail_repo_url.name
+}
+
+# ----------------------------------------------------------------------------------------------
+# SSM Parameter Store - Unprocessed repository url
+# ----------------------------------------------------------------------------------------------
+data "aws_ssm_parameter" "unprocessed_repo_url" {
+  depends_on = [aws_ssm_parameter.unprocessed_repo_url]
+  name       = aws_ssm_parameter.unprocessed_repo_url.name
+}
