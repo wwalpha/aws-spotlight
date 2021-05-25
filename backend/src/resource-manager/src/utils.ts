@@ -1,5 +1,11 @@
 import jwtDecode from 'jwt-decode';
 import { Token } from 'typings';
+import winston from 'winston';
+
+export const Logger = winston.createLogger({
+  level: 'info',
+  transports: [new winston.transports.Console()],
+});
 
 /**
  * decode bearer token

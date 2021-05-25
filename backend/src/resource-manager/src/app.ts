@@ -1,7 +1,7 @@
 import express from 'express';
 import { DynamodbHelper } from '@alphax/dynamodb';
 import { Resource, Tables } from 'typings';
-import { decodeToken } from './utils';
+import { decodeToken, Logger } from './utils';
 
 const helper = new DynamodbHelper();
 const TABLE_RESOURCE = process.env.TABLE_RESOURCE as string;
@@ -21,6 +21,9 @@ export const getResourceList = async (
   req: express.Request<Resource.GetResourceParameter, any, Resource.GetResourceRequest>,
   res: express.Response<Resource.GetResourceResponse>
 ) => {
+  // request
+  Logger.info(req);
+
   // parameters
   const params = req.params;
   // decode token
