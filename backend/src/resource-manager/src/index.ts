@@ -1,8 +1,8 @@
 import express from 'express';
 import AWS from 'aws-sdk';
 import { json, urlencoded } from 'body-parser';
-import winston from 'winston';
 import { getResourceList, healthCheck } from './app';
+import { Logger } from './utils';
 
 AWS.config.update({
   region: process.env.AWS_REGION,
@@ -27,8 +27,8 @@ app.get('/resources/:service', getResourceList);
 
 // Start the servers
 app.listen(8080, () => {
-  console.log('Resource manager service started on port 8080');
-  console.log(process.env);
+  Logger.info('Resource manager service started on port 8080');
+  Logger.info(process.env);
 });
 
 export default app;
