@@ -61,13 +61,13 @@ resource "aws_iam_role_policy_attachment" "ecs_task_xray" {
   policy_arn = "arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess"
 }
 
-# # ----------------------------------------------------------------------------------------------
-# # AWS ECS Task Role Policy - DynamoDB Full Access
-# # ----------------------------------------------------------------------------------------------
-# resource "aws_iam_role_policy_attachment" "ecs_task_dynamodb" {
-#   role       = aws_iam_role.ecs_task.name
-#   policy_arn = "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
-# }
+# ----------------------------------------------------------------------------------------------
+# AWS ECS Task Role Policy - DynamoDB Full Access
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy_attachment" "ecs_task_dynamodb" {
+  role       = aws_iam_role.ecs_task.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+}
 
 # ----------------------------------------------------------------------------------------------
 # AWS Role - AWS Batch
