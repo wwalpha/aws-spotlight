@@ -39,7 +39,7 @@ export const getResourceList = async (
       '#EventSource': 'EventSource',
     },
     ExpressionAttributeValues: {
-      ':UserName': token.username,
+      ':UserName': token['cognito:username'],
       ':EventSource': `${params.service}.amazonaws.com`,
     },
   });
