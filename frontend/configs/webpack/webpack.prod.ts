@@ -16,6 +16,7 @@ const prod: Configuration = {
       'AUTH_SIGN_IN_URL',
       'AUTH_SIGN_OUT_URL',
       'API_URL',
+      'AWS_DEFAULT_REGION',
     ]),
     new HtmlWebpackPlugin({
       title: 'production',

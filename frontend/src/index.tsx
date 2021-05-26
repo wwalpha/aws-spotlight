@@ -9,34 +9,34 @@ import store, { history } from './store';
 import theme from './Theme';
 import Authenticator from './Authenticator';
 import { App } from '@containers';
-import { Consts } from '@constants';
+import { Consts, Environments } from '@constants';
 
 Auth.configure({
   // REQUIRED only for Federated Authentication - Amazon Cognito Identity Pool ID
-  identityPoolId: process.env.IDENTITY_POOL_ID,
+  identityPoolId: Environments.IDENTITY_POOL_ID,
 
   // REQUIRED - Amazon Cognito Region
-  region: process.env.AWS_DEFAULT_REGION,
+  region: Environments.AWS_DEFAULT_REGION,
 
   // OPTIONAL - Amazon Cognito Federated Identity Pool Region
   // Required only if it's different from Amazon Cognito Region
-  identityPoolRegion: process.env.AWS_DEFAULT_REGION,
+  identityPoolRegion: Environments.AWS_DEFAULT_REGION,
 
   // OPTIONAL - Amazon Cognito User Pool ID
-  userPoolId: process.env.USER_POOL_ID,
+  userPoolId: Environments.USER_POOL_ID,
 
   // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
-  userPoolWebClientId: process.env.USER_POOL_WEB_CLIENT_ID,
+  userPoolWebClientId: Environments.USER_POOL_WEB_CLIENT_ID,
 
   // OPTIONAL - Enforce user authentication prior to accessing AWS resources or not
   mandatorySignIn: false,
 
   // OPTIONAL - Hosted UI configuration
   oauth: {
-    // domain: process.env.AUTH_DOMAIN,
+    // domain: Environments.AUTH_DOMAIN,
     scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
-    redirectSignIn: process.env.AUTH_SIGN_IN_URL,
-    redirectSignOut: process.env.AUTH_SIGN_OUT_URL,
+    redirectSignIn: Environments.AUTH_SIGN_IN_URL,
+    redirectSignOut: Environments.AUTH_SIGN_OUT_URL,
     responseType: 'code', // or 'token', note that REFRESH token will only be generated when the responseType is code
   },
 });
@@ -45,8 +45,8 @@ API.configure({
   endpoints: [
     {
       name: Consts.API_NAME,
-      endpoint: process.env.API_URL,
-      region: process.env.AWS_REGION,
+      endpoint: Environments.API_URL,
+      region: Environments.AWS_DEFAULT_REGION,
       custom_header: async () => {
         return { Authorization: (await Auth.currentSession()).getIdToken().getJwtToken() };
       },
