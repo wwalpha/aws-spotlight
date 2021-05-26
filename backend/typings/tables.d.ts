@@ -58,6 +58,7 @@ export interface Resource extends ResouceKey {
   AWSRegion: string;
   UserAgent: string;
   IdentityType: string;
+  Service: string;
 }
 
 /**

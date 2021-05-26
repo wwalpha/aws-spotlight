@@ -12,4 +12,5 @@ export const EC2_RunInstances = (record: CloudTrail.Record): Tables.Resource => 
   IdentityType: record.userIdentity.type,
   UserAgent: record.userAgent,
   EventId: record.eventID,
+  Service: 'EC2',
 });
