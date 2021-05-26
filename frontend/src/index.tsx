@@ -16,11 +16,11 @@ Auth.configure({
   identityPoolId: process.env.IDENTITY_POOL_ID,
 
   // REQUIRED - Amazon Cognito Region
-  region: process.env.AWS_REGION,
+  region: process.env.AWS_DEFAULT_REGION,
 
   // OPTIONAL - Amazon Cognito Federated Identity Pool Region
   // Required only if it's different from Amazon Cognito Region
-  identityPoolRegion: process.env.AWS_REGION,
+  identityPoolRegion: process.env.AWS_DEFAULT_REGION,
 
   // OPTIONAL - Amazon Cognito User Pool ID
   userPoolId: process.env.USER_POOL_ID,
