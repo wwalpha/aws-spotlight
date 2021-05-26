@@ -30,7 +30,9 @@ const configs: Configuration = {
         use: [
           {
             loader: 'babel-loader',
-            options: { plugins: ['react-refresh/babel'] },
+            options: {
+              plugins: [process.env.FAST_REFRESH && require.resolve('react-refresh/babel')].filter(Boolean),
+            },
           },
           {
             loader: 'ts-loader',
