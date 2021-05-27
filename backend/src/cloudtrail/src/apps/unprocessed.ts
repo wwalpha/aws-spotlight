@@ -1,6 +1,7 @@
 import { DynamodbHelper } from '@alphax/dynamodb';
 import { CloudTrail, Tables } from 'typings';
 import { getCreateResourceItem } from './utils/events';
+import { Logger } from './utils/utilities';
 
 const helper = new DynamodbHelper();
 
@@ -40,13 +41,13 @@ export const processIgnore = async (events: Tables.EventType[]) => {
   // filter ignore records
   const records = events.filter((item) => item.Ignore === true);
 
-  console.log('Ignore records size:', records.length);
+  Logger.info('Ignore records size:', records.length);
 
   // no records
   if (records.length === 0) return;
 
   const tasks = records.map(async (item) => {
-    console.log(`Ignore record process... EventName: ${item.EventName}, EventSource: ${item.EventSource}`);
+    Logger.debug(`Ignore record process... EventName: ${item.EventName}, EventSource: ${item.EventSource}`);
 
     // find keys
     const queryResult = await helper.query<Tables.Unprocessed>({
@@ -91,7 +92,7 @@ export const processCreate = async (events: Tables.EventType[]) => {
   // const records = events.filter((item) => item.Create === true && item.EventName === 'CreateDBCluster');
   const records = events.filter((item) => item.Create === true);
 
-  console.log('Create records size:', records.length, records);
+  Logger.info('Create records size:', records.length, records);
 
   // no records
   if (records.length === 0) return;
@@ -148,7 +149,7 @@ export const processDelete = async (events: Tables.EventType[]) => {
   // filter ignore records
   const records = events.filter((item) => item.Create === true);
 
-  console.log('Delete records size:', records.length);
+  Logger.info('Delete records size:', records.length);
 
   // no records
   if (records.length === 0) return;

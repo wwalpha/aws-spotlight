@@ -1,9 +1,16 @@
 import { SQSRecord } from 'aws-lambda';
 import { SQS } from 'aws-sdk';
 import { CloudTrail, EVENT_TYPE } from 'typings';
+import winston from 'winston';
 
 const sqsClient = new SQS();
 const SQS_URL = process.env.SQS_URL as string;
+
+export const Logger = winston.createLogger({
+  level: process.env.LOG_LEVEL,
+  format: winston.format.json(),
+  transports: [new winston.transports.Console()],
+});
 
 /**
  * Receive SQS Messages

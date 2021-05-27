@@ -31,6 +31,7 @@
   "dependencies": {
     "@alphax/dynamodb": "^1.1.1",
     "aws-sdk": "^2.907.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "winston": "^3.3.3"
   }
 }

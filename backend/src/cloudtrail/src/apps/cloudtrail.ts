@@ -4,7 +4,7 @@ import { defaultTo, isEqual, uniqWith } from 'lodash';
 import { DynamodbHelper } from '@alphax/dynamodb';
 import zlib from 'zlib';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
-import { deleteMessage, removeError, removeIgnore, removeReadOnly } from './utils/utilities';
+import { deleteMessage, removeError, removeIgnore, removeReadOnly, Logger } from './utils/utilities';
 import { getCreateResourceItem, getRemoveResourceItem } from './utils/events';
 
 const s3Client = new S3();
@@ -53,7 +53,7 @@ export const execute = async (message: SQSRecord) => {
   // get all records
   let records = await getRecords(message.body);
 
-  console.log(`All Records: ${records.length}`);
+  Logger.info(`All Records: ${records.length}`);
 
   // remove readonly records
   records = removeReadOnly(records);
@@ -62,7 +62,7 @@ export const execute = async (message: SQSRecord) => {
   // remove ignore records
   records = removeIgnore(records, EVENTS);
 
-  console.log(`Left Records: ${records.length}`);
+  Logger.info(`Left Records: ${records.length}`);
 
   // no records
   if (records.length === 0) {
@@ -72,17 +72,17 @@ export const execute = async (message: SQSRecord) => {
     return;
   }
 
-  console.log(`Process Records: ${records.length}`);
+  Logger.info(`Process Records: ${records.length}`);
 
   const newEventType = getNewEventTypeRecords(records);
   const unprocessed = getUnprocessedRecords(records);
   const createRows = getCreateRecords(records);
   const deleteRows = getDeleteRecords(records);
 
-  console.log(`New Event Type: ${newEventType.length}`);
-  console.log(`unprocessed: ${unprocessed.length}`);
-  console.log(`Create: ${createRows.length}`);
-  console.log(`Delete: ${deleteRows.length}`);
+  Logger.info(`New Event Type: ${newEventType.length}`);
+  Logger.info(`unprocessed: ${unprocessed.length}`);
+  Logger.info(`Create: ${createRows.length}`);
+  Logger.info(`Delete: ${deleteRows.length}`);
 
   await execNewEventType(newEventType);
   await execUnprocessed(unprocessed);
@@ -180,7 +180,7 @@ export const getRecords = async (message: string): Promise<CloudTrail.Record[]> 
 };
 
 export const execNewEventType = async (records: CloudTrail.Record[]) => {
-  console.log('Start execute new event type...');
+  Logger.debug('Start execute new event type...');
 
   const eventNames = records.map((item) => ({
     EventName: item.eventName,
@@ -219,7 +219,7 @@ export const execNewEventType = async (records: CloudTrail.Record[]) => {
  * @param records
  */
 export const execUnprocessed = async (records: CloudTrail.Record[]) => {
-  console.log('Start execute unprocessed...');
+  Logger.debug('Start execute unprocessed...');
 
   const unprocessedRecords = records.map(
     (item) =>
@@ -240,7 +240,7 @@ export const execUnprocessed = async (records: CloudTrail.Record[]) => {
  * @param records
  */
 export const execCreateRecords = async (records: CloudTrail.Record[]) => {
-  console.log('Start execute create record...');
+  Logger.debug('Start execute create record...');
 
   const items = records
     .map((item) => getCreateResourceItem(item))
@@ -256,7 +256,7 @@ export const execCreateRecords = async (records: CloudTrail.Record[]) => {
  * @param records
  */
 export const execDeleteRecords = async (records: CloudTrail.Record[]) => {
-  console.log('Start execute delete record...');
+  Logger.debug('Start execute delete record...');
 
   const items = records
     .map((item) => getRemoveResourceItem(item))
