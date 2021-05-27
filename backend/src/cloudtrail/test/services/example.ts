@@ -12,6 +12,7 @@ import {
   ImportRestApi_H,
   ImportRestApi_R,
 } from '@test/expect/apigateway';
+import * as fs from 'fs';
 
 AWS.config.update({
   region: process.env.AWS_REGION,
