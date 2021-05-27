@@ -21,7 +21,7 @@ AWS.config.update({
   dynamodb: { endpoint: process.env.AWS_ENDPOINT },
 });
 
-describe.skip('ec2.amazonaws.com', () => {
+describe('rds.amazonaws.com', () => {
   test('RDS_CreateDBCluster', async () => {
     const event = await sendMessage(RDS_CreateDBCluster);
 

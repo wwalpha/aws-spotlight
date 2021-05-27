@@ -4,10 +4,14 @@ import {
   APIGATEWAY_ImportRestApi,
   RDS_CreateDBCluster,
   RDS_CreateDBInstance,
+  ELASTICLOADBALANCING_CreateLoadBalancer,
+  ELASTICLOADBALANCING_CreateTargetGroup,
 } from '@src/process/create';
 import {
   APIGATEWAY_DeleteRestApi,
   EC2_TerminateInstances,
+  ELASTICLOADBALANCING_DeleteLoadBalancer,
+  ELASTICLOADBALANCING_DeleteTargetGroup,
   RDS_DeleteDBCluster,
   RDS_DeleteDBInstance,
 } from '@src/process/delete';
@@ -28,6 +32,10 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return RDS_CreateDBCluster(record);
     case 'RDS_CreateDBInstance':
       return RDS_CreateDBInstance(record);
+    case 'ELASTICLOADBALANCING_CreateLoadBalancer':
+      return ELASTICLOADBALANCING_CreateLoadBalancer(record);
+    case 'ELASTICLOADBALANCING_CreateTargetGroup':
+      return ELASTICLOADBALANCING_CreateTargetGroup(record);
 
     default:
       return undefined;
@@ -47,6 +55,10 @@ export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.Resouce
       return RDS_DeleteDBCluster(record);
     case 'RDS_DeleteDBInstance':
       return RDS_DeleteDBInstance(record);
+    case 'ELASTICLOADBALANCING_DeleteLoadBalancer':
+      return ELASTICLOADBALANCING_DeleteLoadBalancer(record);
+    case 'ELASTICLOADBALANCING_DeleteTargetGroup':
+      return ELASTICLOADBALANCING_DeleteTargetGroup(record);
 
     default:
       return undefined;

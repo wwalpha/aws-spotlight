@@ -11,6 +11,11 @@
   { "EventName": "DeleteDBCluster", "EventSource": "rds.amazonaws.com", "Delete": true },
   { "EventName": "DeleteDBInstance", "EventSource": "rds.amazonaws.com", "Delete": true },
 
+  { "EventName": "CreateTargetGroup", "EventSource": "elasticloadbalancing.amazonaws.com", "Create": true },
+  { "EventName": "CreateLoadBalancer", "EventSource": "elasticloadbalancing.amazonaws.com", "Create": true },
+  { "EventName": "DeleteLoadBalancer", "EventSource": "elasticloadbalancing.amazonaws.com", "Delete": true },
+  { "EventName": "DeleteTargetGroup", "EventSource": "elasticloadbalancing.amazonaws.com", "Delete": true },
+
   { "EventName": "CreateBackend", "EventSource": "amplifybackend.amazonaws.com", "Ignore": true },
   { "EventName": "CreateBackendConfig", "EventSource": "amplifybackend.amazonaws.com", "Ignore": true },
   { "EventName": "GetBackend", "EventSource": "amplifybackend.amazonaws.com", "Ignore": true },
@@ -104,25 +109,7 @@
   { "EventName": "DeleteMountTarget", "EventSource": "elasticfilesystem.amazonaws.com", "Ignore": true },
   { "EventName": "PutBackupPolicy", "EventSource": "elasticfilesystem.amazonaws.com", "Ignore": true },
   { "EventName": "PutLifecycleConfiguration", "EventSource": "elasticfilesystem.amazonaws.com", "Ignore": true },
-  { "EventName": "CreateListener", "EventSource": "elasticloadbalancing.amazonaws.com", "Ignore": true },
-  { "EventName": "CreateLoadBalancerListeners", "EventSource": "elasticloadbalancing.amazonaws.com", "Ignore": true },
-  { "EventName": "CreateRule", "EventSource": "elasticloadbalancing.amazonaws.com", "Ignore": true },
-  { "EventName": "CreateTargetGroup", "EventSource": "elasticloadbalancing.amazonaws.com", "Ignore": true },
-  { "EventName": "DeleteListener", "EventSource": "elasticloadbalancing.amazonaws.com", "Ignore": true },
-  { "EventName": "DeleteRule", "EventSource": "elasticloadbalancing.amazonaws.com", "Ignore": true },
-  { "EventName": "DeleteTargetGroup", "EventSource": "elasticloadbalancing.amazonaws.com", "Ignore": true },
-  { "EventName": "DeregisterTargets", "EventSource": "elasticloadbalancing.amazonaws.com", "Ignore": true },
-  {
-    "EventName": "EnableAvailabilityZonesForLoadBalancer",
-    "EventSource": "elasticloadbalancing.amazonaws.com",
-    "Ignore": true
-  },
-  { "EventName": "ModifyListener", "EventSource": "elasticloadbalancing.amazonaws.com", "Ignore": true },
-  { "EventName": "ModifyLoadBalancerAttributes", "EventSource": "elasticloadbalancing.amazonaws.com", "Ignore": true },
-  { "EventName": "ModifyTargetGroup", "EventSource": "elasticloadbalancing.amazonaws.com", "Ignore": true },
-  { "EventName": "ModifyTargetGroupAttributes", "EventSource": "elasticloadbalancing.amazonaws.com", "Ignore": true },
-  { "EventName": "RegisterTargets", "EventSource": "elasticloadbalancing.amazonaws.com", "Ignore": true },
-  { "EventName": "SetSecurityGroups", "EventSource": "elasticloadbalancing.amazonaws.com", "Ignore": true },
+
   { "EventName": "PutRule", "EventSource": "events.amazonaws.com", "Ignore": true },
   { "EventName": "PutTargets", "EventSource": "events.amazonaws.com", "Ignore": true },
   { "EventName": "RemoveTargets", "EventSource": "events.amazonaws.com", "Ignore": true },

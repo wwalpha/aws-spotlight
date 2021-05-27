@@ -1,4 +1,6 @@
-export { EC2_TerminateInstances } from './EC2_TerminateInstances';
-export { APIGATEWAY_DeleteRestApi } from './APIGATEWAY_DeleteRestApi';
-export { RDS_DeleteDBCluster } from './RDS_DeleteDBCluster';
-export { RDS_DeleteDBInstance } from './RDS_DeleteDBInstance';
+export * from './EC2_TerminateInstances';
+export * from './APIGATEWAY_DeleteRestApi';
+export * from './RDS_DeleteDBCluster';
+export * from './RDS_DeleteDBInstance';
+export * from './ELASTICLOADBALANCING_DeleteLoadBalancer';
+export * from './ELASTICLOADBALANCING_DeleteTargetGroup';

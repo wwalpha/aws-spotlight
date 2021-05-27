@@ -23,8 +23,6 @@ const helper = new DynamodbHelper({ options: { endpoint: process.env.AWS_ENDPOIN
 export const sendMessage = async (body: Record<string, any>): Promise<SQSEvent> => {
   const key = `${getRandom()}.json.gz`;
 
-  console.log(key);
-
   await s3Client
     .putObject({
       Bucket: S3_BUCKET,

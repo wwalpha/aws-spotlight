@@ -20,7 +20,7 @@ AWS.config.update({
   dynamodb: { endpoint: process.env.AWS_ENDPOINT },
 });
 
-describe.skip('apigateway.amazonaws.com', () => {
+describe('apigateway.amazonaws.com', () => {
   test('CreateRestApi', async () => {
     const event = await sendMessage(APIGATEWAY_CreateRestApi);
 
