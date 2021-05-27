@@ -7,3 +7,7 @@ body {
   --amplify-primary-tint: #8b56a7;
   --amplify-primary-shade: #4d1e65;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
