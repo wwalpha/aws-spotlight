@@ -6,9 +6,11 @@ import {
   RDS_CreateDBInstance,
   ELASTICLOADBALANCING_CreateLoadBalancer,
   ELASTICLOADBALANCING_CreateTargetGroup,
+  DYNAMODB_CreateTable,
 } from '@src/process/create';
 import {
   APIGATEWAY_DeleteRestApi,
+  DYNAMODB_DeleteTable,
   EC2_TerminateInstances,
   ELASTICLOADBALANCING_DeleteLoadBalancer,
   ELASTICLOADBALANCING_DeleteTargetGroup,
@@ -36,6 +38,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return ELASTICLOADBALANCING_CreateLoadBalancer(record);
     case 'ELASTICLOADBALANCING_CreateTargetGroup':
       return ELASTICLOADBALANCING_CreateTargetGroup(record);
+    case 'DYNAMODB_CreateTable':
+      return DYNAMODB_CreateTable(record);
 
     default:
       return undefined;
@@ -59,6 +63,8 @@ export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.Resouce
       return ELASTICLOADBALANCING_DeleteLoadBalancer(record);
     case 'ELASTICLOADBALANCING_DeleteTargetGroup':
       return ELASTICLOADBALANCING_DeleteTargetGroup(record);
+    case 'DYNAMODB_DeleteTable':
+      return DYNAMODB_DeleteTable(record);
 
     default:
       return undefined;

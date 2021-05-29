@@ -277,7 +277,7 @@ const registHistory = async (records: CloudTrail.Record[]): Promise<void> => {
     EventSource: item.eventSource,
     AWSRegion: item.awsRegion,
     EventTime: item.eventTime,
-    UserName: defaultTo(item.userIdentity.userName, item.userIdentity.sessionContext.sessionIssuer.userName),
+    UserName: defaultTo(item.userIdentity?.userName, item.userIdentity.sessionContext?.sessionIssuer?.userName),
     Origin: JSON.stringify(item),
   }));
 

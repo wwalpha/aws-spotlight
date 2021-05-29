@@ -48,7 +48,7 @@
         { "attributeName": "JobTitle", "attributeType": "S" },
         { "attributeName": "MemberName", "attributeType": "S" }
       ],
-      "tableName": "RekogFacesEngagementMeter",
+      "tableName": "AutoNotification_AlarmConfigs",
       "keySchema": [
         { "attributeName": "CollectionId", "keyType": "HASH" },
         { "attributeName": "ExternalImageId", "keyType": "RANGE" }
