@@ -16,6 +16,9 @@
   { "EventName": "DeleteLoadBalancer", "EventSource": "elasticloadbalancing.amazonaws.com", "Delete": true },
   { "EventName": "DeleteTargetGroup", "EventSource": "elasticloadbalancing.amazonaws.com", "Delete": true },
 
+  { "EventName": "CreateTable", "EventSource": "dynamodb.amazonaws.com", "Create": true },
+  { "EventName": "DeleteTable", "EventSource": "dynamodb.amazonaws.com", "Delete": true },
+
   { "EventName": "CreateBackend", "EventSource": "amplifybackend.amazonaws.com", "Ignore": true },
   { "EventName": "CreateBackendConfig", "EventSource": "amplifybackend.amazonaws.com", "Ignore": true },
   { "EventName": "GetBackend", "EventSource": "amplifybackend.amazonaws.com", "Ignore": true },
@@ -85,10 +88,7 @@
   { "EventName": "UpdateResourceCollection", "EventSource": "devops-guru.amazonaws.com", "Ignore": true },
   { "EventName": "AddRegion", "EventSource": "ds.amazonaws.com", "Ignore": true },
   { "EventName": "ResetUserPassword", "EventSource": "ds.amazonaws.com", "Ignore": true },
-  { "EventName": "DescribeKinesisStreamingDestination", "EventSource": "dynamodb.amazonaws.com", "Ignore": true },
-  { "EventName": "ListContributorInsights", "EventSource": "dynamodb.amazonaws.com", "Ignore": true },
-  { "EventName": "TagResource", "EventSource": "dynamodb.amazonaws.com", "Ignore": true },
-  { "EventName": "UpdateTable", "EventSource": "dynamodb.amazonaws.com", "Ignore": true },
+
   { "EventName": "AcceptVpcPeeringConnection", "EventSource": "ec2.amazonaws.com", "Ignore": true },
   { "EventName": "AllocateAddress", "EventSource": "ec2.amazonaws.com", "Ignore": true },
   { "EventName": "AssociateAddress", "EventSource": "ec2.amazonaws.com", "Ignore": true },
