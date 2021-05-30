@@ -19,7 +19,7 @@
   "awsRegion": "ap-northeast-1",
   "sourceIPAddress": "165.225.111.58",
   "userAgent": "console.ec2.amazonaws.com",
-  "requestParameters": { "snapshotId": "snap-07ee9339e684b4179", "force": false },
+  "requestParameters": { "snapshotId": "snap-0ea8b3632c0ff21d6", "force": false },
   "responseElements": { "requestId": "7a7907b4-6109-4629-af2f-4f18c5e093e8", "_return": true },
   "requestID": "7a7907b4-6109-4629-af2f-4f18c5e093e8",
   "eventID": "fdd36f8d-946c-4731-93f1-c4918d13580d",

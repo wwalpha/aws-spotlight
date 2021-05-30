@@ -1,24 +1,5 @@
-import {
-  EC2_RunInstances,
-  EC2_CreateImage,
-  APIGATEWAY_CreateRestApi,
-  APIGATEWAY_ImportRestApi,
-  RDS_CreateDBCluster,
-  RDS_CreateDBInstance,
-  ELASTICLOADBALANCING_CreateLoadBalancer,
-  ELASTICLOADBALANCING_CreateTargetGroup,
-  DYNAMODB_CreateTable,
-} from '@src/process/create';
-import {
-  APIGATEWAY_DeleteRestApi,
-  DYNAMODB_DeleteTable,
-  EC2_TerminateInstances,
-  EC2_DeregisterImage,
-  ELASTICLOADBALANCING_DeleteLoadBalancer,
-  ELASTICLOADBALANCING_DeleteTargetGroup,
-  RDS_DeleteDBCluster,
-  RDS_DeleteDBInstance,
-} from '@src/process/delete';
+import * as CreateEvent from '@src/process/create';
+import * as DeleteEvent from '@src/process/delete';
 import { CloudTrail, Tables } from 'typings';
 
 export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resource | undefined => {
@@ -26,25 +7,32 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
 
   switch (key) {
-    case 'EC2_RunInstances':
-      return EC2_RunInstances(record);
-    case 'EC2_CreateImage':
-      return EC2_CreateImage(record);
-
     case 'APIGATEWAY_CreateRestApi':
-      return APIGATEWAY_CreateRestApi(record);
+      return CreateEvent.APIGATEWAY_CreateRestApi(record);
     case 'APIGATEWAY_ImportRestApi':
-      return APIGATEWAY_ImportRestApi(record);
-    case 'RDS_CreateDBCluster':
-      return RDS_CreateDBCluster(record);
-    case 'RDS_CreateDBInstance':
-      return RDS_CreateDBInstance(record);
-    case 'ELASTICLOADBALANCING_CreateLoadBalancer':
-      return ELASTICLOADBALANCING_CreateLoadBalancer(record);
-    case 'ELASTICLOADBALANCING_CreateTargetGroup':
-      return ELASTICLOADBALANCING_CreateTargetGroup(record);
+      return CreateEvent.APIGATEWAY_ImportRestApi(record);
+
+    case 'EC2_RunInstances':
+      return CreateEvent.EC2_RunInstances(record);
+    case 'EC2_CreateImage':
+      return CreateEvent.EC2_CreateImage(record);
+    case 'EC2_CreateSnapshot':
+      return CreateEvent.EC2_CreateSnapshot(record);
+    case 'EC2_CreateSnapshots':
+      return CreateEvent.EC2_CreateSnapshots(record);
+
     case 'DYNAMODB_CreateTable':
-      return DYNAMODB_CreateTable(record);
+      return CreateEvent.DYNAMODB_CreateTable(record);
+
+    case 'ELASTICLOADBALANCING_CreateLoadBalancer':
+      return CreateEvent.ELASTICLOADBALANCING_CreateLoadBalancer(record);
+    case 'ELASTICLOADBALANCING_CreateTargetGroup':
+      return CreateEvent.ELASTICLOADBALANCING_CreateTargetGroup(record);
+
+    case 'RDS_CreateDBCluster':
+      return CreateEvent.RDS_CreateDBCluster(record);
+    case 'RDS_CreateDBInstance':
+      return CreateEvent.RDS_CreateDBInstance(record);
 
     default:
       return undefined;
@@ -57,25 +45,27 @@ export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.Resouce
 
   switch (key) {
     case 'APIGATEWAY_DeleteRestApi':
-      return APIGATEWAY_DeleteRestApi(record);
+      return DeleteEvent.APIGATEWAY_DeleteRestApi(record);
 
     case 'DYNAMODB_DeleteTable':
-      return DYNAMODB_DeleteTable(record);
+      return DeleteEvent.DYNAMODB_DeleteTable(record);
 
     case 'EC2_TerminateInstances':
-      return EC2_TerminateInstances(record);
+      return DeleteEvent.EC2_TerminateInstances(record);
     case 'EC2_DeregisterImage':
-      return EC2_DeregisterImage(record);
+      return DeleteEvent.EC2_DeregisterImage(record);
+    case 'EC2_DeleteSnapshot':
+      return DeleteEvent.EC2_DeleteSnapshot(record);
 
     case 'ELASTICLOADBALANCING_DeleteLoadBalancer':
-      return ELASTICLOADBALANCING_DeleteLoadBalancer(record);
+      return DeleteEvent.ELASTICLOADBALANCING_DeleteLoadBalancer(record);
     case 'ELASTICLOADBALANCING_DeleteTargetGroup':
-      return ELASTICLOADBALANCING_DeleteTargetGroup(record);
+      return DeleteEvent.ELASTICLOADBALANCING_DeleteTargetGroup(record);
 
     case 'RDS_DeleteDBCluster':
-      return RDS_DeleteDBCluster(record);
+      return DeleteEvent.RDS_DeleteDBCluster(record);
     case 'RDS_DeleteDBInstance':
-      return RDS_DeleteDBInstance(record);
+      return DeleteEvent.RDS_DeleteDBInstance(record);
 
     default:
       return undefined;

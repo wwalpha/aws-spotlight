@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { CloudTrail, Tables } from 'typings';
 
-const start = () => {
+export const start = () => {
   const createPath = '../datas/create';
   const deletePath = '../datas/delete';
   const ignorePath = '../datas/ignore';
@@ -41,7 +41,5 @@ const start = () => {
     };
   });
 
-  fs.writeFileSync('./events_all.json', JSON.stringify([...creates, ...deletes, ...ignores]));
+  fs.writeFileSync('./test/configs/events_all.json', JSON.stringify([...creates, ...deletes, ...ignores]));
 };
-
-start();

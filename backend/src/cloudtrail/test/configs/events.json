@@ -3,6 +3,9 @@
   { "EventName": "TerminateInstances", "EventSource": "ec2.amazonaws.com", "Delete": true },
   { "EventName": "CreateImage", "EventSource": "ec2.amazonaws.com", "Create": true },
   { "EventName": "DeregisterImage", "EventSource": "ec2.amazonaws.com", "Delete": true },
+  { "EventName": "CreateSnapshot", "EventSource": "ec2.amazonaws.com", "Create": true },
+  { "EventName": "CreateSnapshots", "EventSource": "ec2.amazonaws.com", "Create": true },
+  { "EventName": "DeleteSnapshot", "EventSource": "ec2.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateRestApi", "EventSource": "apigateway.amazonaws.com", "Create": true },
   { "EventName": "ImportRestApi", "EventSource": "apigateway.amazonaws.com", "Create": true },

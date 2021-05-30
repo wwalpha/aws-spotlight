@@ -1,8 +1,12 @@
-import RunInstances_H from './RunInstances_H.json';
-import RunInstances_R from './RunInstances_R.json';
-import TerminateInstances_H from './TerminateInstances_H.json';
-import CreateImage_H from './CreateImage_H.json';
-import CreateImage_R from './CreateImage_R.json';
-import DeregisterImage_H from './DeregisterImage_H.json';
+export { default as RunInstances_H } from './RunInstances_H.json';
+export { default as RunInstances_R } from './RunInstances_R.json';
+export { default as TerminateInstances_H } from './TerminateInstances_H.json';
+export { default as CreateImage_H } from './CreateImage_H.json';
+export { default as CreateImage_R } from './CreateImage_R.json';
+export { default as DeregisterImage_H } from './DeregisterImage_H.json';
 
-export { RunInstances_H, RunInstances_R, TerminateInstances_H, CreateImage_H, CreateImage_R, DeregisterImage_H };
+export { default as CreateSnapshot_R } from './CreateSnapshot_R.json';
+export { default as CreateSnapshot_H } from './CreateSnapshot_H.json';
+export { default as CreateSnapshots_R } from './CreateSnapshots_R.json';
+export { default as CreateSnapshots_H } from './CreateSnapshots_H.json';
+export { default as DeleteSnapshot_H } from './DeleteSnapshot_H.json';

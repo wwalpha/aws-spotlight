@@ -4,8 +4,13 @@ import EC2_RunInstances from '../datas/create/EC2_RunInstances.json';
 import EC2_TerminateInstances from '../datas/delete/EC2_TerminateInstances.json';
 import EC2_CreateImage from '../datas/create/EC2_CreateImage.json';
 import EC2_DeregisterImage from '../datas/delete/EC2_DeregisterImage.json';
+import EC2_CreateSnapshot from '../datas/create/EC2_CreateSnapshot.json';
+import EC2_CreateSnapshots from '../datas/create/EC2_CreateSnapshots.json';
+import EC2_DeleteSnapshot from '../datas/delete/EC2_DeleteSnapshot.json';
+
 import * as EC2 from '@test/expect/ec2';
 import { cloudtrail } from '@src/index';
+import * as fs from 'fs';
 
 AWS.config.update({
   region: process.env.AWS_REGION,
@@ -71,5 +76,49 @@ describe('ec2.amazonaws.com', () => {
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeregisterImage_H);
+  });
+
+  test('EC2_CreateSnapshot', async () => {
+    const event = await sendMessage(EC2_CreateSnapshot);
+
+    await cloudtrail(event);
+
+    const resource = await getResource({ EventSource: 'ec2.amazonaws.com', ResourceId: 'snap-04233f8a0017f5a77' });
+    const history = await getHistory({ EventId: '2fa6c467-0897-46c4-b9ff-7be10f73bb5c' });
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.CreateSnapshot_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.CreateSnapshot_H);
+  });
+
+  test('EC2_CreateSnapshots', async () => {
+    const event = await sendMessage(EC2_CreateSnapshots);
+
+    await cloudtrail(event);
+
+    const resource = await getResource({ EventSource: 'ec2.amazonaws.com', ResourceId: 'snap-0ea8b3632c0ff21d6' });
+    const history = await getHistory({ EventId: '874f5a46-560b-4e77-81b7-441837c3399c' });
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.CreateSnapshots_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.CreateSnapshots_H);
+  });
+
+  test('EC2_DeleteSnapshot', async () => {
+    const event = await sendMessage(EC2_DeleteSnapshot);
+
+    await cloudtrail(event);
+
+    const resource = await getResource({ EventSource: 'ec2.amazonaws.com', ResourceId: 'snap-0ea8b3632c0ff21d6' });
+    const history = await getHistory({ EventId: 'fdd36f8d-946c-4731-93f1-c4918d13580d' });
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.DeleteSnapshot_H);
   });
 });

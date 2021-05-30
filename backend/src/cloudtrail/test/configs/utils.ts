@@ -21,7 +21,7 @@ const s3Client = new S3();
 const helper = new DynamodbHelper({ options: { endpoint: process.env.AWS_ENDPOINT } });
 
 export const sendMessage = async (body: Record<string, any>): Promise<SQSEvent> => {
-  const key = `${getRandom()}.json.gz`;
+  const key = `test/${getRandom()}.json.gz`;
 
   await s3Client
     .putObject({

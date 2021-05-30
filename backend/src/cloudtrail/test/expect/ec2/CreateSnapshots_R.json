@@ -1,0 +1,1 @@
+{"IdentityType":"IAMUser","EventSource":"ec2.amazonaws.com","UserName":"demo-user08","ResourceId":"snap-0ea8b3632c0ff21d6","ResourceName":"vol-02194841d3f221c03","EventTime":"2021-04-28T05:01:46Z","UserAgent":"console.ec2.amazonaws.com","AWSRegion":"ap-northeast-1","EventId":"874f5a46-560b-4e77-81b7-441837c3399c","Service":"Snapshot","EventName":"CreateSnapshots"}
