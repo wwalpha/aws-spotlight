@@ -77,16 +77,16 @@ resource "aws_ecs_service" "resource" {
 
   scheduling_strategy = "REPLICA"
 
-  # service_registries {
-  #   registry_arn   = aws_service_discovery_service.this.arn
-  #   container_port = 0
-  #   port           = 0
-  # }
+  service_registries {
+    registry_arn   = aws_service_discovery_service.resource.arn
+    container_port = 0
+    port           = 0
+  }
 
-  # provisioner "local-exec" {
-  #   when    = destroy
-  #   command = "sh ${path.module}/scripts/servicediscovery-drain.sh ${split("/", self.service_registries[0].registry_arn)[1]}"
-  # }
+  provisioner "local-exec" {
+    when    = destroy
+    command = "sh ${path.module}/scripts/servicediscovery-drain.sh ${split("/", self.service_registries[0].registry_arn)[1]}"
+  }
 
   lifecycle {
     ignore_changes = [
