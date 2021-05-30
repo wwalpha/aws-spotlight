@@ -5,6 +5,10 @@ on:
     paths:
       - frontend/**
       - .github/workflows/frontend_dev.yml
+  release:
+    types:
+      - prereleased
+      - created
   workflow_dispatch:
 
 env:
@@ -15,7 +19,7 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     environment:
-      name: dev
+      name: "${{ env.GITHUB_EVENT_NAME == 'push' && 'env' || 'prod' }}"
     env:
       FRONTEND_BUCKET: ${{ secrets.FRONTEND_BUCKET }}
       IDENTITY_POOL_ID: ${{ secrets.IDENTITY_POOL_ID }}
