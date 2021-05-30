@@ -81,3 +81,10 @@ output "ecr_repository_cloudtrail" {
 output "ecr_repository_unprocessed" {
   value = aws_ecr_repository.unprocessed.name
 }
+
+# ----------------------------------------------------------------------------------------------
+# CloudMap - Namespace
+# ----------------------------------------------------------------------------------------------
+output "cloudmap_namespace" {
+  value = aws_service_discovery_private_dns_namespace.this.name
+}
