@@ -6,6 +6,7 @@ import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
 const configs: Configuration = {
+  mode: process.env.NODE_ENV ? 'production' : 'development',
   target: 'web',
   entry: ['./src/index.tsx'],
   output: {
@@ -31,7 +32,7 @@ const configs: Configuration = {
           {
             loader: 'babel-loader',
             options: {
-              plugins: [process.env.FAST_REFRESH && require.resolve('react-refresh/babel')].filter(Boolean),
+              plugins: [!process.env.NODE_ENV && require.resolve('react-refresh/babel')].filter(Boolean),
             },
           },
           {

@@ -1,16 +1,13 @@
-import { createHashHistory } from 'history';
-import dev from './dev';
-import prod from './prod';
-
-export const history = createHashHistory();
+import dev, { history as devHistory } from './dev';
+import prod, { history as prodHistory } from './prod';
 
 const store = () => {
-  return dev(history);
-  // if (process.env.ENVIRONMENT) {
-  //   return dev;
-  // }
-
-  // return prod;
+  if (process.env.NODE_ENV !== 'production') {
+    return dev;
+  }
+  return prod;
 };
 
-export default store();
+export default store;
+
+export const history = process.env.NODE_ENV !== 'production' ? devHistory : prodHistory;

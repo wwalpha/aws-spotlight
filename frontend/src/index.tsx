@@ -55,7 +55,7 @@ API.configure({
 });
 
 const provider = (
-  <Provider store={store}>
+  <Provider store={store()}>
     <MuiThemeProvider theme={theme}>
       <ConnectedRouter history={history}>
         {/* <App /> */}

@@ -1,5 +1,5 @@
 import { immerable, produce } from 'immer';
-import { Resource, Tables } from 'typings';
+import { Actions, Tables } from 'typings';
 
 export default class Resources {
   [immerable] = true;
@@ -7,13 +7,9 @@ export default class Resources {
   datas: Record<string, Tables.Resource[]> = {};
 
   /** save resources */
-  setResources({ items }: Resource.GetResourceResponse) {
+  setResources({ eventSource, response }: Actions.GetResourcesPayload) {
     return produce(this, (draft) => {
-      if (items.length > 0) {
-        const source = items[0].EventSource;
-
-        draft.datas[source] = items;
-      }
+      draft.datas[eventSource] = response.items;
     });
   }
 }

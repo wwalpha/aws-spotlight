@@ -18,7 +18,10 @@ export interface TitlePayload {
 export type SetTitleAction = ReduxAction1<title, TitlePayload>;
 
 /** sidemenu payload */
-export type GetResourcesPayload = Resource.GetResourceResponse;
+export type GetResourcesPayload = {
+  eventSource: string;
+  response: Resource.GetResourceResponse;
+};
 
 /** sidemenu action */
 export type GetResourcesAction = ReduxAction1<string, GetResourcesPayload>;

@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 import webpack from 'webpack';
 import express from 'express';
 import dev from 'webpack-dev-middleware';

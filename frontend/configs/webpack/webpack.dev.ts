@@ -8,7 +8,6 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
 
 const dev: Configuration = {
-  mode: 'development',
   devtool: 'inline-source-map',
   entry: ['webpack-hot-middleware/client'],
   plugins: [

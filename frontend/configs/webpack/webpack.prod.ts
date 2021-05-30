@@ -6,7 +6,6 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as path from 'path';
 
 const prod: Configuration = {
-  mode: 'production',
   plugins: [
     new EnvironmentPlugin([
       'IDENTITY_POOL_ID',

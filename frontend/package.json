@@ -5,7 +5,7 @@
   "repository": "https://github.com/wwalpha/project-template-react-redux.git",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node configs/server.ts",
+    "start": "ts-node -r dotenv/config configs/server.ts dotenv_config_path=.env.dev",
     "build": "webpack --config configs/webpack/webpack.prod.ts"
   },
   "devDependencies": {

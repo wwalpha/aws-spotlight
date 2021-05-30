@@ -97,6 +97,14 @@ export const Sidemenu = () => {
           }}>
           <SVG.DynamoDBIcon />
         </ListItem>
+        <ListItem
+          text="Amazon ELB"
+          path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.ELB]}
+          onClick={() => {
+            actions.title('Amazon ELB');
+          }}>
+          <SVG.ELBIcon />
+        </ListItem>
       </List>
     </Paper>
     // <Drawer

@@ -3,9 +3,9 @@ import { Route, Switch } from 'react-router-dom';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import { Paths } from '@constants';
-import { Services } from '@containers';
 import { Header, Sidemenu } from '.';
 import ReleaseNotes from './ReleaseNotes';
+import Service from './Service';
 
 const useStyles = makeStyles(({}: Theme) =>
   createStyles({
@@ -26,8 +26,11 @@ const App: FunctionComponent<any> = () => {
         <Header />
         <Switch>
           <Route exact path="/" component={ReleaseNotes} />
-          <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.EC2]} component={Services.EC2} />
-          <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.RDS]} component={Services.RDS} />
+          <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.EC2]} component={Service} />
+          <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.RDS]} component={Service} />
+          <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.DYNAMODB]} component={Service} />
+          <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.APIGATEWAY]} component={Service} />
+          <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.ELB]} component={Service} />
         </Switch>
       </Box>
     </Box>
