@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDA2KEX3JLI3YFKAM3HW",
-    "arn": "arn:aws:iam::999999999999:user/kazuya.tanaka",
+    "arn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
     "accountId": "999999999999",
     "accessKeyId": "ASIA2KEX3JLIULNZU4GS",
-    "userName": "kazuya.tanaka",
+    "userName": "wwalpha@gmail.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
@@ -38,7 +38,7 @@
       "lastActivityDate": "Mar 21, 2021 1:53:22 PM",
       "creationDate": "Mar 21, 2021 1:53:22 PM",
       "pullRequestStatus": "OPEN",
-      "authorArn": "arn:aws:iam::999999999999:user/kazuya.tanaka",
+      "authorArn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
       "pullRequestTargets": [
         {
           "repositoryName": "One-Cloud-tanaka",

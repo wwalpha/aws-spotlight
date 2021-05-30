@@ -3,9 +3,9 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDA2KEX3JLIRRBCMUZZM",
-    "arn": "arn:aws:iam::999999999999:user/demo-user08",
+    "arn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
     "accountId": "999999999999",
-    "userName": "demo-user08"
+    "userName": "wwalpha@gmail.com"
   },
   "eventTime": "2021-04-08T13:49:20Z",
   "eventSource": "signin.amazonaws.com",

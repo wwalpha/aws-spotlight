@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDA2KEX3JLIYUA7ET75O",
-    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "arn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
     "accountId": "999999999999",
     "accessKeyId": "ASIA2KEX3JLI4U4JTPET",
-    "userName": "ktou",
+    "userName": "wwalpha@gmail.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
@@ -76,7 +76,7 @@
   "responseElements": null,
   "additionalEventData": {
     "insufficientLakeFormationPermissions": [],
-    "lakeFormationPrincipal": "arn:aws:iam::999999999999:user/ktou"
+    "lakeFormationPrincipal": "arn:aws:iam::999999999999:user/wwalpha@gmail.com"
   },
   "requestID": "0ec0d50f-c02c-406d-9042-728c1e98de73",
   "eventID": "501406ea-286b-4c5d-ab36-5257e9d74fab",

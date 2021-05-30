@@ -2,8 +2,8 @@
   "eventVersion": "1.08",
   "userIdentity": {
     "type": "AssumedRole",
-    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
-    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:wwalpha@gmail.com",
+    "arn": "arn:aws:sts::999999999999:assumed-role/wwalpha@gmail.com_SwitchRole/wwalpha@gmail.com",
     "accountId": "999999999999"
   },
   "eventTime": "2021-04-01T09:27:46Z",
@@ -15,7 +15,7 @@
   "requestParameters": null,
   "responseElements": { "RenewRole": "Success" },
   "additionalEventData": {
-    "RenewedBy": "arn:aws:iam::925866981400:user/ktou",
+    "RenewedBy": "arn:aws:iam::925866981400:user/wwalpha@gmail.com",
     "RedirectTo": "https://ap-northeast-1.console.aws.amazon.com/rds/?&isauthcode=true"
   },
   "eventID": "020efb8f-b548-44c4-a78e-596b40065767",

@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDA2KEX3JLI473YYFTJB",
-    "arn": "arn:aws:iam::999999999999:user/eric.agnew",
+    "arn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
     "accountId": "999999999999",
     "accessKeyId": "ASIA2KEX3JLI5OPNZOXI",
-    "userName": "eric.agnew",
+    "userName": "wwalpha@gmail.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
@@ -28,7 +28,7 @@
       "requestId": "4aa3bf64-bb7f-4b28-9be7-6eeb5b5fba12",
       "launchTemplate": {
         "createTime": "1970-01-01T00:00:00.000Z",
-        "createdBy": "arn:aws:iam::999999999999:user/eric.agnew",
+        "createdBy": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
         "launchTemplateId": "lt-0aae391c61dad27d8",
         "latestVersionNumber": 2,
         "defaultVersionNumber": 2,

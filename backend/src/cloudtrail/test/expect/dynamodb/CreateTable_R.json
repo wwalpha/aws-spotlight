@@ -1,1 +1,13 @@
-{"IdentityType":"IAMUser","EventSource":"dynamodb.amazonaws.com","UserName":"wlim40","ResourceId":"AutoNotification_AlarmConfigs","ResourceName":"AutoNotification_AlarmConfigs","EventTime":"2021-04-15T07:54:51Z","UserAgent":"cloudformation.amazonaws.com","AWSRegion":"ap-northeast-1","EventId":"696c84dc-ad34-4abe-90dd-b69189934170","Service":"Table","EventName":"CreateTable"}
+{
+  "IdentityType": "IAMUser",
+  "EventSource": "dynamodb.amazonaws.com",
+  "UserName": "wwalpha@gmail.com",
+  "ResourceId": "AutoNotification_AlarmConfigs",
+  "ResourceName": "AutoNotification_AlarmConfigs",
+  "EventTime": "2021-04-15T07:54:51Z",
+  "UserAgent": "cloudformation.amazonaws.com",
+  "AWSRegion": "ap-northeast-1",
+  "EventId": "696c84dc-ad34-4abe-90dd-b69189934170",
+  "Service": "Table",
+  "EventName": "CreateTable"
+}

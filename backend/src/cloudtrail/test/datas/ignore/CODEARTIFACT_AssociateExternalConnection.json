@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDA2KEX3JLI3YFKAM3HW",
-    "arn": "arn:aws:iam::999999999999:user/kazuya.tanaka",
+    "arn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
     "accountId": "999999999999",
     "accessKeyId": "ASIA2KEX3JLIQR2OEAO2",
-    "userName": "kazuya.tanaka",
+    "userName": "wwalpha@gmail.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},

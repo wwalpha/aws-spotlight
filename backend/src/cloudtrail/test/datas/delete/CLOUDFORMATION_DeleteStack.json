@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDA2KEX3JLIYUA7ET75O",
-    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "arn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
     "accountId": "999999999999",
     "accessKeyId": "ASIA2KEX3JLI6IL34ECW",
-    "userName": "ktou",
+    "userName": "wwalpha@gmail.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
@@ -20,7 +20,7 @@
   "sourceIPAddress": "165.225.111.58",
   "userAgent": "console.amazonaws.com",
   "requestParameters": {
-    "stackName": "arn:aws:cloudformation:ap-northeast-1:999999999999:stack/amplify-ktou-staging-24648/60234fd0-7581-11eb-93ed-0aece754dcdc"
+    "stackName": "arn:aws:cloudformation:ap-northeast-1:999999999999:stack/amplify-wwalpha@gmail.com-staging-24648/60234fd0-7581-11eb-93ed-0aece754dcdc"
   },
   "responseElements": null,
   "requestID": "b229134c-e64f-4256-bb5e-f2c477a5ae45",

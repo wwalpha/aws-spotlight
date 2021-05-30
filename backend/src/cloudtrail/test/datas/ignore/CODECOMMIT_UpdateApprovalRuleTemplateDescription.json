@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDA2KEX3JLI3YFKAM3HW",
-    "arn": "arn:aws:iam::999999999999:user/kazuya.tanaka",
+    "arn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
     "accountId": "999999999999",
     "accessKeyId": "ASIA2KEX3JLIULNZU4GS",
-    "userName": "kazuya.tanaka",
+    "userName": "wwalpha@gmail.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
@@ -25,11 +25,11 @@
       "approvalRuleTemplateId": "c74b6167-adca-4d50-9e74-b690ad4268bb",
       "approvalRuleTemplateName": "approve flow",
       "approvalRuleTemplateDescription": "",
-      "approvalRuleTemplateContent": "{\"Version\":\"2018-11-08\",\"DestinationReferences\":\"*\",\"Statements\":[{\"Type\":\"Approvers\",\"NumberOfApprovalsNeeded\":2,\"ApprovalPoolMembers\":[\"CodeCommitApprovers:kazuya.tanaka\"]}]}",
+      "approvalRuleTemplateContent": "{\"Version\":\"2018-11-08\",\"DestinationReferences\":\"*\",\"Statements\":[{\"Type\":\"Approvers\",\"NumberOfApprovalsNeeded\":2,\"ApprovalPoolMembers\":[\"CodeCommitApprovers:wwalpha@gmail.com\"]}]}",
       "ruleContentSha256": "a1c6460577f6c0ed825f643c3427e80357b97a4104e22d686ca8afa037116217",
       "lastModifiedDate": "Mar 21, 2021 2:10:48 PM",
       "creationDate": "Mar 21, 2021 2:09:00 PM",
-      "lastModifiedUser": "arn:aws:iam::999999999999:user/kazuya.tanaka"
+      "lastModifiedUser": "arn:aws:iam::999999999999:user/wwalpha@gmail.com"
     }
   },
   "requestID": "e7225809-1167-4600-9228-f37b5ea9a27b",

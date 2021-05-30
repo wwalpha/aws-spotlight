@@ -1,7 +1,7 @@
 {
   "IdentityType": "IAMUser",
   "EventSource": "apigateway.amazonaws.com",
-  "UserName": "wlim40",
+  "UserName": "wwalpha@gmail.com",
   "ResourceId": "lyppg996u0",
   "ResourceName": "RekogDemo-EngagementMeter",
   "EventTime": "2021-04-15T07:55:30Z",

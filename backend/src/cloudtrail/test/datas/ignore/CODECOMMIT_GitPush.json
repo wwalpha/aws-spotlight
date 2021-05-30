@@ -3,9 +3,9 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDA2KEX3JLI3PBVECWCN",
-    "arn": "arn:aws:iam::999999999999:user/oc-tanaka",
+    "arn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
     "accountId": "999999999999",
-    "userName": "oc-tanaka"
+    "userName": "wwalpha@gmail.com"
   },
   "eventTime": "2021-03-21T13:20:07Z",
   "eventSource": "codecommit.amazonaws.com",

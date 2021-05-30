@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDA2KEX3JLIYUA7ET75O",
-    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "arn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
     "accountId": "999999999999",
     "accessKeyId": "AKIA2KEX3JLIUOPCAFTZ",
-    "userName": "ktou"
+    "userName": "wwalpha@gmail.com"
   },
   "eventTime": "2021-02-01T00:24:27Z",
   "eventSource": "ecs.amazonaws.com",
@@ -86,7 +86,7 @@
       "cpu": "512",
       "memory": "1024",
       "registeredAt": "Feb 1, 2021 12:24:27 AM",
-      "registeredBy": "arn:aws:iam::999999999999:user/ktou"
+      "registeredBy": "arn:aws:iam::999999999999:user/wwalpha@gmail.com"
     }
   },
   "requestID": "2b874df2-6e56-4348-815b-3cc180c92e8d",

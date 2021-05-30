@@ -2,17 +2,17 @@
   "eventVersion": "1.08",
   "userIdentity": {
     "type": "AssumedRole",
-    "principalId": "AROA2KEX3JLI2OU3QHN26:ktou",
-    "arn": "arn:aws:sts::999999999999:assumed-role/KTOU_SwitchRole/ktou",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:wwalpha@gmail.com",
+    "arn": "arn:aws:sts::999999999999:assumed-role/wwalpha@gmail.com_SwitchRole/wwalpha@gmail.com",
     "accountId": "999999999999",
     "accessKeyId": "ASIA2KEX3JLI36WZAS5V",
     "sessionContext": {
       "sessionIssuer": {
         "type": "Role",
         "principalId": "AROA2KEX3JLI2OU3QHN26",
-        "arn": "arn:aws:iam::999999999999:role/KTOU_SwitchRole",
+        "arn": "arn:aws:iam::999999999999:role/wwalpha@gmail.com_SwitchRole",
         "accountId": "999999999999",
-        "userName": "KTOU_SwitchRole"
+        "userName": "wwalpha@gmail.com_SwitchRole"
       },
       "webIdFederationData": {},
       "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-02-01T22:30:19Z" }

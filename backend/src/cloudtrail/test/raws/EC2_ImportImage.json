@@ -3,16 +3,16 @@
   "userIdentity": {
     "type": "AssumedRole",
     "principalId": "AROA2KEX3JLI2QCIZFG2K:i-00adf0ee742a14e6a",
-    "arn": "arn:aws:sts::999999999999:assumed-role/yshimitzu_full/i-00adf0ee742a14e6a",
+    "arn": "arn:aws:sts::999999999999:assumed-role/wwalpha@gmail.com/i-00adf0ee742a14e6a",
     "accountId": "999999999999",
     "accessKeyId": "ASIA2KEX3JLI7XD3YBG2",
     "sessionContext": {
       "sessionIssuer": {
         "type": "Role",
         "principalId": "AROA2KEX3JLI2QCIZFG2K",
-        "arn": "arn:aws:iam::999999999999:role/yshimitzu_full",
+        "arn": "arn:aws:iam::999999999999:role/wwalpha@gmail.com",
         "accountId": "999999999999",
-        "userName": "yshimitzu_full"
+        "userName": "wwalpha@gmail.com"
       },
       "webIdFederationData": {},
       "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-01T05:41:19Z" },

@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDA2KEX3JLI3YFKAM3HW",
-    "arn": "arn:aws:iam::999999999999:user/kazuya.tanaka",
+    "arn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
     "accountId": "999999999999",
     "accessKeyId": "ASIA2KEX3JLIULNZU4GS",
-    "userName": "kazuya.tanaka",
+    "userName": "wwalpha@gmail.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
@@ -28,7 +28,7 @@
       "lastActivityDate": "Mar 21, 2021 2:06:31 PM",
       "creationDate": "Mar 21, 2021 2:04:02 PM",
       "pullRequestStatus": "CLOSED",
-      "authorArn": "arn:aws:iam::999999999999:user/kazuya.tanaka",
+      "authorArn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
       "pullRequestTargets": [
         {
           "repositoryName": "One-Cloud-tanaka",
@@ -39,7 +39,7 @@
           "sourceCommit": "df6f38ce81e814e42ec774db69204363c205ffc4",
           "mergeMetadata": {
             "isMerged": true,
-            "mergedBy": "arn:aws:iam::999999999999:user/kazuya.tanaka",
+            "mergedBy": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
             "mergeCommitId": "df6f38ce81e814e42ec774db69204363c205ffc4",
             "mergeOption": "FAST_FORWARD_MERGE"
           }

@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDA2KEX3JLI3YFKAM3HW",
-    "arn": "arn:aws:iam::999999999999:user/kazuya.tanaka",
+    "arn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
     "accountId": "999999999999",
     "accessKeyId": "ASIA2KEX3JLIVZIRBDWU",
-    "userName": "kazuya.tanaka",
+    "userName": "wwalpha@gmail.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
@@ -49,7 +49,7 @@
         "gitCloneDepth": 1
       },
       "secondarySources": [],
-      "initiator": "kazuya.tanaka",
+      "initiator": "wwalpha@gmail.com",
       "endTime": "Mar 31, 2021 11:28:50 PM",
       "queuedTimeoutInMinutes": 480,
       "arn": "arn:aws:codebuild:ap-northeast-1:999999999999:build/onecloud-tanaka:daf188d5-f539-4b53-ab0b-0183f46e1133",

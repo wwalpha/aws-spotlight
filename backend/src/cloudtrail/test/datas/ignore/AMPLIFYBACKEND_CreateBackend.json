@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDA2KEX3JLIYUA7ET75O",
-    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "arn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
     "accountId": "999999999999",
     "accessKeyId": "ASIA2KEX3JLIZTSHQEXB",
-    "userName": "ktou",
+    "userName": "wwalpha@gmail.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
@@ -19,7 +19,11 @@
   "awsRegion": "ap-northeast-1",
   "sourceIPAddress": "202.32.14.177",
   "userAgent": "aws-internal/3 aws-sdk-java/1.11.898 Linux/4.9.230-0.1.ac.223.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.275-b01 java/1.8.0_275 vendor/Oracle_Corporation",
-  "requestParameters": { "appName": "ktou", "appId": "d3rmh3nhqy26nl", "backendEnvironmentName": "staging" },
+  "requestParameters": {
+    "appName": "wwalpha@gmail.com",
+    "appId": "d3rmh3nhqy26nl",
+    "backendEnvironmentName": "staging"
+  },
   "responseElements": {
     "jobId": "92df364f-dd35-4a06-9366-61daa5475508",
     "appId": "d3rmh3nhqy26nl",

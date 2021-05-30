@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDA2KEX3JLIYUA7ET75O",
-    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "arn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
     "accountId": "999999999999",
     "accessKeyId": "ASIA2KEX3JLIQ4ARPMXG",
-    "userName": "ktou",
+    "userName": "wwalpha@gmail.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
@@ -591,7 +591,7 @@
       },
       "healthCheckGracePeriodSeconds": 0,
       "schedulingStrategy": "REPLICA",
-      "createdBy": "arn:aws:iam::999999999999:role/yshimitzu_full",
+      "createdBy": "arn:aws:iam::999999999999:role/wwalpha@gmail.com",
       "enableECSManagedTags": false,
       "propagateTags": "NONE",
       "enableExecuteCommand": false

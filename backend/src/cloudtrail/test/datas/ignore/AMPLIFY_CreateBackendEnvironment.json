@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDA2KEX3JLIYUA7ET75O",
-    "arn": "arn:aws:iam::999999999999:user/ktou",
+    "arn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
     "accountId": "999999999999",
     "accessKeyId": "ASIAISPFV6BWFKE6SM2A",
-    "userName": "ktou",
+    "userName": "wwalpha@gmail.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
@@ -23,16 +23,16 @@
   "requestParameters": {
     "environmentName": "staging",
     "appId": "d3rmh3nhqy26nl",
-    "deploymentArtifacts": "amplify-ktou-staging-24648-deployment",
-    "stackName": "amplify-ktou-staging-24648"
+    "deploymentArtifacts": "amplify-wwalpha@gmail.com-staging-24648-deployment",
+    "stackName": "amplify-wwalpha@gmail.com-staging-24648"
   },
   "responseElements": {
     "backendEnvironment": {
       "backendEnvironmentArn": "arn:aws:amplify:ap-northeast-1:999999999999:apps/d3rmh3nhqy26nl/backendenvironments/staging",
       "createTime": 1614048408.793,
-      "deploymentArtifacts": "amplify-ktou-staging-24648-deployment",
+      "deploymentArtifacts": "amplify-wwalpha@gmail.com-staging-24648-deployment",
       "environmentName": "staging",
-      "stackName": "amplify-ktou-staging-24648",
+      "stackName": "amplify-wwalpha@gmail.com-staging-24648",
       "updateTime": 1614048408.793
     }
   },
