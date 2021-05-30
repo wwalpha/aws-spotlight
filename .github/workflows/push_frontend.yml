@@ -34,11 +34,13 @@ jobs:
     
     steps:
       - name: Set environment variables
+        id: envs
         run: |
           echo "::set-output name=TEST::${{ secrets.TEST }}"
 
   build:
     runs-on: ubuntu-18.04
+    needs: [setup_dev, setup_prod]
     defaults:
       run:
         working-directory: ${{ env.WORKING_DIR }}
@@ -47,4 +49,4 @@ jobs:
       # source checkout
       - name: Test
         run: |
-          export $TEST
+          echo ${{ needs.setup_dev.outputs.TEST }}
