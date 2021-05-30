@@ -1,4 +1,6 @@
 export * from './EC2_TerminateInstances';
+export * from './EC2_DeregisterImage';
+
 export * from './APIGATEWAY_DeleteRestApi';
 export * from './RDS_DeleteDBCluster';
 export * from './RDS_DeleteDBInstance';

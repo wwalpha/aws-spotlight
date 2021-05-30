@@ -5,7 +5,7 @@
 //   console.log('CreateBucket Response:', record.responseElements);
 
 //   return {
-//     UserName: defaultTo(record.userIdentity.userName, record.userIdentity.sessionContext.sessionIssuer.userName),
+//     UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
 //     ResourceId: record.requestParameters.bucketName,
 //     ResourceName: record.requestParameters.bucketName,
 //     EventName: record.eventName,

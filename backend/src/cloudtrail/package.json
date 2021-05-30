@@ -13,6 +13,7 @@
     "build:c": "docker build -f Dockerfile.CloudTrail -t arms-cloudtrail .",
     "build:u": "docker build -f Dockerfile.Unprocessed -t arms-unprocessed .",
     "test": "jest --forceExit --passWithNoTests",
+    "test:local": "jest test/services/ec2.test.ts --forceExit --passWithNoTests",
     "setup": "ts-node -r tsconfig-paths/register test/configs/setup.ts"
   },
   "devDependencies": {

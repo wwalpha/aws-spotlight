@@ -5,7 +5,7 @@
 //   console.log('CreateVolume Response:', record.responseElements);
 
 //   return {
-//     UserName: defaultTo(record.userIdentity.userName, record.userIdentity.sessionContext.sessionIssuer.userName),
+//     UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
 //     ResourceId: record.responseElements.volumeId,
 //     ResourceName: record.responseElements.volumeId,
 //     EventName: record.eventName,

@@ -19,7 +19,7 @@
   "awsRegion": "ap-northeast-1",
   "sourceIPAddress": "192.46.52.31",
   "userAgent": "console.ec2.amazonaws.com",
-  "requestParameters": { "imageId": "ami-095be9bd27b128df3" },
+  "requestParameters": { "imageId": "ami-094a52a9a2b58d074" },
   "responseElements": { "requestId": "0291cf8b-9137-4aff-9dbc-10f52a4392a6", "_return": true },
   "requestID": "0291cf8b-9137-4aff-9dbc-10f52a4392a6",
   "eventID": "e8da5c18-a3dc-4218-bc77-a721c3f6218c",

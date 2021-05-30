@@ -5,7 +5,7 @@
 //   console.log('CreateLoadBalancer Response:', record.responseElements);
 
 //   return {
-//     UserName: defaultTo(record.userIdentity.userName, record.userIdentity.sessionContext.sessionIssuer.userName),
+//     UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
 //     ResourceId: record.responseElements.dNSName,
 //     ResourceName: record.responseElements.dNSName,
 //     EventName: record.eventName,

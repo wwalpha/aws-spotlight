@@ -1,5 +1,6 @@
 import {
   EC2_RunInstances,
+  EC2_CreateImage,
   APIGATEWAY_CreateRestApi,
   APIGATEWAY_ImportRestApi,
   RDS_CreateDBCluster,
@@ -12,6 +13,7 @@ import {
   APIGATEWAY_DeleteRestApi,
   DYNAMODB_DeleteTable,
   EC2_TerminateInstances,
+  EC2_DeregisterImage,
   ELASTICLOADBALANCING_DeleteLoadBalancer,
   ELASTICLOADBALANCING_DeleteTargetGroup,
   RDS_DeleteDBCluster,
@@ -26,6 +28,9 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
   switch (key) {
     case 'EC2_RunInstances':
       return EC2_RunInstances(record);
+    case 'EC2_CreateImage':
+      return EC2_CreateImage(record);
+
     case 'APIGATEWAY_CreateRestApi':
       return APIGATEWAY_CreateRestApi(record);
     case 'APIGATEWAY_ImportRestApi':
@@ -53,18 +58,24 @@ export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.Resouce
   switch (key) {
     case 'APIGATEWAY_DeleteRestApi':
       return APIGATEWAY_DeleteRestApi(record);
+
+    case 'DYNAMODB_DeleteTable':
+      return DYNAMODB_DeleteTable(record);
+
     case 'EC2_TerminateInstances':
       return EC2_TerminateInstances(record);
-    case 'RDS_DeleteDBCluster':
-      return RDS_DeleteDBCluster(record);
-    case 'RDS_DeleteDBInstance':
-      return RDS_DeleteDBInstance(record);
+    case 'EC2_DeregisterImage':
+      return EC2_DeregisterImage(record);
+
     case 'ELASTICLOADBALANCING_DeleteLoadBalancer':
       return ELASTICLOADBALANCING_DeleteLoadBalancer(record);
     case 'ELASTICLOADBALANCING_DeleteTargetGroup':
       return ELASTICLOADBALANCING_DeleteTargetGroup(record);
-    case 'DYNAMODB_DeleteTable':
-      return DYNAMODB_DeleteTable(record);
+
+    case 'RDS_DeleteDBCluster':
+      return RDS_DeleteDBCluster(record);
+    case 'RDS_DeleteDBInstance':
+      return RDS_DeleteDBInstance(record);
 
     default:
       return undefined;

@@ -5,7 +5,7 @@
 //   console.log('CreateDBInstance Response:', record.responseElements);
 
 //   return {
-//     UserName: defaultTo(record.userIdentity.userName, record.userIdentity.sessionContext.sessionIssuer.userName),
+//     UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
 //     ResourceId: record.responseElements.dBInstanceIdentifier,
 //     ResourceName: record.responseElements.dBInstanceIdentifier,
 //     EventName: record.eventName,

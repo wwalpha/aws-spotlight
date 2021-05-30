@@ -5,7 +5,7 @@
 //   console.log('CreateDBCluster Response:', record.responseElements);
 
 //   return {
-//     UserName: defaultTo(record.userIdentity.userName, record.userIdentity.sessionContext.sessionIssuer.userName),
+//     UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
 //     ResourceId: record.responseElements.dBClusterIdentifier,
 //     ResourceName: record.responseElements.dBClusterIdentifier,
 //     EventName: record.eventName,

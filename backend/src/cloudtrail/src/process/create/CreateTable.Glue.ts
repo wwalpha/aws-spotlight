@@ -5,7 +5,7 @@
 //   console.log('CreateTable Glue Response:', record.responseElements);
 
 //   return {
-//     UserName: defaultTo(record.userIdentity.userName, record.userIdentity.sessionContext.sessionIssuer.userName),
+//     UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
 //     ResourceId: `${record.responseElements.databaseName}.${record.responseElements.tableInput.name}`,
 //     ResourceName: `${record.responseElements.databaseName}.${record.responseElements.tableInput.name}`,
 //     EventName: record.eventName,

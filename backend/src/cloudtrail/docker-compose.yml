@@ -9,19 +9,3 @@ services:
     environment:
       - DEFAULT_REGION=ap-northeast-1
       - SERVICES=dynamodb,sqs,s3
-  # localtrail
-  # cloudtrail:
-  #   image: arms-cloudtrail
-  #   ports:
-  #     - '9000:8080'
-  #   env_file:
-  #     - .env
-  #     - ../../../.secrets
-  # unprocessed
-  # unprocessed:
-  #   image: arms-unprocessed
-  #   ports:
-  #     - '9001:8080'
-  #   env_file:
-  #     - .env
-  #     - ../../../.secrets

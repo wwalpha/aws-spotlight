@@ -5,7 +5,7 @@
 //   console.log('CreateCluster Redshift Response:', record.responseElements);
 
 //   return {
-//     UserName: defaultTo(record.userIdentity.userName, record.userIdentity.sessionContext.sessionIssuer.userName),
+//     UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
 //     ResourceId: record.responseElements.clusterIdentifier,
 //     ResourceName: record.responseElements.clusterIdentifier,
 //     EventName: record.eventName,
