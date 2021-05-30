@@ -15,7 +15,7 @@ jobs:
   # setup dev environments
   setup_dev:
     runs-on: ubuntu-18.04
-    if: ${{ env.GITHUB_EVENT_NAME == 'push' }}
+    if: github.event_name == 'push'
     environment:
       name: env
     
@@ -28,7 +28,7 @@ jobs:
   # setup prod environments
   setup_prod:
     runs-on: ubuntu-18.04
-    if: ${{ env.GITHUB_EVENT_NAME == 'release' }}
+    if: github.event_name == 'release'
     environment:
       name: prod
     
