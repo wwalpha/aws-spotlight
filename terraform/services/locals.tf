@@ -34,9 +34,11 @@ locals {
   # ECS
   # ----------------------------------------------------------------------------------------------
   task_def_family_auth     = "${local.project_name}-auth"
+  task_def_family_token    = "${local.project_name}-token"
   task_def_family_resource = "${local.project_name}-resource"
 
   task_def_rev_auth     = max(aws_ecs_task_definition.auth.revision, data.aws_ecs_task_definition.auth.revision)
+  task_def_rev_token    = max(aws_ecs_task_definition.token.revision, data.aws_ecs_task_definition.token.revision)
   task_def_rev_resource = max(aws_ecs_task_definition.resource.revision, data.aws_ecs_task_definition.resource.revision)
 
   # ----------------------------------------------------------------------------------------------
@@ -89,6 +91,14 @@ data "aws_ecs_task_definition" "auth" {
 # ----------------------------------------------------------------------------------------------
 # ECS Task Definition
 # ----------------------------------------------------------------------------------------------
+data "aws_ecs_task_definition" "token" {
+  depends_on      = [aws_ecs_task_definition.token]
+  task_definition = aws_ecs_task_definition.token.family
+}
+
+# ----------------------------------------------------------------------------------------------
+# ECS Task Definition
+# ----------------------------------------------------------------------------------------------
 data "aws_ecs_task_definition" "resource" {
   depends_on      = [aws_ecs_task_definition.resource]
   task_definition = aws_ecs_task_definition.resource.family
@@ -99,7 +109,15 @@ data "aws_ecs_task_definition" "resource" {
 # ----------------------------------------------------------------------------------------------
 data "aws_ssm_parameter" "auth_repo_url" {
   depends_on = [aws_ssm_parameter.auth_repo_url]
-  name         = aws_ssm_parameter.auth_repo_url.name
+  name       = aws_ssm_parameter.auth_repo_url.name
+}
+
+# ----------------------------------------------------------------------------------------------
+# SSM Parameter Store - Token manager repository url
+# ----------------------------------------------------------------------------------------------
+data "aws_ssm_parameter" "token_repo_url" {
+  depends_on = [aws_ssm_parameter.token_repo_url]
+  name       = aws_ssm_parameter.token_repo_url.name
 }
 
 # ----------------------------------------------------------------------------------------------
@@ -107,5 +125,5 @@ data "aws_ssm_parameter" "auth_repo_url" {
 # ----------------------------------------------------------------------------------------------
 data "aws_ssm_parameter" "resource_repo_url" {
   depends_on = [aws_ssm_parameter.resource_repo_url]
-  name         = aws_ssm_parameter.resource_repo_url.name
+  name       = aws_ssm_parameter.resource_repo_url.name
 }

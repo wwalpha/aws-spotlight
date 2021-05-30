@@ -15,6 +15,22 @@ resource "aws_ssm_parameter" "auth_repo_url" {
 }
 
 # ----------------------------------------------------------------------------------------------
+# SSM Parameter Store - Token manager repository url
+# ----------------------------------------------------------------------------------------------
+resource "aws_ssm_parameter" "token_repo_url" {
+  name      = "/${local.project_name}/repository_url/token_manager"
+  type      = "String"
+  value     = "${aws_ecr_repository.auth.repository_url}:latest"
+  overwrite = true
+
+  lifecycle {
+    ignore_changes = [
+      value
+    ]
+  }
+}
+
+# ----------------------------------------------------------------------------------------------
 # SSM Parameter Store - Resource manager repository url
 # ----------------------------------------------------------------------------------------------
 resource "aws_ssm_parameter" "resource_repo_url" {
