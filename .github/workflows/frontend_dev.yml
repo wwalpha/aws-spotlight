@@ -19,7 +19,7 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     environment:
-      name: "${{ env.GITHUB_EVENT_NAME == 'push' && 'env' || 'prod' }}"
+      name: ${{ env.GITHUB_EVENT_NAME == 'push' && 'env' || 'prod' }}
     env:
       FRONTEND_BUCKET: ${{ secrets.FRONTEND_BUCKET }}
       IDENTITY_POOL_ID: ${{ secrets.IDENTITY_POOL_ID }}
