@@ -13,7 +13,7 @@ env:
   ECS_SERVICE_NAME: resource_manager
   ECS_TAKS_DEFINITION: arms-resource
   ECS_TAKS_DEFINITION_FILE: task_definition.json
-  SSM_PARAMETER_NAME: /arms/ecs_repository_url
+  SSM_PARAMETER_NAME: /arms/repository_url
   WORKING_DIR: backend/src/resource-manager
 
 jobs:
