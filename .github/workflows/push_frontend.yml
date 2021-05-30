@@ -18,12 +18,12 @@ jobs:
     if: github.event_name == 'push'
     environment:
       name: env
-    
+
     steps:
       - name: Set environment variables
         id: envs
         run: |
-          sh scripts/makeEnv.sh
+          echo "::set-output name=TEST::${{ secrets.TEST }}"
 
   # setup prod environments
   setup_prod:
@@ -35,7 +35,7 @@ jobs:
     steps:
       - name: Set environment variables
         run: |
-          sh scripts/makeEnv.sh
+          echo "::set-output name=TEST::${{ secrets.TEST }}"
 
   build:
     runs-on: ubuntu-18.04
