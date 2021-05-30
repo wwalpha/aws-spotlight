@@ -11,9 +11,7 @@ import Box from '@material-ui/core/Box';
 import { Domains } from 'typings';
 import { AppActions, ResActions } from '@actions';
 import { ListItem } from '@comp';
-import EC2Icon from '../constants/svg/AmazonEC2.svg';
-import RDSIcon from '../constants/svg/AmazonRDS.svg';
-import { Paths } from '@constants';
+import { Paths, SVG } from '@constants';
 
 const useStyles = makeStyles(({ spacing, transitions, mixins, palette }: Theme) =>
   createStyles({
@@ -81,7 +79,7 @@ export const Sidemenu = () => {
           onClick={() => {
             actions.title('Amazon EC2');
           }}>
-          <EC2Icon />
+          <SVG.EC2Icon />
         </ListItem>
         <ListItem
           text="Amazon RDS"
@@ -89,7 +87,15 @@ export const Sidemenu = () => {
           onClick={() => {
             actions.title('Amazon RDS');
           }}>
-          <RDSIcon />
+          <SVG.RDSIcon />
+        </ListItem>
+        <ListItem
+          text="Amazon DynamoDB"
+          path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.DYNAMODB]}
+          onClick={() => {
+            actions.title('Amazon DynamoDB');
+          }}>
+          <SVG.DynamoDBIcon />
         </ListItem>
       </List>
     </Paper>
