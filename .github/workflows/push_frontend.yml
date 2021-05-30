@@ -1,0 +1,50 @@
+name: Lambda Image Build
+
+on:
+  push:
+    paths:
+      - frontend/**
+      - .github/workflows/push_frontend.yml
+  workflow_dispatch:
+
+env:
+  AWS_DEFAULT_REGION: ap-northeast-1
+  WORKING_DIR: frontend
+
+jobs:
+  # setup dev environments
+  setup_dev:
+    runs-on: ubuntu-18.04
+    if: GITHUB_EVENT_NAME == 'push'
+    environment:
+      name: env
+    
+    steps:
+      - name: Set environment variables
+        id: envs
+        run: |
+          sh scripts/makeEnv.sh
+
+  # setup prod environments
+  setup_prod:
+    runs-on: ubuntu-18.04
+    if: GITHUB_EVENT_NAME == 'release'
+    environment:
+      name: prod
+    
+    steps:
+      - name: Set environment variables
+        run: |
+          sh scripts/makeEnv.sh
+
+  build:
+    runs-on: ubuntu-18.04
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}
+
+    steps:
+      # source checkout
+      - name: Test
+        run: |
+          export $TEST
