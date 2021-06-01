@@ -29,16 +29,19 @@ locals {
   dynamodb_name_history      = local.remote_setup.dynamodb_name_history
   dynamodb_name_announcement = local.remote_setup.dynamodb_name_announcement
   dynamodb_name_category     = local.remote_setup.dynamodb_name_category
+  dynamodb_name_user         = local.remote_setup.dynamodb_name_user
 
   # ----------------------------------------------------------------------------------------------
   # ECS
   # ----------------------------------------------------------------------------------------------
   task_def_family_auth     = "${local.project_name}-auth"
   task_def_family_token    = "${local.project_name}-token"
+  task_def_family_user     = "${local.project_name}-user"
   task_def_family_resource = "${local.project_name}-resource"
 
   task_def_rev_auth     = max(aws_ecs_task_definition.auth.revision, data.aws_ecs_task_definition.auth.revision)
   task_def_rev_token    = max(aws_ecs_task_definition.token.revision, data.aws_ecs_task_definition.token.revision)
+  task_def_rev_user     = max(aws_ecs_task_definition.user.revision, data.aws_ecs_task_definition.user.revision)
   task_def_rev_resource = max(aws_ecs_task_definition.resource.revision, data.aws_ecs_task_definition.resource.revision)
 
   # ----------------------------------------------------------------------------------------------
@@ -99,6 +102,14 @@ data "aws_ecs_task_definition" "token" {
 # ----------------------------------------------------------------------------------------------
 # ECS Task Definition
 # ----------------------------------------------------------------------------------------------
+data "aws_ecs_task_definition" "user" {
+  depends_on      = [aws_ecs_task_definition.user]
+  task_definition = aws_ecs_task_definition.user.family
+}
+
+# ----------------------------------------------------------------------------------------------
+# ECS Task Definition
+# ----------------------------------------------------------------------------------------------
 data "aws_ecs_task_definition" "resource" {
   depends_on      = [aws_ecs_task_definition.resource]
   task_definition = aws_ecs_task_definition.resource.family
@@ -119,6 +130,15 @@ data "aws_ssm_parameter" "token_repo_url" {
   depends_on = [aws_ssm_parameter.token_repo_url]
   name       = aws_ssm_parameter.token_repo_url.name
 }
+
+# ----------------------------------------------------------------------------------------------
+# SSM Parameter Store - User manager repository url
+# ----------------------------------------------------------------------------------------------
+data "aws_ssm_parameter" "user_repo_url" {
+  depends_on = [aws_ssm_parameter.user_repo_url]
+  name       = aws_ssm_parameter.user_repo_url.name
+}
+
 
 # ----------------------------------------------------------------------------------------------
 # SSM Parameter Store - Resource manager repository url

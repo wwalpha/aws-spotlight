@@ -23,6 +23,18 @@ resource "aws_ecr_repository" "token" {
 }
 
 # ----------------------------------------------------------------------------------------------
+# ECR - Token Manager
+# ----------------------------------------------------------------------------------------------
+resource "aws_ecr_repository" "user" {
+  name                 = "${local.project_name}/user"
+  image_tag_mutability = "MUTABLE"
+
+  image_scanning_configuration {
+    scan_on_push = false
+  }
+}
+
+# ----------------------------------------------------------------------------------------------
 # ECR (Lambda) - CloudTrail
 # ----------------------------------------------------------------------------------------------
 resource "aws_ecr_repository" "cloudtrail" {
@@ -133,11 +145,30 @@ resource "null_resource" "token" {
       FOLDER_PATH    = "demo"
       AWS_REGION     = local.region
       AWS_ACCOUNT_ID = local.account_id
-      REPO_URL       = aws_ecr_repository.resource.repository_url
+      REPO_URL       = aws_ecr_repository.token.repository_url
     }
   }
 }
 
+# ----------------------------------------------------------------------------------------------
+# Null Resource
+# ----------------------------------------------------------------------------------------------
+resource "null_resource" "user" {
+  triggers = {
+    file_content_md5 = md5(file("${path.module}/scripts/dockerbuild.sh"))
+  }
+
+  provisioner "local-exec" {
+    command = "sh ${path.module}/scripts/dockerbuild.sh"
+
+    environment = {
+      FOLDER_PATH    = "demo"
+      AWS_REGION     = local.region
+      AWS_ACCOUNT_ID = local.account_id
+      REPO_URL       = aws_ecr_repository.user.repository_url
+    }
+  }
+}
 
 # ----------------------------------------------------------------------------------------------
 # Null Resource
