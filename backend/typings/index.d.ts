@@ -1,8 +1,9 @@
 export * from './cloudtrail';
 
 import * as Tables from './tables';
-import * as Token from './token';
 import * as Resource from './resource';
+export * from './users';
+export * from './token';
 
 export { Tables, Token, Resource };
 
