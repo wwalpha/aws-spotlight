@@ -14,13 +14,13 @@ locals {
   # ----------------------------------------------------------------------------------------------
   # Dynamodb Tables
   # ----------------------------------------------------------------------------------------------
+  # dynamodb_name_notification = "${local.project_name}-notification-${local.suffix}"
   dynamodb_name_event_type   = "${local.project_name}-eventtype_${local.suffix}"
-  dynamodb_name_notification = "${local.project_name}-notification-${local.suffix}"
-  dynamodb_name_resource     = "${local.project_name}-resource-${local.suffix}"
+  dynamodb_name_resource     = "${local.project_name}-resources-${local.suffix}"
   dynamodb_name_unprocessed  = "${local.project_name}-unprocessed-${local.suffix}"
-  dynamodb_name_history      = "${local.project_name}-history-${local.suffix}"
+  dynamodb_name_history      = "${local.project_name}-histories-${local.suffix}"
   dynamodb_name_announcement = "${local.project_name}-announcement-${local.suffix}"
-  dynamodb_name_user         = "${local.project_name}-user-${local.suffix}"
+  dynamodb_name_user         = "${local.project_name}-users-${local.suffix}"
 
   # ----------------------------------------------------------------------------------------------
   # S3 Bucket
