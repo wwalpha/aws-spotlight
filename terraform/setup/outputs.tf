@@ -75,3 +75,9 @@ output "dynamodb_name_category" {
   value = aws_dynamodb_table.category.name
 }
 
+# ----------------------------------------------------------------------------------------------
+# DynamoDB Name - User
+# ----------------------------------------------------------------------------------------------
+output "dynamodb_name_user" {
+  value = aws_dynamodb_table.user.name
+}

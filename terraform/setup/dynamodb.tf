@@ -169,7 +169,6 @@ resource "aws_dynamodb_table" "announcement" {
   }
 }
 
-
 # ----------------------------------------------------------------------------------------------
 # Dynamodb Table - Category
 # ----------------------------------------------------------------------------------------------
@@ -188,6 +187,27 @@ resource "aws_dynamodb_table" "category" {
 
   attribute {
     name = "Category"
+    type = "S"
+  }
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+
+# ----------------------------------------------------------------------------------------------
+# Dynamodb Table - User
+# ----------------------------------------------------------------------------------------------
+resource "aws_dynamodb_table" "user" {
+  name           = local.dynamodb_name_user
+  billing_mode   = "PROVISIONED"
+  read_capacity  = 1
+  write_capacity = 1
+  hash_key       = "UserId"
+
+  attribute {
+    name = "UserId"
     type = "S"
   }
 
