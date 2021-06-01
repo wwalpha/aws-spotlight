@@ -13,6 +13,13 @@ output "project_name_uc" {
 }
 
 # ----------------------------------------------------------------------------------------------
+# Suffix
+# ----------------------------------------------------------------------------------------------
+output "suffix" {
+  value = local.suffix
+}
+
+# ----------------------------------------------------------------------------------------------
 # S3 Bucket Name (Frontend)
 # ----------------------------------------------------------------------------------------------
 output "bucket_name_frontend" {
@@ -36,9 +43,9 @@ output "dynamodb_name_event_type" {
 # ----------------------------------------------------------------------------------------------
 # DynamoDB Name - Notification
 # ----------------------------------------------------------------------------------------------
-output "dynamodb_name_notification" {
-  value = aws_dynamodb_table.notification.name
-}
+# output "dynamodb_name_notification" {
+#   value = aws_dynamodb_table.notification.name
+# }
 
 # ----------------------------------------------------------------------------------------------
 # DynamoDB Name - Resource
@@ -71,9 +78,9 @@ output "dynamodb_name_announcement" {
 # ----------------------------------------------------------------------------------------------
 # DynamoDB Name - Category
 # ----------------------------------------------------------------------------------------------
-output "dynamodb_name_category" {
-  value = aws_dynamodb_table.category.name
-}
+# output "dynamodb_name_category" {
+#   value = aws_dynamodb_table.category.name
+# }
 
 # ----------------------------------------------------------------------------------------------
 # DynamoDB Name - User

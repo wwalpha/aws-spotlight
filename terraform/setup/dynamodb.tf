@@ -27,27 +27,27 @@ resource "aws_dynamodb_table" "event_type" {
 # ----------------------------------------------------------------------------------------------
 # Dynamodb Table - Notification
 # ----------------------------------------------------------------------------------------------
-resource "aws_dynamodb_table" "notification" {
-  name           = local.dynamodb_name_notification
-  billing_mode   = "PROVISIONED"
-  read_capacity  = 1
-  write_capacity = 1
-  hash_key       = "EventName"
-  range_key      = "EventTime"
+# resource "aws_dynamodb_table" "notification" {
+#   name           = local.dynamodb_name_notification
+#   billing_mode   = "PROVISIONED"
+#   read_capacity  = 1
+#   write_capacity = 1
+#   hash_key       = "EventName"
+#   range_key      = "EventTime"
 
-  attribute {
-    name = "EventName"
-    type = "S"
-  }
-  attribute {
-    name = "EventTime"
-    type = "S"
-  }
+#   attribute {
+#     name = "EventName"
+#     type = "S"
+#   }
+#   attribute {
+#     name = "EventTime"
+#     type = "S"
+#   }
 
-  lifecycle {
-    prevent_destroy = true
-  }
-}
+#   lifecycle {
+#     prevent_destroy = true
+#   }
+# }
 
 # ----------------------------------------------------------------------------------------------
 # Dynamodb Table - Resource
@@ -172,29 +172,28 @@ resource "aws_dynamodb_table" "announcement" {
 # ----------------------------------------------------------------------------------------------
 # Dynamodb Table - Category
 # ----------------------------------------------------------------------------------------------
-resource "aws_dynamodb_table" "category" {
-  name           = local.dynamodb_name_category
-  billing_mode   = "PROVISIONED"
-  read_capacity  = 1
-  write_capacity = 1
-  hash_key       = "UserName"
-  range_key      = "Category"
+# resource "aws_dynamodb_table" "category" {
+#   name           = local.dynamodb_name_category
+#   billing_mode   = "PROVISIONED"
+#   read_capacity  = 1
+#   write_capacity = 1
+#   hash_key       = "UserName"
+#   range_key      = "Category"
 
-  attribute {
-    name = "UserName"
-    type = "S"
-  }
+#   attribute {
+#     name = "UserName"
+#     type = "S"
+#   }
 
-  attribute {
-    name = "Category"
-    type = "S"
-  }
+#   attribute {
+#     name = "Category"
+#     type = "S"
+#   }
 
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
+#   # lifecycle {
+#   #   prevent_destroy = true
+#   # }
+# }
 
 # ----------------------------------------------------------------------------------------------
 # Dynamodb Table - User

@@ -4,6 +4,7 @@ locals {
   # ----------------------------------------------------------------------------------------------
   environment  = terraform.workspace
   is_dev       = local.environment == "dev"
+  suffix       = local.remote_setup.suffix
   remote_setup = data.terraform_remote_state.setup.outputs
   account_id   = data.aws_caller_identity.this.account_id
   region       = data.aws_region.this.name
@@ -22,13 +23,12 @@ locals {
   # ----------------------------------------------------------------------------------------------
   # DynamoDB
   # ----------------------------------------------------------------------------------------------
+  # dynamodb_name_notification = local.remote_setup.dynamodb_name_notification
   dynamodb_name_event_type   = local.remote_setup.dynamodb_name_event_type
-  dynamodb_name_notification = local.remote_setup.dynamodb_name_notification
   dynamodb_name_resource     = local.remote_setup.dynamodb_name_resource
   dynamodb_name_unprocessed  = local.remote_setup.dynamodb_name_unprocessed
   dynamodb_name_history      = local.remote_setup.dynamodb_name_history
   dynamodb_name_announcement = local.remote_setup.dynamodb_name_announcement
-  dynamodb_name_category     = local.remote_setup.dynamodb_name_category
   dynamodb_name_user         = local.remote_setup.dynamodb_name_user
 
   # ----------------------------------------------------------------------------------------------
@@ -56,7 +56,6 @@ locals {
   # ----------------------------------------------------------------------------------------------
   bucket_name_frontend    = local.remote_setup.bucket_name_frontend
   bucket_name_environment = local.remote_setup.bucket_name_environment
-
 }
 
 # ----------------------------------------------------------------------------------------------

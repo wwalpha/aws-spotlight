@@ -2,8 +2,8 @@ locals {
   # ----------------------------------------------------------------------------------------------
   # Environment
   # ----------------------------------------------------------------------------------------------
-  is_dev    = terraform.workspace == "dev"
-  random_id = random_id.this.hex
+  is_dev = terraform.workspace == "dev"
+  suffix = random_id.this.hex
 
   # ----------------------------------------------------------------------------------------------
   # Project Informations
@@ -14,20 +14,19 @@ locals {
   # ----------------------------------------------------------------------------------------------
   # Dynamodb Tables
   # ----------------------------------------------------------------------------------------------
-  dynamodb_name_event_type   = "${local.project_name_uc}_EventType_${local.random_id}"
-  dynamodb_name_notification = "${local.project_name_uc}_Notification_${local.random_id}"
-  dynamodb_name_resource     = "${local.project_name_uc}_Resource_${local.random_id}"
-  dynamodb_name_unprocessed  = "${local.project_name_uc}_Unprocessed_${local.random_id}"
-  dynamodb_name_history      = "${local.project_name_uc}_History_${local.random_id}"
-  dynamodb_name_announcement = "${local.project_name_uc}_Announcement_${local.random_id}"
-  dynamodb_name_category     = "${local.project_name_uc}_Category_${local.random_id}"
-  dynamodb_name_user         = "${local.project_name_uc}_User_${local.random_id}"
+  dynamodb_name_event_type   = "${local.project_name}-eventtype_${local.suffix}"
+  dynamodb_name_notification = "${local.project_name}-notification-${local.suffix}"
+  dynamodb_name_resource     = "${local.project_name}-resource-${local.suffix}"
+  dynamodb_name_unprocessed  = "${local.project_name}-unprocessed-${local.suffix}"
+  dynamodb_name_history      = "${local.project_name}-history-${local.suffix}"
+  dynamodb_name_announcement = "${local.project_name}-announcement-${local.suffix}"
+  dynamodb_name_user         = "${local.project_name}-user-${local.suffix}"
 
   # ----------------------------------------------------------------------------------------------
   # S3 Bucket
   # ----------------------------------------------------------------------------------------------
-  bucket_name_frontend    = "${var.project_name}-frontend-${local.random_id}"
-  bucket_name_environment = "${var.project_name}-environment-${local.random_id}"
+  bucket_name_frontend    = "${var.project_name}-frontend-${local.suffix}"
+  bucket_name_environment = "${var.project_name}-environment-${local.suffix}"
   mime_types = {
     htm   = "text/html"
     html  = "text/html"

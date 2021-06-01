@@ -2,7 +2,7 @@
 # Amazon Cognito User Pool
 # --------------------------------------------------------------------------------------------------------------
 resource "aws_cognito_user_pool" "this" {
-  name = "${local.project_name_uc}_UserPool"
+  name = "${local.project_name}-admin${local.suffix}"
 
   auto_verified_attributes = ["email"]
   mfa_configuration        = "OPTIONAL"
@@ -148,7 +148,7 @@ resource "aws_cognito_user_pool_client" "this" {
 # Amazon Cognito User Pool Client Domain
 # --------------------------------------------------------------------------------------------------------------
 resource "aws_cognito_user_pool_domain" "this" {
-  domain       = "${terraform.workspace}-${local.project_name}"
+  domain       = "${local.project_name}-admin${local.suffix}"
   user_pool_id = aws_cognito_user_pool.this.id
 }
 
@@ -156,7 +156,7 @@ resource "aws_cognito_user_pool_domain" "this" {
 # Amazon Cognito Identity Pool
 # --------------------------------------------------------------------------------------------------------------
 resource "aws_cognito_identity_pool" "this" {
-  identity_pool_name = "${local.project_name_uc}_IdentityPool"
+  identity_pool_name = "${local.project_name}-admin${local.suffix}"
 
   cognito_identity_providers {
     client_id               = aws_cognito_user_pool_client.this.id
@@ -183,6 +183,92 @@ resource "aws_cognito_identity_pool_roles_attachment" "this" {
   #     value      = "paid"
   #   }
   # }
+
+  roles = {
+    "authenticated" = aws_iam_role.cognito_authenticated.arn
+  }
+}
+
+
+# --------------------------------------------------------------------------------------------------------------
+# Amazon Cognito User Pool
+# --------------------------------------------------------------------------------------------------------------
+resource "aws_cognito_user_pool" "user" {
+  name = "${local.project_name}-user${local.suffix}"
+
+  auto_verified_attributes = ["email"]
+  mfa_configuration        = "OPTIONAL"
+
+  account_recovery_setting {
+    recovery_mechanism {
+      name     = "verified_email"
+      priority = 1
+    }
+  }
+
+  software_token_mfa_configuration {
+    enabled = true
+  }
+
+  admin_create_user_config {
+    allow_admin_create_user_only = true
+  }
+}
+
+# -------------------------------------------------------
+# Amazon Cognito User Pool Client
+# -------------------------------------------------------
+resource "aws_cognito_user_pool_client" "user" {
+  name = "${aws_cognito_user_pool.this.name}Client"
+
+  user_pool_id    = aws_cognito_user_pool.this.id
+  generate_secret = false
+
+  allowed_oauth_flows                  = ["code"]
+  allowed_oauth_flows_user_pool_client = true
+  allowed_oauth_scopes = [
+    "aws.cognito.signin.user.admin",
+    "email",
+    "openid",
+    "phone",
+    "profile"
+  ]
+  callback_urls = ["http://localhost:3000/login"]
+  logout_urls   = ["http://localhost:3000/logout"]
+  # supported_identity_providers = ["Cognito"]
+  explicit_auth_flows = [
+    "ALLOW_CUSTOM_AUTH",
+    "ALLOW_REFRESH_TOKEN_AUTH",
+    "ALLOW_USER_SRP_AUTH"
+  ]
+}
+
+# --------------------------------------------------------------------------------------------------------------
+# Amazon Cognito User Pool Client Domain
+# --------------------------------------------------------------------------------------------------------------
+resource "aws_cognito_user_pool_domain" "user" {
+  domain       = "${local.project_name}-user${local.suffix}"
+  user_pool_id = aws_cognito_user_pool.user.id
+}
+
+# --------------------------------------------------------------------------------------------------------------
+# Amazon Cognito Identity Pool
+# --------------------------------------------------------------------------------------------------------------
+resource "aws_cognito_identity_pool" "user" {
+  identity_pool_name = "${local.project_name}-user${local.suffix}"
+
+  cognito_identity_providers {
+    client_id               = aws_cognito_user_pool_client.user.id
+    provider_name           = aws_cognito_user_pool.user.endpoint
+    server_side_token_check = false
+  }
+}
+
+# --------------------------------------------------------------------------------------------------------------
+# Amazon Cognito Identity Pool Role Attachment
+# --------------------------------------------------------------------------------------------------------------
+resource "aws_cognito_identity_pool_roles_attachment" "user" {
+  identity_pool_id = aws_cognito_identity_pool.user.id
 
   roles = {
     "authenticated" = aws_iam_role.cognito_authenticated.arn
