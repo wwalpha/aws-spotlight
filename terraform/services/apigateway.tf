@@ -78,31 +78,38 @@ resource "aws_apigatewayv2_stage" "this" {
 #   stage       = aws_apigatewayv2_stage.this.id
 # }
 
-# # ---------------------------------------------------------------------------------------------
-# # API Gateway VPC Link
-# # ---------------------------------------------------------------------------------------------
-# resource "aws_apigatewayv2_vpc_link" "this" {
-#   name               = "${local.project_name}-link"
-#   security_group_ids = [aws_security_group.private_link[0].id]
-#   subnet_ids         = module.vpc.public_subnets
+# ---------------------------------------------------------------------------------------------
+# API Gateway VPC Link
+# ---------------------------------------------------------------------------------------------
+resource "aws_apigatewayv2_vpc_link" "this" {
+  name               = "${local.project_name}-link"
+  security_group_ids = [aws_security_group.private_link.id]
+  subnet_ids         = module.vpc.public_subnets
+}
 
-#   count = local.normal
-# }
+# ---------------------------------------------------------------------------------------------
+# API Gateway Integration - VPC_LINK
+# ---------------------------------------------------------------------------------------------
+resource "aws_apigatewayv2_integration" "token" {
+  api_id             = aws_apigatewayv2_api.this.id
+  connection_type    = "VPC_LINK"
+  connection_id      = aws_apigatewayv2_vpc_link.this.id
+  integration_method = "ANY"
+  integration_type   = "HTTP_PROXY"
+  integration_uri    = aws_service_discovery_service.token.arn
+}
 
-# # ---------------------------------------------------------------------------------------------
-# # API Gateway Integration - VPC_LINK
-# # ---------------------------------------------------------------------------------------------
-# resource "aws_apigatewayv2_integration" "link" {
-#   api_id             = aws_apigatewayv2_api.this.id
-#   connection_type    = "VPC_LINK"
-#   connection_id      = aws_apigatewayv2_vpc_link.this[0].id
-#   integration_method = "ANY"
-#   integration_type   = "HTTP_PROXY"
-#   integration_uri    = aws_lb_listener.this.arn
-#   # integration_uri    = aws_service_discovery_service.this.arn
-
-#   count = local.normal
-# }
+# ---------------------------------------------------------------------------------------------
+# API Gateway Integration - VPC_LINK
+# ---------------------------------------------------------------------------------------------
+resource "aws_apigatewayv2_integration" "auth" {
+  api_id             = aws_apigatewayv2_api.this.id
+  connection_type    = "VPC_LINK"
+  connection_id      = aws_apigatewayv2_vpc_link.this.id
+  integration_method = "ANY"
+  integration_type   = "HTTP_PROXY"
+  integration_uri    = aws_service_discovery_service.auth.arn
+}
 
 # # ---------------------------------------------------------------------------------------------
 # # API Gateway Route

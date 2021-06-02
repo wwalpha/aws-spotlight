@@ -89,24 +89,18 @@ resource "aws_ecs_service" "auth_manager" {
     security_groups  = [aws_security_group.ecs_default_sg.id]
   }
 
-  # load_balancer {
-  #   container_name   = local.task_def_family_auth
-  #   container_port   = 8080
-  #   target_group_arn = aws_lb_target_group.this.arn
-  # }
-
   scheduling_strategy = "REPLICA"
 
-  # service_registries {
-  #   registry_arn   = aws_service_discovery_service.this.arn
-  #   container_port = 0
-  #   port           = 0
-  # }
+  service_registries {
+    registry_arn   = aws_service_discovery_service.auth.arn
+    container_port = 0
+    port           = 0
+  }
 
-  # provisioner "local-exec" {
-  #   when    = destroy
-  #   command = "sh ${path.module}/scripts/servicediscovery-drain.sh ${split("/", self.service_registries[0].registry_arn)[1]}"
-  # }
+  provisioner "local-exec" {
+    when    = destroy
+    command = "sh ${path.module}/scripts/servicediscovery-drain.sh ${length(self.service_registries) != 0 ? split("/", self.service_registries[0].registry_arn)[1] : ""}"
+  }
 
   lifecycle {
     ignore_changes = [
