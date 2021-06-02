@@ -16,8 +16,8 @@ export namespace Token {
   interface DecodeRequest {}
 
   interface DecodeResponse {
-    userid: string;
-    username: string;
-    type: string;
+    userId: string;
+    userName: string;
+    role: string;
   }
 }

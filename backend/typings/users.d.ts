@@ -19,7 +19,7 @@ export namespace User {
   interface GetUserResponse {
     userId: string;
     userName: string;
-    type: string;
+    role: string;
   }
 
   interface CreateAdminRequest extends TenantUser {}
