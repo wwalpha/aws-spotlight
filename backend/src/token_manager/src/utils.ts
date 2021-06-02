@@ -31,5 +31,11 @@ export const decodeToken = (token?: string): Token.CognitoToken => {
   }
 
   // decode jwt token
-  return jwtDecode<Token.CognitoToken | undefined>(tokenValue);
+  const decoded = jwtDecode<Token.CognitoToken | undefined>(tokenValue);
+
+  if (!decoded) {
+    throw new Error(`Decode token failed. ${tokenValue}`);
+  }
+
+  return decoded;
 };

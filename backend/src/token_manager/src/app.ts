@@ -3,8 +3,7 @@ import { defaultTo } from 'lodash';
 import axios from 'axios';
 import { decodeToken, getLogger } from './utils';
 import { Endpoints, Environments } from './consts';
-import { User } from 'typings';
-import { Token } from '../../../typings/token';
+import { User, Token } from 'typings';
 
 const logger = getLogger();
 
@@ -45,8 +44,8 @@ export const decode = async (req: express.Request, res: express.Response<Token.D
 
   // send response
   res.send({
-    userid: response.data.userid,
-    username: response.data.username,
+    userid: response.data.userId,
+    username: response.data.userName,
     type: response.data.type,
   });
 };
