@@ -19,9 +19,10 @@ env:
 jobs:
   build:
     runs-on: ubuntu-18.04
+    environment:
+      name: dev
     defaults:
       run:
-        # working-directory: ${{ env.WORKING_DIR }}
         working-directory: backend/src/token_manager
 
     steps:
