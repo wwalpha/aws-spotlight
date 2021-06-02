@@ -7,4 +7,4 @@ build
 .env.dev
 node_modules
 *.lock
-*.local.*
+*.local*
