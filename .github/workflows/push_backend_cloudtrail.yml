@@ -1,4 +1,4 @@
-name: PUSH) Backend cloudtrail build
+name: PUSH_B) Cloudtrail Build
 
 on:
   push:

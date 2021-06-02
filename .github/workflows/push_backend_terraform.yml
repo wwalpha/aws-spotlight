@@ -1,4 +1,4 @@
-name: PUSH) Backend terraform build
+name: PUSH_B) Terraform Build
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: PUSH) Terraform setup build
+name: PUSH_T) Setup Build
 
 on:
   push:

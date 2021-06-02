@@ -1,4 +1,4 @@
-name: PUSH) Backend resource manager build
+name: PUSH_B) Resource Manager Build
 
 on:
   push:

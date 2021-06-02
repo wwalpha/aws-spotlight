@@ -1,4 +1,4 @@
-name: PUSH) Backend token manager build
+name: PUSH_B) Token Manager Build
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: PUSH) Backend user manager build
+name: PUSH_B) User Manager Build
 
 on:
   push:
