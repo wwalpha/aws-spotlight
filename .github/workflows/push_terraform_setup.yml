@@ -1,4 +1,4 @@
-name: Terraform Setup Build
+name: PUSH) Terraform setup build
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - master
     paths:
       - terraform/setup/**
-      - .github/workflows/terraform_setup_dev.yml
+      - .github/workflows/push_terraform_setup.yml
   workflow_dispatch:
 
 env:

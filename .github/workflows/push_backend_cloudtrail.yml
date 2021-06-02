@@ -1,10 +1,10 @@
-name: Lambda Image Build
+name: PUSH) Backend cloudtrail build
 
 on:
   push:
     paths:
       - backend/src/cloudtrail/**
-      - .github/workflows/backend_cloudtrail_dev.yml
+      - .github/workflows/push_backend_cloudtrail.yml
   workflow_dispatch:
 
 env:

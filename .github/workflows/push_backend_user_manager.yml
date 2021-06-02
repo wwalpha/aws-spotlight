@@ -1,4 +1,4 @@
-name: User Manager Image Build
+name: PUSH) Backend user manager build
 
 on:
   push:

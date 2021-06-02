@@ -1,26 +1,30 @@
-name: Terraform Backend Build
+name: PUSH) Terraform service build
 
 on:
   push:
+    branches:
+      - master
     paths:
-      - backend/terraform/**
-      - .github/workflows/backend_terraform_dev.yml
+      - terraform/services/**
+      - .github/workflows/push_terraform_services.yml
   workflow_run:
     workflows:
-      - Terraform Services Build
+      - Terraform Setup Build
     branches:
       - master
     types:
       - completed
+  workflow_dispatch:
 
 env:
-  TF_VAR_region: ap-northeast-1
   TF_WORKSPACE: dev
+  TF_VAR_region: ap-northeast-1
+  TF_VAR_admin_email: ${{ secrets.ADMIN_EMAIL }} 
   AWS_DEFAULT_REGION: ap-northeast-1
-  WORKING_DIR: backend/terraform
+  WORKING_DIR: terraform/services
 
 jobs:
-  build:
+  Update:
     runs-on: ubuntu-18.04
     environment:
       name: dev
@@ -33,14 +37,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # AWS Credentials
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-1
-
       # Install the latest version of Terraform CLI 
       # and configure the Terraform CLI configuration file with a Terraform Cloud user API token
       - name: Setup Terraform
@@ -48,14 +44,14 @@ jobs:
         with:
           terraform_version: 0.15.3
 
-      # Setup init
+      # Service init
       - name: Terraform Init
         run: terraform init
 
-      # Setup plan
+      # Service plan
       - name: Terraform Plan
-        run: terraform plan -out=backend
+        run: terraform plan -out=services
 
-      # Setup apply
+      # Service apply
       - name: Terraform Apply
-        run: terraform apply "backend"
+        run: terraform apply "services"

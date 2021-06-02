@@ -1,10 +1,10 @@
-name: Resource Manager Image Build
+name: PUSH) Backend resource manager build
 
 on:
   push:
     paths:
       - backend/src/resource-manager/**
-      - .github/workflows/backend_resource_manager.yml
+      - .github/workflows/push_backend_resource_manager.yml
   workflow_dispatch:
 
 env:
