@@ -1,28 +1,27 @@
-name: Token Manager Image Build
+name: User Manager Image Build
 
 on:
   push:
     paths:
-      - backend/src/token_manager/**
-      - .github/workflows/push_backend_token_manager.yml
+      - backend/src/user_manager/**
+      - .github/workflows/push_backend_user_manager.yml
   workflow_dispatch:
 
 env:
-  ECR_REPOSITORY: arms/token
+  ECR_REPOSITORY: arms/user
   ECS_CLUSTER_NAME: arms-cluster
-  ECS_SERVICE_NAME: token_manager
-  ECS_TAKS_DEFINITION: arms-token
+  ECS_SERVICE_NAME: user_manager
+  ECS_TAKS_DEFINITION: arms-user
   ECS_TAKS_DEFINITION_FILE: task_definition.json
   SSM_PARAMETER_NAME: /arms/repository_url
-  WORKING_DIR: backend/src/token_manager
+  WORKING_DIR: backend/src/user_manager
 
 jobs:
   build:
     runs-on: ubuntu-18.04
     defaults:
       run:
-        # working-directory: ${{ env.WORKING_DIR }}
-        working-directory: backend/src/token_manager
+        working-directory: ${{ env.WORKING_DIR }}
 
     steps:
       # source checkout
