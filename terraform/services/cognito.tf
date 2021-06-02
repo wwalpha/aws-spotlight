@@ -2,10 +2,14 @@
 # Amazon Cognito User Pool
 # --------------------------------------------------------------------------------------------------------------
 resource "aws_cognito_user_pool" "this" {
-  name = "${local.project_name}-admin${local.suffix}"
-
+  name                     = "${local.project_name}-admin${local.suffix}"
+  username_attributes      = ["email"]
   auto_verified_attributes = ["email"]
   mfa_configuration        = "OPTIONAL"
+
+  username_configuration {
+    case_sensitive = true
+  }
 
   account_recovery_setting {
     recovery_mechanism {
@@ -17,15 +21,6 @@ resource "aws_cognito_user_pool" "this" {
   software_token_mfa_configuration {
     enabled = true
   }
-  # alias_attributes           = var.alias_attributes
-  # auto_verified_attributes   = local.auto_verified_attributes
-  # mfa_configuration          = var.mfa_configuration
-  # email_verification_subject = var.email_verification_subject
-  # email_verification_message = var.email_verification_message
-  # sms_authentication_message = var.sms_authentication_message
-  # sms_verification_message   = var.sms_verification_message
-  # username_attributes        = var.username_attributes
-  # tags                       = var.user_pool_tags
 
   admin_create_user_config {
     allow_admin_create_user_only = false
@@ -39,22 +34,42 @@ resource "aws_cognito_user_pool" "this" {
     # }
   }
 
-  # dynamic "schema" {
-  #   for_each = var.schema
+  schema {
+    name                     = "email"
+    attribute_data_type      = "String"
+    developer_only_attribute = false
+    mutable                  = true
+    required                 = true
 
-  #   content {
-  #     name                     = schema.value.name
-  #     attribute_data_type      = schema.value.attribute_data_type
-  #     developer_only_attribute = schema.value.developer_only_attribute
-  #     mutable                  = schema.value.mutable
-  #     required                 = schema.value.required
+    string_attribute_constraints {
+      max_length = 2048
+      min_length = 0
+    }
+  }
 
-  #     string_attribute_constraints {
-  #       max_length = schema.value.string_attribute_max_length
-  #       min_length = schema.value.string_attribute_min_length
-  #     }
-  #   }
-  # }
+  schema {
+    name                     = "name"
+    attribute_data_type      = "String"
+    developer_only_attribute = false
+    mutable                  = true
+    required                 = true
+
+    string_attribute_constraints {
+      max_length = 2048
+      min_length = 0
+    }
+  }
+
+  schema {
+    name                = "role"
+    attribute_data_type = "String"
+    mutable             = true
+
+    string_attribute_constraints {
+      min_length = 1
+      max_length = 256
+    }
+  }
 
   # device_configuration {
   #   challenge_required_on_new_device      = var.challenge_required_on_new_device
@@ -79,13 +94,14 @@ resource "aws_cognito_user_pool" "this" {
   #   verify_auth_challenge_response = var.verify_auth_challenge_response
   # }
 
-  # password_policy {
-  #   minimum_length    = var.password_minimum_length
-  #   require_lowercase = var.password_require_lowercase
-  #   require_numbers   = var.password_require_numbers
-  #   require_symbols   = var.password_require_symbols
-  #   require_uppercase = var.password_require_uppercase
-  # }
+  password_policy {
+    minimum_length                   = 10
+    require_lowercase                = true
+    require_numbers                  = true
+    require_symbols                  = true
+    require_uppercase                = true
+    temporary_password_validity_days = 7
+  }
 
   # dynamic "sms_configuration" {
   #   for_each = local.sms_configuration
@@ -189,15 +205,18 @@ resource "aws_cognito_identity_pool_roles_attachment" "this" {
   }
 }
 
-
 # --------------------------------------------------------------------------------------------------------------
 # Amazon Cognito User Pool
 # --------------------------------------------------------------------------------------------------------------
 resource "aws_cognito_user_pool" "user" {
-  name = "${local.project_name}-user${local.suffix}"
-
+  name                     = "${local.project_name}-user${local.suffix}"
+  username_attributes      = ["email"]
   auto_verified_attributes = ["email"]
   mfa_configuration        = "OPTIONAL"
+
+  username_configuration {
+    case_sensitive = true
+  }
 
   account_recovery_setting {
     recovery_mechanism {
@@ -212,6 +231,52 @@ resource "aws_cognito_user_pool" "user" {
 
   admin_create_user_config {
     allow_admin_create_user_only = true
+  }
+
+  password_policy {
+    minimum_length                   = 10
+    require_lowercase                = true
+    require_numbers                  = true
+    require_symbols                  = true
+    require_uppercase                = true
+    temporary_password_validity_days = 7
+  }
+
+  schema {
+    name                     = "email"
+    attribute_data_type      = "String"
+    developer_only_attribute = false
+    mutable                  = true
+    required                 = true
+
+    string_attribute_constraints {
+      max_length = 2048
+      min_length = 0
+    }
+  }
+
+  schema {
+    name                     = "name"
+    attribute_data_type      = "String"
+    developer_only_attribute = false
+    mutable                  = true
+    required                 = true
+
+    string_attribute_constraints {
+      max_length = 2048
+      min_length = 0
+    }
+  }
+
+  schema {
+    name                = "role"
+    attribute_data_type = "String"
+    mutable             = true
+
+    string_attribute_constraints {
+      min_length = 1
+      max_length = 256
+    }
   }
 }
 
@@ -274,3 +339,4 @@ resource "aws_cognito_identity_pool_roles_attachment" "user" {
     "authenticated" = aws_iam_role.cognito_authenticated.arn
   }
 }
+
