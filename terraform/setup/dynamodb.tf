@@ -214,3 +214,23 @@ resource "aws_dynamodb_table" "user" {
     prevent_destroy = true
   }
 }
+
+# ----------------------------------------------------------------------------------------------
+# Dynamodb Table - Settings
+# ----------------------------------------------------------------------------------------------
+resource "aws_dynamodb_table" "settings" {
+  name           = local.dynamodb_name_settings
+  billing_mode   = "PROVISIONED"
+  read_capacity  = 1
+  write_capacity = 1
+  hash_key       = "Id"
+
+  attribute {
+    name = "Id"
+    type = "S"
+  }
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}

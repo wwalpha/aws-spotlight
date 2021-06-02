@@ -88,3 +88,10 @@ output "dynamodb_name_announcement" {
 output "dynamodb_name_user" {
   value = aws_dynamodb_table.user.name
 }
+
+# ----------------------------------------------------------------------------------------------
+# DynamoDB Name - Settings
+# ----------------------------------------------------------------------------------------------
+output "dynamodb_name_settings" {
+  value = aws_dynamodb_table.settings.name
+}

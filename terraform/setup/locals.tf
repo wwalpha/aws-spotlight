@@ -21,6 +21,7 @@ locals {
   dynamodb_name_history      = "${local.project_name}-histories-${local.suffix}"
   dynamodb_name_announcement = "${local.project_name}-announcement-${local.suffix}"
   dynamodb_name_user         = "${local.project_name}-users-${local.suffix}"
+  dynamodb_name_settings     = "${local.project_name}-settings-${local.suffix}"
 
   # ----------------------------------------------------------------------------------------------
   # S3 Bucket

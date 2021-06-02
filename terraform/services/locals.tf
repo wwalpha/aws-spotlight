@@ -30,6 +30,7 @@ locals {
   dynamodb_name_history      = local.remote_setup.dynamodb_name_history
   dynamodb_name_announcement = local.remote_setup.dynamodb_name_announcement
   dynamodb_name_user         = local.remote_setup.dynamodb_name_user
+  dynamodb_name_settings     = local.remote_setup.dynamodb_name_settings
 
   # ----------------------------------------------------------------------------------------------
   # ECS
@@ -138,11 +139,17 @@ data "aws_ssm_parameter" "user_repo_url" {
   name       = aws_ssm_parameter.user_repo_url.name
 }
 
-
 # ----------------------------------------------------------------------------------------------
 # SSM Parameter Store - Resource manager repository url
 # ----------------------------------------------------------------------------------------------
 data "aws_ssm_parameter" "resource_repo_url" {
   depends_on = [aws_ssm_parameter.resource_repo_url]
   name       = aws_ssm_parameter.resource_repo_url.name
+}
+
+# ----------------------------------------------------------------------------------------------
+# SSM Parameter Store - Resource manager repository url
+# ----------------------------------------------------------------------------------------------
+data "aws_dynamodb_table" "settings" {
+  name = local.dynamodb_name_settings
 }

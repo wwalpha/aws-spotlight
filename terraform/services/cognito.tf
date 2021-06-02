@@ -23,7 +23,7 @@ resource "aws_cognito_user_pool" "this" {
   }
 
   admin_create_user_config {
-    allow_admin_create_user_only = false
+    allow_admin_create_user_only = true
 
     # temporary_password_validity_days = "${var.unused_account_validity_days}"
 
@@ -146,11 +146,11 @@ resource "aws_cognito_user_pool_client" "this" {
   ]
   callback_urls = ["http://localhost:3000/login"]
   logout_urls   = ["http://localhost:3000/logout"]
-  # supported_identity_providers = ["Cognito"]
   explicit_auth_flows = [
     "ALLOW_CUSTOM_AUTH",
     "ALLOW_REFRESH_TOKEN_AUTH",
-    "ALLOW_USER_SRP_AUTH"
+    "ALLOW_USER_SRP_AUTH",
+    "ALLOW_ADMIN_USER_PASSWORD_AUTH",
   ]
 
   # default_redirect_uri                 = var.default_redirect_uri
@@ -300,8 +300,8 @@ resource "aws_cognito_user_pool_client" "user" {
   ]
   callback_urls = ["http://localhost:3000/login"]
   logout_urls   = ["http://localhost:3000/logout"]
-  # supported_identity_providers = ["Cognito"]
   explicit_auth_flows = [
+    "ALLOW_ADMIN_USER_PASSWORD_AUTH",
     "ALLOW_CUSTOM_AUTH",
     "ALLOW_REFRESH_TOKEN_AUTH",
     "ALLOW_USER_SRP_AUTH"
