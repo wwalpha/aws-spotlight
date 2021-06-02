@@ -19,7 +19,8 @@ env:
 jobs:
   Update:
     runs-on: ubuntu-18.04
-
+    environment:
+      name: dev
     defaults:
       run:
         working-directory: backend/terraform
