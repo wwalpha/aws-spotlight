@@ -18,7 +18,7 @@ resource "aws_service_discovery_service" "token" {
 
     dns_records {
       ttl  = 60
-      type = "A"
+      type = "SRV"
     }
 
     routing_policy = "MULTIVALUE"
@@ -40,7 +40,7 @@ resource "aws_service_discovery_service" "user" {
 
     dns_records {
       ttl  = 60
-      type = "A"
+      type = "SRV"
     }
 
     routing_policy = "MULTIVALUE"
@@ -62,7 +62,7 @@ resource "aws_service_discovery_service" "resource" {
 
     dns_records {
       ttl  = 60
-      type = "A"
+      type = "SRV"
     }
 
     routing_policy = "MULTIVALUE"
@@ -84,7 +84,7 @@ resource "aws_service_discovery_service" "auth" {
 
     dns_records {
       ttl  = 60
-      type = "A"
+      type = "SRV"
     }
 
     routing_policy = "MULTIVALUE"

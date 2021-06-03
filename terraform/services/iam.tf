@@ -70,6 +70,14 @@ resource "aws_iam_role_policy_attachment" "ecs_task_dynamodb" {
 }
 
 # ----------------------------------------------------------------------------------------------
+# AWS ECS Task Role Policy - App Mesh Envoy Access
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy_attachment" "ecs_task_envoy" {
+  role       = aws_iam_role.ecs_task.name
+  policy_arn = "arn:aws:iam::aws:policy/AWSAppMeshEnvoyAccess"
+}
+
+# ----------------------------------------------------------------------------------------------
 # AWS Role - AWS Batch
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role" "batch_service" {

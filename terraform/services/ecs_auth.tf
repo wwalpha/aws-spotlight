@@ -28,11 +28,24 @@ resource "aws_ecs_task_definition" "auth" {
   execution_role_arn = aws_iam_role.ecs_task_exec.arn
   network_mode       = "awsvpc"
   cpu                = "256"
-  memory             = "512"
+  memory             = "1024"
 
   requires_compatibilities = [
     "FARGATE"
   ]
+
+  proxy_configuration {
+    type           = "APPMESH"
+    container_name = "envoy"
+    properties = {
+      "ProxyIngressPort"   = "15000"
+      "ProxyEgressPort"    = "15001"
+      "AppPorts"           = "8080"
+      "EgressIgnoredIPs"   = "169.254.170.2,169.254.169.254"
+      "EgressIgnoredPorts" = "22"
+      "IgnoredUID"         = "1337"
+    }
+  }
 
   container_definitions = templatefile(
     "taskdefs/definition.tpl",
@@ -42,9 +55,7 @@ resource "aws_ecs_task_definition" "auth" {
       container_image = data.aws_ssm_parameter.auth_repo_url.value
       container_port  = 8080
       env_file_arn    = "${data.aws_s3_bucket.environment.arn}/${aws_s3_bucket_object.auth.key}"
-      # app_mesh_node     = split(":", aws_appmesh_virtual_node.token.arn)[5]
-      # dynamodb_tables   = aws_ssm_parameter.tables.arn
-      # service_endpoints = aws_ssm_parameter.endpoints.arn
+      app_mesh_node   = split(":", aws_appmesh_virtual_node.auth.arn)[5]
     }
   )
 
@@ -61,13 +72,14 @@ resource "aws_ecs_service" "auth_manager" {
   name                               = "auth_manager"
   cluster                            = aws_ecs_cluster.this.id
   desired_count                      = 0
-  platform_version                   = "1.4.0"
+  platform_version                   = "LATEST"
   task_definition                    = "arn:aws:ecs:${local.region}:${local.account_id}:task-definition/${aws_ecs_task_definition.auth.family}:${local.task_def_rev_auth}"
   deployment_maximum_percent         = 200
   deployment_minimum_healthy_percent = 100
   health_check_grace_period_seconds  = 0
   wait_for_steady_state              = false
   scheduling_strategy                = "REPLICA"
+  enable_ecs_managed_tags            = true
 
   capacity_provider_strategy {
     base              = 0
@@ -91,9 +103,8 @@ resource "aws_ecs_service" "auth_manager" {
   }
 
   service_registries {
-    registry_arn   = aws_service_discovery_service.auth.arn
-    container_port = 0
-    port           = 0
+    registry_arn = aws_service_discovery_service.auth.arn
+    port         = 8080
   }
 
   provisioner "local-exec" {

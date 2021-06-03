@@ -3,6 +3,12 @@
     "name": "${container_name}",
     "image": "${container_image}",
     "essential": true,
+    "dependsOn" : [
+      {
+        "containerName": "envoy",
+        "condition": "HEALTHY"
+      }
+    ],
     "environmentFiles": [
       {
         "value": "${env_file_arn}",
@@ -48,6 +54,33 @@
         "awslogs-region": "${aws_region}",
         "awslogs-stream-prefix": "ecs"
       }
+    }
+  },
+  {
+    "name": "envoy",
+    "user": "1337",
+    "image": "840364872350.dkr.ecr.${aws_region}.amazonaws.com/aws-appmesh-envoy:v1.17.2.0-prod",
+    "memory" : 500,
+    "essential": true,
+    "environment": [
+      {
+        "name": "APPMESH_VIRTUAL_NODE_NAME",
+        "value": "${app_mesh_node}"
+      },
+      {
+        "name": "ENABLE_ENVOY_XRAY_TRACING",
+        "value": "1"
+      }
+    ],
+    "healthCheck": {
+      "command": [
+        "CMD-SHELL",
+        "curl -s http://localhost:9901/server_info | grep state | grep -q LIVE"
+      ],
+      "startPeriod": 10,
+      "interval": 5,
+      "timeout": 2,
+      "retries": 3
     }
   }
 ]
