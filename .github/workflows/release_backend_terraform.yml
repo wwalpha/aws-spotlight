@@ -1,22 +1,20 @@
-name: RELEASE_T) Service Build
+name: RELEASE_B) Terraform Build
 
 on:
   workflow_run:
     workflows:
-      - RELEASE_T) Setup Build
+      - RELEASE_T) Service Build
     types:
       - completed
-  workflow_dispatch:
 
 env:
-  TF_WORKSPACE: prod
   TF_VAR_region: ap-northeast-1
-  TF_VAR_admin_email: ${{ secrets.ADMIN_EMAIL }} 
+  TF_WORKSPACE: prod
   AWS_DEFAULT_REGION: ap-northeast-1
-  WORKING_DIR: terraform/services
+  WORKING_DIR: backend/terraform
 
 jobs:
-  Update:
+  build:
     runs-on: ubuntu-18.04
     environment:
       name: prod
@@ -44,10 +42,14 @@ jobs:
         with:
           terraform_version: 0.15.3
 
-      # Terraform Apply
+      # Setup init
+      - name: Terraform Init
+        run: terraform init
+
+      # Setup plan
+      - name: Terraform Plan
+        run: terraform plan -out=backend
+
+      # Setup apply
       - name: Terraform Apply
-        run: |
-          mv main.tf.prod main.tf
-          terraform init
-          terraform plan -out=services
-          terraform apply "services"
+        run: terraform apply "backend"
