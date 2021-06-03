@@ -9,6 +9,7 @@ on:
 env:
   AWS_DEFAULT_REGION: ap-northeast-1
   TF_VAR_region: ap-northeast-1
+  WORKING_DIR: terraform/setup
 
 jobs:
   Update:
@@ -19,7 +20,7 @@ jobs:
       TF_VAR_domain_name: ${{ secrets.DOMAIN_NAME }}
     defaults:
       run:
-        working-directory: backend/terraform
+        working-directory: ${{ env.WORKING_DIR }}
 
     steps:
       # source checkout

@@ -7,14 +7,15 @@ on:
     paths:
       - terraform/setup/**
       - .github/workflows/push_terraform_setup.yml
+    branches-ignore:
+      - releases/**
   workflow_dispatch:
 
 env:
   AWS_DEFAULT_REGION: ap-northeast-1
   TF_VAR_region: ap-northeast-1
   TF_WORKSPACE: dev
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  WORKING_DIR: terraform/services
 
 jobs:
   Update:
@@ -23,7 +24,7 @@ jobs:
       name: dev
     defaults:
       run:
-        working-directory: backend/terraform
+        working-directory: ${{ env.WORKING_DIR }}
 
     steps:
       # source checkout
