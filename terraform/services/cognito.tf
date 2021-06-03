@@ -340,3 +340,15 @@ resource "aws_cognito_identity_pool_roles_attachment" "user" {
   }
 }
 
+# --------------------------------------------------------------------------------------------------------------
+# Amazon Cognito Admin User
+# --------------------------------------------------------------------------------------------------------------
+resource "null_resource" "cognito_admin" {
+  triggers = {
+    user_pool_id = aws_cognito_user_pool.this.id
+  }
+
+  provisioner "local-exec" {
+    command = "aws cognito-idp admin-create-user --user-pool-id ${aws_cognito_user_pool.this.id} --username ${var.admin_email}"
+  }
+}
