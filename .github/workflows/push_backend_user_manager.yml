@@ -5,6 +5,8 @@ on:
     paths:
       - backend/src/user_manager/**
       - .github/workflows/push_backend_user_manager.yml
+    branches-ignore:
+      - releases/**
   workflow_dispatch:
 
 env:

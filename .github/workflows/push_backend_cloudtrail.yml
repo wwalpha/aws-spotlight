@@ -5,6 +5,8 @@ on:
     paths:
       - backend/src/cloudtrail/**
       - .github/workflows/push_backend_cloudtrail.yml
+    branches-ignore:
+      - releases/**
   workflow_dispatch:
 
 env:

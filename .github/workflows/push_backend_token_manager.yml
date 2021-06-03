@@ -5,6 +5,8 @@ on:
     paths:
       - backend/src/token_manager/**
       - .github/workflows/push_backend_token_manager.yml
+    branches-ignore:
+      - releases/**
   workflow_dispatch:
 
 env:

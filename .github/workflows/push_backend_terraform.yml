@@ -5,6 +5,8 @@ on:
     paths:
       - backend/terraform/**
       - .github/workflows/push_backend_terraform.yml
+    branches-ignore:
+      - releases/**
   workflow_run:
     workflows:
       - Terraform Services Build

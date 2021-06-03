@@ -1,12 +1,12 @@
 name: RELEASE_T) Service Build
 
-# on:
-#   workflow_run:
-#     workflows:
-#       - RELEASE_T) Setup Build
-#     types:
-#       - completed
-#   workflow_dispatch:
+on:
+  workflow_run:
+    workflows:
+      - RELEASE_T) Setup Build
+    types:
+      - completed
+  workflow_dispatch:
 
 env:
   TF_VAR_region: ap-northeast-1

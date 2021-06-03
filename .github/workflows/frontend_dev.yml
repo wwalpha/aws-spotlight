@@ -5,6 +5,8 @@ on:
     paths:
       - frontend/**
       - .github/workflows/frontend_dev.yml
+    branches-ignore:
+      - releases/**
   workflow_dispatch:
 
 env:

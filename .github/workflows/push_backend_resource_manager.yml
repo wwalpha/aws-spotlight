@@ -5,6 +5,8 @@ on:
     paths:
       - backend/src/resource-manager/**
       - .github/workflows/push_backend_resource_manager.yml
+    branches-ignore:
+      - releases/**
   workflow_dispatch:
 
 env:
