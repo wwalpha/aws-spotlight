@@ -51,7 +51,7 @@ resource "aws_ecs_task_definition" "resource" {
 resource "aws_ecs_service" "resource" {
   name                               = "resource_manager"
   cluster                            = aws_ecs_cluster.this.id
-  desired_count                      = 0
+  desired_count                      = 1
   platform_version                   = "LATEST"
   task_definition                    = "arn:aws:ecs:${local.region}:${local.account_id}:task-definition/${aws_ecs_task_definition.resource.family}:${local.task_def_rev_resource}"
   deployment_maximum_percent         = 200
