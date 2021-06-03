@@ -1,11 +1,11 @@
 name: RELEASE_B) Terraform Build
 
-on:
-  workflow_run:
-    workflows:
-      - RELEASE_T) Service Build
-    types:
-      - completed
+# on:
+#   workflow_run:
+#     workflows:
+#       - RELEASE_T) Service Build
+#     types:
+#       - completed
 
 env:
   TF_VAR_region: ap-northeast-1
