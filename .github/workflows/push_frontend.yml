@@ -1,12 +1,10 @@
-name: Lambda Image Build
+name: PUSH_F) React Build
 
 on:
   push:
     paths:
       - frontend/**
       - .github/workflows/frontend_dev.yml
-    branches-ignore:
-      - releases/**
   workflow_dispatch:
 
 env:
@@ -20,12 +18,6 @@ jobs:
       name: env
     env:
       FRONTEND_BUCKET: ${{ secrets.FRONTEND_BUCKET }}
-      IDENTITY_POOL_ID: ${{ secrets.IDENTITY_POOL_ID }}
-      USER_POOL_ID: ${{ secrets.USER_POOL_ID }}
-      USER_POOL_WEB_CLIENT_ID: ${{ secrets.USER_POOL_WEB_CLIENT_ID }}
-      AUTH_DOMAIN: ${{ secrets.AUTH_DOMAIN }}
-      AUTH_SIGN_IN_URL: ${{ secrets.AUTH_SIGN_IN_URL }}
-      AUTH_SIGN_OUT_URL: ${{ secrets.AUTH_SIGN_OUT_URL }}
       API_URL: ${{ secrets.API_URL }}
     defaults:
       run:
