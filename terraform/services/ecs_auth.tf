@@ -67,6 +67,7 @@ resource "aws_ecs_service" "auth_manager" {
   deployment_minimum_healthy_percent = 100
   health_check_grace_period_seconds  = 0
   wait_for_steady_state              = false
+  scheduling_strategy                = "REPLICA"
 
   capacity_provider_strategy {
     base              = 0
@@ -88,8 +89,6 @@ resource "aws_ecs_service" "auth_manager" {
     subnets          = local.is_dev ? module.vpc.public_subnets : module.vpc.private_subnets
     security_groups  = [aws_security_group.ecs_default_sg.id]
   }
-
-  scheduling_strategy = "REPLICA"
 
   service_registries {
     registry_arn   = aws_service_discovery_service.auth.arn

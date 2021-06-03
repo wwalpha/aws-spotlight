@@ -24,6 +24,17 @@ locals {
   lambda_basic_policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 
   # ----------------------------------------------------------------------------------------------
+  # API Gateway
+  # ----------------------------------------------------------------------------------------------
+  apigateway_id                   = local.remote_services.apigateway_id
+  apigateway_domain_name          = local.remote_services.apigateway_domain_name
+  apigateway_authorizer_id        = local.remote_services.apigateway_authorizer_id
+  apigateway_integration_auth     = local.remote_services.apigateway_integration_auth
+  apigateway_integration_resource = local.remote_services.apigateway_integration_resource
+  apigateway_integration_token    = local.remote_services.apigateway_integration_token
+  apigateway_integration_user     = local.remote_services.apigateway_integration_user
+
+  # ----------------------------------------------------------------------------------------------
   # DynamoDB
   # ----------------------------------------------------------------------------------------------
   dynamodb_name_event_type  = local.remote_setup.dynamodb_name_event_type

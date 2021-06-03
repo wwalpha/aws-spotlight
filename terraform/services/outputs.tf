@@ -20,17 +20,52 @@ output "cloudfront_domain_name" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# Application Load Balancer Domain Name
+# API Gateway Id
 # ----------------------------------------------------------------------------------------------
-output "alb_domain_name" {
-  value = aws_lb.this.dns_name
+output "apigateway_id" {
+  value = aws_apigatewayv2_api.this.id
 }
 
 # ----------------------------------------------------------------------------------------------
 # API Gateway Domain Name
 # ----------------------------------------------------------------------------------------------
-output "api_gateway_domain_name" {
+output "apigateway_domain_name" {
   value = aws_apigatewayv2_stage.this.invoke_url
+}
+
+# ----------------------------------------------------------------------------------------------
+# API Gateway Domain Name
+# ----------------------------------------------------------------------------------------------
+output "apigateway_authorizer_id" {
+  value = aws_apigatewayv2_authorizer.this.id
+}
+
+# ----------------------------------------------------------------------------------------------
+# API Gateway Integration Id - Auth
+# ----------------------------------------------------------------------------------------------
+output "apigateway_integration_auth" {
+  value = aws_apigatewayv2_integration.auth.id
+}
+
+# ----------------------------------------------------------------------------------------------
+# API Gateway Integration Id - Resource
+# ----------------------------------------------------------------------------------------------
+output "apigateway_integration_resource" {
+  value = aws_apigatewayv2_integration.resource.id
+}
+
+# ----------------------------------------------------------------------------------------------
+# API Gateway Integration Id - Token
+# ----------------------------------------------------------------------------------------------
+output "apigateway_integration_token" {
+  value = aws_apigatewayv2_integration.token.id
+}
+
+# ----------------------------------------------------------------------------------------------
+# API Gateway Integration Id - User
+# ----------------------------------------------------------------------------------------------
+output "apigateway_integration_user" {
+  value = aws_apigatewayv2_integration.user.id
 }
 
 # ----------------------------------------------------------------------------------------------
