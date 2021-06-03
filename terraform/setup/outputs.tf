@@ -95,3 +95,11 @@ output "dynamodb_name_user" {
 output "dynamodb_name_settings" {
   value = aws_dynamodb_table.settings.name
 }
+
+# ----------------------------------------------------------------------------------------------
+# Domain dns servers
+# ----------------------------------------------------------------------------------------------
+output "dns_servers" {
+  sensitive = true
+  value     = aws_route53_zone.arms.name_servers
+}
