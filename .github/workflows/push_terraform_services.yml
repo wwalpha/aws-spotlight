@@ -52,14 +52,9 @@ jobs:
         with:
           terraform_version: 0.15.3
 
-      # Service init
-      - name: Terraform Init
-        run: terraform init
-
-      # Service plan
-      - name: Terraform Plan
-        run: terraform plan -out=services
-
-      # Service apply
+      # Terraform Apply
       - name: Terraform Apply
-        run: terraform apply "services"
+        run: |
+          terraform init
+          terraform plan -out=services
+          terraform apply "services"

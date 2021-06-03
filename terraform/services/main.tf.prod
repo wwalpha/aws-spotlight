@@ -21,7 +21,6 @@ terraform {
 # ----------------------------------------------------------------------------------------------
 data "terraform_remote_state" "setup" {
   backend   = "s3"
-  workspace = terraform.workspace
 
   config = {
     region = "ap-northeast-1"
