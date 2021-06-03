@@ -57,6 +57,12 @@ locals {
   # ----------------------------------------------------------------------------------------------
   bucket_name_frontend    = local.remote_setup.bucket_name_frontend
   bucket_name_environment = local.remote_setup.bucket_name_environment
+
+  # ----------------------------------------------------------------------------------------------
+  # Route53
+  # ----------------------------------------------------------------------------------------------
+  route53_zone_name = local.remote_setup.route53_zone_name
+  domain_name       = local.remote_setup.route53_zone_name
 }
 
 # ----------------------------------------------------------------------------------------------
@@ -152,4 +158,11 @@ data "aws_ssm_parameter" "resource_repo_url" {
 # ----------------------------------------------------------------------------------------------
 data "aws_dynamodb_table" "settings" {
   name = local.dynamodb_name_settings
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS Route53 Zone
+# ----------------------------------------------------------------------------------------------
+data "aws_route53_zone" "this" {
+  name = local.route53_zone_name
 }

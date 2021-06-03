@@ -55,28 +55,28 @@ resource "aws_apigatewayv2_stage" "this" {
   }
 }
 
-# # ---------------------------------------------------------------------------------------------
-# # API Gateway Domain Name
-# # ---------------------------------------------------------------------------------------------
-# resource "aws_apigatewayv2_domain_name" "this" {
-#   depends_on  = [aws_acm_certificate_validation.api]
-#   domain_name = "api.${local.domain_name}"
+# ---------------------------------------------------------------------------------------------
+# API Gateway Domain Name
+# ---------------------------------------------------------------------------------------------
+resource "aws_apigatewayv2_domain_name" "this" {
+  depends_on  = [aws_acm_certificate_validation.this]
+  domain_name = "api.${local.domain_name}"
 
-#   domain_name_configuration {
-#     certificate_arn = aws_acm_certificate.api.arn
-#     endpoint_type   = "REGIONAL"
-#     security_policy = "TLS_1_2"
-#   }
-# }
+  domain_name_configuration {
+    certificate_arn = aws_acm_certificate.this.arn
+    endpoint_type   = "REGIONAL"
+    security_policy = "TLS_1_2"
+  }
+}
 
-# # ---------------------------------------------------------------------------------------------
-# # API Gateway Domain API Mapping
-# # ---------------------------------------------------------------------------------------------
-# resource "aws_apigatewayv2_api_mapping" "this" {
-#   api_id      = aws_apigatewayv2_api.this.id
-#   domain_name = "api.${local.domain_name}"
-#   stage       = aws_apigatewayv2_stage.this.id
-# }
+# ---------------------------------------------------------------------------------------------
+# API Gateway Domain API Mapping
+# ---------------------------------------------------------------------------------------------
+resource "aws_apigatewayv2_api_mapping" "this" {
+  api_id      = aws_apigatewayv2_api.this.id
+  domain_name = aws_apigatewayv2_domain_name.this.domain_name
+  stage       = aws_apigatewayv2_stage.this.id
+}
 
 # ---------------------------------------------------------------------------------------------
 # API Gateway VPC Link

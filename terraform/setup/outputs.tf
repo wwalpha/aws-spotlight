@@ -103,3 +103,12 @@ output "dns_servers" {
   sensitive = true
   value     = aws_route53_zone.arms.name_servers
 }
+
+# ----------------------------------------------------------------------------------------------
+# Domain dns servers
+# ----------------------------------------------------------------------------------------------
+output "route53_zone_name" {
+  sensitive = true
+  value     = aws_route53_zone.arms.name
+}
+
