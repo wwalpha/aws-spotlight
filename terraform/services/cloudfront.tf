@@ -24,10 +24,10 @@ resource "aws_cloudfront_distribution" "this" {
   }
 
   default_cache_behavior {
-    allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
-    cached_methods   = ["GET", "HEAD"]
-    target_origin_id = local.origin_id_frontend
-
+    allowed_methods        = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
+    cached_methods         = ["GET", "HEAD"]
+    target_origin_id       = local.origin_id_frontend
+    compress               = true
     viewer_protocol_policy = local.viewer_protocol_policy
 
     forwarded_values {
@@ -42,7 +42,7 @@ resource "aws_cloudfront_distribution" "this" {
   viewer_certificate {
     cloudfront_default_certificate = false
     ssl_support_method             = "sni-only"
-    minimum_protocol_version       = "TLSv1.1_2016"
+    minimum_protocol_version       = "TLSv1.2_2019"
     acm_certificate_arn            = aws_acm_certificate_validation.global.certificate_arn
   }
 
