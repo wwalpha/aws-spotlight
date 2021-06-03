@@ -2,8 +2,6 @@ name: PUSH_T) Setup Build
 
 on:
   push:
-    branches:
-      - master
     paths:
       - terraform/setup/**
       - .github/workflows/push_terraform_setup.yml

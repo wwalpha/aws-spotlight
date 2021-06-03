@@ -2,8 +2,6 @@ name: PUSH_T) Service Build
 
 on:
   push:
-    branches:
-      - master
     paths:
       - terraform/services/**
       - .github/workflows/push_terraform_services.yml
