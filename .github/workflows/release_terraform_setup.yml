@@ -1,9 +1,9 @@
 name: RELEASE_T) Setup Build
 
 on:
-  release:
-    types:
-      - created
+  push:
+    tags:
+      - v*
   workflow_dispatch:
 
 env:
