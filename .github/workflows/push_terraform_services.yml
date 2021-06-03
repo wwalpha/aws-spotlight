@@ -9,7 +9,7 @@ on:
       - .github/workflows/push_terraform_services.yml
   workflow_run:
     workflows:
-      - Terraform Setup Build
+      - PUSH_T) Setup Build
     branches:
       - master
     types:
