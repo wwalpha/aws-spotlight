@@ -45,6 +45,8 @@ jobs:
       - name: Terraform Apply
         run: |
           mv main.tf.prod main.tf
+          cat main.tf
+          echo $AWS_ACCESS_KEY_ID
           terraform init
           terraform plan -out=setup
           terraform apply "setup"
