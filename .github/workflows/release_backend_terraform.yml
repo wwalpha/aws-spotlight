@@ -9,7 +9,6 @@ on:
 
 env:
   TF_VAR_region: ap-northeast-1
-  TF_WORKSPACE: prod
   AWS_DEFAULT_REGION: ap-northeast-1
   WORKING_DIR: backend/terraform
 
