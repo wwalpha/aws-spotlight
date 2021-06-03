@@ -1,0 +1,49 @@
+name: RELEASE_T) Setup Build
+
+on:
+  release:
+    types:
+      - created
+  workflow_dispatch:
+
+env:
+  AWS_DEFAULT_REGION: ap-northeast-1
+  TF_VAR_region: ap-northeast-1
+  TF_WORKSPACE: prod
+
+jobs:
+  Update:
+    runs-on: ubuntu-18.04
+    environment:
+      name: prod
+    defaults:
+      run:
+        working-directory: backend/terraform
+
+    steps:
+      # source checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Install the latest version of Terraform CLI 
+      # and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 0.15.3
+
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1
+
+      # Terraform Apply
+      - name: Terraform Apply
+        run: |
+          mv main.tf.prod main.tf
+          terraform init
+          terraform plan -out=setup
+          terraform apply "setup"
