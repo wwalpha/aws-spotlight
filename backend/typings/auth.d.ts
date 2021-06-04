@@ -1,6 +1,6 @@
 export namespace Auth {
   /** User Login Request */
-  interface UserLoginRequest {
+  interface SignInRequest {
     username: string;
     password: string;
     mfaCode?: string;
@@ -8,7 +8,7 @@ export namespace Auth {
   }
 
   /** User Login Response */
-  interface UserLoginResponse extends AuthenticateFailure {
+  interface SignInResponse extends AuthenticateFailure {
     token?: string;
     accessToken?: string;
     refreshToken?: string;

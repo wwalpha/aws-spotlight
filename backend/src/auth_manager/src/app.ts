@@ -29,7 +29,7 @@ export const common = async (req: express.Request, res: express.Response, app: a
 };
 
 // process login request
-export const auth = async (req: express.Request<any, any, Auth.UserLoginRequest>): Promise<Auth.UserLoginResponse> => {
+export const auth = async (req: express.Request<any, any, Auth.SignInRequest>): Promise<Auth.UserLoginResponse> => {
   Logger.info({
     username: req.body.username,
     password: '******',

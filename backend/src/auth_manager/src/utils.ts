@@ -13,7 +13,7 @@ export const Logger = winston.createLogger({
 });
 
 export const authenticateUser = (
-  request: Auth.UserLoginRequest,
+  request: Auth.SignInRequest,
   cognitoUser: CognitoUser,
   authDetails: AuthenticationDetails
 ) =>

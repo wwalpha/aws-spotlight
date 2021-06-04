@@ -42,6 +42,6 @@ describe('auth manager', () => {
       .send({
         username: 'test001',
         password: 'password001',
-      } as Auth.UserLoginRequest);
+      } as Auth.SignInRequest);
   });
 });
