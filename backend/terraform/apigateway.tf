@@ -1,5 +1,5 @@
 # ---------------------------------------------------------------------------------------------
-# API Gateway Route - GET /user/health
+# API Gateway Route - User
 # ---------------------------------------------------------------------------------------------
 resource "aws_apigatewayv2_route" "get_user_health" {
   api_id    = local.apigateway_id
@@ -7,9 +7,6 @@ resource "aws_apigatewayv2_route" "get_user_health" {
   target    = "integrations/${local.apigateway_integration_user}"
 }
 
-# ---------------------------------------------------------------------------------------------
-# API Gateway Route - POST /user
-# ---------------------------------------------------------------------------------------------
 resource "aws_apigatewayv2_route" "post_user" {
   api_id    = local.apigateway_id
   route_key = "POST /user"
@@ -18,9 +15,6 @@ resource "aws_apigatewayv2_route" "post_user" {
   # authorization_type = "JWT"
 }
 
-# ---------------------------------------------------------------------------------------------
-# API Gateway Route - POST /user/admin
-# ---------------------------------------------------------------------------------------------
 resource "aws_apigatewayv2_route" "post_user_admin" {
   api_id    = local.apigateway_id
   route_key = "POST /user/admin"
@@ -30,7 +24,7 @@ resource "aws_apigatewayv2_route" "post_user_admin" {
 }
 
 # ---------------------------------------------------------------------------------------------
-# API Gateway Route - GET /resource/health
+# API Gateway Route - Resource
 # ---------------------------------------------------------------------------------------------
 resource "aws_apigatewayv2_route" "get_resource_health" {
   api_id    = local.apigateway_id
@@ -39,7 +33,7 @@ resource "aws_apigatewayv2_route" "get_resource_health" {
 }
 
 # ---------------------------------------------------------------------------------------------
-# API Gateway Route - GET /auth/health
+# API Gateway Route - Auth
 # ---------------------------------------------------------------------------------------------
 resource "aws_apigatewayv2_route" "get_auth_health" {
   api_id    = local.apigateway_id
@@ -47,12 +41,9 @@ resource "aws_apigatewayv2_route" "get_auth_health" {
   target    = "integrations/${local.apigateway_integration_auth}"
 }
 
-# ---------------------------------------------------------------------------------------------
-# API Gateway Route - POST /auth/signin
-# ---------------------------------------------------------------------------------------------
-resource "aws_apigatewayv2_route" "post_auth_signin" {
+resource "aws_apigatewayv2_route" "post_auth" {
   api_id    = local.apigateway_id
-  route_key = "POST /auth/signin"
+  route_key = "POST /auth"
   target    = "integrations/${local.apigateway_integration_auth}"
 }
 
