@@ -41,6 +41,21 @@ locals {
   dynamodb_name_resource    = local.remote_setup.dynamodb_name_resource
   dynamodb_name_unprocessed = local.remote_setup.dynamodb_name_unprocessed
   dynamodb_name_history     = local.remote_setup.dynamodb_name_history
+  dynamodb_name_users       = local.remote_setup.dynamodb_name_users
+  dynamodb_name_settings    = local.remote_setup.dynamodb_name_settings
+
+  # ----------------------------------------------------------------------------------------------
+  # CloudMap
+  # ----------------------------------------------------------------------------------------------
+  cloudmap_namespace     = local.remote_services.cloudmap_namespace
+  cloudmap_service_auth  = local.remote_services.cloudmap_service_auth
+  cloudmap_service_user  = local.remote_services.cloudmap_service_user
+  cloudmap_service_token = local.remote_services.cloudmap_service_token
+
+  # ----------------------------------------------------------------------------------------------
+  # S3
+  # ----------------------------------------------------------------------------------------------
+  bucket_name_environment = local.remote_setup.bucket_name_environment
 
   # ----------------------------------------------------------------------------------------------
   # ECR

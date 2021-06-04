@@ -123,3 +123,24 @@ output "ecr_repository_unprocessed" {
 output "cloudmap_namespace" {
   value = aws_service_discovery_private_dns_namespace.this.name
 }
+
+# ----------------------------------------------------------------------------------------------
+# CloudMap Service - Auth
+# ----------------------------------------------------------------------------------------------
+output "cloudmap_service_auth" {
+  value = aws_service_discovery_service.auth.name
+}
+
+# ----------------------------------------------------------------------------------------------
+# CloudMap Service - User
+# ----------------------------------------------------------------------------------------------
+output "cloudmap_service_user" {
+  value = aws_service_discovery_service.user.name
+}
+
+# ----------------------------------------------------------------------------------------------
+# CloudMap Service - Token
+# ----------------------------------------------------------------------------------------------
+output "cloudmap_service_token" {
+  value = aws_service_discovery_service.token.name
+}
