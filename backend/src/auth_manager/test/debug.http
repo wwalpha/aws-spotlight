@@ -1,0 +1,19 @@
+GET http://localhost:8080/auth/health
+
+
+POST http://localhost:8080/auth
+Content-Type: application/json
+
+{
+  "username": "ktou@dxc.com",
+  "password": "6q>xJCAl3%",
+  "newPassword": "Session10+"
+}
+
+POST http://localhost:8080/auth
+Content-Type: application/json
+
+{
+  "username": "ktou@dxc.com",
+  "password": "Session10+"
+}

@@ -33,7 +33,7 @@ export const authenticateUser = (
       newPasswordRequired: (userAttributes: any) => {
         if (!request.newPassword) {
           // @ts-ignore
-          resolve({ mfaRequired: true });
+          resolve({ newPasswordRequired: true });
           return;
         }
 

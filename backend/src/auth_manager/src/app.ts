@@ -13,8 +13,6 @@ export const healthCheck = (_: any, res: express.Response) => {
 
 /** catch undefined errors */
 export const common = async (req: express.Request, res: express.Response, app: any) => {
-  Logger.info('request', req.body);
-
   try {
     const results = await app(req, res);
 
@@ -32,6 +30,11 @@ export const common = async (req: express.Request, res: express.Response, app: a
 
 // process login request
 export const auth = async (req: express.Request<any, any, Auth.UserLoginRequest>): Promise<Auth.UserLoginResponse> => {
+  Logger.info({
+    username: req.body.username,
+    password: '******',
+  });
+
   const request = req.body;
   const userURL = API_URLs.LookupUser(request.username);
 
