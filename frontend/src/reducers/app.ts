@@ -11,6 +11,9 @@ const app = handleActions<App, any>(
     [ActionTypes.COM_01_FAILURE]: (state: App) => state.setLoading(false),
     /** end loading */
     [ActionTypes.COM_02_SUCCESS]: (state: App) => state.setLoading(false),
+    /** sign in */
+    [ActionTypes.APP_LOGIN_SUCCESS]: (state: App, { payload: { username, response } }: Action<Actions.SignInPayload>) =>
+      state.signIn(username, response),
     /** sidemenu */
     [ActionTypes.APP_SIDEMENU_SUCCESS]: (state: App, { payload: { open } }: Action<Actions.SidemenuPayload>) =>
       state.sidemenu(open),

@@ -7,6 +7,7 @@ export const COM_02_SUCCESS = 'COM_02_SUCCESS';
 /** App Actions */
 export const APP_SIDEMENU_SUCCESS = 'APP_SIDEMENU_SUCCESS';
 export const APP_TITLE_SUCCESS = 'APP_TITLE_SUCCESS';
+export const APP_LOGIN_SUCCESS = 'APP_LOGIN_SUCCESS';
 
 /** Resource Actions */
 export const RES_GET_LIST_SUCCESS = 'RES_GET_LIST_SUCCESS';

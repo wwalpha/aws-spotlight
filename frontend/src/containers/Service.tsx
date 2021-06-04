@@ -1,6 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
@@ -9,7 +10,6 @@ import { XButton, XTable } from '@comp';
 import { ResActions } from '@actions';
 import { Consts } from '@constants';
 import { Domains } from 'typings';
-import { useLocation } from 'react-router';
 
 const useStyles = makeStyles(({ spacing }: Theme) =>
   createStyles({

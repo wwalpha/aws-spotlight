@@ -1,32 +1,29 @@
 import * as React from 'react';
-import { App } from '@containers';
-import { AmplifyAuthContainer, AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
-import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
+import { useSelector } from 'react-redux';
+import { NewPassword, SignIn } from '@containers';
+import { Domains } from 'typings';
 
-const Authenticator: React.FunctionComponent = () => {
-  const [authState, setAuthState] = React.useState<AuthState>();
-  const [user, setUser] = React.useState<object | undefined>();
+const appState = (state: Domains.State) => state.app;
+
+const Authenticator: React.FunctionComponent = ({ children }) => {
+  const [isLogin, setLogin] = React.useState<boolean>();
+  const { authorizationToken, newPasswordRequired } = useSelector(appState);
 
   React.useEffect(() => {
-    return onAuthUIStateChange((nextAuthState, authData) => {
-      setAuthState(nextAuthState);
-      setUser(authData);
-    });
-  }, []);
+    setLogin(authorizationToken !== undefined);
+  }, [authorizationToken]);
 
-  // logined
-  if (authState === AuthState.SignedIn && user) {
-    return <App />;
+  // new password required
+  if (newPasswordRequired === true) {
+    return <NewPassword />;
   }
 
-  return (
-    <AmplifyAuthContainer>
-      <AmplifyAuthenticator>
-        <App />
-        <AmplifySignIn slot="sign-in" usernameAlias="email" hideSignUp />
-      </AmplifyAuthenticator>
-    </AmplifyAuthContainer>
-  );
+  // logined
+  if (!isLogin) {
+    return <SignIn />;
+  }
+
+  return <React.Fragment>{children}</React.Fragment>;
 };
 
 export default Authenticator;

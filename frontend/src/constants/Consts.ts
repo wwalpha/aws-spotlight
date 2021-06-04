@@ -9,3 +9,7 @@ export const SERVICES = {
   DYNAMODB: 'dynamodb.amazonaws.com',
   EKS: 'eks.amazonaws.com',
 };
+
+export const API_URLs = {
+  SignIn: '/auth',
+};
