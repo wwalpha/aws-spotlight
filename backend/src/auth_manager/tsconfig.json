@@ -71,5 +71,5 @@
   },
   "files": ["./typings/index.d.ts"],
   "exclude": ["node_modules"],
-  "include": ["./src/**/*"]
+  "include": ["./src/**/*", "./test/**/*"]
 }
