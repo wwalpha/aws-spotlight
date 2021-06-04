@@ -4,21 +4,20 @@ import {
   CognitoUserSession,
   IAuthenticationCallback,
 } from 'amazon-cognito-identity-js';
-import { AuthenticateFailure, UserLoginRequest } from 'typings';
+import { Auth } from 'typings';
 import winston from 'winston';
 
-export const getLogger = () =>
-  winston.createLogger({
-    level: 'info',
-    transports: [new winston.transports.Console()],
-  });
+export const Logger = winston.createLogger({
+  level: 'info',
+  transports: [new winston.transports.Console()],
+});
 
 export const authenticateUser = (
-  request: UserLoginRequest,
+  request: Auth.UserLoginRequest,
   cognitoUser: CognitoUser,
   authDetails: AuthenticationDetails
 ) =>
-  new Promise<CognitoUserSession | AuthenticateFailure>((resolve, reject) => {
+  new Promise<CognitoUserSession | Auth.AuthenticateFailure>((resolve, reject) => {
     // authenticate callback
     const callback: IAuthenticationCallback = {
       onSuccess: (session: CognitoUserSession) => resolve(session),

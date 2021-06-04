@@ -1,12 +1,10 @@
 import express from 'express';
 import { defaultTo } from 'lodash';
 import axios from 'axios';
-import { authenticateUser, getLogger, isAuthenticateFailure } from './utils';
 import { AuthenticationDetails, CognitoUser, CognitoUserPool, CognitoUserSession } from 'amazon-cognito-identity-js';
-import { UserLoginRequest, UserPoolInfo } from 'typings';
+import { authenticateUser, isAuthenticateFailure, Logger } from './utils';
 import { API_URLs } from './consts';
-
-const logger = getLogger();
+import { Auth, User } from 'typings';
 
 // health check
 export const healthCheck = (_: any, res: express.Response) => {
@@ -15,35 +13,40 @@ export const healthCheck = (_: any, res: express.Response) => {
 
 /** catch undefined errors */
 export const common = async (req: express.Request, res: express.Response, app: any) => {
-  logger.info('request', req.body);
+  Logger.info('request', req.body);
 
   try {
     const results = await app(req, res);
 
-    logger.info('response', results);
+    Logger.info('response', results);
 
     res.status(200).send(results);
   } catch (err) {
     const message = defaultTo(err.response?.data, err.message);
 
-    logger.error('Unhandle error:', err);
+    Logger.error('Unhandle error:', err);
 
     res.status(500).send(message);
   }
 };
 
 // process login request
-export const auth = async (req: express.Request<any, any, UserLoginRequest>) => {
+export const auth = async (req: express.Request<any, any, Auth.UserLoginRequest>): Promise<Auth.UserLoginResponse> => {
   const request = req.body;
-  const userURL = API_URLs.GetUser(request.username);
+  const userURL = API_URLs.LookupUser(request.username);
 
   // get userpool infos
-  const response = (await axios.get<UserPoolInfo>(userURL)).data;
+  const response = await axios.get<User.LookupUserResponse>(userURL);
+
+  // user not found
+  if (response.status !== 200 || response.data.isExist === false) {
+    throw new Error('User not found.');
+  }
 
   // cognito user pool
   const userPool = new CognitoUserPool({
-    ClientId: response.clientId,
-    UserPoolId: response.userPoolId,
+    ClientId: response.data.clientId as string,
+    UserPoolId: response.data.userPoolId as string,
   });
 
   // cognito user
@@ -61,7 +64,10 @@ export const auth = async (req: express.Request<any, any, UserLoginRequest>) => 
 
   // authenticate failure
   if (isAuthenticateFailure(result)) {
-    return result;
+    return {
+      mfaRequired: 'mfaRequired' in result,
+      newPasswordRequired: 'newPasswordRequired' in result,
+    };
   }
 
   const session = result as CognitoUserSession;
@@ -69,6 +75,7 @@ export const auth = async (req: express.Request<any, any, UserLoginRequest>) => 
   // get user id token and access token
   const idToken = session.getIdToken().getJwtToken();
   const accessToken = session.getAccessToken().getJwtToken();
+  const refreshToken = session.getRefreshToken().getToken();
 
-  return { token: idToken, accessToken: accessToken };
+  return { token: idToken, accessToken: accessToken, refreshToken: refreshToken };
 };
