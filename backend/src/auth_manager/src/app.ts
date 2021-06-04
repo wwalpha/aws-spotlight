@@ -8,15 +8,15 @@ import { Auth, User } from 'typings';
 
 // health check
 export const healthCheck = (_: any, res: express.Response) => {
-  res.status(200).send({ service: 'Auth Manager', isAlive: true });
+  Logger.info('health check');
+
+  return { service: 'Auth Manager', isAlive: true };
 };
 
 /** catch undefined errors */
 export const common = async (req: express.Request, res: express.Response, app: any) => {
   try {
     const results = await app(req, res);
-
-    Logger.info('response', results);
 
     res.status(200).send(results);
   } catch (err) {
