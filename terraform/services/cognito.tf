@@ -5,7 +5,7 @@ resource "aws_cognito_user_pool" "this" {
   name                     = "${local.project_name}-admin${local.suffix}"
   username_attributes      = ["email"]
   auto_verified_attributes = ["email"]
-  mfa_configuration        = "OPTIONAL"
+  mfa_configuration        = "OFF"
 
   username_configuration {
     case_sensitive = true
@@ -16,10 +16,6 @@ resource "aws_cognito_user_pool" "this" {
       name     = "verified_email"
       priority = 1
     }
-  }
-
-  software_token_mfa_configuration {
-    enabled = false
   }
 
   admin_create_user_config {
@@ -212,7 +208,7 @@ resource "aws_cognito_user_pool" "user" {
   name                     = "${local.project_name}-user${local.suffix}"
   username_attributes      = ["email"]
   auto_verified_attributes = ["email"]
-  mfa_configuration        = "OPTIONAL"
+  mfa_configuration        = "OFF"
 
   username_configuration {
     case_sensitive = true
@@ -225,9 +221,6 @@ resource "aws_cognito_user_pool" "user" {
     }
   }
 
-  software_token_mfa_configuration {
-    enabled = false
-  }
 
   admin_create_user_config {
     allow_admin_create_user_only = true
@@ -349,6 +342,6 @@ resource "null_resource" "cognito_admin" {
   }
 
   provisioner "local-exec" {
-    command = "aws cognito-idp admin-create-user --user-pool-id ${aws_cognito_user_pool.this.id} --username ${var.admin_email}"
+    command = "aws cognito-idp admin-create-user --user-pool-id ${aws_cognito_user_pool.this.id} --username ${var.admin_email} --user-attributes Name=email,Value=${var.admin_email} Name=name,Value=${var.admin_email} Name=custom:role,Value=TENANT_ADMIN"
   }
 }
