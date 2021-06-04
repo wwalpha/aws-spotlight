@@ -19,7 +19,7 @@ resource "aws_cognito_user_pool" "this" {
   }
 
   software_token_mfa_configuration {
-    enabled = true
+    enabled = false
   }
 
   admin_create_user_config {
@@ -226,7 +226,7 @@ resource "aws_cognito_user_pool" "user" {
   }
 
   software_token_mfa_configuration {
-    enabled = true
+    enabled = false
   }
 
   admin_create_user_config {

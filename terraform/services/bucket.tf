@@ -40,6 +40,6 @@ resource "aws_s3_bucket_object" "user" {
   key     = "user.env"
   content = <<EOT
 TABLE_SETTINGS=${local.dynamodb_name_settings}
-TABLE_USER=${local.dynamodb_name_user}
+TABLE_USER=${local.dynamodb_name_users}
 EOT
 }

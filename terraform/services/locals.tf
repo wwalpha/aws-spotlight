@@ -29,7 +29,7 @@ locals {
   dynamodb_name_unprocessed  = local.remote_setup.dynamodb_name_unprocessed
   dynamodb_name_history      = local.remote_setup.dynamodb_name_history
   dynamodb_name_announcement = local.remote_setup.dynamodb_name_announcement
-  dynamodb_name_user         = local.remote_setup.dynamodb_name_user
+  dynamodb_name_users        = local.remote_setup.dynamodb_name_users
   dynamodb_name_settings     = local.remote_setup.dynamodb_name_settings
 
   # ----------------------------------------------------------------------------------------------
@@ -154,10 +154,17 @@ data "aws_ssm_parameter" "resource_repo_url" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# SSM Parameter Store - Resource manager repository url
+# Dynamodb Table - Settings
 # ----------------------------------------------------------------------------------------------
 data "aws_dynamodb_table" "settings" {
   name = local.dynamodb_name_settings
+}
+
+# ----------------------------------------------------------------------------------------------
+# Dynamodb Table - Users
+# ----------------------------------------------------------------------------------------------
+data "aws_dynamodb_table" "users" {
+  name = local.dynamodb_name_users
 }
 
 # ----------------------------------------------------------------------------------------------

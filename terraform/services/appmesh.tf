@@ -21,7 +21,7 @@ resource "aws_appmesh_virtual_node" "auth" {
   spec {
     listener {
       port_mapping {
-        port     = 80
+        port     = 8080
         protocol = "http"
       }
     }
@@ -45,7 +45,7 @@ resource "aws_appmesh_virtual_node" "token" {
   spec {
     listener {
       port_mapping {
-        port     = 80
+        port     = 8080
         protocol = "http"
       }
     }
@@ -69,7 +69,7 @@ resource "aws_appmesh_virtual_node" "resource" {
   spec {
     listener {
       port_mapping {
-        port     = 80
+        port     = 8080
         protocol = "http"
       }
     }

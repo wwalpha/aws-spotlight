@@ -85,7 +85,7 @@ output "dynamodb_name_announcement" {
 # ----------------------------------------------------------------------------------------------
 # DynamoDB Name - User
 # ----------------------------------------------------------------------------------------------
-output "dynamodb_name_user" {
+output "dynamodb_name_users" {
   value = aws_dynamodb_table.user.name
 }
 
