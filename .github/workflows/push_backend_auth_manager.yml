@@ -41,6 +41,7 @@ jobs:
       # Install and Build
       - name: Build
         run: |
+          cp -f ../../typings/* ./typings/ --recursive
           yarn install
           yarn build
 
@@ -53,12 +54,12 @@ jobs:
           aws-region: ap-northeast-1
 
       # Unit Test
-      - name: Unit Test
-        run: |
-          docker-compose up -d --build
-          sleep 10
-          yarn test
-          docker-compose down
+      # - name: Unit Test
+      #   run: |
+      #     docker-compose up -d --build
+      #     sleep 10
+      #     yarn test
+      #     docker-compose down
 
       # Get latest task definition
       - name: Update ecs task definition
