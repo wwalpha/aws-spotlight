@@ -1,0 +1,26 @@
+GET http://localhost:8080/user/health
+
+GET http://localhost:8080/user/pool/test001@dxc.com
+
+GET http://localhost:8080/user/pool/test002@dxc.com
+
+GET http://localhost:8080/user/pool/test003@dxc.com
+
+
+POST http://localhost:8080/user/
+content-type: application/json
+
+{
+  "userId" : "test004@dxc.com",
+  "userName": "test004",
+  "email": "test004@dxc.com"
+}
+
+POST http://localhost:8080/user/admin
+content-type: application/json
+
+{
+  "userId" : "test005@dxc.com",
+  "userName": "test005",
+  "email": "test005@dxc.com"
+}

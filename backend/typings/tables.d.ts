@@ -131,7 +131,7 @@ export namespace Tables {
     // email
     Email: string;
     // role
-    Role?: string;
+    Role: string;
     // sub
     Sub?: string;
   }

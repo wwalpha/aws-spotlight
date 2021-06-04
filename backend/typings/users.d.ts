@@ -1,6 +1,6 @@
 export namespace User {
   interface CognitoInfos {
-    UserPoolId: string;
+    UserPoolId?: string;
     ClientId?: string;
     IdentityPoolId?: string;
   }
