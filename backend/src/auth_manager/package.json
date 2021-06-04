@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon ./src/index.ts dotenv_config_path=.env.test",
+    "dev": "nodemon ./src/index.ts dotenv_config_path=.env.dev",
     "build": "tsc -p tsconfig.build.json",
     "start": "node index.js",
     "test": "jest"
@@ -32,6 +32,7 @@
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "lodash": "^4.17.21",
     "winston": "^3.3.3"
   },
   "nodemonConfig": {
