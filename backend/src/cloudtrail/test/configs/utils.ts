@@ -13,8 +13,8 @@ AWS.config.update({
 
 const S3_BUCKET = process.env.S3_BUCKET as string;
 const SQS_URL = process.env.SQS_URL as string;
-const TABLE_RESOURCE = process.env.TABLE_RESOURCE as string;
-const TABLE_HISTORY = process.env.TABLE_HISTORY as string;
+const TABLE_NAME_RESOURCE = process.env.TABLE_NAME_RESOURCE as string;
+const TABLE_NAME_HISTORY = process.env.TABLE_NAME_HISTORY as string;
 
 const sqsClient = new SQS();
 const s3Client = new S3();
@@ -66,7 +66,7 @@ export const getResource = async ({
   ResourceId,
 }: Tables.ResouceKey): Promise<Tables.Resource | undefined> => {
   const result = await helper.get<Tables.Resource>({
-    TableName: TABLE_RESOURCE,
+    TableName: TABLE_NAME_RESOURCE,
     Key: {
       EventSource,
       ResourceId,
@@ -78,7 +78,7 @@ export const getResource = async ({
 
 export const getHistory = async (key: Tables.HistoryKey): Promise<Tables.History | undefined> => {
   const result = await helper.get<Tables.History>({
-    TableName: TABLE_HISTORY,
+    TableName: TABLE_NAME_HISTORY,
     Key: {
       EventId: key.EventId,
     } as Tables.HistoryKey,
@@ -89,7 +89,7 @@ export const getHistory = async (key: Tables.HistoryKey): Promise<Tables.History
 
 export const scanHistory = async (): Promise<Tables.History[] | undefined> => {
   const result = await helper.scan<Tables.History>({
-    TableName: TABLE_HISTORY,
+    TableName: TABLE_NAME_HISTORY,
   });
 
   return result?.Items;

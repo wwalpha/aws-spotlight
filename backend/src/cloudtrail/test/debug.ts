@@ -8,7 +8,7 @@ const helper = new DynamodbHelper();
 
 const startU = async () => {
   // await helper.put({
-  //   TableName: process.env.TABLE_UNPROCESSED as string,
+  //   TableName: process.env.TABLE_NAME_UNPROCESSED as string,
   //   Item: {
   //     EventName: 'RunInstances',
   //     EventTime: '2021-04-07T15:53:12Z_ce2437c8',
@@ -28,7 +28,7 @@ const startC = async () => {
 const updateEvent = async () => {
   start();
 
-  await helper.bulk(process.env.TABLE_EVENT_TYPE as string, require('./configs/events_all.json'));
+  await helper.bulk(process.env.TABLE_NAME_EVENT_TYPE as string, require('./configs/events_all.json'));
 };
 
 startC();

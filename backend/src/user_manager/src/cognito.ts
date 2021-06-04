@@ -22,7 +22,7 @@ export const lookupUserPoolData = async (userId: string): Promise<User.CognitoIn
 
   // get the item from the database
   const results = await helper.get<Tables.UserItem>({
-    TableName: Environments.TABLE_USER,
+    TableName: Environments.TABLE_NAME_USER,
     Key: searchParams,
   });
 
@@ -37,7 +37,7 @@ export const lookupUserPoolData = async (userId: string): Promise<User.CognitoIn
   };
 
   const settings = await helper.get<Tables.Settings.Cognito>({
-    TableName: Environments.TABLE_SETTINGS,
+    TableName: Environments.TABLE_NAME_SETTINGS,
     Key: key,
   });
 
@@ -80,7 +80,7 @@ export const createNewUser = async (
 
   // add user
   await helper.put({
-    TableName: Environments.TABLE_USER,
+    TableName: Environments.TABLE_NAME_USER,
     Item: userItem,
   });
 

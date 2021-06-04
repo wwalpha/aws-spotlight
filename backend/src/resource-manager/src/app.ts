@@ -4,7 +4,7 @@ import { Resource, Tables } from 'typings';
 import { decodeToken, Logger } from './utils';
 
 const helper = new DynamodbHelper();
-const TABLE_RESOURCE = process.env.TABLE_RESOURCE as string;
+const TABLE_NAME_RESOURCE = process.env.TABLE_NAME_RESOURCE as string;
 
 // health check
 export const healthCheck = (_: any, res: express.Response) => {
@@ -31,7 +31,7 @@ export const getResourceList = async (
 
   // get service resources
   const result = await helper.query<Tables.Resource>({
-    TableName: TABLE_RESOURCE,
+    TableName: TABLE_NAME_RESOURCE,
     KeyConditionExpression: '#UserName = :UserName AND #EventSource = :EventSource',
     IndexName: 'gsiIdx1',
     ExpressionAttributeNames: {

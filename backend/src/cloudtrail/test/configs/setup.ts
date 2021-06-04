@@ -11,7 +11,7 @@ AWS.config.update({
   dynamodb: { endpoint: process.env.AWS_ENDPOINT },
 });
 
-const TABLE_EVENT_TYPE = process.env.TABLE_EVENT_TYPE as string;
+const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
 
 const setup = async () => {
   const s3Client = new S3();
@@ -24,7 +24,7 @@ const setup = async () => {
     helper
       .getClient()
       .createTable({
-        TableName: process.env.TABLE_EVENT_TYPE as string,
+        TableName: process.env.TABLE_NAME_EVENT_TYPE as string,
         BillingMode: 'PROVISIONED',
         ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
         KeySchema: [
@@ -40,7 +40,7 @@ const setup = async () => {
     helper
       .getClient()
       .createTable({
-        TableName: process.env.TABLE_RESOURCE as string,
+        TableName: process.env.TABLE_NAME_RESOURCE as string,
         BillingMode: 'PROVISIONED',
         ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
         KeySchema: [
@@ -68,7 +68,7 @@ const setup = async () => {
     helper
       .getClient()
       .createTable({
-        TableName: process.env.TABLE_UNPROCESSED as string,
+        TableName: process.env.TABLE_NAME_UNPROCESSED as string,
         BillingMode: 'PROVISIONED',
         ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
         KeySchema: [
@@ -84,7 +84,7 @@ const setup = async () => {
     helper
       .getClient()
       .createTable({
-        TableName: process.env.TABLE_HISTORY as string,
+        TableName: process.env.TABLE_NAME_HISTORY as string,
         BillingMode: 'PROVISIONED',
         ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
         KeySchema: [{ AttributeName: 'EventId', KeyType: 'HASH' }],
@@ -93,7 +93,7 @@ const setup = async () => {
       .promise(),
   ]);
 
-  await helper.bulk(TABLE_EVENT_TYPE, Events);
+  await helper.bulk(TABLE_NAME_EVENT_TYPE, Events);
 };
 
 // setup();

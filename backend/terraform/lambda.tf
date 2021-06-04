@@ -10,11 +10,11 @@ resource "aws_lambda_function" "cloudtrail" {
   timeout       = 300
   environment {
     variables = {
-      TABLE_EVENT_TYPE  = local.dynamodb_name_event_type
-      TABLE_RESOURCE    = local.dynamodb_name_resource
-      TABLE_UNPROCESSED = local.dynamodb_name_unprocessed
-      TABLE_HISTORY     = local.dynamodb_name_history
-      SQS_URL           = data.aws_sqs_queue.cloudtrail.url
+      TABLE_NAME_EVENT_TYPE  = local.dynamodb_name_event_type
+      TABLE_NAME_RESOURCE    = local.dynamodb_name_resource
+      TABLE_NAME_UNPROCESSED = local.dynamodb_name_unprocessed
+      TABLE_NAME_HISTORY     = local.dynamodb_name_history
+      SQS_URL                = data.aws_sqs_queue.cloudtrail.url
     }
   }
 }
@@ -54,10 +54,10 @@ resource "aws_lambda_function" "unprocessed" {
   timeout       = 300
   environment {
     variables = {
-      TABLE_EVENT_TYPE  = local.dynamodb_name_event_type
-      TABLE_RESOURCE    = local.dynamodb_name_resource
-      TABLE_UNPROCESSED = local.dynamodb_name_unprocessed
-      TABLE_HISTORY     = local.dynamodb_name_history
+      TABLE_NAME_EVENT_TYPE  = local.dynamodb_name_event_type
+      TABLE_NAME_RESOURCE    = local.dynamodb_name_resource
+      TABLE_NAME_UNPROCESSED = local.dynamodb_name_unprocessed
+      TABLE_NAME_HISTORY     = local.dynamodb_name_history
     }
   }
 }

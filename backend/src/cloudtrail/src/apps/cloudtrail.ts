@@ -13,10 +13,10 @@ const EVENTS: EVENT_TYPE = {};
 const helper = new DynamodbHelper();
 
 // Environments
-const TABLE_EVENT_TYPE = process.env.TABLE_EVENT_TYPE as string;
-const TABLE_RESOURCE = process.env.TABLE_RESOURCE as string;
-const TABLE_HISTORY = process.env.TABLE_HISTORY as string;
-const TABLE_UNPROCESSED = process.env.TABLE_UNPROCESSED as string;
+const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
+const TABLE_NAME_RESOURCE = process.env.TABLE_NAME_RESOURCE as string;
+const TABLE_NAME_HISTORY = process.env.TABLE_NAME_HISTORY as string;
+const TABLE_NAME_UNPROCESSED = process.env.TABLE_NAME_UNPROCESSED as string;
 
 /**
  * Initialize Event Type Definition
@@ -28,7 +28,7 @@ export const initializeEvents = async () => {
 
   // get all event definitions
   const results = await helper.scan<Tables.EventType>({
-    TableName: TABLE_EVENT_TYPE,
+    TableName: TABLE_NAME_EVENT_TYPE,
   });
 
   results.Items?.forEach((item) => {
@@ -198,7 +198,7 @@ export const execNewEventType = async (records: CloudTrail.Record[]) => {
   }));
 
   // event type bulk insert
-  await helper.bulk(TABLE_EVENT_TYPE, eventTypeRecords);
+  await helper.bulk(TABLE_NAME_EVENT_TYPE, eventTypeRecords);
 
   const unprocessedRecords = records.map(
     (item) =>
@@ -210,7 +210,7 @@ export const execNewEventType = async (records: CloudTrail.Record[]) => {
   );
 
   // bulk insert
-  await helper.bulk(TABLE_UNPROCESSED, unprocessedRecords);
+  await helper.bulk(TABLE_NAME_UNPROCESSED, unprocessedRecords);
 };
 
 /**
@@ -231,7 +231,7 @@ export const execUnprocessed = async (records: CloudTrail.Record[]) => {
   );
 
   // bulk insert
-  await helper.bulk(TABLE_UNPROCESSED, unprocessedRecords);
+  await helper.bulk(TABLE_NAME_UNPROCESSED, unprocessedRecords);
 };
 
 /**
@@ -247,7 +247,7 @@ export const execCreateRecords = async (records: CloudTrail.Record[]) => {
     .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
   // bulk insert
-  await helper.bulk(TABLE_RESOURCE, items);
+  await helper.bulk(TABLE_NAME_RESOURCE, items);
 };
 
 /**
@@ -262,7 +262,7 @@ export const execDeleteRecords = async (records: CloudTrail.Record[]) => {
     .map((item) => getRemoveResourceItem(item))
     .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
-  await helper.truncate(TABLE_RESOURCE, items);
+  await helper.truncate(TABLE_NAME_RESOURCE, items);
 };
 
 /**
@@ -282,5 +282,5 @@ const registHistory = async (records: CloudTrail.Record[]): Promise<void> => {
   }));
 
   // bulk insert
-  await helper.bulk(TABLE_HISTORY, items);
+  await helper.bulk(TABLE_NAME_HISTORY, items);
 };

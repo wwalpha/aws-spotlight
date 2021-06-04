@@ -6,10 +6,10 @@ import { Logger } from './utils/utilities';
 const helper = new DynamodbHelper();
 
 // Environments
-const TABLE_EVENT_TYPE = process.env.TABLE_EVENT_TYPE as string;
-const TABLE_RESOURCE = process.env.TABLE_RESOURCE as string;
-const TABLE_HISTORY = process.env.TABLE_HISTORY as string;
-const TABLE_UNPROCESSED = process.env.TABLE_UNPROCESSED as string;
+const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
+const TABLE_NAME_RESOURCE = process.env.TABLE_NAME_RESOURCE as string;
+const TABLE_NAME_HISTORY = process.env.TABLE_NAME_HISTORY as string;
+const TABLE_NAME_UNPROCESSED = process.env.TABLE_NAME_UNPROCESSED as string;
 
 /**
  * Initialize Event Type Definition
@@ -19,7 +19,7 @@ const TABLE_UNPROCESSED = process.env.TABLE_UNPROCESSED as string;
 export const getUnprocessedEvents = async () => {
   // get all event definitions
   const results = await helper.scan<Tables.EventType>({
-    TableName: TABLE_EVENT_TYPE,
+    TableName: TABLE_NAME_EVENT_TYPE,
     FilterExpression: '#Unprocessed = :Unprocessed',
     ExpressionAttributeNames: {
       '#Unprocessed': 'Unprocessed',
@@ -51,7 +51,7 @@ export const processIgnore = async (events: Tables.EventType[]) => {
 
     // find keys
     const queryResult = await helper.query<Tables.Unprocessed>({
-      TableName: TABLE_UNPROCESSED,
+      TableName: TABLE_NAME_UNPROCESSED,
       ProjectionExpression: 'EventName, EventTime',
       KeyConditionExpression: '#EventName = :EventName',
       ExpressionAttributeNames: {
@@ -63,10 +63,10 @@ export const processIgnore = async (events: Tables.EventType[]) => {
     });
 
     // delete keys
-    await helper.truncate(TABLE_UNPROCESSED, queryResult.Items);
+    await helper.truncate(TABLE_NAME_UNPROCESSED, queryResult.Items);
 
     await helper.update({
-      TableName: TABLE_EVENT_TYPE,
+      TableName: TABLE_NAME_EVENT_TYPE,
       Key: {
         EventName: item.EventName,
         EventSource: item.EventSource,
@@ -100,7 +100,7 @@ export const processCreate = async (events: Tables.EventType[]) => {
   const tasks = records.map(async (item) => {
     // find keys
     const queryResult = await helper.query<Tables.Unprocessed>({
-      TableName: TABLE_UNPROCESSED,
+      TableName: TABLE_NAME_UNPROCESSED,
       KeyConditionExpression: '#EventName = :EventName',
       ExpressionAttributeNames: {
         '#EventName': 'EventName',
@@ -122,7 +122,7 @@ export const processCreate = async (events: Tables.EventType[]) => {
       .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
     // bulk insert resource
-    await helper.bulk(TABLE_RESOURCE, createItems);
+    await helper.bulk(TABLE_NAME_RESOURCE, createItems);
 
     // remove all raw datas
     const removeItems = queryResult.Items.map(
@@ -133,7 +133,7 @@ export const processCreate = async (events: Tables.EventType[]) => {
         } as Tables.UnprocessedKey)
     );
 
-    await helper.truncate(TABLE_UNPROCESSED, removeItems);
+    await helper.truncate(TABLE_NAME_UNPROCESSED, removeItems);
   });
 
   await Promise.all(tasks);

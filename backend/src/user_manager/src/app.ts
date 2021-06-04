@@ -49,7 +49,7 @@ export const createUser = async (
   Logger.debug(`Creating user: ${req.body.email}`);
 
   const settings = await helper.get<Tables.Settings.Cognito>({
-    TableName: Environments.TABLE_SETTINGS,
+    TableName: Environments.TABLE_NAME_SETTINGS,
     Key: {
       Id: 'TENANT_USER',
     },
@@ -82,7 +82,7 @@ export const createAdminUser = async (
   const request = req.body;
 
   const settings = await helper.get<Tables.Settings.Cognito>({
-    TableName: Environments.TABLE_SETTINGS,
+    TableName: Environments.TABLE_NAME_SETTINGS,
     Key: {
       Id: 'TENANT_ADMIN',
     },
