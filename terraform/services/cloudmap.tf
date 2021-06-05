@@ -18,6 +18,11 @@ resource "aws_service_discovery_service" "token" {
 
     dns_records {
       ttl  = 60
+      type = "A"
+    }
+
+    dns_records {
+      ttl  = 60
       type = "SRV"
     }
 
@@ -37,6 +42,11 @@ resource "aws_service_discovery_service" "user" {
 
   dns_config {
     namespace_id = aws_service_discovery_private_dns_namespace.this.id
+
+    dns_records {
+      ttl  = 60
+      type = "A"
+    }
 
     dns_records {
       ttl  = 60

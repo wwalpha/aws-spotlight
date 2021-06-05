@@ -32,6 +32,12 @@ resource "aws_appmesh_virtual_node" "auth" {
         namespace_name = aws_service_discovery_private_dns_namespace.this.name
       }
     }
+
+    backend {
+      virtual_service {
+        virtual_service_name = aws_appmesh_virtual_service.user.name
+      }
+    }
   }
 }
 
@@ -54,6 +60,12 @@ resource "aws_appmesh_virtual_node" "token" {
       aws_cloud_map {
         service_name   = aws_service_discovery_service.token.name
         namespace_name = aws_service_discovery_private_dns_namespace.this.name
+      }
+    }
+
+    backend {
+      virtual_service {
+        virtual_service_name = aws_appmesh_virtual_service.user.name
       }
     }
   }
