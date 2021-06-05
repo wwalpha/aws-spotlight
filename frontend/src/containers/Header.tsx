@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import clsx from 'clsx';
-import Auth from '@aws-amplify/auth';
 import { createStyles, makeStyles, Theme, fade } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import AppBar from '@material-ui/core/AppBar';
@@ -44,8 +43,8 @@ const useStyles = makeStyles(({ transitions, spacing, palette, shape }: Theme) =
     search: {
       position: 'relative',
       borderRadius: shape.borderRadius,
-      backgroundColor: fade(palette.common.white, 0.15),
-      '&:hover': { backgroundColor: fade(palette.common.white, 0.25) },
+      // backgroundColor: fade(palette.common.white, 0.15),
+      // '&:hover': { backgroundColor: fade(palette.common.white, 0.25) },
       marginLeft: 0,
       width: 'auto',
     },
@@ -78,7 +77,7 @@ export const Header = () => {
   const actions = bindActionCreators(AppActions, dispatch);
 
   const handleExit = async () => {
-    await Auth.signOut();
+    window.sessionStorage.clear();
     window.location.href = '/';
   };
 
@@ -93,17 +92,18 @@ export const Header = () => {
           {title}
         </Typography>
         <div className={classes.search}>
-          <div className={classes.searchIcon}>
+          {/* <div className={classes.searchIcon}>
             <SearchIcon />
-          </div>
-          <InputBase
+          </div> */}
+          {/* <InputBase
             placeholder="Search…"
             classes={{
               root: classes.inputRoot,
               input: classes.inputInput,
             }}
             inputProps={{ 'aria-label': 'search' }}
-          />
+          /> */}
+          v0.0.1
         </div>
         <IconButton color="inherit" onClick={handleExit}>
           <ExitToAppIcon fontSize="large" />
