@@ -7,7 +7,7 @@ import * as path from 'path';
 
 const prod: Configuration = {
   plugins: [
-    new EnvironmentPlugin(['API_URL', 'AWS_DEFAULT_REGION']),
+    new EnvironmentPlugin(['BACKEND_API_URL', 'AWS_DEFAULT_REGION']),
     new HtmlWebpackPlugin({
       title: 'production',
       filename: 'index.html',
