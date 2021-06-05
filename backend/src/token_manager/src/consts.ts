@@ -5,5 +5,5 @@ export const Environments = {
 };
 
 export const Endpoints = {
-  USER: (user: string) => `${Environments.ENDPOINT_USER_SERVICE}/user/${user}`,
+  USER: (user: string) => `${Environments.ENDPOINT_USER_SERVICE}/users/${user}`,
 };

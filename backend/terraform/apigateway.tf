@@ -15,23 +15,23 @@ resource "aws_apigatewayv2_authorizer" "this" {
 # ---------------------------------------------------------------------------------------------
 # API Gateway Route - User
 # ---------------------------------------------------------------------------------------------
-resource "aws_apigatewayv2_route" "get_user_health" {
+resource "aws_apigatewayv2_route" "get_users_health" {
   api_id    = local.apigateway_id
-  route_key = "GET /user/health"
+  route_key = "GET /users/health"
   target    = "integrations/${local.apigateway_integration_user}"
 }
 
-resource "aws_apigatewayv2_route" "post_user" {
+resource "aws_apigatewayv2_route" "post_users" {
   api_id             = local.apigateway_id
-  route_key          = "POST /user"
+  route_key          = "POST /users"
   target             = "integrations/${local.apigateway_integration_user}"
   authorizer_id      = aws_apigatewayv2_authorizer.this.id
   authorization_type = "CUSTOM"
 }
 
-resource "aws_apigatewayv2_route" "post_user_admin" {
+resource "aws_apigatewayv2_route" "post_users_admin" {
   api_id             = local.apigateway_id
-  route_key          = "POST /user/admin"
+  route_key          = "POST /users/admins"
   target             = "integrations/${local.apigateway_integration_user}"
   authorizer_id      = aws_apigatewayv2_authorizer.this.id
   authorization_type = "CUSTOM"
@@ -40,18 +40,18 @@ resource "aws_apigatewayv2_route" "post_user_admin" {
 # ---------------------------------------------------------------------------------------------
 # API Gateway Route - Resource
 # ---------------------------------------------------------------------------------------------
-resource "aws_apigatewayv2_route" "get_resource_health" {
+resource "aws_apigatewayv2_route" "get_resources_health" {
   api_id    = local.apigateway_id
-  route_key = "GET /resource/health"
+  route_key = "GET /resources/health"
   target    = "integrations/${local.apigateway_integration_resource}"
 }
 
 # ---------------------------------------------------------------------------------------------
 # API Gateway Route - Resource
 # ---------------------------------------------------------------------------------------------
-resource "aws_apigatewayv2_route" "get_resource_all" {
+resource "aws_apigatewayv2_route" "get_resources_all" {
   api_id             = local.apigateway_id
-  route_key          = "GET /resource/{proxy+}"
+  route_key          = "GET /resources/{proxy+}"
   target             = "integrations/${local.apigateway_integration_resource}"
   authorizer_id      = aws_apigatewayv2_authorizer.this.id
   authorization_type = "CUSTOM"

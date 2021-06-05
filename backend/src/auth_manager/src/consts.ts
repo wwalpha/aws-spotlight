@@ -3,5 +3,5 @@ export const Environments = {
 };
 
 export const API_URLs = {
-  LookupUser: (username: string) => `${Environments.ENDPOINT_USER_SERVICE}/user/pool/${username}`,
+  LookupUser: (username: string) => `${Environments.ENDPOINT_USER_SERVICE}/users/pool/${username}`,
 };

@@ -1,13 +1,13 @@
-GET http://localhost:8080/user/health
+GET http://localhost:8080/users/health
 
-GET http://localhost:8080/user/pool/test001@dxc.com
+GET http://localhost:8080/users/pool/test001@dxc.com
 
-GET http://localhost:8080/user/pool/test002@dxc.com
+GET http://localhost:8080/users/pool/test002@dxc.com
 
-GET http://localhost:8080/user/pool/test003@dxc.com
+GET http://localhost:8080/users/pool/test003@dxc.com
 
 
-POST http://localhost:8080/user/
+POST http://localhost:8080/users/
 content-type: application/json
 
 {
@@ -16,7 +16,7 @@ content-type: application/json
   "email": "test004@dxc.com"
 }
 
-POST http://localhost:8080/user/admin
+POST http://localhost:8080/users/admin
 content-type: application/json
 
 {
