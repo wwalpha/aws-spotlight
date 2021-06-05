@@ -56,7 +56,6 @@ const NewPassword = () => {
     actions.signIn(userName, oldpassword, newpassword);
   });
 
-  console.log(errors);
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />

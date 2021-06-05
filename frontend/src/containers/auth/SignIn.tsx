@@ -31,7 +31,7 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) =>
       flexDirection: 'column',
       alignItems: 'center',
     },
-    avatar: { margin: spacing(1), backgroundColor: palette.secondary.main },
+    avatar: { margin: spacing(1), backgroundColor: palette.primary.main },
     form: {
       width: '100%', // Fix IE 11 issue.
       marginTop: spacing(1),
