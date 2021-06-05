@@ -50,4 +50,5 @@ jobs:
       # AWS Credentials
       - name: Upload files
         run: |
+          ls
           aws s3 cp dist $FRONTEND_BUCKET --recursive
