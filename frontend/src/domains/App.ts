@@ -10,7 +10,7 @@ export default class App {
   // screen title
   title: string = 'AWS RESOURCE MANAGEMENT SYSTEM';
   // token
-  authorizationToken?: string;
+  authorizationToken: string | null = window.sessionStorage.getItem('token');
   // username
   userName?: string;
   // mfa required flag
