@@ -11,6 +11,7 @@ export namespace Token {
     exp: number;
     iat: number;
     email: string;
+    'custom:role': string;
   };
 
   interface DecodeRequest {}
