@@ -10,19 +10,14 @@ export const Logger = winston.createLogger({
 /**
  * decode bearer token
  *
- * @param bearerToken bearer token
+ * @param token bearer token
  */
-export const decodeToken = (bearerToken?: string): Token.CognitoToken => {
-  // not found
-  if (!bearerToken) throw new Error(`BearerToken token not exist.`);
-
-  // convert
-  const token = bearerToken.substring(bearerToken.indexOf(' ') + 1);
+export const decodeToken = (token: string): Token.CognitoToken => {
   // decode jwt token
   const decodedToken = jwtDecode<Token.CognitoToken | undefined>(token);
 
   // decode failed
-  if (!decodedToken) throw new Error(`Decode token failed. ${bearerToken}`);
+  if (!decodedToken) throw new Error(`Decode token failed. ${token}`);
 
   return decodedToken;
 };

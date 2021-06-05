@@ -2,6 +2,7 @@ import express from 'express';
 import { DynamodbHelper } from '@alphax/dynamodb';
 import { Resource, Tables } from 'typings';
 import { decodeToken, Logger } from './utils';
+import { ROLE } from './consts';
 
 const helper = new DynamodbHelper();
 const TABLE_NAME_RESOURCE = process.env.TABLE_NAME_RESOURCE as string;
@@ -26,9 +27,13 @@ export const getResourceList = async (
 
   // parameters
   const params = req.params;
+  const authorizationToken = req.headers['Authorization'] as string;
   // decode token
-  const token = decodeToken(req.headers['authorization']);
+  const token = decodeToken(authorizationToken);
+  const role = token['custom:role'];
 
+  if (role === ROLE.ADMIN) {
+  }
   // get service resources
   const result = await helper.query<Tables.Resource>({
     TableName: TABLE_NAME_RESOURCE,
