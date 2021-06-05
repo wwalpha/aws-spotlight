@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - frontend/**
-      - .github/workflows/frontend_dev.yml
+      - .github/workflows/push_frontend.yml
   workflow_dispatch:
 
 env:
