@@ -7,16 +7,7 @@ import * as path from 'path';
 
 const prod: Configuration = {
   plugins: [
-    new EnvironmentPlugin([
-      'IDENTITY_POOL_ID',
-      'USER_POOL_ID',
-      'USER_POOL_WEB_CLIENT_ID',
-      'AUTH_DOMAIN',
-      'AUTH_SIGN_IN_URL',
-      'AUTH_SIGN_OUT_URL',
-      'API_URL',
-      'AWS_DEFAULT_REGION',
-    ]),
+    new EnvironmentPlugin(['API_URL', 'AWS_DEFAULT_REGION']),
     new HtmlWebpackPlugin({
       title: 'production',
       filename: 'index.html',
