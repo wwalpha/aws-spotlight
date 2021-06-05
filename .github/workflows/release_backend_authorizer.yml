@@ -1,0 +1,55 @@
+name: RELEASE_B) Authorizer Build
+
+on:
+  workflow_run:
+    workflows:
+      - RELEASE_B) Terraform Build
+    types:
+      - completed
+
+env:
+  AWS_DEFAULT_REGION: ap-northeast-1
+  WORKING_DIR: backend/src/authorizer
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    environment:
+      name: prod
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}
+
+    steps:
+      # source checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Setup Node.js
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+
+      # Install and Build
+      - name: Build
+        id: build
+        run: |
+          yarn install
+          yarn build
+          cd dist && zip -r -q archive.zip *
+          echo "::set-output name=archive_file::$GITHUB_WORKSPACE/$WORKING_DIR/dist/archive.zip"
+
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1
+
+      # Lambda Deploy
+      - name: Lambda Deploy
+        uses: appleboy/lambda-action@master
+        with:
+          function_name: arms-authorizer
+          zip_file: ${{ steps.build.outputs.archive_file }}

@@ -47,6 +47,17 @@ resource "aws_apigatewayv2_route" "get_resource_health" {
 }
 
 # ---------------------------------------------------------------------------------------------
+# API Gateway Route - Resource
+# ---------------------------------------------------------------------------------------------
+resource "aws_apigatewayv2_route" "get_resource_all" {
+  api_id             = local.apigateway_id
+  route_key          = "GET /resource/{proxy+}"
+  target             = "integrations/${local.apigateway_integration_resource}"
+  authorizer_id      = aws_apigatewayv2_authorizer.this.id
+  authorization_type = "CUSTOM"
+}
+
+# ---------------------------------------------------------------------------------------------
 # API Gateway Route - Auth
 # ---------------------------------------------------------------------------------------------
 resource "aws_apigatewayv2_route" "get_auth_health" {
