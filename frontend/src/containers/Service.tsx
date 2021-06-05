@@ -4,19 +4,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
+import RefreshIcon from '@material-ui/icons/Refresh';
 import { XButton, XTable } from '@comp';
 import { ResActions } from '@actions';
-import { Consts } from '@constants';
 import { Domains } from 'typings';
 
-const useStyles = makeStyles(({ spacing }: Theme) =>
+const useStyles = makeStyles(({ spacing, palette }: Theme) =>
   createStyles({
     container: { borderRadius: 0, margin: spacing(2), width: 'auto' },
     table: {},
     margin: { margin: `0px ${spacing(2)}px` },
-    search: { width: spacing(15) },
+    search: {
+      borderRadius: 0,
+      backgroundColor: palette.success.main,
+      minWidth: spacing(5),
+      width: spacing(5),
+      '&:hover': {
+        backgroundColor: palette.success.dark,
+      },
+    },
   })
 );
 
@@ -38,11 +45,10 @@ const Service = () => {
   React.useEffect(() => {
     if (!Object.keys(datas).includes(eventSource)) {
       handleSearch();
-      console.log('search');
     }
   }, [eventSource]);
 
-  const handleSearch = (userName?: string, instanceId?: string) => {
+  const handleSearch = () => {
     actions.getResources(serviceName);
   };
 
@@ -50,18 +56,17 @@ const Service = () => {
     <React.Fragment>
       <Box display="flex" padding="16px 8px">
         <Box flexGrow={1}>
-          <TextField className={classes.margin} label="Instance Id" />
-          <TextField className={classes.margin} label="User Name" />
+          {/* <TextField className={classes.margin} label="Instance Id" />
+          <TextField className={classes.margin} label="User Name" /> */}
         </Box>
         <XButton
           isLoading={isLoading}
+          fullWidth={false}
           variant="contained"
           color="primary"
           className={classes.search}
-          onClick={() => {
-            handleSearch();
-          }}>
-          Search
+          onClick={handleSearch}>
+          <RefreshIcon />
         </XButton>
       </Box>
       <Divider />
