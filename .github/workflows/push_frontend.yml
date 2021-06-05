@@ -10,6 +10,7 @@ on:
 env:
   AWS_DEFAULT_REGION: ap-northeast-1
   WORKING_DIR: frontend
+  NODE_ENV: production
 
 jobs:
   build:
