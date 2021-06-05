@@ -14,7 +14,7 @@ API.configure({
   endpoints: [
     {
       name: Consts.API_NAME,
-      endpoint: Environments.API_URL,
+      endpoint: Environments.BACKEND_API_URL,
       region: Environments.AWS_DEFAULT_REGION,
       custom_header: async () => {
         return { Authorization: store().getState().app.authorizationToken };

@@ -19,7 +19,7 @@ jobs:
       name: env
     env:
       FRONTEND_BUCKET: ${{ secrets.FRONTEND_BUCKET }}
-      API_URL: ${{ secrets.API_URL }}
+      BACKEND_API_URL: ${{ secrets.BACKEND_API_URL }}
     defaults:
       run:
         working-directory: ${{ env.WORKING_DIR }}
