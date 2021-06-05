@@ -96,6 +96,11 @@ resource "aws_lambda_function" "authorizer" {
   memory_size   = 128
   role          = aws_iam_role.cloudtrail.arn
   timeout       = 3
+  environment {
+    variables = {
+      TABLE_NAME_USER = local.dynamodb_name_users
+    }
+  }
 }
 
 data "archive_file" "authorizer" {
