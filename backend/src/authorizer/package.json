@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "build": "tsc -p tsconfig.build.json",
+    "postbuild": "cp package.json dist && cd dist && yarn install --production",
     "test": "jest"
   },
   "dependencies": {
