@@ -105,7 +105,7 @@ const NewPassword = () => {
                 variant="outlined"
                 margin="normal"
                 fullWidth
-                label="Password Confirm"
+                label="Confirm Password"
                 value={value}
                 onChange={onChange}
               />
