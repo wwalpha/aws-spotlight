@@ -13,7 +13,7 @@ const configs: Configuration = {
     filename: '[name].bundle.js',
     chunkFilename: '[name].chunk.js',
     path: path.resolve(__dirname, '../../dist'),
-    publicPath: '/',
+    publicPath: './',
   },
   resolve: {
     mainFields: ['browser', 'main', 'module'],
