@@ -16,9 +16,6 @@ jobs:
     runs-on: ubuntu-18.04
     environment:
       name: env
-    env:
-      FRONTEND_BUCKET: ${{ secrets.FRONTEND_BUCKET }}
-      BACKEND_API_URL: ${{ secrets.BACKEND_API_URL }}
     defaults:
       run:
         working-directory: ${{ env.WORKING_DIR }}
@@ -35,6 +32,9 @@ jobs:
 
       # Install and Build
       - name: Build
+        env:
+          FRONTEND_BUCKET: ${{ secrets.FRONTEND_BUCKET }}
+          BACKEND_API_URL: ${{ secrets.BACKEND_API_URL }}
         run: |
           yarn install --production=false
           yarn build
