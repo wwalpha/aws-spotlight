@@ -52,4 +52,4 @@ jobs:
       - name: Upload files
         run: |
           ls -l
-          aws s3 cp dist/* s3://$FRONTEND_BUCKET --recursive
+          aws s3 cp dist s3://$FRONTEND_BUCKET --recursive
