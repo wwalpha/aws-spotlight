@@ -3,7 +3,7 @@ name: PUSH_B) Resource Manager Build
 on:
   push:
     paths:
-      - backend/src/resource-manager/**
+      - backend/src/resource_manager/**
       - .github/workflows/push_backend_resource_manager.yml
     branches-ignore:
       - releases/**
@@ -16,7 +16,7 @@ env:
   ECS_TAKS_DEFINITION: arms-resource
   ECS_TAKS_DEFINITION_FILE: task_definition.json
   SSM_PARAMETER_NAME: /arms/repository_url
-  WORKING_DIR: backend/src/resource-manager
+  WORKING_DIR: backend/src/resource_manager
 
 jobs:
   build:
