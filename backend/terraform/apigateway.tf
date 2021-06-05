@@ -1,4 +1,18 @@
 # ---------------------------------------------------------------------------------------------
+# API Gateway Authorizer
+# ---------------------------------------------------------------------------------------------
+resource "aws_apigatewayv2_authorizer" "this" {
+  name                              = "Authorizer"
+  api_id                            = local.apigateway_id
+  authorizer_type                   = "REQUEST"
+  authorizer_uri                    = aws_lambda_function.authorizer.invoke_arn
+  identity_sources                  = ["$request.header.Authorization"]
+  authorizer_payload_format_version = "2.0"
+  enable_simple_responses           = true
+  authorizer_result_ttl_in_seconds  = 300
+}
+
+# ---------------------------------------------------------------------------------------------
 # API Gateway Route - User
 # ---------------------------------------------------------------------------------------------
 resource "aws_apigatewayv2_route" "get_user_health" {
@@ -8,19 +22,19 @@ resource "aws_apigatewayv2_route" "get_user_health" {
 }
 
 resource "aws_apigatewayv2_route" "post_user" {
-  api_id    = local.apigateway_id
-  route_key = "POST /user"
-  target    = "integrations/${local.apigateway_integration_user}"
-  # authorizer_id      = local.apigateway_authorizer_id
-  # authorization_type = "JWT"
+  api_id             = local.apigateway_id
+  route_key          = "POST /user"
+  target             = "integrations/${local.apigateway_integration_user}"
+  authorizer_id      = aws_apigatewayv2_authorizer.this.id
+  authorization_type = "CUSTOM"
 }
 
 resource "aws_apigatewayv2_route" "post_user_admin" {
-  api_id    = local.apigateway_id
-  route_key = "POST /user/admin"
-  target    = "integrations/${local.apigateway_integration_user}"
-  # authorizer_id      = local.apigateway_authorizer_id
-  # authorization_type = "JWT"
+  api_id             = local.apigateway_id
+  route_key          = "POST /user/admin"
+  target             = "integrations/${local.apigateway_integration_user}"
+  authorizer_id      = aws_apigatewayv2_authorizer.this.id
+  authorization_type = "CUSTOM"
 }
 
 # ---------------------------------------------------------------------------------------------

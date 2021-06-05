@@ -115,3 +115,26 @@ EOT
     filename = "index.js"
   }
 }
+
+# ----------------------------------------------------------------------------------------------
+# Lambda Permission - Authorizer
+# ----------------------------------------------------------------------------------------------
+resource "aws_lambda_permission" "authorizer" {
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.authorizer.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${local.apigateway_execution_arn}/authorizers/${aws_apigatewayv2_authorizer.this.id}"
+}
+
+# ----------------------------------------------------------------------------------------------
+# Lambda Function Destination - Unprocessed
+# ----------------------------------------------------------------------------------------------
+resource "aws_lambda_function_event_invoke_config" "authorizer" {
+  function_name = aws_lambda_function.authorizer.function_name
+
+  destination_config {
+    on_failure {
+      destination = data.aws_sns_topic.admin.arn
+    }
+  }
+}

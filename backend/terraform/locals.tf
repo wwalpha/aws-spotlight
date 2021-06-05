@@ -27,6 +27,7 @@ locals {
   # API Gateway
   # ----------------------------------------------------------------------------------------------
   apigateway_id                   = local.remote_services.apigateway_id
+  apigateway_execution_arn        = local.remote_services.apigateway_execution_arn
   apigateway_domain_name          = local.remote_services.apigateway_domain_name
   apigateway_authorizer_id        = local.remote_services.apigateway_authorizer_id
   apigateway_integration_auth     = local.remote_services.apigateway_integration_auth
