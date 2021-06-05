@@ -73,7 +73,7 @@ resource "aws_lambda_permission" "unprocessed" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# Lambda Function - CloudTrail
+# Lambda Function - Unprocessed
 # ----------------------------------------------------------------------------------------------
 resource "aws_lambda_function_event_invoke_config" "unprocessed" {
   function_name = aws_lambda_function.unprocessed.function_name
@@ -82,5 +82,36 @@ resource "aws_lambda_function_event_invoke_config" "unprocessed" {
     on_failure {
       destination = data.aws_sns_topic.admin.arn
     }
+  }
+}
+
+# ----------------------------------------------------------------------------------------------
+# Lambda Function - CloudTrail
+# ----------------------------------------------------------------------------------------------
+resource "aws_lambda_function" "authorizer" {
+  function_name = "${local.project_name}-authorizer"
+  filename      = data.archive_file.authorizer.output_path
+  handler       = local.lambda_handler
+  runtime       = local.lambda_runtime
+  memory_size   = 128
+  role          = aws_iam_role.cloudtrail.arn
+  timeout       = 3
+}
+
+data "archive_file" "authorizer" {
+  type        = "zip"
+  output_path = "${path.module}/authorizer.zip"
+
+  source {
+    content  = <<EOT
+exports.handler = async (event) => {
+  const response = {
+    statusCode: 200,
+    body: JSON.stringify('Hello from Lambda!'),
+  };
+  return response;
+};
+EOT
+    filename = "index.js"
   }
 }

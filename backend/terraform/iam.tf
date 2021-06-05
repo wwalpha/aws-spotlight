@@ -157,3 +157,19 @@ resource "aws_iam_role_policy" "unprocessed" {
     ]
   })
 }
+
+# ----------------------------------------------------------------------------------------------
+# AWS Lambda Role - Authorizer
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role" "authorizer" {
+  name               = "${local.project_name_uc}_Lambda_AuthorizerRole"
+  assume_role_policy = data.aws_iam_policy_document.lambda.json
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS Lambda Role Policy - Authorizer Basic Policy
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy_attachment" "authorizer" {
+  role       = aws_iam_role.authorizer.name
+  policy_arn = local.lambda_basic_policy_arn
+}
