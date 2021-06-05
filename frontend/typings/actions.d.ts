@@ -1,4 +1,4 @@
-import { ReduxAction0, ReduxAction1, ReduxAction2 } from './types';
+import { ReduxAction0, ReduxAction1, ReduxAction2, ReduxAction3, ReduxActionAny } from './types';
 import { Resource } from '.';
 import { APIs } from './api';
 import { Auth } from '../../backend/typings/auth';
@@ -29,7 +29,7 @@ export type SignInPayload = {
 };
 
 /** login action */
-export type SignInAction = ReduxAction3<string, string, string, SignInPayload>;
+export type SignInAction = ReduxActionAny<SignInPayload>;
 
 /** sidemenu payload */
 export type GetResourcesPayload = {

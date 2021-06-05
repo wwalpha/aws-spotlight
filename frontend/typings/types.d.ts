@@ -1,4 +1,11 @@
-import { Action, ActionFunction0, ActionFunction1, ActionFunction2 } from 'redux-actions';
+import {
+  Action,
+  ActionFunction0,
+  ActionFunction1,
+  ActionFunction2,
+  ActionFunction3,
+  ActionFunctionAny,
+} from 'redux-actions';
 import { CallHistoryMethodAction } from 'connected-react-router';
 import { ThunkAction } from 'redux-thunk';
 import { State } from './domains';
@@ -24,6 +31,10 @@ export type ReduxAction0<S = any, R = void> = ActionFunction0<ThunkActions<S, R>
 export type ReduxAction1<P, S = any, R = void> = ActionFunction1<P, ThunkActions<S, R>>;
 /** Redux Action2 */
 export type ReduxAction2<P1, P2, S = any, R = void> = ActionFunction2<P1, P2, ThunkActions<S, R>>;
+/** Redux Action3 */
+export type ReduxAction3<P1, P2, P3, S = any, R = void> = ActionFunction3<P1, P2, P3, ThunkActions<S, R>>;
+/** Redux Action Any */
+export type ReduxActionAny<S = any, R = void> = ActionFunctionAny<ThunkActions<S, R>>;
 
 /** Request Action */
 export type RequestAction = ActionFunction0<Action<any>>;

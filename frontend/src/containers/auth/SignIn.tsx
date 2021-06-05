@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useForm, Controller } from 'react-hook-form';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -11,13 +11,14 @@ import {
   TextField,
   FormControlLabel,
   Checkbox,
-  Button,
   Grid,
   Theme,
   makeStyles,
   createStyles,
 } from '@material-ui/core';
 import { AppActions } from '@actions';
+import { XButton } from '@comp';
+import { Domains } from 'typings';
 
 const useStyles = makeStyles(({ palette, spacing }: Theme) =>
   createStyles({
@@ -40,23 +41,25 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) =>
   })
 );
 
+const appState = (state: Domains.State) => state.app;
+
 const SignIn = () => {
   const classes = useStyles();
   const actions = bindActionCreators(AppActions, useDispatch());
+  const { isLoading } = useSelector(appState);
+
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<{
     username: string;
-    passwd: string;
+    password: string;
   }>();
 
-  const onSubmit = handleSubmit(({ username, passwd }) => {
-    actions.signIn(username, passwd);
+  const onSubmit = handleSubmit(({ username, password }) => {
+    actions.signIn(username, password);
   });
-
-  console.log(errors);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -84,11 +87,13 @@ const SignIn = () => {
                 autoFocus
                 value={value}
                 onChange={onChange}
+                error={errors.username !== undefined}
+                helperText={errors.username ? 'Required' : ''}
               />
             )}
           />
           <Controller
-            name="passwd"
+            name="password"
             control={control}
             defaultValue=""
             rules={{ required: true }}
@@ -100,16 +105,24 @@ const SignIn = () => {
                 label="Password"
                 type="password"
                 autoComplete="current-password"
-                autoFocus
                 value={value}
                 onChange={onChange}
+                error={errors.password !== undefined}
+                helperText={errors.password ? 'Required' : ''}
               />
             )}
           />
           <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-          <Button type="submit" size="large" fullWidth variant="contained" color="primary" className={classes.submit}>
+          <XButton
+            isLoading={isLoading}
+            type="submit"
+            size="large"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}>
             Sign In
-          </Button>
+          </XButton>
           <Grid container>
             <Grid item xs></Grid>
           </Grid>

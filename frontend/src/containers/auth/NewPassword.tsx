@@ -9,22 +9,16 @@ import {
   Avatar,
   Typography,
   TextField,
-  FormControlLabel,
-  Checkbox,
-  Button,
-  Grid,
   Theme,
   makeStyles,
   createStyles,
 } from '@material-ui/core';
+import { XButton } from '@comp';
 import { AppActions } from '@actions';
 import { Domains } from 'typings';
 
 const useStyles = makeStyles(({ palette, spacing }: Theme) =>
   createStyles({
-    '@global': {
-      body: { backgroundColor: palette.common.white },
-    },
     paper: {
       marginTop: spacing(8),
       display: 'flex',
@@ -46,7 +40,7 @@ const appState = (state: Domains.State) => state.app;
 const NewPassword = () => {
   const classes = useStyles();
   const actions = bindActionCreators(AppActions, useDispatch());
-  const { userName } = useSelector(appState);
+  const { userName, isLoading } = useSelector(appState);
 
   const {
     control,
@@ -67,12 +61,6 @@ const NewPassword = () => {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Login
-        </Typography>
         <form className={classes.form} noValidate onSubmit={onSubmit}>
           <Controller
             name="oldpassword"
@@ -123,9 +111,16 @@ const NewPassword = () => {
               />
             )}
           />
-          <Button type="submit" size="large" fullWidth variant="contained" color="primary" className={classes.submit}>
+          <XButton
+            isLoading={isLoading}
+            type="submit"
+            size="large"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}>
             Confirm
-          </Button>
+          </XButton>
         </form>
       </div>
     </Container>

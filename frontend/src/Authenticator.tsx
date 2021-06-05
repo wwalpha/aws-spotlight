@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
-import { NewPassword, SignIn } from '@containers';
+import { NewPassword, SignIn, App } from '@containers';
 import { Domains } from 'typings';
 
 const appState = (state: Domains.State) => state.app;
 
-const Authenticator: React.FunctionComponent = ({ children }) => {
+const Authenticator: React.FunctionComponent = () => {
   const [isLogin, setLogin] = React.useState<boolean>();
   const { authorizationToken, newPasswordRequired } = useSelector(appState);
 
+  console.log(authorizationToken, newPasswordRequired);
   React.useEffect(() => {
     setLogin(authorizationToken !== undefined);
   }, [authorizationToken]);
@@ -23,7 +24,7 @@ const Authenticator: React.FunctionComponent = ({ children }) => {
     return <SignIn />;
   }
 
-  return <React.Fragment>{children}</React.Fragment>;
+  return <App />;
 };
 
 export default Authenticator;
