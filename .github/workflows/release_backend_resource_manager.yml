@@ -3,7 +3,7 @@ name: RELEASE_B) Resource Manager Build
 on:
   workflow_run:
     workflows:
-      - RELEASE_B) Terraform Build
+      - RELEASE_T) Backend Build
     types:
       - completed
 
