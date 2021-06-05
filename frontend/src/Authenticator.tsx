@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppActions } from '@actions';
 import { NewPassword, SignIn, App } from '@containers';
 import { Domains } from 'typings';
 
@@ -8,10 +10,11 @@ const appState = (state: Domains.State) => state.app;
 const Authenticator: React.FunctionComponent = () => {
   const [isLogin, setLogin] = React.useState<boolean>();
   const { authorizationToken, newPasswordRequired } = useSelector(appState);
+  const dispatch = useDispatch();
+  const actions = bindActionCreators(AppActions, dispatch);
 
-  console.log(authorizationToken, newPasswordRequired);
   React.useEffect(() => {
-    setLogin(authorizationToken !== undefined);
+    setLogin(authorizationToken !== null);
   }, [authorizationToken]);
 
   // new password required

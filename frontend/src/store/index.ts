@@ -1,9 +1,9 @@
 const store = () => {
   if (process.env.NODE_ENV !== 'production') {
-    return require('./dev');
+    return require('./dev').default;
   }
 
-  return require('./prod');
+  return require('./prod').default;
 };
 
 export default store;
