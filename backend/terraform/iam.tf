@@ -11,6 +11,14 @@ resource "aws_iam_role" "cloudtrail" {
 }
 
 # ----------------------------------------------------------------------------------------------
+# AWS ECS Task Execution Policy - S3 ReadOnly Policy
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy_attachment" "cloudtrail_s3_readonly" {
+  role       = aws_iam_role.cloudtrail.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+}
+
+# ----------------------------------------------------------------------------------------------
 # AWS Lambda Role - CloudTrail Lambda Basic Policy
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role_policy_attachment" "cloudtrail_basic" {
