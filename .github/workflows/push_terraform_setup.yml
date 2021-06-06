@@ -44,8 +44,14 @@ jobs:
           aws-region: us-east-1
 
       # Terraform Apply
-      - name: Terraform Apply
+      - name: Terraform init
         run: |
           terraform init
+
+      - name: Terraform plan
+        run: |
           terraform plan -out=setup
+
+      - name: Terraform Apply
+        run: |
           terraform apply "setup"
