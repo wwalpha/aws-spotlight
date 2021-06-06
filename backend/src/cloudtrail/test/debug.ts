@@ -4,6 +4,7 @@ import { sendMessage, updateEventType } from './configs/utils';
 import EC2_CreateImage from './datas/create/EC2_CreateImage.json';
 import EC2_RunInstances from './datas/create/EC2_RunInstances.json';
 import EC2_TerminateInstances from './datas/delete/EC2_TerminateInstances.json';
+import EC2_AllocateAddress from './datas/ignore/EC2_AllocateAddress.json';
 import RDS_CreateDBCluster from './datas/create/RDS_CreateDBCluster.json';
 import ELASTICLOADBALANCING_CreateLoadBalancer from './datas/create/ELASTICLOADBALANCING_CreateLoadBalancer.json';
 
@@ -61,15 +62,22 @@ const test = async () => {
       Ignore: true,
       Unconfirmed: true,
     },
+    {
+      EventSource: 'ec2.amazonaws.com',
+      EventName: 'AllocateAddress',
+      Unprocessed: true,
+      Ignore: true,
+      Unconfirmed: true,
+    },
   ]);
 
-  await updateEventType('ec2.amazonaws.com', 'TerminateInstances', 'Delete');
+  await updateEventType('ec2.amazonaws.com', 'AllocateAddress', 'Ignore');
 
   await helper.bulk(TABLE_NAME_UNPROCESSED, [
     {
-      EventName: EC2_TerminateInstances.eventName,
-      EventTime: `${EC2_TerminateInstances.eventTime}_${EC2_TerminateInstances.eventID.substr(0, 8)}`,
-      Raw: JSON.stringify(EC2_TerminateInstances),
+      EventName: EC2_AllocateAddress.eventName,
+      EventTime: `${EC2_AllocateAddress.eventTime}_${EC2_AllocateAddress.eventID.substr(0, 8)}`,
+      Raw: JSON.stringify(EC2_AllocateAddress),
     },
   ]);
 
