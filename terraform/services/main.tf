@@ -20,8 +20,7 @@ terraform {
 # Remote state - Setup
 # ----------------------------------------------------------------------------------------------
 data "terraform_remote_state" "setup" {
-  backend   = "s3"
-  workspace = terraform.workspace
+  backend = "s3"
 
   config = {
     region = "us-east-1"

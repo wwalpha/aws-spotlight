@@ -77,9 +77,11 @@ resource "aws_ecs_service" "resource" {
   }
 
   network_configuration {
-    assign_public_ip = local.is_dev
-    subnets          = local.is_dev ? module.vpc.public_subnets : module.vpc.private_subnets
     security_groups  = [aws_security_group.ecs_default_sg.id]
+    assign_public_ip = true
+    subnets          = module.vpc.public_subnets
+    # assign_public_ip = local.is_dev
+    # subnets          = local.is_dev ? module.vpc.public_subnets : module.vpc.private_subnets
   }
 
   service_registries {

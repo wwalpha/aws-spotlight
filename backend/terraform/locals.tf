@@ -2,8 +2,6 @@ locals {
   # ----------------------------------------------------------------------------------------------
   # Environment
   # ----------------------------------------------------------------------------------------------
-  environment     = terraform.workspace
-  is_dev          = local.environment == "dev"
   remote_setup    = data.terraform_remote_state.setup.outputs
   remote_services = data.terraform_remote_state.services.outputs
   account_id      = data.aws_caller_identity.this.account_id
