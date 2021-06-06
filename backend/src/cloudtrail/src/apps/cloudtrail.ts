@@ -1,5 +1,5 @@
 import { S3 } from 'aws-sdk';
-import { SQSRecord } from 'aws-lambda';
+import { SNSMessage, SQSRecord } from 'aws-lambda';
 import { isEqual, uniqWith } from 'lodash';
 import { DynamodbHelper } from '@alphax/dynamodb';
 import zlib from 'zlib';
@@ -139,8 +139,11 @@ const getNewEventTypeRecords = (records: CloudTrail.Record[]) =>
  */
 export const getRecords = async (message: string): Promise<CloudTrail.Record[]> => {
   console.log(message);
-  const payload = JSON.parse(message) as CloudTrail.Payload;
-  console.log(payload);
+  const snsMessage = JSON.parse(message) as SNSMessage;
+  console.log(snsMessage);
+
+  const payload = JSON.parse(snsMessage.Message) as CloudTrail.Payload;
+
   // get files
   const tasks = payload.s3ObjectKey.map((item) =>
     s3Client

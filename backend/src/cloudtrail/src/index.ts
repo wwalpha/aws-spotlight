@@ -17,6 +17,8 @@ AWS.config.update({
  * @returns
  */
 export const cloudtrail = async (event: SQSEvent) => {
+  console.log(JSON.stringify(event));
+
   // get event type definition
   await initializeEvents();
 
