@@ -38,7 +38,6 @@ jobs:
       # Install and Build
       - name: Build
         run: |
-          cp -f ../../typings/* ./typings/ --recursive
           yarn install
           yarn build
 
