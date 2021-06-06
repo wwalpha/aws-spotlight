@@ -2,10 +2,10 @@
 # AWS CloudFront Distribution
 # ------------------------------------------------------------------------------------------------
 resource "aws_cloudfront_distribution" "this" {
-  depends_on          = [aws_acm_certificate_validation.global]
+  depends_on          = [aws_acm_certificate_validation.this]
   enabled             = true
   default_root_object = local.default_root_object
-  aliases             = [aws_acm_certificate.global.domain_name]
+  aliases             = [aws_acm_certificate.this.domain_name]
 
   origin {
     domain_name = data.aws_s3_bucket.frontend.bucket_regional_domain_name
@@ -43,7 +43,7 @@ resource "aws_cloudfront_distribution" "this" {
     cloudfront_default_certificate = false
     ssl_support_method             = "sni-only"
     minimum_protocol_version       = "TLSv1.2_2019"
-    acm_certificate_arn            = aws_acm_certificate_validation.global.certificate_arn
+    acm_certificate_arn            = aws_acm_certificate_validation.this.certificate_arn
   }
 
   restrictions {
