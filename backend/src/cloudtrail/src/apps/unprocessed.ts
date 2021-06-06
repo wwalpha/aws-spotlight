@@ -1,15 +1,10 @@
 import { DynamodbHelper } from '@alphax/dynamodb';
 import { CloudTrail, Tables } from 'typings';
+import { Environments } from './utils/consts';
 import { getCreateResourceItem, getRemoveResourceItem } from './utils/events';
 import { Logger, registHistory } from './utils/utilities';
 
 const helper = new DynamodbHelper();
-
-// Environments
-const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
-const TABLE_NAME_RESOURCE = process.env.TABLE_NAME_RESOURCE as string;
-const TABLE_NAME_HISTORY = process.env.TABLE_NAME_HISTORY as string;
-const TABLE_NAME_UNPROCESSED = process.env.TABLE_NAME_UNPROCESSED as string;
 
 /**
  * Initialize Event Type Definition
@@ -19,7 +14,7 @@ const TABLE_NAME_UNPROCESSED = process.env.TABLE_NAME_UNPROCESSED as string;
 export const getUnprocessedEvents = async () => {
   // get all event definitions
   const results = await helper.scan<Tables.EventType>({
-    TableName: TABLE_NAME_EVENT_TYPE,
+    TableName: Environments.TABLE_NAME_EVENT_TYPE,
     FilterExpression: '#Unprocessed = :Unprocessed AND attribute_not_exists(Unconfirmed)',
     ExpressionAttributeNames: {
       '#Unprocessed': 'Unprocessed',
@@ -55,7 +50,7 @@ export const processIgnore = async (events: Tables.EventType[]) => {
 
     // find keys
     const queryResult = await helper.query<Tables.Unprocessed>({
-      TableName: TABLE_NAME_UNPROCESSED,
+      TableName: Environments.TABLE_NAME_UNPROCESSED,
       ProjectionExpression: 'EventName, EventTime',
       KeyConditionExpression: '#EventName = :EventName',
       ExpressionAttributeNames: {
@@ -67,10 +62,10 @@ export const processIgnore = async (events: Tables.EventType[]) => {
     });
 
     // delete keys
-    await helper.truncate(TABLE_NAME_UNPROCESSED, queryResult.Items);
+    await helper.truncate(Environments.TABLE_NAME_UNPROCESSED, queryResult.Items);
 
     await helper.update({
-      TableName: TABLE_NAME_EVENT_TYPE,
+      TableName: Environments.TABLE_NAME_EVENT_TYPE,
       Key: {
         EventName: item.EventName,
         EventSource: item.EventSource,
@@ -103,7 +98,7 @@ export const processCreate = async (events: Tables.EventType[]) => {
 
     // find keys
     const queryResult = await helper.query<Tables.Unprocessed>({
-      TableName: TABLE_NAME_UNPROCESSED,
+      TableName: Environments.TABLE_NAME_UNPROCESSED,
       KeyConditionExpression: '#EventName = :EventName',
       ExpressionAttributeNames: {
         '#EventName': 'EventName',
@@ -127,7 +122,7 @@ export const processCreate = async (events: Tables.EventType[]) => {
       .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
     // bulk insert resource
-    await helper.bulk(TABLE_NAME_RESOURCE, createItems);
+    await helper.bulk(Environments.TABLE_NAME_RESOURCE, createItems);
     // bulk insert history
     await registHistory(rawRecords);
 
@@ -140,11 +135,11 @@ export const processCreate = async (events: Tables.EventType[]) => {
         } as Tables.UnprocessedKey)
     );
 
-    await helper.truncate(TABLE_NAME_UNPROCESSED, removeItems);
+    await helper.truncate(Environments.TABLE_NAME_UNPROCESSED, removeItems);
 
     // process finished
     await helper.update({
-      TableName: TABLE_NAME_EVENT_TYPE,
+      TableName: Environments.TABLE_NAME_EVENT_TYPE,
       Key: { EventSource: item?.EventSource, EventName: item?.EventName } as Tables.EventTypeKey,
       UpdateExpression: 'REMOVE #Unprocessed',
       ExpressionAttributeNames: {
@@ -162,7 +157,7 @@ export const processCreate = async (events: Tables.EventType[]) => {
  */
 export const processDelete = async (events: Tables.EventType[]) => {
   // filter ignore records
-  const records = events.filter((item) => item.Create === true);
+  const records = events.filter((item) => item.Delete === true);
 
   Logger.info('Delete records size:', records.length);
 
@@ -174,7 +169,7 @@ export const processDelete = async (events: Tables.EventType[]) => {
 
     // find keys
     const queryResult = await helper.query<Tables.Unprocessed>({
-      TableName: TABLE_NAME_UNPROCESSED,
+      TableName: Environments.TABLE_NAME_UNPROCESSED,
       KeyConditionExpression: '#EventName = :EventName',
       ExpressionAttributeNames: {
         '#EventName': 'EventName',
@@ -198,7 +193,7 @@ export const processDelete = async (events: Tables.EventType[]) => {
       .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
     // bulk insert resource
-    await helper.bulk(TABLE_NAME_RESOURCE, removeItems);
+    await helper.truncate(Environments.TABLE_NAME_RESOURCE, removeItems);
     // bulk insert history
     await registHistory(rawRecords);
 
@@ -212,6 +207,16 @@ export const processDelete = async (events: Tables.EventType[]) => {
     );
 
     // truncate all rows
-    await helper.truncate(TABLE_NAME_UNPROCESSED, rowItems);
+    await helper.truncate(Environments.TABLE_NAME_UNPROCESSED, rowItems);
+
+    // process finished
+    await helper.update({
+      TableName: Environments.TABLE_NAME_EVENT_TYPE,
+      Key: { EventSource: item?.EventSource, EventName: item?.EventName } as Tables.EventTypeKey,
+      UpdateExpression: 'REMOVE #Unprocessed',
+      ExpressionAttributeNames: {
+        '#Unprocessed': 'Unprocessed',
+      },
+    });
   }
 };

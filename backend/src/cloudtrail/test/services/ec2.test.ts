@@ -1,5 +1,5 @@
 import AWS from 'aws-sdk';
-import { getHistory, getResource, scanHistory, sendMessage } from '@test/configs/utils';
+import { getHistory, getResource, sendMessage } from '@test/configs/utils';
 import EC2_RunInstances from '../datas/create/EC2_RunInstances.json';
 import EC2_TerminateInstances from '../datas/delete/EC2_TerminateInstances.json';
 import EC2_CreateImage from '../datas/create/EC2_CreateImage.json';

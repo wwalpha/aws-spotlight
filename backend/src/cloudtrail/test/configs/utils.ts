@@ -102,9 +102,10 @@ export const updateEventType = async (eventSource: string, eventName: string, ac
   await helper.update({
     TableName: TABLE_NAME_EVENT_TYPE,
     Key: { EventSource: eventSource, EventName: eventName } as Tables.EventTypeKey,
-    UpdateExpression: 'REMOVE #Unconfirmed',
+    UpdateExpression: 'REMOVE #Unconfirmed, #Ignore',
     ExpressionAttributeNames: {
       '#Unconfirmed': 'Unconfirmed',
+      '#Ignore': 'Ignore',
     },
   });
 

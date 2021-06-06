@@ -1,8 +1,14 @@
 import { cloudtrail, unprocessed } from '@src/index';
 import { DynamodbHelper } from '@alphax/dynamodb';
-import { sendMessage } from './configs/utils';
-import { start } from './configs/createEvents';
-import CreateEvent from './datas/create/EC2_CreateSnapshots.json';
+import { sendMessage, updateEventType } from './configs/utils';
+import EC2_CreateImage from './datas/create/EC2_CreateImage.json';
+import EC2_RunInstances from './datas/create/EC2_RunInstances.json';
+import EC2_TerminateInstances from './datas/delete/EC2_TerminateInstances.json';
+import RDS_CreateDBCluster from './datas/create/RDS_CreateDBCluster.json';
+import ELASTICLOADBALANCING_CreateLoadBalancer from './datas/create/ELASTICLOADBALANCING_CreateLoadBalancer.json';
+
+const TABLE_NAME_UNPROCESSED = process.env.TABLE_NAME_UNPROCESSED as string;
+const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
 
 const helper = new DynamodbHelper();
 
@@ -20,16 +26,53 @@ const startU = async () => {
 };
 
 const startC = async () => {
-  const event = await sendMessage(CreateEvent);
+  const events = [EC2_CreateImage, EC2_RunInstances, RDS_CreateDBCluster, ELASTICLOADBALANCING_CreateLoadBalancer];
 
-  await cloudtrail(event);
+  const tasks = events.map(async (item) => {
+    const event = await sendMessage(item);
+    await cloudtrail(event);
+  });
+
+  await Promise.all(tasks);
 };
 
 const updateEvent = async () => {
-  start();
+  // start();
 
   await helper.bulk(process.env.TABLE_NAME_EVENT_TYPE as string, require('./configs/events_all.json'));
 };
 
-startC();
+// startC();
 // updateEvent();
+
+const test = async () => {
+  await helper.bulk(TABLE_NAME_EVENT_TYPE, [
+    {
+      EventSource: 'ec2.amazonaws.com',
+      EventName: 'RunInstances',
+      Unprocessed: true,
+      Ignore: true,
+      Unconfirmed: true,
+    },
+    {
+      EventSource: 'ec2.amazonaws.com',
+      EventName: 'TerminateInstances',
+      Unprocessed: true,
+      Ignore: true,
+      Unconfirmed: true,
+    },
+  ]);
+
+  await updateEventType('ec2.amazonaws.com', 'TerminateInstances', 'Delete');
+
+  await helper.bulk(TABLE_NAME_UNPROCESSED, [
+    {
+      EventName: EC2_TerminateInstances.eventName,
+      EventTime: `${EC2_TerminateInstances.eventTime}_${EC2_TerminateInstances.eventID.substr(0, 8)}`,
+      Raw: JSON.stringify(EC2_TerminateInstances),
+    },
+  ]);
+
+  await unprocessed();
+};
+test();

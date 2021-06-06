@@ -1,7 +1,7 @@
 import { SQSEvent } from 'aws-lambda';
 import AWS from 'aws-sdk';
 import { execute, initializeEvents } from './apps/cloudtrail';
-import { getUnprocessedEvents, processCreate, processIgnore } from './apps/unprocessed';
+import { getUnprocessedEvents, processCreate, processDelete, processIgnore } from './apps/unprocessed';
 
 // common settings
 AWS.config.update({
@@ -35,7 +35,8 @@ export const unprocessed = async () => {
 
   // ignore records
   await processIgnore(events);
-
   // create records
   await processCreate(events);
+  // create records
+  await processDelete(events);
 };
