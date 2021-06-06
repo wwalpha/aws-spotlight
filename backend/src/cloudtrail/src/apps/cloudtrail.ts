@@ -138,9 +138,7 @@ const getNewEventTypeRecords = (records: CloudTrail.Record[]) =>
  * @returns
  */
 export const getRecords = async (message: string): Promise<CloudTrail.Record[]> => {
-  console.log(message);
   const snsMessage = JSON.parse(message) as SNSMessage;
-  console.log(snsMessage);
 
   const payload = JSON.parse(snsMessage.Message) as CloudTrail.Payload;
 
