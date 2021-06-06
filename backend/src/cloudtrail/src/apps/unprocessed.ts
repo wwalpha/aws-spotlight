@@ -1,7 +1,7 @@
 import { DynamodbHelper } from '@alphax/dynamodb';
 import { CloudTrail, Tables } from 'typings';
-import { getCreateResourceItem } from './utils/events';
-import { Logger } from './utils/utilities';
+import { getCreateResourceItem, getRemoveResourceItem } from './utils/events';
+import { Logger, registHistory } from './utils/utilities';
 
 const helper = new DynamodbHelper();
 
@@ -20,7 +20,7 @@ export const getUnprocessedEvents = async () => {
   // get all event definitions
   const results = await helper.scan<Tables.EventType>({
     TableName: TABLE_NAME_EVENT_TYPE,
-    FilterExpression: '#Unprocessed = :Unprocessed',
+    FilterExpression: '#Unprocessed = :Unprocessed AND attribute_not_exists(Unconfirmed)',
     ExpressionAttributeNames: {
       '#Unprocessed': 'Unprocessed',
     },
@@ -46,7 +46,11 @@ export const processIgnore = async (events: Tables.EventType[]) => {
   // no records
   if (records.length === 0) return;
 
-  const tasks = records.map(async (item) => {
+  for (; records.length > 0; ) {
+    const item = records.shift();
+
+    if (!item) continue;
+
     Logger.debug(`Ignore record process... EventName: ${item.EventName}, EventSource: ${item.EventSource}`);
 
     // find keys
@@ -58,7 +62,7 @@ export const processIgnore = async (events: Tables.EventType[]) => {
         '#EventName': 'EventName',
       },
       ExpressionAttributeValues: {
-        ':EventName': item.EventName,
+        ':EventName': item?.EventName,
       },
     });
 
@@ -76,9 +80,7 @@ export const processIgnore = async (events: Tables.EventType[]) => {
         '#Unprocessed': 'Unprocessed',
       },
     });
-  });
-
-  await Promise.all(tasks);
+  }
 };
 
 /**
@@ -89,7 +91,6 @@ export const processIgnore = async (events: Tables.EventType[]) => {
  */
 export const processCreate = async (events: Tables.EventType[]) => {
   // filter ignore records
-  // const records = events.filter((item) => item.Create === true && item.EventName === 'CreateDBCluster');
   const records = events.filter((item) => item.Create === true);
 
   Logger.info('Create records size:', records.length, records);
@@ -97,7 +98,9 @@ export const processCreate = async (events: Tables.EventType[]) => {
   // no records
   if (records.length === 0) return;
 
-  const tasks = records.map(async (item) => {
+  for (; records.length > 0; ) {
+    const item = records.shift();
+
     // find keys
     const queryResult = await helper.query<Tables.Unprocessed>({
       TableName: TABLE_NAME_UNPROCESSED,
@@ -106,23 +109,27 @@ export const processCreate = async (events: Tables.EventType[]) => {
         '#EventName': 'EventName',
       },
       ExpressionAttributeValues: {
-        ':EventName': item.EventName,
+        ':EventName': item?.EventName,
       },
     });
 
-    const createItems = queryResult.Items.map((item) => {
+    const rawRecords = queryResult.Items.map((item) => {
       try {
         return JSON.parse(item.Raw) as CloudTrail.Record;
       } catch (err) {
         console.error(err);
         return;
       }
-    })
+    }).filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
+
+    const createItems = rawRecords
       .map((item) => item && getCreateResourceItem(item))
       .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
     // bulk insert resource
     await helper.bulk(TABLE_NAME_RESOURCE, createItems);
+    // bulk insert history
+    await registHistory(rawRecords);
 
     // remove all raw datas
     const removeItems = queryResult.Items.map(
@@ -134,9 +141,17 @@ export const processCreate = async (events: Tables.EventType[]) => {
     );
 
     await helper.truncate(TABLE_NAME_UNPROCESSED, removeItems);
-  });
 
-  await Promise.all(tasks);
+    // process finished
+    await helper.update({
+      TableName: TABLE_NAME_EVENT_TYPE,
+      Key: { EventSource: item?.EventSource, EventName: item?.EventName } as Tables.EventTypeKey,
+      UpdateExpression: 'REMOVE #Unprocessed',
+      ExpressionAttributeNames: {
+        '#Unprocessed': 'Unprocessed',
+      },
+    });
+  }
 };
 
 /**
@@ -153,4 +168,50 @@ export const processDelete = async (events: Tables.EventType[]) => {
 
   // no records
   if (records.length === 0) return;
+
+  for (; records.length > 0; ) {
+    const item = records.shift();
+
+    // find keys
+    const queryResult = await helper.query<Tables.Unprocessed>({
+      TableName: TABLE_NAME_UNPROCESSED,
+      KeyConditionExpression: '#EventName = :EventName',
+      ExpressionAttributeNames: {
+        '#EventName': 'EventName',
+      },
+      ExpressionAttributeValues: {
+        ':EventName': item?.EventName,
+      },
+    });
+
+    const rawRecords = queryResult.Items.map((item) => {
+      try {
+        return JSON.parse(item.Raw) as CloudTrail.Record;
+      } catch (err) {
+        console.error(err);
+        return;
+      }
+    }).filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
+
+    const removeItems = rawRecords
+      .map((item) => item && getRemoveResourceItem(item))
+      .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
+
+    // bulk insert resource
+    await helper.bulk(TABLE_NAME_RESOURCE, removeItems);
+    // bulk insert history
+    await registHistory(rawRecords);
+
+    // remove all raw datas
+    const rowItems = queryResult.Items.map(
+      (item) =>
+        ({
+          EventName: item.EventName,
+          EventTime: item.EventTime,
+        } as Tables.UnprocessedKey)
+    );
+
+    // truncate all rows
+    await helper.truncate(TABLE_NAME_UNPROCESSED, rowItems);
+  }
 };

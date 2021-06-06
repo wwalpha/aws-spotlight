@@ -7,7 +7,6 @@ import EC2_DeregisterImage from '../datas/delete/EC2_DeregisterImage.json';
 import EC2_CreateSnapshot from '../datas/create/EC2_CreateSnapshot.json';
 import EC2_CreateSnapshots from '../datas/create/EC2_CreateSnapshots.json';
 import EC2_DeleteSnapshot from '../datas/delete/EC2_DeleteSnapshot.json';
-
 import * as EC2 from '@test/expect/ec2';
 import { cloudtrail } from '@src/index';
 import * as fs from 'fs';

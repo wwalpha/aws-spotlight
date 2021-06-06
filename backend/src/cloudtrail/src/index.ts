@@ -33,10 +33,9 @@ export const unprocessed = async () => {
   // get event type definition
   const events = await getUnprocessedEvents();
 
-  // console.log(events);
-
   // ignore records
   await processIgnore(events);
+
   // create records
   await processCreate(events);
 };

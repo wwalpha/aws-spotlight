@@ -15,6 +15,8 @@ const S3_BUCKET = process.env.S3_BUCKET as string;
 const SQS_URL = process.env.SQS_URL as string;
 const TABLE_NAME_RESOURCE = process.env.TABLE_NAME_RESOURCE as string;
 const TABLE_NAME_HISTORY = process.env.TABLE_NAME_HISTORY as string;
+const TABLE_NAME_UNPROCESSED = process.env.TABLE_NAME_UNPROCESSED as string;
+const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
 
 const sqsClient = new SQS();
 const s3Client = new S3();
@@ -85,6 +87,38 @@ export const getHistory = async (key: Tables.HistoryKey): Promise<Tables.History
   });
 
   return result?.Item;
+};
+
+export const getUnprocessed = async (key: Tables.UnprocessedKey): Promise<Tables.Unprocessed | undefined> => {
+  const result = await helper.get<Tables.Unprocessed>({
+    TableName: TABLE_NAME_UNPROCESSED,
+    Key: key,
+  });
+
+  return result?.Item;
+};
+
+export const updateEventType = async (eventSource: string, eventName: string, action: string): Promise<void> => {
+  await helper.update({
+    TableName: TABLE_NAME_EVENT_TYPE,
+    Key: { EventSource: eventSource, EventName: eventName } as Tables.EventTypeKey,
+    UpdateExpression: 'REMOVE #Unconfirmed',
+    ExpressionAttributeNames: {
+      '#Unconfirmed': 'Unconfirmed',
+    },
+  });
+
+  await helper.update({
+    TableName: TABLE_NAME_EVENT_TYPE,
+    Key: { EventSource: eventSource, EventName: eventName } as Tables.EventTypeKey,
+    UpdateExpression: 'SET #Action = :action',
+    ExpressionAttributeNames: {
+      '#Action': action,
+    },
+    ExpressionAttributeValues: {
+      ':action': true,
+    },
+  });
 };
 
 export const scanHistory = async (): Promise<Tables.History[] | undefined> => {

@@ -1,22 +1,16 @@
 import { S3 } from 'aws-sdk';
 import { SQSRecord } from 'aws-lambda';
-import { defaultTo, isEqual, uniqWith } from 'lodash';
+import { isEqual, uniqWith } from 'lodash';
 import { DynamodbHelper } from '@alphax/dynamodb';
 import zlib from 'zlib';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
-import { deleteMessage, removeError, removeIgnore, removeReadOnly, Logger } from './utils/utilities';
+import { deleteMessage, removeError, removeIgnore, removeReadOnly, Logger, registHistory } from './utils/utilities';
 import { getCreateResourceItem, getRemoveResourceItem } from './utils/events';
+import { Environments } from './utils/consts';
 
 const s3Client = new S3();
-
 const EVENTS: EVENT_TYPE = {};
 const helper = new DynamodbHelper();
-
-// Environments
-const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
-const TABLE_NAME_RESOURCE = process.env.TABLE_NAME_RESOURCE as string;
-const TABLE_NAME_HISTORY = process.env.TABLE_NAME_HISTORY as string;
-const TABLE_NAME_UNPROCESSED = process.env.TABLE_NAME_UNPROCESSED as string;
 
 /**
  * Initialize Event Type Definition
@@ -28,7 +22,7 @@ export const initializeEvents = async () => {
 
   // get all event definitions
   const results = await helper.scan<Tables.EventType>({
-    TableName: TABLE_NAME_EVENT_TYPE,
+    TableName: Environments.TABLE_NAME_EVENT_TYPE,
   });
 
   results.Items?.forEach((item) => {
@@ -190,15 +184,16 @@ export const execNewEventType = async (records: CloudTrail.Record[]) => {
   const eventTypes = uniqWith(eventNames, isEqual);
 
   // create insert records
-  const eventTypeRecords = eventTypes.map((item) => ({
+  const eventTypeRecords: Tables.EventType[] = eventTypes.map((item) => ({
     EventName: item.EventName,
     EventSource: item.EventSource,
     Unprocessed: true,
-    Ignore: false,
+    Unconfirmed: true,
+    Ignore: true,
   }));
 
   // event type bulk insert
-  await helper.bulk(TABLE_NAME_EVENT_TYPE, eventTypeRecords);
+  await helper.bulk(Environments.TABLE_NAME_EVENT_TYPE, eventTypeRecords);
 
   const unprocessedRecords = records.map(
     (item) =>
@@ -210,7 +205,7 @@ export const execNewEventType = async (records: CloudTrail.Record[]) => {
   );
 
   // bulk insert
-  await helper.bulk(TABLE_NAME_UNPROCESSED, unprocessedRecords);
+  await helper.bulk(Environments.TABLE_NAME_UNPROCESSED, unprocessedRecords);
 };
 
 /**
@@ -231,7 +226,7 @@ export const execUnprocessed = async (records: CloudTrail.Record[]) => {
   );
 
   // bulk insert
-  await helper.bulk(TABLE_NAME_UNPROCESSED, unprocessedRecords);
+  await helper.bulk(Environments.TABLE_NAME_UNPROCESSED, unprocessedRecords);
 };
 
 /**
@@ -247,7 +242,7 @@ export const execCreateRecords = async (records: CloudTrail.Record[]) => {
     .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
   // bulk insert
-  await helper.bulk(TABLE_NAME_RESOURCE, items);
+  await helper.bulk(Environments.TABLE_NAME_RESOURCE, items);
 };
 
 /**
@@ -262,25 +257,5 @@ export const execDeleteRecords = async (records: CloudTrail.Record[]) => {
     .map((item) => getRemoveResourceItem(item))
     .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
-  await helper.truncate(TABLE_NAME_RESOURCE, items);
-};
-
-/**
- * Regist history
- *
- * @param records
- */
-const registHistory = async (records: CloudTrail.Record[]): Promise<void> => {
-  const items = records.map<Tables.History>((item) => ({
-    EventId: item.eventID,
-    EventName: item.eventName,
-    EventSource: item.eventSource,
-    AWSRegion: item.awsRegion,
-    EventTime: item.eventTime,
-    UserName: defaultTo(item.userIdentity?.userName, item.userIdentity.sessionContext?.sessionIssuer?.userName),
-    Origin: JSON.stringify(item),
-  }));
-
-  // bulk insert
-  await helper.bulk(TABLE_NAME_HISTORY, items);
+  await helper.truncate(Environments.TABLE_NAME_RESOURCE, items);
 };

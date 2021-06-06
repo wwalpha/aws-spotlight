@@ -1,3 +1,10 @@
+export const Environments = {
+  TABLE_NAME_EVENT_TYPE: process.env.TABLE_NAME_EVENT_TYPE as string,
+  TABLE_NAME_RESOURCE: process.env.TABLE_NAME_RESOURCE as string,
+  TABLE_NAME_HISTORY: process.env.TABLE_NAME_HISTORY as string,
+  TABLE_NAME_UNPROCESSED: process.env.TABLE_NAME_UNPROCESSED as string,
+};
+
 export const ALLOW_SERVICES = [
   'acm.amazonaws.com',
   'apigateway.amazonaws.com',

@@ -1,16 +1,40 @@
+import { DynamodbHelper } from '@alphax/dynamodb';
 import { SQSRecord } from 'aws-lambda';
 import { SQS } from 'aws-sdk';
-import { CloudTrail, EVENT_TYPE } from 'typings';
+import { defaultTo } from 'lodash';
 import winston from 'winston';
+import { Environments } from './consts';
+import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
 
 const sqsClient = new SQS();
 const SQS_URL = process.env.SQS_URL as string;
+const helper = new DynamodbHelper();
 
 export const Logger = winston.createLogger({
   level: process.env.LOG_LEVEL,
   format: winston.format.json(),
   transports: [new winston.transports.Console()],
 });
+
+/**
+ * Regist history
+ *
+ * @param records
+ */
+export const registHistory = async (records: CloudTrail.Record[]): Promise<void> => {
+  const items = records.map<Tables.History>((item) => ({
+    EventId: item.eventID,
+    EventName: item.eventName,
+    EventSource: item.eventSource,
+    AWSRegion: item.awsRegion,
+    EventTime: item.eventTime,
+    UserName: defaultTo(item.userIdentity?.userName, item.userIdentity.sessionContext?.sessionIssuer?.userName),
+    Origin: JSON.stringify(item),
+  }));
+
+  // bulk insert
+  await helper.bulk(Environments.TABLE_NAME_HISTORY, items);
+};
 
 /**
  * Receive SQS Messages

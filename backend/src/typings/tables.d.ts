@@ -15,6 +15,7 @@ export namespace Tables {
     Create?: boolean;
     Delete?: boolean;
     Ignore?: boolean;
+    Unconfirmed?: boolean;
   }
 
   // /**
