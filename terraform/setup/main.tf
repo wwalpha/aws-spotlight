@@ -11,7 +11,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     region = "ap-northeast-1"
-    bucket = "terraform-state-20210515"
-    key    = "ams/setup.tfstate"
+    bucket = "terraform-state-202106"
+    key    = "arms/setup.tfstate"
   }
 }

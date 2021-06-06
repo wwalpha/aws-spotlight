@@ -82,9 +82,9 @@ resource "aws_dynamodb_table" "resource" {
     projection_type = "ALL"
   }
 
-  # lifecycle {
-  #   prevent_destroy = true
-  # }
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 # ----------------------------------------------------------------------------------------------
