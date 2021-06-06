@@ -1,6 +1,6 @@
 import { CloudTrail } from 'typings';
 
-const ALLOW_REGIONS = process.env.ALLOW_REGIONS || 'us-east-1,ap-northeast-1';
+const ALLOW_REGIONS = process.env.ALLOW_REGIONS || 'us-east-1';
 
 export const filterRegion = async (events: CloudTrail.Record[]) => {
   const regions = ALLOW_REGIONS.split(',');

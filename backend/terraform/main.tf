@@ -10,7 +10,7 @@ provider "aws" {
 # ----------------------------------------------------------------------------------------------
 terraform {
   backend "s3" {
-    region = "ap-northeast-1"
+    region = "us-east-1"
     bucket = "terraform-state-202106"
     key    = "arms/backend.tfstate"
   }
@@ -23,7 +23,7 @@ data "terraform_remote_state" "setup" {
   backend = "s3"
 
   config = {
-    region = "ap-northeast-1"
+    region = "us-east-1"
     bucket = "terraform-state-202106"
     key    = "arms/setup.tfstate"
   }
@@ -36,7 +36,7 @@ data "terraform_remote_state" "services" {
   backend = "s3"
 
   config = {
-    region = "ap-northeast-1"
+    region = "us-east-1"
     bucket = "terraform-state-202106"
     key    = "arms/services.tfstate"
   }

@@ -52,7 +52,7 @@ export const sendMessage = async (body: Record<string, any>): Promise<SQSEvent> 
         receiptHandle: messages[0].ReceiptHandle as string,
         body: messages[0].Body as string,
         attributes: messages[0].Attributes as any,
-        awsRegion: 'ap-northeast-1',
+        awsRegion: 'us-east-1',
         eventSource: 'sqs.amazonaws.com',
         eventSourceARN: 'arn',
         md5OfBody: messages[0].MD5OfBody as string,
