@@ -10,7 +10,7 @@ on:
 env:
   ECR_REPOSITORY_CLOUDTRAIL: arms/cloudtrail
   ECR_REPOSITORY_UNPROCESSED: arms/unprocessed
-  AWS_DEFAULT_REGION: ap-northeast-1
+  AWS_DEFAULT_REGION: us-east-1
   SSM_PARAMETER_NAME_CLOUDTRAIL: /arms/repository_url/cloudtrail
   SSM_PARAMETER_NAME_UNPROCESSED: /arms/repository_url/unprocessed
   WORKING_DIR: backend/src/cloudtrail
@@ -46,7 +46,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-1
+          aws-region: us-east-1
 
       # ECR Login
       - name: Login to Amazon ECR
