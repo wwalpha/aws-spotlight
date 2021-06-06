@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-18.04
     environment:
       name: dev
+    env:
+      TF_VAR_domain_name: ${{ secrets.DOMAIN_NAME }}
     defaults:
       run:
         working-directory: ${{ env.WORKING_DIR }}
@@ -44,14 +46,8 @@ jobs:
           aws-region: us-east-1
 
       # Terraform Apply
-      - name: Terraform init
-        run: |
-          terraform init
-
-      - name: Terraform plan
-        run: |
-          terraform plan -out=setup
-
       - name: Terraform Apply
         run: |
+          terraform init
+          terraform plan -out=setup
           terraform apply "setup"
