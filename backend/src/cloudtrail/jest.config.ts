@@ -7,9 +7,10 @@ const config: Config.InitialOptions = {
     '@src/(.*)': '<rootDir>/src/$1',
     'test/(.*)': '<rootDir>/test/$1',
   },
-  // globalSetup: './test/configs/env.ts',
   globalSetup: './test/configs/setup.ts',
   globalTeardown: './test/configs/teardown.ts',
+  collectCoverage: true,
+  coverageDirectory: 'coverage',
 };
 
 export default config;
