@@ -16,7 +16,7 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     environment:
-      name: dev
+      name: prod
     env:
       FRONTEND_BUCKET: ${{ secrets.FRONTEND_BUCKET }}
       BACKEND_API_URL: ${{ secrets.BACKEND_API_URL }}
@@ -51,5 +51,4 @@ jobs:
       # AWS Credentials
       - name: Upload files
         run: |
-          ls -l
           aws s3 cp dist s3://$FRONTEND_BUCKET --recursive
