@@ -138,8 +138,9 @@ const getNewEventTypeRecords = (records: CloudTrail.Record[]) =>
  * @returns
  */
 export const getRecords = async (message: string): Promise<CloudTrail.Record[]> => {
+  console.log(message);
   const payload = JSON.parse(message) as CloudTrail.Payload;
-
+  console.log(payload);
   // get files
   const tasks = payload.s3ObjectKey.map((item) =>
     s3Client
