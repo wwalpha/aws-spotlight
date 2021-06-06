@@ -2,18 +2,16 @@
 # Amazon S3 (WEB SITE)
 # ----------------------------------------------------------------------------------------------
 resource "aws_s3_bucket" "frontend" {
-  bucket        = local.bucket_name_frontend
-  acl           = "private"
-  force_destroy = true
+  bucket = local.bucket_name_frontend
+  acl    = "private"
 }
 
 # ----------------------------------------------------------------------------------------------
 # Amazon S3 (Environment)
 # ----------------------------------------------------------------------------------------------
 resource "aws_s3_bucket" "environment" {
-  bucket        = local.bucket_name_environment
-  acl           = "private"
-  force_destroy = true
+  bucket = local.bucket_name_environment
+  acl    = "private"
 }
 
 # ----------------------------------------------------------------------------------------------

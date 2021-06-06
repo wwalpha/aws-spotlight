@@ -9,7 +9,7 @@ on:
       - releases/**
   workflow_run:
     workflows:
-      - Terraform Services Build
+      - PUSH_T) Service Build
     branches:
       - master
     types:
