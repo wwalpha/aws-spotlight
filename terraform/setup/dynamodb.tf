@@ -20,7 +20,7 @@ resource "aws_dynamodb_table" "event_type" {
   }
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }
 
