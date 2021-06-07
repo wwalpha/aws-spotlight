@@ -2,6 +2,7 @@ export * from './APIGATEWAY_CreateRestApi';
 export * from './APIGATEWAY_ImportRestApi';
 
 export * from './DYNAMODB_CreateTable';
+export * from './DS_CreateMicrosoftAD';
 
 export * from './EC2_RunInstances';
 export * from './EC2_CreateImage';

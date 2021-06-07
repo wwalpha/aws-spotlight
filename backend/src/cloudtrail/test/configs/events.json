@@ -31,6 +31,9 @@
   { "EventName": "CreateTable", "EventSource": "dynamodb.amazonaws.com", "Create": true },
   { "EventName": "DeleteTable", "EventSource": "dynamodb.amazonaws.com", "Delete": true },
 
+  { "EventName": "CreateMicrosoftAD", "EventSource": "ds.amazonaws.com", "Create": true },
+  { "EventName": "DeleteDirectory", "EventSource": "ds.amazonaws.com", "Delete": true },
+
   { "EventName": "CreateBucket", "EventSource": "s3.amazonaws.com", "Create": true },
   { "EventName": "DeleteBucket", "EventSource": "s3.amazonaws.com", "Delete": true }
 ]

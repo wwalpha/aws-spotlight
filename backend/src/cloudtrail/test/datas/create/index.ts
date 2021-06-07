@@ -1,3 +1,5 @@
+export { default as DS_CreateMicrosoftAD } from './DS_CreateMicrosoftAD.json';
+
 export { default as EC2_CreateClientVpnEndpoint } from './EC2_CreateClientVpnEndpoint.json';
 export { default as EC2_CreateImage } from './EC2_CreateImage.json';
 export { default as EC2_CreateNatGateway } from './EC2_CreateNatGateway.json';
