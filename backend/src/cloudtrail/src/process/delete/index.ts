@@ -9,6 +9,8 @@ export * from './EC2_DeleteClientVpnEndpoint';
 export * from './ELASTICLOADBALANCING_DeleteLoadBalancer';
 export * from './ELASTICLOADBALANCING_DeleteTargetGroup';
 
+export * from './EKS_DeleteCluster';
+
 export * from './DYNAMODB_DeleteTable';
 
 export * from './RDS_DeleteDBCluster';

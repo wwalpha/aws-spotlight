@@ -25,6 +25,9 @@
   { "EventName": "DeleteLoadBalancer", "EventSource": "elasticloadbalancing.amazonaws.com", "Delete": true },
   { "EventName": "DeleteTargetGroup", "EventSource": "elasticloadbalancing.amazonaws.com", "Delete": true },
 
+  { "EventName": "CreateCluster", "EventSource": "eks.amazonaws.com", "Create": true },
+  { "EventName": "DeleteCluster", "EventSource": "eks.amazonaws.com", "Delete": true },
+
   { "EventName": "CreateTable", "EventSource": "dynamodb.amazonaws.com", "Create": true },
   { "EventName": "DeleteTable", "EventSource": "dynamodb.amazonaws.com", "Delete": true },
 

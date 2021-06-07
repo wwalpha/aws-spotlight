@@ -33,6 +33,9 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
     case 'ELASTICLOADBALANCING_CreateTargetGroup':
       return CreateEvent.ELASTICLOADBALANCING_CreateTargetGroup(record);
 
+    case 'EKS_CreateCluster':
+      return CreateEvent.EKS_CreateCluster(record);
+
     case 'RDS_CreateDBCluster':
       return CreateEvent.RDS_CreateDBCluster(record);
     case 'RDS_CreateDBInstance':
@@ -72,6 +75,9 @@ export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return DeleteEvent.ELASTICLOADBALANCING_DeleteLoadBalancer(record);
     case 'ELASTICLOADBALANCING_DeleteTargetGroup':
       return DeleteEvent.ELASTICLOADBALANCING_DeleteTargetGroup(record);
+
+    case 'EKS_DeleteCluster':
+      return DeleteEvent.EKS_DeleteCluster(record);
 
     case 'RDS_DeleteDBCluster':
       return DeleteEvent.RDS_DeleteDBCluster(record);
