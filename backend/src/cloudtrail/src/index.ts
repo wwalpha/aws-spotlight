@@ -2,6 +2,7 @@ import { SQSEvent } from 'aws-lambda';
 import AWS from 'aws-sdk';
 import { execute, initializeEvents } from './apps/cloudtrail';
 import { getUnprocessedEvents, processCreate, processDelete, processIgnore } from './apps/unprocessed';
+import { Logger } from './apps/utils/utilities';
 
 // common settings
 AWS.config.update({
@@ -17,7 +18,7 @@ AWS.config.update({
  * @returns
  */
 export const cloudtrail = async (event: SQSEvent) => {
-  console.log(JSON.stringify(event));
+  Logger.info(event);
 
   // get event type definition
   await initializeEvents();

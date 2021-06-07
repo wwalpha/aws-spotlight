@@ -1,5 +1,5 @@
 import { DynamodbHelper } from '@alphax/dynamodb';
-import { SQSEvent } from 'aws-lambda';
+import { SNSMessage, SQSEvent } from 'aws-lambda';
 import AWS, { S3, SQS } from 'aws-sdk';
 import zlib from 'zlib';
 import { Tables } from 'typings';
@@ -35,7 +35,12 @@ export const sendMessage = async (body: Record<string, any>): Promise<SQSEvent> 
     .promise();
 
   await sqsClient
-    .sendMessage({ QueueUrl: SQS_URL, MessageBody: JSON.stringify({ s3Bucket: S3_BUCKET, s3ObjectKey: [key] }) })
+    .sendMessage({
+      QueueUrl: SQS_URL,
+      MessageBody: JSON.stringify({
+        Message: JSON.stringify({ s3Bucket: S3_BUCKET, s3ObjectKey: [key] }),
+      } as SNSMessage),
+    })
     .promise();
 
   const result = await sqsClient.receiveMessage({ QueueUrl: SQS_URL, MaxNumberOfMessages: 1 }).promise();

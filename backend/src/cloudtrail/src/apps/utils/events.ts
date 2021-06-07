@@ -12,6 +12,9 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
     case 'APIGATEWAY_ImportRestApi':
       return CreateEvent.APIGATEWAY_ImportRestApi(record);
 
+    case 'DYNAMODB_CreateTable':
+      return CreateEvent.DYNAMODB_CreateTable(record);
+
     case 'EC2_RunInstances':
       return CreateEvent.EC2_RunInstances(record);
     case 'EC2_CreateImage':
@@ -20,9 +23,6 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return CreateEvent.EC2_CreateSnapshot(record);
     case 'EC2_CreateSnapshots':
       return CreateEvent.EC2_CreateSnapshots(record);
-
-    case 'DYNAMODB_CreateTable':
-      return CreateEvent.DYNAMODB_CreateTable(record);
 
     case 'ELASTICLOADBALANCING_CreateLoadBalancer':
       return CreateEvent.ELASTICLOADBALANCING_CreateLoadBalancer(record);
@@ -33,6 +33,9 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return CreateEvent.RDS_CreateDBCluster(record);
     case 'RDS_CreateDBInstance':
       return CreateEvent.RDS_CreateDBInstance(record);
+
+    case 'S3_CreateBucket':
+      return CreateEvent.S3_CreateBucket(record);
 
     default:
       return undefined;
@@ -66,6 +69,9 @@ export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.Resouce
       return DeleteEvent.RDS_DeleteDBCluster(record);
     case 'RDS_DeleteDBInstance':
       return DeleteEvent.RDS_DeleteDBInstance(record);
+
+    case 'S3_DeleteBucket':
+      return DeleteEvent.S3_DeleteBucket(record);
 
     default:
       return undefined;
