@@ -8,13 +8,13 @@
   "scripts": {
     "start": "node index.js",
     "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
-    "debug": "ts-node -r tsconfig-paths/register -r dotenv/config test/debug.ts",
-    "prep": "ts-node -r tsconfig-paths/register -r dotenv/config test/configs/prepare.ts",
     "build:c": "docker build -f Dockerfile.CloudTrail -t arms-cloudtrail .",
     "build:u": "docker build -f Dockerfile.Unprocessed -t arms-unprocessed .",
     "test": "jest --forceExit --passWithNoTests",
     "test:local": "jest test/services/ec2.test.ts --forceExit --passWithNoTests",
-    "setup": "ts-node -r tsconfig-paths/register test/configs/setup.ts",
+    "debug": "ts-node -r tsconfig-paths/register -r dotenv/config test/debug.ts",
+    "resource": "ts-node -r tsconfig-paths/register -r dotenv/config test/configs/resource.ts",
+    "prep": "ts-node -r tsconfig-paths/register -r dotenv/config test/configs/prepare.ts",
     "release": "ts-node -r dotenv/config test/release.ts"
   },
   "devDependencies": {

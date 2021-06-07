@@ -1,0 +1,31 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
+    "accountId": "999999999999",
+    "userName": "wwalpha@gmail.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-17T01:05:15Z" }
+    },
+    "invokedBy": "cloudformation.amazonaws.com"
+  },
+  "eventTime": "2021-04-17T01:11:35Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "DeleteInternetGateway",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "requestParameters": { "internetGatewayId": "igw-0be3201c0d158afb1" },
+  "responseElements": { "requestId": "5d16e50d-f8fe-472b-8924-6811d847355f", "_return": true },
+  "requestID": "5d16e50d-f8fe-472b-8924-6811d847355f",
+  "eventID": "e3c1c3a9-0e83-498a-8997-01a7ee554177",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

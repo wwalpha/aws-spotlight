@@ -104,3 +104,4 @@ jobs:
       - name: Update Event Type
         run: |
           yarn release
+          yarn resource

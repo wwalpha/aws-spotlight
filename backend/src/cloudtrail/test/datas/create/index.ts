@@ -10,3 +10,13 @@ export { default as EC2_RunInstances } from './EC2_RunInstances.json';
 export { default as EKS_CreateCluster } from './EKS_CreateCluster.json';
 
 export { default as ELASTICFILESYSTEM_CreateFileSystem } from './ELASTICFILESYSTEM_CreateFileSystem.json';
+
+export { default as RDS_CreateDBCluster } from './RDS_CreateDBCluster.json';
+export { default as RDS_CreateDBInstance } from './RDS_CreateDBInstance.json';
+
+export { default as DYNAMODB_CreateTable } from './DYNAMODB_CreateTable.json';
+
+export { default as APIGATEWAY_CreateRestApi } from './APIGATEWAY_CreateRestApi.json';
+export { default as APIGATEWAY_ImportRestApi } from './APIGATEWAY_ImportRestApi.json';
+
+export { default as S3_CreateBucket } from './S3_CreateBucket.json';
