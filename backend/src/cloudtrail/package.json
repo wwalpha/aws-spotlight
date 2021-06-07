@@ -14,7 +14,8 @@
     "build:u": "docker build -f Dockerfile.Unprocessed -t arms-unprocessed .",
     "test": "jest --forceExit --passWithNoTests",
     "test:local": "jest test/services/ec2.test.ts --forceExit --passWithNoTests",
-    "setup": "ts-node -r tsconfig-paths/register test/configs/setup.ts"
+    "setup": "ts-node -r tsconfig-paths/register test/configs/setup.ts",
+    "release": "ts-node -r dotenv/config test/release.ts"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.76",
