@@ -19,7 +19,7 @@
   "awsRegion": "ap-northeast-1",
   "sourceIPAddress": "202.32.14.177",
   "userAgent": "[S3Console/0.4, aws-internal/3 aws-sdk-java/1.11.970 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation]",
-  "requestParameters": { "bucketName": "amazon-connect-5f75c0e51b80", "Host": "s3-ap-northeast-1.amazonaws.com" },
+  "requestParameters": { "bucketName": "test-backt-testfile01", "Host": "s3-ap-northeast-1.amazonaws.com" },
   "responseElements": null,
   "additionalEventData": {
     "SignatureVersion": "SigV4",
