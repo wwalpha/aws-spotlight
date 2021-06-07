@@ -1,14 +1,7 @@
 import AWS from 'aws-sdk';
 import { getHistory, getResource, sendMessage } from '@test/configs/utils';
-import EC2_RunInstances from '../datas/create/EC2_RunInstances.json';
-import EC2_TerminateInstances from '../datas/delete/EC2_TerminateInstances.json';
-import EC2_CreateImage from '../datas/create/EC2_CreateImage.json';
-import EC2_DeregisterImage from '../datas/delete/EC2_DeregisterImage.json';
-import EC2_CreateSnapshot from '../datas/create/EC2_CreateSnapshot.json';
-import EC2_CreateSnapshots from '../datas/create/EC2_CreateSnapshots.json';
-import EC2_DeleteSnapshot from '../datas/delete/EC2_DeleteSnapshot.json';
-import EC2_CreateNatGateway from '../datas/create/EC2_CreateNatGateway.json';
-import EC2_DeleteNatGateway from '../datas/delete/EC2_DeleteNatGateway.json';
+import * as CreateEvents from '@test/datas/create';
+import * as DeleteEvents from '@test/datas/delete';
 import * as EC2 from '@test/expect/ec2';
 import { cloudtrail } from '@src/index';
 import * as fs from 'fs';
@@ -22,7 +15,7 @@ AWS.config.update({
 
 describe('ec2.amazonaws.com', () => {
   test('EC2_RunInstances', async () => {
-    const event = await sendMessage(EC2_RunInstances);
+    const event = await sendMessage(CreateEvents.EC2_RunInstances);
 
     await cloudtrail(event);
 
@@ -37,7 +30,7 @@ describe('ec2.amazonaws.com', () => {
   });
 
   test('EC2_TerminateInstances', async () => {
-    const event = await sendMessage(EC2_TerminateInstances);
+    const event = await sendMessage(DeleteEvents.EC2_TerminateInstances);
 
     await cloudtrail(event);
 
@@ -51,7 +44,7 @@ describe('ec2.amazonaws.com', () => {
   });
 
   test('EC2_CreateImage', async () => {
-    const event = await sendMessage(EC2_CreateImage);
+    const event = await sendMessage(CreateEvents.EC2_CreateImage);
 
     await cloudtrail(event);
 
@@ -66,7 +59,7 @@ describe('ec2.amazonaws.com', () => {
   });
 
   test('EC2_DeregisterImage', async () => {
-    const event = await sendMessage(EC2_DeregisterImage);
+    const event = await sendMessage(DeleteEvents.EC2_DeregisterImage);
 
     await cloudtrail(event);
 
@@ -80,7 +73,7 @@ describe('ec2.amazonaws.com', () => {
   });
 
   test('EC2_CreateSnapshot', async () => {
-    const event = await sendMessage(EC2_CreateSnapshot);
+    const event = await sendMessage(CreateEvents.EC2_CreateSnapshot);
 
     await cloudtrail(event);
 
@@ -95,7 +88,7 @@ describe('ec2.amazonaws.com', () => {
   });
 
   test('EC2_CreateSnapshots', async () => {
-    const event = await sendMessage(EC2_CreateSnapshots);
+    const event = await sendMessage(CreateEvents.EC2_CreateSnapshots);
 
     await cloudtrail(event);
 
@@ -110,7 +103,7 @@ describe('ec2.amazonaws.com', () => {
   });
 
   test('EC2_DeleteSnapshot', async () => {
-    const event = await sendMessage(EC2_DeleteSnapshot);
+    const event = await sendMessage(DeleteEvents.EC2_DeleteSnapshot);
 
     await cloudtrail(event);
 
@@ -124,7 +117,7 @@ describe('ec2.amazonaws.com', () => {
   });
 
   test('EC2_CreateNatGateway', async () => {
-    const event = await sendMessage(EC2_CreateNatGateway);
+    const event = await sendMessage(CreateEvents.EC2_CreateNatGateway);
 
     await cloudtrail(event);
 
@@ -139,7 +132,7 @@ describe('ec2.amazonaws.com', () => {
   });
 
   test('EC2_DeleteNatGateway', async () => {
-    const event = await sendMessage(EC2_DeleteNatGateway);
+    const event = await sendMessage(DeleteEvents.EC2_DeleteNatGateway);
 
     await cloudtrail(event);
 
@@ -150,5 +143,40 @@ describe('ec2.amazonaws.com', () => {
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteNatGateway_H);
+  });
+
+  test('EC2_CreateClientVpnEndpoint', async () => {
+    const event = await sendMessage(CreateEvents.EC2_CreateClientVpnEndpoint);
+
+    await cloudtrail(event);
+
+    const resource = await getResource({
+      EventSource: 'ec2.amazonaws.com',
+      ResourceId: 'cvpn-endpoint-00979964d0389482a',
+    });
+    const history = await getHistory({ EventId: 'daa11b60-20df-48d9-a406-aeae3c339e9b' });
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.CreateClientVpnEndpoint_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.CreateClientVpnEndpoint_H);
+  });
+
+  test('EC2_DeleteClientVpnEndpoint', async () => {
+    const event = await sendMessage(DeleteEvents.EC2_DeleteClientVpnEndpoint);
+
+    await cloudtrail(event);
+
+    const resource = await getResource({
+      EventSource: 'ec2.amazonaws.com',
+      ResourceId: 'cvpn-endpoint-00979964d0389482a',
+    });
+    const history = await getHistory({ EventId: '52240267-bf17-470c-8df3-245fb7139217' });
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.DeleteClientVpnEndpoint_H);
   });
 });

@@ -14,3 +14,7 @@ export { default as DeleteSnapshot_H } from './DeleteSnapshot_H.json';
 export { default as CreateNatGateway_H } from './CreateNatGateway_H.json';
 export { default as CreateNatGateway_R } from './CreateNatGateway_R.json';
 export { default as DeleteNatGateway_H } from './DeleteNatGateway_H.json';
+
+export { default as CreateClientVpnEndpoint_H } from './CreateClientVpnEndpoint_H.json';
+export { default as CreateClientVpnEndpoint_R } from './CreateClientVpnEndpoint_R.json';
+export { default as DeleteClientVpnEndpoint_H } from './DeleteClientVpnEndpoint_H.json';

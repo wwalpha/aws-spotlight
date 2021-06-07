@@ -8,6 +8,8 @@
   { "EventName": "DeleteSnapshot", "EventSource": "ec2.amazonaws.com", "Delete": true },
   { "EventName": "CreateNatGateway", "EventSource": "ec2.amazonaws.com", "Create": true },
   { "EventName": "DeleteNatGateway", "EventSource": "ec2.amazonaws.com", "Delete": true },
+  { "EventName": "CreateClientVpnEndpoint", "EventSource": "ec2.amazonaws.com", "Create": true },
+  { "EventName": "DeleteClientVpnEndpoint", "EventSource": "ec2.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateRestApi", "EventSource": "apigateway.amazonaws.com", "Create": true },
   { "EventName": "ImportRestApi", "EventSource": "apigateway.amazonaws.com", "Create": true },

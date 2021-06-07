@@ -6,6 +6,7 @@ export * from './EC2_CreateImage';
 export * from './EC2_CreateSnapshot';
 export * from './EC2_CreateSnapshots';
 export * from './EC2_CreateNatGateway';
+export * from './EC2_CreateClientVpnEndpoint';
 
 export * from './DYNAMODB_CreateTable';
 

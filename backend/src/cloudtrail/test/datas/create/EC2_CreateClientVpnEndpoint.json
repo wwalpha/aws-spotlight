@@ -1,0 +1,65 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI77VKLFPS",
+    "userName": "wwalpha@gmail.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-02T00:23:52Z" }
+    }
+  },
+  "eventTime": "2021-03-02T08:53:18Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "CreateClientVpnEndpoint",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.166",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "CreateClientVpnEndpointRequest": {
+      "ClientCidrBlock": "172.168.0.0/16",
+      "ClientConnectOptions": { "Enabled": false },
+      "Description": "onecloud-lawson",
+      "ServerCertificateArn": "arn:aws:acm:ap-northeast-1:999999999999:certificate/36008d50-0642-40b1-a57b-fa5cf5a88e13",
+      "SecurityGroupId": { "tag": 1, "content": "sg-0fa72d6ba38a0ca4a" },
+      "TagSpecification": {
+        "ResourceType": "client-vpn-endpoint",
+        "tag": 1,
+        "Tag": { "Value": "onecloud-lawson", "tag": 1, "Key": "Name" }
+      },
+      "ConnectionLogOptions": { "Enabled": false },
+      "SplitTunnel": false,
+      "VpcId": "vpc-0f1e12c219f232b46",
+      "Authentication": {
+        "MutualAuthentication": {
+          "ClientRootCertificateChainArn": "arn:aws:acm:ap-northeast-1:999999999999:certificate/138cbe0b-aaa0-41db-a8fd-9c148273b49d"
+        },
+        "Type": "certificate-authentication",
+        "tag": 1
+      },
+      "SelfServicePortal": "disabled",
+      "TransportProtocol": "udp",
+      "VpnPort": 443
+    }
+  },
+  "responseElements": {
+    "CreateClientVpnEndpointResponse": {
+      "clientVpnEndpointId": "cvpn-endpoint-00979964d0389482a",
+      "xmlns": "http://ec2.amazonaws.com/doc/2016-11-15/",
+      "requestId": "b8544536-45a9-4482-bf8c-70a05b416e93",
+      "dnsName": "cvpn-endpoint-00979964d0389482a.prod.clientvpn.ap-northeast-1.amazonaws.com",
+      "status": { "code": "pending-associate" }
+    }
+  },
+  "requestID": "b8544536-45a9-4482-bf8c-70a05b416e93",
+  "eventID": "daa11b60-20df-48d9-a406-aeae3c339e9b",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}
