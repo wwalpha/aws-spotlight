@@ -47,8 +47,6 @@ export const execute = async (message: SQSRecord) => {
   // get all records
   let records = await getRecords(message.body);
 
-  Logger.info(`All Records: ${records.length}`);
-
   // remove readonly records
   records = removeReadOnly(records);
   // remove error records
@@ -74,7 +72,7 @@ export const execute = async (message: SQSRecord) => {
   const deleteRows = getDeleteRecords(records);
 
   Logger.info(`New Event Type: ${newEventType.length}`);
-  Logger.info(`unprocessed: ${unprocessed.length}`);
+  Logger.info(`Unprocessed: ${unprocessed.length}`);
   Logger.info(`Create: ${createRows.length}`);
   Logger.info(`Delete: ${deleteRows.length}`);
 
