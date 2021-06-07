@@ -89,3 +89,8 @@ jobs:
         run: |
           aws ssm put-parameter --name $SSM_PARAMETER_NAME_CLOUDTRAIL --type "String" --value ${{ steps.build-image.outputs.image_cloudtrail }} --overwrite
           aws ssm put-parameter --name $SSM_PARAMETER_NAME_UNPROCESSED --type "String" --value ${{ steps.build-image.outputs.image_unprocessed }} --overwrite
+
+      # Update event type table
+      - name: Update Event Type
+        run: |
+          yarn release
