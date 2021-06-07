@@ -71,7 +71,7 @@ export const sendMessage = async (body: Record<string, any>): Promise<SQSEvent> 
 export const getResource = async ({
   EventSource,
   ResourceId,
-}: Tables.ResouceKey): Promise<Tables.Resource | undefined> => {
+}: Tables.ResourceKey): Promise<Tables.Resource | undefined> => {
   const result = await helper.get<Tables.Resource>({
     TableName: TABLE_NAME_RESOURCE,
     Key: {

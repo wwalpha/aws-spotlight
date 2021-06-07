@@ -23,6 +23,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return CreateEvent.EC2_CreateSnapshot(record);
     case 'EC2_CreateSnapshots':
       return CreateEvent.EC2_CreateSnapshots(record);
+    case 'EC2_CreateNatGateway':
+      return CreateEvent.EC2_CreateNatGateway(record);
 
     case 'ELASTICLOADBALANCING_CreateLoadBalancer':
       return CreateEvent.ELASTICLOADBALANCING_CreateLoadBalancer(record);
@@ -42,7 +44,7 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
   }
 };
 
-export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceKey | undefined => {
+export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResourceKey | undefined => {
   const { eventName, eventSource } = record;
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
 
@@ -59,6 +61,8 @@ export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.Resouce
       return DeleteEvent.EC2_DeregisterImage(record);
     case 'EC2_DeleteSnapshot':
       return DeleteEvent.EC2_DeleteSnapshot(record);
+    case 'EC2_DeleteNatGateway':
+      return DeleteEvent.EC2_DeleteNatGateway(record);
 
     case 'ELASTICLOADBALANCING_DeleteLoadBalancer':
       return DeleteEvent.ELASTICLOADBALANCING_DeleteLoadBalancer(record);

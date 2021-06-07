@@ -5,6 +5,7 @@ export * from './EC2_RunInstances';
 export * from './EC2_CreateImage';
 export * from './EC2_CreateSnapshot';
 export * from './EC2_CreateSnapshots';
+export * from './EC2_CreateNatGateway';
 
 export * from './DYNAMODB_CreateTable';
 
