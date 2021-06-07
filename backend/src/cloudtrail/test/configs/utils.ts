@@ -135,4 +135,12 @@ export const scanHistory = async (): Promise<Tables.History[] | undefined> => {
   return result?.Items;
 };
 
+export const scanResource = async (): Promise<Tables.Resource[] | undefined> => {
+  const result = await helper.scan<Tables.Resource>({
+    TableName: TABLE_NAME_RESOURCE,
+  });
+
+  return result?.Items;
+};
+
 const getRandom = () => Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);

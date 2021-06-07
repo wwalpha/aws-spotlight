@@ -10,3 +10,7 @@ export { default as CreateSnapshot_H } from './CreateSnapshot_H.json';
 export { default as CreateSnapshots_R } from './CreateSnapshots_R.json';
 export { default as CreateSnapshots_H } from './CreateSnapshots_H.json';
 export { default as DeleteSnapshot_H } from './DeleteSnapshot_H.json';
+
+export { default as CreateNatGateway_H } from './CreateNatGateway_H.json';
+export { default as CreateNatGateway_R } from './CreateNatGateway_R.json';
+export { default as DeleteNatGateway_H } from './DeleteNatGateway_H.json';

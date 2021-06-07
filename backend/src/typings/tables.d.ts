@@ -43,7 +43,7 @@ export namespace Tables {
   /**
    * Table - Resource Key
    */
-  interface ResouceKey {
+  interface ResourceKey {
     EventSource: string;
     ResourceId: string;
   }
@@ -51,7 +51,7 @@ export namespace Tables {
   /**
    * Table - Resource
    */
-  interface Resource extends ResouceKey {
+  interface Resource extends ResourceKey {
     ResourceName: string;
     UserName: string;
     EventId: string;

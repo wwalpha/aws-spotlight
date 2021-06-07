@@ -7,6 +7,8 @@ import EC2_DeregisterImage from '../datas/delete/EC2_DeregisterImage.json';
 import EC2_CreateSnapshot from '../datas/create/EC2_CreateSnapshot.json';
 import EC2_CreateSnapshots from '../datas/create/EC2_CreateSnapshots.json';
 import EC2_DeleteSnapshot from '../datas/delete/EC2_DeleteSnapshot.json';
+import EC2_CreateNatGateway from '../datas/create/EC2_CreateNatGateway.json';
+import EC2_DeleteNatGateway from '../datas/delete/EC2_DeleteNatGateway.json';
 import * as EC2 from '@test/expect/ec2';
 import { cloudtrail } from '@src/index';
 import * as fs from 'fs';
@@ -119,5 +121,34 @@ describe('ec2.amazonaws.com', () => {
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteSnapshot_H);
+  });
+
+  test('EC2_CreateNatGateway', async () => {
+    const event = await sendMessage(EC2_CreateNatGateway);
+
+    await cloudtrail(event);
+
+    const resource = await getResource({ EventSource: 'ec2.amazonaws.com', ResourceId: 'nat-0cb758692bd70f8e6' });
+    const history = await getHistory({ EventId: 'efc3dd39-f22b-4c25-8b7c-7d8b35ce8182' });
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.CreateNatGateway_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.CreateNatGateway_H);
+  });
+
+  test('EC2_DeleteNatGateway', async () => {
+    const event = await sendMessage(EC2_DeleteNatGateway);
+
+    await cloudtrail(event);
+
+    const resource = await getResource({ EventSource: 'ec2.amazonaws.com', ResourceId: 'nat-0cb758692bd70f8e6' });
+    const history = await getHistory({ EventId: '178a7cbd-de61-49f7-bd54-ad61d7f62a89' });
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.DeleteNatGateway_H);
   });
 });
