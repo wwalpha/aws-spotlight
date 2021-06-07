@@ -11,6 +11,8 @@ export * from './EC2_CreateSnapshots';
 export * from './EC2_CreateNatGateway';
 export * from './EC2_CreateClientVpnEndpoint';
 
+export * from './ELASTICFILESYSTEM_CreateFileSystem';
+
 export * from './ELASTICLOADBALANCING_CreateLoadBalancer';
 export * from './ELASTICLOADBALANCING_CreateTargetGroup';
 

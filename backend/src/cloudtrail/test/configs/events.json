@@ -20,6 +20,9 @@
   { "EventName": "DeleteDBCluster", "EventSource": "rds.amazonaws.com", "Delete": true },
   { "EventName": "DeleteDBInstance", "EventSource": "rds.amazonaws.com", "Delete": true },
 
+  { "EventName": "CreateFileSystem", "EventSource": "efs.amazonaws.com", "Create": true },
+  { "EventName": "DeleteFileSystem", "EventSource": "efs.amazonaws.com", "Delete": true },
+
   { "EventName": "CreateTargetGroup", "EventSource": "elasticloadbalancing.amazonaws.com", "Create": true },
   { "EventName": "CreateLoadBalancer", "EventSource": "elasticloadbalancing.amazonaws.com", "Create": true },
   { "EventName": "DeleteLoadBalancer", "EventSource": "elasticloadbalancing.amazonaws.com", "Delete": true },

@@ -10,6 +10,8 @@ export * from './EC2_DeleteSnapshot';
 export * from './EC2_DeleteNatGateway';
 export * from './EC2_DeleteClientVpnEndpoint';
 
+export * from './ELASTICFILESYSTEM_DeleteFileSystem';
+
 export * from './ELASTICLOADBALANCING_DeleteLoadBalancer';
 export * from './ELASTICLOADBALANCING_DeleteTargetGroup';
 

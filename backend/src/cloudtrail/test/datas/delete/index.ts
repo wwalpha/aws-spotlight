@@ -7,3 +7,5 @@ export { default as EC2_DeregisterImage } from './EC2_DeregisterImage.json';
 export { default as EC2_TerminateInstances } from './EC2_TerminateInstances.json';
 
 export { default as EKS_DeleteCluster } from './EKS_DeleteCluster.json';
+
+export { default as ELASTICFILESYSTEM_DeleteFileSystem } from './ELASTICFILESYSTEM_DeleteFileSystem.json';

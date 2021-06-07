@@ -8,3 +8,5 @@ export { default as EC2_CreateSnapshots } from './EC2_CreateSnapshots.json';
 export { default as EC2_RunInstances } from './EC2_RunInstances.json';
 
 export { default as EKS_CreateCluster } from './EKS_CreateCluster.json';
+
+export { default as ELASTICFILESYSTEM_CreateFileSystem } from './ELASTICFILESYSTEM_CreateFileSystem.json';
