@@ -5,26 +5,30 @@
     "principalId": "AIDA2KEX3JLIYUA7ET75O",
     "arn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
     "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIYORVS35M",
     "userName": "wwalpha@gmail.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
       "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-17T01:05:15Z" }
-    },
-    "invokedBy": "cloudformation.amazonaws.com"
+    }
   },
-  "eventTime": "2021-04-17T01:11:57Z",
+  "eventTime": "2021-04-17T01:23:30Z",
   "eventSource": "ec2.amazonaws.com",
-  "eventName": "DeleteVpc",
+  "eventName": "DeleteNatGateway",
   "awsRegion": "ap-northeast-1",
-  "sourceIPAddress": "cloudformation.amazonaws.com",
-  "userAgent": "cloudformation.amazonaws.com",
-  "errorCode": "Client.DependencyViolation",
-  "errorMessage": "The vpc 'vpc-0dec02bb38e7c674b' has dependencies and cannot be deleted.",
-  "requestParameters": { "vpcId": "vpc-0dec02bb38e7c674b" },
-  "responseElements": null,
-  "requestID": "813e694f-7eb3-44e3-8fba-561640e406d9",
-  "eventID": "444c1558-3bfb-4cf2-add0-1c42b62d27d4",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": { "DeleteNatGatewayRequest": { "NatGatewayId": "nat-0cb758692bd70f8e6" } },
+  "responseElements": {
+    "DeleteNatGatewayResponse": {
+      "xmlns": "http://ec2.amazonaws.com/doc/2016-11-15/",
+      "requestId": "607b3af8-8393-4c5c-800b-6b1d048d4ccb",
+      "natGatewayId": "nat-0cb758692bd70f8e6"
+    }
+  },
+  "requestID": "607b3af8-8393-4c5c-800b-6b1d048d4ccb",
+  "eventID": "178a7cbd-de61-49f7-bd54-ad61d7f62a89",
   "readOnly": false,
   "eventType": "AwsApiCall",
   "managementEvent": true,
