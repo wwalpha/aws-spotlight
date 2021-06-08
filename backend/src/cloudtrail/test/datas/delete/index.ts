@@ -8,6 +8,7 @@ export { default as EC2_DeleteSnapshot } from './EC2_DeleteSnapshot.json';
 export { default as EC2_DeregisterImage } from './EC2_DeregisterImage.json';
 export { default as EC2_TerminateInstances } from './EC2_TerminateInstances.json';
 export { default as EC2_DeleteVpcPeeringConnection } from './EC2_DeleteVpcPeeringConnection.json';
+export { default as EC2_DeleteVpc } from './EC2_DeleteVpc.json';
 
 export { default as EKS_DeleteCluster } from './EKS_DeleteCluster.json';
 

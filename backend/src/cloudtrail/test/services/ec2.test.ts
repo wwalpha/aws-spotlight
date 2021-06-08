@@ -214,4 +214,39 @@ describe('ec2.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteVpcPeeringConnection_H);
   });
+
+  test('EC2_CreateVpc', async () => {
+    const event = await sendMessage(CreateEvents.EC2_CreateVpc);
+
+    await cloudtrail(event);
+
+    const resource = await getResource({
+      EventSource: 'ec2.amazonaws.com',
+      ResourceId: 'vpc-0bda49e0068536141',
+    });
+    const history = await getHistory({ EventId: '620937da-67fd-424a-ad7c-be3a5c519979' });
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.CreateVpc_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.CreateVpc_H);
+  });
+
+  test('EC2_DeleteVpc', async () => {
+    const event = await sendMessage(DeleteEvents.EC2_DeleteVpc);
+
+    await cloudtrail(event);
+
+    const resource = await getResource({
+      EventSource: 'ec2.amazonaws.com',
+      ResourceId: 'vpc-0bda49e0068536141',
+    });
+    const history = await getHistory({ EventId: '6bef224f-75de-446b-aa16-34029a7bc641' });
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.DeleteVpc_H);
+  });
 });

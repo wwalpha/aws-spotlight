@@ -22,3 +22,7 @@ export { default as DeleteClientVpnEndpoint_H } from './DeleteClientVpnEndpoint_
 export { default as CreateVpcPeeringConnection_H } from './CreateVpcPeeringConnection_H.json';
 export { default as CreateVpcPeeringConnection_R } from './CreateVpcPeeringConnection_R.json';
 export { default as DeleteVpcPeeringConnection_H } from './DeleteVpcPeeringConnection_H.json';
+
+export { default as CreateVpc_H } from './CreateVpc_H.json';
+export { default as CreateVpc_R } from './CreateVpc_R.json';
+export { default as DeleteVpc_H } from './DeleteVpc_H.json';
