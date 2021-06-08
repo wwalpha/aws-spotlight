@@ -13,3 +13,5 @@ export { default as EC2_DeleteVpc } from './EC2_DeleteVpc.json';
 export { default as EKS_DeleteCluster } from './EKS_DeleteCluster.json';
 
 export { default as ELASTICFILESYSTEM_DeleteFileSystem } from './ELASTICFILESYSTEM_DeleteFileSystem.json';
+
+export { default as IAM_DeleteAccessKey } from './IAM_DeleteAccessKey.json';

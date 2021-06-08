@@ -48,6 +48,9 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
     case 'EKS_CreateCluster':
       return CreateEvent.EKS_CreateCluster(record);
 
+    case 'IAM_CreateAccessKey':
+      return CreateEvent.IAM_CreateAccessKey(record);
+
     case 'RDS_CreateDBCluster':
       return CreateEvent.RDS_CreateDBCluster(record);
     case 'RDS_CreateDBInstance':
@@ -101,6 +104,9 @@ export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.Resourc
 
     case 'EKS_DeleteCluster':
       return DeleteEvent.EKS_DeleteCluster(record);
+
+    case 'IAM_DeleteAccessKey':
+      return DeleteEvent.IAM_DeleteAccessKey(record);
 
     case 'RDS_DeleteDBCluster':
       return DeleteEvent.RDS_DeleteDBCluster(record);

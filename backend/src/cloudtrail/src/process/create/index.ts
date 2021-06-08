@@ -21,6 +21,8 @@ export * from './ELASTICLOADBALANCING_CreateTargetGroup';
 
 export * from './EKS_CreateCluster';
 
+export * from './IAM_CreateAccessKey';
+
 export * from './RDS_CreateDBCluster';
 export * from './RDS_CreateDBInstance';
 

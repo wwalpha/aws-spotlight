@@ -20,6 +20,8 @@ export * from './ELASTICLOADBALANCING_DeleteTargetGroup';
 
 export * from './EKS_DeleteCluster';
 
+export * from './IAM_DeleteAccessKey';
+
 export * from './RDS_DeleteDBCluster';
 export * from './RDS_DeleteDBInstance';
 

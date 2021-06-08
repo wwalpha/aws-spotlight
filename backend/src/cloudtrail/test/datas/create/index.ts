@@ -24,3 +24,5 @@ export { default as APIGATEWAY_CreateRestApi } from './APIGATEWAY_CreateRestApi.
 export { default as APIGATEWAY_ImportRestApi } from './APIGATEWAY_ImportRestApi.json';
 
 export { default as S3_CreateBucket } from './S3_CreateBucket.json';
+
+export { default as IAM_CreateAccessKey } from './IAM_CreateAccessKey.json';
