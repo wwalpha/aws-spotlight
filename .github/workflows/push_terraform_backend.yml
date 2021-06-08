@@ -1,12 +1,12 @@
 name: PUSH_T) Backend Build
 
 on:
-  push:
-    paths:
-      - backend/terraform/**
-      - .github/workflows/push_terraform_backend.yml
-    branches-ignore:
-      - releases/**
+  # push:
+  #   paths:
+  #     - backend/terraform/**
+  #     - .github/workflows/push_terraform_backend.yml
+  #   branches-ignore:
+  #     - releases/**
   workflow_run:
     workflows:
       - PUSH_T) Service Build
@@ -23,6 +23,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-18.04
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     environment:
       name: dev
     defaults:
