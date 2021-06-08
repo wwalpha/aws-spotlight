@@ -12,6 +12,9 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
     case 'APIGATEWAY_ImportRestApi':
       return CreateEvent.APIGATEWAY_ImportRestApi(record);
 
+    case 'AUTOSCALING_CreateAutoScalingGroup':
+      return CreateEvent.AUTOSCALING_CreateAutoScalingGroup(record);
+
     case 'DYNAMODB_CreateTable':
       return CreateEvent.DYNAMODB_CreateTable(record);
     case 'DS_CreateMicrosoftAD':
@@ -61,6 +64,8 @@ export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.Resourc
   switch (key) {
     case 'APIGATEWAY_DeleteRestApi':
       return DeleteEvent.APIGATEWAY_DeleteRestApi(record);
+    case 'AUTOSCALING_DeleteAutoScalingGroup':
+      return DeleteEvent.AUTOSCALING_DeleteAutoScalingGroup(record);
 
     case 'DYNAMODB_DeleteTable':
       return DeleteEvent.DYNAMODB_DeleteTable(record);

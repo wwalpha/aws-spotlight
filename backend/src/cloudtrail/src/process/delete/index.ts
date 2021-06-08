@@ -1,4 +1,5 @@
 export * from './APIGATEWAY_DeleteRestApi';
+export * from './AUTOSCALING_DeleteAutoScalingGroup';
 
 export * from './DYNAMODB_DeleteTable';
 

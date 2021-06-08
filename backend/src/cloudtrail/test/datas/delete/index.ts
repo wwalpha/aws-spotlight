@@ -1,3 +1,5 @@
+export { default as AUTOSCALING_DeleteAutoScalingGroup } from './AUTOSCALING_DeleteAutoScalingGroup.json';
+
 export { default as DS_DeleteDirectory } from './DS_DeleteDirectory.json';
 
 export { default as EC2_DeleteClientVpnEndpoint } from './EC2_DeleteClientVpnEndpoint.json';
