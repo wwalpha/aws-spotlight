@@ -3,7 +3,6 @@ import { getCreateResourceItem } from '@src/apps/utils/events';
 import * as CreateEvents from '@test/datas/create';
 
 const helper = new DynamodbHelper();
-const TABLE_NAME_RESOURCE = process.env.TABLE_NAME_RESOURCE as string;
 
 const start = async () => {
   const keys = Object.keys(CreateEvents);
@@ -12,7 +11,7 @@ const start = async () => {
     .map((key) => getCreateResourceItem((CreateEvents as Record<string, any>)[key]))
     .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
-  await helper.bulk(TABLE_NAME_RESOURCE, rows);
+  await helper.bulk('arms-resources-719d6c', rows);
 };
 
 start();
