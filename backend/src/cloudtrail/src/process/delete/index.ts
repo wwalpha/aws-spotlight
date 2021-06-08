@@ -10,6 +10,7 @@ export * from './EC2_DeregisterImage';
 export * from './EC2_DeleteSnapshot';
 export * from './EC2_DeleteNatGateway';
 export * from './EC2_DeleteClientVpnEndpoint';
+export * from './EC2_DeleteVpcPeeringConnection';
 
 export * from './ELASTICFILESYSTEM_DeleteFileSystem';
 

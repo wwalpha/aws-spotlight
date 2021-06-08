@@ -179,4 +179,39 @@ describe('ec2.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteClientVpnEndpoint_H);
   });
+
+  test('EC2_CreateVpcPeeringConnection', async () => {
+    const event = await sendMessage(CreateEvents.EC2_CreateVpcPeeringConnection);
+
+    await cloudtrail(event);
+
+    const resource = await getResource({
+      EventSource: 'ec2.amazonaws.com',
+      ResourceId: 'pcx-09cc395f56ffead9e',
+    });
+    const history = await getHistory({ EventId: '73bfa272-16c5-49c8-8d5f-ecea11f04060' });
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.CreateVpcPeeringConnection_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.CreateVpcPeeringConnection_H);
+  });
+
+  test('EC2_DeleteVpcPeeringConnection', async () => {
+    const event = await sendMessage(DeleteEvents.EC2_DeleteVpcPeeringConnection);
+
+    await cloudtrail(event);
+
+    const resource = await getResource({
+      EventSource: 'ec2.amazonaws.com',
+      ResourceId: 'pcx-09cc395f56ffead9e',
+    });
+    const history = await getHistory({ EventId: 'cfde640d-77a8-4150-8eeb-f4627fbf55b7' });
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.DeleteVpcPeeringConnection_H);
+  });
 });

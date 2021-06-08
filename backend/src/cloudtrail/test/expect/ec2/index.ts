@@ -18,3 +18,7 @@ export { default as DeleteNatGateway_H } from './DeleteNatGateway_H.json';
 export { default as CreateClientVpnEndpoint_H } from './CreateClientVpnEndpoint_H.json';
 export { default as CreateClientVpnEndpoint_R } from './CreateClientVpnEndpoint_R.json';
 export { default as DeleteClientVpnEndpoint_H } from './DeleteClientVpnEndpoint_H.json';
+
+export { default as CreateVpcPeeringConnection_H } from './CreateVpcPeeringConnection_H.json';
+export { default as CreateVpcPeeringConnection_R } from './CreateVpcPeeringConnection_R.json';
+export { default as DeleteVpcPeeringConnection_H } from './DeleteVpcPeeringConnection_H.json';

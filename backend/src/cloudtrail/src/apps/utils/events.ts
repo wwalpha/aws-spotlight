@@ -32,6 +32,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return CreateEvent.EC2_CreateNatGateway(record);
     case 'EC2_CreateClientVpnEndpoint':
       return CreateEvent.EC2_CreateClientVpnEndpoint(record);
+    case 'EC2_CreateVpcPeeringConnection':
+      return CreateEvent.EC2_CreateVpcPeeringConnection(record);
 
     case 'ELASTICFILESYSTEM_CreateFileSystem':
       return CreateEvent.ELASTICFILESYSTEM_CreateFileSystem(record);
@@ -82,6 +84,8 @@ export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return DeleteEvent.EC2_DeleteNatGateway(record);
     case 'EC2_DeleteClientVpnEndpoint':
       return DeleteEvent.EC2_DeleteClientVpnEndpoint(record);
+    case 'EC2_DeleteVpcPeeringConnection':
+      return DeleteEvent.EC2_DeleteVpcPeeringConnection(record);
 
     case 'ELASTICFILESYSTEM_DeleteFileSystem':
       return DeleteEvent.ELASTICFILESYSTEM_DeleteFileSystem(record);
