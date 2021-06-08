@@ -4,6 +4,6 @@ export * from './types';
 
 export { Actions };
 
-export * from '../../backend/typings/auth';
-export * from '../../backend/typings/tables';
-export * from '../../backend/typings/resource';
+export * from '../../backend/src/typings/auth';
+export * from '../../backend/src/typings/tables';
+export * from '../../backend/src/typings/resource';

@@ -26,11 +26,11 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const XButton: FunctionComponent<Props> = ({ isLoading, children, ...props }) => {
+const XButton: FunctionComponent<Props> = ({ isLoading, containerClassName, children, ...props }) => {
   const classes = useStyles();
 
   return (
-    <Box margin={1} position="relative">
+    <Box margin={1} position="relative" className={containerClassName}>
       <Button disableFocusRipple disableTouchRipple fullWidth {...props} disabled={isLoading}>
         {children}
       </Button>
@@ -41,6 +41,7 @@ const XButton: FunctionComponent<Props> = ({ isLoading, children, ...props }) =>
 
 interface Props extends ButtonProps {
   isLoading?: boolean;
+  containerClassName?: string;
 }
 
 export default XButton;
