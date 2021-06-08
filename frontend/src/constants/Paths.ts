@@ -8,6 +8,10 @@ export const ROUTE_PATH_INDEX = {
   DYNAMODB: 103,
   APIGATEWAY: 104,
   ELB: 105,
+  EKS: 106,
+  EFS: 107,
+  S3: 108,
+  DS: 109,
 };
 
 export const ROUTE_PATHS = {
@@ -20,4 +24,8 @@ export const ROUTE_PATHS = {
   [ROUTE_PATH_INDEX.DYNAMODB]: '/service/dynamodb',
   [ROUTE_PATH_INDEX.APIGATEWAY]: '/service/apigateway',
   [ROUTE_PATH_INDEX.ELB]: '/service/elasticloadbalancing',
+  [ROUTE_PATH_INDEX.EKS]: '/service/eks',
+  [ROUTE_PATH_INDEX.EFS]: '/service/elasticfilesystem',
+  [ROUTE_PATH_INDEX.S3]: '/service/s3',
+  [ROUTE_PATH_INDEX.DS]: '/service/ds',
 };

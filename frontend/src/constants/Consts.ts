@@ -8,6 +8,9 @@ export const SERVICES = {
   APIGATEWAY: 'apigateway.amazonaws.com',
   DYNAMODB: 'dynamodb.amazonaws.com',
   EKS: 'eks.amazonaws.com',
+  EFS: 'elasticfilesystem.amazonaws.com',
+  S3: 's3.amazonaws.com',
+  DS: 'ds.amazonaws.com',
 };
 
 export const API_URLs = {

@@ -171,7 +171,7 @@ const Service = () => {
         </XButton>
       </Box>
       <Divider />
-      <XTable headers={['Service', 'User Name', 'Instance ID', 'Region', 'Create Time']} dataRows={dataRows} />
+      <XTable headers={['Service', 'User Name', 'Resource ID', 'Region', 'Create Time']} dataRows={dataRows} />
     </React.Fragment>
   );
 };

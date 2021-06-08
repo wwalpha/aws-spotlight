@@ -50,6 +50,16 @@ const useStyles = makeStyles(({ spacing, transitions, mixins, palette }: Theme) 
 );
 
 const appState = (state: Domains.State) => state.app;
+const menus = [
+  { title: 'Amazon EC2', path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.EC2], icon: SVG.EC2Icon },
+  { title: 'Amazon RDS', path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.RDS], icon: SVG.RDSIcon },
+  { title: 'Amazon DYNAMODB', path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.DYNAMODB], icon: SVG.DynamoDBIcon },
+  { title: 'Amazon ELB', path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.ELB], icon: SVG.ELBIcon },
+  { title: 'Amazon EKS', path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.EKS], icon: SVG.EKSIcon },
+  { title: 'Amazon EFS', path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.EFS], icon: SVG.EFSIcon },
+  { title: 'Amazon S3', path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.S3], icon: SVG.S3Icon },
+  { title: 'AWS DIRECTORY SERVICE', path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.DS], icon: SVG.DSIcon },
+];
 
 export const Sidemenu = () => {
   const classes = useStyles();
@@ -73,38 +83,17 @@ export const Sidemenu = () => {
         </IconButton>
       </Box>
       <List>
-        <ListItem
-          text="Amazon EC2"
-          path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.EC2]}
-          onClick={() => {
-            actions.title('Amazon EC2');
-          }}>
-          <SVG.EC2Icon />
-        </ListItem>
-        <ListItem
-          text="Amazon RDS"
-          path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.RDS]}
-          onClick={() => {
-            actions.title('Amazon RDS');
-          }}>
-          <SVG.RDSIcon />
-        </ListItem>
-        <ListItem
-          text="Amazon DynamoDB"
-          path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.DYNAMODB]}
-          onClick={() => {
-            actions.title('Amazon DynamoDB');
-          }}>
-          <SVG.DynamoDBIcon />
-        </ListItem>
-        <ListItem
-          text="Amazon ELB"
-          path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.ELB]}
-          onClick={() => {
-            actions.title('Amazon ELB');
-          }}>
-          <SVG.ELBIcon />
-        </ListItem>
+        {menus.map((item, idx) => (
+          <ListItem
+            key={`${item.title}idx`}
+            text={item.title}
+            path={item.path}
+            onClick={() => {
+              actions.title(item.title);
+            }}>
+            <item.icon />
+          </ListItem>
+        ))}
       </List>
     </Paper>
     // <Drawer
@@ -119,7 +108,6 @@ export const Sidemenu = () => {
     //       [classes.drawerClose]: !open,
     //     }),
     //   }}>
-
     // </Drawer>
   );
 };
