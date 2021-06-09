@@ -342,6 +342,6 @@ resource "null_resource" "cognito_admin" {
   }
 
   provisioner "local-exec" {
-    command = "aws cognito-idp admin-create-user --region ${var.region} --user-pool-id ${aws_cognito_user_pool.this.id} --username ${var.admin_email} --user-attributes Name=email,Value=${var.admin_email} Name=name,Value=${var.admin_email} Name=custom:role,Value=TENANT_ADMIN"
+    command = "aws cognito-idp admin-create-user --region ${local.region} --user-pool-id ${aws_cognito_user_pool.this.id} --username ${var.admin_email} --user-attributes Name=email,Value=${var.admin_email} Name=name,Value=${var.admin_email} Name=custom:role,Value=TENANT_ADMIN"
   }
 }
