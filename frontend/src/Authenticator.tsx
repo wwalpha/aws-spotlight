@@ -16,8 +16,10 @@ const Authenticator: React.FunctionComponent = () => {
   React.useEffect(() => {
     setLogin(authorizationToken !== null);
 
-    // get categories
-    actions.categories();
+    if (authorizationToken) {
+      // get categories
+      actions.categories();
+    }
   }, [authorizationToken]);
 
   // new password required
@@ -26,7 +28,7 @@ const Authenticator: React.FunctionComponent = () => {
   }
 
   // logined
-  if (!isLogin) {
+  if (!isLogin && !authorizationToken) {
     return <SignIn />;
   }
 
