@@ -8,10 +8,10 @@ import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import MenuIcon from '@material-ui/icons/Menu';
 import Box from '@material-ui/core/Box';
-import { Domains } from 'typings';
 import { AppActions, ResActions } from '@actions';
 import { ListItem } from '@comp';
-import { Paths, SVG } from '@constants';
+import { Menus } from '@constants';
+import { Domains } from 'typings';
 
 const useStyles = makeStyles(({ spacing, transitions, mixins, palette }: Theme) =>
   createStyles({
@@ -50,21 +50,11 @@ const useStyles = makeStyles(({ spacing, transitions, mixins, palette }: Theme) 
 );
 
 const appState = (state: Domains.State) => state.app;
-const menus = [
-  { title: 'Amazon EC2', path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.EC2], icon: SVG.EC2Icon },
-  { title: 'Amazon RDS', path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.RDS], icon: SVG.RDSIcon },
-  { title: 'Amazon DYNAMODB', path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.DYNAMODB], icon: SVG.DynamoDBIcon },
-  { title: 'Amazon ELB', path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.ELB], icon: SVG.ELBIcon },
-  { title: 'Amazon EKS', path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.EKS], icon: SVG.EKSIcon },
-  { title: 'Amazon EFS', path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.EFS], icon: SVG.EFSIcon },
-  { title: 'Amazon S3', path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.S3], icon: SVG.S3Icon },
-  { title: 'AWS DIRECTORY SERVICE', path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.DS], icon: SVG.DSIcon },
-];
 
 export const Sidemenu = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { open } = useSelector(appState);
+  const { open, categories } = useSelector(appState);
   const actions = bindActionCreators(AppActions, dispatch);
 
   const handlerOpen = () => {
@@ -74,6 +64,8 @@ export const Sidemenu = () => {
   const handleClose = () => {
     actions.sidemenu(false);
   };
+
+  const menus = Menus.filter((item) => categories.includes(item.EventSource));
 
   return (
     <Paper elevation={2} classes={{ root: classes.root }}>

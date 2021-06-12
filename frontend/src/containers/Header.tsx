@@ -103,7 +103,7 @@ export const Header = () => {
             }}
             inputProps={{ 'aria-label': 'search' }}
           /> */}
-          v0.2.4
+          v0.2.5
         </div>
         <IconButton color="inherit" onClick={handleExit}>
           <ExitToAppIcon fontSize="large" />

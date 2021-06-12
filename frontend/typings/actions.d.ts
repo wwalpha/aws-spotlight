@@ -22,20 +22,28 @@ export interface TitlePayload {
 /** settitle action */
 export type SetTitleAction = ReduxAction1<string, TitlePayload>;
 
-/** login payload */
+/** signin payload */
 export type SignInPayload = {
   username: string;
   response: Auth.SignInResponse;
 };
 
-/** login action */
+/** signin action */
 export type SignInAction = ReduxActionAny<SignInPayload>;
 
-/** sidemenu payload */
+/** get resource payload */
 export type GetResourcesPayload = {
   eventSource: string;
   response: Resource.GetResourceResponse;
 };
 
-/** sidemenu action */
+/** get resource action */
 export type GetResourcesAction = ReduxAction1<string, GetResourcesPayload>;
+
+/** categories payload */
+export type GetCategoriesPayload = {
+  categories: string[];
+};
+
+/** signin action */
+export type GetCategoriesAction = ReduxAction0<GetCategoriesPayload>;

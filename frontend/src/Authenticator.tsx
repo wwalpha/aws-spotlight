@@ -15,6 +15,9 @@ const Authenticator: React.FunctionComponent = () => {
 
   React.useEffect(() => {
     setLogin(authorizationToken !== null);
+
+    // get categories
+    actions.categories();
   }, [authorizationToken]);
 
   // new password required

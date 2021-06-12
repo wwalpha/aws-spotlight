@@ -17,6 +17,8 @@ export default class App {
   mfaRequired?: boolean;
   // new password required flag
   newPasswordRequired?: boolean;
+  // category list
+  categories: string[] = [];
 
   /** sidemenu show/hide */
   sidemenu(open: boolean) {
@@ -43,6 +45,12 @@ export default class App {
         window.sessionStorage.setItem('accessToken', response.accessToken);
         window.sessionStorage.setItem('refreshToken', response.refreshToken);
       }
+    });
+  }
+
+  setCategories(items: string[]) {
+    return produce(this, (draft) => {
+      draft.categories = items;
     });
   }
 

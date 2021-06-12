@@ -22,6 +22,8 @@ export namespace Domains {
     newPasswordRequired?: boolean;
     // jwt token
     authorizationToken?: string;
+    // category list
+    categories: string[];
   }
 
   /** Resources State */

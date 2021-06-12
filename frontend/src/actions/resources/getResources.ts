@@ -16,7 +16,7 @@ export const getResources: Actions.GetResourcesAction = (service: string) => asy
   dispatch(startLoading());
 
   try {
-    const response = await api.get<Resource.GetResourceResponse>(Consts.GET_RESOURCES_URL(service));
+    const response = await api.get<Resource.GetResourceResponse>(Consts.API_URLs.GetResources(service));
 
     dispatch(success(`${service}.amazonaws.com`, response));
   } catch (err) {
