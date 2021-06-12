@@ -1,7 +1,7 @@
 import express from 'express';
 import { DynamodbHelper } from '@alphax/dynamodb';
 import { Resource, Tables } from 'typings';
-import { decodeToken, Logger } from './utils';
+import { decodeToken, getToken, Logger } from './utils';
 import { ROLE } from './consts';
 
 const helper = new DynamodbHelper({ options: { endpoint: process.env.AWS_ENDPOINT } });
@@ -64,5 +64,45 @@ export const getResourceList = async (
     });
 
     return { items: result.Items };
+  }
+};
+
+export const getCategoryList = async (
+  req: express.Request<any, any, Resource.GetCategoryRequest>
+): Promise<Resource.GetCategoryResponse> => {
+  // decode token
+  const token = getToken(req);
+  const role = token['custom:role'];
+  const username = token['cognito:username'];
+
+  // administrator
+  if (role === ROLE.ADMIN) {
+    const result = await helper.scan<Tables.Resource>({
+      TableName: TABLE_NAME_RESOURCE,
+      ProjectionExpression: 'EventSource',
+    });
+
+    const sets = new Set(result.Items.map((item) => item.EventSource));
+
+    return { categories: Array.from(sets) };
+  } else {
+    // normal user
+    // get event source list
+    const result = await helper.query<Tables.Resource>({
+      TableName: TABLE_NAME_RESOURCE,
+      ProjectionExpression: 'EventSource',
+      KeyConditionExpression: '#UserName = :UserName',
+      IndexName: 'gsiIdx1',
+      ExpressionAttributeNames: {
+        '#UserName': 'UserName',
+      },
+      ExpressionAttributeValues: {
+        ':UserName': username,
+      },
+    });
+
+    const sets = new Set(result.Items.map((item) => item.EventSource));
+
+    return { categories: Array.from(sets) };
   }
 };

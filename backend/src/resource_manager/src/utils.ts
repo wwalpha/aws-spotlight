@@ -42,3 +42,10 @@ export const decodeToken = (token: string): Token.CognitoToken => {
 
   return decodedToken;
 };
+
+export const getToken = (req: express.Request): Token.CognitoToken => {
+  const authorizationToken = req.headers['authorization'] as string;
+
+  // decode token
+  return decodeToken(authorizationToken);
+};

@@ -11,4 +11,11 @@ export namespace Resource {
   interface GetResourceResponse {
     items: Tables.Resource[];
   }
+
+  /** get service resouce request */
+  interface GetCategoryRequest {}
+  /** get service resouce response */
+  interface GetCategoryResponse {
+    categories: string[];
+  }
 }
