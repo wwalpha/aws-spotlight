@@ -24,7 +24,7 @@ const useStyles = makeStyles(({ spacing, transitions, mixins, palette }: Theme) 
     listItemButton: {
       '&:hover': { backgroundColor: 'rgba(111, 44, 145, 0.8)' },
     },
-    menuIcon: { color: 'white' },
+    menuIcon: { color: palette.common.white },
     list: {},
     // drawer: {
     //   width: drawerWidth,
@@ -65,7 +65,7 @@ export const Sidemenu = () => {
     actions.sidemenu(false);
   };
 
-  const menus = Menus.filter((item) => categories.includes(item.EventSource));
+  const menus = Menus.filter((item) => categories.includes(item.eventSource));
 
   return (
     <Paper elevation={2} classes={{ root: classes.root }}>
@@ -75,7 +75,7 @@ export const Sidemenu = () => {
         </IconButton>
       </Box>
       <List>
-        {menus.map((item, idx) => (
+        {menus.map((item) => (
           <ListItem
             key={`${item.title}idx`}
             text={item.title}
