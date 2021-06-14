@@ -1,12 +1,6 @@
 name: PUSH_T) Service Build
 
 on:
-  # push:
-  #   paths:
-  #     - terraform/services/**
-  #     - .github/workflows/push_terraform_services.yml
-  #   branches-ignore:
-  #     - releases/**
   workflow_run:
     workflows:
       - PUSH_T) Setup Build

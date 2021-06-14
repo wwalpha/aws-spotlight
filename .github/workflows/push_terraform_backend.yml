@@ -1,12 +1,6 @@
 name: PUSH_T) Backend Build
 
 on:
-  # push:
-  #   paths:
-  #     - backend/terraform/**
-  #     - .github/workflows/push_terraform_backend.yml
-  #   branches-ignore:
-  #     - releases/**
   workflow_run:
     workflows:
       - PUSH_T) Service Build
