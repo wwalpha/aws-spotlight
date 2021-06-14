@@ -147,5 +147,18 @@ export namespace Tables {
       ClientId: string;
       IdentityPoolId: string;
     }
+
+    interface Release {
+      version: string;
+      date: string;
+      texts: {
+        type: string;
+        text: string;
+      };
+    }
+
+    interface Releases extends Key {
+      Texts: Release[];
+    }
   }
 }

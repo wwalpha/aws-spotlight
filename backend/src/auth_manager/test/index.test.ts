@@ -1,18 +1,19 @@
 import axios, { AxiosStatic } from 'axios';
 import request from 'supertest';
-import { CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
-import { mocked } from 'ts-jest/utils';
 import server from '../src/server';
 import { User, Auth } from 'typings';
+import { DynamodbHelper } from '@alphax/dynamodb';
+import Releases from './expect/releases.json';
 
 jest.mock('axios');
 jest.mock('amazon-cognito-identity-js');
 
 const api = axios as jest.Mocked<AxiosStatic>;
+const helper = new DynamodbHelper({ options: { endpoint: process.env.AWS_ENDPOINT } });
 
 describe('auth manager', () => {
   test('health check', async () => {
-    const response = await request(server).get('/token/health');
+    const response = await request(server).get('/auth/health');
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toEqual({
@@ -21,12 +22,7 @@ describe('auth manager', () => {
     });
   });
 
-  test.only('login', async () => {
-    // mocked(CognitoUser, true).mockImplementationOnce((data) => {
-    //   console.log(12223333, data);
-    //    new CognitoUser(data);
-    // });
-
+  test.skip('login', async () => {
     api.get.mockResolvedValueOnce({
       status: 200,
       data: {
@@ -43,5 +39,11 @@ describe('auth manager', () => {
         username: 'test001',
         password: 'password001',
       } as Auth.SignInRequest);
+  });
+
+  test('release', async () => {
+    const response = await request(server).get('/system/releases');
+
+    expect(response.body).toEqual(Releases);
   });
 });

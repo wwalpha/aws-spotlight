@@ -1,10 +1,13 @@
 import express from 'express';
 import { defaultTo } from 'lodash';
 import axios from 'axios';
+import { DynamodbHelper } from '@alphax/dynamodb';
 import { AuthenticationDetails, CognitoUser, CognitoUserPool, CognitoUserSession } from 'amazon-cognito-identity-js';
 import { authenticateUser, isAuthenticateFailure, Logger } from './utils';
-import { API_URLs } from './consts';
-import { Auth, User } from 'typings';
+import { API_URLs, Environments } from './consts';
+import { Auth, System, User, Tables } from 'typings';
+
+const helper = new DynamodbHelper({ options: { endpoint: process.env.AWS_ENDPOINT } });
 
 // health check
 export const healthCheck = (_: any, res: express.Response) => {
@@ -81,4 +84,29 @@ export const auth = async (req: express.Request<any, any, Auth.SignInRequest>): 
   const refreshToken = session.getRefreshToken().getToken();
 
   return { token: idToken, accessToken: accessToken, refreshToken: refreshToken };
+};
+
+/** get release informations */
+export const release = async (): Promise<System.ReleaseReseponse> => {
+  const results = await helper.get<Tables.Settings.Releases>({
+    TableName: Environments.TABLE_NAME_SETTINGS,
+    Key: {
+      Id: 'RELEASE',
+    } as Tables.Settings.Key,
+  });
+
+  if (!results || !results.Item) {
+    throw new Error('Can not found release infomations.');
+  }
+
+  return {
+    infos: results.Item.Texts,
+  };
+};
+
+/** get current version */
+export const version = async (): Promise<System.VersionResponse> => {
+  return {
+    version: 'v0.0.1',
+  };
 };
