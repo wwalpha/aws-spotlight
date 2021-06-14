@@ -8,6 +8,7 @@ on:
       - completed
 
 env:
+  AWS_DEFAULT_REGION: us-east-1
   ECR_REPOSITORY: arms/auth
   ECS_CLUSTER_NAME: arms-cluster
   ECS_SERVICE_NAME: auth_manager
@@ -48,15 +49,15 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
 
       # Unit Test
-      # - name: Unit Test
-      #   run: |
-      #     docker-compose up -d --build
-      #     sleep 10
-      #     yarn test
-      #     docker-compose down
+      - name: Unit Test
+        run: |
+          docker-compose up -d --build
+          sleep 10
+          yarn test
+          docker-compose down
 
       # Get latest task definition
       - name: Update ecs task definition
@@ -97,7 +98,7 @@ jobs:
           task-definition: ${{ steps.render-web-container.outputs.task-definition }}
           service: ${{ env.ECS_SERVICE_NAME }}
           cluster: ${{ env.ECS_CLUSTER_NAME }}
-          wait-for-service-stability: false
+          wait-for-service-stability: true
 
       # Update Repository URL
       - name: Update ecs repository url

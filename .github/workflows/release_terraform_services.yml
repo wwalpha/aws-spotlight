@@ -9,8 +9,8 @@ on:
   workflow_dispatch:
 
 env:
-  TF_VAR_admin_email: ${{ secrets.ADMIN_EMAIL }} 
   AWS_DEFAULT_REGION: us-east-1
+  TF_VAR_admin_email: ${{ secrets.ADMIN_EMAIL }} 
   WORKING_DIR: terraform/services
 
 jobs:
