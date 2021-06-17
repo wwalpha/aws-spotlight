@@ -148,13 +148,15 @@ export namespace Tables {
       IdentityPoolId: string;
     }
 
+    interface ReleaseNotes {
+      type: string;
+      text: string;
+    }
+
     interface Release {
       version: string;
       date: string;
-      texts: {
-        type: string;
-        text: string;
-      };
+      texts: ReleaseNotes[];
     }
 
     interface Releases extends Key {
