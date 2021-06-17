@@ -1,0 +1,16 @@
+[
+  {
+    "version": "v0.2.6",
+    "date": "2021-06-18",
+    "texts": [
+      {
+        "type": "FEATURE",
+        "text": "Release notes api is implemented."
+      },
+      {
+        "type": "FEATURE",
+        "text": "Only show categories for which data exists."
+      }
+    ]
+  }
+]
