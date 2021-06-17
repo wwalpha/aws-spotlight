@@ -10,9 +10,9 @@ on:
   workflow_dispatch:
 
 env:
+  AWS_DEFAULT_REGION: us-east-1
   ECR_REPOSITORY_CLOUDTRAIL: arms/cloudtrail
   ECR_REPOSITORY_UNPROCESSED: arms/unprocessed
-  AWS_DEFAULT_REGION: us-east-1
   SSM_PARAMETER_NAME_CLOUDTRAIL: /arms/repository_url/cloudtrail
   SSM_PARAMETER_NAME_UNPROCESSED: /arms/repository_url/unprocessed
   WORKING_DIR: backend/src/cloudtrail
@@ -22,6 +22,8 @@ jobs:
     runs-on: ubuntu-18.04
     environment:
       name: dev
+    env:
+      TABLE_NAME_EVENT_TYPE: ${{ secrets.TABLE_NAME_EVENT_TYPE }}
     defaults:
       run:
         working-directory: ${{ env.WORKING_DIR }}
@@ -48,7 +50,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
 
       # Unit Test
       - name: Unit Test
