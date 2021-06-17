@@ -48,11 +48,7 @@ const start = async () => {
         } as Tables.EventType,
         ConditionExpression: 'attribute_not_exists(EventName) AND attribute_not_exists(EventSource)',
       });
-    } catch (err) {
-      if (err.code !== 'ConditionalCheckFailedException') {
-        console.log(err);
-      }
-    }
+    } catch (err) {}
   }
 };
 
