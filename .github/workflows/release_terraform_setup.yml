@@ -1,12 +1,13 @@
 name: RELEASE_T) Setup Build
 
 on:
-  push:
-    tags:
-      - v*
+  # push:
+  #   tags:
+  #     - v*
   release:
     types:
       - prereleased
+      - published
 
 env:
   AWS_DEFAULT_REGION: us-east-1
