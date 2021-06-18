@@ -36,6 +36,7 @@ jobs:
       - name: Build
         id: build
         run: |
+          tsc -v
           yarn install
           yarn build
           cd dist && zip -r -q archive.zip *
