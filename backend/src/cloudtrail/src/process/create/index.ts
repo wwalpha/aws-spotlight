@@ -27,6 +27,8 @@ export * from './IAM_CreateRole';
 
 export * from './LAMBDA_CreateFunction20150331';
 
+export * from './MONITORING_PutMetricAlarm';
+
 export * from './RDS_CreateDBCluster';
 export * from './RDS_CreateDBInstance';
 

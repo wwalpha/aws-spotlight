@@ -18,8 +18,6 @@ describe('lambda.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    console.log(await scanResource());
-
     const resource = await getResource({
       EventSource: 'lambda.amazonaws.com',
       ResourceId: 'RekogDemoSetupEngagementMeter',

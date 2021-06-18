@@ -253,9 +253,13 @@ export const execCreateRecords = async (records: CloudTrail.Record[]) => {
 export const execDeleteRecords = async (records: CloudTrail.Record[]) => {
   Logger.debug('Start execute delete record...');
 
-  const items = records
+  const multiItems = records
     .map((item) => getRemoveResourceItem(item))
     .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
+
+  const items = multiItems.reduce((prev, curr) => {
+    return [...prev, ...curr];
+  }, [] as Tables.ResourceKey[]);
 
   await helper.truncate(Environments.TABLE_NAME_RESOURCE, items);
 };

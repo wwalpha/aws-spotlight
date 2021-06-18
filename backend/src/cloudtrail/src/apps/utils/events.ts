@@ -58,6 +58,9 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
     case 'LAMBDA_CreateFunction20150331':
       return CreateEvent.LAMBDA_CreateFunction20150331(record);
 
+    case 'MONITORING_PutMetricAlarm':
+      return CreateEvent.MONITORING_PutMetricAlarm(record);
+
     case 'RDS_CreateDBCluster':
       return CreateEvent.RDS_CreateDBCluster(record);
     case 'RDS_CreateDBInstance':
@@ -71,64 +74,67 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
   }
 };
 
-export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResourceKey | undefined => {
+export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResourceKey[] | undefined => {
   const { eventName, eventSource } = record;
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
 
   switch (key) {
     case 'APIGATEWAY_DeleteRestApi':
-      return DeleteEvent.APIGATEWAY_DeleteRestApi(record);
+      return [DeleteEvent.APIGATEWAY_DeleteRestApi(record)];
     case 'AUTOSCALING_DeleteAutoScalingGroup':
-      return DeleteEvent.AUTOSCALING_DeleteAutoScalingGroup(record);
+      return [DeleteEvent.AUTOSCALING_DeleteAutoScalingGroup(record)];
 
     case 'DYNAMODB_DeleteTable':
-      return DeleteEvent.DYNAMODB_DeleteTable(record);
+      return [DeleteEvent.DYNAMODB_DeleteTable(record)];
     case 'DS_DeleteDirectory':
-      return DeleteEvent.DS_DeleteDirectory(record);
+      return [DeleteEvent.DS_DeleteDirectory(record)];
 
     case 'EC2_TerminateInstances':
-      return DeleteEvent.EC2_TerminateInstances(record);
+      return [DeleteEvent.EC2_TerminateInstances(record)];
     case 'EC2_DeregisterImage':
-      return DeleteEvent.EC2_DeregisterImage(record);
+      return [DeleteEvent.EC2_DeregisterImage(record)];
     case 'EC2_DeleteSnapshot':
-      return DeleteEvent.EC2_DeleteSnapshot(record);
+      return [DeleteEvent.EC2_DeleteSnapshot(record)];
     case 'EC2_DeleteNatGateway':
-      return DeleteEvent.EC2_DeleteNatGateway(record);
+      return [DeleteEvent.EC2_DeleteNatGateway(record)];
     case 'EC2_DeleteClientVpnEndpoint':
-      return DeleteEvent.EC2_DeleteClientVpnEndpoint(record);
+      return [DeleteEvent.EC2_DeleteClientVpnEndpoint(record)];
     case 'EC2_DeleteVpcPeeringConnection':
-      return DeleteEvent.EC2_DeleteVpcPeeringConnection(record);
+      return [DeleteEvent.EC2_DeleteVpcPeeringConnection(record)];
     case 'EC2_DeleteVpc':
-      return DeleteEvent.EC2_DeleteVpc(record);
+      return [DeleteEvent.EC2_DeleteVpc(record)];
     case 'EC2_DeleteVolume':
-      return DeleteEvent.EC2_DeleteVolume(record);
+      return [DeleteEvent.EC2_DeleteVolume(record)];
 
     case 'ELASTICFILESYSTEM_DeleteFileSystem':
-      return DeleteEvent.ELASTICFILESYSTEM_DeleteFileSystem(record);
+      return [DeleteEvent.ELASTICFILESYSTEM_DeleteFileSystem(record)];
 
     case 'ELASTICLOADBALANCING_DeleteLoadBalancer':
-      return DeleteEvent.ELASTICLOADBALANCING_DeleteLoadBalancer(record);
+      return [DeleteEvent.ELASTICLOADBALANCING_DeleteLoadBalancer(record)];
     case 'ELASTICLOADBALANCING_DeleteTargetGroup':
-      return DeleteEvent.ELASTICLOADBALANCING_DeleteTargetGroup(record);
+      return [DeleteEvent.ELASTICLOADBALANCING_DeleteTargetGroup(record)];
 
     case 'EKS_DeleteCluster':
-      return DeleteEvent.EKS_DeleteCluster(record);
+      return [DeleteEvent.EKS_DeleteCluster(record)];
 
     case 'IAM_DeleteAccessKey':
-      return DeleteEvent.IAM_DeleteAccessKey(record);
+      return [DeleteEvent.IAM_DeleteAccessKey(record)];
     case 'IAM_DeleteRole':
-      return DeleteEvent.IAM_DeleteRole(record);
+      return [DeleteEvent.IAM_DeleteRole(record)];
 
     case 'LAMBDA_DeleteFunction20150331':
-      return DeleteEvent.LAMBDA_DeleteFunction20150331(record);
+      return [DeleteEvent.LAMBDA_DeleteFunction20150331(record)];
+
+    case 'MONITORING_DeleteAlarms':
+      return DeleteEvent.MONITORING_DeleteAlarms(record);
 
     case 'RDS_DeleteDBCluster':
-      return DeleteEvent.RDS_DeleteDBCluster(record);
+      return [DeleteEvent.RDS_DeleteDBCluster(record)];
     case 'RDS_DeleteDBInstance':
-      return DeleteEvent.RDS_DeleteDBInstance(record);
+      return [DeleteEvent.RDS_DeleteDBInstance(record)];
 
     case 'S3_DeleteBucket':
-      return DeleteEvent.S3_DeleteBucket(record);
+      return [DeleteEvent.S3_DeleteBucket(record)];
 
     default:
       return undefined;

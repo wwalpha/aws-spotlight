@@ -26,6 +26,8 @@ export * from './IAM_DeleteRole';
 
 export * from './LAMBDA_DeleteFunction20150331';
 
+export * from './MONITORING_DeleteAlarms';
+
 export * from './RDS_DeleteDBCluster';
 export * from './RDS_DeleteDBInstance';
 

@@ -55,5 +55,8 @@
   { "EventName": "DeleteBucket", "EventSource": "s3.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateFunction20150331", "EventSource": "lambda.amazonaws.com", "Create": true },
-  { "EventName": "DeleteFunction20150331", "EventSource": "lambda.amazonaws.com", "Delete": true }
+  { "EventName": "DeleteFunction20150331", "EventSource": "lambda.amazonaws.com", "Delete": true },
+
+  { "EventName": "PutMetricAlarm", "EventSource": "monitoring.amazonaws.com", "Create": true },
+  { "EventName": "DeleteAlarms", "EventSource": "monitoring.amazonaws.com", "Delete": true }
 ]
