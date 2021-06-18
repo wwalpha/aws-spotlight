@@ -23,6 +23,8 @@ export * from './EKS_CreateCluster';
 
 export * from './IAM_CreateAccessKey';
 
+export * from './LAMBDA_CreateFunction20150331';
+
 export * from './RDS_CreateDBCluster';
 export * from './RDS_CreateDBInstance';
 

@@ -22,6 +22,8 @@ export * from './EKS_DeleteCluster';
 
 export * from './IAM_DeleteAccessKey';
 
+export * from './LAMBDA_DeleteFunction20150331';
+
 export * from './RDS_DeleteDBCluster';
 export * from './RDS_DeleteDBInstance';
 

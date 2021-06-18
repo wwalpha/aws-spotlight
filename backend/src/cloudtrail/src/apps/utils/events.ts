@@ -51,6 +51,9 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
     case 'IAM_CreateAccessKey':
       return CreateEvent.IAM_CreateAccessKey(record);
 
+    case 'LAMBDA_CreateFunction20150331':
+      return CreateEvent.LAMBDA_CreateFunction20150331(record);
+
     case 'RDS_CreateDBCluster':
       return CreateEvent.RDS_CreateDBCluster(record);
     case 'RDS_CreateDBInstance':
@@ -107,6 +110,9 @@ export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.Resourc
 
     case 'IAM_DeleteAccessKey':
       return DeleteEvent.IAM_DeleteAccessKey(record);
+
+    case 'LAMBDA_DeleteFunction20150331':
+      return DeleteEvent.LAMBDA_DeleteFunction20150331(record);
 
     case 'RDS_DeleteDBCluster':
       return DeleteEvent.RDS_DeleteDBCluster(record);

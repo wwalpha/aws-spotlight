@@ -10,6 +10,10 @@
   { "EventName": "DeleteNatGateway", "EventSource": "ec2.amazonaws.com", "Delete": true },
   { "EventName": "CreateClientVpnEndpoint", "EventSource": "ec2.amazonaws.com", "Create": true },
   { "EventName": "DeleteClientVpnEndpoint", "EventSource": "ec2.amazonaws.com", "Delete": true },
+  { "EventName": "CreateVpcPeeringConnection", "EventSource": "ec2.amazonaws.com", "Create": true },
+  { "EventName": "DeleteVpcPeeringConnection", "EventSource": "ec2.amazonaws.com", "Delete": true },
+  { "EventName": "CreateVpc", "EventSource": "ec2.amazonaws.com", "Create": true },
+  { "EventName": "DeleteVpc", "EventSource": "ec2.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateRestApi", "EventSource": "apigateway.amazonaws.com", "Create": true },
   { "EventName": "ImportRestApi", "EventSource": "apigateway.amazonaws.com", "Create": true },
@@ -39,14 +43,13 @@
 
   { "EventName": "CreateAutoScalingGroup", "EventSource": "autoscaling.amazonaws.com", "Create": true },
   { "EventName": "DeleteAutoScalingGroup", "EventSource": "autoscaling.amazonaws.com", "Delete": true },
-  { "EventName": "CreateVpcPeeringConnection", "EventSource": "ec2.amazonaws.com", "Create": true },
-  { "EventName": "DeleteVpcPeeringConnection", "EventSource": "ec2.amazonaws.com", "Delete": true },
-  { "EventName": "CreateVpc", "EventSource": "ec2.amazonaws.com", "Create": true },
-  { "EventName": "DeleteVpc", "EventSource": "ec2.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateAccessKey", "EventSource": "iam.amazonaws.com", "Create": true },
   { "EventName": "DeleteAccessKey", "EventSource": "iam.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateBucket", "EventSource": "s3.amazonaws.com", "Create": true },
-  { "EventName": "DeleteBucket", "EventSource": "s3.amazonaws.com", "Delete": true }
+  { "EventName": "DeleteBucket", "EventSource": "s3.amazonaws.com", "Delete": true },
+
+  { "EventName": "CreateFunction20150331", "EventSource": "lambda.amazonaws.com", "Create": true },
+  { "EventName": "DeleteFunction20150331", "EventSource": "lambda.amazonaws.com", "Delete": true }
 ]
