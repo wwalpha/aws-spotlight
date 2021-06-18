@@ -23,6 +23,7 @@ export * from './ELASTICLOADBALANCING_CreateTargetGroup';
 export * from './EKS_CreateCluster';
 
 export * from './IAM_CreateAccessKey';
+export * from './IAM_CreateRole';
 
 export * from './LAMBDA_CreateFunction20150331';
 

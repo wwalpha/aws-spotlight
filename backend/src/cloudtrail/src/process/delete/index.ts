@@ -22,6 +22,7 @@ export * from './ELASTICLOADBALANCING_DeleteTargetGroup';
 export * from './EKS_DeleteCluster';
 
 export * from './IAM_DeleteAccessKey';
+export * from './IAM_DeleteRole';
 
 export * from './LAMBDA_DeleteFunction20150331';
 

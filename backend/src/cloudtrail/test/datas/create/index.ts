@@ -27,5 +27,6 @@ export { default as APIGATEWAY_ImportRestApi } from './APIGATEWAY_ImportRestApi.
 export { default as S3_CreateBucket } from './S3_CreateBucket.json';
 
 export { default as IAM_CreateAccessKey } from './IAM_CreateAccessKey.json';
+export { default as IAM_CreateRole } from './IAM_CreateRole.json';
 
 export { default as LAMBDA_CreateFunction20150331 } from './LAMBDA_CreateFunction20150331.json';

@@ -16,4 +16,6 @@ export { default as EKS_DeleteCluster } from './EKS_DeleteCluster.json';
 export { default as ELASTICFILESYSTEM_DeleteFileSystem } from './ELASTICFILESYSTEM_DeleteFileSystem.json';
 
 export { default as IAM_DeleteAccessKey } from './IAM_DeleteAccessKey.json';
+export { default as IAM_DeleteRole } from './IAM_DeleteRole.json';
+
 export { default as LAMBDA_DeleteFunction20150331 } from './LAMBDA_DeleteFunction20150331.json';

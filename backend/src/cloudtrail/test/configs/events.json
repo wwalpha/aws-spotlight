@@ -48,6 +48,8 @@
 
   { "EventName": "CreateAccessKey", "EventSource": "iam.amazonaws.com", "Create": true },
   { "EventName": "DeleteAccessKey", "EventSource": "iam.amazonaws.com", "Delete": true },
+  { "EventName": "CreateRole", "EventSource": "iam.amazonaws.com", "Create": true },
+  { "EventName": "DeleteRole", "EventSource": "iam.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateBucket", "EventSource": "s3.amazonaws.com", "Create": true },
   { "EventName": "DeleteBucket", "EventSource": "s3.amazonaws.com", "Delete": true },
