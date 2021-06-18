@@ -4,7 +4,9 @@ on:
   push:
     tags:
       - v*
-  workflow_dispatch:
+  release:
+    types:
+      - prereleased
 
 env:
   AWS_DEFAULT_REGION: us-east-1
