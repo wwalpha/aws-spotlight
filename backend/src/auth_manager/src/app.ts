@@ -87,7 +87,7 @@ export const auth = async (req: express.Request<any, any, Auth.SignInRequest>): 
 };
 
 /** get release informations */
-export const release = async (): Promise<System.ReleaseReseponse> => {
+export const release = async (): Promise<System.ReleaseResponse> => {
   const results = await helper.get<Tables.Settings.Releases>({
     TableName: Environments.TABLE_NAME_SETTINGS,
     Key: {
