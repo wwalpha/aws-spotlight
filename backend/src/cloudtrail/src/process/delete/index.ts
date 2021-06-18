@@ -12,6 +12,7 @@ export * from './EC2_DeleteNatGateway';
 export * from './EC2_DeleteClientVpnEndpoint';
 export * from './EC2_DeleteVpcPeeringConnection';
 export * from './EC2_DeleteVpc';
+export * from './EC2_DeleteVolume';
 
 export * from './ELASTICFILESYSTEM_DeleteFileSystem';
 

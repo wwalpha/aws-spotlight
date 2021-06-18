@@ -13,6 +13,7 @@ export * from './EC2_CreateNatGateway';
 export * from './EC2_CreateClientVpnEndpoint';
 export * from './EC2_CreateVpcPeeringConnection';
 export * from './EC2_CreateVpc';
+export * from './EC2_CreateVolume';
 
 export * from './ELASTICFILESYSTEM_CreateFileSystem';
 

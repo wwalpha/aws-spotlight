@@ -13,7 +13,7 @@ AWS.config.update({
 });
 
 describe('lambda.amazonaws.com', () => {
-  test('CreateFunction20150331', async () => {
+  test('LAMBDA_CreateFunction20150331', async () => {
     const event = await sendMessage(CreateEvents.LAMBDA_CreateFunction20150331);
 
     await cloudtrail(event);
@@ -33,7 +33,7 @@ describe('lambda.amazonaws.com', () => {
     expect(history).toEqual(Lambda.CreateFunction20150331_H);
   });
 
-  test('DeleteFunction20150331', async () => {
+  test('LAMBDA_DeleteFunction20150331', async () => {
     const event = await sendMessage(DeleteEvents.LAMBDA_DeleteFunction20150331);
 
     await cloudtrail(event);

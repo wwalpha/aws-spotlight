@@ -249,4 +249,39 @@ describe('ec2.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteVpc_H);
   });
+
+  test('EC2_CreateVolume', async () => {
+    const event = await sendMessage(CreateEvents.EC2_CreateVolume);
+
+    await cloudtrail(event);
+
+    const resource = await getResource({
+      EventSource: 'ec2.amazonaws.com',
+      ResourceId: 'vol-084879c77b49adac0',
+    });
+    const history = await getHistory({ EventId: '925c1fe9-214f-41e0-b856-c55b76d254e7' });
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.CreateVolume_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.CreateVolume_H);
+  });
+
+  test('EC2_DeleteVolume', async () => {
+    const event = await sendMessage(DeleteEvents.EC2_DeleteVolume);
+
+    await cloudtrail(event);
+
+    const resource = await getResource({
+      EventSource: 'ec2.amazonaws.com',
+      ResourceId: 'vol-084879c77b49adac0',
+    });
+    const history = await getHistory({ EventId: '1cd49a17-061e-478b-ad90-a36274a30037' });
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.DeleteVolume_H);
+  });
 });

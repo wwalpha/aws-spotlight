@@ -14,6 +14,8 @@
   { "EventName": "DeleteVpcPeeringConnection", "EventSource": "ec2.amazonaws.com", "Delete": true },
   { "EventName": "CreateVpc", "EventSource": "ec2.amazonaws.com", "Create": true },
   { "EventName": "DeleteVpc", "EventSource": "ec2.amazonaws.com", "Delete": true },
+  { "EventName": "CreateVolume", "EventSource": "ec2.amazonaws.com", "Create": true },
+  { "EventName": "DeleteVolume", "EventSource": "ec2.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateRestApi", "EventSource": "apigateway.amazonaws.com", "Create": true },
   { "EventName": "ImportRestApi", "EventSource": "apigateway.amazonaws.com", "Create": true },
