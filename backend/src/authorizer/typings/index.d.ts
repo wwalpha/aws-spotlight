@@ -1,4 +1,4 @@
-export * from '../../typings/index';
+export * from '../../typings/tables';
 
 export interface Token {
   header: TokenHeader;
