@@ -1,10 +1,9 @@
 import AWS from 'aws-sdk';
-import { getHistory, getResource, sendMessage } from '@test/configs/utils';
+import { getHistory, getResource, scanResource, sendMessage } from '@test/configs/utils';
 import * as CreateEvents from '@test/datas/create';
 import * as DeleteEvents from '@test/datas/delete';
 import * as EC2 from '@test/expect/ec2';
 import { cloudtrail } from '@src/index';
-import * as fs from 'fs';
 
 AWS.config.update({
   region: process.env.AWS_REGION,

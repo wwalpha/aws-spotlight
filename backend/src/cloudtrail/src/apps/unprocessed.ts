@@ -192,8 +192,12 @@ export const processDelete = async (events: Tables.EventType[]) => {
       .map((item) => item && getRemoveResourceItem(item))
       .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
+    const items = removeItems.reduce((prev, curr) => {
+      return [...prev, ...curr];
+    }, [] as Tables.ResourceKey[]);
+
     // bulk insert resource
-    await helper.truncate(Environments.TABLE_NAME_RESOURCE, removeItems);
+    await helper.truncate(Environments.TABLE_NAME_RESOURCE, items);
     // bulk insert history
     await registHistory(rawRecords);
 
