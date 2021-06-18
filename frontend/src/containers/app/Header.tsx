@@ -72,8 +72,7 @@ const appState = (state: Domains.State) => state.app;
 export const Header = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { pathname } = useLocation();
-  const { title } = useSelector(appState);
+  const { title, version } = useSelector(appState);
   const actions = bindActionCreators(AppActions, dispatch);
 
   const handleExit = async () => {
@@ -103,7 +102,7 @@ export const Header = () => {
             }}
             inputProps={{ 'aria-label': 'search' }}
           /> */}
-          v0.2.5
+          {version}
         </div>
         <IconButton color="inherit" onClick={handleExit}>
           <ExitToAppIcon fontSize="large" />

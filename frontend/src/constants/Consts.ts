@@ -16,4 +16,6 @@ export const API_URLs = {
   SignIn: '/auth',
   GetCategories: '/resources/categories',
   GetResources: (service: string) => `/resources/services/${service}`,
+  GetReleaseNotes: '/system/releases',
+  GetVersion: '/system/version',
 };

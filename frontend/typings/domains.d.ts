@@ -10,8 +10,12 @@ export namespace Domains {
   /** Application State */
   interface App {
     open: boolean;
+    // initialize flag
+    initialized: boolean;
     // screen title
     title: string;
+    // version
+    version?: string;
     // loading status
     isLoading: boolean;
     // username
@@ -23,7 +27,9 @@ export namespace Domains {
     // jwt token
     authorizationToken?: string;
     // category list
-    categories: string[];
+    categories?: string[];
+    // release notes
+    releaseNotes?: Tables.Settings.Release[];
   }
 
   /** Resources State */

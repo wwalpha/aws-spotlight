@@ -1,25 +1,23 @@
 import * as React from 'react';
-import { bindActionCreators } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { NewPassword, SignIn, App, Initialize } from '@containers';
 import { AppActions } from '@actions';
-import { NewPassword, SignIn, App } from '@containers';
 import { Domains } from 'typings';
 
 const appState = (state: Domains.State) => state.app;
 
 const Authenticator: React.FunctionComponent = () => {
   const [isLogin, setLogin] = React.useState<boolean>();
-  const { authorizationToken, newPasswordRequired } = useSelector(appState);
+  const { authorizationToken, newPasswordRequired, initialized } = useSelector(appState);
   const dispatch = useDispatch();
   const actions = bindActionCreators(AppActions, dispatch);
 
   React.useEffect(() => {
     setLogin(authorizationToken !== null);
 
-    if (authorizationToken) {
-      // get categories
-      actions.categories();
-    }
+    // initialize start
+    actions.initialize();
   }, [authorizationToken]);
 
   // new password required
@@ -30,6 +28,11 @@ const Authenticator: React.FunctionComponent = () => {
   // logined
   if (!isLogin && !authorizationToken) {
     return <SignIn />;
+  }
+
+  // logined
+  if (!initialized) {
+    return <Initialize />;
   }
 
   return <App />;

@@ -13,7 +13,7 @@ export namespace System {
   interface ReleaseRequest {}
 
   // get release information response
-  interface ReleaseReseponse {
+  interface ReleaseResponse {
     infos: Tables.Settings.Release[];
   }
 }

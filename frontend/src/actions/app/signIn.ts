@@ -1,8 +1,7 @@
 import { createAction } from 'redux-actions';
-import { ActionTypes } from '@constants';
+import { Consts, ActionTypes } from '@constants';
 import { endLoading, startLoading } from '@actions';
 import { Actions, Auth } from 'typings';
-import { Consts } from '@constants';
 
 const success = createAction<Actions.SignInPayload, string, Auth.SignInResponse>(
   ActionTypes.APP_LOGIN_SUCCESS,

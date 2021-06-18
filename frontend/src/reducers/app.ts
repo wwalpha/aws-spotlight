@@ -20,11 +20,9 @@ const app = handleActions<App, any>(
     /** change app tile */
     [ActionTypes.APP_TITLE_SUCCESS]: (state: App, { payload: { title } }: Action<Actions.TitlePayload>) =>
       state.setTitle(title),
-    /** category list */
-    [ActionTypes.APP_CATEGORIES_SUCCESS]: (
-      state: App,
-      { payload: { categories } }: Action<Actions.GetCategoriesPayload>
-    ) => state.setCategories(categories),
+    /** initialize */
+    [ActionTypes.APP_INITIALIZE_SUCCESS]: (state: App, { payload }: Action<Actions.InitializePayload>) =>
+      state.initialize(payload),
   },
 
   new App()

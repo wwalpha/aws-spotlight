@@ -3,8 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import { Paths } from '@constants';
-import { Header, Sidemenu } from '.';
-import ReleaseNotes from './ReleaseNotes';
+import { Header, ReleaseNotes, Sidemenu } from '.';
 import Service from './Service';
 
 const useStyles = makeStyles(({}: Theme) =>

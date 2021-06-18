@@ -1,7 +1,6 @@
 import { ReduxAction0, ReduxAction1, ReduxAction2, ReduxAction3, ReduxActionAny } from './types';
-import { Resource } from '.';
+import { Resource, System, Auth } from '.';
 import { APIs } from './api';
-import { Auth } from '../../backend/typings/auth';
 
 // ***************************************************************************************
 // App Actions
@@ -31,6 +30,16 @@ export type SignInPayload = {
 /** signin action */
 export type SignInAction = ReduxActionAny<SignInPayload>;
 
+/** initialize payload */
+export type InitializePayload = {
+  categories: Resource.GetCategoryResponse;
+  releaseNotes: System.ReleaseResponse;
+  version: System.VersionResponse;
+};
+
+/** signin action */
+export type InitializeAction = ReduxAction0<InitializePayload>;
+
 /** get resource payload */
 export type GetResourcesPayload = {
   eventSource: string;
@@ -39,11 +48,3 @@ export type GetResourcesPayload = {
 
 /** get resource action */
 export type GetResourcesAction = ReduxAction1<string, GetResourcesPayload>;
-
-/** categories payload */
-export type GetCategoriesPayload = {
-  categories: string[];
-};
-
-/** signin action */
-export type GetCategoriesAction = ReduxAction0<GetCategoriesPayload>;

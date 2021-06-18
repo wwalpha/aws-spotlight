@@ -83,3 +83,17 @@ resource "aws_apigatewayv2_route" "post_auth" {
   target    = "integrations/${local.apigateway_integration_auth}"
 }
 
+# ---------------------------------------------------------------------------------------------
+# API Gateway Route - System
+# ---------------------------------------------------------------------------------------------
+resource "aws_apigatewayv2_route" "system_release_notes" {
+  api_id    = local.apigateway_id
+  route_key = "GET /system/releases"
+  target    = "integrations/${local.apigateway_integration_auth}"
+}
+
+resource "aws_apigatewayv2_route" "system_version" {
+  api_id    = local.apigateway_id
+  route_key = "GET /system/version"
+  target    = "integrations/${local.apigateway_integration_auth}"
+}

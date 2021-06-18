@@ -65,7 +65,7 @@ export const Sidemenu = () => {
     actions.sidemenu(false);
   };
 
-  const menus = Menus.filter((item) => categories.includes(item.eventSource));
+  const menus = Menus.filter((item) => categories?.includes(item.eventSource));
 
   return (
     <Paper elevation={2} classes={{ root: classes.root }}>

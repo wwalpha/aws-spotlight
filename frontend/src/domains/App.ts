@@ -1,16 +1,20 @@
 import { immerable, produce } from 'immer';
-import { Auth } from 'typings';
+import { Actions, Auth, Tables } from 'typings';
 
 export default class App {
   [immerable] = true;
 
   open: boolean = false;
+  // initialize flag
+  initialized: boolean = false;
   // loading status
   isLoading: boolean = false;
   // screen title
   title: string = 'AWS RESOURCE MANAGEMENT SYSTEM';
+  // version
+  version?: string;
   // token
-  authorizationToken: string | null = window.sessionStorage.getItem('token');
+  authorizationToken?: string | null = window.sessionStorage.getItem('token');
   // username
   userName?: string;
   // mfa required flag
@@ -18,7 +22,9 @@ export default class App {
   // new password required flag
   newPasswordRequired?: boolean;
   // category list
-  categories: string[] = [];
+  categories?: string[] = [];
+  // release notes
+  releaseNotes?: Tables.Settings.Release[] = [];
 
   /** sidemenu show/hide */
   sidemenu(open: boolean) {
@@ -48,9 +54,12 @@ export default class App {
     });
   }
 
-  setCategories(items: string[]) {
+  initialize(payload: Actions.InitializePayload) {
     return produce(this, (draft) => {
-      draft.categories = items;
+      draft.categories = payload.categories?.categories;
+      draft.releaseNotes = payload.releaseNotes?.infos;
+      draft.version = payload.version?.version;
+      draft.initialized = true;
     });
   }
 
