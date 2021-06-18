@@ -1,8 +1,8 @@
 import { DynamodbHelper } from '@alphax/dynamodb';
-import jwt from 'jsonwebtoken';
+import { verify } from 'jsonwebtoken';
 import winston from 'winston';
-import { APIGatewayRequestAuthorizerEventV2, APIGatewayRequestAuthorizerResultV2, Token, Tables } from 'typings';
-import { getPublicKeys } from './utils';
+import { APIGatewayRequestAuthorizerEventV2, APIGatewayRequestAuthorizerResultV2, Tables } from 'typings';
+import { decodeToken, getPublicKeys } from './utils';
 import { Environments } from './consts';
 
 const PEM_KEYS: Record<string, Record<string, string>> = {};
@@ -24,15 +24,21 @@ export const handler = async (
   // authorizator token
   const identitySource = event.identitySource[0];
   // decoded token
-  const decodedToken = jwt.decode(identitySource, { complete: true });
+  const decodedToken = decodeToken(identitySource);
 
   // decode failed
-  if (decodedToken === null) {
+  if (!decodedToken) {
     return { isAuthorized: false };
   }
 
-  const token = decodedToken as unknown as Token;
+  const token = decodedToken;
   const iss = token.payload.iss;
+  const kid = token.header.kid;
+
+  // iss not exist
+  if (!iss || !kid) {
+    return { isAuthorized: false };
+  }
 
   let pems: Record<string, string> | undefined = PEM_KEYS[iss];
 
@@ -49,11 +55,11 @@ export const handler = async (
     PEM_KEYS[iss] = pems;
   }
 
-  const pem = pems[token.header.kid];
+  const pem = pems[kid];
 
   try {
     // verify token
-    jwt.verify(identitySource, pem, { issuer: iss });
+    verify(identitySource, pem, { issuer: iss });
   } catch (err) {
     Logger.error(err.name, err.message);
 
@@ -72,8 +78,6 @@ export const handler = async (
 
   // user not found
   if (!user || !user.Item) return { isAuthorized: false };
-
-  const role = user.Item.Role;
 
   return { isAuthorized: true };
 };
