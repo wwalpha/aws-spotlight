@@ -31,7 +31,7 @@ export const handler = async (
     return { isAuthorized: false };
   }
 
-  const token = decodedToken as Token;
+  const token = decodedToken as unknown as Token;
   const iss = token.payload.iss;
 
   let pems: Record<string, string> | undefined = PEM_KEYS[iss];
