@@ -1,18 +1,17 @@
-import jwt from 'jsonwebtoken';
+import { decode, verify } from 'jsonwebtoken';
 import jwkToPem from 'jwk-to-pem';
 import axios from 'axios';
-import { Token } from 'typings';
 
 export const decodeToken = (token: string) => {
   // Fail if the token is not jwt
-  const decodedJwt = jwt.decode(token, { complete: true });
+  const decodedJwt = decode(token, { complete: true });
 
   if (decodedJwt === null) {
     console.log('Not a valid JWT token');
     return;
   }
 
-  return decodedJwt as Token;
+  return decodedJwt;
 };
 
 /**
@@ -68,16 +67,15 @@ export const validateToken = (pems: Record<string, string>, token: string) => {
   }
 
   // Get the kid from the token and retrieve corresponding PEM
-  var kid = decodedJwt.header.kid;
-  var pem = pems[kid];
+  const kid = decodedJwt.header.kid;
 
-  if (!pem) {
+  if (!kid || !pems[kid]) {
     throw new Error('Invalid access token');
   }
 
   // Verify the signature of the JWT token to ensure it's really coming from your User Pool
   try {
-    jwt.verify(token, pem, { issuer: iss });
+    verify(token, pems[kid], { issuer: iss });
   } catch (err) {
     throw new Error('Cannot Verify Signature');
   }

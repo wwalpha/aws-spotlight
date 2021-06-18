@@ -1,32 +1,5 @@
 export * from '../../typings/tables';
 
-export interface Token {
-  header: TokenHeader;
-  payload: Claim;
-  signature: string;
-}
-
-export interface TokenHeader {
-  kid: string;
-  alg: string;
-  typ?: string;
-  jku?: string;
-  x5u?: string;
-  x5t?: string;
-}
-
-export interface Claim {
-  sub: string;
-  aud: string;
-  event_id: string;
-  token_use: string;
-  auth_time: number;
-  iss: string;
-  exp: string;
-  iat: string;
-  email: string;
-}
-
 export interface APIGatewayRequestAuthorizerEventV2 {
   version: string;
   type: 'REQUEST';
