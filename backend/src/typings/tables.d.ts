@@ -105,22 +105,6 @@ export namespace Tables {
     Origin: string;
   }
 
-  /**
-   * Table - Announcement Key
-   */
-  interface AnnouncementKey {
-    Category: string;
-    DateTIme: string;
-  }
-
-  /**
-   * Table - Announcement
-   */
-  interface Announcement extends AnnouncementKey {
-    Type: string;
-    Text: string;
-  }
-
   interface UserKey {
     // id
     UserId: string;

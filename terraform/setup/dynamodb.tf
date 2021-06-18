@@ -144,58 +144,6 @@ resource "aws_dynamodb_table" "history" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# Dynamodb Table - Announcement
-# ----------------------------------------------------------------------------------------------
-resource "aws_dynamodb_table" "announcement" {
-  name           = local.dynamodb_name_announcement
-  billing_mode   = "PROVISIONED"
-  read_capacity  = 1
-  write_capacity = 1
-  hash_key       = "Category"
-  range_key      = "DateTIme"
-
-  attribute {
-    name = "Category"
-    type = "S"
-  }
-
-  attribute {
-    name = "DateTIme"
-    type = "S"
-  }
-
-  lifecycle {
-    prevent_destroy = false
-  }
-}
-
-# ----------------------------------------------------------------------------------------------
-# Dynamodb Table - Category
-# ----------------------------------------------------------------------------------------------
-# resource "aws_dynamodb_table" "category" {
-#   name           = local.dynamodb_name_category
-#   billing_mode   = "PROVISIONED"
-#   read_capacity  = 1
-#   write_capacity = 1
-#   hash_key       = "UserName"
-#   range_key      = "Category"
-
-#   attribute {
-#     name = "UserName"
-#     type = "S"
-#   }
-
-#   attribute {
-#     name = "Category"
-#     type = "S"
-#   }
-
-#   # lifecycle {
-#   #   prevent_destroy = true
-#   # }
-# }
-
-# ----------------------------------------------------------------------------------------------
 # Dynamodb Table - User
 # ----------------------------------------------------------------------------------------------
 resource "aws_dynamodb_table" "user" {
