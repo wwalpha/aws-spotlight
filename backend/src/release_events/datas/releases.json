@@ -1,5 +1,23 @@
 [
   {
+    "version": "v0.2.7",
+    "date": "2021-06-18",
+    "texts": [
+      {
+        "type": "FEATURE",
+        "text": "[IAM] Add new events, CreateRole | DeleteRole"
+      },
+      {
+        "type": "FEATURE",
+        "text": "[EC2] Add new events, CreateVolume | DeleteVolume"
+      },
+      {
+        "type": "FEATURE",
+        "text": "[Lambda] Add new events, CreateFunction20150331 | DeleteFunction20150331"
+      }
+    ]
+  },
+  {
     "version": "v0.2.6",
     "date": "2021-06-18",
     "texts": [
