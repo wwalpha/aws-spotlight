@@ -3,7 +3,6 @@ import { DynamodbHelper } from '@alphax/dynamodb';
 import { getHistory, getResource, getUnprocessed, updateEventType } from '@test/configs/utils';
 import EC2_RunInstances from '../datas/create/EC2_RunInstances.json';
 import EC2_TerminateInstances from '../datas/delete/EC2_TerminateInstances.json';
-import EC2_AllocateAddress from '../datas/ignore/EC2_AllocateAddress.json';
 
 import { unprocessed } from '@src/index';
 import { Tables } from 'typings';
@@ -51,7 +50,7 @@ describe(EVENT_SOURCE, () => {
     EC2_TerminateInstances.responseElements.instancesSet.items[0].instanceId = 'i-0fc5d99558e835799';
     EC2_TerminateInstances.eventID = '99999999-eb47-4d50-8104-6901bc67a17d';
 
-    const datas = [EC2_RunInstances, EC2_TerminateInstances, EC2_AllocateAddress];
+    const datas = [EC2_RunInstances, EC2_TerminateInstances];
 
     const unproccessed = datas.map(
       (item) =>
@@ -96,23 +95,6 @@ describe(EVENT_SOURCE, () => {
 
     expect(resource).toBeUndefined();
     expect(history).not.toBeUndefined();
-    expect(unprocess).toBeUndefined();
-  });
-
-  test('EC2_AllocateAddress', async () => {
-    await updateEventType(EVENT_SOURCE, 'AllocateAddress', 'Ignore');
-
-    await unprocessed();
-
-    const resource = await getResource({ EventSource: 'ec2.amazonaws.com', ResourceId: 'i-0fc5d99558e835799' });
-    const history = await getHistory({ EventId: '8ee97fbc-441e-4e30-ba98-750ecb7d5d8e' });
-    const unprocess = await getUnprocessed({
-      EventName: 'AllocateAddress',
-      EventTime: `${EC2_AllocateAddress.eventTime}_8ee97fbc`,
-    });
-
-    expect(resource).toBeUndefined();
-    expect(history).toBeUndefined();
     expect(unprocess).toBeUndefined();
   });
 });
