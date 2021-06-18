@@ -9,6 +9,10 @@ export interface Token {
 export interface TokenHeader {
   kid: string;
   alg: string;
+  typ?: string;
+  jku?: string;
+  x5u?: string;
+  x5t?: string;
 }
 
 export interface Claim {

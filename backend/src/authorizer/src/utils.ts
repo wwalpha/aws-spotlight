@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import jwkToPem from 'jwk-to-pem';
 import axios from 'axios';
+import { Token } from 'typings';
 
 export const decodeToken = (token: string) => {
   // Fail if the token is not jwt
@@ -11,7 +12,7 @@ export const decodeToken = (token: string) => {
     return;
   }
 
-  return decodedJwt;
+  return decodedJwt as Token;
 };
 
 /**
@@ -49,8 +50,8 @@ export const validateToken = (pems: Record<string, string>, token: string) => {
   // Fail if the token is not jwt
   const decodedJwt = decodeToken(token);
   const iss = decodedJwt?.payload.iss;
-  const n = iss.lastIndexOf('/');
-  const resultUserPoolId = iss?.substring(n + 1);
+  // const n = iss.lastIndexOf('/');
+  // const resultUserPoolId = iss?.substring(n + 1);
 
   if (!decodedJwt) {
     throw new Error('Not a valid JWT token');
