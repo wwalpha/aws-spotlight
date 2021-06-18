@@ -107,6 +107,6 @@ export const release = async (): Promise<System.ReleaseResponse> => {
 /** get current version */
 export const version = async (): Promise<System.VersionResponse> => {
   return {
-    version: 'v0.0.1',
+    version: 'v0.2.6',
   };
 };
