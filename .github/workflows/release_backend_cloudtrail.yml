@@ -71,27 +71,8 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY_UNPROCESSED:$IMAGE_TAG
           echo "::set-output name=image_unprocessed::$ECR_REGISTRY/$ECR_REPOSITORY_UNPROCESSED:$IMAGE_TAG"
 
-      # Lambda Deploy
-      - name: Lambda Deploy
-        uses: appleboy/lambda-action@master
-        with:
-          function_name: arms-cloudtrail
-          image_uri: ${{ steps.build-image.outputs.image_cloudtrail }}
-
-      # Lambda Deploy
-      - name: Lambda Deploy
-        uses: appleboy/lambda-action@master
-        with:
-          function_name: arms-unprocessed
-          image_uri: ${{ steps.build-image.outputs.image_unprocessed }}
-
       # Update Repository URL
       - name: Update repository url
         run: |
           aws ssm put-parameter --name $SSM_PARAMETER_NAME_CLOUDTRAIL --type "String" --value ${{ steps.build-image.outputs.image_cloudtrail }} --overwrite
           aws ssm put-parameter --name $SSM_PARAMETER_NAME_UNPROCESSED --type "String" --value ${{ steps.build-image.outputs.image_unprocessed }} --overwrite
-
-      # Update event type table
-      - name: Update Event Type
-        run: |
-          yarn release

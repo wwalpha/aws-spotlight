@@ -41,10 +41,9 @@ jobs:
         with:
           terraform_version: 1.0.0
 
-      # Terraform Apply
-      - name: Terraform Apply
+      # Terraform Plan
+      - name: Terraform Plan
         run: |
           mv main.tf.prod main.tf
           terraform init
           terraform plan -out=backend
-          terraform apply "backend"

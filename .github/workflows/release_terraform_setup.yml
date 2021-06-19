@@ -42,11 +42,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
 
-      # Terraform Apply
-      - name: Terraform Apply
+      # Terraform Plan
+      - name: Terraform Plan
         run: |
           mv main.tf.prod main.tf
-          cat main.tf
           terraform init
           terraform plan -out=setup
-          terraform apply "setup"

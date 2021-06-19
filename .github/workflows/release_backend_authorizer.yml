@@ -37,20 +37,3 @@ jobs:
         run: |
           yarn install
           yarn build
-          cd dist && zip -r -q archive.zip *
-          echo "::set-output name=archive_file::$GITHUB_WORKSPACE/$WORKING_DIR/dist/archive.zip"
-
-      # AWS Credentials
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-
-      # Lambda Deploy
-      - name: Lambda Deploy
-        uses: appleboy/lambda-action@master
-        with:
-          function_name: arms-authorizer
-          zip_file: ${{ steps.build.outputs.archive_file }}
