@@ -13,7 +13,6 @@ locals {
   # ----------------------------------------------------------------------------------------------
   # Dynamodb Tables
   # ----------------------------------------------------------------------------------------------
-  # dynamodb_name_notification = "${local.project_name}-notification-${local.suffix}"
   dynamodb_name_event_type  = "${local.project_name}-eventtype-${local.suffix}"
   dynamodb_name_resource    = "${local.project_name}-resources-${local.suffix}"
   dynamodb_name_unprocessed = "${local.project_name}-unprocessed-${local.suffix}"
@@ -26,6 +25,7 @@ locals {
   # ----------------------------------------------------------------------------------------------
   bucket_name_frontend    = "${var.project_name}-frontend-${local.suffix}"
   bucket_name_environment = "${var.project_name}-environment-${local.suffix}"
+  bucket_name_archive     = "${var.project_name}-archive-${local.suffix}"
   mime_types = {
     htm   = "text/html"
     html  = "text/html"
