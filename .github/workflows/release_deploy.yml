@@ -102,7 +102,7 @@ jobs:
         id: ecs
         run: |
           aws ecs describe-task-definition --task-definition $ECS_TAKS_DEFINITION_AUTH | jq .taskDefinition > $ECS_TAKS_DEFINITION_FILE
-          image=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_AUTH --with-decryption | jq .Parameter.Value)
+          image=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_AUTH --with-decryption | jq -r .Parameter.Value)
           echo "::set-output name=definition::$GITHUB_WORKSPACE/$WORKING_DIR/$ECS_TAKS_DEFINITION_FILE"
           echo "::set-output name=image::$image"
 
@@ -144,7 +144,7 @@ jobs:
         id: ecs
         run: |
           aws ecs describe-task-definition --task-definition $ECS_TAKS_DEFINITION_RESOURCE | jq .taskDefinition > $ECS_TAKS_DEFINITION_FILE
-          image=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_RESOURCE --with-decryption | jq .Parameter.Value)
+          image=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_RESOURCE --with-decryption | jq -r .Parameter.Value)
           echo "::set-output name=definition::$GITHUB_WORKSPACE/$WORKING_DIR/$ECS_TAKS_DEFINITION_FILE"
           echo "::set-output name=image::$image"
 
@@ -186,7 +186,7 @@ jobs:
         id: ecs
         run: |
           aws ecs describe-task-definition --task-definition $ECS_TAKS_DEFINITION_USER | jq .taskDefinition > $ECS_TAKS_DEFINITION_FILE
-          image=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_USER --with-decryption | jq .Parameter.Value)
+          image=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_USER --with-decryption | jq -r .Parameter.Value)
           echo "::set-output name=definition::$GITHUB_WORKSPACE/$WORKING_DIR/$ECS_TAKS_DEFINITION_FILE"
           echo "::set-output name=image::$image"
 
@@ -227,8 +227,8 @@ jobs:
       - name: Get Lambda informations
         id: lambda
         run: |
-          cloudtrail=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_CLOUDTRAIL --with-decryption | jq .Parameter.Value)
-          unprocessed=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_UNPROCESSED --with-decryption | jq .Parameter.Value)
+          cloudtrail=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_CLOUDTRAIL --with-decryption | jq -r .Parameter.Value)
+          unprocessed=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_UNPROCESSED --with-decryption | jq -r .Parameter.Value)
           echo "::set-output name=cloudtrail::$cloudtrail"
           echo "::set-output name=unprocessed::$unprocessed"
 
