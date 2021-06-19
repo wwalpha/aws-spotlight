@@ -1,12 +1,9 @@
 name: RELEASE_D) Production Deploy
 
 on:
-  # release:
-  #   types:
-  #     - published
-  push:
-    paths:
-      - .github/workflows/release_deploy.yml
+  release:
+    types:
+      - published
 
 env:
   AWS_DEFAULT_REGION: us-east-1
