@@ -3,7 +3,7 @@ name: RELEASE_T) Setup Build
 on:
   release:
     types:
-      - edited
+      - published
 
 env:
   AWS_DEFAULT_REGION: us-east-1
