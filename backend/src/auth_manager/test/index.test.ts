@@ -1,7 +1,7 @@
 import axios, { AxiosStatic } from 'axios';
 import request from 'supertest';
 import server from '../src/server';
-import { User, Auth } from 'typings';
+import { User, Auth, System } from 'typings';
 import { DynamodbHelper } from '@alphax/dynamodb';
 import Releases from './expect/releases.json';
 
@@ -45,5 +45,13 @@ describe('auth manager', () => {
     const response = await request(server).get('/system/releases');
 
     expect(response.body).toEqual(Releases);
+  });
+
+  test('version', async () => {
+    const response = await request(server).get('/system/version');
+
+    expect(response.body).toEqual({
+      version: 'v0.2.1',
+    } as System.VersionResponse);
   });
 });

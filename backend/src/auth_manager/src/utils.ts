@@ -37,7 +37,6 @@ export const authenticateUser = (
           return;
         }
 
-        console.log(userAttributes);
         // These attributes are not mutable and should be removed from map.
         delete userAttributes.email_verified;
         delete userAttributes['custom:tenant_id'];

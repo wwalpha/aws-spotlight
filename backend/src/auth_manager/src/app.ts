@@ -106,7 +106,18 @@ export const release = async (): Promise<System.ReleaseResponse> => {
 
 /** get current version */
 export const version = async (): Promise<System.VersionResponse> => {
+  const results = await helper.get<Tables.Settings.Releases>({
+    TableName: Environments.TABLE_NAME_SETTINGS,
+    Key: {
+      Id: 'RELEASE',
+    } as Tables.Settings.Key,
+  });
+
+  if (!results || !results.Item) {
+    throw new Error('Unknown version');
+  }
+
   return {
-    version: 'v0.2.6',
+    version: results.Item.Texts[0].version,
   };
 };
