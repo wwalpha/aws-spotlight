@@ -4,6 +4,7 @@ on:
   release:
     types:
       - prereleased
+      - edited
 
 env:
   AWS_DEFAULT_REGION: us-east-1
