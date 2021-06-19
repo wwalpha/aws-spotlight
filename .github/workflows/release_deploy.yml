@@ -10,8 +10,8 @@ on:
 
 env:
   AWS_DEFAULT_REGION: us-east-1
-  TERRAFORM_WORKING_DIR: terraform
-  BACKEND_WORKING_DIR: backend
+  WORKING_DIR_TERRAFORM: terraform
+  WORKING_DIR_BACKEND: backend
   ECS_CLUSTER_NAME: arms-cluster
   ECS_TAKS_DEFINITION_FILE: task_definition.json
   ECS_TAKS_DEFINITION_AUTH: arms-auth
@@ -36,6 +36,7 @@ jobs:
       name: prod
     env:
       TF_VAR_domain_name: ${{ secrets.DOMAIN_NAME }}
+      TF_VAR_admin_email: ${{ secrets.ADMIN_EMAIL }} 
 
     steps:
       # source checkout
@@ -59,7 +60,7 @@ jobs:
 
       # Terraform Setup
       - name: Terraform Setup
-        working-directory: ${{ env.TERRAFORM_WORKING_DIR }}/setup
+        working-directory: ${{ env.WORKING_DIR_TERRAFORM }}/setup
         run: |
           mv main.tf.prod main.tf
           terraform init
@@ -67,7 +68,7 @@ jobs:
 
       # Terraform Service
       - name: Terraform Service
-        working-directory: ${{ env.TERRAFORM_WORKING_DIR }}/services
+        working-directory: ${{ env.WORKING_DIR_TERRAFORM }}/services
         run: |
           mv main.tf.prod main.tf
           terraform init
@@ -75,7 +76,7 @@ jobs:
 
       # Terraform Backend
       - name: Terraform Backend
-        working-directory: ${{ env.BACKEND_WORKING_DIR }}/terraform
+        working-directory: ${{ env.WORKING_DIR_BACKEND }}/terraform
         run: |
           mv main.tf.prod main.tf
           terraform init
@@ -252,6 +253,9 @@ jobs:
     concurrency: authorizer
     environment:
       name: prod
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR_BACKEND }}/src/authorizer
 
     steps:
       # source checkout
