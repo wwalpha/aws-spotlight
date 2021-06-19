@@ -274,7 +274,7 @@ jobs:
           yarn install
           yarn build
           cd dist && zip -r -q archive.zip *
-          echo "::set-output name=archive_file::$GITHUB_WORKSPACE/$WORKING_DIR/dist/archive.zip"
+          echo "::set-output name=archive_file::$GITHUB_WORKSPACE/$WORKING_DIR_BACKEND/src/authorizer/dist/archive.zip"
 
       # AWS Credentials
       - name: Configure AWS credentials
@@ -290,3 +290,47 @@ jobs:
         with:
           function_name: ${{ env.LAMBDA_FUNCTION_AUTHORIZER }}
           zip_file: ${{ steps.build.outputs.archive_file }}
+
+  # Release Events
+  Release_Events:
+    runs-on: ubuntu-18.04
+    # needs:
+    #   - ECS_Auth
+    #   - ECS_User
+    #   - ECS_Resource
+    concurrency: events
+    environment:
+      name: prod
+    env:
+      TABLE_NAME_SETTINGS: ${{ secrets.TABLE_NAME_SETTINGS }}
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR_BACKEND }}/src/release_events
+
+    steps:
+      # source checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Setup Node.js
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+
+      # Installation
+      - name: Build
+        run: |
+          yarn install
+
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # AWS Credentials
+      - name: Release Notes
+        run: |
+          yarn releases
