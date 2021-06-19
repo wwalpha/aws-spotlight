@@ -67,7 +67,7 @@ jobs:
 
       # Terraform Service
       - name: Terraform Service
-        working-directory: ${{ env.TERRAFORM_WORKING_DIR }}/setup
+        working-directory: ${{ env.TERRAFORM_WORKING_DIR }}/services
         run: |
           mv main.tf.prod main.tf
           terraform init
