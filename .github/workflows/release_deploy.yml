@@ -1,0 +1,288 @@
+name: RELEASE_D) Production Deploy
+
+on:
+  # release:
+  #   types:
+  #     - published
+  push:
+    paths:
+      - .github/workflows/release_deploy.yml
+
+env:
+  AWS_DEFAULT_REGION: us-east-1
+  TERRAFORM_WORKING_DIR: terraform
+  BACKEND_WORKING_DIR: backend
+  ECS_CLUSTER_NAME: arms-cluster
+  ECS_TAKS_DEFINITION_FILE: task_definition.json
+  ECS_TAKS_DEFINITION_AUTH: arms-auth
+  ECS_TAKS_DEFINITION_RESOURCE: arms-resource
+  ECS_TAKS_DEFINITION_USER: arms-user
+  ECS_SERVICE_NAME_AUTH: auth_manager
+  ECS_SERVICE_NAME_RESOURCE: resource_manager
+  ECS_SERVICE_NAME_USER: user_manager
+  LAMBDA_FUNCTION_CLOUDTRAIL: arms-cloudtrail
+  LAMBDA_FUNCTION_UNPROCESSED: arms-unprocessed
+  LAMBDA_FUNCTION_AUTHORIZER: arms-authorizer
+  SSM_PARAMETER_NAME_AUTH: /arms/repository_url/auth_manager
+  SSM_PARAMETER_NAME_RESOURCE: /arms/repository_url/resource_manager
+  SSM_PARAMETER_NAME_USER: /arms/repository_url/user_manager
+  SSM_PARAMETER_NAME_CLOUDTRAIL: /arms/repository_url/cloudtrail
+  SSM_PARAMETER_NAME_UNPROCESSED: /arms/repository_url/unprocessed
+
+jobs:
+  Terraform:
+    runs-on: ubuntu-18.04
+    environment:
+      name: prod
+    env:
+      TF_VAR_domain_name: ${{ secrets.DOMAIN_NAME }}
+
+    steps:
+      # source checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Install the latest version of Terraform CLI 
+      # and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.0
+
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Terraform Setup
+      - name: Terraform Setup
+        working-directory: ${{ env.TERRAFORM_WORKING_DIR }}/setup
+        run: |
+          mv main.tf.prod main.tf
+          terraform init
+          terraform apply -auto-approve
+
+      # Terraform Service
+      - name: Terraform Service
+        working-directory: ${{ env.TERRAFORM_WORKING_DIR }}/setup
+        run: |
+          mv main.tf.prod main.tf
+          terraform init
+          terraform apply -auto-approve
+
+      # Terraform Backend
+      - name: Terraform Backend
+        working-directory: ${{ env.BACKEND_WORKING_DIR }}/terraform
+        run: |
+          mv main.tf.prod main.tf
+          terraform init
+          terraform apply -auto-approve
+
+  # [ECS] Auth Manager
+  ECS_Auth:
+    runs-on: ubuntu-18.04
+    concurrency: auth_manager
+    environment:
+      name: prod
+
+    steps:
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Get ECS informations
+      - name: Get ECS informations
+        id: ecs
+        run: |
+          aws ecs describe-task-definition --task-definition $ECS_TAKS_DEFINITION_AUTH | jq .taskDefinition > $ECS_TAKS_DEFINITION_FILE
+          image=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_AUTH --with-decryption | jq .Parameter.Value)
+          echo "::set-output name=definition::$GITHUB_WORKSPACE/$WORKING_DIR/$ECS_TAKS_DEFINITION_FILE"
+          echo "::set-output name=image::$image"
+
+      # update task definition
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: render-web-container
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: ${{ steps.ecs.outputs.definition }}
+          container-name: ${{ env.ECS_TAKS_DEFINITION_AUTH }}
+          image: ${{ steps.ecs.outputs.definition }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.render-web-container.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE_NAME_AUTH }}
+          cluster: ${{ env.ECS_CLUSTER_NAME }}
+          wait-for-service-stability: true
+
+  # [ECS] Resource Manager
+  ECS_Resource:
+    runs-on: ubuntu-18.04
+    concurrency: resource_manager
+    environment:
+      name: prod
+
+    steps:
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Get ECS informations
+      - name: Get ECS informations
+        id: ecs
+        run: |
+          aws ecs describe-task-definition --task-definition $ECS_TAKS_DEFINITION_RESOURCE | jq .taskDefinition > $ECS_TAKS_DEFINITION_FILE
+          image=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_RESOURCE --with-decryption | jq .Parameter.Value)
+          echo "::set-output name=definition::$GITHUB_WORKSPACE/$WORKING_DIR/$ECS_TAKS_DEFINITION_FILE"
+          echo "::set-output name=image::$image"
+
+      # update task definition
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: render-web-container
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: ${{ steps.ecs.outputs.definition }}
+          container-name: ${{ env.ECS_TAKS_DEFINITION_RESOURCE }}
+          image: ${{ steps.ecs.outputs.definition }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.render-web-container.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE_NAME_RESOURCE }}
+          cluster: ${{ env.ECS_CLUSTER_NAME }}
+          wait-for-service-stability: true
+
+  # [ECS] User Manager
+  ECS_User:
+    runs-on: ubuntu-18.04
+    concurrency: user_manager
+    environment:
+      name: prod
+
+    steps:
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Get ECS informations
+      - name: Get ECS informations
+        id: ecs
+        run: |
+          aws ecs describe-task-definition --task-definition $ECS_TAKS_DEFINITION_USER | jq .taskDefinition > $ECS_TAKS_DEFINITION_FILE
+          image=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_USER --with-decryption | jq .Parameter.Value)
+          echo "::set-output name=definition::$GITHUB_WORKSPACE/$WORKING_DIR/$ECS_TAKS_DEFINITION_FILE"
+          echo "::set-output name=image::$image"
+
+      # update task definition
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: render-web-container
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: ${{ steps.ecs.outputs.definition }}
+          container-name: ${{ env.ECS_TAKS_DEFINITION_USER }}
+          image: ${{ steps.ecs.outputs.definition }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.render-web-container.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE_NAME_USER }}
+          cluster: ${{ env.ECS_CLUSTER_NAME }}
+          wait-for-service-stability: true
+
+  # [Lambda]
+  Lambda:
+    runs-on: ubuntu-18.04
+    concurrency: lambda
+    environment:
+      name: prod
+
+    steps:
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Get Lambda informations
+      - name: Get Lambda informations
+        id: lambda
+        run: |
+          cloudtrail=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_CLOUDTRAIL --with-decryption | jq .Parameter.Value)
+          unprocessed=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_UNPROCESSED --with-decryption | jq .Parameter.Value)
+          echo "::set-output name=cloudtrail::$cloudtrail"
+          echo "::set-output name=unprocessed::$unprocessed"
+
+      # Lambda Deploy
+      - name: Lambda Deploy
+        uses: appleboy/lambda-action@master
+        with:
+          function_name: ${{ env.LAMBDA_FUNCTION_CLOUDTRAIL }}
+          image_uri: ${{ steps.lambda.outputs.cloudtrail }}
+
+      # Lambda Deploy
+      - name: Lambda Deploy
+        uses: appleboy/lambda-action@master
+        with:
+          function_name: ${{ env.LAMBDA_FUNCTION_UNPROCESSED }}
+          image_uri: ${{ steps.lambda.outputs.unprocessed }}
+
+  # [Lambda] Authorizer
+  Lambda_Authorizer:
+    runs-on: ubuntu-18.04
+    concurrency: authorizer
+    environment:
+      name: prod
+
+    steps:
+      # source checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Setup Node.js
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+
+      # Install and Build
+      - name: Build
+        id: build
+        run: |
+          yarn install
+          yarn build
+          cd dist && zip -r -q archive.zip *
+          echo "::set-output name=archive_file::$GITHUB_WORKSPACE/$WORKING_DIR/dist/archive.zip"
+
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Lambda Deploy
+      - name: Lambda Deploy
+        uses: appleboy/lambda-action@master
+        with:
+          function_name: ${{ env.LAMBDA_FUNCTION_AUTHORIZER }}
+          zip_file: ${{ steps.build.outputs.archive_file }}
