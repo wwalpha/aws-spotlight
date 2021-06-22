@@ -78,6 +78,14 @@ resource "aws_iam_role_policy_attachment" "ecs_task_envoy" {
 }
 
 # ----------------------------------------------------------------------------------------------
+# AWS ECS Task Role Policy - Cognito IDP Admin
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy_attachment" "ecs_task_cognito_idp" {
+  role       = aws_iam_role.ecs_task.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonESCognitoAccess"
+}
+
+# ----------------------------------------------------------------------------------------------
 # AWS Role - AWS Batch
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role" "batch_service" {
