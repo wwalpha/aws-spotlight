@@ -1,4 +1,4 @@
-import jwtDecode from 'jwt-decode';
+import { decode } from 'jsonwebtoken';
 import { Token } from 'typings';
 import winston from 'winston';
 
@@ -12,7 +12,7 @@ export const Logger = winston.createLogger({
  *
  * @param token bearer token
  */
-export const decodeToken = (token?: string): Token.CognitoToken => {
+export const decodeToken = (token?: string) => {
   // not found
   if (!token) throw new Error(`Bearer token not exist.`);
 
@@ -30,11 +30,11 @@ export const decodeToken = (token?: string): Token.CognitoToken => {
   }
 
   // decode jwt token
-  const decoded = jwtDecode<Token.CognitoToken | undefined>(tokenValue);
+  const decoded = decode(token, { complete: true });
 
-  if (!decoded) {
+  if (decoded === null) {
     throw new Error(`Decode token failed. ${tokenValue}`);
   }
 
-  return decoded;
+  return decoded.payload;
 };
