@@ -1,9 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Chip from '@material-ui/core/Chip';
-import Typography from '@material-ui/core/Typography';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { Box, Chip, Typography } from '@material-ui/core';
 import { Domains } from 'typings';
 import { useSelector } from 'react-redux';
 

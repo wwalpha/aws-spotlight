@@ -1,4 +1,4 @@
-import { API } from '@aws-amplify/api';
+import API from '@aws-amplify/api-rest';
 import { Consts } from '@constants';
 
 export const get = async (path: string, headers?: any, name: string = Consts.API_NAME) =>

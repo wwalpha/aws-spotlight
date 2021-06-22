@@ -2,8 +2,11 @@ import * as path from 'path';
 import { Configuration, LoaderOptionsPlugin } from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
+import MomentLocalesPlugin from 'moment-locales-webpack-plugin';
 
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const MomentTimezoneDataPlugin = require('moment-timezone-data-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const configs: Configuration = {
   mode: process.env.NODE_ENV ? 'production' : 'development',
@@ -21,6 +24,14 @@ const configs: Configuration = {
     plugins: [new TsconfigPathsPlugin()],
     fallback: {
       crypto: false,
+    },
+  },
+  externals: {
+    moment: 'moment',
+    lodash: {
+      commonjs: 'lodash',
+      amd: 'lodash',
+      root: '_', // indicates global variable
     },
   },
   module: {
@@ -51,6 +62,13 @@ const configs: Configuration = {
     ],
   },
   plugins: [
+    new BundleAnalyzerPlugin(),
+    new MomentLocalesPlugin({
+      localesToKeep: ['ja'],
+    }),
+    new MomentTimezoneDataPlugin({
+      matchZones: 'Asia/Tokyo',
+    }),
     new WebpackManifestPlugin({
       writeToFileEmit: true,
     }),

@@ -4,13 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import moment from 'moment-timezone';
 import orderBy from 'lodash/orderBy';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Divider from '@material-ui/core/Divider';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+  Box,
+  Divider,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from '@material-ui/core';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import { XButton, XTable } from '@comp';
 import { ResActions } from '@actions';

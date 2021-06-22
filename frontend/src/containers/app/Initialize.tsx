@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+import { Box } from '@material-ui/core';
 import { Loading } from '@comp';
 
 const useStyles = makeStyles(({}: Theme) =>

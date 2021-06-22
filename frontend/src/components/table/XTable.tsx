@@ -1,12 +1,17 @@
 import React, { FunctionComponent } from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import TableContainer from '@material-ui/core/TableContainer';
-import Table from '@material-ui/core/Table';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import TableBody from '@material-ui/core/TableBody';
-import TablePagination from '@material-ui/core/TablePagination';
-import Paper from '@material-ui/core/Paper';
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+  TableContainer,
+  Table,
+  TableHead,
+  TableRow,
+  TableBody,
+  TablePagination,
+  Paper,
+} from '@material-ui/core';
+
 import StyledTableCell from './StyledTableCell';
 
 const useStyles = makeStyles(({ spacing }: Theme) =>

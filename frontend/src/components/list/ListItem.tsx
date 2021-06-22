@@ -1,10 +1,14 @@
 import React, { FunctionComponent, MouseEventHandler } from 'react';
 import { Link } from 'react-router-dom';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import MListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import Popover from '@material-ui/core/Popover';
-import Typography from '@material-ui/core/Typography';
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+  ListItem as MListItem,
+  ListItemIcon,
+  Popover,
+  Typography,
+} from '@material-ui/core';
 
 const useStyles = makeStyles(({ spacing }: Theme) =>
   createStyles({

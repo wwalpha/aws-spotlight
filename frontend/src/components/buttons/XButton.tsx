@@ -1,9 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Button, { ButtonProps } from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { green } from '@material-ui/core/colors';
+import { Box, CircularProgress, Button, ButtonProps, colors } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -16,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
       position: 'relative',
     },
     buttonProgress: {
-      color: green[500],
+      color: colors.green[500],
       position: 'absolute',
       top: '50%',
       left: '50%',

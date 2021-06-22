@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+import { Box } from '@material-ui/core';
 import { Paths } from '@constants';
 import { Header, ReleaseNotes, Sidemenu } from '.';
 import Service from './Service';
