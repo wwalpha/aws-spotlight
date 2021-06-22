@@ -1,7 +1,7 @@
 import { DynamodbHelper } from '@alphax/dynamodb';
 import { CognitoIdentityServiceProvider, Credentials } from 'aws-sdk';
 import express from 'express';
-import jwtDecode from 'jwt-decode';
+import { decode } from 'jsonwebtoken';
 import { Tables, User, Token } from 'typings';
 import { Environments } from './consts';
 
@@ -101,6 +101,10 @@ export const getUserPoolIdFromToken = (req: express.Request) => {
   // get iss
   const iss = decodedToken.iss;
 
+  if (!iss) {
+    throw new Error('Token decode failed.');
+  }
+
   // get user pool id
   return iss.substring(iss.lastIndexOf('/') + 1);
 };
@@ -110,17 +114,17 @@ export const getUserPoolIdFromToken = (req: express.Request) => {
  *
  * @param token bearer token
  */
-const decodeToken = (token?: string): Token.CognitoToken => {
+const decodeToken = (token?: string) => {
   // not found
   if (!token) throw new Error(`BearerToken token not exist.`);
 
   // decode jwt token
-  const decodedToken = jwtDecode<Token.CognitoToken | undefined>(token);
+  const decodedToken = decode(token, { complete: true });
 
   // decode failed
-  if (!decodedToken) throw new Error(`Decode token failed. ${token}`);
+  if (decodedToken === null) throw new Error(`Decode token failed. ${token}`);
 
-  return decodedToken;
+  return decodedToken.payload;
 };
 
 /**
