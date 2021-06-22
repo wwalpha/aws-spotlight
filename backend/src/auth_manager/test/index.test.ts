@@ -92,6 +92,8 @@ describe('auth manager', () => {
       idToken: 'Test_IdToken',
       refreshToken: 'Test_RefreshToken',
     } as Auth.InitiateAuthResponse);
+
+    jest.clearAllMocks();
   });
 
   test('release', async () => {
