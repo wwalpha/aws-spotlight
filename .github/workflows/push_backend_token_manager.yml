@@ -100,6 +100,7 @@ jobs:
           service: ${{ env.ECS_SERVICE_NAME }}
           cluster: ${{ env.ECS_CLUSTER_NAME }}
           wait-for-service-stability: true
+          force-new-deployment: true
 
       # Update Repository URL
       - name: Update ecs repository url

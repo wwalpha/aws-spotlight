@@ -122,6 +122,7 @@ jobs:
           service: ${{ env.ECS_SERVICE_NAME_AUTH }}
           cluster: ${{ env.ECS_CLUSTER_NAME }}
           wait-for-service-stability: true
+          force-new-deployment: true
 
   # [ECS] Resource Manager
   ECS_Resource:
@@ -166,6 +167,7 @@ jobs:
           service: ${{ env.ECS_SERVICE_NAME_RESOURCE }}
           cluster: ${{ env.ECS_CLUSTER_NAME }}
           wait-for-service-stability: true
+          force-new-deployment: true
 
   # [ECS] User Manager
   ECS_User:
@@ -210,6 +212,7 @@ jobs:
           service: ${{ env.ECS_SERVICE_NAME_USER }}
           cluster: ${{ env.ECS_CLUSTER_NAME }}
           wait-for-service-stability: true
+          force-new-deployment: true
 
   # [Lambda]
   Lambda:
