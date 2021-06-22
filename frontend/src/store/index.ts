@@ -5,7 +5,7 @@ import { Auth } from 'typings';
 
 export const Credentials = new CredentialManager('arms');
 
-Credentials.refreshSession = async (accessToken: string | null, refreshToken: string | null) => {
+Credentials.refreshSession = async (accessToken?: string, refreshToken?: string) => {
   if (!refreshToken) return;
 
   const res = await axios.post<Auth.InitiateAuthResponse>(
@@ -17,14 +17,13 @@ Credentials.refreshSession = async (accessToken: string | null, refreshToken: st
   );
 
   // error check
-  if (!res.data.idToken || !res.data.accessToken || !res.data.refreshToken) {
+  if (!res.data.idToken || !res.data.accessToken) {
     throw new Error('Refresh tokens failed.');
   }
 
   return {
     idToken: res.data.idToken,
     accessToken: res.data.accessToken,
-    refreshToken: res.data.refreshToken,
   };
 };
 

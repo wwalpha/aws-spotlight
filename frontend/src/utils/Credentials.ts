@@ -1,24 +1,25 @@
 import { Buffer } from 'buffer';
+import { defaultTo } from 'lodash';
 
 type Tokens = {
   idToken: string;
   accessToken: string;
-  refreshToken: string;
+  refreshToken?: string;
 };
 
-type RefreshSession = (accessToken: string | null, refreshToken: string | null) => Promise<Tokens | undefined>;
+type RefreshSession = (accessToken?: string, refreshToken?: string) => Promise<Tokens | undefined>;
 
 export default class Credentials {
-  private accessToken: string | null = null;
-  private idToken: string | null = null;
-  private refreshToken: string | null = null;
+  private accessToken?: string;
+  private idToken?: string;
+  private refreshToken?: string;
   private storage: Storage;
-  private username: string | null;
+  private username?: string;
   private keyPrefix: string;
 
   constructor(prefix: string) {
     this.storage = window.sessionStorage;
-    this.username = this.storage.getItem(`${prefix}.username`);
+    this.username = defaultTo(this.storage.getItem(`${prefix}.username`), undefined);
 
     this.keyPrefix = prefix;
   }
@@ -27,11 +28,11 @@ export default class Credentials {
   refreshSession?: RefreshSession;
 
   getSession = async () => {
-    if (this.username === null) {
+    if (!this.username) {
       return {
-        idToken: null,
-        accessToken: null,
-        refreshToken: null,
+        idToken: undefined,
+        accessToken: undefined,
+        refreshToken: undefined,
       };
     }
 
@@ -40,9 +41,9 @@ export default class Credentials {
       // refresh session not implemented
       if (!this.refreshSession || typeof this.refreshSession !== 'function') {
         return {
-          idToken: null,
-          accessToken: null,
-          refreshToken: null,
+          idToken: undefined,
+          accessToken: undefined,
+          refreshToken: undefined,
         };
       }
 
@@ -52,7 +53,6 @@ export default class Credentials {
       if (session) {
         this.idToken = session.idToken;
         this.accessToken = session.accessToken;
-        this.refreshToken = session.refreshToken;
       }
     }
 

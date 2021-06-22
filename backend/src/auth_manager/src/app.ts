@@ -10,8 +10,6 @@ import { Auth, System, Tables } from 'typings';
 const helper = new DynamodbHelper({ options: { endpoint: process.env.AWS_ENDPOINT } });
 const cognito = new CognitoIdentityServiceProvider({ endpoint: process.env.AWS_ENDPOINT });
 
-console.log(111111111111111);
-
 // health check
 export const healthCheck = () => {
   Logger.info('health check');
@@ -108,15 +106,20 @@ export const initiateAuth = async (
     })
     .promise();
 
+  const authenticationResult = results.AuthenticationResult;
+
   // refresh token failed
-  if (!results.AuthenticationResult) {
+  if (!authenticationResult) {
+    throw new Error('Refresh token auth failed.');
+  }
+
+  if (!authenticationResult.AccessToken || !authenticationResult.IdToken) {
     throw new Error('Refresh token auth failed.');
   }
 
   return {
-    idToken: results.AuthenticationResult.IdToken,
-    accessToken: results.AuthenticationResult?.AccessToken,
-    refreshToken: results.AuthenticationResult?.RefreshToken,
+    idToken: authenticationResult.IdToken,
+    accessToken: authenticationResult.AccessToken,
   };
 };
 

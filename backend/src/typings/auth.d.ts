@@ -32,8 +32,7 @@ export namespace Auth {
 
   /** Get new credentials with refresh token response */
   interface InitiateAuthResponse {
-    idToken?: string;
-    accessToken?: string;
-    refreshToken?: string;
+    idToken: string;
+    accessToken: string;
   }
 }
