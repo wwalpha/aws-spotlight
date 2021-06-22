@@ -1,16 +1,17 @@
 import express from 'express';
 import { defaultTo } from 'lodash';
-import axios from 'axios';
 import { DynamodbHelper } from '@alphax/dynamodb';
+import { CognitoIdentityServiceProvider } from 'aws-sdk';
 import { AuthenticationDetails, CognitoUser, CognitoUserPool, CognitoUserSession } from 'amazon-cognito-identity-js';
-import { authenticateUser, isAuthenticateFailure, Logger } from './utils';
-import { API_URLs, Environments } from './consts';
-import { Auth, System, User, Tables } from 'typings';
+import { authenticateUser, decodeAccessToken, isAuthenticateFailure, Logger, lookupUser } from './utils';
+import { Environments } from './consts';
+import { Auth, System, Tables } from 'typings';
 
 const helper = new DynamodbHelper({ options: { endpoint: process.env.AWS_ENDPOINT } });
+const cognito = new CognitoIdentityServiceProvider({ endpoint: process.env.AWS_ENDPOINT });
 
 // health check
-export const healthCheck = (_: any, res: express.Response) => {
+export const healthCheck = () => {
   Logger.info('health check');
 
   return { service: 'Auth Manager', isAlive: true };
@@ -39,20 +40,12 @@ export const auth = async (req: express.Request<any, any, Auth.SignInRequest>): 
   });
 
   const request = req.body;
-  const userURL = API_URLs.LookupUser(request.username);
-
-  // get userpool infos
-  const response = await axios.get<User.LookupUserResponse>(userURL);
-
-  // user not found
-  if (response.status !== 200 || response.data.isExist === false) {
-    throw new Error('User not found.');
-  }
+  const userInfo = await lookupUser(request.username);
 
   // cognito user pool
   const userPool = new CognitoUserPool({
-    ClientId: response.data.clientId as string,
-    UserPoolId: response.data.userPoolId as string,
+    ClientId: userInfo.clientId as string,
+    UserPoolId: userInfo.userPoolId as string,
   });
 
   // cognito user
@@ -83,7 +76,46 @@ export const auth = async (req: express.Request<any, any, Auth.SignInRequest>): 
   const accessToken = session.getAccessToken().getJwtToken();
   const refreshToken = session.getRefreshToken().getToken();
 
-  return { token: idToken, accessToken: accessToken, refreshToken: refreshToken };
+  return { idToken: idToken, accessToken: accessToken, refreshToken: refreshToken };
+};
+
+/**
+ * Refresh id token, access token, refresh token
+ *
+ * @param req request
+ * @returns
+ */
+export const initiateAuth = async (
+  req: express.Request<any, any, Auth.InitiateAuthRequest>
+): Promise<Auth.InitiateAuthResponse> => {
+  const accessToken = decodeAccessToken(req.body.accessToken);
+  const refreshToken = req.body.refreshToken;
+
+  // Cognito information
+  const clientId = accessToken.client_id;
+  const userPoolId = accessToken.iss.substring(accessToken.iss.lastIndexOf('/') + 1);
+
+  const results = await cognito
+    .adminInitiateAuth({
+      AuthFlow: 'REFRESH_TOKEN_AUTH',
+      AuthParameters: {
+        REFRESH_TOKEN: refreshToken,
+      },
+      ClientId: clientId,
+      UserPoolId: userPoolId,
+    })
+    .promise();
+
+  // refresh token failed
+  if (!results.AuthenticationResult) {
+    throw new Error('Refresh token auth failed.');
+  }
+
+  return {
+    idToken: results.AuthenticationResult.IdToken,
+    accessToken: results.AuthenticationResult?.AccessToken,
+    refreshToken: results.AuthenticationResult?.RefreshToken,
+  };
 };
 
 /** get release informations */
