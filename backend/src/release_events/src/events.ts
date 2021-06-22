@@ -1,6 +1,6 @@
 import { DynamodbHelper } from '@alphax/dynamodb';
 import { Tables } from 'typings';
-import Events from './configs/events.json';
+import Events from '../../cloudtrail/test/configs/events.json';
 
 const helper = new DynamodbHelper();
 const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;

@@ -17,6 +17,7 @@ jobs:
       name: dev
     env:
       TABLE_NAME_SETTINGS: ${{ secrets.TABLE_NAME_SETTINGS }}
+      TABLE_NAME_EVENT_TYPE: ${{ secrets.TABLE_NAME_EVENT_TYPE }}
     defaults:
       run:
         working-directory: ${{ env.WORKING_DIR }}
@@ -48,3 +49,4 @@ jobs:
       - name: Release Notes
         run: |
           yarn releases
+          yarn events

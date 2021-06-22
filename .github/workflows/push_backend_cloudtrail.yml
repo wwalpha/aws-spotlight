@@ -22,8 +22,6 @@ jobs:
     runs-on: ubuntu-18.04
     environment:
       name: dev
-    env:
-      TABLE_NAME_EVENT_TYPE: ${{ secrets.TABLE_NAME_EVENT_TYPE }}
     defaults:
       run:
         working-directory: ${{ env.WORKING_DIR }}
@@ -105,5 +103,4 @@ jobs:
       # Update event type table
       - name: Update Event Type
         run: |
-          yarn release
           yarn resource

@@ -291,15 +291,16 @@ jobs:
   # Release Events
   Release_Events:
     runs-on: ubuntu-18.04
-    # needs:
-    #   - ECS_Auth
-    #   - ECS_User
-    #   - ECS_Resource
+    needs:
+      - ECS_Auth
+      - ECS_User
+      - ECS_Resource
     concurrency: events
     environment:
       name: prod
     env:
       TABLE_NAME_SETTINGS: ${{ secrets.TABLE_NAME_SETTINGS }}
+      TABLE_NAME_EVENT_TYPE: ${{ secrets.TABLE_NAME_EVENT_TYPE }}
     defaults:
       run:
         working-directory: ${{ env.WORKING_DIR_BACKEND }}/src/release_events
@@ -331,3 +332,4 @@ jobs:
       - name: Release Notes
         run: |
           yarn releases
+          yarn events
