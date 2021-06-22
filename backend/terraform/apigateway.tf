@@ -83,6 +83,12 @@ resource "aws_apigatewayv2_route" "post_auth" {
   target    = "integrations/${local.apigateway_integration_auth}"
 }
 
+resource "aws_apigatewayv2_route" "auth_initiate" {
+  api_id    = local.apigateway_id
+  route_key = "POST /auth/initiate"
+  target    = "integrations/${local.apigateway_integration_auth}"
+}
+
 # ---------------------------------------------------------------------------------------------
 # API Gateway Route - System
 # ---------------------------------------------------------------------------------------------
