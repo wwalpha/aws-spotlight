@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon ./src/index.ts dotenv_config_path=.env.dev",
     "build": "tsc -p tsconfig.build.json",
-    "start": "ts-node src/index.ts",
+    "start": "node index.js",
     "test": "jest"
   },
   "devDependencies": {
