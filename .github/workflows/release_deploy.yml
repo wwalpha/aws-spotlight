@@ -82,6 +82,8 @@ jobs:
   # [ECS] Auth Manager
   ECS_Auth:
     runs-on: ubuntu-18.04
+    needs:
+      - Terraform
     concurrency: auth_manager
     environment:
       name: prod
@@ -124,6 +126,8 @@ jobs:
   # [ECS] Resource Manager
   ECS_Resource:
     runs-on: ubuntu-18.04
+    needs:
+      - Terraform
     concurrency: resource_manager
     environment:
       name: prod
@@ -166,6 +170,8 @@ jobs:
   # [ECS] User Manager
   ECS_User:
     runs-on: ubuntu-18.04
+    needs:
+      - Terraform
     concurrency: user_manager
     environment:
       name: prod
@@ -208,6 +214,8 @@ jobs:
   # [Lambda]
   Lambda:
     runs-on: ubuntu-18.04
+    needs:
+      - Terraform
     concurrency: lambda
     environment:
       name: prod
@@ -247,6 +255,8 @@ jobs:
   # [Lambda] Authorizer
   Lambda_Authorizer:
     runs-on: ubuntu-18.04
+    needs:
+      - Terraform
     concurrency: authorizer
     environment:
       name: prod
