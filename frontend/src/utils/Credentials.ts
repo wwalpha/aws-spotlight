@@ -1,15 +1,17 @@
+import { Buffer } from 'buffer';
+
 type Tokens = {
   idToken: string;
   accessToken: string;
   refreshToken: string;
 };
 
-type RefreshSession = () => Promise<Tokens>;
+type RefreshSession = (accessToken: string | null, refreshToken: string | null) => Promise<Tokens | undefined>;
 
 export default class Credentials {
-  private accessToken?: string | null;
-  private idToken?: string | null;
-  private refreshToken?: string | null;
+  private accessToken: string | null = null;
+  private idToken: string | null = null;
+  private refreshToken: string | null = null;
   private storage: Storage;
   private username: string | null;
   private keyPrefix: string;
@@ -26,21 +28,32 @@ export default class Credentials {
 
   getSession = async () => {
     if (this.username === null) {
-      throw new Error('Username is null. Cannot retrieve a new session.');
+      return {
+        idToken: null,
+        accessToken: null,
+        refreshToken: null,
+      };
     }
 
     // token valid
     if (!this.isTokenValid()) {
+      // refresh session not implemented
       if (!this.refreshSession || typeof this.refreshSession !== 'function') {
-        throw new Error('Refresh session function not implemented');
+        return {
+          idToken: null,
+          accessToken: null,
+          refreshToken: null,
+        };
       }
 
       // refresh session
-      const session = await this.refreshSession();
+      const session = await this.refreshSession(this.accessToken, this.refreshToken);
 
-      this.idToken = session.idToken;
-      this.accessToken = session.accessToken;
-      this.refreshToken = session.refreshToken;
+      if (session) {
+        this.idToken = session.idToken;
+        this.accessToken = session.accessToken;
+        this.refreshToken = session.refreshToken;
+      }
     }
 
     return {
@@ -48,6 +61,11 @@ export default class Credentials {
       accessToken: this.accessToken,
       refreshToken: this.refreshToken,
     };
+  };
+
+  setUsername = (username: string) => {
+    this.username = username;
+    this.storage.setItem(`${this.keyPrefix}.username`, username);
   };
 
   setUserTokens = (tokens: Tokens) => {
@@ -84,7 +102,7 @@ export default class Credentials {
     const texts = this.accessToken.split('.');
 
     // token format error
-    if (texts.length !== 2) {
+    if (texts.length !== 3) {
       return false;
     }
 
@@ -97,6 +115,7 @@ export default class Credentials {
       // token expired
       return token.exp + 1000 < new Date().getTime();
     } catch (err) {
+      console.log(err);
       // token format error
       return false;
     }

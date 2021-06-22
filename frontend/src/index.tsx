@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import API from '@aws-amplify/api-rest';
 import { MuiThemeProvider } from '@material-ui/core';
-import store, { history } from './store';
+import store, { history, Credentials } from './store';
 import theme from './Theme';
 import Authenticator from './Authenticator';
 import { App } from '@containers';
@@ -17,7 +17,7 @@ API.configure({
       endpoint: Environments.BACKEND_API_URL,
       region: Environments.AWS_DEFAULT_REGION,
       custom_header: async () => {
-        return { Authorization: window.sessionStorage.getItem('token') };
+        return { Authorization: (await Credentials.getSession()).idToken };
       },
     },
   ],

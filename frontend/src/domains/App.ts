@@ -13,8 +13,8 @@ export default class App {
   title: string = 'AWS RESOURCE MANAGEMENT SYSTEM';
   // version
   version?: string;
-  // token
-  authorizationToken?: string | null = window.sessionStorage.getItem('token');
+  // sign reponse token
+  signResponse?: Auth.SignInResponse;
   // username
   userName?: string;
   // mfa required flag
@@ -45,11 +45,8 @@ export default class App {
       draft.newPasswordRequired = response.newPasswordRequired;
       draft.userName = username;
 
-      if (response.token && response.accessToken && response.refreshToken) {
-        draft.authorizationToken = response.token;
-        window.sessionStorage.setItem('token', response.token);
-        window.sessionStorage.setItem('accessToken', response.accessToken);
-        window.sessionStorage.setItem('refreshToken', response.refreshToken);
+      if (response.idToken && response.accessToken && response.refreshToken) {
+        draft.signResponse = response;
       }
     });
   }

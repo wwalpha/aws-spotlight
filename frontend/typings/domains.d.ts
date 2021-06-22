@@ -1,4 +1,5 @@
 import { Tables } from '.';
+import { Auth } from './index';
 
 export namespace Domains {
   /** Domain State */
@@ -25,7 +26,7 @@ export namespace Domains {
     // new password required
     newPasswordRequired?: boolean;
     // jwt token
-    authorizationToken?: string;
+    signResponse?: Auth.SignInResponse;
     // category list
     categories?: string[];
     // release notes

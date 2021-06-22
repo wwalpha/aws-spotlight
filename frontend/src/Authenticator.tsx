@@ -3,22 +3,42 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NewPassword, SignIn, App, Initialize } from '@containers';
 import { AppActions } from '@actions';
+import { Credentials } from './store';
+import { Token } from '@utils';
 import { Domains } from 'typings';
 
 const appState = (state: Domains.State) => state.app;
 
 const Authenticator: React.FunctionComponent = () => {
   const [isLogin, setLogin] = React.useState<boolean>();
-  const { authorizationToken, newPasswordRequired, initialized } = useSelector(appState);
+  const { signResponse, newPasswordRequired, initialized } = useSelector(appState);
   const dispatch = useDispatch();
   const actions = bindActionCreators(AppActions, dispatch);
 
   React.useEffect(() => {
-    setLogin(authorizationToken !== null);
+    if (!signResponse) return;
+
+    const { idToken, accessToken, refreshToken } = signResponse;
+
+    if (!idToken || !accessToken || !refreshToken) return;
+
+    const username = Token.getUsername(accessToken);
+
+    // username
+    Credentials.setUsername(username);
+    // tokens cache
+    Credentials.setUserTokens({
+      idToken: idToken,
+      accessToken: accessToken,
+      refreshToken: refreshToken,
+    });
+
+    // set login status
+    setLogin(true);
 
     // initialize start
     actions.initialize();
-  }, [authorizationToken]);
+  }, [signResponse]);
 
   // new password required
   if (newPasswordRequired === true) {
@@ -26,7 +46,7 @@ const Authenticator: React.FunctionComponent = () => {
   }
 
   // logined
-  if (!isLogin && !authorizationToken) {
+  if (!isLogin && !signResponse) {
     return <SignIn />;
   }
 
