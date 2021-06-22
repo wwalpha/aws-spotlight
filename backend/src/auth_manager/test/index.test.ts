@@ -55,7 +55,7 @@ describe('auth manager', () => {
     expect(response.statusCode).toBe(200);
   });
 
-  test('/auth/initiate', async () => {
+  test('auth initiate', async () => {
     CognitoIdentityServiceProvider.prototype.adminInitiateAuth = jest.fn().mockImplementationOnce(() => ({
       promise: () =>
         Promise.resolve({

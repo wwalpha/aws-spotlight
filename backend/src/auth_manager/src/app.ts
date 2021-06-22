@@ -10,6 +10,8 @@ import { Auth, System, Tables } from 'typings';
 const helper = new DynamodbHelper({ options: { endpoint: process.env.AWS_ENDPOINT } });
 const cognito = new CognitoIdentityServiceProvider({ endpoint: process.env.AWS_ENDPOINT });
 
+console.log(111111111111111);
+
 // health check
 export const healthCheck = () => {
   Logger.info('health check');
