@@ -1,5 +1,4 @@
 import { decode } from 'jsonwebtoken';
-import { Token } from 'typings';
 import winston from 'winston';
 
 export const Logger = winston.createLogger({
