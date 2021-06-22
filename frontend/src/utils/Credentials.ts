@@ -1,5 +1,5 @@
 import { Buffer } from 'buffer';
-import { defaultTo } from 'lodash';
+import defaultTo from 'lodash/defaultTo';
 
 type Tokens = {
   idToken: string;
