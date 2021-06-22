@@ -1,12 +1,6 @@
-import AWS from 'aws-sdk';
 import express from 'express';
 import { json, urlencoded } from 'body-parser';
-import { auth, common, healthCheck, release, version } from './app';
-
-AWS.config.update({
-  region: process.env.AWS_REGION,
-  dynamodb: { endpoint: process.env.AWS_ENDPOINT },
-});
+import { auth, common, healthCheck, initiateAuth, release, version } from './app';
 
 // Instantiate application
 const app = express();
@@ -24,6 +18,9 @@ app.get('/auth/health', async (req, res) => await common(req, res, healthCheck))
 
 // process login request
 app.post('/auth', async (req, res) => await common(req, res, auth));
+
+// refresh tokens
+app.post('/auth/initiate', async (req, res) => await common(req, res, initiateAuth));
 
 // get system version no
 app.get('/system/version', async (req, res) => await common(req, res, version));
