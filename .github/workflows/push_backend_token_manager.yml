@@ -99,7 +99,7 @@ jobs:
           task-definition: ${{ steps.render-web-container.outputs.task-definition }}
           service: ${{ env.ECS_SERVICE_NAME }}
           cluster: ${{ env.ECS_CLUSTER_NAME }}
-          wait-for-service-stability: false
+          wait-for-service-stability: true
 
       # Update Repository URL
       - name: Update ecs repository url
