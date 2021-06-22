@@ -62,7 +62,7 @@ const configs: Configuration = {
     ],
   },
   plugins: [
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     new MomentLocalesPlugin({
       localesToKeep: ['ja'],
     }),
