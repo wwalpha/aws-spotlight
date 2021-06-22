@@ -1,8 +1,7 @@
 import express from 'express';
-import jwtDecode from 'jwt-decode';
 import { defaultTo } from 'lodash';
 import winston from 'winston';
-import { Token } from 'typings';
+import { decode } from 'jsonwebtoken';
 
 export const Logger = winston.createLogger({
   level: 'info',
@@ -33,17 +32,17 @@ export const common = async (req: express.Request, res: express.Response, app: a
  *
  * @param token bearer token
  */
-export const decodeToken = (token: string): Token.CognitoToken => {
+export const decodeToken = (token: string) => {
   // decode jwt token
-  const decodedToken = jwtDecode<Token.CognitoToken | undefined>(token);
+  const decodedToken = decode(token, { complete: true });
 
   // decode failed
-  if (!decodedToken) throw new Error(`Decode token failed. ${token}`);
+  if (decodedToken === null) throw new Error(`Decode token failed. ${token}`);
 
-  return decodedToken;
+  return decodedToken.payload;
 };
 
-export const getToken = (req: express.Request): Token.CognitoToken => {
+export const getToken = (req: express.Request) => {
   const authorizationToken = req.headers['authorization'] as string;
 
   // decode token
