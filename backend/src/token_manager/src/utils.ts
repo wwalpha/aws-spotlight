@@ -29,7 +29,7 @@ export const decodeToken = (token?: string) => {
   }
 
   // decode jwt token
-  const decoded = decode(token, { complete: true });
+  const decoded = decode(tokenValue, { complete: true });
 
   if (decoded === null) {
     throw new Error(`Decode token failed. ${tokenValue}`);
