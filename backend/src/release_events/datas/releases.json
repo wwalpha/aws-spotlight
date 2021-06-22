@@ -1,5 +1,23 @@
 [
   {
+    "version": "v0.2.8",
+    "date": "2021-06-23",
+    "texts": [
+      {
+        "type": "FEATURE",
+        "text": "[Frontend] Added Credentials class for token lifecycle management"
+      },
+      {
+        "type": "FEATURE",
+        "text": "[API] Version api implemented"
+      },
+      {
+        "type": "FEATURE",
+        "text": "[API] Refresh token api implemented"
+      }
+    ]
+  },
+  {
     "version": "v0.2.7",
     "date": "2021-06-19",
     "texts": [
