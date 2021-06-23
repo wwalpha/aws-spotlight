@@ -1,5 +1,19 @@
 [
   {
+    "version": "v0.2.9",
+    "date": "2021-06-23",
+    "texts": [
+      {
+        "type": "FEATURE",
+        "text": "[Frontend] Added new target resources. (Lambda,IAM)"
+      },
+      {
+        "type": "FEATURE",
+        "text": "[Backend] Added CreateVpcEndpoint / DeleteVpcEndpoints events."
+      }
+    ]
+  },
+  {
     "version": "v0.2.8",
     "date": "2021-06-23",
     "texts": [
