@@ -16,29 +16,36 @@ const Authenticator: React.FunctionComponent = () => {
   const actions = bindActionCreators(AppActions, dispatch);
 
   React.useEffect(() => {
-    if (!signResponse) return;
+    const session = async () => {
+      const credentials = await Credentials.getSession();
 
-    const { idToken, accessToken, refreshToken } = signResponse;
+      if (!credentials && !signResponse) {
+        return;
+      }
 
-    if (!idToken || !accessToken || !refreshToken) return;
+      // user signed
+      if (signResponse) {
+        const { idToken, accessToken, refreshToken } = signResponse;
+        if (!idToken || !accessToken || !refreshToken) return;
+        const username = Token.getUsername(accessToken);
+        // username
+        Credentials.setUsername(username);
+        // tokens cache
+        Credentials.setUserTokens({
+          idToken: idToken,
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+        });
+      }
 
-    const username = Token.getUsername(accessToken);
+      // set login status
+      setLogin(true);
+      // initialize start
+      actions.initialize();
+    };
 
-    // username
-    Credentials.setUsername(username);
-    // tokens cache
-    Credentials.setUserTokens({
-      idToken: idToken,
-      accessToken: accessToken,
-      refreshToken: refreshToken,
-    });
-
-    // set login status
-    setLogin(true);
-
-    // initialize start
-    actions.initialize();
-  }, [signResponse]);
+    session();
+  }, [isLogin, signResponse]);
 
   // new password required
   if (newPasswordRequired === true) {

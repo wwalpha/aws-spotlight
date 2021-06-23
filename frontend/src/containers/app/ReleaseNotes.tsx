@@ -29,11 +29,10 @@ export const ReleaseNotes = () => {
   const classes = useStyles();
   const { releaseNotes } = useSelector(appState);
 
-  console.log(releaseNotes);
   return (
     <Box display="flex" flexDirection="column" margin="16px">
       {releaseNotes?.map((item) => (
-        <Box>
+        <Box key={item.version}>
           <Box display="flex" alignItems="baseline">
             <Typography variant="h4" className={classes.version}>
               {item.version}
@@ -42,9 +41,9 @@ export const ReleaseNotes = () => {
               {item.date}
             </Typography>
           </Box>
-          {item.texts.map((text) => {
+          {item.texts.map((text, idx) => {
             return (
-              <Box display="flex" alignItems="center" margin="8px 16px">
+              <Box key={`${text.type}.${idx}`} display="flex" alignItems="center" margin="8px 16px">
                 <Chip label="FEATURE" color="primary" className={clsx(classes.feature, classes.chip)} />
                 <Typography variant="subtitle1" className={classes.announce}>
                   {text.text}

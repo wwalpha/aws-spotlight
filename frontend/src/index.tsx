@@ -17,7 +17,7 @@ API.configure({
       endpoint: Environments.BACKEND_API_URL,
       region: Environments.AWS_DEFAULT_REGION,
       custom_header: async () => {
-        return { Authorization: (await Credentials.getSession()).idToken };
+        return { Authorization: (await Credentials.getSession())?.idToken };
       },
     },
   ],

@@ -21,30 +21,33 @@ export default class Credentials {
     this.storage = window.sessionStorage;
     this.username = defaultTo(this.storage.getItem(`${prefix}.username`), undefined);
 
+    if (this.username) {
+      this.idToken = defaultTo(this.storage.getItem(`${prefix}.${this.username}.idToken`), undefined);
+      this.accessToken = defaultTo(this.storage.getItem(`${prefix}.${this.username}.accessToken`), undefined);
+      this.refreshToken = defaultTo(this.storage.getItem(`${prefix}.${this.username}.refreshToken`), undefined);
+    }
+
     this.keyPrefix = prefix;
   }
 
   /** refresh session tokens */
   refreshSession?: RefreshSession;
 
-  getSession = async () => {
+  getSession = async (): Promise<Tokens | undefined> => {
     if (!this.username) {
-      return {
-        idToken: undefined,
-        accessToken: undefined,
-        refreshToken: undefined,
-      };
+      return;
     }
 
     // token valid
     if (!this.isTokenValid()) {
       // refresh session not implemented
       if (!this.refreshSession || typeof this.refreshSession !== 'function') {
-        return {
-          idToken: undefined,
-          accessToken: undefined,
-          refreshToken: undefined,
-        };
+        return;
+      }
+
+      // validation
+      if (!this.accessToken || !this.refreshToken) {
+        return;
       }
 
       // refresh session
@@ -57,8 +60,8 @@ export default class Credentials {
     }
 
     return {
-      idToken: this.idToken,
-      accessToken: this.accessToken,
+      idToken: this.idToken as string,
+      accessToken: this.accessToken as string,
       refreshToken: this.refreshToken,
     };
   };
