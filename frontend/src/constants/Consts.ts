@@ -11,6 +11,7 @@ export const SERVICES = {
   S3: 's3.amazonaws.com',
   DS: 'ds.amazonaws.com',
   IAM: 'iam.amazonaws.com',
+  LAMBDA: 'lambda.amazonaws.com',
 };
 
 export const API_URLs = {

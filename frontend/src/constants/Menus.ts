@@ -10,6 +10,13 @@ const MENUS = [
     icon: SVG.EC2Icon,
   },
   {
+    eventSource: SERVICES.LAMBDA,
+    category: 'compute',
+    title: 'AWS LAMBDA',
+    path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.LAMBDA],
+    icon: SVG.LambdaIcon,
+  },
+  {
     eventSource: SERVICES.RDS,
     category: 'database',
     title: 'Amazon RDS',
