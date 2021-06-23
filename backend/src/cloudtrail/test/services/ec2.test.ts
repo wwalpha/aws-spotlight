@@ -1,9 +1,10 @@
 import AWS from 'aws-sdk';
-import { getHistory, getResource, scanResource, sendMessage } from '@test/configs/utils';
+import { getHistory, getResource, sendMessage } from '@test/configs/utils';
 import * as CreateEvents from '@test/datas/create';
 import * as DeleteEvents from '@test/datas/delete';
 import * as EC2 from '@test/expect/ec2';
 import { cloudtrail } from '@src/index';
+import * as fs from 'fs';
 
 AWS.config.update({
   region: process.env.AWS_REGION,
@@ -282,5 +283,40 @@ describe('ec2.amazonaws.com', () => {
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteVolume_H);
+  });
+
+  test('EC2_CreateVpcEndpoint', async () => {
+    const event = await sendMessage(CreateEvents.EC2_CreateVpcEndpoint);
+
+    await cloudtrail(event);
+
+    const resource = await getResource({
+      EventSource: 'ec2.amazonaws.com',
+      ResourceId: 'vpce-0ef9277730bf26b70',
+    });
+    const history = await getHistory({ EventId: 'a3dc47d9-6d40-45da-b496-a435083c68bc' });
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.CreateVpcEndpoint_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.CreateVpcEndpoint_H);
+  });
+
+  test('EC2_DeleteVpcEndpoints', async () => {
+    const event = await sendMessage(DeleteEvents.EC2_DeleteVpcEndpoints);
+
+    await cloudtrail(event);
+
+    const resource = await getResource({
+      EventSource: 'ec2.amazonaws.com',
+      ResourceId: 'vpce-0ef9277730bf26b70',
+    });
+    const history = await getHistory({ EventId: '325e694c-c7d7-45d8-8d5b-134922b5e495' });
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.DeleteVpcEndpoints_H);
   });
 });

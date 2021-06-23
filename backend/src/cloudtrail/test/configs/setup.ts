@@ -14,6 +14,8 @@ AWS.config.update({
 const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
 
 const setup = async () => {
+  console.log('jest setup start...');
+
   const s3Client = new S3();
   const sqsClient = new SQS();
   const helper = new DynamodbHelper({ options: { endpoint: process.env.AWS_ENDPOINT } });
@@ -94,6 +96,8 @@ const setup = async () => {
   ]);
 
   await helper.bulk(TABLE_NAME_EVENT_TYPE, Events);
+
+  console.log('jest setup end...');
 };
 
 // setup();

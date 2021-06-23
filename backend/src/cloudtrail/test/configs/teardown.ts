@@ -15,6 +15,8 @@ const sqsClient = new SQS();
 const dbClient = new DynamoDB();
 
 const teardown = async () => {
+  console.log('jest teardown start...');
+
   const objects = await listObject();
 
   // remove all objects
@@ -32,6 +34,8 @@ const teardown = async () => {
   await dbClient.deleteTable({ TableName: process.env.TABLE_NAME_RESOURCE as string }).promise();
   await dbClient.deleteTable({ TableName: process.env.TABLE_NAME_UNPROCESSED as string }).promise();
   await dbClient.deleteTable({ TableName: process.env.TABLE_NAME_HISTORY as string }).promise();
+
+  console.log('jest teardown end...');
 };
 
 export const listObject = async (token?: string): Promise<S3.Object[]> => {

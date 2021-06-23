@@ -30,3 +30,7 @@ export { default as DeleteVpc_H } from './DeleteVpc_H.json';
 export { default as CreateVolume_H } from './CreateVolume_H.json';
 export { default as CreateVolume_R } from './CreateVolume_R.json';
 export { default as DeleteVolume_H } from './DeleteVolume_H.json';
+
+export { default as CreateVpcEndpoint_H } from './CreateVpcEndpoint_H.json';
+export { default as CreateVpcEndpoint_R } from './CreateVpcEndpoint_R.json';
+export { default as DeleteVpcEndpoints_H } from './DeleteVpcEndpoints_H.json';
