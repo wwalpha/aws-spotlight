@@ -15,7 +15,7 @@ const dev: Configuration = {
       path: './.env.dev',
     }),
     new HtmlWebpackPlugin({
-      title: 'development',
+      title: 'AWS Resource Management',
       filename: 'index.html',
       template: path.join(__dirname, '../ejs/app.ejs'),
       minify: false,

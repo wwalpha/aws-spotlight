@@ -10,7 +10,7 @@ const prod: Configuration = {
   plugins: [
     new EnvironmentPlugin(['BACKEND_API_URL', 'AWS_DEFAULT_REGION']),
     new HtmlWebpackPlugin({
-      title: 'production',
+      title: 'AWS Resource Management',
       filename: 'index.html',
       template: path.join(__dirname, '../ejs/app.ejs'),
       minify: false,
