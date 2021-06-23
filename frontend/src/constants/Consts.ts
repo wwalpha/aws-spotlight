@@ -10,6 +10,7 @@ export const SERVICES = {
   ELB: 'elasticloadbalancing.amazonaws.com',
   S3: 's3.amazonaws.com',
   DS: 'ds.amazonaws.com',
+  IAM: 'iam.amazonaws.com',
 };
 
 export const API_URLs = {

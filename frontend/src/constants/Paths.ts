@@ -12,6 +12,7 @@ export const ROUTE_PATH_INDEX = {
   EFS: 107,
   S3: 108,
   DS: 109,
+  IAM: 110,
 };
 
 export const ROUTE_PATHS = {
@@ -28,4 +29,5 @@ export const ROUTE_PATHS = {
   [ROUTE_PATH_INDEX.EFS]: '/service/elasticfilesystem',
   [ROUTE_PATH_INDEX.S3]: '/service/s3',
   [ROUTE_PATH_INDEX.DS]: '/service/ds',
+  [ROUTE_PATH_INDEX.IAM]: '/service/iam',
 };

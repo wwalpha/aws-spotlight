@@ -45,11 +45,11 @@ const MENUS = [
     icon: SVG.ELBIcon,
   },
   {
-    eventSource: SERVICES.EKS,
-    category: 'container',
-    title: 'Amazon EKS',
-    path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.EKS],
-    icon: SVG.EKSIcon,
+    eventSource: SERVICES.IAM,
+    category: 'security',
+    title: 'AWS IAM',
+    path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.IAM],
+    icon: SVG.IAMIcon,
   },
   {
     eventSource: SERVICES.DS,
@@ -57,6 +57,13 @@ const MENUS = [
     title: 'AWS DIRECTORY SERVICE',
     path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.DS],
     icon: SVG.DSIcon,
+  },
+  {
+    eventSource: SERVICES.EKS,
+    category: 'container',
+    title: 'Amazon EKS',
+    path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.EKS],
+    icon: SVG.EKSIcon,
   },
 ];
 
