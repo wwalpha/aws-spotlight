@@ -22,7 +22,10 @@ const useStyles = makeStyles(({ spacing, transitions, mixins, palette }: Theme) 
       '&:hover': { backgroundColor: 'rgba(111, 44, 145, 0.8)' },
     },
     menuIcon: { color: palette.common.white },
-    list: {},
+    list: {
+      maxHeight: 'calc(100vh - 80px)',
+      overflowY: 'auto',
+    },
     // drawer: {
     //   width: drawerWidth,
     //   flexShrink: 0,
@@ -71,7 +74,7 @@ export const Sidemenu = () => {
           <MenuIcon className={classes.menuIcon} fontSize="large" />
         </IconButton>
       </Box>
-      <List>
+      <List className={classes.list}>
         {menus.map((item) => (
           <ListItem
             key={`${item.title}idx`}
