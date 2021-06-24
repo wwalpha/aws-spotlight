@@ -43,3 +43,8 @@ export const unprocessed = async () => {
   // create records
   await processDelete(events);
 };
+
+process.on('unhandledRejection', (err) => {
+  // @ts-ignore
+  Logger.error(err?.message, err);
+});
