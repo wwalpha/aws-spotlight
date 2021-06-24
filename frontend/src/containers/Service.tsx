@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import moment from 'moment-timezone';
 import orderBy from 'lodash/orderBy';
+import filter from 'lodash/filter';
 import {
   createStyles,
   makeStyles,
@@ -19,7 +20,6 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import { XButton, XTable } from '@comp';
 import { ResActions } from '@actions';
 import { Domains } from 'typings';
-import { filter } from 'lodash';
 
 const useStyles = makeStyles(({ spacing, palette }: Theme) =>
   createStyles({
