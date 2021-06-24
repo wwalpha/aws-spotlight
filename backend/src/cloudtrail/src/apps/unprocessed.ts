@@ -1,4 +1,5 @@
 import { DynamodbHelper } from '@alphax/dynamodb';
+import { uniqBy } from 'lodash';
 import { CloudTrail, Tables } from 'typings';
 import { Environments } from './utils/consts';
 import { getCreateResourceItem, getRemoveResourceItem } from './utils/events';
@@ -121,8 +122,10 @@ export const processCreate = async (events: Tables.EventType[]) => {
       .map((item) => item && getCreateResourceItem(item))
       .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
+    const uniqItems = uniqBy(createItems, 'ResourceId');
+
     // bulk insert resource
-    await helper.bulk(Environments.TABLE_NAME_RESOURCE, createItems);
+    await helper.bulk(Environments.TABLE_NAME_RESOURCE, uniqItems);
     // bulk insert history
     await registHistory(rawRecords);
 
