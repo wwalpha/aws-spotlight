@@ -1,5 +1,19 @@
 [
   {
+    "version": "v0.3.0",
+    "date": "2021-06-24",
+    "texts": [
+      {
+        "type": "FEATURE",
+        "text": "[Frontend] Auto resign use cookies."
+      },
+      {
+        "type": "BUGFIX",
+        "text": "Some bug fixs."
+      }
+    ]
+  },
+  {
     "version": "v0.2.9",
     "date": "2021-06-23",
     "texts": [
