@@ -116,7 +116,7 @@ export default class Credentials {
       if (!token.exp) return false;
 
       // token expired
-      return token.exp + 1000 < new Date().getTime();
+      return token.exp > new Date().getTime() / 1000;
     } catch (err) {
       console.log(err);
       // token format error
