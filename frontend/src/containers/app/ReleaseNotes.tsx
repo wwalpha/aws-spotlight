@@ -20,6 +20,13 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
     },
     version: { fontFamily: 'fantasy' },
     date: { fontFamily: 'fantasy', paddingLeft: spacing(2) },
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      margin: spacing(2),
+      overflowY: 'auto',
+      height: 'calc(100vh - 64px)',
+    },
   })
 );
 
@@ -30,7 +37,7 @@ export const ReleaseNotes = () => {
   const { releaseNotes } = useSelector(appState);
 
   return (
-    <Box display="flex" flexDirection="column" margin="16px">
+    <Box className={classes.container}>
       {releaseNotes?.map((item) => (
         <Box key={item.version}>
           <Box display="flex" alignItems="baseline">
