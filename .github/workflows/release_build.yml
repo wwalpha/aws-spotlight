@@ -13,6 +13,7 @@ env:
   AWS_DEFAULT_REGION: us-east-1
   WORKING_DIR_TERRAFORM: terraform
   WORKING_DIR_BACKEND: backend
+  WORKING_DIR_FRONTEND: frontend
   ECR_REPOSITORY_RESOURCE: arms/resource
   ECR_REPOSITORY_AUTH: arms/auth
   ECR_REPOSITORY_USER: arms/user
@@ -432,3 +433,43 @@ jobs:
         run: |
           yarn install
           yarn build
+
+  # Frontend
+  Frontend:
+    runs-on: ubuntu-18.04
+    concurrency: frontend
+    environment:
+      name: prod
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR_FRONTEND }}
+
+    steps:
+      # source checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Setup Node.js
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Install and Build
+      - name: Build
+        run: |
+          export NODE_ENV=production
+          yarn install --production=false
+          yarn build
+
+      # AWS Credentials
+      # - name: Upload files
+      #   run: |
+      #     aws s3 cp dist s3://$FRONTEND_BUCKET --recursive
