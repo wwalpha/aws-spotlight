@@ -3,7 +3,7 @@ import { CloudTrail, Tables } from 'typings';
 
 export const ES_CreateElasticsearchDomain = (record: CloudTrail.Record): Tables.Resource => ({
   UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
-  ResourceId: record.responseElements.domainStatus.domainName,
+  ResourceId: record.responseElements.domainStatus.aRN,
   ResourceName: record.responseElements.domainStatus.domainName,
   EventName: record.eventName,
   EventSource: record.eventSource,

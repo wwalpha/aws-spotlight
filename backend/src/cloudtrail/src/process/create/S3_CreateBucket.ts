@@ -3,7 +3,7 @@ import { CloudTrail, Tables } from 'typings';
 
 export const S3_CreateBucket = (record: CloudTrail.Record): Tables.Resource => ({
   UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
-  ResourceId: record.requestParameters.bucketName,
+  ResourceId: `arn:aws:s3:::${record.requestParameters.bucketName}`,
   ResourceName: record.requestParameters.bucketName,
   EventName: record.eventName,
   EventSource: record.eventSource,

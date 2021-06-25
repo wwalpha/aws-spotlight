@@ -3,7 +3,7 @@ import { CloudTrail, Tables } from 'typings';
 
 export const DYNAMODB_CreateTable = (record: CloudTrail.Record): Tables.Resource => ({
   UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
-  ResourceId: record.responseElements.tableDescription.tableName,
+  ResourceId: record.responseElements.tableDescription.tableArn,
   ResourceName: record.responseElements.tableDescription.tableName,
   EventName: record.eventName,
   EventSource: record.eventSource,

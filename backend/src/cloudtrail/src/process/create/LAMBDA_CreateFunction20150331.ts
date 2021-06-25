@@ -3,7 +3,7 @@ import { CloudTrail, Tables } from 'typings';
 
 export const LAMBDA_CreateFunction20150331 = (record: CloudTrail.Record): Tables.Resource => ({
   UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
-  ResourceId: record.responseElements.functionName,
+  ResourceId: record.responseElements.functionArn,
   ResourceName: record.responseElements.functionName,
   EventName: record.eventName,
   EventSource: record.eventSource,

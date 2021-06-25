@@ -4,7 +4,7 @@ import { CloudTrail, Tables } from 'typings';
 export const EC2_CreateClientVpnEndpoint = (record: CloudTrail.Record): Tables.Resource => ({
   UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
   ResourceId: record.responseElements.CreateClientVpnEndpointResponse.clientVpnEndpointId,
-  ResourceName: record.responseElements.CreateClientVpnEndpointResponse.clientVpnEndpointId,
+  ResourceName: record.responseElements.CreateClientVpnEndpointResponse.dnsName,
   EventName: record.eventName,
   EventSource: record.eventSource,
   EventTime: record.eventTime,

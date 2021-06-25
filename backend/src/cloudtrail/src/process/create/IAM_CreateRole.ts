@@ -3,7 +3,7 @@ import { CloudTrail, Tables } from 'typings';
 
 export const IAM_CreateRole = (record: CloudTrail.Record): Tables.Resource => ({
   UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
-  ResourceId: record.responseElements.role.roleName,
+  ResourceId: record.responseElements.role.arn,
   ResourceName: record.responseElements.role.roleName,
   EventName: record.eventName,
   EventSource: record.eventSource,
