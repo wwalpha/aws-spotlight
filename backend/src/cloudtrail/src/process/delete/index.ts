@@ -16,11 +16,10 @@ export * from './EC2_DeleteVolume';
 export * from './EC2_DeleteVpcEndpoints';
 
 export * from './ELASTICFILESYSTEM_DeleteFileSystem';
-
 export * from './ELASTICLOADBALANCING_DeleteLoadBalancer';
 export * from './ELASTICLOADBALANCING_DeleteTargetGroup';
-
 export * from './EKS_DeleteCluster';
+export * from './ES_DeleteElasticsearchDomain';
 
 export * from './IAM_DeleteAccessKey';
 export * from './IAM_DeleteRole';

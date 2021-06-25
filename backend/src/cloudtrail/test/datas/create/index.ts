@@ -19,8 +19,8 @@ export { default as EC2_CreateVolume } from './EC2_CreateVolume.json';
 export { default as EC2_CreateVpcEndpoint } from './EC2_CreateVpcEndpoint.json';
 
 export { default as EKS_CreateCluster } from './EKS_CreateCluster.json';
-
 export { default as ELASTICFILESYSTEM_CreateFileSystem } from './ELASTICFILESYSTEM_CreateFileSystem.json';
+export { default as ES_CreateElasticsearchDomain } from './ES_CreateElasticsearchDomain.json';
 
 export { default as IAM_CreateAccessKey } from './IAM_CreateAccessKey.json';
 export { default as IAM_CreateRole } from './IAM_CreateRole.json';

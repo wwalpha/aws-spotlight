@@ -17,11 +17,10 @@ export * from './EC2_CreateVolume';
 export * from './EC2_CreateVpcEndpoint';
 
 export * from './ELASTICFILESYSTEM_CreateFileSystem';
-
 export * from './ELASTICLOADBALANCING_CreateLoadBalancer';
 export * from './ELASTICLOADBALANCING_CreateTargetGroup';
-
 export * from './EKS_CreateCluster';
+export * from './ES_CreateElasticsearchDomain';
 
 export * from './IAM_CreateAccessKey';
 export * from './IAM_CreateRole';

@@ -1,9 +1,8 @@
 import AWS from 'aws-sdk';
 import { getHistory, getResource, sendMessage } from '@test/configs/utils';
-import S3_CreateBucket from '../datas/create/S3_CreateBucket.json';
-import S3_DeleteBucket from '../datas/delete/S3_DeleteBucket.json';
-
 import { cloudtrail } from '@src/index';
+import * as CreateEvents from '@test/datas/create';
+import * as DeleteEvents from '@test/datas/delete';
 import * as S3 from '@test/expect/s3';
 
 AWS.config.update({
@@ -15,7 +14,7 @@ AWS.config.update({
 
 describe('s3.amazonaws.com', () => {
   test('CreateBucket', async () => {
-    const event = await sendMessage(S3_CreateBucket);
+    const event = await sendMessage(CreateEvents.S3_CreateBucket);
 
     await cloudtrail(event);
 
@@ -33,7 +32,7 @@ describe('s3.amazonaws.com', () => {
   });
 
   test('DeleteBucket', async () => {
-    const event = await sendMessage(S3_DeleteBucket);
+    const event = await sendMessage(DeleteEvents.S3_DeleteBucket);
 
     await cloudtrail(event);
 

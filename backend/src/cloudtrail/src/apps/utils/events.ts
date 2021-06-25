@@ -51,6 +51,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
 
     case 'EKS_CreateCluster':
       return CreateEvent.EKS_CreateCluster(record);
+    case 'ES_CreateElasticsearchDomain':
+      return CreateEvent.ES_CreateElasticsearchDomain(record);
 
     case 'IAM_CreateAccessKey':
       return CreateEvent.IAM_CreateAccessKey(record);
@@ -114,14 +116,14 @@ export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.Resourc
 
     case 'ELASTICFILESYSTEM_DeleteFileSystem':
       return [DeleteEvent.ELASTICFILESYSTEM_DeleteFileSystem(record)];
-
     case 'ELASTICLOADBALANCING_DeleteLoadBalancer':
       return [DeleteEvent.ELASTICLOADBALANCING_DeleteLoadBalancer(record)];
     case 'ELASTICLOADBALANCING_DeleteTargetGroup':
       return [DeleteEvent.ELASTICLOADBALANCING_DeleteTargetGroup(record)];
-
     case 'EKS_DeleteCluster':
       return [DeleteEvent.EKS_DeleteCluster(record)];
+    case 'ES_DeleteElasticsearchDomain':
+      return [DeleteEvent.ES_DeleteElasticsearchDomain(record)];
 
     case 'IAM_DeleteAccessKey':
       return [DeleteEvent.IAM_DeleteAccessKey(record)];

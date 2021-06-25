@@ -9,15 +9,18 @@ import { DynamodbHelper } from '.';
 const sqsClient = new SQS();
 const SQS_URL = process.env.SQS_URL as string;
 
-export const Logger = winston.createLogger({
+export const LoggerOptions: winston.LoggerOptions = {
   level: process.env.LOG_LEVEL,
   format: winston.format.simple(),
   transports: [
-    new winston.transports.Console({
-      format: winston.format.combine(winston.format.colorize({ all: true }), winston.format.simple()),
-    }),
+    // new winston.transports.Console({
+    //   format: winston.format.combine(winston.format.colorize({ all: true }), winston.format.simple()),
+    // }),
+    new winston.transports.File({ filename: 'test.log' }),
   ],
-});
+};
+
+export const Logger = winston.createLogger(LoggerOptions);
 
 /**
  * Regist history

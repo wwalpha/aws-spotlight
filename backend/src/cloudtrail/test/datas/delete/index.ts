@@ -13,8 +13,8 @@ export { default as EC2_DeleteVolume } from './EC2_DeleteVolume.json';
 export { default as EC2_DeleteVpcEndpoints } from './EC2_DeleteVpcEndpoints.json';
 
 export { default as EKS_DeleteCluster } from './EKS_DeleteCluster.json';
-
 export { default as ELASTICFILESYSTEM_DeleteFileSystem } from './ELASTICFILESYSTEM_DeleteFileSystem.json';
+export { default as ES_DeleteElasticsearchDomain } from './ES_DeleteElasticsearchDomain.json';
 
 export { default as IAM_DeleteAccessKey } from './IAM_DeleteAccessKey.json';
 export { default as IAM_DeleteRole } from './IAM_DeleteRole.json';
@@ -24,3 +24,5 @@ export { default as LAMBDA_DeleteFunction20150331 } from './LAMBDA_DeleteFunctio
 export { default as MONITORING_DeleteAlarms } from './MONITORING_DeleteAlarms.json';
 
 export { default as REDSHIFT_DeleteCluster } from './REDSHIFT_DeleteCluster.json';
+
+export { default as S3_DeleteBucket } from './S3_DeleteBucket.json';
