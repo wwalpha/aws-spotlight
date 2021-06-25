@@ -1,6 +1,6 @@
 import { S3 } from 'aws-sdk';
 import { SNSMessage, SQSRecord } from 'aws-lambda';
-import { isEqual, uniqWith } from 'lodash';
+import { isEqual, uniqWith, orderBy } from 'lodash';
 import zlib from 'zlib';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
 import { Utilities, Consts, Events, DynamodbHelper } from './utils';
@@ -74,8 +74,10 @@ export const execute = async (message: SQSRecord) => {
 
   await execNewEventType(newEventType);
   await execUnprocessed(unprocessed);
-  await execCreateRecords(createRows);
-  await execDeleteRecords(deleteRows);
+
+  const sorted = orderBy([...createRows, ...deleteRows], ['eventTime'], ['asc']);
+
+  await execUpdateRecords(sorted);
 
   await Utilities.registHistory(createRows);
   await Utilities.registHistory(deleteRows);
@@ -226,36 +228,32 @@ export const execUnprocessed = async (records: CloudTrail.Record[]) => {
 };
 
 /**
- * record create resource events
+ * record update resource events
  *
  * @param records
  */
-export const execCreateRecords = async (records: CloudTrail.Record[]) => {
-  Logger.debug('Start execute create record...');
+export const execUpdateRecords = async (records: CloudTrail.Record[]) => {
+  Logger.debug('Start execute update record...');
 
-  const items = records
-    .map((item) => Events.getCreateResourceItem(item))
-    .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
+  for (; records.length > 0; ) {
+    const record = records.shift();
 
-  // bulk insert
-  await DynamodbHelper.bulk(Consts.Environments.TABLE_NAME_RESOURCE, items);
-};
+    if (!record) break;
 
-/**
- * delete all records
- *
- * @param records
- */
-export const execDeleteRecords = async (records: CloudTrail.Record[]) => {
-  Logger.debug('Start execute delete record...');
+    const createItem = Events.getCreateResourceItem(record);
+    const deleteItems = Events.getRemoveResourceItem(record);
 
-  const multiItems = records
-    .map((item) => Events.getRemoveResourceItem(item))
-    .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
+    // create records
+    if (createItem) {
+      await DynamodbHelper.put({
+        TableName: Consts.Environments.TABLE_NAME_RESOURCE,
+        Item: createItem,
+      });
+    }
 
-  const items = multiItems.reduce((prev, curr) => {
-    return [...prev, ...curr];
-  }, [] as Tables.ResourceKey[]);
-
-  await DynamodbHelper.truncate(Consts.Environments.TABLE_NAME_RESOURCE, items);
+    // delete records
+    if (deleteItems) {
+      await DynamodbHelper.truncate(Consts.Environments.TABLE_NAME_RESOURCE, deleteItems);
+    }
+  }
 };
