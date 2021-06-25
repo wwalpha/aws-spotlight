@@ -32,4 +32,6 @@ export { default as MONITORING_PutMetricAlarm } from './MONITORING_PutMetricAlar
 export { default as RDS_CreateDBCluster } from './RDS_CreateDBCluster.json';
 export { default as RDS_CreateDBInstance } from './RDS_CreateDBInstance.json';
 
+export { default as REDSHIFT_CreateCluster } from './REDSHIFT_CreateCluster.json';
+
 export { default as S3_CreateBucket } from './S3_CreateBucket.json';

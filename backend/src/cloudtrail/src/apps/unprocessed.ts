@@ -1,11 +1,7 @@
-import { DynamodbHelper } from '@alphax/dynamodb';
 import { uniqBy } from 'lodash';
 import { CloudTrail, Tables } from 'typings';
-import { Environments } from './utils/consts';
-import { getCreateResourceItem, getRemoveResourceItem } from './utils/events';
-import { Logger, registHistory } from './utils/utilities';
-
-const helper = new DynamodbHelper();
+import { Events, Consts, Utilities, DynamodbHelper } from './utils';
+import { Logger } from './utils/utilities';
 
 /**
  * Initialize Event Type Definition
@@ -14,8 +10,8 @@ const helper = new DynamodbHelper();
  */
 export const getUnprocessedEvents = async () => {
   // get all event definitions
-  const results = await helper.scan<Tables.EventType>({
-    TableName: Environments.TABLE_NAME_EVENT_TYPE,
+  const results = await DynamodbHelper.scan<Tables.EventType>({
+    TableName: Consts.Environments.TABLE_NAME_EVENT_TYPE,
     FilterExpression: '#Unprocessed = :Unprocessed AND attribute_not_exists(Unconfirmed)',
     ExpressionAttributeNames: {
       '#Unprocessed': 'Unprocessed',
@@ -50,8 +46,8 @@ export const processIgnore = async (events: Tables.EventType[]) => {
     Logger.debug(`Ignore record process... EventName: ${item.EventName}, EventSource: ${item.EventSource}`);
 
     // find keys
-    const queryResult = await helper.query<Tables.Unprocessed>({
-      TableName: Environments.TABLE_NAME_UNPROCESSED,
+    const queryResult = await DynamodbHelper.query<Tables.Unprocessed>({
+      TableName: Consts.Environments.TABLE_NAME_UNPROCESSED,
       ProjectionExpression: 'EventName, EventTime',
       KeyConditionExpression: '#EventName = :EventName',
       ExpressionAttributeNames: {
@@ -63,10 +59,10 @@ export const processIgnore = async (events: Tables.EventType[]) => {
     });
 
     // delete keys
-    await helper.truncate(Environments.TABLE_NAME_UNPROCESSED, queryResult.Items);
+    await DynamodbHelper.truncate(Consts.Environments.TABLE_NAME_UNPROCESSED, queryResult.Items);
 
-    await helper.update({
-      TableName: Environments.TABLE_NAME_EVENT_TYPE,
+    await DynamodbHelper.update({
+      TableName: Consts.Environments.TABLE_NAME_EVENT_TYPE,
       Key: {
         EventName: item.EventName,
         EventSource: item.EventSource,
@@ -98,8 +94,8 @@ export const processCreate = async (events: Tables.EventType[]) => {
     const item = records.shift();
 
     // find keys
-    const queryResult = await helper.query<Tables.Unprocessed>({
-      TableName: Environments.TABLE_NAME_UNPROCESSED,
+    const queryResult = await DynamodbHelper.query<Tables.Unprocessed>({
+      TableName: Consts.Environments.TABLE_NAME_UNPROCESSED,
       KeyConditionExpression: '#EventName = :EventName',
       ExpressionAttributeNames: {
         '#EventName': 'EventName',
@@ -119,15 +115,15 @@ export const processCreate = async (events: Tables.EventType[]) => {
     }).filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
     const createItems = rawRecords
-      .map((item) => item && getCreateResourceItem(item))
+      .map((item) => item && Events.getCreateResourceItem(item))
       .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
     const uniqItems = uniqBy(createItems, 'ResourceId');
 
     // bulk insert resource
-    await helper.bulk(Environments.TABLE_NAME_RESOURCE, uniqItems);
+    await DynamodbHelper.bulk(Consts.Environments.TABLE_NAME_RESOURCE, uniqItems);
     // bulk insert history
-    await registHistory(rawRecords);
+    await Utilities.registHistory(rawRecords);
 
     // remove all raw datas
     const removeItems = queryResult.Items.map(
@@ -138,11 +134,11 @@ export const processCreate = async (events: Tables.EventType[]) => {
         } as Tables.UnprocessedKey)
     );
 
-    await helper.truncate(Environments.TABLE_NAME_UNPROCESSED, removeItems);
+    await DynamodbHelper.truncate(Consts.Environments.TABLE_NAME_UNPROCESSED, removeItems);
 
     // process finished
-    await helper.update({
-      TableName: Environments.TABLE_NAME_EVENT_TYPE,
+    await DynamodbHelper.update({
+      TableName: Consts.Environments.TABLE_NAME_EVENT_TYPE,
       Key: { EventSource: item?.EventSource, EventName: item?.EventName } as Tables.EventTypeKey,
       UpdateExpression: 'REMOVE #Unprocessed',
       ExpressionAttributeNames: {
@@ -171,8 +167,8 @@ export const processDelete = async (events: Tables.EventType[]) => {
     const item = records.shift();
 
     // find keys
-    const queryResult = await helper.query<Tables.Unprocessed>({
-      TableName: Environments.TABLE_NAME_UNPROCESSED,
+    const queryResult = await DynamodbHelper.query<Tables.Unprocessed>({
+      TableName: Consts.Environments.TABLE_NAME_UNPROCESSED,
       KeyConditionExpression: '#EventName = :EventName',
       ExpressionAttributeNames: {
         '#EventName': 'EventName',
@@ -192,7 +188,7 @@ export const processDelete = async (events: Tables.EventType[]) => {
     }).filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
     const removeItems = rawRecords
-      .map((item) => item && getRemoveResourceItem(item))
+      .map((item) => item && Events.getRemoveResourceItem(item))
       .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
     const items = removeItems.reduce((prev, curr) => {
@@ -200,9 +196,9 @@ export const processDelete = async (events: Tables.EventType[]) => {
     }, [] as Tables.ResourceKey[]);
 
     // bulk insert resource
-    await helper.truncate(Environments.TABLE_NAME_RESOURCE, items);
+    await DynamodbHelper.truncate(Consts.Environments.TABLE_NAME_RESOURCE, items);
     // bulk insert history
-    await registHistory(rawRecords);
+    await Utilities.registHistory(rawRecords);
 
     // remove all raw datas
     const rowItems = queryResult.Items.map(
@@ -214,11 +210,11 @@ export const processDelete = async (events: Tables.EventType[]) => {
     );
 
     // truncate all rows
-    await helper.truncate(Environments.TABLE_NAME_UNPROCESSED, rowItems);
+    await DynamodbHelper.truncate(Consts.Environments.TABLE_NAME_UNPROCESSED, rowItems);
 
     // process finished
-    await helper.update({
-      TableName: Environments.TABLE_NAME_EVENT_TYPE,
+    await DynamodbHelper.update({
+      TableName: Consts.Environments.TABLE_NAME_EVENT_TYPE,
       Key: { EventSource: item?.EventSource, EventName: item?.EventName } as Tables.EventTypeKey,
       UpdateExpression: 'REMOVE #Unprocessed',
       ExpressionAttributeNames: {

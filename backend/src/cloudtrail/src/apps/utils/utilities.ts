@@ -1,14 +1,13 @@
-import { DynamodbHelper } from '@alphax/dynamodb';
 import { SQSRecord } from 'aws-lambda';
 import { SQS } from 'aws-sdk';
 import { defaultTo } from 'lodash';
 import winston from 'winston';
 import { Environments } from './consts';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
+import { DynamodbHelper } from '.';
 
 const sqsClient = new SQS();
 const SQS_URL = process.env.SQS_URL as string;
-const helper = new DynamodbHelper();
 
 export const Logger = winston.createLogger({
   level: process.env.LOG_LEVEL,
@@ -37,7 +36,7 @@ export const registHistory = async (records: CloudTrail.Record[]): Promise<void>
   }));
 
   // bulk insert
-  await helper.bulk(Environments.TABLE_NAME_HISTORY, items);
+  await DynamodbHelper.bulk(Environments.TABLE_NAME_HISTORY, items);
 };
 
 /**

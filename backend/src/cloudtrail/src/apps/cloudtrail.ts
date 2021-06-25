@@ -1,16 +1,13 @@
 import { S3 } from 'aws-sdk';
 import { SNSMessage, SQSRecord } from 'aws-lambda';
 import { isEqual, uniqWith } from 'lodash';
-import { DynamodbHelper } from '@alphax/dynamodb';
 import zlib from 'zlib';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
-import { deleteMessage, removeError, removeIgnore, removeReadOnly, Logger, registHistory } from './utils/utilities';
-import { getCreateResourceItem, getRemoveResourceItem } from './utils/events';
-import { Environments } from './utils/consts';
+import { Utilities, Consts, Events, DynamodbHelper } from './utils';
+import { Logger } from './utils/utilities';
 
 const s3Client = new S3();
 const EVENTS: EVENT_TYPE = {};
-const helper = new DynamodbHelper();
 
 /**
  * Initialize Event Type Definition
@@ -21,8 +18,8 @@ export const initializeEvents = async () => {
   if (Object.keys(EVENTS).length !== 0) return;
 
   // get all event definitions
-  const results = await helper.scan<Tables.EventType>({
-    TableName: Environments.TABLE_NAME_EVENT_TYPE,
+  const results = await DynamodbHelper.scan<Tables.EventType>({
+    TableName: Consts.Environments.TABLE_NAME_EVENT_TYPE,
   });
 
   results.Items?.forEach((item) => {
@@ -39,27 +36,26 @@ export const execute = async (message: SQSRecord) => {
   // empty body
   if (!message.body) {
     // delete message
-    await deleteMessage(message);
+    await Utilities.deleteMessage(message);
 
     return;
   }
 
   // get all records
   let records = await getRecords(message.body);
-
   // remove readonly records
-  records = removeReadOnly(records);
+  records = Utilities.removeReadOnly(records);
   // remove error records
-  records = removeError(records);
+  records = Utilities.removeError(records);
   // remove ignore records
-  records = removeIgnore(records, EVENTS);
+  records = Utilities.removeIgnore(records, EVENTS);
 
   Logger.info(`Left Records: ${records.length}`);
 
   // no records
   if (records.length === 0) {
     // delete message
-    await deleteMessage(message);
+    await Utilities.deleteMessage(message);
 
     return;
   }
@@ -81,11 +77,11 @@ export const execute = async (message: SQSRecord) => {
   await execCreateRecords(createRows);
   await execDeleteRecords(deleteRows);
 
-  await registHistory(createRows);
-  await registHistory(deleteRows);
+  await Utilities.registHistory(createRows);
+  await Utilities.registHistory(deleteRows);
 
   // delete message
-  await deleteMessage(message);
+  await Utilities.deleteMessage(message);
 };
 
 /** get create records */
@@ -193,7 +189,7 @@ export const execNewEventType = async (records: CloudTrail.Record[]) => {
   }));
 
   // event type bulk insert
-  await helper.bulk(Environments.TABLE_NAME_EVENT_TYPE, eventTypeRecords);
+  await DynamodbHelper.bulk(Consts.Environments.TABLE_NAME_EVENT_TYPE, eventTypeRecords);
 
   const unprocessedRecords = records.map(
     (item) =>
@@ -205,7 +201,7 @@ export const execNewEventType = async (records: CloudTrail.Record[]) => {
   );
 
   // bulk insert
-  await helper.bulk(Environments.TABLE_NAME_UNPROCESSED, unprocessedRecords);
+  await DynamodbHelper.bulk(Consts.Environments.TABLE_NAME_UNPROCESSED, unprocessedRecords);
 };
 
 /**
@@ -226,7 +222,7 @@ export const execUnprocessed = async (records: CloudTrail.Record[]) => {
   );
 
   // bulk insert
-  await helper.bulk(Environments.TABLE_NAME_UNPROCESSED, unprocessedRecords);
+  await DynamodbHelper.bulk(Consts.Environments.TABLE_NAME_UNPROCESSED, unprocessedRecords);
 };
 
 /**
@@ -238,11 +234,11 @@ export const execCreateRecords = async (records: CloudTrail.Record[]) => {
   Logger.debug('Start execute create record...');
 
   const items = records
-    .map((item) => getCreateResourceItem(item))
+    .map((item) => Events.getCreateResourceItem(item))
     .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
   // bulk insert
-  await helper.bulk(Environments.TABLE_NAME_RESOURCE, items);
+  await DynamodbHelper.bulk(Consts.Environments.TABLE_NAME_RESOURCE, items);
 };
 
 /**
@@ -254,12 +250,12 @@ export const execDeleteRecords = async (records: CloudTrail.Record[]) => {
   Logger.debug('Start execute delete record...');
 
   const multiItems = records
-    .map((item) => getRemoveResourceItem(item))
+    .map((item) => Events.getRemoveResourceItem(item))
     .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
   const items = multiItems.reduce((prev, curr) => {
     return [...prev, ...curr];
   }, [] as Tables.ResourceKey[]);
 
-  await helper.truncate(Environments.TABLE_NAME_RESOURCE, items);
+  await DynamodbHelper.truncate(Consts.Environments.TABLE_NAME_RESOURCE, items);
 };

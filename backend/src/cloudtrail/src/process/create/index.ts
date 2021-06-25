@@ -33,4 +33,6 @@ export * from './MONITORING_PutMetricAlarm';
 export * from './RDS_CreateDBCluster';
 export * from './RDS_CreateDBInstance';
 
+export * from './REDSHIFT_CreateCluster';
+
 export * from './S3_CreateBucket';

@@ -32,4 +32,6 @@ export * from './MONITORING_DeleteAlarms';
 export * from './RDS_DeleteDBCluster';
 export * from './RDS_DeleteDBInstance';
 
+export * from './REDSHIFT_DeleteCluster';
+
 export * from './S3_DeleteBucket';

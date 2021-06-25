@@ -22,3 +22,5 @@ export { default as IAM_DeleteRole } from './IAM_DeleteRole.json';
 export { default as LAMBDA_DeleteFunction20150331 } from './LAMBDA_DeleteFunction20150331.json';
 
 export { default as MONITORING_DeleteAlarms } from './MONITORING_DeleteAlarms.json';
+
+export { default as REDSHIFT_DeleteCluster } from './REDSHIFT_DeleteCluster.json';
