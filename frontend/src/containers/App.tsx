@@ -36,6 +36,9 @@ const App: FunctionComponent<any> = () => {
           <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.DS]} component={Service} />
           <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.IAM]} component={Service} />
           <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.LAMBDA]} component={Service} />
+          <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.ES]} component={Service} />
+          <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.REDSHIFT]} component={Service} />
+          <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.CODEBUILD]} component={Service} />
         </Switch>
       </Box>
     </Box>

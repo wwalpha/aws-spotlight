@@ -8,3 +8,6 @@ export { default as S3Icon } from './AmazonS3.svg';
 export { default as DSIcon } from './AWSDirectoryService.svg';
 export { default as IAMIcon } from './AWSIdentityandAccessManagement.svg';
 export { default as LambdaIcon } from './AWSLambda.svg';
+export { default as ESIcon } from './AmazonElasticsearchService.svg';
+export { default as RedshiftIcon } from './AmazonRedshift.svg';
+export { default as CodeBuildIcon } from './AWSCodeBuild.svg';

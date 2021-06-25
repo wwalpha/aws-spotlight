@@ -12,6 +12,9 @@ export const SERVICES = {
   DS: 'ds.amazonaws.com',
   IAM: 'iam.amazonaws.com',
   LAMBDA: 'lambda.amazonaws.com',
+  ES: 'es.amazonaws.com',
+  REDSHIFT: 'redshift.amazonaws.com',
+  CODEBUILD: 'codebuild.amazonaws.com',
 };
 
 export const API_URLs = {

@@ -45,6 +45,20 @@ const MENUS = [
     icon: SVG.EFSIcon,
   },
   {
+    eventSource: SERVICES.ES,
+    category: 'analytics',
+    title: 'Amazon ElasticSearch',
+    path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.ES],
+    icon: SVG.ESIcon,
+  },
+  {
+    eventSource: SERVICES.REDSHIFT,
+    category: 'networking',
+    title: 'Amazon Redshift',
+    path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.REDSHIFT],
+    icon: SVG.RedshiftIcon,
+  },
+  {
     eventSource: SERVICES.ELB,
     category: 'networking',
     title: 'Amazon ELB',
@@ -71,6 +85,13 @@ const MENUS = [
     title: 'Amazon EKS',
     path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.EKS],
     icon: SVG.EKSIcon,
+  },
+  {
+    eventSource: SERVICES.CODEBUILD,
+    category: 'devops',
+    title: 'AWS CodeBuild',
+    path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.CODEBUILD],
+    icon: SVG.CodeBuildIcon,
   },
 ];
 

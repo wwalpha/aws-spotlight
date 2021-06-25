@@ -14,6 +14,9 @@ export const ROUTE_PATH_INDEX = {
   DS: 109,
   IAM: 110,
   LAMBDA: 111,
+  ES: 112,
+  REDSHIFT: 113,
+  CODEBUILD: 114,
 };
 
 export const ROUTE_PATHS = {
@@ -32,4 +35,7 @@ export const ROUTE_PATHS = {
   [ROUTE_PATH_INDEX.DS]: '/service/ds',
   [ROUTE_PATH_INDEX.IAM]: '/service/iam',
   [ROUTE_PATH_INDEX.LAMBDA]: '/service/lambda',
+  [ROUTE_PATH_INDEX.ES]: '/service/es',
+  [ROUTE_PATH_INDEX.REDSHIFT]: '/service/redshift',
+  [ROUTE_PATH_INDEX.CODEBUILD]: '/service/codebuild',
 };
