@@ -346,3 +346,4 @@ jobs:
         run: |
           yarn releases
           yarn events
+          yarn patch

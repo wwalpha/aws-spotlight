@@ -1,9 +1,6 @@
 name: RELEASE_B) Production Build
 
 on:
-  push:
-    branches:
-      - master
   release:
     types:
       - prereleased
