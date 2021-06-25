@@ -89,10 +89,6 @@ jobs:
     concurrency: auth_manager
     environment:
       name: prod
-    env:
-      ECR_REPOSITORY: ${{ env.ECR_REPOSITORY_AUTH }}
-      ECS_SERVICE_NAME: ${{ env.ECS_SERVICE_NAME_AUTH }}
-      SSM_PARAMETER_NAME: ${{ env.SSM_PARAMETER_NAME_AUTH }}
     defaults:
       run:
         working-directory: ${{ env.WORKING_DIR_BACKEND }}/src/auth_manager
@@ -114,6 +110,13 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Environments
+      - name: Environments
+        run: |
+          export ECR_REPOSITORY=$ECR_REPOSITORY_AUTH
+          export ECS_SERVICE_NAME=$ECS_SERVICE_NAME_AUTH
+          export SSM_PARAMETER_NAME=$SSM_PARAMETER_NAME_AUTH
 
       # Install, Build
       - name: Build
@@ -151,308 +154,308 @@ jobs:
         run: |
           aws ssm put-parameter --name $SSM_PARAMETER_NAME/$ECS_SERVICE_NAME --type "String" --value ${{ steps.build-image.outputs.image }} --overwrite
 
-  # [ECS] Resource Manager
-  ECS_Resource:
-    runs-on: ubuntu-18.04
-    concurrency: resource_manager
-    environment:
-      name: prod
-    env:
-      ECR_REPOSITORY: ${{ env.ECR_REPOSITORY_RESOURCE }}
-      ECS_SERVICE_NAME: ${{ env.ECS_SERVICE_NAME_RESOURCE }}
-      SSM_PARAMETER_NAME: ${{ env.SSM_PARAMETER_NAME_RESOURCE }}
-    defaults:
-      run:
-        working-directory: ${{ env.WORKING_DIR_BACKEND }}/src/resource_manager
+  # # [ECS] Resource Manager
+  # ECS_Resource:
+  #   runs-on: ubuntu-18.04
+  #   concurrency: resource_manager
+  #   environment:
+  #     name: prod
+  #   env:
+  #     ECR_REPOSITORY: ${{ env.ECR_REPOSITORY_RESOURCE }}
+  #     ECS_SERVICE_NAME: ${{ env.ECS_SERVICE_NAME_RESOURCE }}
+  #     SSM_PARAMETER_NAME: ${{ env.SSM_PARAMETER_NAME_RESOURCE }}
+  #   defaults:
+  #     run:
+  #       working-directory: ${{ env.WORKING_DIR_BACKEND }}/src/resource_manager
 
-    steps:
-      # Source checkout
-      - name: Checkout
-        uses: actions/checkout@v2
+  #   steps:
+  #     # Source checkout
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-      # Setup Node.js
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14.x
+  #     # Setup Node.js
+  #     - uses: actions/setup-node@v2
+  #       with:
+  #         node-version: 14.x
 
-      # AWS Credentials
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+  #     # AWS Credentials
+  #     - name: Configure AWS credentials
+  #       uses: aws-actions/configure-aws-credentials@v1
+  #       with:
+  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #         aws-region: ${{ env.AWS_DEFAULT_REGION }}
 
-      # Install and Build
-      - name: Build
-        run: |
-          yarn install
-          yarn build
+  #     # Install and Build
+  #     - name: Build
+  #       run: |
+  #         yarn install
+  #         yarn build
 
-      # Unit Test
-      - name: Unit Test
-        run: |
-          docker-compose up -d --build
-          sleep 10
-          yarn test
-          docker-compose down
+  #     # Unit Test
+  #     - name: Unit Test
+  #       run: |
+  #         docker-compose up -d --build
+  #         sleep 10
+  #         yarn test
+  #         docker-compose down
 
-      # ECR Login
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
+  #     # ECR Login
+  #     - name: Login to Amazon ECR
+  #       id: login-ecr
+  #       uses: aws-actions/amazon-ecr-login@v1
 
-      # docker build and push
-      - name: Build, tag, and push image to Amazon ECR
-        id: build-image
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          docker build -t $ECR_REPOSITORY .
-          docker tag $ECR_REPOSITORY $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+  #     # docker build and push
+  #     - name: Build, tag, and push image to Amazon ECR
+  #       id: build-image
+  #       env:
+  #         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+  #         IMAGE_TAG: ${{ github.sha }}
+  #       run: |
+  #         docker build -t $ECR_REPOSITORY .
+  #         docker tag $ECR_REPOSITORY $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+  #         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+  #         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-      # Update Repository URL
-      - name: Update ecs repository url
-        run: |
-          aws ssm put-parameter --name $SSM_PARAMETER_NAME/$ECS_SERVICE_NAME --type "String" --value ${{ steps.build-image.outputs.image }} --overwrite
+  #     # Update Repository URL
+  #     - name: Update ecs repository url
+  #       run: |
+  #         aws ssm put-parameter --name $SSM_PARAMETER_NAME/$ECS_SERVICE_NAME --type "String" --value ${{ steps.build-image.outputs.image }} --overwrite
 
-  # [ECS] User Manager
-  ECS_User:
-    runs-on: ubuntu-18.04
-    concurrency: user_manager
-    environment:
-      name: prod
-    env:
-      ECR_REPOSITORY: ${{ env.ECR_REPOSITORY_USER }}
-      ECS_SERVICE_NAME: ${{ env.ECS_SERVICE_NAME_USER }}
-      SSM_PARAMETER_NAME: ${{ env.SSM_PARAMETER_NAME_USER }}
-    defaults:
-      run:
-        working-directory: ${{ env.WORKING_DIR_BACKEND }}/src/user_manager
+  # # [ECS] User Manager
+  # ECS_User:
+  #   runs-on: ubuntu-18.04
+  #   concurrency: user_manager
+  #   environment:
+  #     name: prod
+  #   env:
+  #     ECR_REPOSITORY: ${{ env.ECR_REPOSITORY_USER }}
+  #     ECS_SERVICE_NAME: ${{ env.ECS_SERVICE_NAME_USER }}
+  #     SSM_PARAMETER_NAME: ${{ env.SSM_PARAMETER_NAME_USER }}
+  #   defaults:
+  #     run:
+  #       working-directory: ${{ env.WORKING_DIR_BACKEND }}/src/user_manager
 
-    steps:
-      # Source checkout
-      - name: Checkout
-        uses: actions/checkout@v2
+  #   steps:
+  #     # Source checkout
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-      # Setup Node.js
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14.x
+  #     # Setup Node.js
+  #     - uses: actions/setup-node@v2
+  #       with:
+  #         node-version: 14.x
 
-      # AWS Credentials
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+  #     # AWS Credentials
+  #     - name: Configure AWS credentials
+  #       uses: aws-actions/configure-aws-credentials@v1
+  #       with:
+  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #         aws-region: ${{ env.AWS_DEFAULT_REGION }}
 
-      # Install and Build
-      - name: Build
-        run: |
-          yarn install
-          yarn build
+  #     # Install and Build
+  #     - name: Build
+  #       run: |
+  #         yarn install
+  #         yarn build
 
-      # Unit Test
-      - name: Unit Test
-        run: |
-          docker-compose up -d --build
-          sleep 10
-          yarn test
-          docker-compose down
+  #     # Unit Test
+  #     - name: Unit Test
+  #       run: |
+  #         docker-compose up -d --build
+  #         sleep 10
+  #         yarn test
+  #         docker-compose down
 
-      # ECR Login
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
+  #     # ECR Login
+  #     - name: Login to Amazon ECR
+  #       id: login-ecr
+  #       uses: aws-actions/amazon-ecr-login@v1
 
-      # docker build and push
-      - name: Build, tag, and push image to Amazon ECR
-        id: build-image
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          docker build -t $ECR_REPOSITORY .
-          docker tag $ECR_REPOSITORY $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+  #     # docker build and push
+  #     - name: Build, tag, and push image to Amazon ECR
+  #       id: build-image
+  #       env:
+  #         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+  #         IMAGE_TAG: ${{ github.sha }}
+  #       run: |
+  #         docker build -t $ECR_REPOSITORY .
+  #         docker tag $ECR_REPOSITORY $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+  #         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+  #         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-      # Update Repository URL
-      - name: Update ecs repository url
-        run: |
-          aws ssm put-parameter --name $SSM_PARAMETER_NAME/$ECS_SERVICE_NAME --type "String" --value ${{ steps.build-image.outputs.image }} --overwrite
+  #     # Update Repository URL
+  #     - name: Update ecs repository url
+  #       run: |
+  #         aws ssm put-parameter --name $SSM_PARAMETER_NAME/$ECS_SERVICE_NAME --type "String" --value ${{ steps.build-image.outputs.image }} --overwrite
 
-  # [Lambda] Authorizer
-  Lambda_Authorizer:
-    runs-on: ubuntu-18.04
-    concurrency: lambda_authorizer
-    environment:
-      name: prod
-    defaults:
-      run:
-        working-directory: ${{ env.WORKING_DIR_BACKEND }}/src/authorizer
+  # # [Lambda] Authorizer
+  # Lambda_Authorizer:
+  #   runs-on: ubuntu-18.04
+  #   concurrency: lambda_authorizer
+  #   environment:
+  #     name: prod
+  #   defaults:
+  #     run:
+  #       working-directory: ${{ env.WORKING_DIR_BACKEND }}/src/authorizer
 
-    steps:
-      # Source checkout
-      - name: Checkout
-        uses: actions/checkout@v2
+  #   steps:
+  #     # Source checkout
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-      # Setup Node.js
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14.x
+  #     # Setup Node.js
+  #     - uses: actions/setup-node@v2
+  #       with:
+  #         node-version: 14.x
 
-      # Install and Build
-      - name: Build
-        run: |
-          yarn install
-          yarn build
+  #     # Install and Build
+  #     - name: Build
+  #       run: |
+  #         yarn install
+  #         yarn build
 
-  # [Lambda] CloudTrail
-  Lambda_CloudTrail:
-    runs-on: ubuntu-18.04
-    concurrency: cloudtrail
-    environment:
-      name: prod
-    env:
-      ECR_REPOSITORY: ${{ env.ECR_REPOSITORY_CLOUDTRAIL }}
-      SSM_PARAMETER_NAME: ${{ env.SSM_PARAMETER_NAME_CLOUDTRAIL }}
-    defaults:
-      run:
-        working-directory: ${{ env.WORKING_DIR_BACKEND }}/src/cloudtrail
+  # # [Lambda] CloudTrail
+  # Lambda_CloudTrail:
+  #   runs-on: ubuntu-18.04
+  #   concurrency: cloudtrail
+  #   environment:
+  #     name: prod
+  #   env:
+  #     ECR_REPOSITORY: ${{ env.ECR_REPOSITORY_CLOUDTRAIL }}
+  #     SSM_PARAMETER_NAME: ${{ env.SSM_PARAMETER_NAME_CLOUDTRAIL }}
+  #   defaults:
+  #     run:
+  #       working-directory: ${{ env.WORKING_DIR_BACKEND }}/src/cloudtrail
 
-    steps:
-      # Source checkout
-      - name: Checkout
-        uses: actions/checkout@v2
+  #   steps:
+  #     # Source checkout
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-      # Setup Node.js
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14.x
+  #     # Setup Node.js
+  #     - uses: actions/setup-node@v2
+  #       with:
+  #         node-version: 14.x
 
-      # AWS Credentials
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+  #     # AWS Credentials
+  #     - name: Configure AWS credentials
+  #       uses: aws-actions/configure-aws-credentials@v1
+  #       with:
+  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #         aws-region: ${{ env.AWS_DEFAULT_REGION }}
 
-      # Install and Build
-      - name: Build
-        run: |
-          yarn install
-          yarn build
+  #     # Install and Build
+  #     - name: Build
+  #       run: |
+  #         yarn install
+  #         yarn build
 
-      # ECR Login
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
+  #     # ECR Login
+  #     - name: Login to Amazon ECR
+  #       id: login-ecr
+  #       uses: aws-actions/amazon-ecr-login@v1
 
-      # docker build and push
-      - name: Build, tag, and push image to Amazon ECR
-        id: build-image
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          docker build -f "Dockerfile.CloudTrail" -t $ECR_REPOSITORY .
-          docker tag $ECR_REPOSITORY $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+  #     # docker build and push
+  #     - name: Build, tag, and push image to Amazon ECR
+  #       id: build-image
+  #       env:
+  #         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+  #         IMAGE_TAG: ${{ github.sha }}
+  #       run: |
+  #         docker build -f "Dockerfile.CloudTrail" -t $ECR_REPOSITORY .
+  #         docker tag $ECR_REPOSITORY $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+  #         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+  #         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-      # Update Repository URL
-      - name: Update repository url
-        run: |
-          aws ssm put-parameter --name $SSM_PARAMETER_NAME --type "String" --value ${{ steps.build-image.outputs.image }} --overwrite
+  #     # Update Repository URL
+  #     - name: Update repository url
+  #       run: |
+  #         aws ssm put-parameter --name $SSM_PARAMETER_NAME --type "String" --value ${{ steps.build-image.outputs.image }} --overwrite
 
-  # [Lambda] Unprocessed
-  Lambda_Unprocessed:
-    runs-on: ubuntu-18.04
-    concurrency: unprocessed
-    environment:
-      name: prod
-    env:
-      ECR_REPOSITORY: ${{ env.ECR_REPOSITORY_UNPROCESSED }}
-      SSM_PARAMETER_NAME: ${{ env.SSM_PARAMETER_NAME_UNPROCESSED }}
-    defaults:
-      run:
-        working-directory: ${{ env.WORKING_DIR_BACKEND }}/src/cloudtrail
+  # # [Lambda] Unprocessed
+  # Lambda_Unprocessed:
+  #   runs-on: ubuntu-18.04
+  #   concurrency: unprocessed
+  #   environment:
+  #     name: prod
+  #   env:
+  #     ECR_REPOSITORY: ${{ env.ECR_REPOSITORY_UNPROCESSED }}
+  #     SSM_PARAMETER_NAME: ${{ env.SSM_PARAMETER_NAME_UNPROCESSED }}
+  #   defaults:
+  #     run:
+  #       working-directory: ${{ env.WORKING_DIR_BACKEND }}/src/cloudtrail
 
-    steps:
-      # Source checkout
-      - name: Checkout
-        uses: actions/checkout@v2
+  #   steps:
+  #     # Source checkout
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-      # Setup Node.js
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14.x
+  #     # Setup Node.js
+  #     - uses: actions/setup-node@v2
+  #       with:
+  #         node-version: 14.x
 
-      # AWS Credentials
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+  #     # AWS Credentials
+  #     - name: Configure AWS credentials
+  #       uses: aws-actions/configure-aws-credentials@v1
+  #       with:
+  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #         aws-region: ${{ env.AWS_DEFAULT_REGION }}
 
-      # Install and Build
-      - name: Build
-        run: |
-          yarn install
-          yarn build
+  #     # Install and Build
+  #     - name: Build
+  #       run: |
+  #         yarn install
+  #         yarn build
 
-      # ECR Login
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
+  #     # ECR Login
+  #     - name: Login to Amazon ECR
+  #       id: login-ecr
+  #       uses: aws-actions/amazon-ecr-login@v1
 
-      # docker build and push
-      - name: Build, tag, and push image to Amazon ECR
-        id: build-image
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          docker build -f "Dockerfile.Unprocessed" -t $ECR_REPOSITORY .
-          docker tag $ECR_REPOSITORY $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+  #     # docker build and push
+  #     - name: Build, tag, and push image to Amazon ECR
+  #       id: build-image
+  #       env:
+  #         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+  #         IMAGE_TAG: ${{ github.sha }}
+  #       run: |
+  #         docker build -f "Dockerfile.Unprocessed" -t $ECR_REPOSITORY .
+  #         docker tag $ECR_REPOSITORY $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+  #         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+  #         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-      # Update Repository URL
-      - name: Update repository url
-        run: |
-          aws ssm put-parameter --name $SSM_PARAMETER_NAME --type "String" --value ${{ steps.build-image.outputs.image }} --overwrite
+  #     # Update Repository URL
+  #     - name: Update repository url
+  #       run: |
+  #         aws ssm put-parameter --name $SSM_PARAMETER_NAME --type "String" --value ${{ steps.build-image.outputs.image }} --overwrite
 
-  # Release Events
-  Release_Events:
-    runs-on: ubuntu-18.04
-    concurrency: events
-    environment:
-      name: prod
-    defaults:
-      run:
-        working-directory: ${{ env.WORKING_DIR_BACKEND }}/src/release_events
+  # # Release Events
+  # Release_Events:
+  #   runs-on: ubuntu-18.04
+  #   concurrency: events
+  #   environment:
+  #     name: prod
+  #   defaults:
+  #     run:
+  #       working-directory: ${{ env.WORKING_DIR_BACKEND }}/src/release_events
 
-    steps:
-      # source checkout
-      - name: Checkout
-        uses: actions/checkout@v2
+  #   steps:
+  #     # source checkout
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-      # Setup Node.js
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14.x
+  #     # Setup Node.js
+  #     - uses: actions/setup-node@v2
+  #       with:
+  #         node-version: 14.x
 
-      # Installation
-      - name: Build
-        run: |
-          yarn install
-          yarn build
+  #     # Installation
+  #     - name: Build
+  #       run: |
+  #         yarn install
+  #         yarn build
