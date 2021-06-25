@@ -437,6 +437,9 @@ jobs:
     concurrency: frontend
     environment:
       name: prod
+    env:
+      FRONTEND_BUCKET: ${{ secrets.FRONTEND_BUCKET }}
+      BACKEND_API_URL: ${{ secrets.BACKEND_API_URL }}
     defaults:
       run:
         working-directory: ${{ env.WORKING_DIR_FRONTEND }}
