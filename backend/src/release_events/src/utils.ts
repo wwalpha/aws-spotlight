@@ -5,7 +5,7 @@ import { Tables } from 'typings';
 
 const TABLE_NAME_RESOURCE = process.env.TABLE_NAME_RESOURCE as string;
 const TABLE_NAME_HISTORY = process.env.TABLE_NAME_HISTORY as string;
-const BUCKET_ARCHIVE = process.env.BUCKET_ARCHIVE as string;
+const BUCKET_NAME_ARCHIVE = process.env.BUCKET_NAME_ARCHIVE as string;
 const SQS_URL = process.env.SQS_URL as string;
 
 const helper = new DynamodbHelper();
@@ -38,7 +38,7 @@ const reResource = async (lastEvaluatedKey?: DynamoDB.DocumentClient.Key) => {
 
   await s3Client
     .putObject({
-      Bucket: BUCKET_ARCHIVE,
+      Bucket: BUCKET_NAME_ARCHIVE,
       Key: key,
       Body: zlib.gzipSync(JSON.stringify({ Records: records })),
       ContentType: 'application/gz',
@@ -49,7 +49,7 @@ const reResource = async (lastEvaluatedKey?: DynamoDB.DocumentClient.Key) => {
     .sendMessage({
       QueueUrl: SQS_URL,
       MessageBody: JSON.stringify({
-        Message: JSON.stringify({ s3Bucket: BUCKET_ARCHIVE, s3ObjectKey: [key] }),
+        Message: JSON.stringify({ s3Bucket: BUCKET_NAME_ARCHIVE, s3ObjectKey: [key] }),
       }),
     })
     .promise();
