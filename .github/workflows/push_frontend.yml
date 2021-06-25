@@ -20,7 +20,7 @@ jobs:
     environment:
       name: dev
     env:
-      FRONTEND_BUCKET: ${{ secrets.FRONTEND_BUCKET }}
+      BUCKET_NAME_FRONTEND: ${{ secrets.BUCKET_NAME_FRONTEND }}
       BACKEND_API_URL: ${{ secrets.BACKEND_API_URL }}
     defaults:
       run:
@@ -53,4 +53,4 @@ jobs:
       # AWS Credentials
       - name: Upload files
         run: |
-          aws s3 cp dist s3://$FRONTEND_BUCKET --recursive --region $AWS_DEFAULT_REGION
+          aws s3 cp dist s3://$BUCKET_NAME_FRONTEND --recursive --region $AWS_DEFAULT_REGION
