@@ -21,7 +21,7 @@ describe.only('dynamodb.amazonaws.com', () => {
 
     const resource = await getResource({
       EventSource: 'dynamodb.amazonaws.com',
-      ResourceId: 'AutoNotification_AlarmConfigs',
+      ResourceId: 'arn:aws:dynamodb:ap-northeast-1:999999999999:table/AutoNotification_AlarmConfigs',
     });
     const history = await getHistory({ EventId: '696c84dc-ad34-4abe-90dd-b69189934170' });
 
@@ -39,7 +39,7 @@ describe.only('dynamodb.amazonaws.com', () => {
 
     const resource = await getResource({
       EventSource: 'dynamodb.amazonaws.com',
-      ResourceId: 'AutoNotification_AlarmConfigs',
+      ResourceId: 'arn:aws:dynamodb:ap-northeast-1:999999999999:table/AutoNotification_AlarmConfigs',
     });
     const history = await getHistory({ EventId: '7bae1976-dd8e-4332-bc95-83c7844d515d' });
 

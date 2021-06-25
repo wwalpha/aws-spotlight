@@ -21,7 +21,7 @@ describe('ds.amazonaws.com', () => {
 
     const resource = await getResource({
       EventSource: 'ds.amazonaws.com',
-      ResourceId: 'd-95671f95a5',
+      ResourceId: 'arn:aws:clouddirectory:ap-northeast-1:999999999999:directory/d-95671f95a5',
     });
     const history = await getHistory({ EventId: '1b73543a-da8b-4900-a27e-620a094085f4' });
 
@@ -39,7 +39,7 @@ describe('ds.amazonaws.com', () => {
 
     const resource = await getResource({
       EventSource: 'ds.amazonaws.com',
-      ResourceId: 'd-95671f95a5',
+      ResourceId: 'arn:aws:clouddirectory:ap-northeast-1:999999999999:directory/d-95671f95a5',
     });
     const history = await getHistory({ EventId: 'd0fcee5a-ca83-4ff6-b6c3-ac41104b2aa0' });
 

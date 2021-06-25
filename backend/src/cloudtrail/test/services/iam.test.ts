@@ -56,7 +56,7 @@ describe('iam.amazonaws.com', () => {
 
     const resource = await getResource({
       EventSource: 'iam.amazonaws.com',
-      ResourceId: 'rds-monitoring-role',
+      ResourceId: 'arn:aws:iam::999999999999:role/rds-monitoring-role',
     });
     const history = await getHistory({ EventId: '739d8b02-6cf3-44a6-84d6-2cb3fccd16a7' });
 
@@ -74,7 +74,7 @@ describe('iam.amazonaws.com', () => {
 
     const resource = await getResource({
       EventSource: 'iam.amazonaws.com',
-      ResourceId: 'rds-monitoring-role',
+      ResourceId: 'arn:aws:iam::999999999999:role/rds-monitoring-role',
     });
     const history = await getHistory({ EventId: '2a6c2b17-635c-463b-80ce-3d3da6cf98c0' });
 

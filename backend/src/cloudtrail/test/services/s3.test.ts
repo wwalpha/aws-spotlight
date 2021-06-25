@@ -20,7 +20,7 @@ describe('s3.amazonaws.com', () => {
 
     const resource = await getResource({
       EventSource: 's3.amazonaws.com',
-      ResourceId: 'test-backt-testfile01',
+      ResourceId: 'arn:aws:s3:::test-backt-testfile01',
     });
     const history = await getHistory({ EventId: '16ab98c7-8007-4df8-9722-9b1732fa7f78' });
 
@@ -36,7 +36,10 @@ describe('s3.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({ EventSource: 's3.amazonaws.com', ResourceId: 'test-backt-testfile01' });
+    const resource = await getResource({
+      EventSource: 's3.amazonaws.com',
+      ResourceId: 'arn:aws:s3:::test-backt-testfile01',
+    });
     const history = await getHistory({ EventId: '74167e6a-03ae-419a-94b1-387709ae56e2' });
 
     expect(resource).toBeUndefined();

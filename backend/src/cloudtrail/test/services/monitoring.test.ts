@@ -21,7 +21,7 @@ describe('monitoring.amazonaws.com', () => {
 
     const resource = await getResource({
       EventSource: 'monitoring.amazonaws.com',
-      ResourceId: 'CloudWatch_Test08',
+      ResourceId: 'arn:aws:cloudwatch:ap-northeast-1:999999999999:alarm:CloudWatch_Test08',
     });
 
     const history = await getHistory({ EventId: '41c4b80b-f16b-4d79-8ce3-e69900d4dd22' });
@@ -40,7 +40,7 @@ describe('monitoring.amazonaws.com', () => {
 
     const resource = await getResource({
       EventSource: 'monitoring.amazonaws.com',
-      ResourceId: 'CloudWatch_Test08',
+      ResourceId: 'arn:aws:cloudwatch:ap-northeast-1:999999999999:alarm:CloudWatch_Test08',
     });
 
     const history = await getHistory({ EventId: '877eb4b7-a7d6-4eaf-9e59-9e22d8928f19' });

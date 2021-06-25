@@ -20,7 +20,8 @@ describe('autoscaling.amazonaws.com', () => {
 
     const resource = await getResource({
       EventSource: 'autoscaling.amazonaws.com',
-      ResourceId: 'ws-dev-autoscaling-1',
+      ResourceId:
+        'arn:aws:autoscaling:ap-northeast-1:999999999999:autoScalingGroup:*:autoScalingGroupName/ws-dev-autoscaling-1',
     });
     const history = await getHistory({ EventId: '75faba36-6137-4cfb-a189-9ebc46172d9b' });
 
@@ -38,7 +39,8 @@ describe('autoscaling.amazonaws.com', () => {
 
     const resource = await getResource({
       EventSource: 'autoscaling.amazonaws.com',
-      ResourceId: 'ws-dev-autoscaling-1',
+      ResourceId:
+        'arn:aws:autoscaling:ap-northeast-1:999999999999:autoScalingGroup:*:autoScalingGroupName/ws-dev-autoscaling-1',
     });
     const history = await getHistory({ EventId: '1bc25a53-cb48-49fb-8dda-b3d2ea472079' });
 
