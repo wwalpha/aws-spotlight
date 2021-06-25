@@ -314,6 +314,10 @@ jobs:
     env:
       TABLE_NAME_SETTINGS: ${{ secrets.TABLE_NAME_SETTINGS }}
       TABLE_NAME_EVENT_TYPE: ${{ secrets.TABLE_NAME_EVENT_TYPE }}
+      TABLE_NAME_HISTORY: ${{ secrets.TABLE_NAME_HISTORY }}
+      TABLE_NAME_RESOURCE: ${{ secrets.TABLE_NAME_RESOURCE }}
+      BUCKET_ARCHIVE: ${{ secrets.BUCKET_ARCHIVE }}
+      SQS_URL: ${{ secrets.SQS_URL }}
     defaults:
       run:
         working-directory: ${{ env.WORKING_DIR_BACKEND }}/src/release_events

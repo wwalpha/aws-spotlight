@@ -1,6 +1,12 @@
 name: PUSH_B) Release Events
 
 on:
+  push:
+    paths:
+      - backend/src/release_events/**
+      - .github/workflows/push_release_events.yml
+    branches-ignore:
+      - releases/**
   workflow_run:
     workflows:
       - PUSH_B) Auth Manager Build
@@ -18,6 +24,10 @@ jobs:
     env:
       TABLE_NAME_SETTINGS: ${{ secrets.TABLE_NAME_SETTINGS }}
       TABLE_NAME_EVENT_TYPE: ${{ secrets.TABLE_NAME_EVENT_TYPE }}
+      TABLE_NAME_HISTORY: ${{ secrets.TABLE_NAME_HISTORY }}
+      TABLE_NAME_RESOURCE: ${{ secrets.TABLE_NAME_RESOURCE }}
+      BUCKET_ARCHIVE: ${{ secrets.BUCKET_ARCHIVE }}
+      SQS_URL: ${{ secrets.SQS_URL }}
     defaults:
       run:
         working-directory: ${{ env.WORKING_DIR }}
