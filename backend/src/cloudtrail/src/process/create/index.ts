@@ -2,6 +2,8 @@ export * from './APIGATEWAY_CreateRestApi';
 export * from './APIGATEWAY_ImportRestApi';
 export * from './AUTOSCALING_CreateAutoScalingGroup';
 
+export * from './CODEBUILD_CreateProject';
+
 export * from './DYNAMODB_CreateTable';
 export * from './DS_CreateMicrosoftAD';
 

@@ -3,8 +3,9 @@ export { default as APIGATEWAY_ImportRestApi } from './APIGATEWAY_ImportRestApi.
 
 export { default as AUTOSCALING_CreateAutoScalingGroup } from './AUTOSCALING_CreateAutoScalingGroup.json';
 
-export { default as DS_CreateMicrosoftAD } from './DS_CreateMicrosoftAD.json';
+export { default as CODEBUILD_CreateProject } from './CODEBUILD_CreateProject.json';
 
+export { default as DS_CreateMicrosoftAD } from './DS_CreateMicrosoftAD.json';
 export { default as DYNAMODB_CreateTable } from './DYNAMODB_CreateTable.json';
 
 export { default as EC2_CreateClientVpnEndpoint } from './EC2_CreateClientVpnEndpoint.json';

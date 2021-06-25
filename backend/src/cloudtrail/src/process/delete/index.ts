@@ -1,8 +1,9 @@
 export * from './APIGATEWAY_DeleteRestApi';
 export * from './AUTOSCALING_DeleteAutoScalingGroup';
 
-export * from './DYNAMODB_DeleteTable';
+export * from './CODEBUILD_DeleteProject';
 
+export * from './DYNAMODB_DeleteTable';
 export * from './DS_DeleteDirectory';
 
 export * from './EC2_TerminateInstances';

@@ -65,6 +65,9 @@
   { "EventName": "CreateElasticsearchDomain", "EventSource": "es.amazonaws.com", "Create": true },
   { "EventName": "DeleteElasticsearchDomain", "EventSource": "es.amazonaws.com", "Delete": true },
 
+  { "EventName": "CreateProject", "EventSource": "codebuild.amazonaws.com", "Create": true },
+  { "EventName": "DeleteProject", "EventSource": "codebuild.amazonaws.com", "Delete": true },
+
   { "EventName": "PutMetricAlarm", "EventSource": "monitoring.amazonaws.com", "Create": true },
   { "EventName": "DeleteAlarms", "EventSource": "monitoring.amazonaws.com", "Delete": true }
 ]
