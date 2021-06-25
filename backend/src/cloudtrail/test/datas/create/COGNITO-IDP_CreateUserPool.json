@@ -3,16 +3,16 @@
   "userIdentity": {
     "type": "AssumedRole",
     "principalId": "AROA2KEX3JLI2QCIZFG2K:i-00adf0ee742a14e6a",
-    "arn": "arn:aws:sts::999999999999:assumed-role/wwalpha@gmail.com/i-00adf0ee742a14e6a",
+    "arn": "arn:aws:sts::999999999999:assumed-role/test001@test.com/i-00adf0ee742a14e6a",
     "accountId": "999999999999",
     "accessKeyId": "ASIA2KEX3JLI42IJT2CW",
     "sessionContext": {
       "sessionIssuer": {
         "type": "Role",
         "principalId": "AROA2KEX3JLI2QCIZFG2K",
-        "arn": "arn:aws:iam::999999999999:role/wwalpha@gmail.com",
+        "arn": "arn:aws:iam::999999999999:role/test001@test.com",
         "accountId": "999999999999",
-        "userName": "wwalpha@gmail.com"
+        "userName": "test001@test.com"
       },
       "webIdFederationData": {},
       "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-03T12:27:10Z" },

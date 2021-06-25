@@ -2,11 +2,11 @@
   "eventVersion": "1.08",
   "userIdentity": {
     "type": "IAMUser",
-    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
-    "arn": "arn:aws:iam::334678299258:user/ktou@dxc.com",
-    "accountId": "334678299258",
+    "principalId": "AAAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
     "accessKeyId": "ASIAU33DBSJ5JYJCKHPH",
-    "userName": "ktou@dxc.com",
+    "userName": "test001@test.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
@@ -27,6 +27,6 @@
   "eventType": "AwsApiCall",
   "managementEvent": true,
   "eventCategory": "Management",
-  "recipientAccountId": "334678299258",
+  "recipientAccountId": "999999999999",
   "sessionCredentialFromConsole": "true"
 }

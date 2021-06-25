@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDA2KEX3JLIYUA7ET75O",
-    "arn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
     "accountId": "999999999999",
     "accessKeyId": "ASIA2KEX3JLIZTSHQEXB",
-    "userName": "wwalpha@gmail.com",
+    "userName": "test001@test.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
@@ -19,7 +19,7 @@
   "awsRegion": "ap-northeast-1",
   "sourceIPAddress": "202.32.14.177",
   "userAgent": "aws-internal/3 aws-sdk-java/1.11.898 Linux/4.9.230-0.1.ac.223.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.275-b01 java/1.8.0_275 vendor/Oracle_Corporation",
-  "requestParameters": { "name": "wwalpha@gmail.com" },
+  "requestParameters": { "name": "test001@test.com" },
   "responseElements": {
     "app": {
       "appArn": "arn:aws:amplify:ap-northeast-1:999999999999:apps/d3rmh3nhqy26nl",
@@ -34,7 +34,7 @@
       "enableBranchAutoBuild": false,
       "enableBranchAutoDeletion": false,
       "environmentVariables": "***",
-      "name": "wwalpha@gmail.com",
+      "name": "test001@test.com",
       "platform": "WEB",
       "updateTime": 1614048352.608
     }

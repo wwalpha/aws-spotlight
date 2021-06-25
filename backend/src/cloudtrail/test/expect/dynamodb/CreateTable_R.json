@@ -1,7 +1,7 @@
 {
   "IdentityType": "IAMUser",
   "EventSource": "dynamodb.amazonaws.com",
-  "UserName": "wwalpha@gmail.com",
+  "UserName": "test001@test.com",
   "ResourceId": "AutoNotification_AlarmConfigs",
   "ResourceName": "AutoNotification_AlarmConfigs",
   "EventTime": "2021-04-15T07:54:51Z",

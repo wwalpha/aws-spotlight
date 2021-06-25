@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDA2KEX3JLIYUA7ET75O",
-    "arn": "arn:aws:iam::999999999999:user/wwalpha@gmail.com",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
     "accountId": "999999999999",
     "accessKeyId": "ASIA2KEX3JLIW3X62O47",
-    "userName": "wwalpha@gmail.com",
+    "userName": "test001@test.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
@@ -81,7 +81,7 @@
         }
       ]
     },
-    "iamInstanceProfile": { "arn": "arn:aws:iam::999999999999:instance-profile/wwalpha@gmail.com" },
+    "iamInstanceProfile": { "arn": "arn:aws:iam::999999999999:instance-profile/test001@test.com" },
     "ebsOptimized": true,
     "tagSpecificationSet": {
       "items": [
@@ -168,7 +168,7 @@
             ]
           },
           "iamInstanceProfile": {
-            "arn": "arn:aws:iam::999999999999:instance-profile/wwalpha@gmail.com",
+            "arn": "arn:aws:iam::999999999999:instance-profile/test001@test.com",
             "id": "AIPA2KEX3JLIY3YEKFCLE"
           },
           "ebsOptimized": true,
