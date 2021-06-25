@@ -1,5 +1,23 @@
 [
   {
+    "version": "v0.3.1",
+    "date": "2021-06-25",
+    "texts": [
+      {
+        "type": "FEATURE",
+        "text": "[Fronted] Added new target resources. (elasticsearch, redshift, codebuild)"
+      },
+      {
+        "type": "FEATURE",
+        "text": "[Backend] Added new events. (elasticsearch, redshift, codebuild)"
+      },
+      {
+        "type": "BUGFIX",
+        "text": "Some bug fixs."
+      }
+    ]
+  },
+  {
     "version": "v0.3.0",
     "date": "2021-06-24",
     "texts": [
