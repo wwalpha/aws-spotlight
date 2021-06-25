@@ -1,6 +1,12 @@
 import { CloudTrail, Tables } from 'typings';
 
-export const LAMBDA_DeleteFunction20150331 = (record: CloudTrail.Record): Tables.ResourceKey => ({
-  EventSource: record.eventSource,
-  ResourceId: record.requestParameters.functionName,
-});
+export const LAMBDA_DeleteFunction20150331 = (record: CloudTrail.Record): Tables.ResourceKey => {
+  const awsRegion = record.awsRegion;
+  const accountId = record.recipientAccountId;
+  const functionName = record.requestParameters.functionName;
+
+  return {
+    EventSource: record.eventSource,
+    ResourceId: `arn:aws:lambda:${awsRegion}:${accountId}:function:${functionName}`,
+  };
+};
