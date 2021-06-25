@@ -8,6 +8,7 @@
     "build": "tsc -p tsconfig.build.json",
     "releases": "ts-node src/releases.ts",
     "events": "ts-node src/events.ts",
+    "patch": "ts-node src/patch.ts",
     "test": "jest"
   },
   "devDependencies": {
