@@ -3,7 +3,7 @@
   "EventSource": "ec2.amazonaws.com",
   "UserName": "test001@test.com",
   "ResourceId": "snap-0ea8b3632c0ff21d6",
-  "ResourceName": "vol-02194841d3f221c03",
+  "ResourceName": "snap-0ea8b3632c0ff21d6",
   "EventTime": "2021-04-28T05:01:46Z",
   "UserAgent": "console.ec2.amazonaws.com",
   "AWSRegion": "ap-northeast-1",

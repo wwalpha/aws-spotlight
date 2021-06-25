@@ -58,7 +58,7 @@
       "provisionedThroughput": { "numberOfDecreasesToday": 0, "readCapacityUnits": 0, "writeCapacityUnits": 0 },
       "tableSizeBytes": 0,
       "itemCount": 0,
-      "tableArn": "arn:aws:dynamodb:ap-northeast-1:999999999999:table/RekogFacesEngagementMeter",
+      "tableArn": "arn:aws:dynamodb:ap-northeast-1:999999999999:table/AutoNotification_AlarmConfigs",
       "tableId": "2e3c5295-ffeb-4a7b-8741-cf0af23706db",
       "tableThroughputModeSummary": { "tableThroughputMode": "PAY_PER_REQUEST" },
       "billingModeSummary": { "billingMode": "PAY_PER_REQUEST" },
