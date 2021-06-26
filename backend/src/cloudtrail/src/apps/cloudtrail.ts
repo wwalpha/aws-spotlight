@@ -1,6 +1,6 @@
-import { S3 } from 'aws-sdk';
+import { DynamoDB, S3 } from 'aws-sdk';
 import { SNSMessage, SQSRecord } from 'aws-lambda';
-import { isEqual, uniqWith, orderBy } from 'lodash';
+import { orderBy } from 'lodash';
 import zlib from 'zlib';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
 import { Utilities, Consts, Events, DynamodbHelper } from './utils';
@@ -33,14 +33,6 @@ export const initializeEvents = async () => {
  * @param message
  */
 export const execute = async (message: SQSRecord) => {
-  // empty body
-  if (!message.body) {
-    // delete message
-    await Utilities.deleteMessage(message);
-
-    return;
-  }
-
   // get all records
   let records = await getRecords(message.body);
   // remove readonly records
@@ -50,82 +42,139 @@ export const execute = async (message: SQSRecord) => {
   // remove ignore records
   records = Utilities.removeIgnore(records, EVENTS);
 
-  Logger.info(`Left Records: ${records.length}`);
-
-  // no records
+  // no process records
   if (records.length === 0) {
     // delete message
-    await Utilities.deleteMessage(message);
+    await Utilities.deleteSQSMessage(message);
 
     return;
   }
 
   Logger.info(`Process Records: ${records.length}`);
 
-  const newEventType = getNewEventTypeRecords(records);
-  const unprocessed = getUnprocessedRecords(records);
-  const createRows = getCreateRecords(records);
-  const deleteRows = getDeleteRecords(records);
+  const sorted = orderBy(records, ['eventTime'], ['asc']);
+  let hasError = false;
 
-  Logger.info(`New Event Type: ${newEventType.length}`);
-  Logger.info(`Unprocessed: ${unprocessed.length}`);
-  Logger.info(`Create: ${createRows.length}`);
-  Logger.info(`Delete: ${deleteRows.length}`);
+  for (; sorted.length > 0; ) {
+    const record = sorted.shift();
 
-  await execNewEventType(newEventType);
-  await execUnprocessed(unprocessed);
+    // error check
+    if (!record) continue;
 
-  const sorted = orderBy([...createRows, ...deleteRows], ['eventTime'], ['asc']);
+    try {
+      await processRecord(record);
+    } catch (err) {
+      hasError = true;
+      Logger.error(err);
+    }
+  }
 
-  await execUpdateRecords(sorted);
-
-  await Utilities.registHistory(createRows);
-  await Utilities.registHistory(deleteRows);
-
-  // delete message
-  await Utilities.deleteMessage(message);
+  // no error
+  if (hasError === false) {
+    // delete message
+    await Utilities.deleteSQSMessage(message);
+  }
 };
 
-/** get create records */
-const getCreateRecords = (records: CloudTrail.Record[]) =>
-  records.filter((item) => {
-    const definition = EVENTS[item.eventName];
+const processRecord = async (record: CloudTrail.Record) => {
+  const definition = EVENTS[record.eventName];
 
-    // not found settings
-    if (!definition) return false;
+  // new event
+  if (!definition) {
+    await processNewEventType(record);
+  }
 
-    return definition.Create === true;
-  });
+  // unprocess event
+  if (definition?.Unprocessed === true) {
+    await processUnprocessed(record);
+  }
 
-/** get delete records */
-const getDeleteRecords = (records: CloudTrail.Record[]) =>
-  records.filter((item) => {
-    const definition = EVENTS[item.eventName];
+  // create event || delete event
+  if (definition?.Create === true || definition?.Delete === true) {
+    await processUpdate(record);
+  }
+};
 
-    // not found settings
-    if (!definition) return false;
+const processNewEventType = async (record: CloudTrail.Record) => {
+  Logger.debug('Start execute new event type...');
 
-    return definition.Delete === true;
-  });
+  const transactItems: DynamoDB.DocumentClient.TransactWriteItemList = [];
+  const { TABLE_NAME_EVENT_TYPE, TABLE_NAME_UNPROCESSED } = Consts.Environments;
 
-/** get unprocessed records */
-const getUnprocessedRecords = (records: CloudTrail.Record[]) =>
-  records.filter((item) => {
-    const definition = EVENTS[item.eventName];
+  // add event type
+  transactItems.push(
+    Utilities.getPutRecord(TABLE_NAME_EVENT_TYPE, {
+      EventName: record.eventName,
+      EventSource: record.eventSource,
+      Unprocessed: true,
+      Unconfirmed: true,
+      Ignore: true,
+    } as Tables.EventType)
+  );
 
-    // not found settings
-    if (!definition) return false;
+  // add unprocess record
+  transactItems.push(
+    Utilities.getPutRecord(TABLE_NAME_UNPROCESSED, {
+      EventName: record.eventName,
+      EventTime: `${record.eventTime}_${record.eventID.substr(0, 8)}`,
+      Raw: JSON.stringify(record),
+    } as Tables.Unprocessed)
+  );
 
-    return definition.Unprocessed === true;
-  });
+  // process transaction
+  await DynamodbHelper.getDocumentClient()
+    .transactWrite({
+      TransactItems: transactItems,
+    })
+    .promise();
+};
 
-/** get new event type records */
-const getNewEventTypeRecords = (records: CloudTrail.Record[]) =>
-  records.filter((item) => {
-    const definition = EVENTS[item.eventName];
+const processUnprocessed = async (record: CloudTrail.Record) => {
+  await DynamodbHelper.bulk(Consts.Environments.TABLE_NAME_UNPROCESSED, [record]);
+};
 
-    return definition === undefined;
-  });
+const processUpdate = async (record: CloudTrail.Record) => {
+  const { TABLE_NAME_RESOURCE, TABLE_NAME_HISTORY } = Consts.Environments;
+  const createItem = Events.getCreateResourceItem(record);
+  const deleteItems = Events.getRemoveResourceItem(record);
+
+  const transactItems: DynamoDB.DocumentClient.TransactWriteItemList = [];
+
+  // create records
+  if (createItem) {
+    // add resource record
+    transactItems.push(Utilities.getPutRecord(TABLE_NAME_RESOURCE, createItem));
+  }
+
+  // delete records
+  if (deleteItems) {
+    deleteItems
+      .map(
+        (deleteItem) =>
+          ({
+            Delete: {
+              TableName: TABLE_NAME_RESOURCE,
+              Key: deleteItem,
+              ConditionExpression: 'EventSource = :EventSource AND ResourceId = :ResourceId',
+              ExpressionAttributeValues: {
+                ':EventSource': deleteItem.EventSource,
+                ':ResourceId': deleteItem.ResourceId,
+              },
+            },
+          } as DynamoDB.DocumentClient.TransactWriteItem)
+      )
+      .forEach((deleteItem) => transactItems.push(deleteItem));
+  }
+
+  // add history record
+  transactItems.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
+
+  await DynamodbHelper.getDocumentClient()
+    .transactWrite({
+      TransactItems: transactItems,
+    })
+    .promise();
+};
 
 /**
  * get all s3 bucket object
@@ -152,108 +201,19 @@ export const getRecords = async (message: string): Promise<CloudTrail.Record[]> 
   const files = await Promise.all(tasks);
 
   // unzip content
-  const records = files.map((item) => {
-    const content = item.Body;
+  const records = files
+    .map((item) => {
+      const content = item.Body;
 
-    if (!content) return undefined;
+      if (!content) return undefined;
 
-    // @ts-ignore
-    return JSON.parse(zlib.gunzipSync(content)) as CloudTrail.Event;
-  });
+      // @ts-ignore
+      return JSON.parse(zlib.gunzipSync(content)) as CloudTrail.Event;
+    })
+    .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
   // merge all records
   return records.reduce((prev, curr) => {
-    if (!curr) {
-      return prev;
-    }
-
     return [...prev, ...curr.Records];
   }, [] as CloudTrail.Record[]);
-};
-
-export const execNewEventType = async (records: CloudTrail.Record[]) => {
-  Logger.debug('Start execute new event type...');
-
-  const eventNames = records.map((item) => ({
-    EventName: item.eventName,
-    EventSource: item.eventSource,
-  }));
-
-  const eventTypes = uniqWith(eventNames, isEqual);
-
-  // create insert records
-  const eventTypeRecords: Tables.EventType[] = eventTypes.map((item) => ({
-    EventName: item.EventName,
-    EventSource: item.EventSource,
-    Unprocessed: true,
-    Unconfirmed: true,
-    Ignore: true,
-  }));
-
-  // event type bulk insert
-  await DynamodbHelper.bulk(Consts.Environments.TABLE_NAME_EVENT_TYPE, eventTypeRecords);
-
-  const unprocessedRecords = records.map(
-    (item) =>
-      ({
-        EventName: item.eventName,
-        EventTime: `${item.eventTime}_${item.eventID.substr(0, 8)}`,
-        Raw: JSON.stringify(item),
-      } as Tables.Unprocessed)
-  );
-
-  // bulk insert
-  await DynamodbHelper.bulk(Consts.Environments.TABLE_NAME_UNPROCESSED, unprocessedRecords);
-};
-
-/**
- * Save unprocessed records
- *
- * @param records
- */
-export const execUnprocessed = async (records: CloudTrail.Record[]) => {
-  Logger.debug('Start execute unprocessed...');
-
-  const unprocessedRecords = records.map(
-    (item) =>
-      ({
-        EventName: item.eventName,
-        EventTime: `${item.eventTime}_${item.eventID.substr(0, 8)}`,
-        Raw: JSON.stringify(item),
-      } as Tables.Unprocessed)
-  );
-
-  // bulk insert
-  await DynamodbHelper.bulk(Consts.Environments.TABLE_NAME_UNPROCESSED, unprocessedRecords);
-};
-
-/**
- * record update resource events
- *
- * @param records
- */
-export const execUpdateRecords = async (records: CloudTrail.Record[]) => {
-  Logger.debug('Start execute update record...');
-
-  for (; records.length > 0; ) {
-    const record = records.shift();
-
-    if (!record) continue;
-
-    const createItem = Events.getCreateResourceItem(record);
-    const deleteItems = Events.getRemoveResourceItem(record);
-
-    // create records
-    if (createItem) {
-      await DynamodbHelper.put({
-        TableName: Consts.Environments.TABLE_NAME_RESOURCE,
-        Item: createItem,
-      });
-    }
-
-    // delete records
-    if (deleteItems) {
-      await DynamodbHelper.truncate(Consts.Environments.TABLE_NAME_RESOURCE, deleteItems);
-    }
-  }
 };

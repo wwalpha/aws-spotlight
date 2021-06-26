@@ -23,7 +23,14 @@ const setup = async () => {
 
   await Promise.all([
     s3Client.createBucket({ Bucket: process.env.S3_BUCKET as string }).promise(),
-    sqsClient.createQueue({ QueueName: process.env.SQS_QUEUE as string }).promise(),
+    sqsClient
+      .createQueue({
+        QueueName: process.env.SQS_QUEUE as string,
+        Attributes: {
+          VisibilityTimeout: '0',
+        },
+      })
+      .promise(),
     helper
       .getClient()
       .createTable({

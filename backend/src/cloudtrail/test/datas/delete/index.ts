@@ -27,6 +27,8 @@ export { default as LAMBDA_DeleteFunction20150331 } from './LAMBDA_DeleteFunctio
 
 export { default as MONITORING_DeleteAlarms } from './MONITORING_DeleteAlarms.json';
 
+export { default as RDS_DeleteDBCluster } from './RDS_DeleteDBCluster.json';
+export { default as RDS_DeleteDBInstance } from './RDS_DeleteDBInstance.json';
 export { default as REDSHIFT_DeleteCluster } from './REDSHIFT_DeleteCluster.json';
 
 export { default as S3_DeleteBucket } from './S3_DeleteBucket.json';

@@ -2,9 +2,7 @@ import { SQSRecord } from 'aws-lambda';
 import { DynamoDB, SQS } from 'aws-sdk';
 import { defaultTo } from 'lodash';
 import winston from 'winston';
-import { Environments } from './consts';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
-import { DynamodbHelper } from '.';
 
 const sqsClient = new SQS();
 const SQS_URL = process.env.SQS_URL as string;
@@ -43,32 +41,15 @@ export const getPutRecord = (tableName: string, item: any): DynamoDB.DocumentCli
   },
 });
 
-export const getDeleteRecord = (tableName: string, key: DynamoDB.DocumentClient.Key): DynamoDB.DocumentClient.TransactWriteItem => ({
+export const getDeleteRecord = (
+  tableName: string,
+  key: DynamoDB.DocumentClient.Key
+): DynamoDB.DocumentClient.TransactWriteItem => ({
   Delete: {
     TableName: tableName,
     Key: key,
   },
 });
-
-/**
- * Regist history
- *
- * @param records
- */
-export const registHistory = async (records: CloudTrail.Record[]): Promise<void> => {
-  const items = records.map<Tables.History>((item) => ({
-    EventId: item.eventID,
-    EventName: item.eventName,
-    EventSource: item.eventSource,
-    AWSRegion: item.awsRegion,
-    EventTime: item.eventTime,
-    UserName: defaultTo(item.userIdentity?.userName, item.userIdentity.sessionContext?.sessionIssuer?.userName),
-    Origin: JSON.stringify(item),
-  }));
-
-  // bulk insert
-  await DynamodbHelper.bulk(Environments.TABLE_NAME_HISTORY, items);
-};
 
 /**
  * Receive SQS Messages
@@ -91,7 +72,7 @@ export const getSQSMessages = async () => {
  *
  * @param message
  */
-export const deleteMessage = async (message: SQSRecord) => {
+export const deleteSQSMessage = async (message: SQSRecord) => {
   await sqsClient
     .deleteMessage({
       QueueUrl: SQS_URL,
