@@ -68,5 +68,5 @@ jobs:
         run: |
           filepath=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME --with-decryption | jq -r .Parameter.Value)
           aws s3 cp $filepath dist.zip
-          unzip dist.zip -d ./dist/
+          unzip -o dist.zip -d ./dist/
           aws s3 cp dist s3://$BUCKET_NAME_ARCHIVE/dist --recursive --region $AWS_DEFAULT_REGION
