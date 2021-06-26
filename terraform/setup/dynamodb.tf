@@ -57,9 +57,12 @@ resource "aws_dynamodb_table" "resource" {
   billing_mode   = "PROVISIONED"
   read_capacity  = 1
   write_capacity = 1
-  hash_key       = "EventSource"
-  range_key      = "ResourceId"
+  hash_key       = "EventId"
 
+  attribute {
+    name = "EventId"
+    type = "S"
+  }
   attribute {
     name = "EventSource"
     type = "S"
@@ -75,15 +78,24 @@ resource "aws_dynamodb_table" "resource" {
 
   global_secondary_index {
     name            = "gsiIdx1"
+    hash_key        = "EventSource"
+    range_key       = "ResourceId"
+    write_capacity  = 1
+    read_capacity   = 1
+    projection_type = "ALL"
+  }
+
+  global_secondary_index {
+    name            = "gsiIdx2"
     hash_key        = "UserName"
-    range_key       = "EventSource"
+    range_key       = "ResourceId"
     write_capacity  = 1
     read_capacity   = 1
     projection_type = "ALL"
   }
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }
 
