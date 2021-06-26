@@ -1,5 +1,19 @@
 [
   {
+    "version": "v0.3.3",
+    "date": "2021-06-26",
+    "texts": [
+      {
+        "type": "FEATURE",
+        "text": "[Backend] Added new events. (PutDashboard, CreateBackupVault)"
+      },
+      {
+        "type": "BUGFIX",
+        "text": "fix some bugs."
+      }
+    ]
+  },
+  {
     "version": "v0.3.2",
     "date": "2021-06-25",
     "texts": [
