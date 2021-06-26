@@ -13,6 +13,7 @@ env:
   AWS_DEFAULT_REGION: us-east-1
   WORKING_DIR: frontend
   NODE_ENV: production
+  SSM_PARAMETER_NAME: /arms/frontend
 
 jobs:
   build:
@@ -21,6 +22,7 @@ jobs:
       name: dev
     env:
       BUCKET_NAME_FRONTEND: ${{ secrets.BUCKET_NAME_FRONTEND }}
+      BUCKET_NAME_ARCHIVE: ${{ secrets.BUCKET_NAME_ARCHIVE }}
       BACKEND_API_URL: ${{ secrets.BACKEND_API_URL }}
     defaults:
       run:
@@ -50,7 +52,21 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
 
-      # AWS Credentials
+      # Upload dist files
       - name: Upload files
+        env:
+          FILE_NAME: ${{ github.sha }}
         run: |
-          aws s3 cp dist s3://$BUCKET_NAME_FRONTEND --recursive --region $AWS_DEFAULT_REGION
+          cd dist && zip -r -q $FILE_NAME.zip *
+          aws s3 cp $FILE_NAME.zip s3://$BUCKET_NAME_ARCHIVE/frontend/$FILE_NAME.zip --region $AWS_DEFAULT_REGION
+          aws ssm put-parameter --name $SSM_PARAMETER_NAME --type "String" --value s3://$BUCKET_NAME_ARCHIVE/frontend/$FILE_NAME.zip --overwrite
+
+      # Deploy frontend
+      - name: Deploy
+        env:
+          FILE_NAME: ${{ github.sha }}
+        run: |
+          filepath=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME --with-decryption | jq -r .Parameter.Value)
+          aws s3 cp $filepath dist.zip
+          unzip dist.zip -r ./dist/
+          aws s3 cp dist s3://$BUCKET_NAME_ARCHIVE/dist --recursive --region $AWS_DEFAULT_REGION
