@@ -58,7 +58,7 @@ describe(EVENT_SOURCE, () => {
     expect(rdsHistory).not.toBeUndefined();
   });
 
-  test.only('Same resource in one message', async () => {
+  test('Same resource in one message', async () => {
     await sendMessageOnly([
       CreateEvents.RDS_CreateDBCluster,
       CreateEvents.APIGATEWAY_CreateRestApi,
