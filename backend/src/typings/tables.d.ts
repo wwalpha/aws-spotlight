@@ -44,8 +44,8 @@ export namespace Tables {
    * Table - Resource Key
    */
   interface ResourceKey {
-    EventSource: string;
     ResourceId: string;
+    EventTime: string;
   }
 
   /**
@@ -54,6 +54,23 @@ export namespace Tables {
   interface Resource extends ResourceKey {
     ResourceName: string;
     UserName: string;
+    EventSource: string;
+    EventName: string;
+    EventId: string;
+    AWSRegion: string;
+    UserAgent: string;
+    IdentityType: string;
+    Service: string;
+  }
+
+  interface ResouceGSI1Key {
+    EventSource: string;
+    ResourceId: string;
+  }
+
+  interface ResouceGSI1 extends ResouceGSI1Key {
+    UserName: string;
+    ResourceName: string;
     EventId: string;
     EventName: string;
     EventTime: string;
@@ -63,12 +80,21 @@ export namespace Tables {
     Service: string;
   }
 
-  /**
-   * Table - Resource Key
-   */
-  interface ResouceKeyGSI1Key {
+  interface ResouceGSI2Key {
     UserName: string;
     ResourceId: string;
+  }
+
+  interface ResouceGSI2 extends ResouceGSI2Key {
+    ResourceName: string;
+    EventId: string;
+    EventSource: string;
+    EventName: string;
+    EventTime: string;
+    AWSRegion: string;
+    UserAgent: string;
+    IdentityType: string;
+    Service: string;
   }
 
   /**

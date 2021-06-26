@@ -57,20 +57,23 @@ resource "aws_dynamodb_table" "resource" {
   billing_mode   = "PROVISIONED"
   read_capacity  = 1
   write_capacity = 1
-  hash_key       = "EventId"
+  hash_key       = "ResourceId"
+  range_key      = "EventTime"
 
-  attribute {
-    name = "EventId"
-    type = "S"
-  }
-  attribute {
-    name = "EventSource"
-    type = "S"
-  }
   attribute {
     name = "ResourceId"
     type = "S"
   }
+  attribute {
+    name = "EventTime"
+    type = "S"
+  }
+
+  attribute {
+    name = "EventSource"
+    type = "S"
+  }
+
   attribute {
     name = "UserName"
     type = "S"
