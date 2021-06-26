@@ -1,6 +1,6 @@
 import { CloudTrail, Tables } from 'typings';
 
-export const APIGATEWAY_DeleteRestApi = (record: CloudTrail.Record): Tables.ResourceKey => {
+export const APIGATEWAY_DeleteRestApi = (record: CloudTrail.Record): Tables.ResouceGSI1Key => {
   const awsRegion = record.awsRegion;
   const apiId = record.requestParameters.restApiId;
 

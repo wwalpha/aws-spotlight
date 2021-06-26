@@ -1,6 +1,6 @@
 import { CloudTrail, Tables } from 'typings';
 
-export const AUTOSCALING_DeleteAutoScalingGroup = (record: CloudTrail.Record): Tables.ResourceKey => {
+export const AUTOSCALING_DeleteAutoScalingGroup = (record: CloudTrail.Record): Tables.ResouceGSI1Key => {
   const awsRegion = record.awsRegion;
   const accountId = record.recipientAccountId;
   const autoScalingGroupName = record.requestParameters.autoScalingGroupName;

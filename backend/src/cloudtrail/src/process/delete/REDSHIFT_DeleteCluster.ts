@@ -1,6 +1,6 @@
 import { CloudTrail, Tables } from 'typings';
 
-export const REDSHIFT_DeleteCluster = (record: CloudTrail.Record): Tables.ResourceKey => {
+export const REDSHIFT_DeleteCluster = (record: CloudTrail.Record): Tables.ResouceGSI1Key => {
   const awsRegion = record.awsRegion;
   const accountId = record.recipientAccountId;
   const clusterIdentifier = record.responseElements.clusterIdentifier;

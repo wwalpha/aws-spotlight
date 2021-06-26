@@ -1,6 +1,6 @@
 import { CloudTrail, Tables } from 'typings';
 
-export const ELASTICFILESYSTEM_DeleteFileSystem = (record: CloudTrail.Record): Tables.ResourceKey => {
+export const ELASTICFILESYSTEM_DeleteFileSystem = (record: CloudTrail.Record): Tables.ResouceGSI1Key => {
   const awsRegion = record.awsRegion;
   const accountId = record.recipientAccountId;
   const fileSystemId = record.requestParameters.fileSystemId;

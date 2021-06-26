@@ -1,6 +1,6 @@
 import { CloudTrail, Tables } from 'typings';
 
-export const IAM_DeleteServiceLinkedRole = (record: CloudTrail.Record): Tables.ResourceKey => {
+export const IAM_DeleteServiceLinkedRole = (record: CloudTrail.Record): Tables.ResouceGSI1Key => {
   const accountId = record.recipientAccountId;
   const roleName = record.requestParameters.roleName;
 

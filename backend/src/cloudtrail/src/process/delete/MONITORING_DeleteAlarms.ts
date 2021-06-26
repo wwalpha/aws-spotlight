@@ -1,6 +1,6 @@
 import { CloudTrail, Tables } from 'typings';
 
-export const MONITORING_DeleteAlarms = (record: CloudTrail.Record): Tables.ResourceKey[] => {
+export const MONITORING_DeleteAlarms = (record: CloudTrail.Record): Tables.ResouceGSI1Key[] => {
   const awsRegion = record.awsRegion;
   const accountId = record.recipientAccountId;
 
