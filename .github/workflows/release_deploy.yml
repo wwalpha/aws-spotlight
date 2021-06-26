@@ -317,7 +317,7 @@ jobs:
       TABLE_NAME_EVENT_TYPE: ${{ secrets.TABLE_NAME_EVENT_TYPE }}
       TABLE_NAME_HISTORY: ${{ secrets.TABLE_NAME_HISTORY }}
       TABLE_NAME_RESOURCE: ${{ secrets.TABLE_NAME_RESOURCE }}
-      BUCKET_ARCHIVE: ${{ secrets.BUCKET_ARCHIVE }}
+      BUCKET_NAME_ARCHIVE: ${{ secrets.BUCKET_NAME_ARCHIVE }}
       SQS_URL: ${{ secrets.SQS_URL }}
     defaults:
       run:
