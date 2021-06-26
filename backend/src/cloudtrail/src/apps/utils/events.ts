@@ -14,6 +14,9 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
     case 'AUTOSCALING_CreateAutoScalingGroup':
       return CreateEvent.AUTOSCALING_CreateAutoScalingGroup(record);
 
+    case 'BACKUP_CreateBackupVault':
+      return CreateEvent.BACKUP_CreateBackupVault(record);
+
     case 'CODEBUILD_CreateProject':
       return CreateEvent.CODEBUILD_CreateProject(record);
 
@@ -66,6 +69,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
 
     case 'MONITORING_PutMetricAlarm':
       return CreateEvent.MONITORING_PutMetricAlarm(record);
+    case 'MONITORING_PutDashboard':
+      return CreateEvent.MONITORING_PutDashboard(record);
 
     case 'RDS_CreateDBCluster':
       return CreateEvent.RDS_CreateDBCluster(record);
@@ -134,6 +139,8 @@ export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [DeleteEvent.IAM_DeleteAccessKey(record)];
     case 'IAM_DeleteRole':
       return [DeleteEvent.IAM_DeleteRole(record)];
+    // case 'IAM_DeleteServiceLinkedRole':
+    //   return [DeleteEvent.IAM_DeleteServiceLinkedRole(record)];
 
     case 'LAMBDA_DeleteFunction20150331':
       return [DeleteEvent.LAMBDA_DeleteFunction20150331(record)];

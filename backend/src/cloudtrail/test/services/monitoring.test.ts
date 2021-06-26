@@ -50,4 +50,23 @@ describe('monitoring.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(Monitoring.DeleteAlarms_H);
   });
+
+  test('MONITORING_PutDashboard', async () => {
+    const event = await sendMessage(CreateEvents.MONITORING_PutDashboard);
+
+    await cloudtrail(event);
+
+    const resource = await getResource({
+      EventSource: 'monitoring.amazonaws.com',
+      ResourceId: 'arn:aws:cloudwatch::999999999999:dashboard/LambdaDashBoard',
+    });
+
+    const history = await getHistory({ EventId: '34c9f97c-c5d9-4b37-beae-8b757e8a2f16' });
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(Monitoring.PutDashboard_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(Monitoring.PutDashboard_H);
+  });
 });

@@ -2,6 +2,8 @@ export * from './APIGATEWAY_CreateRestApi';
 export * from './APIGATEWAY_ImportRestApi';
 export * from './AUTOSCALING_CreateAutoScalingGroup';
 
+export * from './BACKUP_CreateBackupVault';
+
 export * from './CODEBUILD_CreateProject';
 
 export * from './DYNAMODB_CreateTable';
@@ -30,6 +32,7 @@ export * from './IAM_CreateRole';
 export * from './LAMBDA_CreateFunction20150331';
 
 export * from './MONITORING_PutMetricAlarm';
+export * from './MONITORING_PutDashboard';
 
 export * from './RDS_CreateDBCluster';
 export * from './RDS_CreateDBInstance';

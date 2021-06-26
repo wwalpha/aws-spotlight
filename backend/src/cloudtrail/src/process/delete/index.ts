@@ -24,6 +24,7 @@ export * from './ES_DeleteElasticsearchDomain';
 
 export * from './IAM_DeleteAccessKey';
 export * from './IAM_DeleteRole';
+export * from './IAM_DeleteServiceLinkedRole';
 
 export * from './LAMBDA_DeleteFunction20150331';
 

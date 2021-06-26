@@ -3,6 +3,8 @@ export { default as APIGATEWAY_ImportRestApi } from './APIGATEWAY_ImportRestApi.
 
 export { default as AUTOSCALING_CreateAutoScalingGroup } from './AUTOSCALING_CreateAutoScalingGroup.json';
 
+export { default as BACKUP_CreateBackupVault } from './BACKUP_CreateBackupVault.json';
+
 export { default as CODEBUILD_CreateProject } from './CODEBUILD_CreateProject.json';
 
 export { default as DS_CreateMicrosoftAD } from './DS_CreateMicrosoftAD.json';
@@ -29,6 +31,7 @@ export { default as IAM_CreateRole } from './IAM_CreateRole.json';
 export { default as LAMBDA_CreateFunction20150331 } from './LAMBDA_CreateFunction20150331.json';
 
 export { default as MONITORING_PutMetricAlarm } from './MONITORING_PutMetricAlarm.json';
+export { default as MONITORING_PutDashboard } from './MONITORING_PutDashboard.json';
 
 export { default as RDS_CreateDBCluster } from './RDS_CreateDBCluster.json';
 export { default as RDS_CreateDBInstance } from './RDS_CreateDBInstance.json';
