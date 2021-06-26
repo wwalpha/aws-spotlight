@@ -25,6 +25,7 @@ env:
   SSM_PARAMETER_NAME_USER: /arms/repository_url/user_manager
   SSM_PARAMETER_NAME_CLOUDTRAIL: /arms/repository_url/cloudtrail
   SSM_PARAMETER_NAME_UNPROCESSED: /arms/repository_url/unprocessed
+  SSM_PARAMETER_NAME_FRONTEND: /arms/frontend
 
 jobs:
   Terraform:
@@ -351,3 +352,38 @@ jobs:
           yarn releases
           yarn events
           yarn patch
+
+  # [Frontend]
+  Frontend:
+    runs-on: ubuntu-18.04
+    needs:
+      - Release_Events
+    environment:
+      name: prod
+    env:
+      BUCKET_NAME_ARCHIVE: ${{ secrets.BUCKET_NAME_ARCHIVE }}
+      BUCKET_NAME_FRONTEND: ${{ secrets.BUCKET_NAME_FRONTEND }}
+
+    steps:
+      # Setup Node.js
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Deploy frontend
+      - name: Deploy
+        env:
+          FILE_NAME: ${{ github.sha }}
+        run: |
+          filepath=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_FRONTEND --with-decryption | jq -r .Parameter.Value)
+          aws s3 cp $filepath dist.zip
+          unzip dist.zip -d ./dist/
+          aws s3 cp dist s3://$BUCKET_NAME_FRONTEND/ --recursive --region $AWS_DEFAULT_REGION

@@ -21,6 +21,7 @@ env:
   SSM_PARAMETER_NAME_USER: /arms/repository_url/user_manager
   SSM_PARAMETER_NAME_CLOUDTRAIL: /arms/repository_url/cloudtrail
   SSM_PARAMETER_NAME_UNPROCESSED: /arms/repository_url/unprocessed
+  SSM_PARAMETER_NAME_FRONTEND: /arms/frontend
 
 jobs:
   Terraform:
@@ -438,8 +439,9 @@ jobs:
     environment:
       name: prod
     env:
-      BUCKET_NAME_FRONTEND: ${{ secrets.BUCKET_NAME_FRONTEND }}
+      BUCKET_NAME_ARCHIVE: ${{ secrets.BUCKET_NAME_ARCHIVE }}
       BACKEND_API_URL: ${{ secrets.BACKEND_API_URL }}
+      NODE_ENV: production
     defaults:
       run:
         working-directory: ${{ env.WORKING_DIR_FRONTEND }}
@@ -465,11 +467,15 @@ jobs:
       # Install and Build
       - name: Build
         run: |
-          export NODE_ENV=production
           yarn install --production=false
           yarn build
 
-      # AWS Credentials
-      # - name: Upload files
-      #   run: |
-      #     aws s3 cp dist s3://$BUCKET_NAME_FRONTEND --recursive
+      # Upload dist files
+      - name: Upload files
+        env:
+          FILE_NAME: ${{ github.sha }}
+        run: |
+          cd dist && zip -r -q $FILE_NAME.zip *
+          aws s3 cp $FILE_NAME.zip s3://$BUCKET_NAME_ARCHIVE/frontend/$FILE_NAME.zip --region $AWS_DEFAULT_REGION
+          aws ssm put-parameter --name $SSM_PARAMETER_NAME_FRONTEND --type "String" --value s3://$BUCKET_NAME_ARCHIVE/frontend/$FILE_NAME.zip --overwrite
+
