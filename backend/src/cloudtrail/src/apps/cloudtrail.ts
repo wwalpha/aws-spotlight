@@ -238,7 +238,7 @@ export const execUpdateRecords = async (records: CloudTrail.Record[]) => {
   for (; records.length > 0; ) {
     const record = records.shift();
 
-    if (!record) break;
+    if (!record) continue;
 
     const createItem = Events.getCreateResourceItem(record);
     const deleteItems = Events.getRemoveResourceItem(record);

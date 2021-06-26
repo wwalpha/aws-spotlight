@@ -1,7 +1,7 @@
 import { SQSEvent } from 'aws-lambda';
 import AWS from 'aws-sdk';
 import { execute, initializeEvents } from './apps/cloudtrail';
-import { getUnprocessedEvents, processCreate, processDelete, processIgnore } from './apps/unprocessed';
+import { getUnprocessedEvents, processIgnore, processUpdate } from './apps/unprocessed';
 import { Logger } from './apps/utils/utilities';
 
 // common settings
@@ -38,10 +38,8 @@ export const unprocessed = async () => {
 
   // ignore records
   await processIgnore(events);
-  // create records
-  await processCreate(events);
-  // create records
-  await processDelete(events);
+  // update records
+  await processUpdate(events);
 };
 
 process.on('unhandledRejection', (err) => {

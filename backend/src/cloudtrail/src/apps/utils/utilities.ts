@@ -1,5 +1,5 @@
 import { SQSRecord } from 'aws-lambda';
-import { SQS } from 'aws-sdk';
+import { DynamoDB, SQS } from 'aws-sdk';
 import { defaultTo } from 'lodash';
 import winston from 'winston';
 import { Environments } from './consts';
@@ -19,6 +19,36 @@ export const LoggerOptions: winston.LoggerOptions = {
 };
 
 export const Logger = winston.createLogger(LoggerOptions);
+
+/**
+ * Get history record
+ *
+ * @param record
+ * @returns
+ */
+export const getHistoryItem = (record: CloudTrail.Record): Tables.History => ({
+  EventId: record.eventID,
+  EventName: record.eventName,
+  EventSource: record.eventSource,
+  AWSRegion: record.awsRegion,
+  EventTime: record.eventTime,
+  UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
+  Origin: JSON.stringify(record),
+});
+
+export const getPutRecord = (tableName: string, item: any): DynamoDB.DocumentClient.TransactWriteItem => ({
+  Put: {
+    TableName: tableName,
+    Item: item,
+  },
+});
+
+export const getDeleteRecord = (tableName: string, key: DynamoDB.DocumentClient.Key): DynamoDB.DocumentClient.TransactWriteItem => ({
+  Delete: {
+    TableName: tableName,
+    Key: key,
+  },
+});
 
 /**
  * Regist history

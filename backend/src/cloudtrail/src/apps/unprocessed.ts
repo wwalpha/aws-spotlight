@@ -1,4 +1,5 @@
-import { uniqBy } from 'lodash';
+import { DynamoDB } from 'aws-sdk';
+import { orderBy } from 'lodash';
 import { CloudTrail, Tables } from 'typings';
 import { Events, Consts, Utilities, DynamodbHelper } from './utils';
 import { Logger } from './utils/utilities';
@@ -75,151 +76,99 @@ export const processIgnore = async (events: Tables.EventType[]) => {
   }
 };
 
-/**
- * process create resource
- *
- * @param events
- * @returns
- */
-export const processCreate = async (events: Tables.EventType[]) => {
-  // filter ignore records
-  const records = events.filter((item) => item.Create === true);
+export const processUpdate = async (events: Tables.EventType[]) => {
+  const { TABLE_NAME_EVENT_TYPE, TABLE_NAME_HISTORY, TABLE_NAME_RESOURCE, TABLE_NAME_UNPROCESSED } = Consts.Environments;
 
-  Logger.info('Create records size:', records.length, records);
+  const createEvents = events.filter((item) => item.Create === true);
+  const deleteEvents = events.filter((item) => item.Delete === true);
 
-  // no records
-  if (records.length === 0) return;
-
-  for (; records.length > 0; ) {
-    const item = records.shift();
-
-    // find keys
-    const queryResult = await DynamodbHelper.query<Tables.Unprocessed>({
-      TableName: Consts.Environments.TABLE_NAME_UNPROCESSED,
+  const tasks = [...createEvents, ...deleteEvents].map((item) =>
+    DynamodbHelper.query<Tables.Unprocessed>({
+      TableName: TABLE_NAME_UNPROCESSED,
       KeyConditionExpression: '#EventName = :EventName',
       ExpressionAttributeNames: {
         '#EventName': 'EventName',
       },
       ExpressionAttributeValues: {
-        ':EventName': item?.EventName,
+        ':EventName': item.EventName,
       },
-    });
+    })
+  );
 
-    const rawRecords = queryResult.Items.map((item) => {
-      try {
-        return JSON.parse(item.Raw) as CloudTrail.Record;
-      } catch (err) {
-        console.error(err);
-        return;
-      }
-    }).filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
+  const results = await Promise.all(tasks);
+  const allRecords = results.map((item) => item.Items);
 
-    const createItems = rawRecords
-      .map((item) => item && Events.getCreateResourceItem(item))
-      .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
+  // merge all records
+  const records = allRecords.reduce((prev, curr) => {
+    return [...prev, ...curr];
+  }, [] as Tables.Unprocessed[]);
 
-    const uniqItems = uniqBy(createItems, 'ResourceId');
+  const sorted = orderBy(records, ['EventTime'], ['asc']);
 
-    // bulk insert resource
-    await DynamodbHelper.bulk(Consts.Environments.TABLE_NAME_RESOURCE, uniqItems);
-    // bulk insert history
-    await Utilities.registHistory(rawRecords);
+  for (; sorted.length > 0; ) {
+    const record = sorted.shift();
 
-    // remove all raw datas
-    const removeItems = queryResult.Items.map(
-      (item) =>
-        ({
-          EventName: item.EventName,
-          EventTime: item.EventTime,
-        } as Tables.UnprocessedKey)
+    // validation
+    if (!record) continue;
+
+    let item: CloudTrail.Record;
+
+    try {
+      // parse raw data
+      item = JSON.parse(record.Raw) as CloudTrail.Record;
+    } catch (err) {
+      console.error(err);
+      continue;
+    }
+
+    const createItem = Events.getCreateResourceItem(item);
+    const deleteItems = Events.getRemoveResourceItem(item);
+
+    const transactItems: DynamoDB.DocumentClient.TransactWriteItemList = [];
+
+    // create records
+    if (createItem) {
+      // add resource record
+      transactItems.push(Utilities.getPutRecord(TABLE_NAME_RESOURCE, createItem));
+    }
+
+    // delete records
+    if (deleteItems) {
+      deleteItems
+        .map((deleteItem) => Utilities.getDeleteRecord(TABLE_NAME_RESOURCE, deleteItem))
+        .forEach((deleteItem) => transactItems.push(deleteItem));
+    }
+
+    // add history record
+    transactItems.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(item)));
+
+    // delete unprocessed item
+    transactItems.push(
+      Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, {
+        EventName: item.eventName,
+        EventTime: `${item.eventTime}_${item.eventID.substr(0, 8)}`,
+      } as Tables.UnprocessedKey)
     );
 
-    await DynamodbHelper.truncate(Consts.Environments.TABLE_NAME_UNPROCESSED, removeItems);
-
-    // process finished
-    await DynamodbHelper.update({
-      TableName: Consts.Environments.TABLE_NAME_EVENT_TYPE,
-      Key: { EventSource: item?.EventSource, EventName: item?.EventName } as Tables.EventTypeKey,
-      UpdateExpression: 'REMOVE #Unprocessed',
-      ExpressionAttributeNames: {
-        '#Unprocessed': 'Unprocessed',
-      },
-    });
-  }
-};
-
-/**
- * process delete resource
- *
- * @param events
- * @returns
- */
-export const processDelete = async (events: Tables.EventType[]) => {
-  // filter ignore records
-  const records = events.filter((item) => item.Delete === true);
-
-  Logger.info('Delete records size:', records.length);
-
-  // no records
-  if (records.length === 0) return;
-
-  for (; records.length > 0; ) {
-    const item = records.shift();
-
-    // find keys
-    const queryResult = await DynamodbHelper.query<Tables.Unprocessed>({
-      TableName: Consts.Environments.TABLE_NAME_UNPROCESSED,
-      KeyConditionExpression: '#EventName = :EventName',
-      ExpressionAttributeNames: {
-        '#EventName': 'EventName',
-      },
-      ExpressionAttributeValues: {
-        ':EventName': item?.EventName,
+    // remove unprocessed flag
+    transactItems.push({
+      Update: {
+        TableName: TABLE_NAME_EVENT_TYPE,
+        Key: {
+          EventSource: item.eventSource,
+          EventName: item.eventName,
+        } as Tables.EventTypeKey,
+        UpdateExpression: 'REMOVE #Unprocessed',
+        ExpressionAttributeNames: {
+          '#Unprocessed': 'Unprocessed',
+        },
       },
     });
 
-    const rawRecords = queryResult.Items.map((item) => {
-      try {
-        return JSON.parse(item.Raw) as CloudTrail.Record;
-      } catch (err) {
-        console.error(err);
-        return;
-      }
-    }).filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
-
-    const removeItems = rawRecords
-      .map((item) => item && Events.getRemoveResourceItem(item))
-      .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
-
-    const items = removeItems.reduce((prev, curr) => {
-      return [...prev, ...curr];
-    }, [] as Tables.ResourceKey[]);
-
-    // bulk insert resource
-    await DynamodbHelper.truncate(Consts.Environments.TABLE_NAME_RESOURCE, items);
-    // bulk insert history
-    await Utilities.registHistory(rawRecords);
-
-    // remove all raw datas
-    const rowItems = queryResult.Items.map(
-      (item) =>
-        ({
-          EventName: item.EventName,
-          EventTime: item.EventTime,
-        } as Tables.UnprocessedKey)
-    );
-
-    // truncate all rows
-    await DynamodbHelper.truncate(Consts.Environments.TABLE_NAME_UNPROCESSED, rowItems);
-
-    // process finished
-    await DynamodbHelper.update({
-      TableName: Consts.Environments.TABLE_NAME_EVENT_TYPE,
-      Key: { EventSource: item?.EventSource, EventName: item?.EventName } as Tables.EventTypeKey,
-      UpdateExpression: 'REMOVE #Unprocessed',
-      ExpressionAttributeNames: {
-        '#Unprocessed': 'Unprocessed',
-      },
-    });
+    await DynamodbHelper.getDocumentClient()
+      .transactWrite({
+        TransactItems: transactItems,
+      })
+      .promise();
   }
 };

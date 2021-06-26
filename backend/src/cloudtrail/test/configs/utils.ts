@@ -68,10 +68,7 @@ export const sendMessage = async (body: Record<string, any>): Promise<SQSEvent> 
   };
 };
 
-export const getResource = async ({
-  EventSource,
-  ResourceId,
-}: Tables.ResourceKey): Promise<Tables.Resource | undefined> => {
+export const getResource = async ({ EventSource, ResourceId }: Tables.ResourceKey): Promise<Tables.Resource | undefined> => {
   const result = await helper.get<Tables.Resource>({
     TableName: TABLE_NAME_RESOURCE,
     Key: {
@@ -138,6 +135,14 @@ export const scanHistory = async (): Promise<Tables.History[] | undefined> => {
 export const scanResource = async (): Promise<Tables.Resource[] | undefined> => {
   const result = await helper.scan<Tables.Resource>({
     TableName: TABLE_NAME_RESOURCE,
+  });
+
+  return result?.Items;
+};
+
+export const scanUnprocessed = async (): Promise<Tables.Unprocessed[] | undefined> => {
+  const result = await helper.scan<Tables.Unprocessed>({
+    TableName: TABLE_NAME_UNPROCESSED,
   });
 
   return result?.Items;
