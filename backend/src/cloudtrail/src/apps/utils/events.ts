@@ -87,7 +87,7 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
   }
 };
 
-export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResourceKey[] | undefined => {
+export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key[] | undefined => {
   const { eventName, eventSource } = record;
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
 

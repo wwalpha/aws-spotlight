@@ -148,22 +148,45 @@ const processUpdate = async (record: CloudTrail.Record) => {
 
   // delete records
   if (deleteItems) {
-    deleteItems
+    const tasks = deleteItems.map((item) =>
+      DynamodbHelper.query<Tables.Resource>({
+        TableName: TABLE_NAME_RESOURCE,
+        KeyConditionExpression: 'ResourceId = :ResourceId',
+        ExpressionAttributeValues: {
+          ':ResourceId': item.ResourceId,
+        },
+      })
+    );
+
+    // get all rows
+    const results = await Promise.all(tasks);
+
+    // merge all records
+    const dataRows = results.reduce((prev, curr) => {
+      if (curr.Items.length === 0) return prev;
+
+      return [...prev, curr.Items[0]];
+    }, [] as Tables.Resource[]);
+
+    dataRows
       .map(
-        (deleteItem) =>
+        (item) =>
           ({
             Delete: {
               TableName: TABLE_NAME_RESOURCE,
-              Key: deleteItem,
-              ConditionExpression: 'EventSource = :EventSource AND ResourceId = :ResourceId',
+              Key: {
+                ResourceId: item.ResourceId,
+                EventTime: item.EventTime,
+              } as Tables.ResourceKey,
+              ConditionExpression: 'ResourceId = :ResourceId AND EventTime = :EventTime',
               ExpressionAttributeValues: {
-                ':EventSource': deleteItem.EventSource,
-                ':ResourceId': deleteItem.ResourceId,
+                ':ResourceId': item.ResourceId,
+                ':EventTime': item.EventTime,
               },
             },
           } as DynamoDB.DocumentClient.TransactWriteItem)
       )
-      .forEach((deleteItem) => transactItems.push(deleteItem));
+      .forEach((item) => transactItems.push(item));
   }
 
   // add history record
