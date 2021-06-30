@@ -21,7 +21,22 @@ export const reCreate = async () => {
 };
 
 export const reCreateFromBucket = async () => {
-  const keys = await getBucketKeys();
+  await postSQS();
+};
+
+const postSQS = async (token?: string) => {
+  const results = await s3Client
+    .listObjectsV2({
+      Bucket: BUCKET_NAME_CLOUDTRAIL,
+      ContinuationToken: token,
+    })
+    .promise();
+
+  if (!results.Contents) return [];
+
+  const keys = results.Contents?.map((item) => item.Key).filter(
+    (item): item is Exclude<typeof item, undefined> => item !== undefined
+  );
 
   const tasks = keys.map((key) =>
     sqsClient
@@ -35,6 +50,10 @@ export const reCreateFromBucket = async () => {
   );
 
   await Promise.all(tasks);
+
+  if (results.NextContinuationToken) {
+    await postSQS(results.NextContinuationToken);
+  }
 };
 
 const getBucketKeys = async (token?: string): Promise<string[]> => {
