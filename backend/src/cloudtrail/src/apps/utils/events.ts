@@ -1,93 +1,120 @@
 import * as CreateEvent from '@src/process/create';
 import * as DeleteEvent from '@src/process/delete';
 import { CloudTrail, Tables } from 'typings';
+import { Consts, DynamodbHelper } from '.';
 
-export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resource | undefined => {
+export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resource[] | undefined => {
   const { eventName, eventSource } = record;
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
 
   switch (key) {
     case 'APIGATEWAY_CreateRestApi':
-      return CreateEvent.APIGATEWAY_CreateRestApi(record);
+      return [CreateEvent.APIGATEWAY_CreateRestApi(record)];
     case 'APIGATEWAY_ImportRestApi':
-      return CreateEvent.APIGATEWAY_ImportRestApi(record);
+      return [CreateEvent.APIGATEWAY_ImportRestApi(record)];
     case 'AUTOSCALING_CreateAutoScalingGroup':
-      return CreateEvent.AUTOSCALING_CreateAutoScalingGroup(record);
+      return [CreateEvent.AUTOSCALING_CreateAutoScalingGroup(record)];
 
     case 'BACKUP_CreateBackupVault':
-      return CreateEvent.BACKUP_CreateBackupVault(record);
+      return [CreateEvent.BACKUP_CreateBackupVault(record)];
 
     case 'CODEBUILD_CreateProject':
-      return CreateEvent.CODEBUILD_CreateProject(record);
+      return [CreateEvent.CODEBUILD_CreateProject(record)];
 
     case 'DYNAMODB_CreateTable':
-      return CreateEvent.DYNAMODB_CreateTable(record);
+      return [CreateEvent.DYNAMODB_CreateTable(record)];
     case 'DS_CreateMicrosoftAD':
-      return CreateEvent.DS_CreateMicrosoftAD(record);
+      return [CreateEvent.DS_CreateMicrosoftAD(record)];
 
     case 'EC2_RunInstances':
       return CreateEvent.EC2_RunInstances(record);
     case 'EC2_CreateImage':
-      return CreateEvent.EC2_CreateImage(record);
+      return [CreateEvent.EC2_CreateImage(record)];
     case 'EC2_CreateSnapshot':
-      return CreateEvent.EC2_CreateSnapshot(record);
+      return [CreateEvent.EC2_CreateSnapshot(record)];
     case 'EC2_CreateSnapshots':
-      return CreateEvent.EC2_CreateSnapshots(record);
+      return [CreateEvent.EC2_CreateSnapshots(record)];
     case 'EC2_CreateNatGateway':
-      return CreateEvent.EC2_CreateNatGateway(record);
+      return [CreateEvent.EC2_CreateNatGateway(record)];
     case 'EC2_CreateClientVpnEndpoint':
-      return CreateEvent.EC2_CreateClientVpnEndpoint(record);
+      return [CreateEvent.EC2_CreateClientVpnEndpoint(record)];
     case 'EC2_CreateVpcPeeringConnection':
-      return CreateEvent.EC2_CreateVpcPeeringConnection(record);
+      return [CreateEvent.EC2_CreateVpcPeeringConnection(record)];
     case 'EC2_CreateVpc':
-      return CreateEvent.EC2_CreateVpc(record);
+      return [CreateEvent.EC2_CreateVpc(record)];
     case 'EC2_CreateVolume':
-      return CreateEvent.EC2_CreateVolume(record);
+      return [CreateEvent.EC2_CreateVolume(record)];
     case 'EC2_CreateVpcEndpoint':
-      return CreateEvent.EC2_CreateVpcEndpoint(record);
+      return [CreateEvent.EC2_CreateVpcEndpoint(record)];
 
     case 'ELASTICFILESYSTEM_CreateFileSystem':
-      return CreateEvent.ELASTICFILESYSTEM_CreateFileSystem(record);
+      return [CreateEvent.ELASTICFILESYSTEM_CreateFileSystem(record)];
 
     case 'ELASTICLOADBALANCING_CreateLoadBalancer':
-      return CreateEvent.ELASTICLOADBALANCING_CreateLoadBalancer(record);
+      return [CreateEvent.ELASTICLOADBALANCING_CreateLoadBalancer(record)];
     case 'ELASTICLOADBALANCING_CreateTargetGroup':
-      return CreateEvent.ELASTICLOADBALANCING_CreateTargetGroup(record);
+      return [CreateEvent.ELASTICLOADBALANCING_CreateTargetGroup(record)];
 
     case 'EKS_CreateCluster':
-      return CreateEvent.EKS_CreateCluster(record);
+      return [CreateEvent.EKS_CreateCluster(record)];
     case 'ES_CreateElasticsearchDomain':
-      return CreateEvent.ES_CreateElasticsearchDomain(record);
+      return [CreateEvent.ES_CreateElasticsearchDomain(record)];
 
     case 'IAM_CreateAccessKey':
-      return CreateEvent.IAM_CreateAccessKey(record);
+      return [CreateEvent.IAM_CreateAccessKey(record)];
     case 'IAM_CreateRole':
-      return CreateEvent.IAM_CreateRole(record);
+      return [CreateEvent.IAM_CreateRole(record)];
 
     case 'LAMBDA_CreateFunction20150331':
-      return CreateEvent.LAMBDA_CreateFunction20150331(record);
+      return [CreateEvent.LAMBDA_CreateFunction20150331(record)];
 
     case 'MONITORING_PutMetricAlarm':
-      return CreateEvent.MONITORING_PutMetricAlarm(record);
+      return [CreateEvent.MONITORING_PutMetricAlarm(record)];
     case 'MONITORING_PutDashboard':
-      return CreateEvent.MONITORING_PutDashboard(record);
+      return [CreateEvent.MONITORING_PutDashboard(record)];
 
     case 'RDS_CreateDBCluster':
-      return CreateEvent.RDS_CreateDBCluster(record);
+      return [CreateEvent.RDS_CreateDBCluster(record)];
     case 'RDS_CreateDBInstance':
-      return CreateEvent.RDS_CreateDBInstance(record);
+      return [CreateEvent.RDS_CreateDBInstance(record)];
     case 'REDSHIFT_CreateCluster':
-      return CreateEvent.REDSHIFT_CreateCluster(record);
+      return [CreateEvent.REDSHIFT_CreateCluster(record)];
 
     case 'S3_CreateBucket':
-      return CreateEvent.S3_CreateBucket(record);
+      return [CreateEvent.S3_CreateBucket(record)];
 
     default:
       return undefined;
   }
 };
 
-export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key[] | undefined => {
+export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise<Tables.Resource[] | undefined> => {
+  const items = getRemoveResourceItem(record);
+
+  if (!items) return;
+
+  const tasks = items.map((item) =>
+    DynamodbHelper.query<Tables.Resource>({
+      TableName: Consts.Environments.TABLE_NAME_RESOURCE,
+      KeyConditionExpression: 'ResourceId = :ResourceId',
+      ExpressionAttributeValues: {
+        ':ResourceId': item.ResourceId,
+      },
+    })
+  );
+
+  // get all rows
+  const results = await Promise.all(tasks);
+
+  // merge all records
+  return results.reduce((prev, curr) => {
+    if (curr.Items.length === 0) return prev;
+
+    return [...prev, curr.Items[0]];
+  }, [] as Tables.Resource[]);
+};
+
+const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key[] | undefined => {
   const { eventName, eventSource } = record;
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
 
@@ -106,7 +133,7 @@ export const getRemoveResourceItem = (record: CloudTrail.Record): Tables.Resouce
       return [DeleteEvent.DS_DeleteDirectory(record)];
 
     case 'EC2_TerminateInstances':
-      return [DeleteEvent.EC2_TerminateInstances(record)];
+      return DeleteEvent.EC2_TerminateInstances(record);
     case 'EC2_DeregisterImage':
       return [DeleteEvent.EC2_DeregisterImage(record)];
     case 'EC2_DeleteSnapshot':
