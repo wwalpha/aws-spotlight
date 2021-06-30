@@ -28,6 +28,7 @@ const postSQS = async (token?: string) => {
   const results = await s3Client
     .listObjectsV2({
       Bucket: BUCKET_NAME_CLOUDTRAIL,
+      Prefix: 'AWSLogs/99999999999/CloudTrail/',
       ContinuationToken: token,
     })
     .promise();
@@ -38,18 +39,20 @@ const postSQS = async (token?: string) => {
     (item): item is Exclude<typeof item, undefined> => item !== undefined
   );
 
-  const tasks = keys.map((key) =>
-    sqsClient
+  for (; keys.length > 0; ) {
+    const items = keys.length > 100 ? keys.splice(0, 100) : keys.splice(0, keys.length);
+
+    await sqsClient
       .sendMessage({
         QueueUrl: SQS_URL,
         MessageBody: JSON.stringify({
-          Message: JSON.stringify({ s3Bucket: BUCKET_NAME_ARCHIVE, s3ObjectKey: [key] }),
+          Message: JSON.stringify({ s3Bucket: BUCKET_NAME_CLOUDTRAIL, s3ObjectKey: items }),
         }),
       })
-      .promise()
-  );
+      .promise();
+  }
 
-  await Promise.all(tasks);
+  console.log(results.NextContinuationToken);
 
   if (results.NextContinuationToken) {
     await postSQS(results.NextContinuationToken);
