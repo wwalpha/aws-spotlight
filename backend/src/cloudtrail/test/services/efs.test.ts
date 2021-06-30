@@ -19,10 +19,7 @@ describe('elasticfilesystem.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'elasticfilesystem.amazonaws.com',
-      ResourceId: 'arn:aws:elasticfilesystem:ap-northeast-1:999999999999:file-system/fs-d536f8f5',
-    });
+    const resource = await getResource('arn:aws:elasticfilesystem:ap-northeast-1:999999999999:file-system/fs-d536f8f5');
     const history = await getHistory({ EventId: 'f1969d29-ac0c-4a5e-8517-5733ff9ef57a' });
 
     expect(resource).not.toBeUndefined();
@@ -37,10 +34,7 @@ describe('elasticfilesystem.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'elasticfilesystem.amazonaws.com',
-      ResourceId: 'arn:aws:elasticfilesystem:ap-northeast-1:999999999999:file-system/fs-d536f8f5',
-    });
+    const resource = await getResource('arn:aws:elasticfilesystem:ap-northeast-1:999999999999:file-system/fs-d536f8f5');
     const history = await getHistory({ EventId: '7def94c1-bdcb-4546-8856-89b59abe586d' });
 
     expect(resource).toBeUndefined();

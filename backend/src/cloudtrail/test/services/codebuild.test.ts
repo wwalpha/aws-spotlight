@@ -19,10 +19,7 @@ describe('codebuild.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'codebuild.amazonaws.com',
-      ResourceId: 'arn:aws:codebuild:ap-northeast-1:999999999999:project/test',
-    });
+    const resource = await getResource('arn:aws:codebuild:ap-northeast-1:999999999999:project/test');
     const history = await getHistory({ EventId: '0ffc5c7d-b765-429c-b727-4ae0d737c544' });
 
     expect(resource).not.toBeUndefined();
@@ -37,10 +34,7 @@ describe('codebuild.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'codebuild.amazonaws.com',
-      ResourceId: 'arn:aws:codebuild:ap-northeast-1:999999999999:project/test',
-    });
+    const resource = await getResource('arn:aws:codebuild:ap-northeast-1:999999999999:project/test');
     const history = await getHistory({ EventId: '41804c2c-a898-42eb-ba29-21d55a05bf2f' });
 
     expect(resource).toBeUndefined();

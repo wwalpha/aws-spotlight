@@ -18,10 +18,9 @@ describe('lambda.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'lambda.amazonaws.com',
-      ResourceId: 'arn:aws:lambda:ap-northeast-1:999999999999:function:RekogDemoSetupEngagementMeter',
-    });
+    const resource = await getResource(
+      'arn:aws:lambda:ap-northeast-1:999999999999:function:RekogDemoSetupEngagementMeter'
+    );
     const history = await getHistory({ EventId: 'e9f2276f-0e07-42ed-b1a9-1758916a2d7d' });
 
     expect(resource).not.toBeUndefined();
@@ -36,10 +35,9 @@ describe('lambda.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'lambda.amazonaws.com',
-      ResourceId: 'arn:aws:lambda:ap-northeast-1:999999999999:function:RekogDemoSetupEngagementMeter',
-    });
+    const resource = await getResource(
+      'arn:aws:lambda:ap-northeast-1:999999999999:function:RekogDemoSetupEngagementMeter'
+    );
     const history = await getHistory({ EventId: '78358ae7-e395-4813-a659-1cd40248272b' });
 
     expect(resource).toBeUndefined();

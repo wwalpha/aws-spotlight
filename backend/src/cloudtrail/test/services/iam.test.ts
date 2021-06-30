@@ -19,10 +19,7 @@ describe('iam.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'iam.amazonaws.com',
-      ResourceId: 'AAAAAAAAAAAAAAAAAAAA',
-    });
+    const resource = await getResource('AAAAAAAAAAAAAAAAAAAA');
     const history = await getHistory({ EventId: '173aca94-54f1-4a01-9ec2-7b471c918eaf' });
 
     expect(resource).not.toBeUndefined();
@@ -37,10 +34,7 @@ describe('iam.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'iam.amazonaws.com',
-      ResourceId: 'AAAAAAAAAAAAAAAAAAAA',
-    });
+    const resource = await getResource('AAAAAAAAAAAAAAAAAAAA');
     const history = await getHistory({ EventId: '410af4e7-868f-4c9d-b02e-41c779011f0e' });
 
     expect(resource).toBeUndefined();
@@ -54,10 +48,7 @@ describe('iam.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'iam.amazonaws.com',
-      ResourceId: 'arn:aws:iam::999999999999:role/rds-monitoring-role',
-    });
+    const resource = await getResource('arn:aws:iam::999999999999:role/rds-monitoring-role');
     const history = await getHistory({ EventId: '739d8b02-6cf3-44a6-84d6-2cb3fccd16a7' });
 
     expect(resource).not.toBeUndefined();
@@ -72,10 +63,7 @@ describe('iam.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'iam.amazonaws.com',
-      ResourceId: 'arn:aws:iam::999999999999:role/rds-monitoring-role',
-    });
+    const resource = await getResource('arn:aws:iam::999999999999:role/rds-monitoring-role');
     const history = await getHistory({ EventId: '2a6c2b17-635c-463b-80ce-3d3da6cf98c0' });
 
     expect(resource).toBeUndefined();

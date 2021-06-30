@@ -2,7 +2,7 @@
   "IdentityType": "IAMUser",
   "EventSource": "ec2.amazonaws.com",
   "UserName": "test001@test.com",
-  "ResourceId": "cvpn-endpoint-00979964d0389482a",
+  "ResourceId": "arn:aws:ec2:ap-northeast-1:999999999999:client-vpn-endpoint/cvpn-endpoint-00979964d0389482a",
   "ResourceName": "cvpn-endpoint-00979964d0389482a.prod.clientvpn.ap-northeast-1.amazonaws.com",
   "EventTime": "2021-03-02T08:53:18Z",
   "UserAgent": "console.ec2.amazonaws.com",

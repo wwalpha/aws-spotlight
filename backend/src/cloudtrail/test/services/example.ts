@@ -27,7 +27,7 @@ describe('ec2.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({ EventSource: 'apigateway.amazonaws.com', ResourceId: 'jrrfh5tt86' });
+    const resource = await getResource('jrrfh5tt86');
     const history = await getHistory({ EventId: '90baa69e-caed-44bb-85fe-004348b07ea0' });
 
     // fs.writeFileSync('CreateRestApi_R.json', JSON.stringify(resource));
@@ -45,7 +45,7 @@ describe('ec2.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({ EventSource: 'apigateway.amazonaws.com', ResourceId: 'lyppg996u0' });
+    const resource = await getResource('lyppg996u0');
     const history = await getHistory({ EventId: '86a4e780-56fc-422a-b95d-9f19ca5e2c11' });
 
     // fs.writeFileSync('ImportRestApi_R.json', JSON.stringify(resource));
@@ -63,7 +63,7 @@ describe('ec2.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({ EventSource: 'apigateway.amazonaws.com', ResourceId: 'jrrfh5tt86' });
+    const resource = await getResource('jrrfh5tt86');
     const history = await getHistory({ EventId: '86a4e780-56fc-422a-b95d-9f19ca5e2c11' });
 
     // fs.writeFileSync('DeleteRestApi_H.json', JSON.stringify(history));

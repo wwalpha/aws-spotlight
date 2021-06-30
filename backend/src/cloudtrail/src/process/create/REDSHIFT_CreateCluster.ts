@@ -2,13 +2,13 @@ import { defaultTo } from 'lodash';
 import { CloudTrail, Tables } from 'typings';
 
 export const REDSHIFT_CreateCluster = (record: CloudTrail.Record): Tables.Resource => {
-  const awsRegion = record.awsRegion;
-  const accountId = record.recipientAccountId;
+  const region = record.awsRegion;
+  const account = record.recipientAccountId;
   const clusterIdentifier = record.responseElements.clusterIdentifier;
 
   return {
     UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
-    ResourceId: `arn:aws:redshift:${awsRegion}:${accountId}:cluster:${clusterIdentifier}`,
+    ResourceId: `arn:aws:redshift:${region}:${account}:cluster:${clusterIdentifier}`,
     ResourceName: record.responseElements.clusterIdentifier,
     EventName: record.eventName,
     EventSource: record.eventSource,

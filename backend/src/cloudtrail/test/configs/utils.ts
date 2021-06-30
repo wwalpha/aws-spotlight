@@ -107,16 +107,16 @@ export const sendMessage = async (body: Record<string, any>): Promise<SQSEvent> 
   };
 };
 
-export const getResource = async ({ EventSource, ResourceId }: Tables.ResourceKey): Promise<Tables.Resource | undefined> => {
-  const result = await helper.get<Tables.Resource>({
+export const getResource = async (ResourceId: string): Promise<Tables.Resource | undefined> => {
+  const result = await helper.query<Tables.Resource>({
     TableName: TABLE_NAME_RESOURCE,
-    Key: {
-      EventSource,
-      ResourceId,
+    KeyConditionExpression: 'ResourceId = :ResourceId',
+    ExpressionAttributeValues: {
+      ':ResourceId': ResourceId,
     },
   });
 
-  return result?.Item;
+  return result?.Items[0];
 };
 
 export const getHistory = async (key: Tables.HistoryKey): Promise<Tables.History | undefined> => {

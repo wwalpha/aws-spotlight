@@ -19,10 +19,9 @@ describe.only('dynamodb.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'dynamodb.amazonaws.com',
-      ResourceId: 'arn:aws:dynamodb:ap-northeast-1:999999999999:table/AutoNotification_AlarmConfigs',
-    });
+    const resource = await getResource(
+      'arn:aws:dynamodb:ap-northeast-1:999999999999:table/AutoNotification_AlarmConfigs'
+    );
     const history = await getHistory({ EventId: '696c84dc-ad34-4abe-90dd-b69189934170' });
 
     expect(resource).not.toBeUndefined();
@@ -37,10 +36,9 @@ describe.only('dynamodb.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'dynamodb.amazonaws.com',
-      ResourceId: 'arn:aws:dynamodb:ap-northeast-1:999999999999:table/AutoNotification_AlarmConfigs',
-    });
+    const resource = await getResource(
+      'arn:aws:dynamodb:ap-northeast-1:999999999999:table/AutoNotification_AlarmConfigs'
+    );
     const history = await getHistory({ EventId: '7bae1976-dd8e-4332-bc95-83c7844d515d' });
 
     expect(resource).toBeUndefined();

@@ -1,1 +1,13 @@
-{"IdentityType":"IAMUser","EventSource":"ec2.amazonaws.com","UserName":"test@test.com","ResourceId":"pcx-09cc395f56ffead9e","ResourceName":"pcx-09cc395f56ffead9e","EventTime":"2021-06-08T07:37:56Z","UserAgent":"console.ec2.amazonaws.com","AWSRegion":"ap-northeast-1","EventId":"73bfa272-16c5-49c8-8d5f-ecea11f04060","Service":"VPC Peering","EventName":"CreateVpcPeeringConnection"}
+{
+  "IdentityType": "IAMUser",
+  "EventSource": "ec2.amazonaws.com",
+  "UserName": "test@test.com",
+  "ResourceId": "arn:aws:ec2:ap-northeast-1:999999999999:vpc-peering-connection/pcx-09cc395f56ffead9e",
+  "ResourceName": "pcx-09cc395f56ffead9e",
+  "EventTime": "2021-06-08T07:37:56Z",
+  "UserAgent": "console.ec2.amazonaws.com",
+  "AWSRegion": "ap-northeast-1",
+  "EventId": "73bfa272-16c5-49c8-8d5f-ecea11f04060",
+  "Service": "VPC Peering",
+  "EventName": "CreateVpcPeeringConnection"
+}

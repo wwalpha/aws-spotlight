@@ -132,24 +132,43 @@ const getUnprocessedRecords = async (events: Tables.EventType[]) => {
 };
 
 const processRecord = async (item: CloudTrail.Record) => {
-  const { TABLE_NAME_EVENT_TYPE, TABLE_NAME_HISTORY, TABLE_NAME_RESOURCE, TABLE_NAME_UNPROCESSED } = Consts.Environments;
+  const { TABLE_NAME_EVENT_TYPE, TABLE_NAME_HISTORY, TABLE_NAME_RESOURCE, TABLE_NAME_UNPROCESSED } =
+    Consts.Environments;
 
-  const createItem = Events.getCreateResourceItem(item);
-  const deleteItems = Events.getRemoveResourceItem(item);
+  const createItems = Events.getCreateResourceItem(item);
+  const deleteItems = await Events.getRemoveResourceItems(item);
 
   const transactItems: DynamoDB.DocumentClient.TransactWriteItemList = [];
 
   // create records
-  if (createItem) {
+  if (createItems) {
     // add resource record
-    transactItems.push(Utilities.getPutRecord(TABLE_NAME_RESOURCE, createItem));
+    createItems
+      .map((item) => Utilities.getPutRecord(TABLE_NAME_RESOURCE, item))
+      .forEach((item) => transactItems.push(item));
   }
 
   // delete records
   if (deleteItems) {
     deleteItems
-      .map((deleteItem) => Utilities.getDeleteRecord(TABLE_NAME_RESOURCE, deleteItem))
-      .forEach((deleteItem) => transactItems.push(deleteItem));
+      .map(
+        (item) =>
+          ({
+            Delete: {
+              TableName: TABLE_NAME_RESOURCE,
+              Key: {
+                ResourceId: item.ResourceId,
+                EventTime: item.EventTime,
+              } as Tables.ResourceKey,
+              ConditionExpression: 'ResourceId = :ResourceId AND EventTime = :EventTime',
+              ExpressionAttributeValues: {
+                ':ResourceId': item.ResourceId,
+                ':EventTime': item.EventTime,
+              },
+            },
+          } as DynamoDB.DocumentClient.TransactWriteItem)
+      )
+      .forEach((item) => transactItems.push(item));
   }
 
   // add history record

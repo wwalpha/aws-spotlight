@@ -135,40 +135,22 @@ const processUnprocessed = async (record: CloudTrail.Record) => {
 
 const processUpdate = async (record: CloudTrail.Record) => {
   const { TABLE_NAME_RESOURCE, TABLE_NAME_HISTORY } = Consts.Environments;
-  const createItem = Events.getCreateResourceItem(record);
-  const deleteItems = Events.getRemoveResourceItem(record);
+  const createItems = Events.getCreateResourceItem(record);
+  const deleteItems = await Events.getRemoveResourceItems(record);
 
   const transactItems: DynamoDB.DocumentClient.TransactWriteItemList = [];
 
   // create records
-  if (createItem) {
+  if (createItems) {
     // add resource record
-    transactItems.push(Utilities.getPutRecord(TABLE_NAME_RESOURCE, createItem));
+    createItems
+      .map((item) => Utilities.getPutRecord(TABLE_NAME_RESOURCE, item))
+      .forEach((item) => transactItems.push(item));
   }
 
   // delete records
   if (deleteItems) {
-    const tasks = deleteItems.map((item) =>
-      DynamodbHelper.query<Tables.Resource>({
-        TableName: TABLE_NAME_RESOURCE,
-        KeyConditionExpression: 'ResourceId = :ResourceId',
-        ExpressionAttributeValues: {
-          ':ResourceId': item.ResourceId,
-        },
-      })
-    );
-
-    // get all rows
-    const results = await Promise.all(tasks);
-
-    // merge all records
-    const dataRows = results.reduce((prev, curr) => {
-      if (curr.Items.length === 0) return prev;
-
-      return [...prev, curr.Items[0]];
-    }, [] as Tables.Resource[]);
-
-    dataRows
+    deleteItems
       .map(
         (item) =>
           ({

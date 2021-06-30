@@ -18,11 +18,9 @@ describe('autoscaling.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'autoscaling.amazonaws.com',
-      ResourceId:
-        'arn:aws:autoscaling:ap-northeast-1:999999999999:autoScalingGroup:*:autoScalingGroupName/ws-dev-autoscaling-1',
-    });
+    const resource = await getResource(
+      'arn:aws:autoscaling:ap-northeast-1:999999999999:autoScalingGroup:*:autoScalingGroupName/ws-dev-autoscaling-1'
+    );
     const history = await getHistory({ EventId: '75faba36-6137-4cfb-a189-9ebc46172d9b' });
 
     expect(resource).not.toBeUndefined();
@@ -37,11 +35,9 @@ describe('autoscaling.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'autoscaling.amazonaws.com',
-      ResourceId:
-        'arn:aws:autoscaling:ap-northeast-1:999999999999:autoScalingGroup:*:autoScalingGroupName/ws-dev-autoscaling-1',
-    });
+    const resource = await getResource(
+      'arn:aws:autoscaling:ap-northeast-1:999999999999:autoScalingGroup:*:autoScalingGroupName/ws-dev-autoscaling-1'
+    );
     const history = await getHistory({ EventId: '1bc25a53-cb48-49fb-8dda-b3d2ea472079' });
 
     expect(resource).toBeUndefined();

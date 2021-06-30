@@ -2,12 +2,12 @@ import { defaultTo } from 'lodash';
 import { CloudTrail, Tables } from 'typings';
 
 export const APIGATEWAY_CreateRestApi = (record: CloudTrail.Record): Tables.Resource => {
-  const awsRegion = record.awsRegion;
+  const region = record.awsRegion;
   const apiId = record.responseElements.id;
 
   return {
     UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
-    ResourceId: `arn:aws:apigateway:${awsRegion}::/apis/${apiId}`,
+    ResourceId: `arn:aws:apigateway:${region}::/apis/${apiId}`,
     ResourceName: record.responseElements.name,
     EventName: record.eventName,
     EventSource: record.eventSource,

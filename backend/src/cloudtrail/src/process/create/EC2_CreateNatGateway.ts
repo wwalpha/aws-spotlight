@@ -3,12 +3,12 @@ import { CloudTrail, Tables } from 'typings';
 
 export const EC2_CreateNatGateway = (record: CloudTrail.Record): Tables.Resource => {
   const region = record.awsRegion;
-  const accountId = record.recipientAccountId;
+  const account = record.recipientAccountId;
   const natGatewayId = record.responseElements.CreateNatGatewayResponse.natGateway.natGatewayId;
 
   return {
     UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
-    ResourceId: `arn:aws:ec2:${region}:${accountId}:natgateway/${natGatewayId}`,
+    ResourceId: `arn:aws:ec2:${region}:${account}:natgateway/${natGatewayId}`,
     ResourceName: record.responseElements.CreateNatGatewayResponse.natGateway.natGatewayId,
     EventName: record.eventName,
     EventSource: record.eventSource,

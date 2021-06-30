@@ -2,13 +2,13 @@ import { defaultTo } from 'lodash';
 import { CloudTrail, Tables } from 'typings';
 
 export const AUTOSCALING_CreateAutoScalingGroup = (record: CloudTrail.Record): Tables.Resource => {
-  const awsRegion = record.awsRegion;
-  const accountId = record.recipientAccountId;
+  const region = record.awsRegion;
+  const account = record.recipientAccountId;
   const autoScalingGroupName = record.requestParameters.autoScalingGroupName;
 
   return {
     UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
-    ResourceId: `arn:aws:autoscaling:${awsRegion}:${accountId}:autoScalingGroup:*:autoScalingGroupName/${autoScalingGroupName}`,
+    ResourceId: `arn:aws:autoscaling:${region}:${account}:autoScalingGroup:*:autoScalingGroupName/${autoScalingGroupName}`,
     ResourceName: autoScalingGroupName,
     EventName: record.eventName,
     EventSource: record.eventSource,

@@ -19,10 +19,7 @@ describe('redshift.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'redshift.amazonaws.com',
-      ResourceId: 'arn:aws:redshift:us-east-1:999999999999:cluster:redshift-cluster-1',
-    });
+    const resource = await getResource('arn:aws:redshift:us-east-1:999999999999:cluster:redshift-cluster-1');
     const history = await getHistory({ EventId: '54677ea0-d177-495e-b418-5d7a84942d70' });
 
     expect(resource).not.toBeUndefined();
@@ -37,10 +34,7 @@ describe('redshift.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'redshift.amazonaws.com',
-      ResourceId: 'arn:aws:redshift:us-east-1:999999999999:cluster:redshift-cluster-1',
-    });
+    const resource = await getResource('arn:aws:redshift:us-east-1:999999999999:cluster:redshift-cluster-1');
     const history = await getHistory({ EventId: 'e0fb538c-f822-4557-92bd-d60f1220058c' });
 
     expect(resource).toBeUndefined();

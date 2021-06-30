@@ -19,10 +19,7 @@ describe('ds.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'ds.amazonaws.com',
-      ResourceId: 'arn:aws:clouddirectory:ap-northeast-1:999999999999:directory/d-95671f95a5',
-    });
+    const resource = await getResource('arn:aws:clouddirectory:ap-northeast-1:999999999999:directory/d-95671f95a5');
     const history = await getHistory({ EventId: '1b73543a-da8b-4900-a27e-620a094085f4' });
 
     expect(resource).not.toBeUndefined();
@@ -37,10 +34,7 @@ describe('ds.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'ds.amazonaws.com',
-      ResourceId: 'arn:aws:clouddirectory:ap-northeast-1:999999999999:directory/d-95671f95a5',
-    });
+    const resource = await getResource('arn:aws:clouddirectory:ap-northeast-1:999999999999:directory/d-95671f95a5');
     const history = await getHistory({ EventId: 'd0fcee5a-ca83-4ff6-b6c3-ac41104b2aa0' });
 
     expect(resource).toBeUndefined();

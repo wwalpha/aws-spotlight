@@ -19,10 +19,7 @@ describe('backup.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'backup.amazonaws.com',
-      ResourceId: 'arn:aws:backup:ap-northeast-1:999999999999:backup-vault:Default',
-    });
+    const resource = await getResource('arn:aws:backup:ap-northeast-1:999999999999:backup-vault:Default');
     const history = await getHistory({ EventId: '7b056e66-3c3b-4766-a6b0-ef871dc29c40' });
 
     expect(resource).not.toBeUndefined();

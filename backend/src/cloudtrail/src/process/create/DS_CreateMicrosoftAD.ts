@@ -2,13 +2,13 @@ import { defaultTo } from 'lodash';
 import { CloudTrail, Tables } from 'typings';
 
 export const DS_CreateMicrosoftAD = (record: CloudTrail.Record): Tables.Resource => {
-  const awsRegion = record.awsRegion;
-  const accountId = record.recipientAccountId;
+  const region = record.awsRegion;
+  const account = record.recipientAccountId;
   const directoryId = record.responseElements.directoryId;
 
   return {
     UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
-    ResourceId: `arn:aws:clouddirectory:${awsRegion}:${accountId}:directory/${directoryId}`,
+    ResourceId: `arn:aws:clouddirectory:${region}:${account}:directory/${directoryId}`,
     ResourceName: record.requestParameters.name,
     EventName: record.eventName,
     EventSource: record.eventSource,

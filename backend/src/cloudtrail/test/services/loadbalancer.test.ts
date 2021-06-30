@@ -28,11 +28,9 @@ describe('elasticloadbalancing.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'elasticloadbalancing.amazonaws.com',
-      ResourceId:
-        'arn:aws:elasticloadbalancing:ap-northeast-1:999999999999:loadbalancer/net/TESTflontback/813270f8ee6fa76a',
-    });
+    const resource = await getResource(
+      'arn:aws:elasticloadbalancing:ap-northeast-1:999999999999:loadbalancer/net/TESTflontback/813270f8ee6fa76a'
+    );
     const history = await getHistory({ EventId: '009d103b-0d6e-4fc4-b35a-7f2cc315795f' });
 
     expect(resource).not.toBeUndefined();
@@ -47,11 +45,9 @@ describe('elasticloadbalancing.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'elasticloadbalancing.amazonaws.com',
-      ResourceId:
-        'arn:aws:elasticloadbalancing:ap-northeast-1:999999999999:targetgroup/TESTfontback-tgt/297bf72439f1364c',
-    });
+    const resource = await getResource(
+      'arn:aws:elasticloadbalancing:ap-northeast-1:999999999999:targetgroup/TESTfontback-tgt/297bf72439f1364c'
+    );
     const history = await getHistory({ EventId: '7b009e94-e6da-4ddb-ba7e-9019dfb67722' });
 
     expect(resource).not.toBeUndefined();
@@ -66,11 +62,9 @@ describe('elasticloadbalancing.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'apigateway.amazonaws.com',
-      ResourceId:
-        'arn:aws:elasticloadbalancing:ap-northeast-1:999999999999:loadbalancer/net/TESTflontback/813270f8ee6fa76a',
-    });
+    const resource = await getResource(
+      'arn:aws:elasticloadbalancing:ap-northeast-1:999999999999:loadbalancer/net/TESTflontback/813270f8ee6fa76a'
+    );
     const history = await getHistory({ EventId: '46787bab-e6c6-4c49-b9c7-69bc0578a928' });
 
     expect(resource).toBeUndefined();
@@ -84,11 +78,9 @@ describe('elasticloadbalancing.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'elasticloadbalancing.amazonaws.com',
-      ResourceId:
-        'arn:aws:elasticloadbalancing:ap-northeast-1:999999999999:targetgroup/TESTfontback-tgt/297bf72439f1364c',
-    });
+    const resource = await getResource(
+      'arn:aws:elasticloadbalancing:ap-northeast-1:999999999999:targetgroup/TESTfontback-tgt/297bf72439f1364c'
+    );
     const history = await getHistory({ EventId: '0195aac9-8b72-4da5-b360-95c526363516' });
 
     expect(resource).toBeUndefined();

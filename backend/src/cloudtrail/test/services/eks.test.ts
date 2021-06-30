@@ -19,10 +19,7 @@ describe('eks.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'eks.amazonaws.com',
-      ResourceId: 'arn:aws:eks:ap-northeast-1:999999999999:cluster/eks-cluster',
-    });
+    const resource = await getResource('arn:aws:eks:ap-northeast-1:999999999999:cluster/eks-cluster');
     const history = await getHistory({ EventId: 'efce27a7-201e-493c-a06d-beb6a9303987' });
 
     expect(resource).not.toBeUndefined();
@@ -37,10 +34,7 @@ describe('eks.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'ec2.amazonaws.com',
-      ResourceId: 'arn:aws:eks:ap-northeast-1:999999999999:cluster/eks-cluster',
-    });
+    const resource = await getResource('arn:aws:eks:ap-northeast-1:999999999999:cluster/eks-cluster');
     const history = await getHistory({ EventId: '7b53a37a-6d75-4065-a34f-d009e0590e97' });
 
     expect(resource).toBeUndefined();

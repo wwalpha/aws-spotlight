@@ -27,10 +27,7 @@ describe('rds.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'rds.amazonaws.com',
-      ResourceId: 'arn:aws:rds:ap-northeast-1:999999999999:cluster:database-4',
-    });
+    const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:cluster:database-4');
     const history = await getHistory({ EventId: '9f93308d-38b1-405b-bf1b-68e0fd1a3c09' });
 
     expect(resource).not.toBeUndefined();
@@ -45,10 +42,7 @@ describe('rds.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'rds.amazonaws.com',
-      ResourceId: 'arn:aws:rds:ap-northeast-1:999999999999:cluster:database-4',
-    });
+    const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:cluster:database-4');
     const history = await getHistory({ EventId: '34f9f2ba-b63e-4e45-be5e-8e399d25f321' });
 
     expect(resource).toBeUndefined();
@@ -62,10 +56,7 @@ describe('rds.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'rds.amazonaws.com',
-      ResourceId: 'arn:aws:rds:ap-northeast-1:999999999999:db:onecloud-mysql',
-    });
+    const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:db:onecloud-mysql');
     const history = await getHistory({ EventId: '46400997-7acb-4d09-af3b-affa629dac09' });
 
     expect(resource).not.toBeUndefined();
@@ -80,10 +71,7 @@ describe('rds.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource({
-      EventSource: 'rds.amazonaws.com',
-      ResourceId: 'arn:aws:rds:ap-northeast-1:999999999999:db:onecloud-mysql',
-    });
+    const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:db:onecloud-mysql');
     const history = await getHistory({ EventId: 'e4e10fdb-b574-41da-8d90-1251c5b84b6e' });
 
     expect(resource).toBeUndefined();
