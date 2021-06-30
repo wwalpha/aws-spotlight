@@ -1,7 +1,7 @@
-import { reCreate } from './utils';
+import { reCreateFromBucket } from './utils';
 
 const start = async () => {
-  await reCreate();
+  await reCreateFromBucket();
 };
 
 start();

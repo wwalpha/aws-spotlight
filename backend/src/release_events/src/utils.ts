@@ -6,6 +6,7 @@ import { Tables } from 'typings';
 const TABLE_NAME_RESOURCE = process.env.TABLE_NAME_RESOURCE as string;
 const TABLE_NAME_HISTORY = process.env.TABLE_NAME_HISTORY as string;
 const BUCKET_NAME_ARCHIVE = process.env.BUCKET_NAME_ARCHIVE as string;
+const BUCKET_NAME_CLOUDTRAIL = process.env.BUCKET_NAME_CLOUDTRAIL as string;
 const SQS_URL = process.env.SQS_URL as string;
 
 const helper = new DynamodbHelper();
@@ -17,6 +18,47 @@ export const reCreate = async () => {
   await helper.truncateAll(TABLE_NAME_RESOURCE);
 
   await reResource();
+};
+
+export const reCreateFromBucket = async () => {
+  const keys = await getBucketKeys();
+
+  const tasks = keys.map((key) =>
+    sqsClient
+      .sendMessage({
+        QueueUrl: SQS_URL,
+        MessageBody: JSON.stringify({
+          Message: JSON.stringify({ s3Bucket: BUCKET_NAME_ARCHIVE, s3ObjectKey: [key] }),
+        }),
+      })
+      .promise()
+  );
+
+  await Promise.all(tasks);
+};
+
+const getBucketKeys = async (token?: string): Promise<string[]> => {
+  const results = await s3Client
+    .listObjectsV2({
+      Bucket: BUCKET_NAME_CLOUDTRAIL,
+      ContinuationToken: token,
+    })
+    .promise();
+
+  if (!results.Contents) return [];
+
+  const keys = results.Contents?.map((item) => item.Key).filter(
+    (item): item is Exclude<typeof item, undefined> => item !== undefined
+  );
+
+  // hasNext
+  if (results.NextContinuationToken) {
+    const nextKeys = await getBucketKeys(results.NextContinuationToken);
+
+    return [...keys, ...nextKeys];
+  }
+
+  return keys;
 };
 
 const reResource = async (lastEvaluatedKey?: DynamoDB.DocumentClient.Key) => {

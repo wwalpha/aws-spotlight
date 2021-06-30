@@ -318,6 +318,7 @@ jobs:
       TABLE_NAME_HISTORY: ${{ secrets.TABLE_NAME_HISTORY }}
       TABLE_NAME_RESOURCE: ${{ secrets.TABLE_NAME_RESOURCE }}
       BUCKET_NAME_ARCHIVE: ${{ secrets.BUCKET_NAME_ARCHIVE }}
+      BUCKET_NAME_CLOUDTRAIL: ${{ secrets.BUCKET_NAME_CLOUDTRAIL }}
       SQS_URL: ${{ secrets.SQS_URL }}
     defaults:
       run:
