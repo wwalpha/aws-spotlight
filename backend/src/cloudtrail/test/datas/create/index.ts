@@ -4,6 +4,7 @@ export { default as APIGATEWAY_ImportRestApi } from './APIGATEWAY_ImportRestApi.
 export { default as AUTOSCALING_CreateAutoScalingGroup } from './AUTOSCALING_CreateAutoScalingGroup.json';
 
 export { default as BACKUP_CreateBackupVault } from './BACKUP_CreateBackupVault.json';
+export { default as BACKUP_CreateBackupPlan } from './BACKUP_CreateBackupPlan.json';
 
 export { default as CODEBUILD_CreateProject } from './CODEBUILD_CreateProject.json';
 

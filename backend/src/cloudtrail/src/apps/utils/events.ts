@@ -17,6 +17,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
 
     case 'BACKUP_CreateBackupVault':
       return [CreateEvent.BACKUP_CreateBackupVault(record)];
+    case 'BACKUP_CreateBackupPlan':
+      return [CreateEvent.BACKUP_CreateBackupPlan(record)];
 
     case 'CODEBUILD_CreateProject':
       return [CreateEvent.CODEBUILD_CreateProject(record)];
@@ -123,6 +125,11 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.APIGATEWAY_DeleteRestApi(record)];
     case 'AUTOSCALING_DeleteAutoScalingGroup':
       return [DeleteEvent.AUTOSCALING_DeleteAutoScalingGroup(record)];
+
+    case 'BACKUP_DeleteBackupPlan':
+      return [DeleteEvent.BACKUP_DeleteBackupPlan(record)];
+    case 'BACKUP_DeleteBackupVault':
+      return [DeleteEvent.BACKUP_DeleteBackupVault(record)];
 
     case 'CODEBUILD_DeleteProject':
       return [DeleteEvent.CODEBUILD_DeleteProject(record)];

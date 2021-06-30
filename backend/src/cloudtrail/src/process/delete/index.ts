@@ -1,6 +1,9 @@
 export * from './APIGATEWAY_DeleteRestApi';
 export * from './AUTOSCALING_DeleteAutoScalingGroup';
 
+export * from './BACKUP_DeleteBackupPlan';
+export * from './BACKUP_DeleteBackupVault';
+
 export * from './CODEBUILD_DeleteProject';
 
 export * from './DYNAMODB_DeleteTable';

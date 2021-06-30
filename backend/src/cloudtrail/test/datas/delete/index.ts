@@ -2,6 +2,9 @@ export { default as APIGATEWAY_DeleteRestApi } from './APIGATEWAY_DeleteRestApi.
 
 export { default as AUTOSCALING_DeleteAutoScalingGroup } from './AUTOSCALING_DeleteAutoScalingGroup.json';
 
+export { default as BACKUP_DeleteBackupPlan } from './BACKUP_DeleteBackupPlan.json';
+export { default as BACKUP_DeleteBackupVault } from './BACKUP_DeleteBackupVault.json';
+
 export { default as CODEBUILD_DeleteProject } from './CODEBUILD_DeleteProject.json';
 
 export { default as DS_DeleteDirectory } from './DS_DeleteDirectory.json';

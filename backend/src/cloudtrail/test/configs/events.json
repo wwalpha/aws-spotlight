@@ -7,6 +7,9 @@
   { "EventName": "DeleteAutoScalingGroup", "EventSource": "autoscaling.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateBackupVault", "EventSource": "backup.amazonaws.com", "Create": true },
+  { "EventName": "DeleteBackupVault", "EventSource": "backup.amazonaws.com", "Delete": true },
+  { "EventName": "CreateBackupPlan", "EventSource": "backup.amazonaws.com", "Create": true },
+  { "EventName": "DeleteBackupPlan", "EventSource": "backup.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateProject", "EventSource": "codebuild.amazonaws.com", "Create": true },
   { "EventName": "DeleteProject", "EventSource": "codebuild.amazonaws.com", "Delete": true },

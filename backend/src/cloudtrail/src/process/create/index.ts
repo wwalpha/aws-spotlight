@@ -3,6 +3,7 @@ export * from './APIGATEWAY_ImportRestApi';
 export * from './AUTOSCALING_CreateAutoScalingGroup';
 
 export * from './BACKUP_CreateBackupVault';
+export * from './BACKUP_CreateBackupPlan';
 
 export * from './CODEBUILD_CreateProject';
 
