@@ -1,4 +1,4 @@
-import { DynamoDB, S3 } from 'aws-sdk';
+import { DynamoDB, S3, SNS } from 'aws-sdk';
 import { SNSMessage, SQSRecord } from 'aws-lambda';
 import { orderBy } from 'lodash';
 import zlib from 'zlib';
@@ -7,7 +7,9 @@ import { Utilities, Consts, Events, DynamodbHelper } from './utils';
 import { Logger } from './utils/utilities';
 
 const s3Client = new S3();
+const snsClient = new SNS();
 const EVENTS: EVENT_TYPE = {};
+const NOTIFIED: EVENT_TYPE = {};
 
 /**
  * Initialize Event Type Definition
@@ -127,6 +129,28 @@ const processNewEventType = async (record: CloudTrail.Record) => {
       TransactItems: transactItems,
     })
     .promise();
+
+  if (!NOTIFIED[record.eventName]) {
+    console.log('notified');
+
+    NOTIFIED[record.eventName] = {
+      EventName: record.eventName,
+      EventSource: record.eventSource,
+    };
+
+    console.log(Consts.Environments.SNS_TOPIC_ARN, snsClient.endpoint);
+    try {
+      await snsClient
+        .publish({
+          TopicArn: Consts.Environments.SNS_TOPIC_ARN,
+          Subject: 'New Event Type',
+          Message: `Event Source: ${record.eventSource}, Event Name: ${record.eventName}`,
+        })
+        .promise();
+    } catch (err) {
+      console.log(err);
+    }
+  }
 };
 
 const processUnprocessed = async (record: CloudTrail.Record) => {

@@ -9,6 +9,7 @@ AWS.config.update({
   region: process.env.AWS_REGION,
   s3: { endpoint: process.env.AWS_ENDPOINT },
   sqs: { endpoint: process.env.AWS_ENDPOINT },
+  sns: { endpoint: process.env.AWS_ENDPOINT },
   dynamodb: { endpoint: process.env.AWS_ENDPOINT },
 });
 

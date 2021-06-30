@@ -1,13 +1,14 @@
 require('dotenv').config({ path: '.env.test' });
 
 import { DynamodbHelper } from '@alphax/dynamodb';
-import AWS, { S3, SQS } from 'aws-sdk';
+import AWS, { S3, SQS, SNS } from 'aws-sdk';
 import Events from './events.json';
 
 AWS.config.update({
   region: process.env.AWS_REGION,
   s3: { endpoint: process.env.AWS_ENDPOINT },
   sqs: { endpoint: process.env.AWS_ENDPOINT },
+  sns: { endpoint: process.env.AWS_ENDPOINT },
   dynamodb: { endpoint: process.env.AWS_ENDPOINT },
 });
 
@@ -19,9 +20,15 @@ const setup = async () => {
 
   const s3Client = new S3();
   const sqsClient = new SQS();
+  const snsClient = new SNS();
   const helper = new DynamodbHelper({ options: { endpoint: process.env.AWS_ENDPOINT } });
 
   await Promise.all([
+    snsClient
+      .createTopic({
+        Name: 'arms-admin',
+      })
+      .promise(),
     s3Client.createBucket({ Bucket: process.env.S3_BUCKET as string }).promise(),
     sqsClient
       .createQueue({

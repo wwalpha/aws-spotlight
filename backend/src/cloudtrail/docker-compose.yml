@@ -8,4 +8,4 @@ services:
       - '4566:4566'
     environment:
       - DEFAULT_REGION=us-east-1
-      - SERVICES=dynamodb,sqs,s3
+      - SERVICES=dynamodb,sqs,s3,sns
