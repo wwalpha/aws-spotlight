@@ -1,3 +1,3 @@
 {
-  "categories": ["ec2.amazonaws.com", "rds.amazonaws.com"]
+  "categories": ["rds.amazonaws.com", "ec2.amazonaws.com"]
 }

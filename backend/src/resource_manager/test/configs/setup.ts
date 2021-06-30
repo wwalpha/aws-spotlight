@@ -21,24 +21,34 @@ const setup = async () => {
     helper
       .getClient()
       .createTable({
-        TableName: process.env.TABLE_NAME_RESOURCE as string,
+        TableName: TABLE_NAME_RESOURCE as string,
         BillingMode: 'PROVISIONED',
         ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
         KeySchema: [
-          { AttributeName: 'EventSource', KeyType: 'HASH' },
-          { AttributeName: 'ResourceId', KeyType: 'RANGE' },
+          { AttributeName: 'ResourceId', KeyType: 'HASH' },
+          { AttributeName: 'EventTime', KeyType: 'RANGE' },
         ],
         AttributeDefinitions: [
-          { AttributeName: 'EventSource', AttributeType: 'S' },
           { AttributeName: 'ResourceId', AttributeType: 'S' },
+          { AttributeName: 'EventTime', AttributeType: 'S' },
+          { AttributeName: 'EventSource', AttributeType: 'S' },
           { AttributeName: 'UserName', AttributeType: 'S' },
         ],
         GlobalSecondaryIndexes: [
           {
             IndexName: 'gsiIdx1',
             KeySchema: [
+              { AttributeName: 'EventSource', KeyType: 'HASH' },
+              { AttributeName: 'ResourceId', KeyType: 'RANGE' },
+            ],
+            Projection: { ProjectionType: 'ALL' },
+            ProvisionedThroughput: { WriteCapacityUnits: 100, ReadCapacityUnits: 100 },
+          },
+          {
+            IndexName: 'gsiIdx2',
+            KeySchema: [
               { AttributeName: 'UserName', KeyType: 'HASH' },
-              { AttributeName: 'EventSource', KeyType: 'RANGE' },
+              { AttributeName: 'ResourceId', KeyType: 'RANGE' },
             ],
             Projection: { ProjectionType: 'ALL' },
             ProvisionedThroughput: { WriteCapacityUnits: 100, ReadCapacityUnits: 100 },

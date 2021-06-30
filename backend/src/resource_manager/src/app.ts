@@ -37,6 +37,7 @@ export const getResourceList = async (
     const result = await helper.query<Tables.Resource>({
       TableName: TABLE_NAME_RESOURCE,
       KeyConditionExpression: '#EventSource = :EventSource',
+      IndexName: 'gsiIdx1',
       ExpressionAttributeNames: {
         '#EventSource': 'EventSource',
       },
@@ -51,15 +52,15 @@ export const getResourceList = async (
     // get service resources
     const result = await helper.query<Tables.Resource>({
       TableName: TABLE_NAME_RESOURCE,
-      KeyConditionExpression: '#UserName = :UserName AND #EventSource = :EventSource',
-      IndexName: 'gsiIdx1',
+      KeyConditionExpression: '#UserName = :UserName AND begins_with(#ResourceId, :ResourceId)',
+      IndexName: 'gsiIdx2',
       ExpressionAttributeNames: {
         '#UserName': 'UserName',
-        '#EventSource': 'EventSource',
+        '#ResourceId': 'ResourceId',
       },
       ExpressionAttributeValues: {
         ':UserName': token['cognito:username'],
-        ':EventSource': `${params.service}.amazonaws.com`,
+        ':ResourceId': `arn:aws:${params.service}`,
       },
     });
 
@@ -92,7 +93,7 @@ export const getCategoryList = async (
       TableName: TABLE_NAME_RESOURCE,
       ProjectionExpression: 'EventSource',
       KeyConditionExpression: '#UserName = :UserName',
-      IndexName: 'gsiIdx1',
+      IndexName: 'gsiIdx2',
       ExpressionAttributeNames: {
         '#UserName': 'UserName',
       },
