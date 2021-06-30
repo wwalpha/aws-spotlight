@@ -5,7 +5,7 @@
     "texts": [
       {
         "type": "FEATURE",
-        "text": "[Backend] Added new events. (DeleteBackupVault)"
+        "text": "[Backend] Added new events. (DeleteBackupVault,CreateBackupPlan,DeleteBackupPlan)"
       },
       {
         "type": "BUGFIX",
