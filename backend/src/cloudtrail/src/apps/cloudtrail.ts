@@ -192,6 +192,8 @@ export const getRecords = async (message: string): Promise<CloudTrail.Record[]> 
 
   const payload = JSON.parse(snsMessage.Message) as CloudTrail.Payload;
 
+  Logger.debug('S3 object keys', payload.s3ObjectKey);
+
   // get files
   const tasks = payload.s3ObjectKey.map((item) =>
     s3Client
@@ -216,6 +218,8 @@ export const getRecords = async (message: string): Promise<CloudTrail.Record[]> 
       return JSON.parse(zlib.gunzipSync(content)) as CloudTrail.Event;
     })
     .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
+
+  Logger.debug('Records', records);
 
   // merge all records
   return records.reduce((prev, curr) => {
