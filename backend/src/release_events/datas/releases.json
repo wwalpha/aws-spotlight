@@ -1,5 +1,19 @@
 [
   {
+    "version": "v0.3.4",
+    "date": "2021-06-30",
+    "texts": [
+      {
+        "type": "FEATURE",
+        "text": "[Backend] Added new events. (DeleteBackupVault)"
+      },
+      {
+        "type": "BUGFIX",
+        "text": "fix some bugs."
+      }
+    ]
+  },
+  {
     "version": "v0.3.3",
     "date": "2021-06-26",
     "texts": [
