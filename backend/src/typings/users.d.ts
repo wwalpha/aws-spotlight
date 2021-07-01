@@ -51,4 +51,10 @@ export namespace User {
   interface CreateUserResponse {
     userId: string;
   }
+
+  interface ListAdminUsersRequest {}
+
+  interface ListAdminUsersResponse {
+    users: string[];
+  }
 }

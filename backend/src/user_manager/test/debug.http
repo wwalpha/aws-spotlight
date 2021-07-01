@@ -24,3 +24,5 @@ content-type: application/json
   "userName": "test005",
   "email": "test005@dxc.com"
 }
+
+GET http://localhost:8080/users/admins

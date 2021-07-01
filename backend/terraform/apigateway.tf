@@ -47,7 +47,7 @@ resource "aws_apigatewayv2_route" "get_resources_health" {
 }
 
 # ---------------------------------------------------------------------------------------------
-# API Gateway Route - Resource
+# API Gateway Route - Resources
 # ---------------------------------------------------------------------------------------------
 resource "aws_apigatewayv2_route" "get_resources_all" {
   api_id             = local.apigateway_id
@@ -57,12 +57,17 @@ resource "aws_apigatewayv2_route" "get_resources_all" {
   authorization_type = "CUSTOM"
 }
 
-# ---------------------------------------------------------------------------------------------
-# API Gateway Route - Categories
-# ---------------------------------------------------------------------------------------------
 resource "aws_apigatewayv2_route" "get_resources_categories" {
   api_id             = local.apigateway_id
   route_key          = "GET /resources/categories"
+  target             = "integrations/${local.apigateway_integration_resource}"
+  authorizer_id      = aws_apigatewayv2_authorizer.this.id
+  authorization_type = "CUSTOM"
+}
+
+resource "aws_apigatewayv2_route" "resources_audit" {
+  api_id             = local.apigateway_id
+  route_key          = "GET /resources/audit"
   target             = "integrations/${local.apigateway_integration_resource}"
   authorizer_id      = aws_apigatewayv2_authorizer.this.id
   authorization_type = "CUSTOM"

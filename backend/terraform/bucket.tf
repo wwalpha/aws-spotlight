@@ -6,6 +6,8 @@ resource "aws_s3_bucket_object" "resource" {
   key     = "resource.env"
   content = <<EOT
 TABLE_NAME_RESOURCE=${local.dynamodb_name_resource}
+TABLE_NAME_SETTINGS=${local.dynamodb_name_settings}
+SNS_TOPIC_ARN_ADMIN=${data.aws_sns_topic.admin.arn}
 EOT
 }
 

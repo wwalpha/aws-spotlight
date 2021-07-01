@@ -171,3 +171,35 @@ export const createCognitoUser = async (userPoolId: string, user: Tables.UserIte
 
   return cognitoUser;
 };
+
+export const getUsers = async (userPoolId: string) => {
+  return listUsers(userPoolId);
+};
+
+const listUsers = async (userPoolId: string, token?: string): Promise<string[]> => {
+  const provider = new CognitoIdentityServiceProvider();
+
+  const result = await provider
+    .listUsers({
+      UserPoolId: userPoolId,
+    })
+    .promise();
+
+  // validation
+  if (!result.Users) return [];
+
+  const usernames = result.Users.map((item) => item.Attributes)
+    .filter((item): item is Exclude<typeof item, undefined> => item !== undefined)
+    .map((item) => item.find((user) => user.Name === 'name'))
+    .map((item) => item?.Value)
+    .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
+
+  // has more users
+  if (result.PaginationToken) {
+    const nextUsers = await listUsers(userPoolId, result.PaginationToken);
+
+    return [...usernames, ...nextUsers];
+  }
+
+  return usernames;
+};

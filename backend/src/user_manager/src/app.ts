@@ -3,7 +3,7 @@ import express from 'express';
 import { DynamodbHelper } from '@alphax/dynamodb';
 import { User, Tables } from 'typings';
 import { Environments } from './consts';
-import { createNewUser, lookupUserPoolData } from './cognito';
+import { createNewUser, getUsers, lookupUserPoolData } from './cognito';
 import { Logger } from './utils';
 
 // update aws config
@@ -97,4 +97,23 @@ export const createAdminUser = async (
   const userItem = await createNewUser(request, settings.Item.UserPoolId, 'TENANT_ADMIN');
 
   return { userId: userItem.UserId, email: userItem.Email, userName: userItem.UserName };
+};
+
+export const listAdminUsers = async (): Promise<User.ListAdminUsersResponse> => {
+  const settings = await helper.get<Tables.Settings.Cognito>({
+    TableName: Environments.TABLE_NAME_SETTINGS,
+    Key: {
+      Id: 'TENANT_ADMIN',
+    },
+  });
+
+  if (!settings?.Item?.UserPoolId) {
+    throw new Error('Cannot found admin settings');
+  }
+
+  const users = await getUsers(settings.Item.UserPoolId);
+
+  return {
+    users,
+  };
 };

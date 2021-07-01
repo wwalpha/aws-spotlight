@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon ./src/index.ts dotenv_config_path=.env.test",
+    "dev": "nodemon ./src/index.ts dotenv_config_path=.env.dev",
     "build": "tsc -p tsconfig.build.json",
     "start": "node index.js",
     "test": "jest"
@@ -45,7 +45,7 @@
       "node_modules/*"
     ],
     "execMap": {
-      "ts": "ts-node -r tsconfig-paths/register -r dotenv/config"
+      "ts": "ts-node -r dotenv/config"
     },
     "events": {
       "crash": "sh -c 'lsof -i :${PORT:-8080} -t | xargs kill'"

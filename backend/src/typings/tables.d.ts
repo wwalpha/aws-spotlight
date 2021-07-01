@@ -176,5 +176,9 @@ export namespace Tables {
     interface APIKey extends Key {
       Keys: string[];
     }
+
+    interface GlobalServices extends Key {
+      Services: string[];
+    }
   }
 }
