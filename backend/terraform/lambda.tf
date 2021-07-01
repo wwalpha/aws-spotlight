@@ -99,7 +99,8 @@ resource "aws_lambda_function" "authorizer" {
   timeout       = 3
   environment {
     variables = {
-      TABLE_NAME_USER = local.dynamodb_name_users
+      TABLE_NAME_USER     = local.dynamodb_name_users
+      TABLE_NAME_SETTINGS = local.dynamodb_name_settings
     }
   }
 }

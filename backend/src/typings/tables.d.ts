@@ -172,5 +172,9 @@ export namespace Tables {
     interface Releases extends Key {
       Texts: Release[];
     }
+
+    interface APIKey extends Key {
+      Keys: string[];
+    }
   }
 }

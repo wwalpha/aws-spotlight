@@ -6,6 +6,7 @@ import { decodeToken, getPublicKeys } from './utils';
 import { Environments } from './consts';
 
 const PEM_KEYS: Record<string, Record<string, string>> = {};
+const API_KEYS: string[] = [];
 const helper = new DynamodbHelper();
 const Logger = winston.createLogger({
   level: 'info',
@@ -16,6 +17,24 @@ const Logger = winston.createLogger({
 export const handler = async (
   event: APIGatewayRequestAuthorizerEventV2
 ): Promise<APIGatewayRequestAuthorizerResultV2> => {
+  // api key exist
+  if (event.headers['X-API-Key']) {
+    const key = event.headers['X-API-Key'];
+
+    if (API_KEYS.length === 0) {
+      const result = await helper.get<Tables.Settings.APIKey>({
+        TableName: Environments.TABLE_NAME_SETTINGS,
+        Key: {
+          Id: 'API_KEY',
+        } as Tables.Settings.Key,
+      });
+
+      result?.Item?.Keys.forEach((item) => API_KEYS.push(item));
+    }
+
+    return { isAuthorized: API_KEYS.includes(key) };
+  }
+
   // value not found
   if (event.identitySource.length === 0) {
     return { isAuthorized: false };
