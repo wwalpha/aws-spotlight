@@ -149,7 +149,7 @@ export const auditRegion = async (): Promise<void> => {
 
   // create message body
   const messages = sorted.map((item) => {
-    return `UserName: ${item.UserName}  Arn: ${item.ResourceId}`;
+    return `<strong>UserName:</strong> ${item.UserName}  <strong>ARN:</strong> ${item.ResourceId}`;
   });
 
   // send to admin
