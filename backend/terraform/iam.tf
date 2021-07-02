@@ -115,7 +115,6 @@ resource "aws_iam_role_policy_attachment" "batch_exec_ssm" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess"
 }
 
-
 # ----------------------------------------------------------------------------------------------
 # AWS Lambda Role - Unprocessed
 # ----------------------------------------------------------------------------------------------
@@ -180,4 +179,39 @@ resource "aws_iam_role" "authorizer" {
 resource "aws_iam_role_policy_attachment" "authorizer" {
   role       = aws_iam_role.authorizer.name
   policy_arn = local.lambda_basic_policy_arn
+}
+
+
+# ----------------------------------------------------------------------------------------------
+# AWS Lambda Role - Synthetics
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role" "synthetics" {
+  name               = "${local.project_name_uc}_Lambda_SyntheticsRole"
+  assume_role_policy = data.aws_iam_policy_document.lambda.json
+
+  lifecycle {
+    create_before_destroy = false
+  }
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS Lambda Role - Unprocessed Policy
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy" "synthetics" {
+  name = "ECS_Policy"
+  role = aws_iam_role.synthetics.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:*",
+          "cloudwatch:*"
+        ]
+        Resource = "*"
+      },
+    ]
+  })
 }

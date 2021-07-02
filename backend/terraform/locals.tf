@@ -55,6 +55,7 @@ locals {
   # S3
   # ----------------------------------------------------------------------------------------------
   bucket_name_environment = local.remote_setup.bucket_name_environment
+  bucket_name_archive     = local.remote_setup.bucket_name_archive
 
   # ----------------------------------------------------------------------------------------------
   # ECR
