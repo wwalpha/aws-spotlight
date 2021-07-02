@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.76",
+    "@types/axios": "^0.14.0",
     "@types/express": "^4.17.11",
     "@types/jest": "^26.0.23",
     "@types/jsonwebtoken": "^8.5.2",
@@ -33,6 +34,7 @@
   "dependencies": {
     "@alphax/dynamodb": "^1.1.2",
     "aws-sdk": "^2.907.0",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",

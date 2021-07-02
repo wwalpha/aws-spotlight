@@ -1,11 +1,13 @@
 import express from 'express';
+import { SNS } from 'aws-sdk';
 import { DynamodbHelper } from '@alphax/dynamodb';
+import { orderBy } from 'lodash';
 import { Resource, Tables } from 'typings';
 import { decodeToken, getToken, Logger } from './utils';
-import { ROLE } from './consts';
+import { ROLE, Environments } from './consts';
 
 const helper = new DynamodbHelper({ options: { endpoint: process.env.AWS_ENDPOINT } });
-const TABLE_NAME_RESOURCE = process.env.TABLE_NAME_RESOURCE as string;
+const snsClient = new SNS();
 
 // health check
 export const healthCheck = (_: express.Request, res: express.Response) => {
@@ -35,7 +37,7 @@ export const getResourceList = async (
   if (role === ROLE.ADMIN) {
     // get service resources
     const result = await helper.query<Tables.Resource>({
-      TableName: TABLE_NAME_RESOURCE,
+      TableName: Environments.TABLE_NAME_RESOURCE,
       KeyConditionExpression: '#EventSource = :EventSource',
       IndexName: 'gsiIdx1',
       ExpressionAttributeNames: {
@@ -51,7 +53,7 @@ export const getResourceList = async (
     // normal user
     // get service resources
     const result = await helper.query<Tables.Resource>({
-      TableName: TABLE_NAME_RESOURCE,
+      TableName: Environments.TABLE_NAME_RESOURCE,
       KeyConditionExpression: '#UserName = :UserName AND begins_with(#ResourceId, :ResourceId)',
       IndexName: 'gsiIdx2',
       ExpressionAttributeNames: {
@@ -79,7 +81,7 @@ export const getCategoryList = async (
   // administrator
   if (role === ROLE.ADMIN) {
     const result = await helper.scan<Tables.Resource>({
-      TableName: TABLE_NAME_RESOURCE,
+      TableName: Environments.TABLE_NAME_RESOURCE,
       ProjectionExpression: 'EventSource',
     });
 
@@ -90,7 +92,7 @@ export const getCategoryList = async (
     // normal user
     // get event source list
     const result = await helper.query<Tables.Resource>({
-      TableName: TABLE_NAME_RESOURCE,
+      TableName: Environments.TABLE_NAME_RESOURCE,
       ProjectionExpression: 'EventSource',
       KeyConditionExpression: '#UserName = :UserName',
       IndexName: 'gsiIdx2',
@@ -106,4 +108,51 @@ export const getCategoryList = async (
 
     return { categories: Array.from(sets) };
   }
+};
+
+export const auditRegion = async (): Promise<void> => {
+  const settings = await helper.get<Tables.Settings.GlobalServices>({
+    TableName: Environments.TABLE_NAME_RESOURCE,
+    Key: {
+      Id: 'GLOBAL_SERVICES',
+    } as Tables.Settings.Key,
+  });
+
+  const services = settings?.Item?.Services;
+
+  const result = await helper.scan<Tables.Resource>({
+    TableName: Environments.TABLE_NAME_RESOURCE,
+    FilterExpression: 'AWSRegion <> :AWSRegion',
+    ExpressionAttributeValues: {
+      ':AWSRegion': 'ap-northeast-1',
+    },
+  });
+
+  const targets = result.Items.filter((item) => {
+    if (!services) return true;
+
+    // exclude global services
+    return !services.includes(item.EventSource);
+  })
+    // exclude arms system resource
+    .filter((item) => item.ResourceId.toUpperCase().indexOf('ARMS') === -1)
+    // include dxc user
+    .filter((item) => item.UserName.endsWith('dxc.com'));
+
+  // sort by username
+  const sorted = orderBy(targets, ['UserName', 'ResourceId'], ['asc', 'asc']);
+
+  // create message body
+  const messages = sorted.map((item) => {
+    return `UserName: ${item.UserName}  Arn: ${item.ResourceId}`;
+  });
+
+  // send to admin
+  await snsClient
+    .publish({
+      TopicArn: Environments.SNS_TOPIC_ARN_ADMIN,
+      Subject: 'Outscope region resources',
+      Message: messages.join('\n'),
+    })
+    .promise();
 };

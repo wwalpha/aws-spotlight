@@ -1,12 +1,13 @@
 import express from 'express';
 import AWS from 'aws-sdk';
 import { json, urlencoded } from 'body-parser';
-import { audit, getCategoryList, getResourceList, healthCheck } from './app';
+import { auditRegion, getCategoryList, getResourceList, healthCheck } from './app';
 import { common } from './utils';
 
 AWS.config.update({
   region: process.env.AWS_REGION,
   dynamodb: { endpoint: process.env.AWS_ENDPOINT },
+  sns: { endpoint: process.env.AWS_ENDPOINT },
 });
 
 // Instantiate application
@@ -27,6 +28,6 @@ app.get('/resources/services/:service', async (req, res) => await common(req, re
 // get category list
 app.get('/resources/categories', async (req, res) => await common(req, res, getCategoryList));
 // get category list
-app.get('/resources/audit', async (req, res) => await common(req, res, audit));
+app.get('/resources/audit/region', async (req, res) => await common(req, res, auditRegion));
 
 export default app;

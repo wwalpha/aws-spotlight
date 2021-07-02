@@ -1,7 +1,10 @@
 import express from 'express';
 import { defaultTo } from 'lodash';
+import axios from 'axios';
 import winston from 'winston';
 import { decode } from 'jsonwebtoken';
+import { User } from 'typings';
+import { API_URLs } from './consts';
 
 export const Logger = winston.createLogger({
   level: 'info',
@@ -47,4 +50,18 @@ export const getToken = (req: express.Request) => {
 
   // decode token
   return decodeToken(authorizationToken);
+};
+
+export const listAdminUsers = async (): Promise<User.ListAdminUsersRequest> => {
+  const url = API_URLs.ListAdminUsers;
+
+  // get userpool infos
+  const response = await axios.get<User.ListAdminUsersResponse>(url);
+
+  // user not found
+  if (response.status !== 200) {
+    throw new Error('User not found.');
+  }
+
+  return response.data;
 };
