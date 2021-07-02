@@ -17,6 +17,8 @@ const Logger = winston.createLogger({
 export const handler = async (
   event: APIGatewayRequestAuthorizerEventV2
 ): Promise<APIGatewayRequestAuthorizerResultV2> => {
+  console.log(event);
+
   // api key exist
   if (event.headers['X-API-Key']) {
     const key = event.headers['X-API-Key'];
