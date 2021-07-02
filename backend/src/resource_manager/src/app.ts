@@ -112,7 +112,7 @@ export const getCategoryList = async (
 
 export const auditRegion = async (): Promise<void> => {
   const settings = await helper.get<Tables.Settings.GlobalServices>({
-    TableName: Environments.TABLE_NAME_RESOURCE,
+    TableName: Environments.TABLE_NAME_SETTINGS,
     Key: {
       Id: 'GLOBAL_SERVICES',
     } as Tables.Settings.Key,
