@@ -27,7 +27,7 @@ export const handler = async (
   // authorizator token
   const identitySource = event.identitySource[0];
 
-  if (Object.prototype.hasOwnProperty('X-API-Key')) {
+  if (event.headers['x-api-key']) {
     if (API_KEYS.length === 0) {
       const result = await helper.get<Tables.Settings.APIKey>({
         TableName: Environments.TABLE_NAME_SETTINGS,

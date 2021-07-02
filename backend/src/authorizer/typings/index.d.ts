@@ -1,6 +1,9 @@
 export * from '../../typings/tables';
 
 export interface APIGatewayRequestAuthorizerEventV2 {
+  service: string;
+  level: string;
+  message: string;
   version: string;
   type: 'REQUEST';
   routeArn: string;
