@@ -1,5 +1,19 @@
 [
   {
+    "version": "v0.3.5",
+    "date": "2021-07-02",
+    "texts": [
+      {
+        "type": "FEATURE",
+        "text": "[Backend] Auto detect new events and notify administrators."
+      },
+      {
+        "type": "FEATURE",
+        "text": "[Backend] Auto detect out-of-region resources and nofity administrators"
+      }
+    ]
+  },
+  {
     "version": "v0.3.4",
     "date": "2021-06-30",
     "texts": [
