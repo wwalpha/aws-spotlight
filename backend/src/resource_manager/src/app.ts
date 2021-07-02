@@ -139,6 +139,11 @@ export const auditRegion = async (): Promise<void> => {
     // include dxc user
     .filter((item) => item.UserName.endsWith('dxc.com'));
 
+  // no targets
+  if (targets.length === 0) {
+    return;
+  }
+
   // sort by username
   const sorted = orderBy(targets, ['UserName', 'ResourceId'], ['asc', 'asc']);
 
