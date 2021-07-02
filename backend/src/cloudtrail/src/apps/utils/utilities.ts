@@ -10,10 +10,7 @@ const SQS_URL = process.env.SQS_URL as string;
 export const LoggerOptions: winston.LoggerOptions = {
   level: process.env.LOG_LEVEL,
   format: winston.format.simple(),
-  transports: [
-    new winston.transports.Console(),
-    // new winston.transports.File({ filename: 'test.log' }),
-  ],
+  transports: [new winston.transports.Console()],
 };
 
 export const Logger = winston.createLogger(LoggerOptions);

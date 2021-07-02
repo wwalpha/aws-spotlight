@@ -11,6 +11,7 @@ const config: Config.InitialOptions = {
   globalTeardown: './test/configs/teardown.ts',
   collectCoverage: true,
   coverageDirectory: 'coverage',
+  setupFiles: ['./test/configs/setupMock.ts'],
 };
 
 export default config;
