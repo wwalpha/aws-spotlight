@@ -134,6 +134,16 @@ resource "aws_lambda_permission" "authorizer" {
 }
 
 # ----------------------------------------------------------------------------------------------
+# Lambda Permission - Authorizer
+# ----------------------------------------------------------------------------------------------
+resource "aws_lambda_permission" "authorizer_api_key" {
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.authorizer.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${local.apigateway_execution_arn}/authorizers/${aws_apigatewayv2_authorizer.api_key.id}"
+}
+
+# ----------------------------------------------------------------------------------------------
 # Lambda Function Destination - Unprocessed
 # ----------------------------------------------------------------------------------------------
 resource "aws_lambda_function_event_invoke_config" "authorizer" {

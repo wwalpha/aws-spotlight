@@ -1,15 +1,29 @@
 # ---------------------------------------------------------------------------------------------
-# API Gateway Authorizer
+# API Gateway Authorizer - Authorization
 # ---------------------------------------------------------------------------------------------
 resource "aws_apigatewayv2_authorizer" "this" {
   name                              = "Authorizer"
   api_id                            = local.apigateway_id
   authorizer_type                   = "REQUEST"
   authorizer_uri                    = aws_lambda_function.authorizer.invoke_arn
-  identity_sources                  = ["$request.header.Authorization"]
   authorizer_payload_format_version = "2.0"
   enable_simple_responses           = true
   authorizer_result_ttl_in_seconds  = 300
+  identity_sources                  = ["$request.header.Authorization"]
+}
+
+# ---------------------------------------------------------------------------------------------
+# API Gateway Authorizer - API Key
+# ---------------------------------------------------------------------------------------------
+resource "aws_apigatewayv2_authorizer" "api_key" {
+  name                              = "Authorizer_APIKey"
+  api_id                            = local.apigateway_id
+  authorizer_type                   = "REQUEST"
+  authorizer_uri                    = aws_lambda_function.authorizer.invoke_arn
+  authorizer_payload_format_version = "2.0"
+  enable_simple_responses           = true
+  authorizer_result_ttl_in_seconds  = 300
+  identity_sources                  = ["$request.header.X-API-Key"]
 }
 
 # ---------------------------------------------------------------------------------------------
@@ -69,7 +83,7 @@ resource "aws_apigatewayv2_route" "get_resources_audit_region" {
   api_id             = local.apigateway_id
   route_key          = "GET /resources/audit/region"
   target             = "integrations/${local.apigateway_integration_resource}"
-  authorizer_id      = aws_apigatewayv2_authorizer.this.id
+  authorizer_id      = aws_apigatewayv2_authorizer.api_key.id
   authorization_type = "CUSTOM"
 }
 

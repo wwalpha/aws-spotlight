@@ -17,12 +17,17 @@ const Logger = winston.createLogger({
 export const handler = async (
   event: APIGatewayRequestAuthorizerEventV2
 ): Promise<APIGatewayRequestAuthorizerResultV2> => {
-  console.log(event);
+  Logger.info('event', event);
 
-  // api key exist
-  if (event.headers['X-API-Key']) {
-    const key = event.headers['X-API-Key'];
+  // value not found
+  if (event.identitySource.length === 0) {
+    return { isAuthorized: false };
+  }
 
+  // authorizator token
+  const identitySource = event.identitySource[0];
+
+  if (Object.prototype.hasOwnProperty('X-API-Key')) {
     if (API_KEYS.length === 0) {
       const result = await helper.get<Tables.Settings.APIKey>({
         TableName: Environments.TABLE_NAME_SETTINGS,
@@ -34,16 +39,9 @@ export const handler = async (
       result?.Item?.Keys.forEach((item) => API_KEYS.push(item));
     }
 
-    return { isAuthorized: API_KEYS.includes(key) };
+    return { isAuthorized: API_KEYS.includes(identitySource) };
   }
 
-  // value not found
-  if (event.identitySource.length === 0) {
-    return { isAuthorized: false };
-  }
-
-  // authorizator token
-  const identitySource = event.identitySource[0];
   // decoded token
   const decodedToken = decodeToken(identitySource);
 
