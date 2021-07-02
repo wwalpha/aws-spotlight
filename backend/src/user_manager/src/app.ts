@@ -9,7 +9,7 @@ import { Logger } from './utils';
 // update aws config
 AWS.config.update({
   region: Environments.AWS_REGION,
-  dynamodb: { endpoint: Environments.AWS_ENDPOINT_URL },
+  dynamodb: { endpoint: Environments.AWS_ENDPOINT },
 });
 
 const helper = new DynamodbHelper();

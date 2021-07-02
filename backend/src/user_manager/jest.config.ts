@@ -6,6 +6,8 @@ const config: Config.InitialOptions = {
   setupFiles: ['dotenv/config'],
   forceExit: true,
   passWithNoTests: true,
+  globalSetup: './test/configs/setup.ts',
+  globalTeardown: './test/configs/teardown.ts',
 };
 
 export default config;

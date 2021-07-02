@@ -173,15 +173,28 @@ export const createCognitoUser = async (userPoolId: string, user: Tables.UserIte
 };
 
 export const getUsers = async (userPoolId: string) => {
-  return listUsers(userPoolId);
-};
-
-const listUsers = async (userPoolId: string, token?: string): Promise<string[]> => {
   const provider = new CognitoIdentityServiceProvider();
 
+  return listUsers(provider, userPoolId);
+};
+
+/**
+ * list users
+ *
+ * @param provider
+ * @param userPoolId
+ * @param token
+ * @returns
+ */
+const listUsers = async (
+  provider: CognitoIdentityServiceProvider,
+  userPoolId: string,
+  token?: string
+): Promise<string[]> => {
   const result = await provider
     .listUsers({
       UserPoolId: userPoolId,
+      PaginationToken: token,
     })
     .promise();
 
@@ -196,7 +209,7 @@ const listUsers = async (userPoolId: string, token?: string): Promise<string[]> 
 
   // has more users
   if (result.PaginationToken) {
-    const nextUsers = await listUsers(userPoolId, result.PaginationToken);
+    const nextUsers = await listUsers(provider, userPoolId, result.PaginationToken);
 
     return [...usernames, ...nextUsers];
   }
