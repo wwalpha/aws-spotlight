@@ -23,8 +23,8 @@ const useStyles = makeStyles(({ spacing, transitions, mixins, palette }: Theme) 
     },
     menuIcon: { color: palette.common.white },
     list: {
-      maxHeight: 'calc(100vh - 80px)',
-      overflowY: 'auto',
+      height: 'calc(100vh - 80px)',
+      overflow: 'auto',
     },
     // drawer: {
     //   width: drawerWidth,
