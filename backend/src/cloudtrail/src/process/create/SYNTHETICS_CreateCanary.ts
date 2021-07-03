@@ -17,6 +17,6 @@ export const SYNTHETICS_CreateCanary = (record: CloudTrail.Record): Tables.Resou
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'VPC',
+    Service: 'Canary',
   };
 };
