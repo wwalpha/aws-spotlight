@@ -1,4 +1,5 @@
 [
+  { "EventName": "CreateApi", "EventSource": "apigateway.amazonaws.com", "Create": true },
   { "EventName": "CreateRestApi", "EventSource": "apigateway.amazonaws.com", "Create": true },
   { "EventName": "ImportRestApi", "EventSource": "apigateway.amazonaws.com", "Create": true },
   { "EventName": "DeleteRestApi", "EventSource": "apigateway.amazonaws.com", "Delete": true },
@@ -13,6 +14,8 @@
 
   { "EventName": "CreateProject", "EventSource": "codebuild.amazonaws.com", "Create": true },
   { "EventName": "DeleteProject", "EventSource": "codebuild.amazonaws.com", "Delete": true },
+
+  { "EventName": "CreateInstance", "EventSource": "connect.amazonaws.com", "Create": true },
 
   { "EventName": "CreateTable", "EventSource": "dynamodb.amazonaws.com", "Create": true },
   { "EventName": "DeleteTable", "EventSource": "dynamodb.amazonaws.com", "Delete": true },
@@ -75,5 +78,8 @@
   { "EventName": "PutDashboard", "EventSource": "monitoring.amazonaws.com", "Create": true },
 
   { "EventName": "CreateBucket", "EventSource": "s3.amazonaws.com", "Create": true },
-  { "EventName": "DeleteBucket", "EventSource": "s3.amazonaws.com", "Delete": true }
+  { "EventName": "DeleteBucket", "EventSource": "s3.amazonaws.com", "Delete": true },
+
+  { "EventName": "CreateTopic", "EventSource": "sns.amazonaws.com", "Create": true },
+  { "EventName": "DeleteTopic", "EventSource": "sns.amazonaws.com", "Delete": true }
 ]

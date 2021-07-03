@@ -1,5 +1,6 @@
 export { default as APIGATEWAY_CreateRestApi } from './APIGATEWAY_CreateRestApi.json';
 export { default as APIGATEWAY_ImportRestApi } from './APIGATEWAY_ImportRestApi.json';
+export { default as APIGATEWAY_CreateApi } from './APIGATEWAY_CreateApi.json';
 
 export { default as AUTOSCALING_CreateAutoScalingGroup } from './AUTOSCALING_CreateAutoScalingGroup.json';
 
@@ -7,6 +8,7 @@ export { default as BACKUP_CreateBackupVault } from './BACKUP_CreateBackupVault.
 export { default as BACKUP_CreateBackupPlan } from './BACKUP_CreateBackupPlan.json';
 
 export { default as CODEBUILD_CreateProject } from './CODEBUILD_CreateProject.json';
+export { default as CONNECT_CreateInstance } from './CONNECT_CreateInstance.json';
 
 export { default as DS_CreateMicrosoftAD } from './DS_CreateMicrosoftAD.json';
 export { default as DYNAMODB_CreateTable } from './DYNAMODB_CreateTable.json';
@@ -40,3 +42,4 @@ export { default as RDS_CreateDBInstance } from './RDS_CreateDBInstance.json';
 export { default as REDSHIFT_CreateCluster } from './REDSHIFT_CreateCluster.json';
 
 export { default as S3_CreateBucket } from './S3_CreateBucket.json';
+export { default as SNS_CreateTopic } from './SNS_CreateTopic.json';

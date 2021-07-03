@@ -39,3 +39,4 @@ export * from './RDS_DeleteDBInstance';
 export * from './REDSHIFT_DeleteCluster';
 
 export * from './S3_DeleteBucket';
+export * from './SNS_DeleteTopic';

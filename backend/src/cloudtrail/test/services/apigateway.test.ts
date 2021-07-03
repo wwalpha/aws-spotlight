@@ -57,4 +57,19 @@ describe('apigateway.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(APIGATEWAY.DeleteRestApi_H);
   });
+
+  test('APIGATEWAY_CreateApi', async () => {
+    const event = await sendMessage(CreateEvents.APIGATEWAY_CreateApi);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:apigateway:us-east-1::/apis/aaaaaaaaa');
+    const history = await getHistory({ EventId: 'ebf671db-0b6a-4936-999f-fa2a7516cdfd' });
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(APIGATEWAY.CreateApi_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(APIGATEWAY.CreateApi_H);
+  });
 });

@@ -1,11 +1,13 @@
 export * from './APIGATEWAY_CreateRestApi';
 export * from './APIGATEWAY_ImportRestApi';
+export * from './APIGATEWAY_CreateApi';
 export * from './AUTOSCALING_CreateAutoScalingGroup';
 
 export * from './BACKUP_CreateBackupVault';
 export * from './BACKUP_CreateBackupPlan';
 
 export * from './CODEBUILD_CreateProject';
+export * from './CONNECT_CreateInstance';
 
 export * from './DYNAMODB_CreateTable';
 export * from './DS_CreateMicrosoftAD';
@@ -41,3 +43,4 @@ export * from './RDS_CreateDBInstance';
 export * from './REDSHIFT_CreateCluster';
 
 export * from './S3_CreateBucket';
+export * from './SNS_CreateTopic';

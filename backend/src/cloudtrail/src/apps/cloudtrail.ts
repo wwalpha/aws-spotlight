@@ -131,14 +131,11 @@ const processNewEventType = async (record: CloudTrail.Record) => {
     .promise();
 
   if (!NOTIFIED[record.eventName]) {
-    console.log('notified');
-
     NOTIFIED[record.eventName] = {
       EventName: record.eventName,
       EventSource: record.eventSource,
     };
 
-    console.log(Consts.Environments.SNS_TOPIC_ARN, snsClient.endpoint);
     try {
       await snsClient
         .publish({

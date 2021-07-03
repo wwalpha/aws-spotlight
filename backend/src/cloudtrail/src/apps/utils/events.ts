@@ -8,6 +8,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
 
   switch (key) {
+    case 'APIGATEWAY_CreateApi':
+      return [CreateEvent.APIGATEWAY_CreateApi(record)];
     case 'APIGATEWAY_CreateRestApi':
       return [CreateEvent.APIGATEWAY_CreateRestApi(record)];
     case 'APIGATEWAY_ImportRestApi':
@@ -22,6 +24,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
 
     case 'CODEBUILD_CreateProject':
       return [CreateEvent.CODEBUILD_CreateProject(record)];
+    case 'CONNECT_CreateInstance':
+      return [CreateEvent.CONNECT_CreateInstance(record)];
 
     case 'DYNAMODB_CreateTable':
       return [CreateEvent.DYNAMODB_CreateTable(record)];
@@ -84,6 +88,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
 
     case 'S3_CreateBucket':
       return [CreateEvent.S3_CreateBucket(record)];
+    case 'SNS_CreateTopic':
+      return [CreateEvent.SNS_CreateTopic(record)];
 
     default:
       return undefined;
@@ -191,6 +197,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
 
     case 'S3_DeleteBucket':
       return [DeleteEvent.S3_DeleteBucket(record)];
+    case 'SNS_DeleteTopic':
+      return [DeleteEvent.SNS_DeleteTopic(record)];
 
     default:
       return undefined;

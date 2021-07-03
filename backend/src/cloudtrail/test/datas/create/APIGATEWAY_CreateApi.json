@@ -1,0 +1,57 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com"
+  },
+  "eventTime": "2021-06-06T06:39:38Z",
+  "eventSource": "apigateway.amazonaws.com",
+  "eventName": "CreateApi",
+  "awsRegion": "us-east-1",
+  "sourceIPAddress": "104.209.222.6",
+  "userAgent": "APN/1.0 HashiCorp/1.0 Terraform/0.15.3 (+https://www.terraform.io) terraform-provider-aws/3.44.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.38.53 (go1.16; linux; amd64)",
+  "requestParameters": {
+    "corsConfiguration": {
+      "allowCredentials": false,
+      "allowHeaders": ["*"],
+      "allowMethods": ["POST", "PUT", "OPTIONS", "GET", "DELETE"],
+      "allowOrigins": ["*"],
+      "exposeHeaders": [],
+      "maxAge": 0
+    },
+    "apiKeySelectionExpression": "$request.header.x-api-key",
+    "routeSelectionExpression": "$request.method $request.path",
+    "name": "arms-api",
+    "protocolType": "HTTP",
+    "tags": {}
+  },
+  "responseElements": {
+    "corsConfiguration": {
+      "allowOrigins": ["*"],
+      "allowCredentials": false,
+      "maxAge": 0,
+      "allowMethods": ["POST", "PUT", "OPTIONS", "GET", "DELETE"],
+      "allowHeaders": ["*"]
+    },
+    "disableExecuteApiEndpoint": false,
+    "apiEndpoint": "https://aaaaaaaaa.execute-api.us-east-1.amazonaws.com",
+    "createdDate": "2021-06-06T06:39:38Z",
+    "apiKeySelectionExpression": "$request.header.x-api-key",
+    "routeSelectionExpression": "$request.method $request.path",
+    "name": "arms-api",
+    "protocolType": "HTTP",
+    "apiId": "aaaaaaaaa",
+    "tags": {}
+  },
+  "requestID": "4dfa7889-e879-4676-845e-bce5a84bf70f",
+  "eventID": "ebf671db-0b6a-4936-999f-fa2a7516cdfd",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}
