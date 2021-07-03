@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon ./src/index.ts dotenv_config_path=.env.dev",
     "build": "tsc -p tsconfig.build.json",
-    "releases": "ts-node src/releases.ts",
+    "initialize": "ts-node src/initialize.ts",
     "events": "ts-node src/events.ts",
     "patch": "ts-node src/patch.ts",
     "test": "jest"
