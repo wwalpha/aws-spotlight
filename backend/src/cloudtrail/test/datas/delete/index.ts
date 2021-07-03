@@ -25,8 +25,12 @@ export { default as EKS_DeleteCluster } from './EKS_DeleteCluster.json';
 export { default as ELASTICFILESYSTEM_DeleteFileSystem } from './ELASTICFILESYSTEM_DeleteFileSystem.json';
 export { default as ES_DeleteElasticsearchDomain } from './ES_DeleteElasticsearchDomain.json';
 
+export { default as FIREHOSE_DeleteDeliveryStream } from './FIREHOSE_DeleteDeliveryStream.json';
+
 export { default as IAM_DeleteAccessKey } from './IAM_DeleteAccessKey.json';
 export { default as IAM_DeleteRole } from './IAM_DeleteRole.json';
+
+export { default as KINESIS_DeleteStream } from './KINESIS_DeleteStream.json';
 
 export { default as LAMBDA_DeleteFunction20150331 } from './LAMBDA_DeleteFunction20150331.json';
 export { default as LEX_DeleteBot } from './LEX_DeleteBot.json';
@@ -41,3 +45,4 @@ export { default as ROUTE53_DeleteHostedZone } from './ROUTE53_DeleteHostedZone.
 export { default as S3_DeleteBucket } from './S3_DeleteBucket.json';
 export { default as SNS_DeleteTopic } from './SNS_DeleteTopic.json';
 export { default as SYNTHETICS_DeleteCanary } from './SYNTHETICS_DeleteCanary.json';
+export { default as STATES_DeleteStateMachine } from './STATES_DeleteStateMachine.json';

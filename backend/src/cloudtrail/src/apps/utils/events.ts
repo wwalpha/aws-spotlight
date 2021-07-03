@@ -70,10 +70,16 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
     case 'ES_CreateElasticsearchDomain':
       return [CreateEvent.ES_CreateElasticsearchDomain(record)];
 
+    case 'FIREHOSE_CreateDeliveryStream':
+      return [CreateEvent.FIREHOSE_CreateDeliveryStream(record)];
+
     case 'IAM_CreateAccessKey':
       return [CreateEvent.IAM_CreateAccessKey(record)];
     case 'IAM_CreateRole':
       return [CreateEvent.IAM_CreateRole(record)];
+
+    case 'KINESIS_CreateStream':
+      return [CreateEvent.KINESIS_CreateStream(record)];
 
     case 'LAMBDA_CreateFunction20150331':
       return [CreateEvent.LAMBDA_CreateFunction20150331(record)];
@@ -100,6 +106,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.SNS_CreateTopic(record)];
     case 'SYNTHETICS_CreateCanary':
       return [CreateEvent.SYNTHETICS_CreateCanary(record)];
+    case 'STATES_CreateStateMachine':
+      return [CreateEvent.STATES_CreateStateMachine(record)];
 
     default:
       return undefined;
@@ -189,12 +197,18 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
     case 'ES_DeleteElasticsearchDomain':
       return [DeleteEvent.ES_DeleteElasticsearchDomain(record)];
 
+    case 'FIREHOSE_DeleteDeliveryStream':
+      return [DeleteEvent.FIREHOSE_DeleteDeliveryStream(record)];
+
     case 'IAM_DeleteAccessKey':
       return [DeleteEvent.IAM_DeleteAccessKey(record)];
     case 'IAM_DeleteRole':
       return [DeleteEvent.IAM_DeleteRole(record)];
     // case 'IAM_DeleteServiceLinkedRole':
     //   return [DeleteEvent.IAM_DeleteServiceLinkedRole(record)];
+
+    case 'KINESIS_DeleteStream':
+      return [DeleteEvent.KINESIS_DeleteStream(record)];
 
     case 'LAMBDA_DeleteFunction20150331':
       return [DeleteEvent.LAMBDA_DeleteFunction20150331(record)];
@@ -219,6 +233,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.SNS_DeleteTopic(record)];
     case 'SYNTHETICS_DeleteCanary':
       return [DeleteEvent.SYNTHETICS_DeleteCanary(record)];
+    case 'STATES_DeleteStateMachine':
+      return [DeleteEvent.STATES_DeleteStateMachine(record)];
 
     default:
       return undefined;

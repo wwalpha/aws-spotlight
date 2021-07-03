@@ -30,11 +30,15 @@ export { default as EKS_CreateCluster } from './EKS_CreateCluster.json';
 export { default as ELASTICFILESYSTEM_CreateFileSystem } from './ELASTICFILESYSTEM_CreateFileSystem.json';
 export { default as ES_CreateElasticsearchDomain } from './ES_CreateElasticsearchDomain.json';
 
+export { default as FIREHOSE_CreateDeliveryStream } from './FIREHOSE_CreateDeliveryStream.json';
+
 export { default as IAM_CreateAccessKey } from './IAM_CreateAccessKey.json';
 export { default as IAM_CreateRole } from './IAM_CreateRole.json';
 
 export { default as LAMBDA_CreateFunction20150331 } from './LAMBDA_CreateFunction20150331.json';
 export { default as LEX_CreateBot } from './LEX_CreateBot.json';
+
+export { default as KINESIS_CreateStream } from './KINESIS_CreateStream.json';
 
 export { default as MONITORING_PutMetricAlarm } from './MONITORING_PutMetricAlarm.json';
 export { default as MONITORING_PutDashboard } from './MONITORING_PutDashboard.json';
@@ -47,3 +51,4 @@ export { default as ROUTE53_CreateHostedZone } from './ROUTE53_CreateHostedZone.
 export { default as S3_CreateBucket } from './S3_CreateBucket.json';
 export { default as SNS_CreateTopic } from './SNS_CreateTopic.json';
 export { default as SYNTHETICS_CreateCanary } from './SYNTHETICS_CreateCanary.json';
+export { default as STATES_CreateStateMachine } from './STATES_CreateStateMachine.json';

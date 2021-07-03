@@ -61,10 +61,16 @@
   { "EventName": "CreateElasticsearchDomain", "EventSource": "es.amazonaws.com", "Create": true },
   { "EventName": "DeleteElasticsearchDomain", "EventSource": "es.amazonaws.com", "Delete": true },
 
+  { "EventName": "CreateDeliveryStream", "EventSource": "firehose.amazonaws.com", "Create": true },
+  { "EventName": "DeleteDeliveryStream", "EventSource": "firehose.amazonaws.com", "Delete": true },
+
   { "EventName": "CreateAccessKey", "EventSource": "iam.amazonaws.com", "Create": true },
   { "EventName": "DeleteAccessKey", "EventSource": "iam.amazonaws.com", "Delete": true },
   { "EventName": "CreateRole", "EventSource": "iam.amazonaws.com", "Create": true },
   { "EventName": "DeleteRole", "EventSource": "iam.amazonaws.com", "Delete": true },
+
+  { "EventName": "CreateStream", "EventSource": "kinesis.amazonaws.com", "Create": true },
+  { "EventName": "DeleteStream", "EventSource": "kinesis.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateFunction20150331", "EventSource": "lambda.amazonaws.com", "Create": true },
   { "EventName": "DeleteFunction20150331", "EventSource": "lambda.amazonaws.com", "Delete": true },
@@ -92,6 +98,9 @@
 
   { "EventName": "CreateCanary", "EventSource": "synthetics.amazonaws.com", "Create": true },
   { "EventName": "DeleteCanary", "EventSource": "synthetics.amazonaws.com", "Delete": true },
+
+  { "EventName": "CreateStateMachine", "EventSource": "states.amazonaws.com", "Create": true },
+  { "EventName": "DeleteStateMachine", "EventSource": "states.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateTopic", "EventSource": "sns.amazonaws.com", "Create": true },
   { "EventName": "DeleteTopic", "EventSource": "sns.amazonaws.com", "Delete": true }

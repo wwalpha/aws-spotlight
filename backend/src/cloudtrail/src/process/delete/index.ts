@@ -28,9 +28,13 @@ export * from './ELASTICLOADBALANCING_DeleteTargetGroup';
 export * from './EKS_DeleteCluster';
 export * from './ES_DeleteElasticsearchDomain';
 
+export * from './FIREHOSE_DeleteDeliveryStream';
+
 export * from './IAM_DeleteAccessKey';
 export * from './IAM_DeleteRole';
 export * from './IAM_DeleteServiceLinkedRole';
+
+export * from './KINESIS_DeleteStream';
 
 export * from './LAMBDA_DeleteFunction20150331';
 export * from './LEX_DeleteBot';
@@ -46,3 +50,4 @@ export * from './ROUTE53_DeleteHostedZone';
 export * from './S3_DeleteBucket';
 export * from './SNS_DeleteTopic';
 export * from './SYNTHETICS_DeleteCanary';
+export * from './STATES_DeleteStateMachine';

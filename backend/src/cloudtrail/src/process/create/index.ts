@@ -32,8 +32,12 @@ export * from './ELASTICLOADBALANCING_CreateTargetGroup';
 export * from './EKS_CreateCluster';
 export * from './ES_CreateElasticsearchDomain';
 
+export * from './FIREHOSE_CreateDeliveryStream';
+
 export * from './IAM_CreateAccessKey';
 export * from './IAM_CreateRole';
+
+export * from './KINESIS_CreateStream';
 
 export * from './LAMBDA_CreateFunction20150331';
 export * from './LEX_CreateBot';
@@ -50,3 +54,4 @@ export * from './ROUTE53_CreateHostedZone';
 export * from './S3_CreateBucket';
 export * from './SNS_CreateTopic';
 export * from './SYNTHETICS_CreateCanary';
+export * from './STATES_CreateStateMachine';
