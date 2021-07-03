@@ -11,6 +11,16 @@
     "Id": "RELEASE",
     "Texts": [
       {
+        "version": "v0.3.6",
+        "date": "2021-07-03",
+        "texts": [
+          {
+            "type": "FEATURE",
+            "text": "[Backend] Added new audit resources. (AppMesh, Route53, Connect)"
+          }
+        ]
+      },
+      {
         "version": "v0.3.5",
         "date": "2021-07-02",
         "texts": [
