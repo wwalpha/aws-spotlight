@@ -37,11 +37,9 @@ describe('sqs.amazonaws.com', () => {
     const resource = await getResource('arn:aws:sqs:us-east-1:999999999999:arms-deadletter');
     const history = await getHistory({ EventId: '0114a86d-87b7-4102-97b2-53a77d228154' });
 
-    fs.writeFileSync('DeleteQueue_H.json', JSON.stringify(history));
-
     expect(resource).toBeUndefined();
 
     expect(history).not.toBeUndefined();
-    // expect(history).toEqual(SQS.DeleteQueue_H);
+    expect(history).toEqual(SQS.DeleteQueue_H);
   });
 });
