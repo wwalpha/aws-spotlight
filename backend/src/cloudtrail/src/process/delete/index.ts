@@ -33,6 +33,7 @@ export * from './IAM_DeleteRole';
 export * from './IAM_DeleteServiceLinkedRole';
 
 export * from './LAMBDA_DeleteFunction20150331';
+export * from './LEX_DeleteBot';
 
 export * from './MONITORING_DeleteAlarms';
 
@@ -44,3 +45,4 @@ export * from './ROUTE53_DeleteHostedZone';
 
 export * from './S3_DeleteBucket';
 export * from './SNS_DeleteTopic';
+export * from './SYNTHETICS_DeleteCanary';

@@ -36,6 +36,7 @@ export * from './IAM_CreateAccessKey';
 export * from './IAM_CreateRole';
 
 export * from './LAMBDA_CreateFunction20150331';
+export * from './LEX_CreateBot';
 
 export * from './MONITORING_PutMetricAlarm';
 export * from './MONITORING_PutDashboard';
@@ -48,3 +49,4 @@ export * from './ROUTE53_CreateHostedZone';
 
 export * from './S3_CreateBucket';
 export * from './SNS_CreateTopic';
+export * from './SYNTHETICS_CreateCanary';

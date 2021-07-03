@@ -69,6 +69,9 @@
   { "EventName": "CreateFunction20150331", "EventSource": "lambda.amazonaws.com", "Create": true },
   { "EventName": "DeleteFunction20150331", "EventSource": "lambda.amazonaws.com", "Delete": true },
 
+  { "EventName": "CreateBot", "EventSource": "lex.amazonaws.com", "Create": true },
+  { "EventName": "DeleteBot", "EventSource": "lex.amazonaws.com", "Delete": true },
+
   { "EventName": "CreateDBCluster", "EventSource": "rds.amazonaws.com", "Create": true },
   { "EventName": "CreateDBInstance", "EventSource": "rds.amazonaws.com", "Create": true },
   { "EventName": "DeleteDBCluster", "EventSource": "rds.amazonaws.com", "Delete": true },
@@ -86,6 +89,9 @@
 
   { "EventName": "CreateBucket", "EventSource": "s3.amazonaws.com", "Create": true },
   { "EventName": "DeleteBucket", "EventSource": "s3.amazonaws.com", "Delete": true },
+
+  { "EventName": "CreateCanary", "EventSource": "synthetics.amazonaws.com", "Create": true },
+  { "EventName": "DeleteCanary", "EventSource": "synthetics.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateTopic", "EventSource": "sns.amazonaws.com", "Create": true },
   { "EventName": "DeleteTopic", "EventSource": "sns.amazonaws.com", "Delete": true }

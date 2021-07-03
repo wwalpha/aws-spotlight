@@ -77,6 +77,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
 
     case 'LAMBDA_CreateFunction20150331':
       return [CreateEvent.LAMBDA_CreateFunction20150331(record)];
+    case 'LEX_CreateBot':
+      return [CreateEvent.LEX_CreateBot(record)];
 
     case 'MONITORING_PutMetricAlarm':
       return [CreateEvent.MONITORING_PutMetricAlarm(record)];
@@ -96,6 +98,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.S3_CreateBucket(record)];
     case 'SNS_CreateTopic':
       return [CreateEvent.SNS_CreateTopic(record)];
+    case 'SYNTHETICS_CreateCanary':
+      return [CreateEvent.SYNTHETICS_CreateCanary(record)];
 
     default:
       return undefined;
@@ -194,6 +198,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
 
     case 'LAMBDA_DeleteFunction20150331':
       return [DeleteEvent.LAMBDA_DeleteFunction20150331(record)];
+    case 'LEX_DeleteBot':
+      return [DeleteEvent.LEX_DeleteBot(record)];
 
     case 'MONITORING_DeleteAlarms':
       return DeleteEvent.MONITORING_DeleteAlarms(record);
@@ -211,6 +217,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.S3_DeleteBucket(record)];
     case 'SNS_DeleteTopic':
       return [DeleteEvent.SNS_DeleteTopic(record)];
+    case 'SYNTHETICS_DeleteCanary':
+      return [DeleteEvent.SYNTHETICS_DeleteCanary(record)];
 
     default:
       return undefined;
