@@ -11,3 +11,8 @@ export { default as LambdaIcon } from './AWSLambda.svg';
 export { default as ESIcon } from './AmazonElasticsearchService.svg';
 export { default as RedshiftIcon } from './AmazonRedshift.svg';
 export { default as CodeBuildIcon } from './AWSCodeBuild.svg';
+export { default as ConnectIcon } from './AmazonConnect.svg';
+export { default as Route53Icon } from './AmazonRoute53.svg';
+export { default as SNSIcon } from './AmazonSNS.svg';
+export { default as SQSIcon } from './AmazonSQS.svg';
+export { default as AppMeshIcon } from './AWSAppMesh.svg';

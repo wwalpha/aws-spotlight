@@ -15,6 +15,11 @@ export const SERVICES = {
   ES: 'es.amazonaws.com',
   REDSHIFT: 'redshift.amazonaws.com',
   CODEBUILD: 'codebuild.amazonaws.com',
+  APPMESH: 'appmesh.amazonaws.com',
+  ROUTE53: 'route53.amazonaws.com',
+  SNS: 'sns.amazonaws.com',
+  SQS: 'sqs.amazonaws.com',
+  CONNECT: 'connect.amazonaws.com',
 };
 
 export const API_URLs = {

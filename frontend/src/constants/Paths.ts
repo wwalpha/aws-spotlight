@@ -17,6 +17,11 @@ export const ROUTE_PATH_INDEX = {
   ES: 112,
   REDSHIFT: 113,
   CODEBUILD: 114,
+  APPMESH: 115,
+  ROUTE53: 116,
+  SNS: 117,
+  SQS: 118,
+  CONNECT: 118,
 };
 
 export const ROUTE_PATHS = {
@@ -38,4 +43,9 @@ export const ROUTE_PATHS = {
   [ROUTE_PATH_INDEX.ES]: '/service/es',
   [ROUTE_PATH_INDEX.REDSHIFT]: '/service/redshift',
   [ROUTE_PATH_INDEX.CODEBUILD]: '/service/codebuild',
+  [ROUTE_PATH_INDEX.APPMESH]: '/service/appmesh',
+  [ROUTE_PATH_INDEX.ROUTE53]: '/service/route53',
+  [ROUTE_PATH_INDEX.SNS]: '/service/sns',
+  [ROUTE_PATH_INDEX.SQS]: '/service/sqs',
+  [ROUTE_PATH_INDEX.CONNECT]: '/service/connect',
 };
