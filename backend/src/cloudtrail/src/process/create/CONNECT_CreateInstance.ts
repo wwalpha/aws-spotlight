@@ -12,5 +12,5 @@ export const CONNECT_CreateInstance = (record: CloudTrail.Record): Tables.Resour
   IdentityType: record.userIdentity.type,
   UserAgent: record.userAgent,
   EventId: record.eventID,
-  Service: 'Project',
+  Service: 'Instance',
 });
