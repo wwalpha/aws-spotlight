@@ -2,6 +2,7 @@ export * from './APIGATEWAY_CreateRestApi';
 export * from './APIGATEWAY_ImportRestApi';
 export * from './APIGATEWAY_CreateApi';
 export * from './AUTOSCALING_CreateAutoScalingGroup';
+export * from './APPMESH_CreateMesh';
 
 export * from './BACKUP_CreateBackupVault';
 export * from './BACKUP_CreateBackupPlan';

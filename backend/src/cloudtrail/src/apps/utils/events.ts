@@ -16,6 +16,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.APIGATEWAY_ImportRestApi(record)];
     case 'AUTOSCALING_CreateAutoScalingGroup':
       return [CreateEvent.AUTOSCALING_CreateAutoScalingGroup(record)];
+    case 'APPMESH_CreateMesh':
+      return [CreateEvent.APPMESH_CreateMesh(record)];
 
     case 'BACKUP_CreateBackupVault':
       return [CreateEvent.BACKUP_CreateBackupVault(record)];
@@ -133,6 +135,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.APIGATEWAY_DeleteRestApi(record)];
     case 'AUTOSCALING_DeleteAutoScalingGroup':
       return [DeleteEvent.AUTOSCALING_DeleteAutoScalingGroup(record)];
+    case 'APPMESH_DeleteMesh':
+      return [DeleteEvent.APPMESH_DeleteMesh(record)];
 
     case 'BACKUP_DeleteBackupPlan':
       return [DeleteEvent.BACKUP_DeleteBackupPlan(record)];

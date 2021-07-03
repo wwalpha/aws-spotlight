@@ -1,6 +1,7 @@
 export { default as APIGATEWAY_DeleteRestApi } from './APIGATEWAY_DeleteRestApi.json';
 
 export { default as AUTOSCALING_DeleteAutoScalingGroup } from './AUTOSCALING_DeleteAutoScalingGroup.json';
+export { default as APPMESH_DeleteMesh } from './APPMESH_DeleteMesh.json';
 
 export { default as BACKUP_DeleteBackupPlan } from './BACKUP_DeleteBackupPlan.json';
 export { default as BACKUP_DeleteBackupVault } from './BACKUP_DeleteBackupVault.json';

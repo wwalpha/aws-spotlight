@@ -6,6 +6,8 @@
 
   { "EventName": "CreateAutoScalingGroup", "EventSource": "autoscaling.amazonaws.com", "Create": true },
   { "EventName": "DeleteAutoScalingGroup", "EventSource": "autoscaling.amazonaws.com", "Delete": true },
+  { "EventName": "CreateMesh", "EventSource": "appmesh.amazonaws.com", "Create": true },
+  { "EventName": "DeleteMesh", "EventSource": "appmesh.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateBackupVault", "EventSource": "backup.amazonaws.com", "Create": true },
   { "EventName": "DeleteBackupVault", "EventSource": "backup.amazonaws.com", "Delete": true },

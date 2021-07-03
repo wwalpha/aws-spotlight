@@ -3,6 +3,7 @@ export { default as APIGATEWAY_ImportRestApi } from './APIGATEWAY_ImportRestApi.
 export { default as APIGATEWAY_CreateApi } from './APIGATEWAY_CreateApi.json';
 
 export { default as AUTOSCALING_CreateAutoScalingGroup } from './AUTOSCALING_CreateAutoScalingGroup.json';
+export { default as APPMESH_CreateMesh } from './APPMESH_CreateMesh.json';
 
 export { default as BACKUP_CreateBackupVault } from './BACKUP_CreateBackupVault.json';
 export { default as BACKUP_CreateBackupPlan } from './BACKUP_CreateBackupPlan.json';

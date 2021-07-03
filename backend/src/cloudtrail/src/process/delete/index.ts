@@ -1,5 +1,6 @@
 export * from './APIGATEWAY_DeleteRestApi';
 export * from './AUTOSCALING_DeleteAutoScalingGroup';
+export * from './APPMESH_DeleteMesh';
 
 export * from './BACKUP_DeleteBackupPlan';
 export * from './BACKUP_DeleteBackupVault';
