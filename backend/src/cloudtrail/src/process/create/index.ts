@@ -41,6 +41,7 @@ export * from './RDS_CreateDBCluster';
 export * from './RDS_CreateDBInstance';
 
 export * from './REDSHIFT_CreateCluster';
+export * from './ROUTE53_CreateHostedZone';
 
 export * from './S3_CreateBucket';
 export * from './SNS_CreateTopic';

@@ -85,6 +85,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.RDS_CreateDBInstance(record)];
     case 'REDSHIFT_CreateCluster':
       return [CreateEvent.REDSHIFT_CreateCluster(record)];
+    case 'ROUTE53_CreateHostedZone':
+      return [CreateEvent.ROUTE53_CreateHostedZone(record)];
 
     case 'S3_CreateBucket':
       return [CreateEvent.S3_CreateBucket(record)];
@@ -194,6 +196,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.RDS_DeleteDBInstance(record)];
     case 'REDSHIFT_DeleteCluster':
       return [DeleteEvent.REDSHIFT_DeleteCluster(record)];
+    case 'ROUTE53_DeleteHostedZone':
+      return [DeleteEvent.ROUTE53_DeleteHostedZone(record)];
 
     case 'S3_DeleteBucket':
       return [DeleteEvent.S3_DeleteBucket(record)];

@@ -38,8 +38,8 @@ export { default as MONITORING_PutDashboard } from './MONITORING_PutDashboard.js
 
 export { default as RDS_CreateDBCluster } from './RDS_CreateDBCluster.json';
 export { default as RDS_CreateDBInstance } from './RDS_CreateDBInstance.json';
-
 export { default as REDSHIFT_CreateCluster } from './REDSHIFT_CreateCluster.json';
+export { default as ROUTE53_CreateHostedZone } from './ROUTE53_CreateHostedZone.json';
 
 export { default as S3_CreateBucket } from './S3_CreateBucket.json';
 export { default as SNS_CreateTopic } from './SNS_CreateTopic.json';

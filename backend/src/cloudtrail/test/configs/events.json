@@ -73,6 +73,9 @@
   { "EventName": "CreateCluster", "EventSource": "redshift.amazonaws.com", "Create": true },
   { "EventName": "DeleteCluster", "EventSource": "redshift.amazonaws.com", "Delete": true },
 
+  { "EventName": "CreateHostedZone", "EventSource": "route53.amazonaws.com", "Create": true },
+  { "EventName": "DeleteHostedZone", "EventSource": "route53.amazonaws.com", "Delete": true },
+
   { "EventName": "PutMetricAlarm", "EventSource": "monitoring.amazonaws.com", "Create": true },
   { "EventName": "DeleteAlarms", "EventSource": "monitoring.amazonaws.com", "Delete": true },
   { "EventName": "PutDashboard", "EventSource": "monitoring.amazonaws.com", "Create": true },

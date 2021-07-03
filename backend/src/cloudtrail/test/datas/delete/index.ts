@@ -33,6 +33,7 @@ export { default as MONITORING_DeleteAlarms } from './MONITORING_DeleteAlarms.js
 export { default as RDS_DeleteDBCluster } from './RDS_DeleteDBCluster.json';
 export { default as RDS_DeleteDBInstance } from './RDS_DeleteDBInstance.json';
 export { default as REDSHIFT_DeleteCluster } from './REDSHIFT_DeleteCluster.json';
+export { default as ROUTE53_DeleteHostedZone } from './ROUTE53_DeleteHostedZone.json';
 
 export { default as S3_DeleteBucket } from './S3_DeleteBucket.json';
 export { default as SNS_DeleteTopic } from './SNS_DeleteTopic.json';
