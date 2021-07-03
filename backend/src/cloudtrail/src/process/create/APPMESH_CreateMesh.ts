@@ -12,5 +12,5 @@ export const APPMESH_CreateMesh = (record: CloudTrail.Record): Tables.Resource =
   IdentityType: record.userIdentity.type,
   UserAgent: record.userAgent,
   EventId: record.eventID,
-  Service: 'Backup Vault',
+  Service: 'Mesh',
 });
