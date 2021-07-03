@@ -9,7 +9,7 @@ export const KINESIS_CreateStream = (record: CloudTrail.Record): Tables.Resource
   return {
     UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
     ResourceId: `arn:aws:kinesis:${region}:${account}:stream/${streamName}`,
-    ResourceName: record.requestParameters.name,
+    ResourceName: streamName,
     EventName: record.eventName,
     EventSource: record.eventSource,
     EventTime: record.eventTime,

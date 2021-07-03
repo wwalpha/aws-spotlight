@@ -9,7 +9,7 @@ export const SYNTHETICS_CreateCanary = (record: CloudTrail.Record): Tables.Resou
   return {
     UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
     ResourceId: `arn:aws:synthetics:${region}:${account}:canary:${canaryName}`,
-    ResourceName: record.responseElements.botName,
+    ResourceName: canaryName,
     EventName: record.eventName,
     EventSource: record.eventSource,
     EventTime: record.eventTime,
