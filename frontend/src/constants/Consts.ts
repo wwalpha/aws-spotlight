@@ -20,6 +20,11 @@ export const SERVICES = {
   SNS: 'sns.amazonaws.com',
   SQS: 'sqs.amazonaws.com',
   CONNECT: 'connect.amazonaws.com',
+  FIREHOSE: 'firehose.amazonaws.com',
+  KINESIS: 'kinesis.amazonaws.com',
+  CLOUDFRONT: 'cloudfront.amazonaws.com',
+  LEX: 'lex.amazonaws.com',
+  STEP_FUNCTION: 'states.amazonaws.com',
 };
 
 export const API_URLs = {

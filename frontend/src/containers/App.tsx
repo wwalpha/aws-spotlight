@@ -44,6 +44,11 @@ const App: FunctionComponent<any> = () => {
           <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.SNS]} component={Service} />
           <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.SQS]} component={Service} />
           <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.CONNECT]} component={Service} />
+          <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.KINESIS]} component={Service} />
+          <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.FIREHOSE]} component={Service} />
+          <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.CLOUDFRONT]} component={Service} />
+          <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.LEX]} component={Service} />
+          <Route exact path={Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.STEP_FUNCTION]} component={Service} />
         </Switch>
       </Box>
     </Box>

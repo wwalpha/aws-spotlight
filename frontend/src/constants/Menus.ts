@@ -45,11 +45,11 @@ const MENUS = [
     icon: SVG.EFSIcon,
   },
   {
-    eventSource: SERVICES.ELB,
+    eventSource: SERVICES.CLOUDFRONT,
     category: 'networking',
-    title: 'Amazon ELB',
-    path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.ELB],
-    icon: SVG.ELBIcon,
+    title: 'Amazon CloudFront',
+    path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.CLOUDFRONT],
+    icon: SVG.CloudFrontIcon,
   },
   {
     eventSource: SERVICES.ROUTE53,
@@ -57,6 +57,13 @@ const MENUS = [
     title: 'Amazon Route53',
     path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.ROUTE53],
     icon: SVG.Route53Icon,
+  },
+  {
+    eventSource: SERVICES.ELB,
+    category: 'networking',
+    title: 'Amazon ELB',
+    path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.ELB],
+    icon: SVG.ELBIcon,
   },
   {
     eventSource: SERVICES.APPMESH,
@@ -94,6 +101,13 @@ const MENUS = [
     icon: SVG.SQSIcon,
   },
   {
+    eventSource: SERVICES.STEP_FUNCTION,
+    category: 'application',
+    title: 'AWS Step Functions',
+    path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.STEP_FUNCTION],
+    icon: SVG.StepFunctionIcon,
+  },
+  {
     eventSource: SERVICES.CONNECT,
     category: 'application',
     title: 'Amazon Connect',
@@ -115,11 +129,32 @@ const MENUS = [
     icon: SVG.RedshiftIcon,
   },
   {
+    eventSource: SERVICES.KINESIS,
+    category: 'analytics',
+    title: 'Amazon Kinesis',
+    path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.KINESIS],
+    icon: SVG.KinesisIcon,
+  },
+  {
+    eventSource: SERVICES.FIREHOSE,
+    category: 'analytics',
+    title: 'Amazon Data Firehose',
+    path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.FIREHOSE],
+    icon: SVG.FirehoseIcon,
+  },
+  {
     eventSource: SERVICES.EKS,
     category: 'container',
     title: 'Amazon EKS',
     path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.EKS],
     icon: SVG.EKSIcon,
+  },
+  {
+    eventSource: SERVICES.LEX,
+    category: 'machine learning',
+    title: 'Amazon Lex',
+    path: Paths.ROUTE_PATHS[Paths.ROUTE_PATH_INDEX.LEX],
+    icon: SVG.LexIcon,
   },
   {
     eventSource: SERVICES.CODEBUILD,

@@ -16,3 +16,8 @@ export { default as Route53Icon } from './AmazonRoute53.svg';
 export { default as SNSIcon } from './AmazonSNS.svg';
 export { default as SQSIcon } from './AmazonSQS.svg';
 export { default as AppMeshIcon } from './AWSAppMesh.svg';
+export { default as CloudFrontIcon } from './AmazonCloudFront.svg';
+export { default as KinesisIcon } from './AmazonKinesis.svg';
+export { default as FirehoseIcon } from './AmazonKinesisDataFirehose.svg';
+export { default as LexIcon } from './AmazonLex.svg';
+export { default as StepFunctionIcon } from './AWSStepFunctions.svg';

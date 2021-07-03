@@ -22,6 +22,11 @@ export const ROUTE_PATH_INDEX = {
   SNS: 117,
   SQS: 118,
   CONNECT: 118,
+  FIREHOSE: 119,
+  KINESIS: 120,
+  CLOUDFRONT: 121,
+  LEX: 122,
+  STEP_FUNCTION: 123,
 };
 
 export const ROUTE_PATHS = {
@@ -48,4 +53,9 @@ export const ROUTE_PATHS = {
   [ROUTE_PATH_INDEX.SNS]: '/service/sns',
   [ROUTE_PATH_INDEX.SQS]: '/service/sqs',
   [ROUTE_PATH_INDEX.CONNECT]: '/service/connect',
+  [ROUTE_PATH_INDEX.FIREHOSE]: '/service/firehose',
+  [ROUTE_PATH_INDEX.KINESIS]: '/service/kinesis',
+  [ROUTE_PATH_INDEX.CLOUDFRONT]: '/service/cloudfront',
+  [ROUTE_PATH_INDEX.LEX]: '/service/lex',
+  [ROUTE_PATH_INDEX.STEP_FUNCTION]: '/service/states',
 };
