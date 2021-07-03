@@ -21,6 +21,9 @@
 
   { "EventName": "CreateInstance", "EventSource": "connect.amazonaws.com", "Create": true },
 
+  { "EventName": "CreateDistribution", "EventSource": "cloudfront.amazonaws.com", "Create": true },
+  { "EventName": "DeleteDistribution", "EventSource": "cloudfront.amazonaws.com", "Delete": true },
+
   { "EventName": "CreateTable", "EventSource": "dynamodb.amazonaws.com", "Create": true },
   { "EventName": "DeleteTable", "EventSource": "dynamodb.amazonaws.com", "Delete": true },
 
@@ -101,6 +104,9 @@
 
   { "EventName": "CreateStateMachine", "EventSource": "states.amazonaws.com", "Create": true },
   { "EventName": "DeleteStateMachine", "EventSource": "states.amazonaws.com", "Delete": true },
+
+  { "EventName": "CreateQueue", "EventSource": "sqs.amazonaws.com", "Create": true },
+  { "EventName": "DeleteQueue", "EventSource": "sqs.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateTopic", "EventSource": "sns.amazonaws.com", "Create": true },
   { "EventName": "DeleteTopic", "EventSource": "sns.amazonaws.com", "Delete": true }

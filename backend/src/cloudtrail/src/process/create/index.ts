@@ -11,6 +11,7 @@ export * from './BACKUP_CreateBackupPlan';
 
 export * from './CODEBUILD_CreateProject';
 export * from './CONNECT_CreateInstance';
+export * from './CLOUDFRONT_CreateDistribution';
 
 export * from './DYNAMODB_CreateTable';
 export * from './DS_CreateMicrosoftAD';
@@ -55,3 +56,4 @@ export * from './S3_CreateBucket';
 export * from './SNS_CreateTopic';
 export * from './SYNTHETICS_CreateCanary';
 export * from './STATES_CreateStateMachine';
+export * from './SQS_CreateQueue';

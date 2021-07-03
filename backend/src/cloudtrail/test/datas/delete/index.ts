@@ -8,6 +8,7 @@ export { default as BACKUP_DeleteBackupPlan } from './BACKUP_DeleteBackupPlan.js
 export { default as BACKUP_DeleteBackupVault } from './BACKUP_DeleteBackupVault.json';
 
 export { default as CODEBUILD_DeleteProject } from './CODEBUILD_DeleteProject.json';
+export { default as CLOUDFRONT_DeleteDistribution } from './CLOUDFRONT_DeleteDistribution.json';
 
 export { default as DS_DeleteDirectory } from './DS_DeleteDirectory.json';
 
@@ -46,3 +47,5 @@ export { default as S3_DeleteBucket } from './S3_DeleteBucket.json';
 export { default as SNS_DeleteTopic } from './SNS_DeleteTopic.json';
 export { default as SYNTHETICS_DeleteCanary } from './SYNTHETICS_DeleteCanary.json';
 export { default as STATES_DeleteStateMachine } from './STATES_DeleteStateMachine.json';
+export { default as SERVICEDISCOVERY_DeleteNamespace } from './SERVICEDISCOVERY_DeleteNamespace.json';
+export { default as SQS_DeleteQueue } from './SQS_DeleteQueue.json';

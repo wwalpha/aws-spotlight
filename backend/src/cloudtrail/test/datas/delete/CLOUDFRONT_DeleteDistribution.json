@@ -10,27 +10,23 @@
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
-      "attributes": {
-        "creationDate": "2021-06-05T23:37:12Z",
-        "mfaAuthenticated": "false"
-      }
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-06-05T23:37:12Z" }
     }
   },
-  "eventTime": "2021-06-06T01:54:24Z",
-  "eventSource": "sns.amazonaws.com",
-  "eventName": "DeleteTopic",
-  "awsRegion": "ap-northeast-1",
+  "eventTime": "2021-06-06T01:57:41Z",
+  "eventSource": "cloudfront.amazonaws.com",
+  "eventName": "DeleteDistribution",
+  "awsRegion": "us-east-1",
   "sourceIPAddress": "35.74.254.8",
   "userAgent": "APN/1.0 HashiCorp/1.0 Terraform/0.15.3 (+https://www.terraform.io) terraform-provider-aws/3.44.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.38.53 (go1.16; linux; amd64) exec-env/CloudShell",
-  "requestParameters": {
-    "topicArn": "arn:aws:sns:ap-northeast-1:999999999999:arms-admin"
-  },
+  "requestParameters": { "id": "E1AU9D0469FO98", "ifMatch": "EZTNVWJW1T2UH" },
   "responseElements": null,
-  "requestID": "b12b1536-0f25-52c9-8656-4c00223509fd",
-  "eventID": "87a0bcf1-f5e2-4d1a-be9e-31923273cfa2",
+  "requestID": "fb544a0d-88c8-45b2-85b4-b56b38b87d88",
+  "eventID": "8853f4c6-cbd1-408d-addc-4f6591b07514",
   "readOnly": false,
   "eventType": "AwsApiCall",
+  "apiVersion": "2020_05_31",
   "managementEvent": true,
-  "recipientAccountId": "999999999999",
-  "eventCategory": "Management"
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
 }

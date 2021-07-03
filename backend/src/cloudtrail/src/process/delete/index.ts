@@ -8,6 +8,7 @@ export * from './BACKUP_DeleteBackupPlan';
 export * from './BACKUP_DeleteBackupVault';
 
 export * from './CODEBUILD_DeleteProject';
+export * from './CLOUDFRONT_DeleteDistribution';
 
 export * from './DYNAMODB_DeleteTable';
 export * from './DS_DeleteDirectory';
@@ -51,3 +52,4 @@ export * from './S3_DeleteBucket';
 export * from './SNS_DeleteTopic';
 export * from './SYNTHETICS_DeleteCanary';
 export * from './STATES_DeleteStateMachine';
+export * from './SQS_DeleteQueue';

@@ -11,6 +11,7 @@ export { default as BACKUP_CreateBackupPlan } from './BACKUP_CreateBackupPlan.js
 
 export { default as CODEBUILD_CreateProject } from './CODEBUILD_CreateProject.json';
 export { default as CONNECT_CreateInstance } from './CONNECT_CreateInstance.json';
+export { default as CLOUDFRONT_CreateDistribution } from './CLOUDFRONT_CreateDistribution.json';
 
 export { default as DS_CreateMicrosoftAD } from './DS_CreateMicrosoftAD.json';
 export { default as DYNAMODB_CreateTable } from './DYNAMODB_CreateTable.json';
@@ -52,3 +53,6 @@ export { default as S3_CreateBucket } from './S3_CreateBucket.json';
 export { default as SNS_CreateTopic } from './SNS_CreateTopic.json';
 export { default as SYNTHETICS_CreateCanary } from './SYNTHETICS_CreateCanary.json';
 export { default as STATES_CreateStateMachine } from './STATES_CreateStateMachine.json';
+export { default as SERVICEDISCOVERY_CreateHttpNamespace } from './SERVICEDISCOVERY_CreateHttpNamespace.json';
+export { default as SERVICEDISCOVERY_CreatePrivateDnsNamespace } from './SERVICEDISCOVERY_CreatePrivateDnsNamespace.json';
+export { default as SQS_CreateQueue } from './SQS_CreateQueue.json';

@@ -30,6 +30,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.CODEBUILD_CreateProject(record)];
     case 'CONNECT_CreateInstance':
       return [CreateEvent.CONNECT_CreateInstance(record)];
+    case 'CLOUDFRONT_CreateDistribution':
+      return [CreateEvent.CLOUDFRONT_CreateDistribution(record)];
 
     case 'DYNAMODB_CreateTable':
       return [CreateEvent.DYNAMODB_CreateTable(record)];
@@ -108,6 +110,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.SYNTHETICS_CreateCanary(record)];
     case 'STATES_CreateStateMachine':
       return [CreateEvent.STATES_CreateStateMachine(record)];
+    case 'SQS_CreateQueue':
+      return [CreateEvent.SQS_CreateQueue(record)];
 
     default:
       return undefined;
@@ -161,6 +165,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
 
     case 'CODEBUILD_DeleteProject':
       return [DeleteEvent.CODEBUILD_DeleteProject(record)];
+    case 'CLOUDFRONT_DeleteDistribution':
+      return [DeleteEvent.CLOUDFRONT_DeleteDistribution(record)];
 
     case 'DYNAMODB_DeleteTable':
       return [DeleteEvent.DYNAMODB_DeleteTable(record)];
@@ -235,6 +241,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.SYNTHETICS_DeleteCanary(record)];
     case 'STATES_DeleteStateMachine':
       return [DeleteEvent.STATES_DeleteStateMachine(record)];
+    case 'SQS_DeleteQueue':
+      return [DeleteEvent.SQS_DeleteQueue(record)];
 
     default:
       return undefined;
