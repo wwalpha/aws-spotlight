@@ -27,6 +27,7 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
       display: 'flex',
       alignItems: 'center',
     },
+    icon: { minWidth: 'auto' },
   })
 );
 
@@ -55,7 +56,7 @@ export const ListItem: FunctionComponent<ListItemProps> = ({ children, text, pat
         onMouseEnter={handlePopoverOpen}
         onMouseLeave={handlePopoverClose}
         onClick={onClick}>
-        <ListItemIcon>{children}</ListItemIcon>
+        <ListItemIcon className={classes.icon}>{children}</ListItemIcon>
       </MListItem>
       <Popover
         className={classes.popover}
