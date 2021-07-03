@@ -350,8 +350,9 @@ jobs:
       # AWS Credentials
       - name: Release Notes
         run: |
-          yarn releases
+          yarn initialize
           yarn events
+          yarn patch
 
   # [Frontend]
   Frontend:
