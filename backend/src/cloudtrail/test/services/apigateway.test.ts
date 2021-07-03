@@ -72,4 +72,33 @@ describe('apigateway.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(APIGATEWAY.CreateApi_H);
   });
+
+  test('APIGATEWAY_CreateVpcLink', async () => {
+    const event = await sendMessage(CreateEvents.APIGATEWAY_CreateVpcLink);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:apigateway:ap-northeast-1::/vpclinks/j0owmk');
+    const history = await getHistory({ EventId: 'fa4eb46f-041f-4b09-8b67-1ecd72362754' });
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(APIGATEWAY.CreateVpcLink_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(APIGATEWAY.CreateVpcLink_H);
+  });
+
+  test('APIGATEWAY_DeleteVpcLink', async () => {
+    const event = await sendMessage(DeleteEvents.APIGATEWAY_DeleteVpcLink);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:apigateway:ap-northeast-1::/vpclinks/j0owmk');
+    const history = await getHistory({ EventId: '8edf5d7b-5c01-4fbd-b2e6-02e09fca35f6' });
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(APIGATEWAY.DeleteVpcLink_H);
+  });
 });

@@ -1,6 +1,7 @@
 export { default as APIGATEWAY_CreateRestApi } from './APIGATEWAY_CreateRestApi.json';
 export { default as APIGATEWAY_ImportRestApi } from './APIGATEWAY_ImportRestApi.json';
 export { default as APIGATEWAY_CreateApi } from './APIGATEWAY_CreateApi.json';
+export { default as APIGATEWAY_CreateVpcLink } from './APIGATEWAY_CreateVpcLink.json';
 
 export { default as AUTOSCALING_CreateAutoScalingGroup } from './AUTOSCALING_CreateAutoScalingGroup.json';
 export { default as APPMESH_CreateMesh } from './APPMESH_CreateMesh.json';

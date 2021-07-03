@@ -14,6 +14,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.APIGATEWAY_CreateRestApi(record)];
     case 'APIGATEWAY_ImportRestApi':
       return [CreateEvent.APIGATEWAY_ImportRestApi(record)];
+    case 'APIGATEWAY_CreateVpcLink':
+      return [CreateEvent.APIGATEWAY_CreateVpcLink(record)];
     case 'AUTOSCALING_CreateAutoScalingGroup':
       return [CreateEvent.AUTOSCALING_CreateAutoScalingGroup(record)];
     case 'APPMESH_CreateMesh':
@@ -133,6 +135,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
   switch (key) {
     case 'APIGATEWAY_DeleteRestApi':
       return [DeleteEvent.APIGATEWAY_DeleteRestApi(record)];
+    case 'APIGATEWAY_DeleteVpcLink':
+      return [DeleteEvent.APIGATEWAY_DeleteVpcLink(record)];
     case 'AUTOSCALING_DeleteAutoScalingGroup':
       return [DeleteEvent.AUTOSCALING_DeleteAutoScalingGroup(record)];
     case 'APPMESH_DeleteMesh':

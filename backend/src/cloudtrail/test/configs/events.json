@@ -3,6 +3,8 @@
   { "EventName": "CreateRestApi", "EventSource": "apigateway.amazonaws.com", "Create": true },
   { "EventName": "ImportRestApi", "EventSource": "apigateway.amazonaws.com", "Create": true },
   { "EventName": "DeleteRestApi", "EventSource": "apigateway.amazonaws.com", "Delete": true },
+  { "EventName": "CreateVpcLink", "EventSource": "apigateway.amazonaws.com", "Create": true },
+  { "EventName": "DeleteVpcLink", "EventSource": "apigateway.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateAutoScalingGroup", "EventSource": "autoscaling.amazonaws.com", "Create": true },
   { "EventName": "DeleteAutoScalingGroup", "EventSource": "autoscaling.amazonaws.com", "Delete": true },

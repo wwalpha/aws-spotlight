@@ -1,6 +1,8 @@
 export * from './APIGATEWAY_CreateRestApi';
 export * from './APIGATEWAY_ImportRestApi';
 export * from './APIGATEWAY_CreateApi';
+export * from './APIGATEWAY_CreateVpcLink';
+
 export * from './AUTOSCALING_CreateAutoScalingGroup';
 export * from './APPMESH_CreateMesh';
 
