@@ -151,7 +151,13 @@ const processNewEventType = async (record: CloudTrail.Record) => {
 };
 
 const processUnprocessed = async (record: CloudTrail.Record) => {
-  await DynamodbHelper.bulk(Consts.Environments.TABLE_NAME_UNPROCESSED, [record]);
+  await DynamodbHelper.bulk(Consts.Environments.TABLE_NAME_UNPROCESSED, [
+    {
+      EventName: record.eventName,
+      EventTime: `${record.eventTime}_${record.eventID.substr(0, 8)}`,
+      Raw: JSON.stringify(record),
+    } as Tables.Unprocessed,
+  ]);
 };
 
 const processUpdate = async (record: CloudTrail.Record) => {
