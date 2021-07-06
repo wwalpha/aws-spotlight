@@ -12,7 +12,7 @@
         "texts": [
           {
             "type": "FEATURE",
-            "text": "[Backend] Added new audit resources. (CloudFront, SQS, Firehose, Kinesis)"
+            "text": "[Backend] Added new audit resources. (CloudFront, SQS, Firehose, Kinesis, Lex)"
           }
         ]
       },

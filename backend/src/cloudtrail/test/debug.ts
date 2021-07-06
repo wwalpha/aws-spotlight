@@ -1,6 +1,8 @@
-import { cloudtrail, unprocessed } from '@src/index';
+// require('dotenv').config({ path: '.env.prod' });
+
+import { cloudtrail, unprocessed } from '../src/index';
 import { DynamodbHelper } from '@alphax/dynamodb';
-import { sendMessage, updateEventType } from './configs/utils';
+import { receiveMessageData, sendMessage, sendMessageOnly, updateEventType } from './configs/utils';
 import EC2_CreateImage from './datas/create/EC2_CreateImage.json';
 import EC2_RunInstances from './datas/create/EC2_RunInstances.json';
 import EC2_TerminateInstances from './datas/delete/EC2_TerminateInstances.json';
@@ -74,4 +76,11 @@ const test = async () => {
 
   await unprocessed();
 };
-test();
+
+const debug = async () => {
+  const datas = await receiveMessageData();
+
+  await cloudtrail(datas);
+};
+
+debug();
