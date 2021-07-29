@@ -9,6 +9,8 @@ export { default as APPMESH_CreateMesh } from './APPMESH_CreateMesh.json';
 export { default as BACKUP_CreateBackupVault } from './BACKUP_CreateBackupVault.json';
 export { default as BACKUP_CreateBackupPlan } from './BACKUP_CreateBackupPlan.json';
 
+export { default as BATCH_CreateComputeEnvironment } from './BATCH_CreateComputeEnvironment.json';
+
 export { default as CODEBUILD_CreateProject } from './CODEBUILD_CreateProject.json';
 export { default as CONNECT_CreateInstance } from './CONNECT_CreateInstance.json';
 export { default as CLOUDFRONT_CreateDistribution } from './CLOUDFRONT_CreateDistribution.json';
@@ -35,11 +37,13 @@ export { default as FIREHOSE_CreateDeliveryStream } from './FIREHOSE_CreateDeliv
 
 export { default as IAM_CreateAccessKey } from './IAM_CreateAccessKey.json';
 export { default as IAM_CreateRole } from './IAM_CreateRole.json';
+export { default as IAM_CreateSAMLProvider } from './IAM_CreateSAMLProvider.json';
 
 export { default as LAMBDA_CreateFunction20150331 } from './LAMBDA_CreateFunction20150331.json';
 export { default as LEX_CreateBot } from './LEX_CreateBot.json';
 
 export { default as KINESIS_CreateStream } from './KINESIS_CreateStream.json';
+export { default as KMS_CreateKey } from './KMS_CreateKey.json';
 
 export { default as MONITORING_PutMetricAlarm } from './MONITORING_PutMetricAlarm.json';
 export { default as MONITORING_PutDashboard } from './MONITORING_PutDashboard.json';

@@ -7,6 +7,8 @@ export { default as APPMESH_DeleteMesh } from './APPMESH_DeleteMesh.json';
 export { default as BACKUP_DeleteBackupPlan } from './BACKUP_DeleteBackupPlan.json';
 export { default as BACKUP_DeleteBackupVault } from './BACKUP_DeleteBackupVault.json';
 
+export { default as BATCH_DeleteComputeEnvironment } from './BATCH_DeleteComputeEnvironment.json';
+
 export { default as CODEBUILD_DeleteProject } from './CODEBUILD_DeleteProject.json';
 export { default as CLOUDFRONT_DeleteDistribution } from './CLOUDFRONT_DeleteDistribution.json';
 
@@ -30,8 +32,10 @@ export { default as FIREHOSE_DeleteDeliveryStream } from './FIREHOSE_DeleteDeliv
 
 export { default as IAM_DeleteAccessKey } from './IAM_DeleteAccessKey.json';
 export { default as IAM_DeleteRole } from './IAM_DeleteRole.json';
+export { default as IAM_DeleteSAMLProvider } from './IAM_DeleteSAMLProvider.json';
 
 export { default as KINESIS_DeleteStream } from './KINESIS_DeleteStream.json';
+export { default as KMS_DeleteKey } from './KMS_DeleteKey.json';
 
 export { default as LAMBDA_DeleteFunction20150331 } from './LAMBDA_DeleteFunction20150331.json';
 export { default as LEX_DeleteBot } from './LEX_DeleteBot.json';

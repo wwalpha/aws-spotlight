@@ -8,6 +8,7 @@ export * from './APPMESH_CreateMesh';
 
 export * from './BACKUP_CreateBackupVault';
 export * from './BACKUP_CreateBackupPlan';
+export * from './BATCH_CreateComputeEnvironment';
 
 export * from './CODEBUILD_CreateProject';
 export * from './CONNECT_CreateInstance';

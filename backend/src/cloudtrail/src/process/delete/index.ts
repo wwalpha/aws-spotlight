@@ -6,6 +6,7 @@ export * from './APPMESH_DeleteMesh';
 
 export * from './BACKUP_DeleteBackupPlan';
 export * from './BACKUP_DeleteBackupVault';
+export * from './BATCH_DeleteComputeEnvironment';
 
 export * from './CODEBUILD_DeleteProject';
 export * from './CLOUDFRONT_DeleteDistribution';

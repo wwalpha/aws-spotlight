@@ -25,6 +25,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.BACKUP_CreateBackupVault(record)];
     case 'BACKUP_CreateBackupPlan':
       return [CreateEvent.BACKUP_CreateBackupPlan(record)];
+    case 'BATCH_CreateComputeEnvironment':
+      return [CreateEvent.BATCH_CreateComputeEnvironment(record)];
 
     case 'CODEBUILD_CreateProject':
       return [CreateEvent.CODEBUILD_CreateProject(record)];
@@ -162,6 +164,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.BACKUP_DeleteBackupPlan(record)];
     case 'BACKUP_DeleteBackupVault':
       return [DeleteEvent.BACKUP_DeleteBackupVault(record)];
+    case 'BATCH_DeleteComputeEnvironment':
+      return [DeleteEvent.BATCH_DeleteComputeEnvironment(record)];
 
     case 'CODEBUILD_DeleteProject':
       return [DeleteEvent.CODEBUILD_DeleteProject(record)];

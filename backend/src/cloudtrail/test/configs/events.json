@@ -16,6 +16,9 @@
   { "EventName": "CreateBackupPlan", "EventSource": "backup.amazonaws.com", "Create": true },
   { "EventName": "DeleteBackupPlan", "EventSource": "backup.amazonaws.com", "Delete": true },
 
+  { "EventName": "CreateComputeEnvironment", "EventSource": "batch.amazonaws.com", "Create": true },
+  { "EventName": "DeleteComputeEnvironment", "EventSource": "batch.amazonaws.com", "Delete": true },
+
   { "EventName": "CreateProject", "EventSource": "codebuild.amazonaws.com", "Create": true },
   { "EventName": "DeleteProject", "EventSource": "codebuild.amazonaws.com", "Delete": true },
 
