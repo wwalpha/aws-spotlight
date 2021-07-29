@@ -36,7 +36,6 @@ export { default as IAM_DeleteRole } from './IAM_DeleteRole.json';
 export { default as IAM_DeleteSAMLProvider } from './IAM_DeleteSAMLProvider.json';
 
 export { default as KINESIS_DeleteStream } from './KINESIS_DeleteStream.json';
-export { default as KMS_DeleteKey } from './KMS_DeleteKey.json';
 
 export { default as LAMBDA_DeleteFunction20150331 } from './LAMBDA_DeleteFunction20150331.json';
 export { default as LEX_DeleteBot } from './LEX_DeleteBot.json';
