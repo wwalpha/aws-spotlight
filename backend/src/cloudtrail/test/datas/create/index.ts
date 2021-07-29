@@ -44,7 +44,6 @@ export { default as LAMBDA_CreateFunction20150331 } from './LAMBDA_CreateFunctio
 export { default as LEX_CreateBot } from './LEX_CreateBot.json';
 
 export { default as KINESIS_CreateStream } from './KINESIS_CreateStream.json';
-export { default as KMS_CreateKey } from './KMS_CreateKey.json';
 
 export { default as MONITORING_PutMetricAlarm } from './MONITORING_PutMetricAlarm.json';
 export { default as MONITORING_PutDashboard } from './MONITORING_PutDashboard.json';
