@@ -81,6 +81,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.IAM_CreateAccessKey(record)];
     case 'IAM_CreateRole':
       return [CreateEvent.IAM_CreateRole(record)];
+    case 'IAM_CreateSAMLProvider':
+      return [CreateEvent.IAM_CreateSAMLProvider(record)];
 
     case 'KINESIS_CreateStream':
       return [CreateEvent.KINESIS_CreateStream(record)];
@@ -214,6 +216,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.IAM_DeleteAccessKey(record)];
     case 'IAM_DeleteRole':
       return [DeleteEvent.IAM_DeleteRole(record)];
+    case 'IAM_DeleteSAMLProvider':
+      return [DeleteEvent.IAM_DeleteSAMLProvider(record)];
     // case 'IAM_DeleteServiceLinkedRole':
     //   return [DeleteEvent.IAM_DeleteServiceLinkedRole(record)];
 

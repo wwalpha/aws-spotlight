@@ -71,4 +71,33 @@ describe('iam.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(IAM.DeleteRole_H);
   });
+
+  test('IAM_CreateSAMLProvider', async () => {
+    const event = await sendMessage(CreateEvents.IAM_CreateSAMLProvider);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:iam::999999999999:saml-provider/AzureVPN');
+    const history = await getHistory({ EventId: '4600d7b1-831b-4846-b1b5-e5e1775cf400' });
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(IAM.CreateSAMLProvider_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(IAM.CreateSAMLProvider_H);
+  });
+
+  test('IAM_DeleteSAMLProvider', async () => {
+    const event = await sendMessage(DeleteEvents.IAM_DeleteSAMLProvider);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:iam::999999999999:saml-provider/AzureVPN');
+    const history = await getHistory({ EventId: '65345dda-1571-4968-8c68-1c26402d397f' });
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(IAM.DeleteSAMLProvider_H);
+  });
 });

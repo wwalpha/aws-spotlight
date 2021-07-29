@@ -35,6 +35,7 @@ export * from './FIREHOSE_DeleteDeliveryStream';
 export * from './IAM_DeleteAccessKey';
 export * from './IAM_DeleteRole';
 export * from './IAM_DeleteServiceLinkedRole';
+export * from './IAM_DeleteSAMLProvider';
 
 export * from './KINESIS_DeleteStream';
 

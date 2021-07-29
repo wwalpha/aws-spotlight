@@ -38,6 +38,7 @@ export * from './FIREHOSE_CreateDeliveryStream';
 
 export * from './IAM_CreateAccessKey';
 export * from './IAM_CreateRole';
+export * from './IAM_CreateSAMLProvider';
 
 export * from './KINESIS_CreateStream';
 

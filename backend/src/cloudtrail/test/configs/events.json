@@ -74,6 +74,8 @@
   { "EventName": "DeleteAccessKey", "EventSource": "iam.amazonaws.com", "Delete": true },
   { "EventName": "CreateRole", "EventSource": "iam.amazonaws.com", "Create": true },
   { "EventName": "DeleteRole", "EventSource": "iam.amazonaws.com", "Delete": true },
+  { "EventName": "CreateSAMLProvider", "EventSource": "iam.amazonaws.com", "Create": true },
+  { "EventName": "DeleteSAMLProvider", "EventSource": "iam.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateStream", "EventSource": "kinesis.amazonaws.com", "Create": true },
   { "EventName": "DeleteStream", "EventSource": "kinesis.amazonaws.com", "Delete": true },
