@@ -23,6 +23,7 @@ export * from './EC2_DeleteVpcPeeringConnection';
 export * from './EC2_DeleteVpc';
 export * from './EC2_DeleteVolume';
 export * from './EC2_DeleteVpcEndpoints';
+export * from './EC2_ReleaseAddress';
 
 export * from './ELASTICFILESYSTEM_DeleteFileSystem';
 export * from './ELASTICLOADBALANCING_DeleteLoadBalancer';

@@ -52,6 +52,8 @@
   { "EventName": "DeleteVolume", "EventSource": "ec2.amazonaws.com", "Delete": true },
   { "EventName": "CreateVpcEndpoint", "EventSource": "ec2.amazonaws.com", "Create": true },
   { "EventName": "DeleteVpcEndpoints", "EventSource": "ec2.amazonaws.com", "Delete": true },
+  { "EventName": "AllocateAddress", "EventSource": "ec2.amazonaws.com", "Create": true },
+  { "EventName": "ReleaseAddress", "EventSource": "ec2.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateFileSystem", "EventSource": "efs.amazonaws.com", "Create": true },
   { "EventName": "DeleteFileSystem", "EventSource": "efs.amazonaws.com", "Delete": true },

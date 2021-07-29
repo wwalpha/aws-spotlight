@@ -27,6 +27,7 @@ export * from './EC2_CreateVpcPeeringConnection';
 export * from './EC2_CreateVpc';
 export * from './EC2_CreateVolume';
 export * from './EC2_CreateVpcEndpoint';
+export * from './EC2_AllocateAddress';
 
 export * from './ELASTICFILESYSTEM_CreateFileSystem';
 export * from './ELASTICLOADBALANCING_CreateLoadBalancer';

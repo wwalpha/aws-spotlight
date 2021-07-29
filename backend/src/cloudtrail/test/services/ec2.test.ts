@@ -297,4 +297,33 @@ describe('ec2.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteVpcEndpoints_H);
   });
+
+  test('EC2_AllocateAddress', async () => {
+    const event = await sendMessage(CreateEvents.EC2_AllocateAddress);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:elastic-ip/eipalloc-044e12137f28d65f6');
+    const history = await getHistory({ EventId: 'a44d0058-6b4c-4aec-b904-e68941e145dc' });
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.AllocateAddress_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.AllocateAddress_H);
+  });
+
+  test('EC2_ReleaseAddress', async () => {
+    const event = await sendMessage(DeleteEvents.EC2_ReleaseAddress);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:elastic-ip/eipalloc-044e12137f28d65f6');
+    const history = await getHistory({ EventId: '84c6084c-4746-4730-b36d-0ff2f83e5f85' });
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.ReleaseAddress_H);
+  });
 });

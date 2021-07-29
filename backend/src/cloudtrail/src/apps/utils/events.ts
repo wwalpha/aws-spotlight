@@ -60,6 +60,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.EC2_CreateVolume(record)];
     case 'EC2_CreateVpcEndpoint':
       return [CreateEvent.EC2_CreateVpcEndpoint(record)];
+    case 'EC2_AllocateAddress':
+      return [CreateEvent.EC2_AllocateAddress(record)];
 
     case 'ELASTICFILESYSTEM_CreateFileSystem':
       return [CreateEvent.ELASTICFILESYSTEM_CreateFileSystem(record)];
@@ -197,6 +199,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.EC2_DeleteVolume(record)];
     case 'EC2_DeleteVpcEndpoints':
       return [DeleteEvent.EC2_DeleteVpcEndpoints(record)];
+    case 'EC2_ReleaseAddress':
+      return [DeleteEvent.EC2_ReleaseAddress(record)];
 
     case 'ELASTICFILESYSTEM_DeleteFileSystem':
       return [DeleteEvent.ELASTICFILESYSTEM_DeleteFileSystem(record)];

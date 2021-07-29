@@ -28,6 +28,7 @@ export { default as EC2_CreateVpcPeeringConnection } from './EC2_CreateVpcPeerin
 export { default as EC2_CreateVpc } from './EC2_CreateVpc.json';
 export { default as EC2_CreateVolume } from './EC2_CreateVolume.json';
 export { default as EC2_CreateVpcEndpoint } from './EC2_CreateVpcEndpoint.json';
+export { default as EC2_AllocateAddress } from './EC2_AllocateAddress.json';
 
 export { default as EKS_CreateCluster } from './EKS_CreateCluster.json';
 export { default as ELASTICFILESYSTEM_CreateFileSystem } from './ELASTICFILESYSTEM_CreateFileSystem.json';
