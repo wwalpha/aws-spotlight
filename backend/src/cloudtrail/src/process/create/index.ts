@@ -28,6 +28,9 @@ export * from './EC2_CreateVpc';
 export * from './EC2_CreateVolume';
 export * from './EC2_CreateVpcEndpoint';
 export * from './EC2_AllocateAddress';
+export * from './EC2_CreateCustomerGateway';
+export * from './EC2_CreateVpnConnection';
+export * from './EC2_CreateVpnGateway';
 
 export * from './ELASTICFILESYSTEM_CreateFileSystem';
 export * from './ELASTICLOADBALANCING_CreateLoadBalancer';

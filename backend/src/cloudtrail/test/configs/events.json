@@ -54,6 +54,12 @@
   { "EventName": "DeleteVpcEndpoints", "EventSource": "ec2.amazonaws.com", "Delete": true },
   { "EventName": "AllocateAddress", "EventSource": "ec2.amazonaws.com", "Create": true },
   { "EventName": "ReleaseAddress", "EventSource": "ec2.amazonaws.com", "Delete": true },
+  { "EventName": "CreateCustomerGateway", "EventSource": "ec2.amazonaws.com", "Create": true },
+  { "EventName": "DeleteCustomerGateway", "EventSource": "ec2.amazonaws.com", "Delete": true },
+  { "EventName": "CreateVpnConnection", "EventSource": "ec2.amazonaws.com", "Create": true },
+  { "EventName": "DeleteVpnConnection", "EventSource": "ec2.amazonaws.com", "Delete": true },
+  { "EventName": "CreateVpnGateway", "EventSource": "ec2.amazonaws.com", "Create": true },
+  { "EventName": "DeleteVpnGateway", "EventSource": "ec2.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateFileSystem", "EventSource": "efs.amazonaws.com", "Create": true },
   { "EventName": "DeleteFileSystem", "EventSource": "efs.amazonaws.com", "Delete": true },

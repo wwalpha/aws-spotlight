@@ -38,3 +38,15 @@ export { default as DeleteVpcEndpoints_H } from './DeleteVpcEndpoints_H.json';
 export { default as AllocateAddress_H } from './AllocateAddress_H.json';
 export { default as AllocateAddress_R } from './AllocateAddress_R.json';
 export { default as ReleaseAddress_H } from './ReleaseAddress_H.json';
+
+export { default as CreateVpnConnection_H } from './CreateVpnConnection_H.json';
+export { default as CreateVpnConnection_R } from './CreateVpnConnection_R.json';
+export { default as DeleteVpnConnection_H } from './DeleteVpnConnection_H.json';
+
+export { default as CreateCustomerGateway_H } from './CreateCustomerGateway_H.json';
+export { default as CreateCustomerGateway_R } from './CreateCustomerGateway_R.json';
+export { default as DeleteCustomerGateway_H } from './DeleteCustomerGateway_H.json';
+
+export { default as CreateVpnGateway_H } from './CreateVpnGateway_H.json';
+export { default as CreateVpnGateway_R } from './CreateVpnGateway_R.json';
+export { default as DeleteVpnGateway_H } from './DeleteVpnGateway_H.json';

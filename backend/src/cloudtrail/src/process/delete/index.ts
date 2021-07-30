@@ -24,6 +24,9 @@ export * from './EC2_DeleteVpc';
 export * from './EC2_DeleteVolume';
 export * from './EC2_DeleteVpcEndpoints';
 export * from './EC2_ReleaseAddress';
+export * from './EC2_DeleteCustomerGateway';
+export * from './EC2_DeleteVpnConnection';
+export * from './EC2_DeleteVpnGateway';
 
 export * from './ELASTICFILESYSTEM_DeleteFileSystem';
 export * from './ELASTICLOADBALANCING_DeleteLoadBalancer';

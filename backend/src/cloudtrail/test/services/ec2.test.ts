@@ -326,4 +326,95 @@ describe('ec2.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.ReleaseAddress_H);
   });
+
+  test('EC2_CreateCustomerGateway', async () => {
+    const event = await sendMessage(CreateEvents.EC2_CreateCustomerGateway);
+
+    await cloudtrail(event);
+
+    const resource = await getResource(
+      'arn:aws:ec2:ap-northeast-1:999999999999:customer-gateway/cgw-0bf90d6d3825b7bbd'
+    );
+    const history = await getHistory({ EventId: '2a68939c-27ad-4e38-9ae4-532777b0900f' });
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.CreateCustomerGateway_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.CreateCustomerGateway_H);
+  });
+
+  test('EC2_DeleteCustomerGateway', async () => {
+    const event = await sendMessage(DeleteEvents.EC2_DeleteCustomerGateway);
+
+    await cloudtrail(event);
+
+    const resource = await getResource(
+      'arn:aws:ec2:ap-northeast-1:999999999999:customer-gateway/cgw-0bf90d6d3825b7bbd'
+    );
+    const history = await getHistory({ EventId: '301c5afc-4502-4da2-99ae-692445d85c22' });
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.DeleteCustomerGateway_H);
+  });
+
+  test('EC2_CreateVpnConnection', async () => {
+    const event = await sendMessage(CreateEvents.EC2_CreateVpnConnection);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:vpn-connection/vpn-06d78c43438fa98fe');
+    const history = await getHistory({ EventId: 'c19e8892-4ff6-4fc7-9147-e1fa34e0a3e8' });
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.CreateVpnConnection_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.CreateVpnConnection_H);
+  });
+
+  test('EC2_DeleteVpnConnection', async () => {
+    const event = await sendMessage(DeleteEvents.EC2_DeleteVpnConnection);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:vpn-connection/vpn-06d78c43438fa98fe');
+    const history = await getHistory({ EventId: '22278e71-190b-499a-8792-e9324e13e78b' });
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.DeleteVpnConnection_H);
+  });
+
+  test('EC2_CreateVpnGateway', async () => {
+    const event = await sendMessage(CreateEvents.EC2_CreateVpnGateway);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:vpn-gateway/vgw-08c87ca4468c13b6f');
+    const history = await getHistory({ EventId: '16145533-d8be-4314-b3b0-f9e2b8c8c8cb' });
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.CreateVpnGateway_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.CreateVpnGateway_H);
+  });
+
+  test('EC2_DeleteVpnGateway', async () => {
+    const event = await sendMessage(DeleteEvents.EC2_DeleteVpnGateway);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:vpn-gateway/vgw-08c87ca4468c13b6f');
+    const history = await getHistory({ EventId: '2318fbd9-4740-40e4-87e2-47264d2173b4' });
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.DeleteVpnGateway_H);
+  });
 });

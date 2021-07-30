@@ -62,6 +62,12 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.EC2_CreateVpcEndpoint(record)];
     case 'EC2_AllocateAddress':
       return [CreateEvent.EC2_AllocateAddress(record)];
+    case 'EC2_CreateCustomerGateway':
+      return [CreateEvent.EC2_CreateCustomerGateway(record)];
+    case 'EC2_CreateVpnConnection':
+      return [CreateEvent.EC2_CreateVpnConnection(record)];
+    case 'EC2_CreateVpnGateway':
+      return [CreateEvent.EC2_CreateVpnGateway(record)];
 
     case 'ELASTICFILESYSTEM_CreateFileSystem':
       return [CreateEvent.ELASTICFILESYSTEM_CreateFileSystem(record)];
@@ -201,6 +207,12 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.EC2_DeleteVpcEndpoints(record)];
     case 'EC2_ReleaseAddress':
       return [DeleteEvent.EC2_ReleaseAddress(record)];
+    case 'EC2_DeleteCustomerGateway':
+      return [DeleteEvent.EC2_DeleteCustomerGateway(record)];
+    case 'EC2_DeleteVpnConnection':
+      return [DeleteEvent.EC2_DeleteVpnConnection(record)];
+    case 'EC2_DeleteVpnGateway':
+      return [DeleteEvent.EC2_DeleteVpnGateway(record)];
 
     case 'ELASTICFILESYSTEM_DeleteFileSystem':
       return [DeleteEvent.ELASTICFILESYSTEM_DeleteFileSystem(record)];
