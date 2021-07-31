@@ -3,8 +3,7 @@ import { SNSMessage, SQSRecord } from 'aws-lambda';
 import { orderBy } from 'lodash';
 import zlib from 'zlib';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
-import { Utilities, Consts, Events, DynamodbHelper, AddTags } from './utils';
-import { Logger } from './utils/utilities';
+import { Utilities, Consts, Events, DynamodbHelper, AddTags, Logger } from './utils';
 
 const s3Client = new S3();
 const snsClient = new SNS();
@@ -169,6 +168,8 @@ const processUpdate = async (record: CloudTrail.Record) => {
 
   // create records
   if (createItems) {
+    createItems.forEach((item) => Logger.info(`${item.EventName}, ${item.ResourceId}`));
+
     // add resource record
     createItems
       .map((item) => Utilities.getPutRecord(TABLE_NAME_RESOURCE, item))
@@ -177,6 +178,8 @@ const processUpdate = async (record: CloudTrail.Record) => {
 
   // delete records
   if (deleteItems) {
+    deleteItems.forEach((item) => Logger.info(`${item.EventName}, ${item.ResourceId}`));
+
     deleteItems
       .map(
         (item) =>

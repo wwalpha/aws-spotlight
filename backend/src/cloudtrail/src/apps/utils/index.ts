@@ -2,6 +2,7 @@ export * as Consts from './consts';
 export * as Events from './events';
 export * as Utilities from './utilities';
 export { default as AddTags } from './addTags';
+export { Logger } from './utilities';
 
 import { DynamodbHelper as Helper } from '@alphax/dynamodb';
 import { LoggerOptions } from './utilities';
