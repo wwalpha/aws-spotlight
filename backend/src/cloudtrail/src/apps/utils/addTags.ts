@@ -1,5 +1,6 @@
 import * as CreateTags from '@src/process/tags';
 import { Tables } from 'typings';
+import { Logger } from './utilities';
 
 const addTags = async (resources?: Tables.Resource[]): Promise<void> => {
   // validation
@@ -10,6 +11,8 @@ const addTags = async (resources?: Tables.Resource[]): Promise<void> => {
       const resourceId = item.ResourceId.split('/')[1];
       const resourceArn = item.ResourceId;
       const owner = item.UserName;
+
+      Logger.info('Add tags', resourceId, owner);
 
       switch (item.EventName) {
         case 'EC2_RunInstances':
