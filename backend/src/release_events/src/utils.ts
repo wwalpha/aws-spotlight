@@ -3,7 +3,7 @@ import { S3, SQS, DynamoDB } from 'aws-sdk';
 import zlib from 'zlib';
 import { Tables } from 'typings';
 
-const TABLE_NAME_RESOURCE = process.env.TABLE_NAME_RESOURCE as string;
+const TABLE_NAME_RESOURCES = process.env.TABLE_NAME_RESOURCES as string;
 const TABLE_NAME_HISTORY = process.env.TABLE_NAME_HISTORY as string;
 const BUCKET_NAME_ARCHIVE = process.env.BUCKET_NAME_ARCHIVE as string;
 const BUCKET_NAME_CLOUDTRAIL = process.env.BUCKET_NAME_CLOUDTRAIL as string;
@@ -15,7 +15,7 @@ const sqsClient = new SQS();
 
 export const reCreate = async () => {
   // remove all record
-  await helper.truncateAll(TABLE_NAME_RESOURCE);
+  await helper.truncateAll(TABLE_NAME_RESOURCES);
 
   await reResource();
 };
