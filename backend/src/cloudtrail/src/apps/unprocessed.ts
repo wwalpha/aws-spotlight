@@ -1,7 +1,7 @@
 import { DynamoDB } from 'aws-sdk';
 import { orderBy } from 'lodash';
 import { CloudTrail, Tables } from 'typings';
-import { Events, Consts, Utilities, DynamodbHelper } from './utils';
+import { Events, Consts, Utilities, DynamodbHelper, AddTags } from './utils';
 import { Logger } from './utils/utilities';
 
 /**
@@ -202,4 +202,7 @@ const processRecord = async (item: CloudTrail.Record) => {
       TransactItems: transactItems,
     })
     .promise();
+
+  // add tags to resource
+  await AddTags(createItems);
 };

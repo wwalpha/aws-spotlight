@@ -3,7 +3,7 @@ import { SNSMessage, SQSRecord } from 'aws-lambda';
 import { orderBy } from 'lodash';
 import zlib from 'zlib';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
-import { Utilities, Consts, Events, DynamodbHelper } from './utils';
+import { Utilities, Consts, Events, DynamodbHelper, AddTags } from './utils';
 import { Logger } from './utils/utilities';
 
 const s3Client = new S3();
@@ -206,6 +206,9 @@ const processUpdate = async (record: CloudTrail.Record) => {
       TransactItems: transactItems,
     })
     .promise();
+
+  // add tags to resource
+  await AddTags(createItems);
 };
 
 /**
