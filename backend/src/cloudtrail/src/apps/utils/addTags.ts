@@ -8,19 +8,15 @@ const addTags = async (resources?: Tables.Resource[]): Promise<void> => {
 
   const tasks = resources
     .map((item) => {
-      const resourceId = item.ResourceId.split('/')[1];
-      const resourceArn = item.ResourceId;
-      const owner = item.UserName;
-
-      Logger.info('Add tags', resourceId, owner);
+      Logger.info('Add tags', item.ResourceId, item.UserName);
 
       switch (item.EventName) {
         case 'EC2_RunInstances':
-          return CreateTags.EC2_Instance(resourceId, owner);
+          return CreateTags.EC2_Instance(item);
 
         case 'RDS_CreateDBCluster':
         case 'RDS_CreateDBInstance':
-          return CreateTags.RDS_DBInstance(resourceArn, owner);
+          return CreateTags.RDS_DBInstance(item);
       }
     })
     .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);

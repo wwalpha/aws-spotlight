@@ -1,12 +1,13 @@
 import { RDS } from 'aws-sdk';
+import { Tables } from 'typings';
 
-const client = new RDS();
+export const RDS_DBInstance = async ({ AWSRegion, ResourceId, UserName }: Tables.Resource) => {
+  const client = new RDS({ region: AWSRegion });
 
-export const RDS_DBInstance = async (arn: string, owner: string) => {
   // check resource exsit
   const results = await client
     .describeDBInstances({
-      DBInstanceIdentifier: arn.split('/')[1],
+      DBInstanceIdentifier: ResourceId.split('/')[1],
     })
     .promise();
 
@@ -15,11 +16,11 @@ export const RDS_DBInstance = async (arn: string, owner: string) => {
 
   await client
     .addTagsToResource({
-      ResourceName: arn,
+      ResourceName: ResourceId,
       Tags: [
         {
           Key: 'Owner',
-          Value: owner,
+          Value: UserName,
         },
       ],
     })

@@ -1,8 +1,10 @@
 import { EC2 } from 'aws-sdk';
+import { Tables } from 'typings';
 
-const client = new EC2();
+export const EC2_Instance = async ({ AWSRegion, ResourceId, UserName }: Tables.Resource) => {
+  const client = new EC2({ region: AWSRegion });
+  const instanceId = ResourceId.split('/')[1];
 
-export const EC2_Instance = async (instanceId: string, owner: string) => {
   // check resource exsit
   const results = await client
     .describeInstances({
@@ -20,7 +22,7 @@ export const EC2_Instance = async (instanceId: string, owner: string) => {
       Tags: [
         {
           Key: 'Owner',
-          Value: owner,
+          Value: UserName,
         },
       ],
     })
