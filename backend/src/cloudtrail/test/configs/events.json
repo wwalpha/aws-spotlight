@@ -85,6 +85,8 @@
   { "EventName": "CreateSAMLProvider", "EventSource": "iam.amazonaws.com", "Create": true },
   { "EventName": "DeleteSAMLProvider", "EventSource": "iam.amazonaws.com", "Delete": true },
 
+  { "EventName": "DeleteServiceLinkedRole", "EventSource": "iam.amazonaws.com", "Delete": true },
+
   { "EventName": "CreateStream", "EventSource": "kinesis.amazonaws.com", "Create": true },
   { "EventName": "DeleteStream", "EventSource": "kinesis.amazonaws.com", "Delete": true },
 
@@ -122,5 +124,10 @@
   { "EventName": "DeleteQueue", "EventSource": "sqs.amazonaws.com", "Delete": true },
 
   { "EventName": "CreateTopic", "EventSource": "sns.amazonaws.com", "Create": true },
-  { "EventName": "DeleteTopic", "EventSource": "sns.amazonaws.com", "Delete": true }
+  { "EventName": "DeleteTopic", "EventSource": "sns.amazonaws.com", "Delete": true },
+
+  { "EventName": "CreateIPSet", "EventSource": "wafv2.amazonaws.com", "Create": true },
+  { "EventName": "DeleteIPSet", "EventSource": "wafv2.amazonaws.com", "Delete": true },
+  { "EventName": "CreateWebACL", "EventSource": "wafv2.amazonaws.com", "Create": true },
+  { "EventName": "DeleteWebACL", "EventSource": "wafv2.amazonaws.com", "Delete": true }
 ]

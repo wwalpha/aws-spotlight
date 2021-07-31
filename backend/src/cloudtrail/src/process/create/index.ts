@@ -63,3 +63,6 @@ export * from './SNS_CreateTopic';
 export * from './SYNTHETICS_CreateCanary';
 export * from './STATES_CreateStateMachine';
 export * from './SQS_CreateQueue';
+
+export * from './WAFV2_CreateIPSet';
+export * from './WAFV2_CreateWebACL';

@@ -61,3 +61,6 @@ export { default as SNS_CreateTopic } from './SNS_CreateTopic.json';
 export { default as SYNTHETICS_CreateCanary } from './SYNTHETICS_CreateCanary.json';
 export { default as STATES_CreateStateMachine } from './STATES_CreateStateMachine.json';
 export { default as SQS_CreateQueue } from './SQS_CreateQueue.json';
+
+export { default as WAFV2_CreateIPSet } from './WAFV2_CreateIPSet.json';
+export { default as WAFV2_CreateWebACL } from './WAFV2_CreateWebACL.json';

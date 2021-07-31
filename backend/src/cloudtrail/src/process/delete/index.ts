@@ -59,3 +59,6 @@ export * from './SNS_DeleteTopic';
 export * from './SYNTHETICS_DeleteCanary';
 export * from './STATES_DeleteStateMachine';
 export * from './SQS_DeleteQueue';
+
+export * from './WAFV2_DeleteIPSet';
+export * from './WAFV2_DeleteWebACL';

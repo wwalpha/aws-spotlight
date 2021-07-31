@@ -55,3 +55,6 @@ export { default as SNS_DeleteTopic } from './SNS_DeleteTopic.json';
 export { default as SYNTHETICS_DeleteCanary } from './SYNTHETICS_DeleteCanary.json';
 export { default as STATES_DeleteStateMachine } from './STATES_DeleteStateMachine.json';
 export { default as SQS_DeleteQueue } from './SQS_DeleteQueue.json';
+
+export { default as WAFV2_DeleteIPSet } from './WAFV2_DeleteIPSet.json';
+export { default as WAFV2_DeleteWebACL } from './WAFV2_DeleteWebACL.json';

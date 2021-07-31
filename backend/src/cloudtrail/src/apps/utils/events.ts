@@ -125,6 +125,11 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
     case 'SQS_CreateQueue':
       return [CreateEvent.SQS_CreateQueue(record)];
 
+    case 'WAFV2_CreateIPSet':
+      return [CreateEvent.WAFV2_CreateIPSet(record)];
+    case 'WAFV2_CreateWebACL':
+      return [CreateEvent.WAFV2_CreateWebACL(record)];
+
     default:
       return undefined;
   }
@@ -267,6 +272,11 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.STATES_DeleteStateMachine(record)];
     case 'SQS_DeleteQueue':
       return [DeleteEvent.SQS_DeleteQueue(record)];
+
+    case 'WAFV2_DeleteIPSet':
+      return [DeleteEvent.WAFV2_DeleteIPSet(record)];
+    case 'WAFV2_DeleteWebACL':
+      return [DeleteEvent.WAFV2_DeleteWebACL(record)];
 
     default:
       return undefined;
