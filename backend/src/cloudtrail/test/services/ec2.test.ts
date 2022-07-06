@@ -417,4 +417,38 @@ describe('ec2.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteVpnGateway_H);
   });
+
+  test('EC2_CreateTransitGateway', async () => {
+    const event = await sendMessage(CreateEvents.EC2_CreateTransitGateway);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:ec2:ap-northeast-3:999999999999:transit-gateway/tgw-02844bb728fca543c');
+    const history = await getHistory({ EventId: '4856faf4-523f-46b9-b316-4c5ce426ebac' });
+
+    // fs.writeFileSync('CreateTransitGateway_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('CreateTransitGateway_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.CreateTransitGateway_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.CreateTransitGateway_H);
+  });
+
+  test('EC2_DeleteTransitGateway', async () => {
+    const event = await sendMessage(DeleteEvents.EC2_DeleteTransitGateway);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:ec2:ap-northeast-3:999999999999:transit-gateway/tgw-02844bb728fca543c');
+    const history = await getHistory({ EventId: 'e3c7821b-46d2-49f2-bfcf-04aea44c303f' });
+
+    // fs.writeFileSync('DeleteTransitGateway_H.json', JSON.stringify(history));
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.DeleteTransitGateway_H);
+  });
 });

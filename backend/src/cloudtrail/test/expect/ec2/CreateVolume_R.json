@@ -8,6 +8,6 @@
   "UserAgent": "console.ec2.amazonaws.com",
   "AWSRegion": "ap-northeast-1",
   "EventId": "925c1fe9-214f-41e0-b856-c55b76d254e7",
-  "Service": "EC2",
+  "Service": "Volume",
   "EventName": "CreateVolume"
 }

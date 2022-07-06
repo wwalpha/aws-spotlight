@@ -31,6 +31,7 @@ export * from './EC2_AllocateAddress';
 export * from './EC2_CreateCustomerGateway';
 export * from './EC2_CreateVpnConnection';
 export * from './EC2_CreateVpnGateway';
+export * from './EC2_CreateTransitGateway';
 
 export * from './ELASTICFILESYSTEM_CreateFileSystem';
 export * from './ELASTICLOADBALANCING_CreateLoadBalancer';

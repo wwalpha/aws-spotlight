@@ -1,133 +1,522 @@
 [
-  { "EventName": "CreateApi", "EventSource": "apigateway.amazonaws.com", "Create": true },
-  { "EventName": "CreateRestApi", "EventSource": "apigateway.amazonaws.com", "Create": true },
-  { "EventName": "ImportRestApi", "EventSource": "apigateway.amazonaws.com", "Create": true },
-  { "EventName": "DeleteRestApi", "EventSource": "apigateway.amazonaws.com", "Delete": true },
-  { "EventName": "CreateVpcLink", "EventSource": "apigateway.amazonaws.com", "Create": true },
-  { "EventName": "DeleteVpcLink", "EventSource": "apigateway.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateAutoScalingGroup", "EventSource": "autoscaling.amazonaws.com", "Create": true },
-  { "EventName": "DeleteAutoScalingGroup", "EventSource": "autoscaling.amazonaws.com", "Delete": true },
-  { "EventName": "CreateMesh", "EventSource": "appmesh.amazonaws.com", "Create": true },
-  { "EventName": "DeleteMesh", "EventSource": "appmesh.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateBackupVault", "EventSource": "backup.amazonaws.com", "Create": true },
-  { "EventName": "DeleteBackupVault", "EventSource": "backup.amazonaws.com", "Delete": true },
-  { "EventName": "CreateBackupPlan", "EventSource": "backup.amazonaws.com", "Create": true },
-  { "EventName": "DeleteBackupPlan", "EventSource": "backup.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateComputeEnvironment", "EventSource": "batch.amazonaws.com", "Create": true },
-  { "EventName": "DeleteComputeEnvironment", "EventSource": "batch.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateProject", "EventSource": "codebuild.amazonaws.com", "Create": true },
-  { "EventName": "DeleteProject", "EventSource": "codebuild.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateInstance", "EventSource": "connect.amazonaws.com", "Create": true },
-
-  { "EventName": "CreateDistribution", "EventSource": "cloudfront.amazonaws.com", "Create": true },
-  { "EventName": "DeleteDistribution", "EventSource": "cloudfront.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateTable", "EventSource": "dynamodb.amazonaws.com", "Create": true },
-  { "EventName": "DeleteTable", "EventSource": "dynamodb.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateMicrosoftAD", "EventSource": "ds.amazonaws.com", "Create": true },
-  { "EventName": "DeleteDirectory", "EventSource": "ds.amazonaws.com", "Delete": true },
-
-  { "EventName": "RunInstances", "EventSource": "ec2.amazonaws.com", "Create": true },
-  { "EventName": "TerminateInstances", "EventSource": "ec2.amazonaws.com", "Delete": true },
-  { "EventName": "CreateImage", "EventSource": "ec2.amazonaws.com", "Create": true },
-  { "EventName": "DeregisterImage", "EventSource": "ec2.amazonaws.com", "Delete": true },
-  { "EventName": "CreateSnapshot", "EventSource": "ec2.amazonaws.com", "Create": true },
-  { "EventName": "CreateSnapshots", "EventSource": "ec2.amazonaws.com", "Create": true },
-  { "EventName": "DeleteSnapshot", "EventSource": "ec2.amazonaws.com", "Delete": true },
-  { "EventName": "CreateNatGateway", "EventSource": "ec2.amazonaws.com", "Create": true },
-  { "EventName": "DeleteNatGateway", "EventSource": "ec2.amazonaws.com", "Delete": true },
-  { "EventName": "CreateClientVpnEndpoint", "EventSource": "ec2.amazonaws.com", "Create": true },
-  { "EventName": "DeleteClientVpnEndpoint", "EventSource": "ec2.amazonaws.com", "Delete": true },
-  { "EventName": "CreateVpcPeeringConnection", "EventSource": "ec2.amazonaws.com", "Create": true },
-  { "EventName": "DeleteVpcPeeringConnection", "EventSource": "ec2.amazonaws.com", "Delete": true },
-  { "EventName": "CreateVpc", "EventSource": "ec2.amazonaws.com", "Create": true },
-  { "EventName": "DeleteVpc", "EventSource": "ec2.amazonaws.com", "Delete": true },
-  { "EventName": "CreateVolume", "EventSource": "ec2.amazonaws.com", "Create": true },
-  { "EventName": "DeleteVolume", "EventSource": "ec2.amazonaws.com", "Delete": true },
-  { "EventName": "CreateVpcEndpoint", "EventSource": "ec2.amazonaws.com", "Create": true },
-  { "EventName": "DeleteVpcEndpoints", "EventSource": "ec2.amazonaws.com", "Delete": true },
-  { "EventName": "AllocateAddress", "EventSource": "ec2.amazonaws.com", "Create": true },
-  { "EventName": "ReleaseAddress", "EventSource": "ec2.amazonaws.com", "Delete": true },
-  { "EventName": "CreateCustomerGateway", "EventSource": "ec2.amazonaws.com", "Create": true },
-  { "EventName": "DeleteCustomerGateway", "EventSource": "ec2.amazonaws.com", "Delete": true },
-  { "EventName": "CreateVpnConnection", "EventSource": "ec2.amazonaws.com", "Create": true },
-  { "EventName": "DeleteVpnConnection", "EventSource": "ec2.amazonaws.com", "Delete": true },
-  { "EventName": "CreateVpnGateway", "EventSource": "ec2.amazonaws.com", "Create": true },
-  { "EventName": "DeleteVpnGateway", "EventSource": "ec2.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateFileSystem", "EventSource": "efs.amazonaws.com", "Create": true },
-  { "EventName": "DeleteFileSystem", "EventSource": "efs.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateTargetGroup", "EventSource": "elasticloadbalancing.amazonaws.com", "Create": true },
-  { "EventName": "CreateLoadBalancer", "EventSource": "elasticloadbalancing.amazonaws.com", "Create": true },
-  { "EventName": "DeleteLoadBalancer", "EventSource": "elasticloadbalancing.amazonaws.com", "Delete": true },
-  { "EventName": "DeleteTargetGroup", "EventSource": "elasticloadbalancing.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateCluster", "EventSource": "eks.amazonaws.com", "Create": true },
-  { "EventName": "DeleteCluster", "EventSource": "eks.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateElasticsearchDomain", "EventSource": "es.amazonaws.com", "Create": true },
-  { "EventName": "DeleteElasticsearchDomain", "EventSource": "es.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateDeliveryStream", "EventSource": "firehose.amazonaws.com", "Create": true },
-  { "EventName": "DeleteDeliveryStream", "EventSource": "firehose.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateAccessKey", "EventSource": "iam.amazonaws.com", "Create": true },
-  { "EventName": "DeleteAccessKey", "EventSource": "iam.amazonaws.com", "Delete": true },
-  { "EventName": "CreateRole", "EventSource": "iam.amazonaws.com", "Create": true },
-  { "EventName": "DeleteRole", "EventSource": "iam.amazonaws.com", "Delete": true },
-  { "EventName": "CreateSAMLProvider", "EventSource": "iam.amazonaws.com", "Create": true },
-  { "EventName": "DeleteSAMLProvider", "EventSource": "iam.amazonaws.com", "Delete": true },
-
-  { "EventName": "DeleteServiceLinkedRole", "EventSource": "iam.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateStream", "EventSource": "kinesis.amazonaws.com", "Create": true },
-  { "EventName": "DeleteStream", "EventSource": "kinesis.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateFunction20150331", "EventSource": "lambda.amazonaws.com", "Create": true },
-  { "EventName": "DeleteFunction20150331", "EventSource": "lambda.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateBot", "EventSource": "lex.amazonaws.com", "Create": true },
-  { "EventName": "DeleteBot", "EventSource": "lex.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateDBCluster", "EventSource": "rds.amazonaws.com", "Create": true },
-  { "EventName": "CreateDBInstance", "EventSource": "rds.amazonaws.com", "Create": true },
-  { "EventName": "DeleteDBCluster", "EventSource": "rds.amazonaws.com", "Delete": true },
-  { "EventName": "DeleteDBInstance", "EventSource": "rds.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateCluster", "EventSource": "redshift.amazonaws.com", "Create": true },
-  { "EventName": "DeleteCluster", "EventSource": "redshift.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateHostedZone", "EventSource": "route53.amazonaws.com", "Create": true },
-  { "EventName": "DeleteHostedZone", "EventSource": "route53.amazonaws.com", "Delete": true },
-
-  { "EventName": "PutMetricAlarm", "EventSource": "monitoring.amazonaws.com", "Create": true },
-  { "EventName": "DeleteAlarms", "EventSource": "monitoring.amazonaws.com", "Delete": true },
-  { "EventName": "PutDashboard", "EventSource": "monitoring.amazonaws.com", "Create": true },
-
-  { "EventName": "CreateBucket", "EventSource": "s3.amazonaws.com", "Create": true },
-  { "EventName": "DeleteBucket", "EventSource": "s3.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateCanary", "EventSource": "synthetics.amazonaws.com", "Create": true },
-  { "EventName": "DeleteCanary", "EventSource": "synthetics.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateStateMachine", "EventSource": "states.amazonaws.com", "Create": true },
-  { "EventName": "DeleteStateMachine", "EventSource": "states.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateQueue", "EventSource": "sqs.amazonaws.com", "Create": true },
-  { "EventName": "DeleteQueue", "EventSource": "sqs.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateTopic", "EventSource": "sns.amazonaws.com", "Create": true },
-  { "EventName": "DeleteTopic", "EventSource": "sns.amazonaws.com", "Delete": true },
-
-  { "EventName": "CreateIPSet", "EventSource": "wafv2.amazonaws.com", "Create": true },
-  { "EventName": "DeleteIPSet", "EventSource": "wafv2.amazonaws.com", "Delete": true },
-  { "EventName": "CreateWebACL", "EventSource": "wafv2.amazonaws.com", "Create": true },
-  { "EventName": "DeleteWebACL", "EventSource": "wafv2.amazonaws.com", "Delete": true }
+  {
+    "EventName": "CreateApi",
+    "EventSource": "apigateway.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "CreateRestApi",
+    "EventSource": "apigateway.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "ImportRestApi",
+    "EventSource": "apigateway.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteRestApi",
+    "EventSource": "apigateway.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateVpcLink",
+    "EventSource": "apigateway.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteVpcLink",
+    "EventSource": "apigateway.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateAutoScalingGroup",
+    "EventSource": "autoscaling.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteAutoScalingGroup",
+    "EventSource": "autoscaling.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateMesh",
+    "EventSource": "appmesh.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteMesh",
+    "EventSource": "appmesh.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateBackupVault",
+    "EventSource": "backup.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteBackupVault",
+    "EventSource": "backup.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateBackupPlan",
+    "EventSource": "backup.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteBackupPlan",
+    "EventSource": "backup.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateComputeEnvironment",
+    "EventSource": "batch.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteComputeEnvironment",
+    "EventSource": "batch.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateProject",
+    "EventSource": "codebuild.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteProject",
+    "EventSource": "codebuild.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateInstance",
+    "EventSource": "connect.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "CreateDistribution",
+    "EventSource": "cloudfront.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteDistribution",
+    "EventSource": "cloudfront.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateTable",
+    "EventSource": "dynamodb.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteTable",
+    "EventSource": "dynamodb.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateMicrosoftAD",
+    "EventSource": "ds.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteDirectory",
+    "EventSource": "ds.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "RunInstances",
+    "EventSource": "ec2.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "TerminateInstances",
+    "EventSource": "ec2.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateImage",
+    "EventSource": "ec2.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeregisterImage",
+    "EventSource": "ec2.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateSnapshot",
+    "EventSource": "ec2.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "CreateSnapshots",
+    "EventSource": "ec2.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteSnapshot",
+    "EventSource": "ec2.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateNatGateway",
+    "EventSource": "ec2.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteNatGateway",
+    "EventSource": "ec2.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateClientVpnEndpoint",
+    "EventSource": "ec2.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteClientVpnEndpoint",
+    "EventSource": "ec2.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateVpcPeeringConnection",
+    "EventSource": "ec2.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteVpcPeeringConnection",
+    "EventSource": "ec2.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateVpc",
+    "EventSource": "ec2.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteVpc",
+    "EventSource": "ec2.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateVolume",
+    "EventSource": "ec2.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteVolume",
+    "EventSource": "ec2.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateVpcEndpoint",
+    "EventSource": "ec2.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteVpcEndpoints",
+    "EventSource": "ec2.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "AllocateAddress",
+    "EventSource": "ec2.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "ReleaseAddress",
+    "EventSource": "ec2.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateCustomerGateway",
+    "EventSource": "ec2.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteCustomerGateway",
+    "EventSource": "ec2.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateVpnConnection",
+    "EventSource": "ec2.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteVpnConnection",
+    "EventSource": "ec2.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateVpnGateway",
+    "EventSource": "ec2.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteVpnGateway",
+    "EventSource": "ec2.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateTransitGateway",
+    "EventSource": "ec2.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteTransitGateway",
+    "EventSource": "ec2.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateFileSystem",
+    "EventSource": "efs.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteFileSystem",
+    "EventSource": "efs.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateTargetGroup",
+    "EventSource": "elasticloadbalancing.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "CreateLoadBalancer",
+    "EventSource": "elasticloadbalancing.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteLoadBalancer",
+    "EventSource": "elasticloadbalancing.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "DeleteTargetGroup",
+    "EventSource": "elasticloadbalancing.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateCluster",
+    "EventSource": "eks.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteCluster",
+    "EventSource": "eks.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateElasticsearchDomain",
+    "EventSource": "es.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteElasticsearchDomain",
+    "EventSource": "es.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateDeliveryStream",
+    "EventSource": "firehose.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteDeliveryStream",
+    "EventSource": "firehose.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateAccessKey",
+    "EventSource": "iam.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteAccessKey",
+    "EventSource": "iam.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateRole",
+    "EventSource": "iam.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteRole",
+    "EventSource": "iam.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateSAMLProvider",
+    "EventSource": "iam.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteSAMLProvider",
+    "EventSource": "iam.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "DeleteServiceLinkedRole",
+    "EventSource": "iam.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateStream",
+    "EventSource": "kinesis.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteStream",
+    "EventSource": "kinesis.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateFunction20150331",
+    "EventSource": "lambda.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteFunction20150331",
+    "EventSource": "lambda.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateBot",
+    "EventSource": "lex.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteBot",
+    "EventSource": "lex.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateDBCluster",
+    "EventSource": "rds.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "CreateDBInstance",
+    "EventSource": "rds.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteDBCluster",
+    "EventSource": "rds.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "DeleteDBInstance",
+    "EventSource": "rds.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateCluster",
+    "EventSource": "redshift.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteCluster",
+    "EventSource": "redshift.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateHostedZone",
+    "EventSource": "route53.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteHostedZone",
+    "EventSource": "route53.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "PutMetricAlarm",
+    "EventSource": "monitoring.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteAlarms",
+    "EventSource": "monitoring.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "PutDashboard",
+    "EventSource": "monitoring.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "CreateBucket",
+    "EventSource": "s3.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteBucket",
+    "EventSource": "s3.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateCanary",
+    "EventSource": "synthetics.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteCanary",
+    "EventSource": "synthetics.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateStateMachine",
+    "EventSource": "states.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteStateMachine",
+    "EventSource": "states.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateQueue",
+    "EventSource": "sqs.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteQueue",
+    "EventSource": "sqs.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateTopic",
+    "EventSource": "sns.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteTopic",
+    "EventSource": "sns.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateIPSet",
+    "EventSource": "wafv2.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteIPSet",
+    "EventSource": "wafv2.amazonaws.com",
+    "Delete": true
+  },
+  {
+    "EventName": "CreateWebACL",
+    "EventSource": "wafv2.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteWebACL",
+    "EventSource": "wafv2.amazonaws.com",
+    "Delete": true
+  }
 ]

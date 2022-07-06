@@ -93,7 +93,7 @@ export const processUpdate = async (events: Tables.EventType[]) => {
       await processRecord(item);
     } catch (err) {
       // dynamodb condition check
-      if (err.code === 'TransactionCanceledException') {
+      if ((err as any).code === 'TransactionCanceledException') {
         Logger.error(err);
         return;
       }

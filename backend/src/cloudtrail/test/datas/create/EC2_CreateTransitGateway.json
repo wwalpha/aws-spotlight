@@ -1,0 +1,83 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5I4ULUDR3",
+    "userName": "test@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2021-08-18T06:58:53Z",
+        "mfaAuthenticated": "true"
+      }
+    }
+  },
+  "eventTime": "2021-08-18T07:10:44Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "CreateTransitGateway",
+  "awsRegion": "ap-northeast-3",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "CreateTransitGatewayRequest": {
+      "Options": {
+        "DefaultRouteTablePropagation": "enable",
+        "AutoAcceptSharedAttachments": "disable",
+        "DefaultRouteTableAssociation": "enable",
+        "VpnEcmpSupport": "enable",
+        "DnsSupport": "enable",
+        "MulticastSupport": "disable"
+      },
+      "TagSpecification": {
+        "ResourceType": "transit-gateway",
+        "tag": 1,
+        "Tag": {
+          "Value": "osaka-tgw",
+          "tag": 1,
+          "Key": "Name"
+        }
+      }
+    }
+  },
+  "responseElements": {
+    "CreateTransitGatewayResponse": {
+      "xmlns": "http://ec2.amazonaws.com/doc/2016-11-15/",
+      "requestId": "55bdd810-6f5a-4d96-86bb-cfc432e5c7c1",
+      "transitGateway": {
+        "tagSet": {
+          "item": {
+            "value": "osaka-tgw",
+            "key": "Name"
+          }
+        },
+        "creationTime": "2021-08-18T07:10:44.000Z",
+        "transitGatewayId": "tgw-02844bb728fca543c",
+        "options": {
+          "propagationDefaultRouteTableId": "tgw-rtb-0ef2f47e442bbec75",
+          "amazonSideAsn": 64512,
+          "defaultRouteTablePropagation": "enable",
+          "multicastSupport": "disable",
+          "vpnEcmpSupport": "enable",
+          "autoAcceptSharedAttachments": "disable",
+          "defaultRouteTableAssociation": "enable",
+          "dnsSupport": "enable",
+          "associationDefaultRouteTableId": "tgw-rtb-0ef2f47e442bbec75"
+        },
+        "state": "pending",
+        "ownerId": 999999999999,
+        "transitGatewayArn": "arn:aws:ec2:ap-northeast-3:999999999999:transit-gateway/tgw-02844bb728fca543c"
+      }
+    }
+  },
+  "requestID": "55bdd810-6f5a-4d96-86bb-cfc432e5c7c1",
+  "eventID": "4856faf4-523f-46b9-b316-4c5ce426ebac",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management"
+}

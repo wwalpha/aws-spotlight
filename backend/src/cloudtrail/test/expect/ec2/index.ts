@@ -50,3 +50,7 @@ export { default as DeleteCustomerGateway_H } from './DeleteCustomerGateway_H.js
 export { default as CreateVpnGateway_H } from './CreateVpnGateway_H.json';
 export { default as CreateVpnGateway_R } from './CreateVpnGateway_R.json';
 export { default as DeleteVpnGateway_H } from './DeleteVpnGateway_H.json';
+
+export { default as CreateTransitGateway_H } from './CreateTransitGateway_H.json';
+export { default as CreateTransitGateway_R } from './CreateTransitGateway_R.json';
+export { default as DeleteTransitGateway_H } from './DeleteTransitGateway_H.json';
