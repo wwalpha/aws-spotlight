@@ -1,5 +1,6 @@
 export * from './APIGATEWAY_DeleteRestApi';
 export * from './APIGATEWAY_DeleteVpcLink';
+export * from './APIGATEWAY_DeleteApi';
 
 export * from './AUTOSCALING_DeleteAutoScalingGroup';
 export * from './APPMESH_DeleteMesh';

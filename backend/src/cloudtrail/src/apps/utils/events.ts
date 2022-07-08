@@ -173,6 +173,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
 
   switch (key) {
+    case 'APIGATEWAY_DeleteApi':
+      return [DeleteEvent.APIGATEWAY_DeleteApi(record)];
     case 'APIGATEWAY_DeleteRestApi':
       return [DeleteEvent.APIGATEWAY_DeleteRestApi(record)];
     case 'APIGATEWAY_DeleteVpcLink':

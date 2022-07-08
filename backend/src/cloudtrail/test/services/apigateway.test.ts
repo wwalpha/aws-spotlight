@@ -73,6 +73,22 @@ describe('apigateway.amazonaws.com', () => {
     expect(history).toEqual(APIGATEWAY.CreateApi_H);
   });
 
+  test.skip('APIGATEWAY_DeleteApi', async () => {
+    const event = await sendMessage(DeleteEvents.APIGATEWAY_DeleteApi);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:apigateway:us-east-1::/apis/aaaaaaaaa');
+    const history = await getHistory({ EventId: 'fdff2ab8-d543-4835-a464-b84c0c2257e0' });
+
+    fs.writeFileSync('DeleteApi_H.json', JSON.stringify(history));
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    // expect(history).toEqual(APIGATEWAY.DeleteVpcLink_H);
+  });
+
   test('APIGATEWAY_CreateVpcLink', async () => {
     const event = await sendMessage(CreateEvents.APIGATEWAY_CreateVpcLink);
 
