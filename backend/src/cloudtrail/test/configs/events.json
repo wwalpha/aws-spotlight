@@ -528,5 +528,15 @@
     "EventName": "DeleteReplicationInstance",
     "EventSource": "dms.amazonaws.com",
     "Delete": true
+  },
+  {
+    "EventName": "CreateServer",
+    "EventSource": "transfer.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteServer",
+    "EventSource": "transfer.amazonaws.com",
+    "Delete": true
   }
 ]
