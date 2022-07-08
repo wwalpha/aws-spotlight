@@ -48,6 +48,7 @@ export const getPublicKeys = async (iss: string): Promise<Record<string, string>
 export const validateToken = (pems: Record<string, string>, token: string) => {
   // Fail if the token is not jwt
   const decodedJwt = decodeToken(token);
+  // @ts-ignore
   const iss = decodedJwt?.payload.iss;
   // const n = iss.lastIndexOf('/');
   // const resultUserPoolId = iss?.substring(n + 1);
@@ -57,11 +58,13 @@ export const validateToken = (pems: Record<string, string>, token: string) => {
   }
 
   // Fail if token is not from your UserPool
+  // @ts-ignore
   if (decodedJwt.payload.iss != iss) {
     throw new Error('Invalid issuer');
   }
 
   // Reject the jwt if it's not an 'Access Token'
+  // @ts-ignore
   if (decodedJwt.payload.token_use != 'id') {
     throw new Error('Not an access token');
   }

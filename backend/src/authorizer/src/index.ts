@@ -51,6 +51,7 @@ export const handler = async (
   }
 
   const token = decodedToken;
+  // @ts-ignore
   const iss = token.payload.iss;
   const kid = token.header.kid;
 
@@ -80,12 +81,14 @@ export const handler = async (
     // verify token
     verify(identitySource, pem, { issuer: iss });
   } catch (err) {
+    // @ts-ignore
     Logger.error(err.name, err.message);
 
     return { isAuthorized: false };
   }
 
   // userid
+  // @ts-ignore
   const email = token.payload.email;
   // get user role from db
   const user = await helper.get<Tables.UserItem>({
