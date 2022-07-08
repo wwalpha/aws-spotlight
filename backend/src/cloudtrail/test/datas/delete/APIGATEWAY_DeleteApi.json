@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDAU33DBSJ5M2LXKXXXS",
-    "arn": "arn:aws:iam::999999999999:user/ktou@test.com",
-    "accountId": "999999999999",
+    "arn": "arn:aws:iam::334678299258:user/ktou@dxc.com",
+    "accountId": "334678299258",
     "accessKeyId": "ASIAU33DBSJ5ECHQUKQO",
-    "userName": "ktou@test.com",
+    "userName": "ktou@dxc.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
@@ -19,11 +19,11 @@
   "eventTime": "2022-07-07T08:19:34Z",
   "eventSource": "apigateway.amazonaws.com",
   "eventName": "DeleteApi",
-  "awsRegion": "us-east-1",
+  "awsRegion": "ap-northeast-1",
   "sourceIPAddress": "202.32.14.177",
   "userAgent": "aws-internal/3 aws-sdk-java/1.12.239 Linux/5.4.196-119.356.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.332-b08 java/1.8.0_332 vendor/Oracle_Corporation cfg/retry-mode/standard",
   "requestParameters": {
-    "apiId": "aaaaaaaaa"
+    "apiId": "gk09okoppi"
   },
   "responseElements": null,
   "requestID": "9be88b16-2d93-4741-a684-f9503798a14c",
@@ -31,6 +31,6 @@
   "readOnly": false,
   "eventType": "AwsApiCall",
   "managementEvent": true,
-  "recipientAccountId": "999999999999",
+  "recipientAccountId": "334678299258",
   "eventCategory": "Management"
 }

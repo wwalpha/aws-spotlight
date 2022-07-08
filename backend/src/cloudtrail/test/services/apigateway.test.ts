@@ -63,7 +63,7 @@ describe('apigateway.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource('arn:aws:apigateway:us-east-1::/apis/aaaaaaaaa');
+    const resource = await getResource('arn:aws:apigateway:ap-northeast-1::/apis/gk09okoppi');
     const history = await getHistory({ EventId: 'ebf671db-0b6a-4936-999f-fa2a7516cdfd' });
 
     expect(resource).not.toBeUndefined();
@@ -78,7 +78,7 @@ describe('apigateway.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource('arn:aws:apigateway:us-east-1::/apis/aaaaaaaaa');
+    const resource = await getResource('arn:aws:apigateway:ap-northeast-1::/apis/gk09okoppi');
     const history = await getHistory({ EventId: 'fdff2ab8-d543-4835-a464-b84c0c2257e0' });
 
     fs.writeFileSync('DeleteApi_H.json', JSON.stringify(history));
@@ -86,7 +86,7 @@ describe('apigateway.amazonaws.com', () => {
     expect(resource).toBeUndefined();
 
     expect(history).not.toBeUndefined();
-    // expect(history).toEqual(APIGATEWAY.DeleteVpcLink_H);
+    // expect(history).toEqual(APIGATEWAY.DeleteRestApi_H);
   });
 
   test('APIGATEWAY_CreateVpcLink', async () => {
