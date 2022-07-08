@@ -30,4 +30,20 @@ describe('connect.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(CONNECT.CreateInstance_H);
   });
+
+  test('CONNECT_DeleteInstance', async () => {
+    const event = await sendMessage(DeleteEvents.CONNECT_DeleteInstance);
+
+    await cloudtrail(event);
+
+    const resource = await getResource(
+      'arn:aws:connect:ap-northeast-1:999999999999:instance/14c561e5-5dbf-4048-8c16-779db493a66a'
+    );
+    const history = await getHistory({ EventId: '0f3f66dc-d704-4bd4-b37a-06ecee7b9f6a' });
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(CONNECT.DeleteInstance_H);
+  });
 });

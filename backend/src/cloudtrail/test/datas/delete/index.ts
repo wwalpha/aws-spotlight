@@ -12,6 +12,7 @@ export { default as BATCH_DeleteComputeEnvironment } from './BATCH_DeleteCompute
 
 export { default as CODEBUILD_DeleteProject } from './CODEBUILD_DeleteProject.json';
 export { default as CLOUDFRONT_DeleteDistribution } from './CLOUDFRONT_DeleteDistribution.json';
+export { default as CONNECT_DeleteInstance } from './CONNECT_DeleteInstance.json';
 
 export { default as DS_DeleteDirectory } from './DS_DeleteDirectory.json';
 export { default as DMS_DeleteReplicationInstance } from './DMS_DeleteReplicationInstance.json';

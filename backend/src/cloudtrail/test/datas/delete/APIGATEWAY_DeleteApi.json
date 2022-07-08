@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDAU33DBSJ5M2LXKXXXS",
-    "arn": "arn:aws:iam::334678299258:user/ktou@dxc.com",
-    "accountId": "334678299258",
+    "arn": "arn:aws:iam::999999999999:user/ktou@test.com",
+    "accountId": "999999999999",
     "accessKeyId": "ASIAU33DBSJ5ECHQUKQO",
-    "userName": "ktou@dxc.com",
+    "userName": "ktou@test.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
@@ -31,6 +31,6 @@
   "readOnly": false,
   "eventType": "AwsApiCall",
   "managementEvent": true,
-  "recipientAccountId": "334678299258",
+  "recipientAccountId": "999999999999",
   "eventCategory": "Management"
 }

@@ -195,6 +195,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.CODEBUILD_DeleteProject(record)];
     case 'CLOUDFRONT_DeleteDistribution':
       return [DeleteEvent.CLOUDFRONT_DeleteDistribution(record)];
+    case 'CONNECT_DeleteInstance':
+      return [DeleteEvent.CONNECT_DeleteInstance(record)];
 
     case 'DYNAMODB_DeleteTable':
       return [DeleteEvent.DYNAMODB_DeleteTable(record)];
