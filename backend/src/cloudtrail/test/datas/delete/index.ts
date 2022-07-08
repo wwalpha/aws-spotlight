@@ -13,6 +13,7 @@ export { default as CODEBUILD_DeleteProject } from './CODEBUILD_DeleteProject.js
 export { default as CLOUDFRONT_DeleteDistribution } from './CLOUDFRONT_DeleteDistribution.json';
 
 export { default as DS_DeleteDirectory } from './DS_DeleteDirectory.json';
+export { default as DMS_DeleteReplicationInstance } from './DMS_DeleteReplicationInstance.json';
 
 export { default as EC2_DeleteClientVpnEndpoint } from './EC2_DeleteClientVpnEndpoint.json';
 export { default as EC2_DeleteNatGateway } from './EC2_DeleteNatGateway.json';

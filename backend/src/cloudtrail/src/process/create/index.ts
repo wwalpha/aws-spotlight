@@ -16,6 +16,7 @@ export * from './CLOUDFRONT_CreateDistribution';
 
 export * from './DYNAMODB_CreateTable';
 export * from './DS_CreateMicrosoftAD';
+export * from './DMS_CreateReplicationInstance';
 
 export * from './EC2_RunInstances';
 export * from './EC2_CreateImage';

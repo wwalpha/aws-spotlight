@@ -39,6 +39,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.DYNAMODB_CreateTable(record)];
     case 'DS_CreateMicrosoftAD':
       return [CreateEvent.DS_CreateMicrosoftAD(record)];
+    case 'DMS_CreateReplicationInstance':
+      return [CreateEvent.DMS_CreateReplicationInstance(record)];
 
     case 'EC2_RunInstances':
       return CreateEvent.EC2_RunInstances(record);
@@ -193,6 +195,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.DYNAMODB_DeleteTable(record)];
     case 'DS_DeleteDirectory':
       return [DeleteEvent.DS_DeleteDirectory(record)];
+    case 'DMS_DeleteReplicationInstance':
+      return [DeleteEvent.DMS_DeleteReplicationInstance(record)];
 
     case 'EC2_TerminateInstances':
       return DeleteEvent.EC2_TerminateInstances(record);

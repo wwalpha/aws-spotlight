@@ -17,6 +17,7 @@ export { default as CLOUDFRONT_CreateDistribution } from './CLOUDFRONT_CreateDis
 
 export { default as DS_CreateMicrosoftAD } from './DS_CreateMicrosoftAD.json';
 export { default as DYNAMODB_CreateTable } from './DYNAMODB_CreateTable.json';
+export { default as DMS_CreateReplicationInstance } from './DMS_CreateReplicationInstance.json';
 
 export { default as EC2_CreateClientVpnEndpoint } from './EC2_CreateClientVpnEndpoint.json';
 export { default as EC2_CreateImage } from './EC2_CreateImage.json';

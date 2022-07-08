@@ -13,6 +13,7 @@ export * from './CLOUDFRONT_DeleteDistribution';
 
 export * from './DYNAMODB_DeleteTable';
 export * from './DS_DeleteDirectory';
+export * from './DMS_DeleteReplicationInstance';
 
 export * from './EC2_TerminateInstances';
 export * from './EC2_DeregisterImage';

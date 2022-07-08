@@ -518,5 +518,15 @@
     "EventName": "DeleteWebACL",
     "EventSource": "wafv2.amazonaws.com",
     "Delete": true
+  },
+  {
+    "EventName": "CreateReplicationInstance",
+    "EventSource": "dms.amazonaws.com",
+    "Create": true
+  },
+  {
+    "EventName": "DeleteReplicationInstance",
+    "EventSource": "dms.amazonaws.com",
+    "Delete": true
   }
 ]
