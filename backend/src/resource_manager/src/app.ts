@@ -31,6 +31,7 @@ export const getResourceList = async (
 
   // decode token
   const token = decodeToken(authorizationToken);
+  // @ts-ignore
   const role = token['custom:role'];
 
   // administrator
@@ -61,6 +62,7 @@ export const getResourceList = async (
         '#ResourceId': 'ResourceId',
       },
       ExpressionAttributeValues: {
+        //@ts-ignore
         ':UserName': token['cognito:username'],
         ':ResourceId': `arn:aws:${params.service}`,
       },
@@ -75,7 +77,9 @@ export const getCategoryList = async (
 ): Promise<Resource.GetCategoryResponse> => {
   // decode token
   const token = getToken(req);
+  // @ts-ignore
   const role = token['custom:role'];
+  // @ts-ignore
   const username = token['cognito:username'];
 
   // administrator

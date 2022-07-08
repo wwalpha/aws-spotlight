@@ -99,6 +99,7 @@ export const getUserPoolIdFromToken = (req: express.Request) => {
   // decode token
   const decodedToken = decodeToken(token);
   // get iss
+  // @ts-ignore
   const iss = decodedToken.iss;
 
   if (!iss) {
