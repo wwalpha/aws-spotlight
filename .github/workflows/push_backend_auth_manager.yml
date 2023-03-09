@@ -12,7 +12,6 @@ on:
 env:
   AWS_DEFAULT_REGION: us-east-1
   ECR_REPOSITORY: arms/auth
-  ECS_CLUSTER_NAME: arms-cluster
   ECS_SERVICE_NAME: auth_manager
   ECS_TAKS_DEFINITION: arms-auth
   ECS_TAKS_DEFINITION_FILE: task_definition.json
@@ -25,7 +24,7 @@ jobs:
     environment:
       name: dev
     env:
-      ECS_CLUSTER: ${{ format('{0}-{1}', env.ECS_CLUSTER_NAME, secrets.ENV_SUFFIX) }}
+      ECS_CLUSTER_NAME: ${{ format('arms-cluster-{0}', secrets.ENV_SUFFIX) }}
     defaults:
       run:
         # working-directory: ${{ env.WORKING_DIR }}
