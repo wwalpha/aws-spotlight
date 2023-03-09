@@ -2,12 +2,10 @@
 # Dynamodb Table - Event Type
 # ----------------------------------------------------------------------------------------------
 resource "aws_dynamodb_table" "event_type" {
-  name           = local.dynamodb_name_event_type
-  billing_mode   = "PROVISIONED"
-  read_capacity  = 1
-  write_capacity = 1
-  hash_key       = "EventName"
-  range_key      = "EventSource"
+  name         = local.dynamodb_name_event_type
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "EventName"
+  range_key    = "EventSource"
 
   attribute {
     name = "EventName"
@@ -53,12 +51,10 @@ resource "aws_dynamodb_table" "event_type" {
 # Dynamodb Table - Resource
 # ----------------------------------------------------------------------------------------------
 resource "aws_dynamodb_table" "resource" {
-  name           = local.dynamodb_name_resource
-  billing_mode   = "PROVISIONED"
-  read_capacity  = 1
-  write_capacity = 1
-  hash_key       = "ResourceId"
-  range_key      = "EventTime"
+  name         = local.dynamodb_name_resource
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "ResourceId"
+  range_key    = "EventTime"
 
   attribute {
     name = "ResourceId"
@@ -83,8 +79,6 @@ resource "aws_dynamodb_table" "resource" {
     name            = "gsiIdx1"
     hash_key        = "EventSource"
     range_key       = "ResourceId"
-    write_capacity  = 1
-    read_capacity   = 1
     projection_type = "ALL"
   }
 
@@ -92,8 +86,6 @@ resource "aws_dynamodb_table" "resource" {
     name            = "gsiIdx2"
     hash_key        = "UserName"
     range_key       = "ResourceId"
-    write_capacity  = 1
-    read_capacity   = 1
     projection_type = "ALL"
   }
 
@@ -106,12 +98,10 @@ resource "aws_dynamodb_table" "resource" {
 # Dynamodb Table - Unprocessed
 # ----------------------------------------------------------------------------------------------
 resource "aws_dynamodb_table" "unprocessed" {
-  name           = local.dynamodb_name_unprocessed
-  billing_mode   = "PROVISIONED"
-  read_capacity  = 1
-  write_capacity = 1
-  hash_key       = "EventName"
-  range_key      = "EventTime"
+  name         = local.dynamodb_name_unprocessed
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "EventName"
+  range_key    = "EventTime"
 
   attribute {
     name = "EventName"
@@ -142,11 +132,9 @@ resource "aws_dynamodb_table" "unprocessed" {
 # Dynamodb Table - History
 # ----------------------------------------------------------------------------------------------
 resource "aws_dynamodb_table" "history" {
-  name           = local.dynamodb_name_history
-  billing_mode   = "PROVISIONED"
-  read_capacity  = 1
-  write_capacity = 1
-  hash_key       = "EventId"
+  name         = local.dynamodb_name_history
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "EventId"
 
   attribute {
     name = "EventId"
@@ -162,11 +150,9 @@ resource "aws_dynamodb_table" "history" {
 # Dynamodb Table - User
 # ----------------------------------------------------------------------------------------------
 resource "aws_dynamodb_table" "user" {
-  name           = local.dynamodb_name_user
-  billing_mode   = "PROVISIONED"
-  read_capacity  = 1
-  write_capacity = 1
-  hash_key       = "UserId"
+  name         = local.dynamodb_name_user
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "UserId"
 
   attribute {
     name = "UserId"
@@ -182,11 +168,9 @@ resource "aws_dynamodb_table" "user" {
 # Dynamodb Table - Settings
 # ----------------------------------------------------------------------------------------------
 resource "aws_dynamodb_table" "settings" {
-  name           = local.dynamodb_name_settings
-  billing_mode   = "PROVISIONED"
-  read_capacity  = 1
-  write_capacity = 1
-  hash_key       = "Id"
+  name         = local.dynamodb_name_settings
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "Id"
 
   attribute {
     name = "Id"
