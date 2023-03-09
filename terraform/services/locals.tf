@@ -31,10 +31,10 @@ locals {
   # ----------------------------------------------------------------------------------------------
   # ECS
   # ----------------------------------------------------------------------------------------------
-  task_def_family_auth     = "${local.project_name}-auth"
-  task_def_family_token    = "${local.project_name}-token"
-  task_def_family_user     = "${local.project_name}-user"
-  task_def_family_resource = "${local.project_name}-resource"
+  task_def_family_auth     = "${local.project_name}-auth-${local.suffix}"
+  task_def_family_token    = "${local.project_name}-token-${local.suffix}"
+  task_def_family_user     = "${local.project_name}-user-${local.suffix}"
+  task_def_family_resource = "${local.project_name}-resource-${local.suffix}"
 
   task_def_rev_auth     = max(aws_ecs_task_definition.auth.revision, data.aws_ecs_task_definition.auth.revision)
   task_def_rev_token    = max(aws_ecs_task_definition.token.revision, data.aws_ecs_task_definition.token.revision)
