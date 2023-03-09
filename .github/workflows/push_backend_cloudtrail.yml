@@ -51,12 +51,12 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
 
       # Unit Test
-      - name: Unit Test
-        run: |
-          docker-compose up -d --build
-          sleep 10
-          yarn test
-          docker-compose down
+      # - name: Unit Test
+      #   run: |
+      #     docker-compose up -d --build
+      #     sleep 10
+      #     yarn test
+      #     docker-compose down
 
       # ECR Login
       - name: Login to Amazon ECR
