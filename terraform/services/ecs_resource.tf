@@ -34,7 +34,7 @@ resource "aws_ecs_task_definition" "resource" {
       container_name  = local.task_def_family_resource
       container_image = data.aws_ssm_parameter.resource_repo_url.value
       container_port  = 8080
-      env_file_arn    = "${data.aws_s3_bucket.environment.arn}/${aws_s3_bucket_object.resource.key}"
+      env_file_arn    = "${data.aws_s3_bucket.environment.arn}/${aws_s3_object.resource.key}"
       app_mesh_node   = split(":", aws_appmesh_virtual_node.resource.arn)[5]
     }
   )

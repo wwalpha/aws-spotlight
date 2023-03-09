@@ -2,7 +2,7 @@
 # ECR - Auth Manager
 # ----------------------------------------------------------------------------------------------
 resource "aws_ecr_repository" "auth" {
-  name                 = "${local.project_name}/auth"
+  name                 = "${local.project_name}/auth${local.suffix}"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
@@ -14,7 +14,7 @@ resource "aws_ecr_repository" "auth" {
 # ECR - Token Manager
 # ----------------------------------------------------------------------------------------------
 resource "aws_ecr_repository" "token" {
-  name                 = "${local.project_name}/token"
+  name                 = "${local.project_name}/token${local.suffix}"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
@@ -26,7 +26,7 @@ resource "aws_ecr_repository" "token" {
 # ECR - Token Manager
 # ----------------------------------------------------------------------------------------------
 resource "aws_ecr_repository" "user" {
-  name                 = "${local.project_name}/user"
+  name                 = "${local.project_name}/user${local.suffix}"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
@@ -38,7 +38,7 @@ resource "aws_ecr_repository" "user" {
 # ECR (Lambda) - CloudTrail
 # ----------------------------------------------------------------------------------------------
 resource "aws_ecr_repository" "cloudtrail" {
-  name                 = "${local.project_name}/cloudtrail"
+  name                 = "${local.project_name}/cloudtrail${local.suffix}"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
@@ -50,7 +50,7 @@ resource "aws_ecr_repository" "cloudtrail" {
 # ECR (Lambda) - Unprocessed
 # ----------------------------------------------------------------------------------------------
 resource "aws_ecr_repository" "unprocessed" {
-  name                 = "${local.project_name}/unprocessed"
+  name                 = "${local.project_name}/unprocessed${local.suffix}"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
@@ -62,7 +62,7 @@ resource "aws_ecr_repository" "unprocessed" {
 # ECR (ECS) - Resource Manager 
 # ----------------------------------------------------------------------------------------------
 resource "aws_ecr_repository" "resource" {
-  name                 = "${local.project_name}/resource"
+  name                 = "${local.project_name}/resource${local.suffix}"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {

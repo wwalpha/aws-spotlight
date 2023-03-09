@@ -36,7 +36,7 @@ resource "aws_s3_bucket" "archive" {
 # ----------------------------------------------------------------------------------------------
 # DEMO SITE
 # ----------------------------------------------------------------------------------------------
-resource "aws_s3_bucket_object" "this" {
+resource "aws_s3_object" "this" {
   for_each     = fileset("website/", "**/*.*")
   bucket       = aws_s3_bucket.frontend.id
   key          = each.value

@@ -1,7 +1,7 @@
 # ----------------------------------------------------------------------------------------------
 # Resource Manager Environment file
 # ----------------------------------------------------------------------------------------------
-resource "aws_s3_bucket_object" "resource" {
+resource "aws_s3_object" "resource" {
   bucket  = local.bucket_name_environment
   key     = "resource.env"
   content = <<EOT
@@ -14,7 +14,7 @@ EOT
 # ----------------------------------------------------------------------------------------------
 # Auth Manager Environment file
 # ----------------------------------------------------------------------------------------------
-resource "aws_s3_bucket_object" "auth" {
+resource "aws_s3_object" "auth" {
   bucket  = local.bucket_name_environment
   key     = "auth.env"
   content = <<EOT
@@ -27,7 +27,7 @@ EOT
 # ----------------------------------------------------------------------------------------------
 # Token Manager Environment file
 # ----------------------------------------------------------------------------------------------
-resource "aws_s3_bucket_object" "token" {
+resource "aws_s3_object" "token" {
   bucket  = local.bucket_name_environment
   key     = "token.env"
   content = <<EOT
@@ -39,7 +39,7 @@ EOT
 # ----------------------------------------------------------------------------------------------
 # User Manager Environment file
 # ----------------------------------------------------------------------------------------------
-resource "aws_s3_bucket_object" "user" {
+resource "aws_s3_object" "user" {
   bucket  = local.bucket_name_environment
   key     = "user.env"
   content = <<EOT

@@ -2,7 +2,7 @@
 # Service Discovery Private DNS Namespace
 # ----------------------------------------------------------------------------------------------
 resource "aws_service_discovery_private_dns_namespace" "this" {
-  name        = "arms.local"
+  name        = "arms${local.suffix}.local"
   description = "arms.local"
   vpc         = module.vpc.vpc_id
 }

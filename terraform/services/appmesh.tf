@@ -2,7 +2,7 @@
 # App Mesh
 # ----------------------------------------------------------------------------------------------
 resource "aws_appmesh_mesh" "this" {
-  name = "arms_mesh"
+  name = "arms_mesh_${local.suffix}"
 
   spec {
     egress_filter {

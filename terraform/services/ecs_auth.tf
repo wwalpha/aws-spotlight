@@ -2,7 +2,7 @@
 # ECS Cluster
 # ----------------------------------------------------------------------------------------------
 resource "aws_ecs_cluster" "this" {
-  name = "${local.project_name}-cluster"
+  name = "${local.project_name}-cluster-${local.suffix}"
 
   capacity_providers = ["FARGATE", "FARGATE_SPOT"]
 
@@ -54,7 +54,7 @@ resource "aws_ecs_task_definition" "auth" {
       container_name  = local.task_def_family_auth
       container_image = data.aws_ssm_parameter.auth_repo_url.value
       container_port  = 8080
-      env_file_arn    = "${data.aws_s3_bucket.environment.arn}/${aws_s3_bucket_object.auth.key}"
+      env_file_arn    = "${data.aws_s3_bucket.environment.arn}/${aws_s3_object.auth.key}"
       app_mesh_node   = split(":", aws_appmesh_virtual_node.auth.arn)[5]
     }
   )

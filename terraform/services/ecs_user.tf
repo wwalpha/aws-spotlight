@@ -34,7 +34,7 @@ resource "aws_ecs_task_definition" "user" {
       container_name  = local.task_def_family_user
       container_image = data.aws_ssm_parameter.user_repo_url.value
       container_port  = 8080
-      env_file_arn    = "${data.aws_s3_bucket.environment.arn}/${aws_s3_bucket_object.user.key}"
+      env_file_arn    = "${data.aws_s3_bucket.environment.arn}/${aws_s3_object.user.key}"
       app_mesh_node   = split(":", aws_appmesh_virtual_node.user.arn)[5]
     }
   )

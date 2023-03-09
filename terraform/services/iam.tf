@@ -2,7 +2,7 @@
 # AWS ECS Task Execution Role
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role" "ecs_task_exec" {
-  name               = "${local.project_name_uc}_ECSTaskExecutionRole"
+  name               = "${local.project_name_uc}_ECSTaskExecutionRole${local.suffix}"
   assume_role_policy = data.aws_iam_policy_document.ecs_tasks.json
   lifecycle {
     create_before_destroy = false
@@ -37,7 +37,7 @@ resource "aws_iam_role_policy_attachment" "ecs_task_exec_ssm" {
 # AWS ECS Task Role
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role" "ecs_task" {
-  name               = "${local.project_name_uc}_ECSTaskRole"
+  name               = "${local.project_name_uc}_ECSTaskRole${local.suffix}"
   assume_role_policy = data.aws_iam_policy_document.ecs_tasks.json
 
   lifecycle {
@@ -89,7 +89,7 @@ resource "aws_iam_role_policy_attachment" "ecs_task_cognito_idp" {
 # AWS Role - AWS Batch
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role" "batch_service" {
-  name               = "${local.project_name_uc}_BatchServiceRole"
+  name               = "${local.project_name_uc}_BatchServiceRole${local.suffix}"
   assume_role_policy = data.aws_iam_policy_document.batch.json
 
   lifecycle {
@@ -117,7 +117,7 @@ resource "aws_iam_role_policy_attachment" "batch_cloudwatch" {
 # AWS IAM Role  - Cognito Authenticated
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role" "cognito_authenticated" {
-  name = "${local.project_name_uc}_Cognito_AuthRole"
+  name = "${local.project_name_uc}_Cognito_AuthRole${local.suffix}"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"

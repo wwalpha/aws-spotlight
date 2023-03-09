@@ -1,7 +1,9 @@
 # ----------------------------------------------------------------------------------------------
 # AWS Provider
 # ----------------------------------------------------------------------------------------------
-provider "aws" {}
+provider "aws" {
+  region = "us-east-1"
+}
 
 # ----------------------------------------------------------------------------------------------
 # Terraform Settings
@@ -9,8 +11,8 @@ provider "aws" {}
 terraform {
   backend "s3" {
     region = "us-east-1"
-    bucket = "terraform-state-202106"
-    key    = "arms/services.tfstate"
+    bucket = "arms-terraform-0606"
+    key    = "arms-dev/services.tfstate"
   }
 }
 
@@ -22,7 +24,7 @@ data "terraform_remote_state" "setup" {
 
   config = {
     region = "us-east-1"
-    bucket = "terraform-state-202106"
-    key    = "arms/setup.tfstate"
+    bucket = "arms-terraform-0606"
+    key    = "arms-dev/setup.tfstate"
   }
 }
