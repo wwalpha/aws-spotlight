@@ -56,8 +56,8 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
 
       # AWS Credentials
-      - name: Release Notes
-        run: |
-          yarn initialize
-          yarn events
-          yarn patch
+      # - name: Release Notes
+      #   run: |
+      #     yarn initialize
+      #     yarn events
+      #     yarn patch
