@@ -11,10 +11,6 @@ on:
 
 env:
   AWS_DEFAULT_REGION: us-east-1
-  ECR_REPOSITORY: arms/token
-  ECS_CLUSTER_NAME: arms-cluster
-  ECS_SERVICE_NAME: token_manager
-  ECS_TAKS_DEFINITION: arms-token
   ECS_TAKS_DEFINITION_FILE: task_definition.json
   SSM_PARAMETER_NAME: /arms/repository_url
   WORKING_DIR: backend/src/token_manager
@@ -24,6 +20,11 @@ jobs:
     runs-on: ubuntu-18.04
     environment:
       name: dev
+    env:
+      ECS_CLUSTER_NAME: ${{ format('arms-cluster-{0}', secrets.ENV_SUFFIX) }}
+      ECS_SERVICE_NAME: token_manager
+      ECS_TAKS_DEFINITION: ${{ format('arms-token-{0}', secrets.ENV_SUFFIX) }}
+      ECR_REPOSITORY: ${{ format('arms/token/{0}', secrets.ENV_SUFFIX) }}
     defaults:
       run:
         working-directory: backend/src/token_manager
