@@ -38,86 +38,74 @@ const setup = async () => {
         },
       })
       .promise(),
-    helper
-      .getClient()
-      .createTable({
-        TableName: TABLE_NAME_EVENT_TYPE as string,
-        BillingMode: 'PROVISIONED',
-        ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
-        KeySchema: [
-          { AttributeName: 'EventName', KeyType: 'HASH' },
-          { AttributeName: 'EventSource', KeyType: 'RANGE' },
-        ],
-        AttributeDefinitions: [
-          { AttributeName: 'EventName', AttributeType: 'S' },
-          { AttributeName: 'EventSource', AttributeType: 'S' },
-        ],
-      })
-      .promise(),
-    helper
-      .getClient()
-      .createTable({
-        TableName: TABLE_NAME_RESOURCE as string,
-        BillingMode: 'PROVISIONED',
-        ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
-        KeySchema: [
-          { AttributeName: 'ResourceId', KeyType: 'HASH' },
-          { AttributeName: 'EventTime', KeyType: 'RANGE' },
-        ],
-        AttributeDefinitions: [
-          { AttributeName: 'ResourceId', AttributeType: 'S' },
-          { AttributeName: 'EventTime', AttributeType: 'S' },
-          { AttributeName: 'EventSource', AttributeType: 'S' },
-          { AttributeName: 'UserName', AttributeType: 'S' },
-        ],
-        GlobalSecondaryIndexes: [
-          {
-            IndexName: 'gsiIdx1',
-            KeySchema: [
-              { AttributeName: 'EventSource', KeyType: 'HASH' },
-              { AttributeName: 'ResourceId', KeyType: 'RANGE' },
-            ],
-            Projection: { ProjectionType: 'ALL' },
-            ProvisionedThroughput: { WriteCapacityUnits: 100, ReadCapacityUnits: 100 },
-          },
-          {
-            IndexName: 'gsiIdx2',
-            KeySchema: [
-              { AttributeName: 'UserName', KeyType: 'HASH' },
-              { AttributeName: 'ResourceId', KeyType: 'RANGE' },
-            ],
-            Projection: { ProjectionType: 'ALL' },
-            ProvisionedThroughput: { WriteCapacityUnits: 100, ReadCapacityUnits: 100 },
-          },
-        ],
-      })
-      .promise(),
-    helper
-      .getClient()
-      .createTable({
-        TableName: process.env.TABLE_NAME_UNPROCESSED as string,
-        BillingMode: 'PROVISIONED',
-        ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
-        KeySchema: [
-          { AttributeName: 'EventName', KeyType: 'HASH' },
-          { AttributeName: 'EventTime', KeyType: 'RANGE' },
-        ],
-        AttributeDefinitions: [
-          { AttributeName: 'EventName', AttributeType: 'S' },
-          { AttributeName: 'EventTime', AttributeType: 'S' },
-        ],
-      })
-      .promise(),
-    helper
-      .getClient()
-      .createTable({
-        TableName: process.env.TABLE_NAME_HISTORY as string,
-        BillingMode: 'PROVISIONED',
-        ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
-        KeySchema: [{ AttributeName: 'EventId', KeyType: 'HASH' }],
-        AttributeDefinitions: [{ AttributeName: 'EventId', AttributeType: 'S' }],
-      })
-      .promise(),
+    helper.getClient().createTable({
+      TableName: TABLE_NAME_EVENT_TYPE as string,
+      BillingMode: 'PROVISIONED',
+      ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
+      KeySchema: [
+        { AttributeName: 'EventName', KeyType: 'HASH' },
+        { AttributeName: 'EventSource', KeyType: 'RANGE' },
+      ],
+      AttributeDefinitions: [
+        { AttributeName: 'EventName', AttributeType: 'S' },
+        { AttributeName: 'EventSource', AttributeType: 'S' },
+      ],
+    }),
+    helper.getClient().createTable({
+      TableName: TABLE_NAME_RESOURCE as string,
+      BillingMode: 'PROVISIONED',
+      ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
+      KeySchema: [
+        { AttributeName: 'ResourceId', KeyType: 'HASH' },
+        { AttributeName: 'EventTime', KeyType: 'RANGE' },
+      ],
+      AttributeDefinitions: [
+        { AttributeName: 'ResourceId', AttributeType: 'S' },
+        { AttributeName: 'EventTime', AttributeType: 'S' },
+        { AttributeName: 'EventSource', AttributeType: 'S' },
+        { AttributeName: 'UserName', AttributeType: 'S' },
+      ],
+      GlobalSecondaryIndexes: [
+        {
+          IndexName: 'gsiIdx1',
+          KeySchema: [
+            { AttributeName: 'EventSource', KeyType: 'HASH' },
+            { AttributeName: 'ResourceId', KeyType: 'RANGE' },
+          ],
+          Projection: { ProjectionType: 'ALL' },
+          ProvisionedThroughput: { WriteCapacityUnits: 100, ReadCapacityUnits: 100 },
+        },
+        {
+          IndexName: 'gsiIdx2',
+          KeySchema: [
+            { AttributeName: 'UserName', KeyType: 'HASH' },
+            { AttributeName: 'ResourceId', KeyType: 'RANGE' },
+          ],
+          Projection: { ProjectionType: 'ALL' },
+          ProvisionedThroughput: { WriteCapacityUnits: 100, ReadCapacityUnits: 100 },
+        },
+      ],
+    }),
+    helper.getClient().createTable({
+      TableName: process.env.TABLE_NAME_UNPROCESSED as string,
+      BillingMode: 'PROVISIONED',
+      ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
+      KeySchema: [
+        { AttributeName: 'EventName', KeyType: 'HASH' },
+        { AttributeName: 'EventTime', KeyType: 'RANGE' },
+      ],
+      AttributeDefinitions: [
+        { AttributeName: 'EventName', AttributeType: 'S' },
+        { AttributeName: 'EventTime', AttributeType: 'S' },
+      ],
+    }),
+    helper.getClient().createTable({
+      TableName: process.env.TABLE_NAME_HISTORY as string,
+      BillingMode: 'PROVISIONED',
+      ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
+      KeySchema: [{ AttributeName: 'EventId', KeyType: 'HASH' }],
+      AttributeDefinitions: [{ AttributeName: 'EventId', AttributeType: 'S' }],
+    }),
   ]);
 
   await helper.bulk(TABLE_NAME_EVENT_TYPE, Events);

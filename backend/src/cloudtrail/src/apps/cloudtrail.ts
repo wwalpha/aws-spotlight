@@ -123,11 +123,9 @@ const processNewEventType = async (record: CloudTrail.Record) => {
   );
 
   // process transaction
-  await DynamodbHelper.getDocumentClient()
-    .transactWrite({
-      TransactItems: transactItems,
-    })
-    .promise();
+  await DynamodbHelper.getDocumentClient().transactWrite({
+    TransactItems: transactItems,
+  });
 
   if (!NOTIFIED[record.eventName]) {
     NOTIFIED[record.eventName] = {
@@ -204,11 +202,9 @@ const processUpdate = async (record: CloudTrail.Record) => {
   // add history record
   transactItems.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
 
-  await DynamodbHelper.getDocumentClient()
-    .transactWrite({
-      TransactItems: transactItems,
-    })
-    .promise();
+  await DynamodbHelper.getDocumentClient().transactWrite({
+    TransactItems: transactItems,
+  });
 
   // add tags to resource
   await AddTags(createItems);

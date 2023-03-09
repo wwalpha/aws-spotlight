@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "devDependencies": {
+    "@aws-sdk/types": "^3.272.0",
     "@types/express": "^4.17.11",
     "@types/jest": "^27.4.1",
     "@types/jsonwebtoken": "^8.5.2",

@@ -197,11 +197,9 @@ const processRecord = async (item: CloudTrail.Record) => {
     },
   });
 
-  await DynamodbHelper.getDocumentClient()
-    .transactWrite({
-      TransactItems: transactItems,
-    })
-    .promise();
+  await DynamodbHelper.getDocumentClient().transactWrite({
+    TransactItems: transactItems,
+  });
 
   // add tags to resource
   await AddTags(createItems);
