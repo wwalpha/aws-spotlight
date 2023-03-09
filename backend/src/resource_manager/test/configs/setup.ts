@@ -18,44 +18,41 @@ const setup = async () => {
   const helper = new DynamodbHelper({ options: { endpoint: process.env.AWS_ENDPOINT } });
 
   await Promise.all([
-    helper
-      .getClient()
-      .createTable({
-        TableName: TABLE_NAME_RESOURCE as string,
-        BillingMode: 'PROVISIONED',
-        ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
-        KeySchema: [
-          { AttributeName: 'ResourceId', KeyType: 'HASH' },
-          { AttributeName: 'EventTime', KeyType: 'RANGE' },
-        ],
-        AttributeDefinitions: [
-          { AttributeName: 'ResourceId', AttributeType: 'S' },
-          { AttributeName: 'EventTime', AttributeType: 'S' },
-          { AttributeName: 'EventSource', AttributeType: 'S' },
-          { AttributeName: 'UserName', AttributeType: 'S' },
-        ],
-        GlobalSecondaryIndexes: [
-          {
-            IndexName: 'gsiIdx1',
-            KeySchema: [
-              { AttributeName: 'EventSource', KeyType: 'HASH' },
-              { AttributeName: 'ResourceId', KeyType: 'RANGE' },
-            ],
-            Projection: { ProjectionType: 'ALL' },
-            ProvisionedThroughput: { WriteCapacityUnits: 100, ReadCapacityUnits: 100 },
-          },
-          {
-            IndexName: 'gsiIdx2',
-            KeySchema: [
-              { AttributeName: 'UserName', KeyType: 'HASH' },
-              { AttributeName: 'ResourceId', KeyType: 'RANGE' },
-            ],
-            Projection: { ProjectionType: 'ALL' },
-            ProvisionedThroughput: { WriteCapacityUnits: 100, ReadCapacityUnits: 100 },
-          },
-        ],
-      })
-      .promise(),
+    helper.getClient().createTable({
+      TableName: TABLE_NAME_RESOURCE as string,
+      BillingMode: 'PROVISIONED',
+      ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
+      KeySchema: [
+        { AttributeName: 'ResourceId', KeyType: 'HASH' },
+        { AttributeName: 'EventTime', KeyType: 'RANGE' },
+      ],
+      AttributeDefinitions: [
+        { AttributeName: 'ResourceId', AttributeType: 'S' },
+        { AttributeName: 'EventTime', AttributeType: 'S' },
+        { AttributeName: 'EventSource', AttributeType: 'S' },
+        { AttributeName: 'UserName', AttributeType: 'S' },
+      ],
+      GlobalSecondaryIndexes: [
+        {
+          IndexName: 'gsiIdx1',
+          KeySchema: [
+            { AttributeName: 'EventSource', KeyType: 'HASH' },
+            { AttributeName: 'ResourceId', KeyType: 'RANGE' },
+          ],
+          Projection: { ProjectionType: 'ALL' },
+          ProvisionedThroughput: { WriteCapacityUnits: 100, ReadCapacityUnits: 100 },
+        },
+        {
+          IndexName: 'gsiIdx2',
+          KeySchema: [
+            { AttributeName: 'UserName', KeyType: 'HASH' },
+            { AttributeName: 'ResourceId', KeyType: 'RANGE' },
+          ],
+          Projection: { ProjectionType: 'ALL' },
+          ProvisionedThroughput: { WriteCapacityUnits: 100, ReadCapacityUnits: 100 },
+        },
+      ],
+    }),
   ]);
 
   await helper.bulk(TABLE_NAME_RESOURCE, RESOURCE_DATAS);
