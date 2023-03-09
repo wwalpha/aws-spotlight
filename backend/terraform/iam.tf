@@ -2,7 +2,7 @@
 # AWS Lambda Role - CloudTrail
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role" "cloudtrail" {
-  name               = "${local.project_name_uc}_Lambda_CloudTrailRole"
+  name               = "${local.project_name_uc}_Lambda_CloudTrailRole${local.suffix}"
   assume_role_policy = data.aws_iam_policy_document.lambda.json
 
   lifecycle {
@@ -64,7 +64,7 @@ resource "aws_iam_role_policy" "cloudtrail" {
 # AWS Role - AWS Batch JOB
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role" "batch_job" {
-  name               = "${local.project_name_uc}_BatchJOBRole"
+  name               = "${local.project_name_uc}_BatchJOBRole${local.suffix}"
   assume_role_policy = data.aws_iam_policy_document.batch.json
 
   lifecycle {
@@ -84,7 +84,7 @@ resource "aws_iam_role_policy_attachment" "batch_job_cloudwatch" {
 # AWS ECS Task Execution Role
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role" "batch_exec" {
-  name               = "${local.project_name_uc}_BatchExecutionRole"
+  name               = "${local.project_name_uc}_BatchExecutionRole${local.suffix}"
   assume_role_policy = data.aws_iam_policy_document.ecs_tasks.json
   lifecycle {
     create_before_destroy = false
@@ -119,7 +119,7 @@ resource "aws_iam_role_policy_attachment" "batch_exec_ssm" {
 # AWS Lambda Role - Unprocessed
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role" "unprocessed" {
-  name               = "${local.project_name_uc}_Lambda_UnprocessedRole"
+  name               = "${local.project_name_uc}_Lambda_UnprocessedRole${local.suffix}"
   assume_role_policy = data.aws_iam_policy_document.lambda.json
 
   lifecycle {
@@ -169,7 +169,7 @@ resource "aws_iam_role_policy" "unprocessed" {
 # AWS Lambda Role - Authorizer
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role" "authorizer" {
-  name               = "${local.project_name_uc}_Lambda_AuthorizerRole"
+  name               = "${local.project_name_uc}_Lambda_AuthorizerRole${local.suffix}"
   assume_role_policy = data.aws_iam_policy_document.lambda.json
 }
 
@@ -186,7 +186,7 @@ resource "aws_iam_role_policy_attachment" "authorizer" {
 # AWS Lambda Role - Synthetics
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role" "synthetics" {
-  name               = "${local.project_name_uc}_Lambda_SyntheticsRole"
+  name               = "${local.project_name_uc}_Lambda_SyntheticsRole${local.suffix}"
   assume_role_policy = data.aws_iam_policy_document.lambda.json
 
   lifecycle {

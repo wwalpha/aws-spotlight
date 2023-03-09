@@ -2,7 +2,7 @@
 # Lambda Function - CloudTrail
 # ----------------------------------------------------------------------------------------------
 resource "aws_lambda_function" "cloudtrail" {
-  function_name = "${local.project_name}-cloudtrail"
+  function_name = "${local.project_name}-cloudtrail-${local.suffix}"
   package_type  = "Image"
   image_uri     = data.aws_ssm_parameter.cloudtrail_repo_url.value
   memory_size   = 256
@@ -47,7 +47,7 @@ resource "aws_lambda_event_source_mapping" "cloudtrail" {
 # Lambda Function - Unprocessed
 # ----------------------------------------------------------------------------------------------
 resource "aws_lambda_function" "unprocessed" {
-  function_name = "${local.project_name}-unprocessed"
+  function_name = "${local.project_name}-unprocessed-${local.suffix}"
   package_type  = "Image"
   image_uri     = data.aws_ssm_parameter.unprocessed_repo_url.value
   memory_size   = 256
@@ -90,7 +90,7 @@ resource "aws_lambda_function_event_invoke_config" "unprocessed" {
 # Lambda Function - CloudTrail
 # ----------------------------------------------------------------------------------------------
 resource "aws_lambda_function" "authorizer" {
-  function_name = "${local.project_name}-authorizer"
+  function_name = "${local.project_name}-authorizer-${local.suffix}"
   filename      = data.archive_file.authorizer.output_path
   handler       = local.lambda_handler
   runtime       = local.lambda_runtime

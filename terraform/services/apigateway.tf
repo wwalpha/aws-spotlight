@@ -2,7 +2,7 @@
 # API Gateway
 # ---------------------------------------------------------------------------------------------
 resource "aws_apigatewayv2_api" "this" {
-  name          = "${local.project_name}-api"
+  name          = "${local.project_name}-api-${local.suffix}"
   protocol_type = "HTTP"
 
   cors_configuration {
