@@ -4,6 +4,7 @@ import axios from 'axios';
 import { decodeToken, Logger } from './utils';
 import { Endpoints } from './consts';
 import { User, Token } from 'typings';
+import { JwtPayload } from 'jsonwebtoken';
 
 // health check
 export const healthCheck = (_: any, res: express.Response) => {
@@ -21,7 +22,8 @@ export const common = async (req: express.Request, res: express.Response, app: a
 
     res.status(200).send(results);
   } catch (err) {
-    const message = defaultTo(err.response?.data, err.message);
+    const error = err as unknown as any;
+    const message = defaultTo(error.response?.data, error.message);
 
     Logger.error('Unhandle error:', err);
 
@@ -34,7 +36,9 @@ export const decode = async (req: express.Request, res: express.Response<Token.D
   const token = decodeToken(req.headers['authorization']);
 
   // get user info
-  const response = await axios.get<User.GetUserResponse>(Endpoints.USER(token['cognito:username']));
+  const response = await axios.get<User.GetUserResponse>(
+    Endpoints.USER((token as JwtPayload)['cognito:username'] as string)
+  );
 
   if (response.status != 200) {
     throw new Error(JSON.stringify(response.data));
