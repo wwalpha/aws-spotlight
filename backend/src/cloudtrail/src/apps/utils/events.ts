@@ -149,7 +149,7 @@ export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise
 
   const tasks = items.map((item) =>
     DynamodbHelper.query<Tables.Resource>({
-      TableName: Consts.Environments.TABLE_NAME_RESOURCE,
+      TableName: Consts.Environments.TABLE_NAME_RESOURCES,
       KeyConditionExpression: 'ResourceId = :ResourceId',
       ExpressionAttributeValues: {
         ':ResourceId': item.ResourceId,

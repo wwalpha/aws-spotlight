@@ -11,7 +11,7 @@ AWS.config.update({
   dynamodb: { endpoint: process.env.AWS_ENDPOINT },
 });
 
-const TABLE_NAME_RESOURCE = process.env.TABLE_NAME_RESOURCE as string;
+const TABLE_NAME_RESOURCES = process.env.TABLE_NAME_RESOURCES as string;
 
 const setup = async () => {
   console.log('jest setup start...');
@@ -19,7 +19,7 @@ const setup = async () => {
 
   await Promise.all([
     helper.getClient().createTable({
-      TableName: TABLE_NAME_RESOURCE as string,
+      TableName: TABLE_NAME_RESOURCES as string,
       BillingMode: 'PROVISIONED',
       ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
       KeySchema: [
@@ -55,7 +55,7 @@ const setup = async () => {
     }),
   ]);
 
-  await helper.bulk(TABLE_NAME_RESOURCE, RESOURCE_DATAS);
+  await helper.bulk(TABLE_NAME_RESOURCES, RESOURCE_DATAS);
 
   console.log('jest setup end...');
 };

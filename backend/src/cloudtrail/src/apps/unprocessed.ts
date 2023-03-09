@@ -132,7 +132,7 @@ const getUnprocessedRecords = async (events: Tables.EventType[]) => {
 };
 
 const processRecord = async (item: CloudTrail.Record) => {
-  const { TABLE_NAME_EVENT_TYPE, TABLE_NAME_HISTORY, TABLE_NAME_RESOURCE, TABLE_NAME_UNPROCESSED } =
+  const { TABLE_NAME_EVENT_TYPE, TABLE_NAME_HISTORY, TABLE_NAME_RESOURCES, TABLE_NAME_UNPROCESSED } =
     Consts.Environments;
 
   const createItems = Events.getCreateResourceItem(item);
@@ -144,7 +144,7 @@ const processRecord = async (item: CloudTrail.Record) => {
   if (createItems) {
     // add resource record
     createItems
-      .map((item) => Utilities.getPutRecord(TABLE_NAME_RESOURCE, item))
+      .map((item) => Utilities.getPutRecord(TABLE_NAME_RESOURCES, item))
       .forEach((item) => transactItems.push(item));
   }
 
@@ -155,7 +155,7 @@ const processRecord = async (item: CloudTrail.Record) => {
         (item) =>
           ({
             Delete: {
-              TableName: TABLE_NAME_RESOURCE,
+              TableName: TABLE_NAME_RESOURCES,
               Key: {
                 ResourceId: item.ResourceId,
                 EventTime: item.EventTime,

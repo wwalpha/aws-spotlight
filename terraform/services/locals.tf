@@ -22,7 +22,7 @@ locals {
   # ----------------------------------------------------------------------------------------------
   # dynamodb_name_notification = local.remote_setup.dynamodb_name_notification
   dynamodb_name_event_type  = local.remote_setup.dynamodb_name_event_type
-  dynamodb_name_resource    = local.remote_setup.dynamodb_name_resource
+  dynamodb_name_resources   = local.remote_setup.dynamodb_name_resources
   dynamodb_name_unprocessed = local.remote_setup.dynamodb_name_unprocessed
   dynamodb_name_history     = local.remote_setup.dynamodb_name_history
   dynamodb_name_users       = local.remote_setup.dynamodb_name_users

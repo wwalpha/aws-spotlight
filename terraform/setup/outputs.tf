@@ -50,7 +50,7 @@ output "dynamodb_name_event_type" {
 # ----------------------------------------------------------------------------------------------
 # DynamoDB Name - Resource
 # ----------------------------------------------------------------------------------------------
-output "dynamodb_name_resource" {
+output "dynamodb_name_resources" {
   value = aws_dynamodb_table.resource.name
 }
 

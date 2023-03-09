@@ -31,7 +31,7 @@ const teardown = async () => {
   await sqsClient.deleteQueue({ QueueUrl: process.env.SQS_URL as string }).promise();
 
   await dbClient.deleteTable({ TableName: process.env.TABLE_NAME_EVENT_TYPE as string }).promise();
-  await dbClient.deleteTable({ TableName: process.env.TABLE_NAME_RESOURCE as string }).promise();
+  await dbClient.deleteTable({ TableName: process.env.TABLE_NAME_RESOURCES as string }).promise();
   await dbClient.deleteTable({ TableName: process.env.TABLE_NAME_UNPROCESSED as string }).promise();
   await dbClient.deleteTable({ TableName: process.env.TABLE_NAME_HISTORY as string }).promise();
 

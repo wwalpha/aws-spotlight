@@ -5,7 +5,7 @@ resource "aws_s3_object" "resource" {
   bucket  = local.bucket_name_environment
   key     = "resource.env"
   content = <<EOT
-TABLE_NAME_RESOURCE=${local.dynamodb_name_resource}
+TABLE_NAME_RESOURCES=${local.dynamodb_name_resources}
 TABLE_NAME_SETTINGS=${local.dynamodb_name_settings}
 SNS_TOPIC_ARN_ADMIN=${data.aws_sns_topic.admin.arn}
 EOT
@@ -18,7 +18,7 @@ resource "aws_s3_object" "auth" {
   bucket  = local.bucket_name_environment
   key     = "auth.env"
   content = <<EOT
-TABLE_NAME_RESOURCE=${local.dynamodb_name_resource}
+TABLE_NAME_RESOURCES=${local.dynamodb_name_resources}
 TABLE_NAME_SETTINGS=${local.dynamodb_name_settings}
 ENDPOINT_USER_SERVICE=http://${local.cloudmap_service_user}.${local.cloudmap_namespace}:8080
 EOT
@@ -31,7 +31,7 @@ resource "aws_s3_object" "token" {
   bucket  = local.bucket_name_environment
   key     = "token.env"
   content = <<EOT
-TABLE_NAME_RESOURCE=${local.dynamodb_name_resource}
+TABLE_NAME_RESOURCES=${local.dynamodb_name_resources}
 ENDPOINT_USER_SERVICE=http://${local.cloudmap_service_user}.${local.cloudmap_namespace}:8080
 EOT
 }

@@ -13,7 +13,7 @@ AWS.config.update({
 
 const S3_BUCKET = process.env.S3_BUCKET as string;
 const SQS_URL = process.env.SQS_URL as string;
-const TABLE_NAME_RESOURCE = process.env.TABLE_NAME_RESOURCE as string;
+const TABLE_NAME_RESOURCES = process.env.TABLE_NAME_RESOURCES as string;
 const TABLE_NAME_HISTORY = process.env.TABLE_NAME_HISTORY as string;
 const TABLE_NAME_UNPROCESSED = process.env.TABLE_NAME_UNPROCESSED as string;
 const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
@@ -109,7 +109,7 @@ export const sendMessage = async (body: Record<string, any>): Promise<SQSEvent> 
 
 export const getResource = async (ResourceId: string): Promise<Tables.Resource | undefined> => {
   const result = await helper.query<Tables.Resource>({
-    TableName: TABLE_NAME_RESOURCE,
+    TableName: TABLE_NAME_RESOURCES,
     KeyConditionExpression: 'ResourceId = :ResourceId',
     ExpressionAttributeValues: {
       ':ResourceId': ResourceId,
@@ -173,7 +173,7 @@ export const scanHistory = async (): Promise<Tables.History[] | undefined> => {
 
 export const scanResource = async (): Promise<Tables.Resource[] | undefined> => {
   const result = await helper.scan<Tables.Resource>({
-    TableName: TABLE_NAME_RESOURCE,
+    TableName: TABLE_NAME_RESOURCES,
   });
 
   return result?.Items;

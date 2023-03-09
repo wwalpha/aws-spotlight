@@ -38,7 +38,7 @@ export const getResourceList = async (
   if (role === ROLE.ADMIN) {
     // get service resources
     const result = await helper.query<Tables.Resource>({
-      TableName: Environments.TABLE_NAME_RESOURCE,
+      TableName: Environments.TABLE_NAME_RESOURCES,
       KeyConditionExpression: '#EventSource = :EventSource',
       IndexName: 'gsiIdx1',
       ExpressionAttributeNames: {
@@ -54,7 +54,7 @@ export const getResourceList = async (
     // normal user
     // get service resources
     const result = await helper.query<Tables.Resource>({
-      TableName: Environments.TABLE_NAME_RESOURCE,
+      TableName: Environments.TABLE_NAME_RESOURCES,
       KeyConditionExpression: '#UserName = :UserName AND begins_with(#ResourceId, :ResourceId)',
       IndexName: 'gsiIdx2',
       ExpressionAttributeNames: {
@@ -85,7 +85,7 @@ export const getCategoryList = async (
   // administrator
   if (role === ROLE.ADMIN) {
     const result = await helper.scan<Tables.Resource>({
-      TableName: Environments.TABLE_NAME_RESOURCE,
+      TableName: Environments.TABLE_NAME_RESOURCES,
       ProjectionExpression: 'EventSource',
     });
 
@@ -96,7 +96,7 @@ export const getCategoryList = async (
     // normal user
     // get event source list
     const result = await helper.query<Tables.Resource>({
-      TableName: Environments.TABLE_NAME_RESOURCE,
+      TableName: Environments.TABLE_NAME_RESOURCES,
       ProjectionExpression: 'EventSource',
       KeyConditionExpression: '#UserName = :UserName',
       IndexName: 'gsiIdx2',
@@ -125,7 +125,7 @@ export const auditRegion = async (): Promise<void> => {
   const services = settings?.Item?.Services;
 
   const result = await helper.scan<Tables.Resource>({
-    TableName: Environments.TABLE_NAME_RESOURCE,
+    TableName: Environments.TABLE_NAME_RESOURCES,
     FilterExpression: 'AWSRegion <> :AWSRegion',
     ExpressionAttributeValues: {
       ':AWSRegion': 'ap-northeast-1',

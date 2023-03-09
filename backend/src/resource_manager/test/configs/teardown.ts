@@ -14,7 +14,7 @@ const dbClient = new DynamoDB();
 const teardown = async () => {
   console.log('jest teardown start...');
 
-  await dbClient.deleteTable({ TableName: process.env.TABLE_NAME_RESOURCE as string }).promise();
+  await dbClient.deleteTable({ TableName: process.env.TABLE_NAME_RESOURCES as string }).promise();
 
   console.log('jest teardown end...');
 };

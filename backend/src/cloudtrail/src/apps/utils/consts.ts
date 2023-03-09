@@ -1,6 +1,6 @@
 export const Environments = {
   TABLE_NAME_EVENT_TYPE: process.env.TABLE_NAME_EVENT_TYPE as string,
-  TABLE_NAME_RESOURCE: process.env.TABLE_NAME_RESOURCE as string,
+  TABLE_NAME_RESOURCES: process.env.TABLE_NAME_RESOURCES as string,
   TABLE_NAME_HISTORY: process.env.TABLE_NAME_HISTORY as string,
   TABLE_NAME_UNPROCESSED: process.env.TABLE_NAME_UNPROCESSED as string,
   SNS_TOPIC_ARN: process.env.SNS_TOPIC_ARN as string,
