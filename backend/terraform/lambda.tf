@@ -11,7 +11,7 @@ resource "aws_lambda_function" "cloudtrail" {
   environment {
     variables = {
       TABLE_NAME_EVENT_TYPE  = local.dynamodb_name_event_type
-      TABLE_NAME_RESOURCE    = local.dynamodb_name_resource
+      TABLE_NAME_RESOURCES   = local.dynamodb_name_resources
       TABLE_NAME_UNPROCESSED = local.dynamodb_name_unprocessed
       TABLE_NAME_HISTORY     = local.dynamodb_name_history
       SQS_URL                = data.aws_sqs_queue.cloudtrail.url
@@ -56,7 +56,7 @@ resource "aws_lambda_function" "unprocessed" {
   environment {
     variables = {
       TABLE_NAME_EVENT_TYPE  = local.dynamodb_name_event_type
-      TABLE_NAME_RESOURCE    = local.dynamodb_name_resource
+      TABLE_NAME_RESOURCES   = local.dynamodb_name_resources
       TABLE_NAME_UNPROCESSED = local.dynamodb_name_unprocessed
       TABLE_NAME_HISTORY     = local.dynamodb_name_history
     }
@@ -155,3 +155,26 @@ resource "aws_lambda_function_event_invoke_config" "authorizer" {
     }
   }
 }
+
+# ----------------------------------------------------------------------------------------------
+# Lambda Function - Release
+# ----------------------------------------------------------------------------------------------
+# resource "aws_lambda_function" "release" {
+#   function_name     = "${local.project_name}-release-${local.suffix}"
+#   s3_bucket         = data.aws_s3_object.lambda_start.bucket
+#   s3_key            = data.aws_s3_object.lambda_start.key
+#   s3_object_version = data.aws_s3_object.lambda_start.version_id
+#   memory_size       = 256
+#   role              = aws_iam_role.cloudtrail.arn
+#   timeout           = 60
+
+#   environment {
+#     variables = {
+#       TABLE_NAME_RESOURCES   = local.dynamodb_name_resources
+#       TABLE_NAME_HISTORY     = local.dynamodb_name_resources
+#       BUCKET_NAME_ARCHIVE    = local.dynamodb_name_unprocessed
+#       BUCKET_NAME_CLOUDTRAIL = local.dynamodb_name_history
+#       SQS_URL                = data.aws_sqs_queue.cloudtrail.url
+#     }
+#   }
+# }
