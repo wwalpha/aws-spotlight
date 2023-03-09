@@ -25,7 +25,7 @@ env:
 
 jobs:
   Terraform:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     environment:
       name: prod
     env:
@@ -78,7 +78,7 @@ jobs:
 
   # [ECS] Auth Manager
   ECS_Auth:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     concurrency: auth_manager
     environment:
       name: prod
@@ -142,7 +142,7 @@ jobs:
 
   # [ECS] Resource Manager
   ECS_Resource:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     concurrency: resource_manager
     environment:
       name: prod
@@ -206,7 +206,7 @@ jobs:
 
   # [ECS] User Manager
   ECS_User:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     concurrency: user_manager
     environment:
       name: prod
@@ -270,7 +270,7 @@ jobs:
 
   # [Lambda] Authorizer
   Lambda_Authorizer:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     concurrency: lambda_authorizer
     environment:
       name: prod
@@ -296,7 +296,7 @@ jobs:
 
   # [Lambda] CloudTrail
   Lambda_CloudTrail:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     concurrency: cloudtrail
     environment:
       name: prod
@@ -352,7 +352,7 @@ jobs:
 
   # [Lambda] Unprocessed
   Lambda_Unprocessed:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     concurrency: unprocessed
     environment:
       name: prod
@@ -408,7 +408,7 @@ jobs:
 
   # Release Events
   Release_Events:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     concurrency: events
     environment:
       name: prod
@@ -434,7 +434,7 @@ jobs:
 
   # Frontend
   Frontend:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     concurrency: frontend
     environment:
       name: prod

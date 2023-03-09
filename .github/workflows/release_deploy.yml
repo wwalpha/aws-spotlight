@@ -29,7 +29,7 @@ env:
 
 jobs:
   Terraform:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     environment:
       name: prod
     env:
@@ -82,7 +82,7 @@ jobs:
 
   # [ECS] Auth Manager
   ECS_Auth:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     needs:
       - Terraform
     concurrency: auth_manager
@@ -127,7 +127,7 @@ jobs:
 
   # [ECS] Resource Manager
   ECS_Resource:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     needs:
       - Terraform
     concurrency: resource_manager
@@ -172,7 +172,7 @@ jobs:
 
   # [ECS] User Manager
   ECS_User:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     needs:
       - Terraform
     concurrency: user_manager
@@ -217,7 +217,7 @@ jobs:
 
   # [Lambda]
   Lambda:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     needs:
       - Terraform
     concurrency: lambda
@@ -258,7 +258,7 @@ jobs:
 
   # [Lambda] Authorizer
   Lambda_Authorizer:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     needs:
       - Terraform
     concurrency: authorizer
@@ -304,7 +304,7 @@ jobs:
 
   # Release Events
   Release_Events:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     needs:
       - ECS_Auth
       - ECS_User
@@ -356,7 +356,7 @@ jobs:
 
   # [Frontend]
   Frontend:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     needs:
       - Release_Events
     environment:
