@@ -99,7 +99,7 @@ jobs:
         with:
           task-definition: ${{ steps.render-web-container.outputs.task-definition }}
           service: ${{ env.ECS_SERVICE_NAME }}
-          cluster: ${{ env.ECS_CLUSTER_NAME }}
+          cluster: ${{ format('{0}-{1}', env.ECS_CLUSTER_NAME, secrets.ENV_SUFFIX) }}
           wait-for-service-stability: false
           force-new-deployment: true
 
