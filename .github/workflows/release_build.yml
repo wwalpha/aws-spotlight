@@ -93,7 +93,7 @@ jobs:
       # Setup Node.js
       - uses: actions/setup-node@v2
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       # AWS Credentials
       - name: Configure AWS credentials
@@ -157,7 +157,7 @@ jobs:
       # Setup Node.js
       - uses: actions/setup-node@v2
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       # AWS Credentials
       - name: Configure AWS credentials
@@ -221,7 +221,7 @@ jobs:
       # Setup Node.js
       - uses: actions/setup-node@v2
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       # AWS Credentials
       - name: Configure AWS credentials
@@ -285,7 +285,7 @@ jobs:
       # Setup Node.js
       - uses: actions/setup-node@v2
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       # Install and Build
       - name: Build
@@ -311,7 +311,7 @@ jobs:
       # Setup Node.js
       - uses: actions/setup-node@v2
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       # AWS Credentials
       - name: Configure AWS credentials
@@ -367,7 +367,7 @@ jobs:
       # Setup Node.js
       - uses: actions/setup-node@v2
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       # AWS Credentials
       - name: Configure AWS credentials
@@ -423,7 +423,7 @@ jobs:
       # Setup Node.js
       - uses: actions/setup-node@v2
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       # Installation
       - name: Build
@@ -453,7 +453,7 @@ jobs:
       # Setup Node.js
       - uses: actions/setup-node@v2
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       # AWS Credentials
       - name: Configure AWS credentials
