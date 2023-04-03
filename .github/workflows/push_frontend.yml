@@ -13,7 +13,7 @@ env:
   AWS_DEFAULT_REGION: us-east-1
   WORKING_DIR: frontend
   NODE_ENV: production
-  SSM_PARAMETER_NAME: /arms/frontend
+  SSM_PARAMETER_NAME: /arms/frontend/8cd531
 
 jobs:
   build:

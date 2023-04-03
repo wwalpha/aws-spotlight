@@ -12,19 +12,18 @@ on:
 env:
   AWS_DEFAULT_REGION: us-east-1
   ECS_TAKS_DEFINITION_FILE: task_definition.json
-  SSM_PARAMETER_NAME: /arms/repository_url
   WORKING_DIR: backend/src/resource_manager
+  SSM_PARAMETER_NAME: /arms/repository_url/resource_manager/8cd531
+  ECS_CLUSTER_NAME: arms-cluster-8cd531
+  ECS_TAKS_DEFINITION: arms-resource-8cd531
+  ECS_SERVICE_NAME: resource_manager
+  ECR_REPOSITORY: arms/resource/8cd531
 
 jobs:
   build:
     runs-on: ubuntu-20.04
     environment:
       name: dev
-    env:
-      ECS_CLUSTER_NAME: ${{ format('arms-cluster-{0}', secrets.ENV_SUFFIX) }}
-      ECS_SERVICE_NAME: resource_manager
-      ECS_TAKS_DEFINITION: ${{ format('arms-resource-{0}', secrets.ENV_SUFFIX) }}
-      ECR_REPOSITORY: ${{ format('arms/resource/{0}', secrets.ENV_SUFFIX) }}
     defaults:
       run:
         working-directory: ${{ env.WORKING_DIR }}
@@ -106,4 +105,4 @@ jobs:
       # Update Repository URL
       - name: Update ecs repository url
         run: |
-          aws ssm put-parameter --name $SSM_PARAMETER_NAME/$ECS_SERVICE_NAME --type "String" --value ${{ steps.build-image.outputs.image }} --overwrite
+          aws ssm put-parameter --name $SSM_PARAMETER_NAME --type "String" --value ${{ steps.build-image.outputs.image }} --overwrite
