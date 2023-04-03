@@ -21,7 +21,7 @@ const configs: Configuration = {
   resolve: {
     mainFields: ['browser', 'main', 'module'],
     extensions: ['.ts', '.tsx', '.js'],
-    plugins: [new TsconfigPathsPlugin()],
+    plugins: [new TsconfigPathsPlugin() as any],
     fallback: {
       crypto: false,
     },
