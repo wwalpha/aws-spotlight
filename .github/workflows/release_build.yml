@@ -11,17 +11,17 @@ env:
   WORKING_DIR_TERRAFORM: terraform
   WORKING_DIR_BACKEND: backend
   WORKING_DIR_FRONTEND: frontend
-  ECR_REPOSITORY_RESOURCE: arms/resource
-  ECR_REPOSITORY_AUTH: arms/auth
-  ECR_REPOSITORY_USER: arms/user
-  ECR_REPOSITORY_CLOUDTRAIL: arms/cloudtrail
-  ECR_REPOSITORY_UNPROCESSED: arms/unprocessed
-  SSM_PARAMETER_NAME_AUTH: /arms/repository_url/auth_manager
-  SSM_PARAMETER_NAME_RESOURCE: /arms/repository_url/resource_manager
-  SSM_PARAMETER_NAME_USER: /arms/repository_url/user_manager
-  SSM_PARAMETER_NAME_CLOUDTRAIL: /arms/repository_url/cloudtrail
-  SSM_PARAMETER_NAME_UNPROCESSED: /arms/repository_url/unprocessed
-  SSM_PARAMETER_NAME_FRONTEND: /arms/frontend
+  ECR_REPOSITORY_RESOURCE: arms/resource/44e2a0
+  ECR_REPOSITORY_AUTH: arms/auth/44e2a0
+  ECR_REPOSITORY_USER: arms/user/44e2a0
+  ECR_REPOSITORY_CLOUDTRAIL: arms/cloudtrail/44e2a0
+  ECR_REPOSITORY_UNPROCESSED: arms/unprocessed/44e2a0
+  SSM_PARAMETER_NAME_AUTH: /arms/repository_url/auth_manager/44e2a0
+  SSM_PARAMETER_NAME_RESOURCE: /arms/repository_url/resource_manager/44e2a0
+  SSM_PARAMETER_NAME_USER: /arms/repository_url/user_manager/44e2a0
+  SSM_PARAMETER_NAME_CLOUDTRAIL: /arms/repository_url/cloudtrail/44e2a0
+  SSM_PARAMETER_NAME_UNPROCESSED: /arms/repository_url/unprocessed/44e2a0
+  SSM_PARAMETER_NAME_FRONTEND: /arms/frontend/44e2a0
 
 jobs:
   Terraform:
@@ -31,7 +31,6 @@ jobs:
     env:
       TF_VAR_domain_name: ${{ secrets.DOMAIN_NAME }}
       TF_VAR_admin_email: ${{ secrets.ADMIN_EMAIL }} 
-
     steps:
       # source checkout
       - name: Checkout
@@ -40,9 +39,9 @@ jobs:
       # Install the latest version of Terraform CLI 
       # and configure the Terraform CLI configuration file with a Terraform Cloud user API token
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.0.0
+          terraform_version: 1.3.4
 
       # AWS Credentials
       - name: Configure AWS credentials
