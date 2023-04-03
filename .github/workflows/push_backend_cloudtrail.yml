@@ -73,11 +73,15 @@ jobs:
           docker build -f "Dockerfile.CloudTrail" -t $ECR_REPOSITORY_CLOUDTRAIL .
           docker tag $ECR_REPOSITORY_CLOUDTRAIL $ECR_REGISTRY/$ECR_REPOSITORY_CLOUDTRAIL:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY_CLOUDTRAIL:$IMAGE_TAG
+          docker tag $ECR_REPOSITORY_CLOUDTRAIL $ECR_REGISTRY/$ECR_REPOSITORY_CLOUDTRAIL:latest
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY_CLOUDTRAIL:latest
           echo "::set-output name=image_cloudtrail::$ECR_REGISTRY/$ECR_REPOSITORY_CLOUDTRAIL:$IMAGE_TAG"
 
           docker build -f "Dockerfile.Unprocessed" -t $ECR_REPOSITORY_UNPROCESSED .
           docker tag $ECR_REPOSITORY_UNPROCESSED $ECR_REGISTRY/$ECR_REPOSITORY_UNPROCESSED:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY_UNPROCESSED:$IMAGE_TAG
+          docker tag $ECR_REPOSITORY_UNPROCESSED $ECR_REGISTRY/$ECR_REPOSITORY_UNPROCESSED:latest
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY_UNPROCESSED:latest
           echo "::set-output name=image_unprocessed::$ECR_REGISTRY/$ECR_REPOSITORY_UNPROCESSED:$IMAGE_TAG"
 
       # Lambda Deploy
