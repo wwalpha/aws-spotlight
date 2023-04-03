@@ -17,16 +17,13 @@ const setup = async () => {
   const helper = new DynamodbHelper({ options: { endpoint: process.env.AWS_ENDPOINT } });
 
   //create table
-  await helper
-    .getClient()
-    .createTable({
-      TableName: TABLE_NAME_SETTINGS as string,
-      BillingMode: 'PROVISIONED',
-      ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
-      KeySchema: [{ AttributeName: 'Id', KeyType: 'HASH' }],
-      AttributeDefinitions: [{ AttributeName: 'Id', AttributeType: 'S' }],
-    })
-    .promise();
+  await helper.getClient().createTable({
+    TableName: TABLE_NAME_SETTINGS as string,
+    BillingMode: 'PROVISIONED',
+    ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
+    KeySchema: [{ AttributeName: 'Id', KeyType: 'HASH' }],
+    AttributeDefinitions: [{ AttributeName: 'Id', AttributeType: 'S' }],
+  });
 
   // insert data
   await helper.bulk(TABLE_NAME_SETTINGS, [Releases]);
