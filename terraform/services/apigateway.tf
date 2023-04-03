@@ -82,7 +82,7 @@ resource "aws_apigatewayv2_api_mapping" "this" {
 # API Gateway VPC Link
 # ---------------------------------------------------------------------------------------------
 resource "aws_apigatewayv2_vpc_link" "this" {
-  name               = "${local.project_name}-link"
+  name               = "${local.project_name}-link-${local.suffix}"
   security_group_ids = [aws_security_group.private_link.id]
   subnet_ids         = module.vpc.public_subnets
 }

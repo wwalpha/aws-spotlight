@@ -2,7 +2,7 @@
 # AWS SQS - CloudTrail
 # ----------------------------------------------------------------------------------------------
 resource "aws_sqs_queue" "cloudtrail" {
-  name_prefix                       = "${local.project_name}-cloudtrail-"
+  name                              = "${local.project_name}-cloudtrail-${local.suffix}"
   delay_seconds                     = 90
   visibility_timeout_seconds        = 300
   kms_data_key_reuse_period_seconds = 300
@@ -45,7 +45,7 @@ resource "aws_sqs_queue_policy" "cloudtrail" {
 # AWS SQS - DeadLetter
 # ----------------------------------------------------------------------------------------------
 resource "aws_sqs_queue" "deadletter" {
-  name_prefix                       = "${local.project_name}-deadletter-"
+  name                              = "${local.project_name}-deadletter-${local.suffix}"
   delay_seconds                     = 90
   max_message_size                  = 2048
   message_retention_seconds         = 604800

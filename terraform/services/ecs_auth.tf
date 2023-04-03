@@ -4,17 +4,21 @@
 resource "aws_ecs_cluster" "this" {
   name = "${local.project_name}-cluster-${local.suffix}"
 
-  capacity_providers = ["FARGATE", "FARGATE_SPOT"]
-
-  default_capacity_provider_strategy {
-    base              = 0
-    capacity_provider = "FARGATE_SPOT"
-    weight            = 1
-  }
-
   setting {
     name  = "containerInsights"
     value = "disabled"
+  }
+}
+
+resource "aws_ecs_cluster_capacity_providers" "this" {
+  cluster_name = aws_ecs_cluster.this.name
+
+  capacity_providers = ["FARGATE", "FARGATE_SPOT"]
+
+  default_capacity_provider_strategy {
+    base              = 1
+    weight            = 100
+    capacity_provider = "FARGATE_SPOT"
   }
 }
 

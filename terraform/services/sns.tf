@@ -2,7 +2,7 @@
 # AWS SNS Topic Subscription - ADMIN
 # ----------------------------------------------------------------------------------------------
 resource "aws_sns_topic" "admin" {
-  name = "${local.project_name}-admin"
+  name = "${local.project_name}-admin-${local.suffix}"
 }
 
 # ----------------------------------------------------------------------------------------------
@@ -18,7 +18,7 @@ resource "aws_sns_topic_subscription" "admin" {
 # AWS SNS Topic Subscription - CloudTrail
 # ----------------------------------------------------------------------------------------------
 resource "aws_sns_topic" "cloudtrail" {
-  name = "${local.project_name}-cloudtrail"
+  name = "${local.project_name}-cloudtrail-${local.suffix}"
 }
 
 # ----------------------------------------------------------------------------------------------
