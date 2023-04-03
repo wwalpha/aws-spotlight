@@ -9,23 +9,23 @@ env:
   AWS_DEFAULT_REGION: us-east-1
   WORKING_DIR_TERRAFORM: terraform
   WORKING_DIR_BACKEND: backend
-  ECS_CLUSTER_NAME: arms-cluster
+  ECS_CLUSTER_NAME: arms-cluster-44e2a0
   ECS_TAKS_DEFINITION_FILE: task_definition.json
-  ECS_TAKS_DEFINITION_AUTH: arms-auth
-  ECS_TAKS_DEFINITION_RESOURCE: arms-resource
-  ECS_TAKS_DEFINITION_USER: arms-user
+  ECS_TAKS_DEFINITION_AUTH: arms-auth-44e2a0
+  ECS_TAKS_DEFINITION_RESOURCE: arms-resource-44e2a0
+  ECS_TAKS_DEFINITION_USER: arms-user-44e2a0
   ECS_SERVICE_NAME_AUTH: auth_manager
   ECS_SERVICE_NAME_RESOURCE: resource_manager
   ECS_SERVICE_NAME_USER: user_manager
-  LAMBDA_FUNCTION_CLOUDTRAIL: arms-cloudtrail
-  LAMBDA_FUNCTION_UNPROCESSED: arms-unprocessed
-  LAMBDA_FUNCTION_AUTHORIZER: arms-authorizer
-  SSM_PARAMETER_NAME_AUTH: /arms/repository_url/auth_manager
-  SSM_PARAMETER_NAME_RESOURCE: /arms/repository_url/resource_manager
-  SSM_PARAMETER_NAME_USER: /arms/repository_url/user_manager
-  SSM_PARAMETER_NAME_CLOUDTRAIL: /arms/repository_url/cloudtrail
-  SSM_PARAMETER_NAME_UNPROCESSED: /arms/repository_url/unprocessed
-  SSM_PARAMETER_NAME_FRONTEND: /arms/frontend
+  LAMBDA_FUNCTION_CLOUDTRAIL: arms-cloudtrail-44e2a0
+  LAMBDA_FUNCTION_UNPROCESSED: arms-unprocessed-44e2a0
+  LAMBDA_FUNCTION_AUTHORIZER: arms-authorizer-44e2a0
+  SSM_PARAMETER_NAME_AUTH: /arms/repository_url/auth_manager/44e2a0
+  SSM_PARAMETER_NAME_RESOURCE: /arms/repository_url/resource_manager/44e2a0
+  SSM_PARAMETER_NAME_USER: /arms/repository_url/user_manager/44e2a0
+  SSM_PARAMETER_NAME_CLOUDTRAIL: /arms/repository_url/cloudtrail/44e2a0
+  SSM_PARAMETER_NAME_UNPROCESSED: /arms/repository_url/unprocessed/44e2a0
+  SSM_PARAMETER_NAME_FRONTEND: /arms/frontend/44e2a0
 
 jobs:
   Terraform:
