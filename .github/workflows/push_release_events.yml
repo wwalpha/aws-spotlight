@@ -22,11 +22,10 @@ jobs:
     environment:
       name: dev
     env:
-      TABLE_NAME_SETTINGS: ${{ secrets.TABLE_NAME_SETTINGS }}
-      TABLE_NAME_EVENT_TYPE: ${{ secrets.TABLE_NAME_EVENT_TYPE }}
-      TABLE_NAME_HISTORY: ${{ secrets.TABLE_NAME_HISTORY }}
-      TABLE_NAME_RESOURCE: ${{ secrets.TABLE_NAME_RESOURCE }}
-      BUCKET_NAME_ARCHIVE: ${{ secrets.BUCKET_NAME_ARCHIVE }}
+      TABLE_NAME_EVENT_TYPE: arms-eventtype-8cd531
+      TABLE_NAME_HISTORY: arms-histories-8cd531
+      TABLE_NAME_RESOURCES: arms-resources-8cd531
+      BUCKET_NAME_ARCHIVE: arms-archive-8cd531
       SQS_URL: ${{ secrets.SQS_URL }}
     defaults:
       run:
@@ -56,8 +55,8 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
 
       # AWS Credentials
-      # - name: Release Notes
-      #   run: |
-      #     yarn initialize
-      #     yarn events
-      #     yarn patch
+      - name: Release Notes
+        run: |
+          yarn initialize
+          yarn events
+          yarn patch

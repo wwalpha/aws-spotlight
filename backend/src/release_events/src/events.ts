@@ -1,55 +1,51 @@
 import { DynamodbHelper } from '@alphax/dynamodb';
 import { Tables } from 'typings';
 import Events from '../../cloudtrail/test/configs/events.json';
+import Ignores from '../../cloudtrail/test/configs/ignore.json';
 
 const helper = new DynamodbHelper();
 const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
 
 const start = async () => {
-  const unconfirmed = await helper.scan<Tables.EventType>({
+  const allEvents = await helper.scan<Tables.EventType>({
     TableName: TABLE_NAME_EVENT_TYPE,
-    FilterExpression: 'attribute_exists(Unconfirmed)',
   });
 
-  for (let i = 0; i < unconfirmed.Items.length; i++) {
-    const item = unconfirmed.Items[i];
+  const updateItems = allEvents.Items.map<Tables.EventType>((item) => {
+    if (item.Unconfirmed === false) {
+      return item;
+    }
 
-    const setting = Events.find((e) => e.EventName === item.EventName && e.EventSource === item.EventSource);
+    const event = Events.find((e) => e.EventName === item.EventName && e.EventSource === item.EventSource);
 
-    if (!setting) continue;
-
-    await helper.truncate(TABLE_NAME_EVENT_TYPE, [
-      {
-        EventName: item.EventName,
-        EventSource: item.EventSource,
-      } as Tables.EventTypeKey,
-    ]);
-
-    await helper.put({
-      TableName: TABLE_NAME_EVENT_TYPE,
-      Item: {
-        ...setting,
+    if (event) {
+      return {
+        ...event,
         Unprocessed: true,
-      } as Tables.EventType,
-    });
-  }
+      };
+    }
 
-  for (; Events.length > 0; ) {
-    const item = Events.pop();
+    const ignore = Ignores.find((e) => e.EventName === item.EventName && e.EventSource === item.EventSource);
 
-    if (!item) continue;
+    if (ignore) {
+      return {
+        ...ignore,
+        Unprocessed: true,
+      };
+    }
 
-    try {
-      await helper.put({
-        TableName: TABLE_NAME_EVENT_TYPE,
-        Item: {
-          ...item,
-          Unprocessed: true,
-        } as Tables.EventType,
-        ConditionExpression: 'attribute_not_exists(EventName) AND attribute_not_exists(EventSource)',
-      });
-    } catch (err) {}
-  }
+    return item;
+  });
+
+  await helper.bulk(TABLE_NAME_EVENT_TYPE, updateItems);
+
+  const newEvents = Events.filter((item) => {
+    const exist = allEvents.Items.find((e) => e.EventName === item.EventName && e.EventSource === item.EventSource);
+
+    return exist === undefined;
+  });
+
+  await helper.bulk(TABLE_NAME_EVENT_TYPE, newEvents);
 };
 
 start();
