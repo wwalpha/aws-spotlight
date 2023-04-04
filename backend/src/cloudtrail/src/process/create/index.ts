@@ -35,6 +35,7 @@ export * from './EC2_CreateVpnGateway';
 export * from './EC2_CreateTransitGateway';
 export * from './EC2_CreateSubnet';
 export * from './EC2_CreateSecurityGroup';
+export * from './EC2_CreateInternetGateway';
 
 export * from './ECR_CreateRepository';
 

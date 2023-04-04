@@ -62,3 +62,7 @@ export { default as DeleteSubnet_H } from './DeleteSubnet_H.json';
 export { default as CreateSecurityGroup_H } from './CreateSecurityGroup_H.json';
 export { default as CreateSecurityGroup_R } from './CreateSecurityGroup_R.json';
 export { default as DeleteSecurityGroup_H } from './DeleteSecurityGroup_H.json';
+
+export { default as CreateInternetGateway_H } from './CreateInternetGateway_H.json';
+export { default as CreateInternetGateway_R } from './CreateInternetGateway_R.json';
+export { default as DeleteInternetGateway_H } from './DeleteInternetGateway_H.json';

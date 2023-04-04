@@ -33,6 +33,7 @@ export * from './EC2_DeleteVpnGateway';
 export * from './EC2_DeleteTransitGateway';
 export * from './EC2_DeleteSubnet';
 export * from './EC2_DeleteSecurityGroup';
+export * from './EC2_DeleteInternetGateway';
 
 export * from './ECR_DeleteRepository';
 

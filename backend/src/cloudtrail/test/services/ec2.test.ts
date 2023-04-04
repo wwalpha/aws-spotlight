@@ -514,4 +514,42 @@ describe('ec2.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     // expect(history).toEqual(EC2.DeleteSecurityGroup_H);
   });
+
+  test('EC2_CreateInternetGateway', async () => {
+    const event = await sendMessage(CreateEvents.EC2_CreateInternetGateway);
+
+    await cloudtrail(event);
+
+    const resource = await getResource(
+      'arn:aws:ec2:ap-northeast-1:999999999999:internet-gateway/igw-0cc6844795cc3e71e'
+    );
+    const history = await getHistory({ EventId: CreateEvents.EC2_CreateInternetGateway.eventID });
+
+    // fs.writeFileSync('CreateInternetGateway_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('CreateInternetGateway_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.CreateInternetGateway_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.CreateInternetGateway_H);
+  });
+
+  test('EC2_DeleteInternetGateway', async () => {
+    const event = await sendMessage(DeleteEvents.EC2_DeleteInternetGateway);
+
+    await cloudtrail(event);
+
+    const resource = await getResource(
+      'arn:aws:ec2:ap-northeast-1:999999999999:internet-gateway/igw-0cc6844795cc3e71e'
+    );
+    const history = await getHistory({ EventId: DeleteEvents.EC2_DeleteInternetGateway.eventID });
+
+    // fs.writeFileSync('DeleteInternetGateway_H.json', JSON.stringify(history));
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.DeleteInternetGateway_H);
+  });
 });
