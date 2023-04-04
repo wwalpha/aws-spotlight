@@ -88,14 +88,14 @@ jobs:
       - name: Lambda Deploy
         uses: appleboy/lambda-action@v0.1.3
         with:
-          function_name: arms-cloudtrail
+          function_name: arms-cloudtrail-8cd531
           image_uri: ${{ steps.build-image.outputs.image_cloudtrail }}
 
       # Lambda Deploy
       - name: Lambda Deploy
         uses: appleboy/lambda-action@v0.1.3
         with:
-          function_name: arms-unprocessed
+          function_name: arms-unprocessed-8cd531
           image_uri: ${{ steps.build-image.outputs.image_unprocessed }}
 
       # Update Repository URL
