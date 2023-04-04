@@ -50,6 +50,7 @@ const postSQS = async (token?: string) => {
         }),
       })
       .promise();
+    console.log('sqs send success');
   }
 
   console.log(results.NextContinuationToken);
@@ -84,12 +85,10 @@ const getBucketKeys = async (token?: string): Promise<string[]> => {
 };
 
 const reResource = async (lastEvaluatedKey?: DynamoDB.DocumentClient.Key) => {
-  const results = await helper
-    .scanRequest({
-      TableName: TABLE_NAME_HISTORY,
-      ExclusiveStartKey: lastEvaluatedKey,
-    })
-    .promise();
+  const results = await helper.scan({
+    TableName: TABLE_NAME_HISTORY,
+    ExclusiveStartKey: lastEvaluatedKey,
+  });
 
   const key = `patch/${getRandom()}.json.gz`;
 
@@ -124,3 +123,5 @@ const reResource = async (lastEvaluatedKey?: DynamoDB.DocumentClient.Key) => {
 };
 
 const getRandom = () => Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+
+// reCreateFromBucket();
