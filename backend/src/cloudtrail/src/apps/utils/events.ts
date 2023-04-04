@@ -30,6 +30,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
 
     case 'CODEBUILD_CreateProject':
       return [CreateEvent.CODEBUILD_CreateProject(record)];
+    case 'CODEDEPLOY_CreateApplication':
+      return [CreateEvent.CODEDEPLOY_CreateApplication(record)];
     case 'CONNECT_CreateInstance':
       return [CreateEvent.CONNECT_CreateInstance(record)];
     case 'CLOUDFRONT_CreateDistribution':
@@ -100,6 +102,9 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
     case 'FIREHOSE_CreateDeliveryStream':
       return [CreateEvent.FIREHOSE_CreateDeliveryStream(record)];
 
+    case 'GLUE_CreateDatabase':
+      return [CreateEvent.GLUE_CreateDatabase(record)];
+
     case 'IAM_CreateAccessKey':
       return [CreateEvent.IAM_CreateAccessKey(record)];
     case 'IAM_CreateRole':
@@ -148,6 +153,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
 
     case 'TRANSFER_CreateServer':
       return [CreateEvent.TRANSFER_CreateServer(record)];
+    case 'TIMESTREAM_CreateDatabase':
+      return [CreateEvent.TIMESTREAM_CreateDatabase(record)];
 
     case 'WAFV2_CreateIPSet':
       return [CreateEvent.WAFV2_CreateIPSet(record)];
@@ -210,6 +217,10 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
 
     case 'CODEBUILD_DeleteProject':
       return [DeleteEvent.CODEBUILD_DeleteProject(record)];
+
+    case 'CODEDEPLOY_DeleteApplication':
+      return [DeleteEvent.CODEDEPLOY_DeleteApplication(record)];
+
     case 'CLOUDFRONT_DeleteDistribution':
       return [DeleteEvent.CLOUDFRONT_DeleteDistribution(record)];
     case 'CONNECT_DeleteInstance':
@@ -276,6 +287,9 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
     case 'FIREHOSE_DeleteDeliveryStream':
       return [DeleteEvent.FIREHOSE_DeleteDeliveryStream(record)];
 
+    case 'GLUE_DeleteDatabase':
+      return [DeleteEvent.GLUE_DeleteDatabase(record)];
+
     case 'IAM_DeleteAccessKey':
       return [DeleteEvent.IAM_DeleteAccessKey(record)];
     case 'IAM_DeleteRole':
@@ -324,6 +338,9 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
 
     case 'TRANSFER_DeleteServer':
       return [DeleteEvent.TRANSFER_DeleteServer(record)];
+
+    case 'TIMESTREAM_DeleteDatabase':
+      return [DeleteEvent.TIMESTREAM_DeleteDatabase(record)];
 
     case 'WAFV2_DeleteIPSet':
       return [DeleteEvent.WAFV2_DeleteIPSet(record)];

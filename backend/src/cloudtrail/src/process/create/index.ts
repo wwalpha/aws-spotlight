@@ -1,16 +1,17 @@
-export * from './APIGATEWAY_CreateRestApi';
-export * from './APIGATEWAY_ImportRestApi';
-export * from './APIGATEWAY_CreateApi';
-export * from './APIGATEWAY_CreateVpcLink';
+export * from './apigateway/APIGATEWAY_CreateRestApi';
+export * from './apigateway/APIGATEWAY_ImportRestApi';
+export * from './apigateway/APIGATEWAY_CreateApi';
+export * from './apigateway/APIGATEWAY_CreateVpcLink';
 
 export * from './AUTOSCALING_CreateAutoScalingGroup';
 export * from './APPMESH_CreateMesh';
 
-export * from './BACKUP_CreateBackupVault';
-export * from './BACKUP_CreateBackupPlan';
+export * from './backup/BACKUP_CreateBackupVault';
+export * from './backup/BACKUP_CreateBackupPlan';
 export * from './BATCH_CreateComputeEnvironment';
 
 export * from './CODEBUILD_CreateProject';
+export * from './CODEDEPLOY_CreateApplication';
 export * from './CONNECT_CreateInstance';
 export * from './CLOUDFRONT_CreateDistribution';
 export * from './CLOUDFORMATION_CreateStack';
@@ -19,38 +20,40 @@ export * from './DYNAMODB_CreateTable';
 export * from './DS_CreateMicrosoftAD';
 export * from './DMS_CreateReplicationInstance';
 
-export * from './EC2_RunInstances';
-export * from './EC2_CreateImage';
-export * from './EC2_CreateSnapshot';
-export * from './EC2_CreateSnapshots';
-export * from './EC2_CreateNatGateway';
-export * from './EC2_CreateClientVpnEndpoint';
-export * from './EC2_CreateVpcPeeringConnection';
-export * from './EC2_CreateVpc';
-export * from './EC2_CreateVolume';
-export * from './EC2_CreateVpcEndpoint';
-export * from './EC2_AllocateAddress';
-export * from './EC2_CreateCustomerGateway';
-export * from './EC2_CreateVpnConnection';
-export * from './EC2_CreateVpnGateway';
-export * from './EC2_CreateTransitGateway';
-export * from './EC2_CreateSubnet';
-export * from './EC2_CreateSecurityGroup';
-export * from './EC2_CreateInternetGateway';
+export * from './ec2/EC2_RunInstances';
+export * from './ec2/EC2_CreateImage';
+export * from './ec2/EC2_CreateSnapshot';
+export * from './ec2/EC2_CreateSnapshots';
+export * from './ec2/EC2_CreateNatGateway';
+export * from './ec2/EC2_CreateClientVpnEndpoint';
+export * from './ec2/EC2_CreateVpcPeeringConnection';
+export * from './ec2/EC2_CreateVpc';
+export * from './ec2/EC2_CreateVolume';
+export * from './ec2/EC2_CreateVpcEndpoint';
+export * from './ec2/EC2_AllocateAddress';
+export * from './ec2/EC2_CreateCustomerGateway';
+export * from './ec2/EC2_CreateVpnConnection';
+export * from './ec2/EC2_CreateVpnGateway';
+export * from './ec2/EC2_CreateTransitGateway';
+export * from './ec2/EC2_CreateSubnet';
+export * from './ec2/EC2_CreateSecurityGroup';
+export * from './ec2/EC2_CreateInternetGateway';
 
 export * from './ECR_CreateRepository';
 
 export * from './ELASTICFILESYSTEM_CreateFileSystem';
-export * from './ELASTICLOADBALANCING_CreateLoadBalancer';
-export * from './ELASTICLOADBALANCING_CreateTargetGroup';
+export * from './elb/ELASTICLOADBALANCING_CreateLoadBalancer';
+export * from './elb/ELASTICLOADBALANCING_CreateTargetGroup';
 export * from './EKS_CreateCluster';
 export * from './ES_CreateElasticsearchDomain';
 
 export * from './FIREHOSE_CreateDeliveryStream';
 
-export * from './IAM_CreateAccessKey';
-export * from './IAM_CreateRole';
-export * from './IAM_CreateSAMLProvider';
+export * from './GLUE_CreateDatabase';
+
+export * from './iam/IAM_CreateAccessKey';
+export * from './iam/IAM_CreateRole';
+export * from './iam/IAM_CreateSAMLProvider';
 
 export * from './KINESIS_CreateStream';
 
@@ -76,6 +79,8 @@ export * from './STATES_CreateStateMachine';
 export * from './SQS_CreateQueue';
 
 export * from './TRANSFER_CreateServer';
+
+export * from './TIMESTREAM_CreateDatabase';
 
 export * from './WAFV2_CreateIPSet';
 export * from './WAFV2_CreateWebACL';

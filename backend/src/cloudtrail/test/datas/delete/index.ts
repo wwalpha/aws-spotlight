@@ -11,6 +11,7 @@ export { default as BACKUP_DeleteBackupVault } from './backup/BACKUP_DeleteBacku
 export { default as BATCH_DeleteComputeEnvironment } from './batch/BATCH_DeleteComputeEnvironment.json';
 
 export { default as CODEBUILD_DeleteProject } from './codebuild/CODEBUILD_DeleteProject.json';
+export { default as CODEDEPLOY_DeleteApplication } from './CODEDEPLOY_DeleteApplication.json';
 export { default as CLOUDFRONT_DeleteDistribution } from './cloudfront/CLOUDFRONT_DeleteDistribution.json';
 export { default as CONNECT_DeleteInstance } from './connect/CONNECT_DeleteInstance.json';
 export { default as CLOUDFORMATION_DeleteStack } from './cloudformation/CLOUDFORMATION_DeleteStack.json';
@@ -44,6 +45,8 @@ export { default as ES_DeleteElasticsearchDomain } from './es/ES_DeleteElasticse
 
 export { default as FIREHOSE_DeleteDeliveryStream } from './kinesis/FIREHOSE_DeleteDeliveryStream.json';
 
+export { default as GLUE_DeleteDatabase } from './GLUE_DeleteDatabase.json';
+
 export { default as IAM_DeleteAccessKey } from './iam/IAM_DeleteAccessKey.json';
 export { default as IAM_DeleteRole } from './iam/IAM_DeleteRole.json';
 export { default as IAM_DeleteSAMLProvider } from './iam/IAM_DeleteSAMLProvider.json';
@@ -54,6 +57,8 @@ export { default as LAMBDA_DeleteFunction20150331 } from './lambda/LAMBDA_Delete
 export { default as LEX_DeleteBot } from './LEX_DeleteBot.json';
 
 export { default as MONITORING_DeleteAlarms } from './MONITORING_DeleteAlarms.json';
+
+export { default as MGN_DeleteLaunchTemplate } from './MGN_DeleteLaunchTemplate.json';
 
 export { default as NFW_DeleteFirewall } from './NFW_DeleteFirewall.json';
 
@@ -71,6 +76,8 @@ export { default as STATES_DeleteStateMachine } from './STATES_DeleteStateMachin
 export { default as SQS_DeleteQueue } from './SQS_DeleteQueue.json';
 
 export { default as TRANSFER_DeleteServer } from './TRANSFER_DeleteServer.json';
+
+export { default as TIMESTREAM_DeleteDatabase } from './TIMESTREAM_DeleteDatabase.json';
 
 export { default as WAFV2_DeleteIPSet } from './waf/WAFV2_DeleteIPSet.json';
 export { default as WAFV2_DeleteWebACL } from './waf/WAFV2_DeleteWebACL.json';

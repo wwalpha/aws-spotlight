@@ -12,6 +12,7 @@ export { default as BACKUP_CreateBackupPlan } from './backup/BACKUP_CreateBackup
 export { default as BATCH_CreateComputeEnvironment } from './BATCH_CreateComputeEnvironment.json';
 
 export { default as CODEBUILD_CreateProject } from './CODEBUILD_CreateProject.json';
+export { default as CODEDEPLOY_CreateApplication } from './CODEDEPLOY_CreateApplication.json';
 export { default as CONNECT_CreateInstance } from './CONNECT_CreateInstance.json';
 export { default as CLOUDFRONT_CreateDistribution } from './CLOUDFRONT_CreateDistribution.json';
 export { default as CLOUDFORMATION_CreateStack } from './CLOUDFORMATION_CreateStack.json';
@@ -47,6 +48,8 @@ export { default as ES_CreateElasticsearchDomain } from './ES_CreateElasticsearc
 
 export { default as FIREHOSE_CreateDeliveryStream } from './FIREHOSE_CreateDeliveryStream.json';
 
+export { default as GLUE_CreateDatabase } from './GLUE_CreateDatabase.json';
+
 export { default as IAM_CreateAccessKey } from './iam/IAM_CreateAccessKey.json';
 export { default as IAM_CreateRole } from './iam/IAM_CreateRole.json';
 export { default as IAM_CreateSAMLProvider } from './iam/IAM_CreateSAMLProvider.json';
@@ -58,6 +61,8 @@ export { default as KINESIS_CreateStream } from './KINESIS_CreateStream.json';
 
 export { default as MONITORING_PutMetricAlarm } from './monitoring/MONITORING_PutMetricAlarm.json';
 export { default as MONITORING_PutDashboard } from './monitoring/MONITORING_PutDashboard.json';
+
+export { default as MGN_CreateLaunchTemplate } from './MGN_CreateLaunchTemplate.json';
 
 export { default as NFW_CreateFirewall } from './NFW_CreateFirewall.json';
 
@@ -75,6 +80,8 @@ export { default as STATES_CreateStateMachine } from './STATES_CreateStateMachin
 export { default as SQS_CreateQueue } from './SQS_CreateQueue.json';
 
 export { default as TRANSFER_CreateServer } from './TRANSFER_CreateServer.json';
+
+export { default as TIMESTREAM_CreateDatabase } from './TIMESTREAM_CreateDatabase.json';
 
 export { default as WAFV2_CreateIPSet } from './waf/WAFV2_CreateIPSet.json';
 export { default as WAFV2_CreateWebACL } from './waf/WAFV2_CreateWebACL.json';

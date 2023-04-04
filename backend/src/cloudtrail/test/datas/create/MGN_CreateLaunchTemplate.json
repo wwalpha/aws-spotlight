@@ -3,9 +3,9 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDAU33DBSJ5M2LXKXXXS",
-    "arn": "arn:aws:iam::999999999999:user/ktou@dxc.com",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
     "accountId": "999999999999",
-    "userName": "ktou@dxc.com",
+    "userName": "test@test.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
@@ -59,7 +59,7 @@
           }
         },
         "createTime": "2023-02-04T01:07:09.000Z",
-        "createdBy": "arn:aws:iam::999999999999:user/ktou@dxc.com",
+        "createdBy": "arn:aws:iam::999999999999:user/test@test.com",
         "launchTemplateId": "lt-09bcb085b7dc5d962",
         "latestVersionNumber": 1,
         "defaultVersionNumber": 1,

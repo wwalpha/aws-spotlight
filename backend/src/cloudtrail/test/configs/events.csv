@@ -16,6 +16,9 @@ CreateComputeEnvironment,batch.amazonaws.com,create
 DeleteComputeEnvironment,batch.amazonaws.com,delete
 CreateProject,codebuild.amazonaws.com,create
 DeleteProject,codebuild.amazonaws.com,delete
+CreateApplication,codedeploy.amazonaws.com,create
+DeleteApplication,codedeploy.amazonaws.com,delete
+
 CreateInstance,connect.amazonaws.com,create
 DeleteInstance,connect.amazonaws.com,delete
 CreateDistribution,cloudfront.amazonaws.com,create
@@ -63,6 +66,10 @@ CreateInternetGateway,ec2.amazonaws.com,create
 DeleteInternetGateway,ec2.amazonaws.com,delete
 CreateRouteTable,ec2.amazonaws.com,create
 DeleteRouteTable,ec2.amazonaws.com,delete
+CreateDatabase,glue.amazonaws.com,create
+DeleteDatabase,glue.amazonaws.com,delete
+CreateDatabase,timestream.amazonaws.com,create
+DeleteDatabase,timestream.amazonaws.com,delete
 CreateRepository,ecr.amazonaws.com,create
 DeleteRepository,ecr.amazonaws.com,delete
 CreateFileSystem,efs.amazonaws.com,create
