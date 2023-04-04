@@ -1,18 +1,10 @@
 import AWS from 'aws-sdk';
 import { getHistory, getResource, sendMessage } from '@test/configs/utils';
-import RDS_CreateDBCluster from '../datas/create/RDS_CreateDBCluster.json';
-import RDS_CreateDBInstance from '../datas/create/RDS_CreateDBInstance.json';
-import RDS_DeleteDBCluster from '../datas/delete/RDS_DeleteDBCluster.json';
-import RDS_DeleteDBInstance from '../datas/delete/RDS_DeleteDBInstance.json';
+import * as CreateEvents from '@test/datas/create';
+import * as DeleteEvents from '@test/datas/delete';
 import { cloudtrail } from '@src/index';
-import {
-  RDS_CreateDBCluster_R,
-  RDS_CreateDBCluster_H,
-  RDS_DeleteDBCluster_H,
-  RDS_CreateDBInstance_R,
-  RDS_CreateDBInstance_H,
-  RDS_DeleteDBInstance_H,
-} from '@test/expect/rds';
+import * as EXPECTS from '@test/expect/rds';
+import * as fs from 'fs';
 
 AWS.config.update({
   region: process.env.AWS_REGION,
@@ -22,8 +14,8 @@ AWS.config.update({
 });
 
 describe('rds.amazonaws.com', () => {
-  test('RDS_CreateDBCluster', async () => {
-    const event = await sendMessage(RDS_CreateDBCluster);
+  test('CreateDBCluster', async () => {
+    const event = await sendMessage(CreateEvents.RDS_CreateDBCluster);
 
     await cloudtrail(event);
 
@@ -31,14 +23,14 @@ describe('rds.amazonaws.com', () => {
     const history = await getHistory({ EventId: '9f93308d-38b1-405b-bf1b-68e0fd1a3c09' });
 
     expect(resource).not.toBeUndefined();
-    expect(resource).toEqual(RDS_CreateDBCluster_R);
+    expect(resource).toEqual(EXPECTS.CreateDBCluster_R);
 
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(RDS_CreateDBCluster_H);
+    expect(history).toEqual(EXPECTS.CreateDBCluster_H);
   });
 
-  test('RDS_DeleteDBCluster', async () => {
-    const event = await sendMessage(RDS_DeleteDBCluster);
+  test('DeleteDBCluster', async () => {
+    const event = await sendMessage(DeleteEvents.RDS_DeleteDBCluster);
 
     await cloudtrail(event);
 
@@ -48,11 +40,11 @@ describe('rds.amazonaws.com', () => {
     expect(resource).toBeUndefined();
 
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(RDS_DeleteDBCluster_H);
+    expect(history).toEqual(EXPECTS.DeleteDBCluster_H);
   });
 
-  test('RDS_CreateDBInstance', async () => {
-    const event = await sendMessage(RDS_CreateDBInstance);
+  test('CreateDBInstance', async () => {
+    const event = await sendMessage(CreateEvents.RDS_CreateDBInstance);
 
     await cloudtrail(event);
 
@@ -60,14 +52,14 @@ describe('rds.amazonaws.com', () => {
     const history = await getHistory({ EventId: '46400997-7acb-4d09-af3b-affa629dac09' });
 
     expect(resource).not.toBeUndefined();
-    expect(resource).toEqual(RDS_CreateDBInstance_R);
+    expect(resource).toEqual(EXPECTS.CreateDBInstance_R);
 
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(RDS_CreateDBInstance_H);
+    expect(history).toEqual(EXPECTS.CreateDBInstance_H);
   });
 
-  test('RDS_DeleteDBInstance', async () => {
-    const event = await sendMessage(RDS_DeleteDBInstance);
+  test('DeleteDBInstance', async () => {
+    const event = await sendMessage(DeleteEvents.RDS_DeleteDBInstance);
 
     await cloudtrail(event);
 
@@ -77,6 +69,40 @@ describe('rds.amazonaws.com', () => {
     expect(resource).toBeUndefined();
 
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(RDS_DeleteDBInstance_H);
+    expect(history).toEqual(EXPECTS.DeleteDBInstance_H);
+  });
+
+  test('RDS_CreateDBProxy', async () => {
+    const event = await sendMessage(CreateEvents.RDS_CreateDBProxy);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:db-proxy:prx-057abb09c838b8840');
+    const history = await getHistory({ EventId: CreateEvents.RDS_CreateDBProxy.eventID });
+
+    // fs.writeFileSync('RDS_CreateDBProxy_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('RDS_CreateDBProxy_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.RDS_CreateDBProxy_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EXPECTS.RDS_CreateDBProxy_H);
+  });
+
+  test('RDS_DeleteDBProxy', async () => {
+    const event = await sendMessage(DeleteEvents.RDS_DeleteDBProxy);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:db-proxy:prx-057abb09c838b8840');
+    const history = await getHistory({ EventId: DeleteEvents.RDS_DeleteDBProxy.eventID });
+
+    // fs.writeFileSync('RDS_DeleteDBProxy_H.json', JSON.stringify(history));
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EXPECTS.RDS_DeleteDBProxy_H);
   });
 });
