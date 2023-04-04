@@ -10,61 +10,61 @@ export { default as BACKUP_DeleteBackupVault } from './backup/BACKUP_DeleteBacku
 
 export { default as BATCH_DeleteComputeEnvironment } from './batch/BATCH_DeleteComputeEnvironment.json';
 
-export { default as CODEBUILD_DeleteProject } from './CODEBUILD_DeleteProject.json';
+export { default as CODEBUILD_DeleteProject } from './codebuild/CODEBUILD_DeleteProject.json';
 export { default as CLOUDFRONT_DeleteDistribution } from './cloudfront/CLOUDFRONT_DeleteDistribution.json';
-export { default as CONNECT_DeleteInstance } from './CONNECT_DeleteInstance.json';
+export { default as CONNECT_DeleteInstance } from './connect/CONNECT_DeleteInstance.json';
 export { default as CLOUDFORMATION_DeleteStack } from './cloudformation/CLOUDFORMATION_DeleteStack.json';
 
-export { default as DS_DeleteDirectory } from './DS_DeleteDirectory.json';
-export { default as DMS_DeleteReplicationInstance } from './DMS_DeleteReplicationInstance.json';
+export { default as DS_DeleteDirectory } from './ds/DS_DeleteDirectory.json';
+export { default as DMS_DeleteReplicationInstance } from './dms/DMS_DeleteReplicationInstance.json';
 
-export { default as EC2_DeleteClientVpnEndpoint } from './EC2_DeleteClientVpnEndpoint.json';
-export { default as EC2_DeleteNatGateway } from './EC2_DeleteNatGateway.json';
-export { default as EC2_DeleteSnapshot } from './EC2_DeleteSnapshot.json';
-export { default as EC2_DeregisterImage } from './EC2_DeregisterImage.json';
-export { default as EC2_TerminateInstances } from './EC2_TerminateInstances.json';
-export { default as EC2_DeleteVpcPeeringConnection } from './EC2_DeleteVpcPeeringConnection.json';
-export { default as EC2_DeleteVpc } from './EC2_DeleteVpc.json';
-export { default as EC2_DeleteVolume } from './EC2_DeleteVolume.json';
-export { default as EC2_DeleteVpcEndpoints } from './EC2_DeleteVpcEndpoints.json';
-export { default as EC2_ReleaseAddress } from './EC2_ReleaseAddress.json';
-export { default as EC2_DeleteVpnConnection } from './EC2_DeleteVpnConnection.json';
-export { default as EC2_DeleteVpnGateway } from './EC2_DeleteVpnGateway.json';
-export { default as EC2_DeleteCustomerGateway } from './EC2_DeleteCustomerGateway.json';
-export { default as EC2_DeleteTransitGateway } from './EC2_DeleteTransitGateway.json';
-export { default as EC2_DeleteSubnet } from './EC2_DeleteSubnet.json';
-export { default as EC2_DeleteSecurityGroup } from './EC2_DeleteSecurityGroup.json';
-export { default as EC2_DeleteInternetGateway } from './EC2_DeleteInternetGateway.json';
+export { default as EC2_DeleteClientVpnEndpoint } from './ec2/EC2_DeleteClientVpnEndpoint.json';
+export { default as EC2_DeleteNatGateway } from './ec2/EC2_DeleteNatGateway.json';
+export { default as EC2_DeleteSnapshot } from './ec2/EC2_DeleteSnapshot.json';
+export { default as EC2_DeregisterImage } from './ec2/EC2_DeregisterImage.json';
+export { default as EC2_TerminateInstances } from './ec2/EC2_TerminateInstances.json';
+export { default as EC2_DeleteVpcPeeringConnection } from './ec2/EC2_DeleteVpcPeeringConnection.json';
+export { default as EC2_DeleteVpc } from './ec2/EC2_DeleteVpc.json';
+export { default as EC2_DeleteVolume } from './ec2/EC2_DeleteVolume.json';
+export { default as EC2_DeleteVpcEndpoints } from './ec2/EC2_DeleteVpcEndpoints.json';
+export { default as EC2_ReleaseAddress } from './ec2/EC2_ReleaseAddress.json';
+export { default as EC2_DeleteVpnConnection } from './ec2/EC2_DeleteVpnConnection.json';
+export { default as EC2_DeleteVpnGateway } from './ec2/EC2_DeleteVpnGateway.json';
+export { default as EC2_DeleteCustomerGateway } from './ec2/EC2_DeleteCustomerGateway.json';
+export { default as EC2_DeleteTransitGateway } from './ec2/EC2_DeleteTransitGateway.json';
+export { default as EC2_DeleteSubnet } from './ec2/EC2_DeleteSubnet.json';
+export { default as EC2_DeleteSecurityGroup } from './ec2/EC2_DeleteSecurityGroup.json';
+export { default as EC2_DeleteInternetGateway } from './ec2/EC2_DeleteInternetGateway.json';
 
-export { default as ECR_DeleteRepository } from './ECR_DeleteRepository.json';
+export { default as ECR_DeleteRepository } from './ecr/ECR_DeleteRepository.json';
 
-export { default as EKS_DeleteCluster } from './EKS_DeleteCluster.json';
-export { default as ELASTICFILESYSTEM_DeleteFileSystem } from './ELASTICFILESYSTEM_DeleteFileSystem.json';
-export { default as ES_DeleteElasticsearchDomain } from './ES_DeleteElasticsearchDomain.json';
+export { default as EKS_DeleteCluster } from './eks/EKS_DeleteCluster.json';
+export { default as ELASTICFILESYSTEM_DeleteFileSystem } from './efs/ELASTICFILESYSTEM_DeleteFileSystem.json';
+export { default as ES_DeleteElasticsearchDomain } from './es/ES_DeleteElasticsearchDomain.json';
 
-export { default as FIREHOSE_DeleteDeliveryStream } from './FIREHOSE_DeleteDeliveryStream.json';
+export { default as FIREHOSE_DeleteDeliveryStream } from './kinesis/FIREHOSE_DeleteDeliveryStream.json';
 
-export { default as IAM_DeleteAccessKey } from './IAM_DeleteAccessKey.json';
-export { default as IAM_DeleteRole } from './IAM_DeleteRole.json';
-export { default as IAM_DeleteSAMLProvider } from './IAM_DeleteSAMLProvider.json';
+export { default as IAM_DeleteAccessKey } from './iam/IAM_DeleteAccessKey.json';
+export { default as IAM_DeleteRole } from './iam/IAM_DeleteRole.json';
+export { default as IAM_DeleteSAMLProvider } from './iam/IAM_DeleteSAMLProvider.json';
 
-export { default as KINESIS_DeleteStream } from './KINESIS_DeleteStream.json';
+export { default as KINESIS_DeleteStream } from './kinesis/KINESIS_DeleteStream.json';
 
-export { default as LAMBDA_DeleteFunction20150331 } from './LAMBDA_DeleteFunction20150331.json';
+export { default as LAMBDA_DeleteFunction20150331 } from './lambda/LAMBDA_DeleteFunction20150331.json';
 export { default as LEX_DeleteBot } from './LEX_DeleteBot.json';
 
 export { default as MONITORING_DeleteAlarms } from './MONITORING_DeleteAlarms.json';
 
 export { default as NFW_DeleteFirewall } from './NFW_DeleteFirewall.json';
 
-export { default as RDS_DeleteDBCluster } from './RDS_DeleteDBCluster.json';
-export { default as RDS_DeleteDBInstance } from './RDS_DeleteDBInstance.json';
-export { default as RDS_DeleteDBProxy } from './RDS_DeleteDBProxy.json';
+export { default as RDS_DeleteDBCluster } from './rds/RDS_DeleteDBCluster.json';
+export { default as RDS_DeleteDBInstance } from './rds/RDS_DeleteDBInstance.json';
+export { default as RDS_DeleteDBProxy } from './rds/RDS_DeleteDBProxy.json';
 
-export { default as REDSHIFT_DeleteCluster } from './REDSHIFT_DeleteCluster.json';
+export { default as REDSHIFT_DeleteCluster } from './redshift/REDSHIFT_DeleteCluster.json';
 export { default as ROUTE53_DeleteHostedZone } from './ROUTE53_DeleteHostedZone.json';
 
-export { default as S3_DeleteBucket } from './S3_DeleteBucket.json';
+export { default as S3_DeleteBucket } from './s3/S3_DeleteBucket.json';
 export { default as SNS_DeleteTopic } from './SNS_DeleteTopic.json';
 export { default as SYNTHETICS_DeleteCanary } from './SYNTHETICS_DeleteCanary.json';
 export { default as STATES_DeleteStateMachine } from './STATES_DeleteStateMachine.json';
@@ -72,5 +72,5 @@ export { default as SQS_DeleteQueue } from './SQS_DeleteQueue.json';
 
 export { default as TRANSFER_DeleteServer } from './TRANSFER_DeleteServer.json';
 
-export { default as WAFV2_DeleteIPSet } from './WAFV2_DeleteIPSet.json';
-export { default as WAFV2_DeleteWebACL } from './WAFV2_DeleteWebACL.json';
+export { default as WAFV2_DeleteIPSet } from './waf/WAFV2_DeleteIPSet.json';
+export { default as WAFV2_DeleteWebACL } from './waf/WAFV2_DeleteWebACL.json';

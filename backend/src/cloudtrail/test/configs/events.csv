@@ -61,6 +61,8 @@ CreateSecurityGroup,ec2.amazonaws.com,create
 DeleteSecurityGroup,ec2.amazonaws.com,delete
 CreateInternetGateway,ec2.amazonaws.com,create
 DeleteInternetGateway,ec2.amazonaws.com,delete
+CreateRouteTable,ec2.amazonaws.com,create
+DeleteRouteTable,ec2.amazonaws.com,delete
 CreateRepository,ecr.amazonaws.com,create
 DeleteRepository,ecr.amazonaws.com,delete
 CreateFileSystem,efs.amazonaws.com,create
