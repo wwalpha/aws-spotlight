@@ -61,6 +61,7 @@ export * from './NFW_DeleteFirewall';
 
 export * from './RDS_DeleteDBCluster';
 export * from './RDS_DeleteDBInstance';
+export * from './RDS_DeleteDBProxy';
 
 export * from './REDSHIFT_DeleteCluster';
 export * from './ROUTE53_DeleteHostedZone';

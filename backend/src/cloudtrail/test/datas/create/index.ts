@@ -62,6 +62,8 @@ export { default as NFW_CreateFirewall } from './NFW_CreateFirewall.json';
 
 export { default as RDS_CreateDBCluster } from './RDS_CreateDBCluster.json';
 export { default as RDS_CreateDBInstance } from './RDS_CreateDBInstance.json';
+export { default as RDS_CreateDBProxy } from './RDS_CreateDBProxy.json';
+
 export { default as REDSHIFT_CreateCluster } from './REDSHIFT_CreateCluster.json';
 export { default as ROUTE53_CreateHostedZone } from './ROUTE53_CreateHostedZone.json';
 

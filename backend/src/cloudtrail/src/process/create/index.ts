@@ -63,6 +63,7 @@ export * from './NFW_CreateFirewall';
 
 export * from './RDS_CreateDBCluster';
 export * from './RDS_CreateDBInstance';
+export * from './RDS_CreateDBProxy';
 
 export * from './REDSHIFT_CreateCluster';
 export * from './ROUTE53_CreateHostedZone';

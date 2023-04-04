@@ -90,6 +90,8 @@ CreateDBCluster,rds.amazonaws.com,create
 DeleteDBCluster,rds.amazonaws.com,delete
 CreateDBInstance,rds.amazonaws.com,create
 DeleteDBInstance,rds.amazonaws.com,delete
+CreateDBProxy,rds.amazonaws.com,create
+DeleteDBProxy,rds.amazonaws.com,delete
 CreateCluster,redshift.amazonaws.com,create
 DeleteCluster,redshift.amazonaws.com,delete
 CreateHostedZone,route53.amazonaws.com,create

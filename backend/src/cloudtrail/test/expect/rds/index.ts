@@ -1,6 +1,6 @@
-export { default as RDS_CreateDBCluster_H } from './RDS_CreateDBCluster_H.json';
-export { default as RDS_CreateDBCluster_R } from './RDS_CreateDBCluster_R.json';
-export { default as RDS_CreateDBInstance_H } from './RDS_CreateDBInstance_H.json';
-export { default as RDS_CreateDBInstance_R } from './RDS_CreateDBInstance_R.json';
-export { default as RDS_DeleteDBCluster_H } from './RDS_DeleteDBCluster_H.json';
-export { default as RDS_DeleteDBInstance_H } from './RDS_DeleteDBInstance_H.json';
+export { default as CreateDBCluster_H } from './CreateDBCluster_H.json';
+export { default as CreateDBCluster_R } from './CreateDBCluster_R.json';
+export { default as CreateDBInstance_H } from './CreateDBInstance_H.json';
+export { default as CreateDBInstance_R } from './CreateDBInstance_R.json';
+export { default as DeleteDBCluster_H } from './DeleteDBCluster_H.json';
+export { default as DeleteDBInstance_H } from './DeleteDBInstance_H.json';

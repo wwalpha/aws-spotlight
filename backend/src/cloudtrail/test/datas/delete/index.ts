@@ -58,6 +58,8 @@ export { default as NFW_DeleteFirewall } from './NFW_DeleteFirewall.json';
 
 export { default as RDS_DeleteDBCluster } from './RDS_DeleteDBCluster.json';
 export { default as RDS_DeleteDBInstance } from './RDS_DeleteDBInstance.json';
+export { default as RDS_DeleteDBProxy } from './RDS_DeleteDBProxy.json';
+
 export { default as REDSHIFT_DeleteCluster } from './REDSHIFT_DeleteCluster.json';
 export { default as ROUTE53_DeleteHostedZone } from './ROUTE53_DeleteHostedZone.json';
 

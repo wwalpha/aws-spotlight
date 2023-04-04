@@ -173,3 +173,5 @@ PutResourcePolicy,logs.amazonaws.com,true
 DeleteKeyPair,ec2.amazonaws.com,true
 EnableVgwRoutePropagation,ec2.amazonaws.com,true
 SendSSHPublicKey,ec2-instance-connect.amazonaws.com,true
+UpdateStateMachine,states.amazonaws.com,true
+StartExecution,states.amazonaws.com,true
