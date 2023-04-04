@@ -18,6 +18,12 @@ resource "aws_lambda_function" "cloudtrail" {
       SNS_TOPIC_ARN          = data.aws_sns_topic.admin.arn
     }
   }
+
+  lifecycle {
+    ignore_changes = [
+      image_uri
+    ]
+  }
 }
 
 # ----------------------------------------------------------------------------------------------
@@ -41,7 +47,7 @@ resource "aws_lambda_event_source_mapping" "cloudtrail" {
   function_name                      = aws_lambda_function.cloudtrail.arn
   batch_size                         = 100
   maximum_batching_window_in_seconds = 300
-  enabled                            = false
+  enabled                            = true
 }
 
 # ----------------------------------------------------------------------------------------------
@@ -61,6 +67,12 @@ resource "aws_lambda_function" "unprocessed" {
       TABLE_NAME_UNPROCESSED = local.dynamodb_name_unprocessed
       TABLE_NAME_HISTORY     = local.dynamodb_name_history
     }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      image_uri
+    ]
   }
 }
 
