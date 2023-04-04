@@ -34,7 +34,7 @@ export const processIgnore = async (events: Tables.EventType[]) => {
   // filter ignore records
   const records = events.filter((item) => item.Ignore === true);
 
-  Logger.info('Ignore records size:', records.length);
+  Logger.info(`Ignore records size: ${records.length}`);
 
   // no records
   if (records.length === 0) return;
@@ -60,19 +60,23 @@ export const processIgnore = async (events: Tables.EventType[]) => {
     });
 
     // delete keys
-    await DynamodbHelper.truncate(Consts.Environments.TABLE_NAME_UNPROCESSED, queryResult.Items);
+    if (queryResult.Items.length > 0) {
+      await DynamodbHelper.truncate(Consts.Environments.TABLE_NAME_UNPROCESSED, queryResult.Items);
+    }
 
-    await DynamodbHelper.update({
-      TableName: Consts.Environments.TABLE_NAME_EVENT_TYPE,
-      Key: {
-        EventName: item.EventName,
-        EventSource: item.EventSource,
-      } as Tables.EventTypeKey,
-      UpdateExpression: 'REMOVE #Unprocessed',
-      ExpressionAttributeNames: {
-        '#Unprocessed': 'Unprocessed',
-      },
-    });
+    if (item.Unprocessed === true) {
+      await DynamodbHelper.update({
+        TableName: Consts.Environments.TABLE_NAME_EVENT_TYPE,
+        Key: {
+          EventName: item.EventName,
+          EventSource: item.EventSource,
+        } as Tables.EventTypeKey,
+        UpdateExpression: 'REMOVE #Unprocessed',
+        ExpressionAttributeNames: {
+          '#Unprocessed': 'Unprocessed',
+        },
+      });
+    }
   }
 };
 
