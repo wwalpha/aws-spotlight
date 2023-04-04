@@ -1,18 +1,19 @@
-export { default as APIGATEWAY_DeleteRestApi } from './APIGATEWAY_DeleteRestApi.json';
-export { default as APIGATEWAY_DeleteVpcLink } from './APIGATEWAY_DeleteVpcLink.json';
-export { default as APIGATEWAY_DeleteApi } from './APIGATEWAY_DeleteApi.json';
+export { default as APIGATEWAY_DeleteRestApi } from './apigateway/APIGATEWAY_DeleteApi.json';
+export { default as APIGATEWAY_DeleteVpcLink } from './apigateway/APIGATEWAY_DeleteVpcLink.json';
+export { default as APIGATEWAY_DeleteApi } from './apigateway/APIGATEWAY_DeleteApi.json';
 
-export { default as AUTOSCALING_DeleteAutoScalingGroup } from './AUTOSCALING_DeleteAutoScalingGroup.json';
-export { default as APPMESH_DeleteMesh } from './APPMESH_DeleteMesh.json';
+export { default as AUTOSCALING_DeleteAutoScalingGroup } from './autoscaling/AUTOSCALING_DeleteAutoScalingGroup.json';
+export { default as APPMESH_DeleteMesh } from './appmesh/APPMESH_DeleteMesh.json';
 
-export { default as BACKUP_DeleteBackupPlan } from './BACKUP_DeleteBackupPlan.json';
-export { default as BACKUP_DeleteBackupVault } from './BACKUP_DeleteBackupVault.json';
+export { default as BACKUP_DeleteBackupPlan } from './backup/BACKUP_DeleteBackupPlan.json';
+export { default as BACKUP_DeleteBackupVault } from './backup/BACKUP_DeleteBackupVault.json';
 
-export { default as BATCH_DeleteComputeEnvironment } from './BATCH_DeleteComputeEnvironment.json';
+export { default as BATCH_DeleteComputeEnvironment } from './batch/BATCH_DeleteComputeEnvironment.json';
 
 export { default as CODEBUILD_DeleteProject } from './CODEBUILD_DeleteProject.json';
-export { default as CLOUDFRONT_DeleteDistribution } from './CLOUDFRONT_DeleteDistribution.json';
+export { default as CLOUDFRONT_DeleteDistribution } from './cloudfront/CLOUDFRONT_DeleteDistribution.json';
 export { default as CONNECT_DeleteInstance } from './CONNECT_DeleteInstance.json';
+export { default as CLOUDFORMATION_DeleteStack } from './cloudformation/CLOUDFORMATION_DeleteStack.json';
 
 export { default as DS_DeleteDirectory } from './DS_DeleteDirectory.json';
 export { default as DMS_DeleteReplicationInstance } from './DMS_DeleteReplicationInstance.json';

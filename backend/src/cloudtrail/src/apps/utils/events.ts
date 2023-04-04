@@ -34,6 +34,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.CONNECT_CreateInstance(record)];
     case 'CLOUDFRONT_CreateDistribution':
       return [CreateEvent.CLOUDFRONT_CreateDistribution(record)];
+    case 'CLOUDFORMATION_CreateStack':
+      return [CreateEvent.CLOUDFORMATION_CreateStack(record)];
 
     case 'DYNAMODB_CreateTable':
       return [CreateEvent.DYNAMODB_CreateTable(record)];
@@ -212,6 +214,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.CLOUDFRONT_DeleteDistribution(record)];
     case 'CONNECT_DeleteInstance':
       return [DeleteEvent.CONNECT_DeleteInstance(record)];
+    case 'CLOUDFORMATION_DeleteStack':
+      return [DeleteEvent.CLOUDFORMATION_DeleteStack(record)];
 
     case 'DYNAMODB_DeleteTable':
       return [DeleteEvent.DYNAMODB_DeleteTable(record)];

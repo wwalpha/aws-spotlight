@@ -12,6 +12,7 @@ export * from './BATCH_DeleteComputeEnvironment';
 export * from './CODEBUILD_DeleteProject';
 export * from './CLOUDFRONT_DeleteDistribution';
 export * from './CONNECT_DeleteInstance';
+export * from './CLOUDFORMATION_DeleteStack';
 
 export * from './DYNAMODB_DeleteTable';
 export * from './DS_DeleteDirectory';

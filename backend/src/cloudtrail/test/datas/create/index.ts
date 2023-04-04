@@ -14,6 +14,7 @@ export { default as BATCH_CreateComputeEnvironment } from './BATCH_CreateCompute
 export { default as CODEBUILD_CreateProject } from './CODEBUILD_CreateProject.json';
 export { default as CONNECT_CreateInstance } from './CONNECT_CreateInstance.json';
 export { default as CLOUDFRONT_CreateDistribution } from './CLOUDFRONT_CreateDistribution.json';
+export { default as CLOUDFORMATION_CreateStack } from './CLOUDFORMATION_CreateStack.json';
 
 export { default as DS_CreateMicrosoftAD } from './DS_CreateMicrosoftAD.json';
 export { default as DYNAMODB_CreateTable } from './DYNAMODB_CreateTable.json';

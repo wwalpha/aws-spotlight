@@ -20,6 +20,8 @@ CreateInstance,connect.amazonaws.com,create
 DeleteInstance,connect.amazonaws.com,delete
 CreateDistribution,cloudfront.amazonaws.com,create
 DeleteDistribution,cloudfront.amazonaws.com,delete
+CreateStack,cloudformation.amazonaws.com,create
+DeleteStack,cloudformation.amazonaws.com,delete
 CreateTable,dynamodb.amazonaws.com,create
 DeleteTable,dynamodb.amazonaws.com,delete
 CreateMicrosoftAD,ds.amazonaws.com,create
@@ -117,4 +119,3 @@ CreateReplicationInstance,dms.amazonaws.com,create
 DeleteReplicationInstance,dms.amazonaws.com,delete
 CreateServer,transfer.amazonaws.com,create
 DeleteServer,transfer.amazonaws.com,delete
-

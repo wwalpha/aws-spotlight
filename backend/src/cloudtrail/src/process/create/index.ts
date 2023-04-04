@@ -13,6 +13,7 @@ export * from './BATCH_CreateComputeEnvironment';
 export * from './CODEBUILD_CreateProject';
 export * from './CONNECT_CreateInstance';
 export * from './CLOUDFRONT_CreateDistribution';
+export * from './CLOUDFORMATION_CreateStack';
 
 export * from './DYNAMODB_CreateTable';
 export * from './DS_CreateMicrosoftAD';
