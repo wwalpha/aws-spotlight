@@ -55,6 +55,8 @@ export { default as KINESIS_CreateStream } from './KINESIS_CreateStream.json';
 export { default as MONITORING_PutMetricAlarm } from './MONITORING_PutMetricAlarm.json';
 export { default as MONITORING_PutDashboard } from './MONITORING_PutDashboard.json';
 
+export { default as NFW_CreateFirewall } from './NFW_CreateFirewall.json';
+
 export { default as RDS_CreateDBCluster } from './RDS_CreateDBCluster.json';
 export { default as RDS_CreateDBInstance } from './RDS_CreateDBInstance.json';
 export { default as REDSHIFT_CreateCluster } from './REDSHIFT_CreateCluster.json';

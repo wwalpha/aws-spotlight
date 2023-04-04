@@ -54,6 +54,8 @@ export * from './LEX_DeleteBot';
 
 export * from './MONITORING_DeleteAlarms';
 
+export * from './NFW_DeleteFirewall';
+
 export * from './RDS_DeleteDBCluster';
 export * from './RDS_DeleteDBInstance';
 

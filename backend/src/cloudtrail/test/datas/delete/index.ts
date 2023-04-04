@@ -51,6 +51,8 @@ export { default as LEX_DeleteBot } from './LEX_DeleteBot.json';
 
 export { default as MONITORING_DeleteAlarms } from './MONITORING_DeleteAlarms.json';
 
+export { default as NFW_DeleteFirewall } from './NFW_DeleteFirewall.json';
+
 export { default as RDS_DeleteDBCluster } from './RDS_DeleteDBCluster.json';
 export { default as RDS_DeleteDBInstance } from './RDS_DeleteDBInstance.json';
 export { default as REDSHIFT_DeleteCluster } from './REDSHIFT_DeleteCluster.json';
