@@ -66,3 +66,7 @@ export { default as DeleteSecurityGroup_H } from './DeleteSecurityGroup_H.json';
 export { default as CreateInternetGateway_H } from './CreateInternetGateway_H.json';
 export { default as CreateInternetGateway_R } from './CreateInternetGateway_R.json';
 export { default as DeleteInternetGateway_H } from './DeleteInternetGateway_H.json';
+
+export { default as EC2_CreateNetworkInsightsPath_H } from './EC2_CreateNetworkInsightsPath_H.json';
+export { default as EC2_CreateNetworkInsightsPath_R } from './EC2_CreateNetworkInsightsPath_R.json';
+export { default as EC2_DeleteNetworkInsightsPath_H } from './EC2_DeleteNetworkInsightsPath_H.json';

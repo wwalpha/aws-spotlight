@@ -36,6 +36,7 @@ export * from './ec2/EC2_DeleteTransitGateway';
 export * from './ec2/EC2_DeleteSubnet';
 export * from './ec2/EC2_DeleteSecurityGroup';
 export * from './ec2/EC2_DeleteInternetGateway';
+export * from './ec2/EC2_DeleteNetworkInsightsPath';
 
 export * from './ECR_DeleteRepository';
 
@@ -53,6 +54,7 @@ export * from './iam/IAM_DeleteAccessKey';
 export * from './iam/IAM_DeleteRole';
 export * from './iam/IAM_DeleteServiceLinkedRole';
 export * from './iam/IAM_DeleteSAMLProvider';
+export * from './IOT_DeleteTopicRule';
 
 export * from './KINESIS_DeleteStream';
 

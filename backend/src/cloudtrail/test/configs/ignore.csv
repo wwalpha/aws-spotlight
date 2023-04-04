@@ -226,3 +226,6 @@ UpdateSecurityGroupRuleDescriptionsIngress,ec2.amazonaws.com,true
 DeleteLaunchTemplateVersions,ec2.amazonaws.com,true
 SendAgentMetricsForMgn,mgn.amazonaws.com,true
 CreateSessionForMgn,mgn.amazonaws.com,true
+CreateWorkGroup,athena.amazonaws.com,true
+DeleteWorkGroup,athena.amazonaws.com,true
+DeleteNetworkInsightsAnalysis,ec2.amazonaws.com,true

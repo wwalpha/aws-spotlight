@@ -82,6 +82,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.EC2_CreateSecurityGroup(record)];
     case 'EC2_CreateInternetGateway':
       return [CreateEvent.EC2_CreateInternetGateway(record)];
+    case 'EC2_CreateNetworkInsightsPath':
+      return [CreateEvent.EC2_CreateNetworkInsightsPath(record)];
 
     case 'ECR_CreateRepository':
       return [CreateEvent.ECR_CreateRepository(record)];
@@ -111,6 +113,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.IAM_CreateRole(record)];
     case 'IAM_CreateSAMLProvider':
       return [CreateEvent.IAM_CreateSAMLProvider(record)];
+    case 'IOT_CreateTopicRule':
+      return [CreateEvent.IOT_CreateTopicRule(record)];
 
     case 'KINESIS_CreateStream':
       return [CreateEvent.KINESIS_CreateStream(record)];
@@ -269,6 +273,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.EC2_DeleteSecurityGroup(record)];
     case 'EC2_DeleteInternetGateway':
       return [DeleteEvent.EC2_DeleteInternetGateway(record)];
+    case 'EC2_DeleteNetworkInsightsPath':
+      return [DeleteEvent.EC2_DeleteNetworkInsightsPath(record)];
 
     case 'ECR_DeleteRepository':
       return [DeleteEvent.ECR_DeleteRepository(record)];
@@ -296,6 +302,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.IAM_DeleteRole(record)];
     case 'IAM_DeleteSAMLProvider':
       return [DeleteEvent.IAM_DeleteSAMLProvider(record)];
+    case 'IOT_DeleteTopicRule':
+      return [DeleteEvent.IOT_DeleteTopicRule(record)];
     // case 'IAM_DeleteServiceLinkedRole':
     //   return [DeleteEvent.IAM_DeleteServiceLinkedRole(record)];
 

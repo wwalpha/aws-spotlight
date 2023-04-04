@@ -36,6 +36,7 @@ export { default as EC2_DeleteTransitGateway } from './ec2/EC2_DeleteTransitGate
 export { default as EC2_DeleteSubnet } from './ec2/EC2_DeleteSubnet.json';
 export { default as EC2_DeleteSecurityGroup } from './ec2/EC2_DeleteSecurityGroup.json';
 export { default as EC2_DeleteInternetGateway } from './ec2/EC2_DeleteInternetGateway.json';
+export { default as EC2_DeleteNetworkInsightsPath } from './ec2/EC2_DeleteNetworkInsightsPath.json';
 
 export { default as ECR_DeleteRepository } from './ecr/ECR_DeleteRepository.json';
 
@@ -50,6 +51,7 @@ export { default as GLUE_DeleteDatabase } from './GLUE_DeleteDatabase.json';
 export { default as IAM_DeleteAccessKey } from './iam/IAM_DeleteAccessKey.json';
 export { default as IAM_DeleteRole } from './iam/IAM_DeleteRole.json';
 export { default as IAM_DeleteSAMLProvider } from './iam/IAM_DeleteSAMLProvider.json';
+export { default as IOT_DeleteTopicRule } from './IOT_DeleteTopicRule.json';
 
 export { default as KINESIS_DeleteStream } from './kinesis/KINESIS_DeleteStream.json';
 

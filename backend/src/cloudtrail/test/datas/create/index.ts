@@ -39,6 +39,7 @@ export { default as EC2_CreateTransitGateway } from './ec2/EC2_CreateTransitGate
 export { default as EC2_CreateSubnet } from './ec2/EC2_CreateSubnet.json';
 export { default as EC2_CreateSecurityGroup } from './ec2/EC2_CreateSecurityGroup.json';
 export { default as EC2_CreateInternetGateway } from './ec2/EC2_CreateInternetGateway.json';
+export { default as EC2_CreateNetworkInsightsPath } from './ec2/EC2_CreateNetworkInsightsPath.json';
 
 export { default as ECR_CreateRepository } from './ECR_CreateRepository.json';
 
@@ -53,6 +54,7 @@ export { default as GLUE_CreateDatabase } from './GLUE_CreateDatabase.json';
 export { default as IAM_CreateAccessKey } from './iam/IAM_CreateAccessKey.json';
 export { default as IAM_CreateRole } from './iam/IAM_CreateRole.json';
 export { default as IAM_CreateSAMLProvider } from './iam/IAM_CreateSAMLProvider.json';
+export { default as IOT_CreateTopicRule } from './IOT_CreateTopicRule.json';
 
 export { default as LAMBDA_CreateFunction20150331 } from './LAMBDA_CreateFunction20150331.json';
 export { default as LEX_CreateBot } from './LEX_CreateBot.json';

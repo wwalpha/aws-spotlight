@@ -552,4 +552,42 @@ describe('ec2.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteInternetGateway_H);
   });
+
+  test('EC2_CreateNetworkInsightsPath', async () => {
+    const event = await sendMessage(CreateEvents.EC2_CreateNetworkInsightsPath);
+
+    await cloudtrail(event);
+
+    const resource = await getResource(
+      'arn:aws:ec2:ap-northeast-1:999999999999:network-insights-path/nip-04cbb496cba822127'
+    );
+    const history = await getHistory({ EventId: CreateEvents.EC2_CreateNetworkInsightsPath.eventID });
+
+    // fs.writeFileSync('EC2_CreateNetworkInsightsPath_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('EC2_CreateNetworkInsightsPath_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.EC2_CreateNetworkInsightsPath_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.EC2_CreateNetworkInsightsPath_H);
+  });
+
+  test('EC2_DeleteNetworkInsightsPath', async () => {
+    const event = await sendMessage(DeleteEvents.EC2_DeleteNetworkInsightsPath);
+
+    await cloudtrail(event);
+
+    const resource = await getResource(
+      'arn:aws:ec2:ap-northeast-1:999999999999:network-insights-path/nip-04cbb496cba822127'
+    );
+    const history = await getHistory({ EventId: DeleteEvents.EC2_DeleteNetworkInsightsPath.eventID });
+
+    // fs.writeFileSync('EC2_DeleteNetworkInsightsPath_H.json', JSON.stringify(history));
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.EC2_DeleteNetworkInsightsPath_H);
+  });
 });

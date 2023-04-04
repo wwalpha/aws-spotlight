@@ -38,6 +38,7 @@ export * from './ec2/EC2_CreateTransitGateway';
 export * from './ec2/EC2_CreateSubnet';
 export * from './ec2/EC2_CreateSecurityGroup';
 export * from './ec2/EC2_CreateInternetGateway';
+export * from './ec2/EC2_CreateNetworkInsightsPath';
 
 export * from './ECR_CreateRepository';
 
@@ -54,6 +55,7 @@ export * from './GLUE_CreateDatabase';
 export * from './iam/IAM_CreateAccessKey';
 export * from './iam/IAM_CreateRole';
 export * from './iam/IAM_CreateSAMLProvider';
+export * from './IOT_CreateTopicRule';
 
 export * from './KINESIS_CreateStream';
 

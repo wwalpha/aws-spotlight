@@ -18,7 +18,6 @@ CreateProject,codebuild.amazonaws.com,create
 DeleteProject,codebuild.amazonaws.com,delete
 CreateApplication,codedeploy.amazonaws.com,create
 DeleteApplication,codedeploy.amazonaws.com,delete
-
 CreateInstance,connect.amazonaws.com,create
 DeleteInstance,connect.amazonaws.com,delete
 CreateDistribution,cloudfront.amazonaws.com,create
@@ -66,6 +65,8 @@ CreateInternetGateway,ec2.amazonaws.com,create
 DeleteInternetGateway,ec2.amazonaws.com,delete
 CreateRouteTable,ec2.amazonaws.com,create
 DeleteRouteTable,ec2.amazonaws.com,delete
+CreateNetworkInsightsPath,ec2.amazonaws.com,create
+DeleteNetworkInsightsPath,ec2.amazonaws.com,delete
 CreateDatabase,glue.amazonaws.com,create
 DeleteDatabase,glue.amazonaws.com,delete
 CreateDatabase,timestream.amazonaws.com,create
@@ -91,6 +92,8 @@ DeleteRole,iam.amazonaws.com,delete
 CreateSAMLProvider,iam.amazonaws.com,create
 DeleteSAMLProvider,iam.amazonaws.com,delete
 DeleteServiceLinkedRole,iam.amazonaws.com,delete
+CreateTopicRule,iot.amazonaws.com,create
+DeleteTopicRule,iot.amazonaws.com,delete
 CreateStream,kinesis.amazonaws.com,create
 DeleteStream,kinesis.amazonaws.com,delete
 CreateFunction20150331,lambda.amazonaws.com,create
