@@ -112,7 +112,7 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
     case 'MONITORING_PutDashboard':
       return [CreateEvent.MONITORING_PutDashboard(record)];
 
-    case 'NFW_CreateFirewall':
+    case 'NETWORK-FIREWALL_CreateFirewall':
       return [CreateEvent.NFW_CreateFirewall(record)];
 
     case 'RDS_CreateDBCluster':
@@ -277,7 +277,7 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
     case 'MONITORING_DeleteAlarms':
       return DeleteEvent.MONITORING_DeleteAlarms(record);
 
-    case 'NFW_DeleteFirewall':
+    case 'NETWORK-FIREWALL_DeleteFirewall':
       return [DeleteEvent.NFW_DeleteFirewall(record)];
 
     case 'RDS_DeleteDBCluster':
