@@ -54,3 +54,7 @@ export { default as DeleteVpnGateway_H } from './DeleteVpnGateway_H.json';
 export { default as CreateTransitGateway_H } from './CreateTransitGateway_H.json';
 export { default as CreateTransitGateway_R } from './CreateTransitGateway_R.json';
 export { default as DeleteTransitGateway_H } from './DeleteTransitGateway_H.json';
+
+export { default as CreateSubnet_H } from './CreateSubnet_H.json';
+export { default as CreateSubnet_R } from './CreateSubnet_R.json';
+export { default as DeleteSubnet_H } from './DeleteSubnet_H.json';

@@ -451,4 +451,33 @@ describe('ec2.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteTransitGateway_H);
   });
+
+  test('EC2_CreateSubnet', async () => {
+    const event = await sendMessage(CreateEvents.EC2_CreateSubnet);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:subnet/subnet-0d840b9ab96eb41ca');
+    const history = await getHistory({ EventId: CreateEvents.EC2_CreateSubnet.eventID });
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.CreateSubnet_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.CreateSubnet_H);
+  });
+
+  test('EC2_DeleteSubnet', async () => {
+    const event = await sendMessage(DeleteEvents.EC2_DeleteSubnet);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:subnet/subnet-0d840b9ab96eb41ca');
+    const history = await getHistory({ EventId: DeleteEvents.EC2_DeleteSubnet.eventID });
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.DeleteSubnet_H);
+  });
 });

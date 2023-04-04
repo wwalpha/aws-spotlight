@@ -33,6 +33,7 @@ export * from './EC2_CreateCustomerGateway';
 export * from './EC2_CreateVpnConnection';
 export * from './EC2_CreateVpnGateway';
 export * from './EC2_CreateTransitGateway';
+export * from './EC2_CreateSubnet';
 
 export * from './ECR_CreateRepository';
 

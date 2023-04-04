@@ -72,6 +72,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.EC2_CreateVpnGateway(record)];
     case 'EC2_CreateTransitGateway':
       return [CreateEvent.EC2_CreateTransitGateway(record)];
+    case 'EC2_CreateSubnet':
+      return [CreateEvent.EC2_CreateSubnet(record)];
 
     case 'ECR_CreateRepository':
       return [CreateEvent.ECR_CreateRepository(record)];
@@ -239,6 +241,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.EC2_DeleteVpnGateway(record)];
     case 'EC2_DeleteTransitGateway':
       return [DeleteEvent.EC2_DeleteTransitGateway(record)];
+    case 'EC2_DeleteSubnet':
+      return [DeleteEvent.EC2_DeleteSubnet(record)];
 
     case 'ECR_DeleteRepository':
       return [DeleteEvent.ECR_DeleteRepository(record)];

@@ -6,6 +6,15 @@ ModifyVpcAttribute,ec2.amazonaws.com,true
 AssociateIamInstanceProfile,ec2.amazonaws.com,true
 RevokeSecurityGroupIngress,ec2.amazonaws.com,true
 RevokeSecurityGroupEgress,ec2.amazonaws.com,true
+DetachInternetGateway,ec2.amazonaws.com,true
+DeleteVpnConnectionRoute,ec2.amazonaws.com,true
+AssociateAddress,ec2.amazonaws.com,true
+ModifyClientVpnEndpoint,ec2.amazonaws.com,true
+ModifyVpcEndpoint,ec2.amazonaws.com,true
+AssociateClientVpnTargetNetwork,ec2.amazonaws.com,true
+ModifyVpnConnectionOptions,ec2.amazonaws.com,true
+CreateVpnConnectionRoute,ec2.amazonaws.com,true
+ExportClientVpnClientConfiguration,ec2.amazonaws.com,true
 AttachVolume,ec2.amazonaws.com,true
 CreateService,ecs.amazonaws.com,true
 DeleteTaskSet,ecs.amazonaws.com,true
@@ -49,6 +58,7 @@ UpdateInstanceCustomHealthStatus,servicediscovery.amazonaws.com,true
 DeregisterInstance,servicediscovery.amazonaws.com,true
 RespondToAuthChallenge,cognito-idp.amazonaws.com,true
 InitiateAuth,cognito-idp.amazonaws.com,true
+Subscribe,sns.amazonaws.com,true
 UpdateInstanceInformation,ssm.amazonaws.com,true
 PutParameter,ssm.amazonaws.com,true
 DeleteParameters,ssm.amazonaws.com,true
@@ -91,3 +101,12 @@ UpdateLoggingConfiguration,network-firewall.amazonaws.com,true
 UpdateSubnetChangeProtection,network-firewall.amazonaws.com,true
 EndSecretVersionDelete,secretsmanager.amazonaws.com,true
 StartSecretVersionDelete,secretsmanager.amazonaws.com,true
+PutBucketEncryption,s3.amazonaws.com,true
+PutBucketPublicAccessBlock,s3.amazonaws.com,true
+SendCommand,ssm.amazonaws.com,true
+PutConfigurePackageResult,ssm.amazonaws.com,true
+StartSession,ssm.amazonaws.com,true
+OpenDataChannel,ssm.amazonaws.com,true
+DeleteDeploymentGroup,codedeploy.amazonaws.com,true
+PutRetentionPolicy,logs.amazonaws.com,true
+ModifyTargetGroup,elasticloadbalancing.amazonaws.com,true

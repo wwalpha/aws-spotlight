@@ -34,6 +34,7 @@ export { default as EC2_CreateCustomerGateway } from './EC2_CreateCustomerGatewa
 export { default as EC2_CreateVpnConnection } from './EC2_CreateVpnConnection.json';
 export { default as EC2_CreateVpnGateway } from './EC2_CreateVpnGateway.json';
 export { default as EC2_CreateTransitGateway } from './EC2_CreateTransitGateway.json';
+export { default as EC2_CreateSubnet } from './EC2_CreateSubnet.json';
 
 export { default as ECR_CreateRepository } from './ECR_CreateRepository.json';
 

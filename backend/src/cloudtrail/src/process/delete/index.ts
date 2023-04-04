@@ -31,6 +31,7 @@ export * from './EC2_DeleteCustomerGateway';
 export * from './EC2_DeleteVpnConnection';
 export * from './EC2_DeleteVpnGateway';
 export * from './EC2_DeleteTransitGateway';
+export * from './EC2_DeleteSubnet';
 
 export * from './ECR_DeleteRepository';
 

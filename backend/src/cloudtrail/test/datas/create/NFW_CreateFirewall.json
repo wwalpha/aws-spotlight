@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDAU33DBSJ5NF2JV63UX",
-    "arn": "arn:aws:iam::999999999999:user/shuoji.jin@dxc.com",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
     "accountId": "999999999999",
     "accessKeyId": "ASIAU33DBSJ5I2FEWGNW",
-    "userName": "shuoji.jin@dxc.com",
+    "userName": "test@test.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
