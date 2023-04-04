@@ -41,6 +41,7 @@ resource "aws_lambda_event_source_mapping" "cloudtrail" {
   function_name                      = aws_lambda_function.cloudtrail.arn
   batch_size                         = 100
   maximum_batching_window_in_seconds = 300
+  enabled                            = false
 }
 
 # ----------------------------------------------------------------------------------------------
