@@ -58,3 +58,7 @@ export { default as DeleteTransitGateway_H } from './DeleteTransitGateway_H.json
 export { default as CreateSubnet_H } from './CreateSubnet_H.json';
 export { default as CreateSubnet_R } from './CreateSubnet_R.json';
 export { default as DeleteSubnet_H } from './DeleteSubnet_H.json';
+
+export { default as CreateSecurityGroup_H } from './CreateSecurityGroup_H.json';
+export { default as CreateSecurityGroup_R } from './CreateSecurityGroup_R.json';
+export { default as DeleteSecurityGroup_H } from './DeleteSecurityGroup_H.json';

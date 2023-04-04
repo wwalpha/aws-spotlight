@@ -55,6 +55,8 @@ CreateTransitGateway,ec2.amazonaws.com,create
 DeleteTransitGateway,ec2.amazonaws.com,delete
 CreateSubnet,ec2.amazonaws.com,create
 DeleteSubnet,ec2.amazonaws.com,delete
+CreateSecurityGroup,ec2.amazonaws.com,create
+DeleteSecurityGroup,ec2.amazonaws.com,delete
 CreateRepository,ecr.amazonaws.com,create
 DeleteRepository,ecr.amazonaws.com,delete
 CreateFileSystem,efs.amazonaws.com,create

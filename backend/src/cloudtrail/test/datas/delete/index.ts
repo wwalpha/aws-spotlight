@@ -32,6 +32,7 @@ export { default as EC2_DeleteVpnGateway } from './EC2_DeleteVpnGateway.json';
 export { default as EC2_DeleteCustomerGateway } from './EC2_DeleteCustomerGateway.json';
 export { default as EC2_DeleteTransitGateway } from './EC2_DeleteTransitGateway.json';
 export { default as EC2_DeleteSubnet } from './EC2_DeleteSubnet.json';
+export { default as EC2_DeleteSecurityGroup } from './EC2_DeleteSecurityGroup.json';
 
 export { default as ECR_DeleteRepository } from './ECR_DeleteRepository.json';
 

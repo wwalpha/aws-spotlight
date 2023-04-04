@@ -480,4 +480,38 @@ describe('ec2.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteSubnet_H);
   });
+
+  test('EC2_CreateSecurityGroup', async () => {
+    const event = await sendMessage(CreateEvents.EC2_CreateSecurityGroup);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('sg-07111150655b49758');
+    const history = await getHistory({ EventId: CreateEvents.EC2_CreateSecurityGroup.eventID });
+
+    // fs.writeFileSync('CreateSecurityGroup_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('CreateSecurityGroup_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.CreateSecurityGroup_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.CreateSecurityGroup_H);
+  });
+
+  test('EC2_DeleteSecurityGroup', async () => {
+    const event = await sendMessage(DeleteEvents.EC2_DeleteSecurityGroup);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('sg-07111150655b49758');
+    const history = await getHistory({ EventId: DeleteEvents.EC2_DeleteSecurityGroup.eventID });
+
+    // fs.writeFileSync('DeleteSecurityGroup_H.json', JSON.stringify(history));
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    // expect(history).toEqual(EC2.DeleteSecurityGroup_H);
+  });
 });
