@@ -32,6 +32,8 @@ export { default as EC2_DeleteVpnGateway } from './EC2_DeleteVpnGateway.json';
 export { default as EC2_DeleteCustomerGateway } from './EC2_DeleteCustomerGateway.json';
 export { default as EC2_DeleteTransitGateway } from './EC2_DeleteTransitGateway.json';
 
+export { default as ECR_DeleteRepository } from './ECR_DeleteRepository.json';
+
 export { default as EKS_DeleteCluster } from './EKS_DeleteCluster.json';
 export { default as ELASTICFILESYSTEM_DeleteFileSystem } from './ELASTICFILESYSTEM_DeleteFileSystem.json';
 export { default as ES_DeleteElasticsearchDomain } from './ES_DeleteElasticsearchDomain.json';

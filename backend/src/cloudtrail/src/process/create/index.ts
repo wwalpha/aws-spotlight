@@ -34,6 +34,8 @@ export * from './EC2_CreateVpnConnection';
 export * from './EC2_CreateVpnGateway';
 export * from './EC2_CreateTransitGateway';
 
+export * from './ECR_CreateRepository';
+
 export * from './ELASTICFILESYSTEM_CreateFileSystem';
 export * from './ELASTICLOADBALANCING_CreateLoadBalancer';
 export * from './ELASTICLOADBALANCING_CreateTargetGroup';

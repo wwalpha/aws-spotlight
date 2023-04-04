@@ -35,6 +35,8 @@ export { default as EC2_CreateVpnConnection } from './EC2_CreateVpnConnection.js
 export { default as EC2_CreateVpnGateway } from './EC2_CreateVpnGateway.json';
 export { default as EC2_CreateTransitGateway } from './EC2_CreateTransitGateway.json';
 
+export { default as ECR_CreateRepository } from './ECR_CreateRepository.json';
+
 export { default as EKS_CreateCluster } from './EKS_CreateCluster.json';
 export { default as ELASTICFILESYSTEM_CreateFileSystem } from './ELASTICFILESYSTEM_CreateFileSystem.json';
 export { default as ES_CreateElasticsearchDomain } from './ES_CreateElasticsearchDomain.json';

@@ -2,7 +2,9 @@ require('dotenv').config({ path: '.env.test' });
 
 import { DynamodbHelper } from '@alphax/dynamodb';
 import AWS, { S3, SQS, SNS } from 'aws-sdk';
-import Events from './events.json';
+import * as fs from 'fs';
+import * as path from 'path';
+import { Tables } from 'typings';
 
 AWS.config.update({
   region: process.env.AWS_REGION,
@@ -14,6 +16,23 @@ AWS.config.update({
 
 const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
 const TABLE_NAME_RESOURCES = process.env.TABLE_NAME_RESOURCES as string;
+
+const getEvents = (): Tables.EventType[] => {
+  const texts = fs.readFileSync(path.join(__dirname, './events.csv')).toString();
+
+  const lines = texts.split('\n').filter((item) => item !== '');
+
+  return lines.map<Tables.EventType>((item) => {
+    const values = item.split(',');
+
+    return {
+      EventName: values[0],
+      EventSource: values[1],
+      Create: values[2] === 'create',
+      Delete: values[2] === 'delete',
+    };
+  });
+};
 
 const setup = async () => {
   console.log('jest setup start...');
@@ -108,7 +127,7 @@ const setup = async () => {
     }),
   ]);
 
-  await helper.bulk(TABLE_NAME_EVENT_TYPE, Events);
+  await helper.bulk(TABLE_NAME_EVENT_TYPE, getEvents());
 
   console.log('jest setup end...');
 };
