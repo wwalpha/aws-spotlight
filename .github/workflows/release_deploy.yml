@@ -316,6 +316,7 @@ jobs:
       TABLE_NAME_EVENT_TYPE: arms-eventtype-44e2a0
       TABLE_NAME_HISTORY: arms-histories-44e2a0
       TABLE_NAME_RESOURCES: arms-resources-44e2a0
+      TABLE_NAME_SETTINGS: arms-settings-44e2a0
       BUCKET_NAME_ARCHIVE: arms-archive-44e2a0
       SQS_URL: ${{ secrets.SQS_URL }}
     defaults:

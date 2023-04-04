@@ -25,6 +25,7 @@ jobs:
       TABLE_NAME_EVENT_TYPE: arms-eventtype-8cd531
       TABLE_NAME_HISTORY: arms-histories-8cd531
       TABLE_NAME_RESOURCES: arms-resources-8cd531
+      TABLE_NAME_SETTINGS: arms-settings-8cd531
       BUCKET_NAME_ARCHIVE: arms-archive-8cd531
       SQS_URL: ${{ secrets.SQS_URL }}
     defaults:
