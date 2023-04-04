@@ -7,6 +7,6 @@ export const GLUE_DeleteDatabase = (record: CloudTrail.Record): Tables.ResouceGS
 
   return {
     EventSource: record.eventSource,
-    ResourceId: `arn:aws:glue:${region}:${account}:/database/${databaseName}`,
+    ResourceId: `arn:aws:glue:${region}:${account}:database/${databaseName}`,
   };
 };

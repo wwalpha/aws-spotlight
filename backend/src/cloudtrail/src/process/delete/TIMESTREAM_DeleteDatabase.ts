@@ -7,6 +7,6 @@ export const TIMESTREAM_DeleteDatabase = (record: CloudTrail.Record): Tables.Res
 
   return {
     EventSource: record.eventSource,
-    ResourceId: `arn:aws:timestream:${region}:${account}:/database/${databaseName}`,
+    ResourceId: `arn:aws:timestream:${region}:${account}:database/${databaseName}`,
   };
 };

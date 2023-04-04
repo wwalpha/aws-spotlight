@@ -7,6 +7,6 @@ export const CODEDEPLOY_DeleteApplication = (record: CloudTrail.Record): Tables.
 
   return {
     EventSource: record.eventSource,
-    ResourceId: `arn:aws:codedeploy:${region}:${account}:/application/${applicationName}`,
+    ResourceId: `arn:aws:codedeploy:${region}:${account}:application/${applicationName}`,
   };
 };
