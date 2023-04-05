@@ -1,1 +1,13 @@
-{"IdentityType":"IAMUser","EventSource":"iam.amazonaws.com","UserName":"test@test.com","ResourceId":"AAAAAAAAAAAAAAAAAAAA","ResourceName":"test@test.com","EventTime":"2021-06-08T02:28:43Z","UserAgent":"console.amazonaws.com","AWSRegion":"us-east-1","EventId":"173aca94-54f1-4a01-9ec2-7b471c918eaf","Service":"AccessKey","EventName":"CreateAccessKey"}
+{
+  "IdentityType": "IAMUser",
+  "EventSource": "iam.amazonaws.com",
+  "UserName": "test@test.com",
+  "ResourceId": "AAAAAAAAAAAAAAAAAAAA",
+  "ResourceName": "test@test.com",
+  "EventTime": "2021-06-08T02:28:43Z",
+  "UserAgent": "console.amazonaws.com",
+  "AWSRegion": "us-east-1",
+  "EventId": "173aca94-54f1-4a01-9ec2-7b471c918eaf",
+  "Service": "IAM",
+  "EventName": "CreateAccessKey"
+}

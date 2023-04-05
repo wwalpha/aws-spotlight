@@ -8,6 +8,6 @@
   "UserAgent": "console.ec2.amazonaws.com",
   "AWSRegion": "ap-northeast-1",
   "EventId": "009d103b-0d6e-4fc4-b35a-7f2cc315795f",
-  "Service": "Load Balancer",
+  "Service": "EC2",
   "EventName": "CreateLoadBalancer"
 }

@@ -49,6 +49,9 @@ export { default as EVENTS_PutRule } from './EVENTS_PutRule.json';
 export { default as ELASTICACHE_CreateCacheCluster } from './elasticcache/ELASTICACHE_CreateCacheCluster.json';
 export { default as ELASTICACHE_CreateCacheSubnetGroup } from './elasticcache/ELASTICACHE_CreateCacheSubnetGroup.json';
 
+export { default as ELASTICLOADBALANCING_CreateLoadBalancer } from './elb/ELASTICLOADBALANCING_CreateLoadBalancer.json';
+export { default as ELASTICLOADBALANCING_CreateTargetGroup } from './elb/ELASTICLOADBALANCING_CreateTargetGroup.json';
+
 export { default as EKS_CreateCluster } from './EKS_CreateCluster.json';
 export { default as ELASTICFILESYSTEM_CreateFileSystem } from './ELASTICFILESYSTEM_CreateFileSystem.json';
 export { default as ES_CreateElasticsearchDomain } from './ES_CreateElasticsearchDomain.json';

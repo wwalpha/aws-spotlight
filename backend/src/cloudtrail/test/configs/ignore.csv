@@ -457,3 +457,5 @@ CreateDeployment,apigateway.amazonaws.com,true
 CreateService,servicediscovery.amazonaws.com,true
 DeleteService,servicediscovery.amazonaws.com,true
 UpdateTable,dynamodb.amazonaws.com,true
+TagResource,apigateway.amazonaws.com,true
+TagResource,dynamodb.amazonaws.com,true

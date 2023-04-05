@@ -1,6 +1,5 @@
 import * as CreateEvent from '@src/process/create';
-import * as DeleteEvent from '@src/process/delete';
-import * as RemoveService from '@src/process/delete/RemoveService';
+import * as RemoveService from '@src/process/RemoveService';
 
 import { CloudTrail, Tables } from 'typings';
 import { Consts, DynamodbHelper } from '.';
@@ -41,6 +40,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.CONNECT_CreateInstance(record)];
     case 'CLOUDFRONT_CreateDistribution':
       return [CreateEvent.CLOUDFRONT_CreateDistribution(record)];
+    case 'CLOUDFORMATION_CreateStack':
+      return [CreateEvent.CLOUDFORMATION_CreateStack(record)];
 
     case 'DYNAMODB_CreateTable':
       return [CreateEvent.DYNAMODB_CreateTable(record)];
@@ -197,7 +198,7 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
 };
 
 export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise<Tables.Resource[] | undefined> => {
-  const items = getRemoveResourceItem(record);
+  const items = RemoveService.start(record);
 
   if (!items) return;
 
@@ -220,90 +221,4 @@ export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise
 
     return [...prev, curr.Items[0]];
   }, [] as Tables.Resource[]);
-};
-
-const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key[] | undefined => {
-  const { eventName, eventSource } = record;
-  const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
-
-  switch (key) {
-    case 'BACKUP_DeleteBackupPlan':
-      return [DeleteEvent.BACKUP_DeleteBackupPlan(record)];
-    case 'BACKUP_DeleteBackupVault':
-      return [DeleteEvent.BACKUP_DeleteBackupVault(record)];
-
-    case 'EC2_TerminateInstances':
-      return DeleteEvent.EC2_TerminateInstances(record);
-    case 'EC2_DeregisterImage':
-      return [DeleteEvent.EC2_DeregisterImage(record)];
-    case 'EC2_DeleteSnapshot':
-      return [DeleteEvent.EC2_DeleteSnapshot(record)];
-    case 'EC2_DeleteNatGateway':
-      return [DeleteEvent.EC2_DeleteNatGateway(record)];
-    case 'EC2_DeleteClientVpnEndpoint':
-      return [DeleteEvent.EC2_DeleteClientVpnEndpoint(record)];
-    case 'EC2_DeleteVpcPeeringConnection':
-      return [DeleteEvent.EC2_DeleteVpcPeeringConnection(record)];
-    case 'EC2_DeleteVpc':
-      return [DeleteEvent.EC2_DeleteVpc(record)];
-    case 'EC2_DeleteVolume':
-      return [DeleteEvent.EC2_DeleteVolume(record)];
-    case 'EC2_DeleteVpcEndpoints':
-      return [DeleteEvent.EC2_DeleteVpcEndpoints(record)];
-    case 'EC2_ReleaseAddress':
-      return [DeleteEvent.EC2_ReleaseAddress(record)];
-    case 'EC2_DeleteCustomerGateway':
-      return [DeleteEvent.EC2_DeleteCustomerGateway(record)];
-    case 'EC2_DeleteVpnConnection':
-      return [DeleteEvent.EC2_DeleteVpnConnection(record)];
-    case 'EC2_DeleteVpnGateway':
-      return [DeleteEvent.EC2_DeleteVpnGateway(record)];
-    case 'EC2_DeleteTransitGateway':
-      return [DeleteEvent.EC2_DeleteTransitGateway(record)];
-    case 'EC2_DeleteSubnet':
-      return [DeleteEvent.EC2_DeleteSubnet(record)];
-    case 'EC2_DeleteSecurityGroup':
-      return [DeleteEvent.EC2_DeleteSecurityGroup(record)];
-    case 'EC2_DeleteInternetGateway':
-      return [DeleteEvent.EC2_DeleteInternetGateway(record)];
-    case 'EC2_DeleteNetworkInsightsPath':
-      return [DeleteEvent.EC2_DeleteNetworkInsightsPath(record)];
-    case 'EC2_DeleteLaunchTemplate':
-      return [DeleteEvent.EC2_DeleteLaunchTemplate(record)];
-
-    case 'ELASTICACHE_DeleteCacheCluster':
-      return [DeleteEvent.ELASTICACHE_DeleteCacheCluster(record)];
-    case 'ELASTICACHE_DeleteCacheSubnetGroup':
-      return [DeleteEvent.ELASTICACHE_DeleteCacheSubnetGroup(record)];
-    case 'ELASTICLOADBALANCING_DeleteLoadBalancer':
-      return [DeleteEvent.ELASTICLOADBALANCING_DeleteLoadBalancer(record)];
-    case 'ELASTICLOADBALANCING_DeleteTargetGroup':
-      return [DeleteEvent.ELASTICLOADBALANCING_DeleteTargetGroup(record)];
-
-    case 'IAM_DeleteAccessKey':
-      return [DeleteEvent.IAM_DeleteAccessKey(record)];
-    case 'IAM_DeleteRole':
-      return [DeleteEvent.IAM_DeleteRole(record)];
-    case 'IAM_DeleteSAMLProvider':
-      return [DeleteEvent.IAM_DeleteSAMLProvider(record)];
-
-    // case 'IAM_DeleteServiceLinkedRole':
-    //   return [DeleteEvent.IAM_DeleteServiceLinkedRole(record)];
-
-    case 'RDS_DeleteDBCluster':
-      return [DeleteEvent.RDS_DeleteDBCluster(record)];
-    case 'RDS_DeleteDBInstance':
-      return [DeleteEvent.RDS_DeleteDBInstance(record)];
-    case 'RDS_DeleteDBProxy':
-      return [DeleteEvent.RDS_DeleteDBProxy(record)];
-    case 'RDS_DeleteDBClusterParameterGroup':
-      return [DeleteEvent.RDS_DeleteDBClusterParameterGroup(record)];
-    case 'RDS_DeleteDBParameterGroup':
-      return [DeleteEvent.RDS_DeleteDBParameterGroup(record)];
-    case 'RDS_DeleteDBSubnetGroup':
-      return [DeleteEvent.RDS_DeleteDBSubnetGroup(record)];
-
-    default:
-      return RemoveService.start(record).ResourceId !== undefined ? [RemoveService.start(record)] : undefined;
-  }
 };

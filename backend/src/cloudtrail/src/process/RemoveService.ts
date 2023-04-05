@@ -1,11 +1,28 @@
 import { ResourceARNs } from '@src/apps/utils/awsArns';
 import { CloudTrail, Tables } from 'typings';
 
-export const start = (record: CloudTrail.Record): Tables.ResouceGSI1Key => {
-  return {
-    EventSource: record.eventSource,
-    ResourceId: getResourceArn(record),
-  };
+const MULTI_TASK = ['EC2_TerminateInstances'];
+
+export const start = (record: CloudTrail.Record): Tables.ResouceGSI1Key[] | undefined => {
+  const key = `${record.eventSource.split('.')[0].toUpperCase()}_${record.eventName}`;
+
+  if (MULTI_TASK.includes(key)) {
+    return getResourceArns(record).map((item) => ({
+      EventSource: record.eventSource,
+      ResourceId: item,
+    }));
+  }
+
+  const arn = getResourceArn(record);
+
+  if (!arn) return undefined;
+
+  return [
+    {
+      EventSource: record.eventSource,
+      ResourceId: arn,
+    },
+  ];
 };
 
 const getResourceArn = (record: CloudTrail.Record) => {
@@ -79,7 +96,7 @@ const getResourceArn = (record: CloudTrail.Record) => {
     case 'MONITORING_DeleteAlarms':
       return ResourceARNs.MONITORING_Alarms(region, account, record.recipientAccountId);
 
-    case 'NFW_DeleteFirewall':
+    case 'NETWORK-FIREWALL_DeleteFirewall':
       return record.responseElements.firewall.firewallArn;
 
     case 'REDSHIFT_DeleteCluster':
@@ -144,12 +161,105 @@ const getResourceArn = (record: CloudTrail.Record) => {
       return record.responseElements.aRN;
     case 'ELASTICACHE_DeleteCacheSubnetGroup':
       return ResourceARNs.ELASTICACHE_CacheSubnetGroup(region, account, record.requestParameters.cacheSubnetGroupName);
-
     case 'ELASTICLOADBALANCING_DeleteLoadBalancer':
       return record.requestParameters.loadBalancerArn;
     case 'ELASTICLOADBALANCING_DeleteTargetGroup':
       return record.requestParameters.targetGroupArn;
+
+    case 'IAM_DeleteAccessKey':
+      return record.requestParameters.accessKeyId;
+    case 'IAM_DeleteRole':
+      return ResourceARNs.IAM_Role(region, account, record.requestParameters.roleName);
+    case 'IAM_DeleteSAMLProvider':
+      return record.requestParameters.sAMLProviderArn;
+    case 'IAM_DeleteServiceLinkedRole':
+      return ResourceARNs.IAM_Role(region, account, record.requestParameters.roleName);
+
+    case 'EC2_DeleteClientVpnEndpoint':
+      return ResourceARNs.EC2_ClientVpnEndpoint(
+        region,
+        account,
+        record.requestParameters.DeleteClientVpnEndpointRequest.ClientVpnEndpointId
+      );
+    case 'EC2_DeleteCustomerGateway':
+      return ResourceARNs.EC2_CustomerGateway(region, account, record.requestParameters.customerGatewayId);
+    case 'EC2_DeleteInternetGateway':
+      return ResourceARNs.EC2_InternetGateway(region, account, record.requestParameters.internetGatewayId);
+    case 'EC2_DeleteLaunchTemplate':
+      return ResourceARNs.EC2_LaunchTemplate(
+        region,
+        account,
+        record.requestParameters.DeleteLaunchTemplateRequest.LaunchTemplateId
+      );
+    case 'EC2_DeleteNatGateway':
+      return ResourceARNs.EC2_NatGateway(
+        region,
+        account,
+        record.responseElements.DeleteNatGatewayResponse.natGatewayId
+      );
+    case 'EC2_DeleteNetworkInsightsPath':
+      return ResourceARNs.EC2_NetworkInsightsPath(
+        region,
+        account,
+        record.responseElements.DeleteNetworkInsightsPathResponse.networkInsightsPathId
+      );
+    case 'EC2_DeleteSnapshot':
+      return ResourceARNs.EC2_Snapshot(region, account, record.requestParameters.snapshotId);
+    case 'EC2_DeleteSubnet':
+      return ResourceARNs.EC2_Subnet(region, account, record.requestParameters.subnetId);
+    case 'EC2_DeleteTransitGateway':
+      return ResourceARNs.EC2_TransitGateway(
+        region,
+        account,
+        record.requestParameters.DeleteTransitGatewayRequest.TransitGatewayId
+      );
+    case 'EC2_DeleteVolume':
+      return ResourceARNs.EC2_Volume(region, account, record.requestParameters.volumeId);
+    case 'EC2_DeleteVpc':
+      return ResourceARNs.EC2_Vpc(region, account, record.requestParameters.vpcId);
+    case 'EC2_DeleteVpcEndpoints':
+      return ResourceARNs.EC2_VpcEndpoints(
+        region,
+        account,
+        record.requestParameters.DeleteVpcEndpointsRequest.VpcEndpointId.content
+      );
+    case 'EC2_DeleteVpcPeeringConnection':
+      return ResourceARNs.EC2_VpcPeeringConnection(region, account, record.requestParameters.vpcPeeringConnectionId);
+    case 'EC2_DeleteVpnConnection':
+      return ResourceARNs.EC2_VpnConnection(region, account, record.requestParameters.vpnConnectionId);
+    case 'EC2_DeleteVpnGateway':
+      return ResourceARNs.EC2_VpnGateway(region, account, record.requestParameters.vpnGatewayId);
+    case 'EC2_DeregisterImage':
+      return ResourceARNs.EC2_DeregisterImage(region, account, record.requestParameters.imageId);
+    case 'EC2_ReleaseAddress':
+      return ResourceARNs.EC2_ReleaseAddress(region, account, record.requestParameters.allocationId);
+    case 'EC2_TerminateInstances':
+      return (record.responseElements.instancesSet.items as any[]).map((item: { instanceId: any }) =>
+        ResourceARNs.EC2_Instances(region, account, item.instanceId)
+      );
+    case 'EC2_DeleteSecurityGroup':
+      return ResourceARNs.EC2_SecurityGroup(region, account, record.requestParameters.groupId);
+
+    case 'BACKUP_DeleteBackupPlan':
+      return record.responseElements.backupPlanArn;
+    case 'BACKUP_DeleteBackupVault':
+      return ResourceARNs.EC2_SecurityGroup(region, account, record.requestParameters.backupVaultName);
   }
 
   return undefined;
+};
+
+const getResourceArns = (record: CloudTrail.Record) => {
+  const region = record.awsRegion;
+  const account = record.recipientAccountId;
+  const key = `${record.eventSource.split('.')[0].toUpperCase()}_${record.eventName}`;
+
+  switch (key) {
+    case 'EC2_TerminateInstances':
+      return (record.responseElements.instancesSet.items as any[]).map((item: { instanceId: any }) =>
+        ResourceARNs.EC2_Instances(region, account, item.instanceId)
+      );
+  }
+
+  return [];
 };

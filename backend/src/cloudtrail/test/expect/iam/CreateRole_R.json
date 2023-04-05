@@ -8,6 +8,6 @@
   "UserAgent": "aws-internal/3 aws-sdk-java/1.11.975 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.242-b08 java/1.8.0_242 vendor/Oracle_Corporation cfg/retry-mode/legacy",
   "AWSRegion": "us-east-1",
   "EventId": "739d8b02-6cf3-44a6-84d6-2cb3fccd16a7",
-  "Service": "Role",
+  "Service": "IAM",
   "EventName": "CreateRole"
 }

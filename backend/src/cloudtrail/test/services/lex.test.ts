@@ -19,8 +19,8 @@ describe('lex.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource('arn:aws:lex:ap-northeast-1:999999999999:bot:YHPF209BAD');
-    const history = await getHistory({ EventId: '492f355d-c713-4e57-b26e-288b814fbd30' });
+    const resource = await getResource('arn:aws:lex:ap-northeast-1:999999999999:bot:multichannel_lex_bot');
+    const history = await getHistory({ EventId: CreateEvents.LEX_CreateBot.eventID });
 
     expect(resource).not.toBeUndefined();
     expect(resource).toEqual(LEX.CreateBot_R);
@@ -34,8 +34,10 @@ describe('lex.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource('arn:aws:lex:ap-northeast-1:999999999999:bot:YHPF209BAD');
-    const history = await getHistory({ EventId: 'fb453f66-df39-403a-83fe-0f5404bc2ef8' });
+    const resource = await getResource('arn:aws:lex:ap-northeast-1:999999999999:bot:multichannel_lex_bot');
+    const history = await getHistory({ EventId: DeleteEvents.LEX_DeleteBot.eventID });
+
+    // fs.writeFileSync('./test/expect/lex/DeleteBot_H.json', JSON.stringify(history));
 
     expect(resource).toBeUndefined();
 

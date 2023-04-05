@@ -8,6 +8,6 @@
   "UserAgent": "console.ec2.amazonaws.com",
   "AWSRegion": "ap-northeast-1",
   "EventId": "daa11b60-20df-48d9-a406-aeae3c339e9b",
-  "Service": "Client VPN",
+  "Service": "EC2",
   "EventName": "CreateClientVpnEndpoint"
 }

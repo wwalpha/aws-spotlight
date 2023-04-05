@@ -18,6 +18,7 @@ export { default as CLOUDFORMATION_DeleteStack } from './cloudformation/CLOUDFOR
 
 export { default as DS_DeleteDirectory } from './ds/DS_DeleteDirectory.json';
 export { default as DMS_DeleteReplicationInstance } from './dms/DMS_DeleteReplicationInstance.json';
+export { default as DYNAMODB_DeleteTable } from './dynamodb/DYNAMODB_DeleteTable.json';
 
 export { default as EC2_DeleteClientVpnEndpoint } from './ec2/EC2_DeleteClientVpnEndpoint.json';
 export { default as EC2_DeleteNatGateway } from './ec2/EC2_DeleteNatGateway.json';
@@ -46,9 +47,12 @@ export { default as EVENTS_DeleteRule } from './EVENTS_DeleteRule.json';
 export { default as ELASTICACHE_DeleteCacheCluster } from './elasticache/ELASTICACHE_DeleteCacheCluster.json';
 export { default as ELASTICACHE_DeleteCacheSubnetGroup } from './elasticache/ELASTICACHE_DeleteCacheSubnetGroup.json';
 
+export { default as ELASTICLOADBALANCING_DeleteLoadBalancer } from './elb/ELASTICLOADBALANCING_DeleteLoadBalancer.json';
+export { default as ELASTICLOADBALANCING_DeleteTargetGroup } from './elb/ELASTICLOADBALANCING_DeleteTargetGroup.json';
+
 export { default as EKS_DeleteCluster } from './eks/EKS_DeleteCluster.json';
-export { default as ELASTICFILESYSTEM_DeleteFileSystem } from './efs/ELASTICFILESYSTEM_DeleteFileSystem.json';
-export { default as ES_DeleteElasticsearchDomain } from './es/ES_DeleteElasticsearchDomain.json';
+export { default as ELASTICFILESYSTEM_DeleteFileSystem } from './ELASTICFILESYSTEM_DeleteFileSystem.json';
+export { default as ES_DeleteElasticsearchDomain } from './ES_DeleteElasticsearchDomain.json';
 
 export { default as FIREHOSE_DeleteDeliveryStream } from './kinesis/FIREHOSE_DeleteDeliveryStream.json';
 

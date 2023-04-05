@@ -8,6 +8,6 @@
   "UserAgent": "console.ec2.amazonaws.com",
   "AWSRegion": "ap-northeast-1",
   "EventId": "2fa6c467-0897-46c4-b9ff-7be10f73bb5c",
-  "Service": "Snapshot",
+  "Service": "EC2",
   "EventName": "CreateSnapshot"
 }

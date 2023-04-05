@@ -8,6 +8,6 @@
   "UserAgent": "console.ec2.amazonaws.com",
   "AWSRegion": "ap-northeast-1",
   "EventId": "a3dc47d9-6d40-45da-b496-a435083c68bc",
-  "Service": "VPC Endpoint",
+  "Service": "EC2",
   "EventName": "CreateVpcEndpoint"
 }

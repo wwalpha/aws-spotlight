@@ -1,5 +1,5 @@
 import AWS from 'aws-sdk';
-import { getHistory, getResource, scanResource, sendMessage } from '@test/configs/utils';
+import { getHistory, getResource, sendMessage } from '@test/configs/utils';
 import * as CreateEvents from '@test/datas/create';
 import * as DeleteEvents from '@test/datas/delete';
 import * as NFW from '@test/expect/nfw';
@@ -28,7 +28,7 @@ describe('network-firewall.amazonaws.com', () => {
     expect(history).toEqual(NFW.CreateFirewall_H);
   });
 
-  test.skip('NFW_DeleteFirewall', async () => {
+  test('NFW_DeleteFirewall', async () => {
     const event = await sendMessage(DeleteEvents.NFW_DeleteFirewall);
 
     await cloudtrail(event);

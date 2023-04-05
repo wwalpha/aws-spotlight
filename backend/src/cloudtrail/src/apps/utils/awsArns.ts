@@ -103,4 +103,82 @@ export const ResourceARNs = {
   // elasticache subnet group
   ELASTICACHE_CacheSubnetGroup: (region: string, account?: string, id?: string) =>
     `arn:aws:elasticache:${region}:${account}:subnetgroup:${id}`,
+
+  // iam
+  IAM_Role: (_: string, account?: string, id?: string) => `arn:aws:iam::${account}:role/${id}`,
+
+  // ec2 client vpn endpoint
+  EC2_ClientVpnEndpoint: (region: string, account?: string, id?: string) =>
+    `arn:aws:ec2:${region}:${account}:client-vpn-endpoint/${id}`,
+
+  // ec2 customer gateway
+  EC2_CustomerGateway: (region: string, account?: string, id?: string) =>
+    `arn:aws:ec2:${region}:${account}:customer-gateway/${id}`,
+
+  // ec2 internet gateway
+  EC2_InternetGateway: (region: string, account?: string, id?: string) =>
+    `arn:aws:ec2:${region}:${account}:internet-gateway/${id}`,
+
+  // ec2 launch template
+  EC2_LaunchTemplate: (region: string, account?: string, id?: string) =>
+    `arn:aws:ec2:${region}:${account}:launch-template/${id}`,
+
+  // ec2 nat gateway
+  EC2_NatGateway: (region: string, account?: string, id?: string) =>
+    `arn:aws:ec2:${region}:${account}:natgateway/${id}`,
+
+  // ec2 network insights path
+  EC2_NetworkInsightsPath: (region: string, account?: string, id?: string) =>
+    `arn:aws:ec2:${region}:${account}:network-insights-path/${id}`,
+
+  // ec2 security group
+  EC2_SecurityGroup: (region: string, account?: string, id?: string) =>
+    `arn:aws:ec2:${region}:${account}:security-group/${id}`,
+
+  // ec2 snapshot
+  EC2_Snapshot: (region: string, account?: string, id?: string) => `arn:aws:ec2:${region}:${account}:snapshot/${id}`,
+
+  // ec2 subnet
+  EC2_Subnet: (region: string, account?: string, id?: string) => `arn:aws:ec2:${region}:${account}:subnet/${id}`,
+
+  // ec2 transit gateway
+  EC2_TransitGateway: (region: string, account?: string, id?: string) =>
+    `arn:aws:ec2:${region}:${account}:transit-gateway/${id}`,
+
+  // ec2 volumn
+  EC2_Volume: (region: string, account?: string, id?: string) => `arn:aws:ec2:${region}:${account}:volume/${id}`,
+
+  // ec2 vpc
+  EC2_Vpc: (region: string, account?: string, id?: string) => `arn:aws:ec2:${region}:${account}:vpc/${id}`,
+
+  // ec2 vpc endpoint
+  EC2_VpcEndpoints: (region: string, account?: string, id?: string) =>
+    `arn:aws:ec2:${region}:${account}:vpc-endpoint/${id}`,
+
+  // ec2 vpc peering
+  EC2_VpcPeeringConnection: (region: string, account?: string, id?: string) =>
+    `arn:aws:ec2:${region}:${account}:vpc-peering-connection/${id}`,
+
+  // ec2 vpn connection
+  EC2_VpnConnection: (region: string, account?: string, id?: string) =>
+    `arn:aws:ec2:${region}:${account}:vpn-connection/${id}`,
+
+  // ec2 vpn gateway
+  EC2_VpnGateway: (region: string, account?: string, id?: string) =>
+    `arn:aws:ec2:${region}:${account}:vpn-gateway/${id}`,
+
+  // ec2 deregister image
+  EC2_DeregisterImage: (region: string, account?: string, id?: string) =>
+    `arn:aws:ec2:${region}:${account}:image/${id}`,
+
+  // ec2 release address
+  EC2_ReleaseAddress: (region: string, account?: string, id?: string) =>
+    `arn:aws:ec2:${region}:${account}:elastic-ip/${id}`,
+
+  // ec2 release address
+  EC2_Instances: (region: string, account?: string, id?: string) => `arn:aws:ec2:${region}:${account}:instance/${id}`,
+
+  // backup vault
+  BACKUP_BackupVault: (region: string, account?: string, id?: string) =>
+    `arn:aws:backup:${region}:${account}:backup-vault:${id}`,
 };

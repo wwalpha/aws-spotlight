@@ -1,1 +1,13 @@
-{"IdentityType":"AssumedRole","EventSource":"cloudformation.amazonaws.com","UserName":"AWS-QuickSetup-StackSet-Local-ExecutionRole","ResourceId":"arn:aws:cloudformation:ap-northeast-1:999999999999:stack/StackSet-AWS-QuickSetup-SSMHostMgmt-LA-qm255-1ba8b947-4616-48a1-9d95-535b245c559c/0c24cd50-9d13-11eb-8b86-0efc49622d27","ResourceName":"StackSet-AWS-QuickSetup-SSMHostMgmt-LA-qm255-1ba8b947-4616-48a1-9d95-535b245c559c","EventTime":"2021-04-14T11:17:50Z","UserAgent":"cloudformation.amazonaws.com","AWSRegion":"ap-northeast-1","EventId":"869974b8-e70d-4322-9e1b-05abce19803b","Service":"CloudFormation Stack","EventName":"CreateStack"}
+{
+  "IdentityType": "AssumedRole",
+  "EventSource": "cloudformation.amazonaws.com",
+  "UserName": "AWS-QuickSetup-StackSet-Local-ExecutionRole",
+  "ResourceId": "arn:aws:cloudformation:ap-northeast-1:999999999999:stack/StackSet-AWS-QuickSetup-SSMHostMgmt-LA-qm255-1ba8b947-4616-48a1-9d95-535b245c559c/0c24cd50-9d13-11eb-8b86-0efc49622d27",
+  "ResourceName": "StackSet-AWS-QuickSetup-SSMHostMgmt-LA-qm255-1ba8b947-4616-48a1-9d95-535b245c559c",
+  "EventTime": "2021-04-14T11:17:50Z",
+  "UserAgent": "cloudformation.amazonaws.com",
+  "AWSRegion": "ap-northeast-1",
+  "EventId": "869974b8-e70d-4322-9e1b-05abce19803b",
+  "Service": "CloudFormation",
+  "EventName": "CreateStack"
+}

@@ -8,6 +8,6 @@
   "UserAgent": "console.ec2.amazonaws.com",
   "AWSRegion": "ap-northeast-1",
   "EventId": "efc3dd39-f22b-4c25-8b7c-7d8b35ce8182",
-  "Service": "NAT Gateway",
+  "Service": "EC2",
   "EventName": "CreateNatGateway"
 }
