@@ -4,11 +4,11 @@ import { CloudTrail, Tables } from 'typings';
 export const LEX_CreateBot = (record: CloudTrail.Record): Tables.Resource => {
   const region = record.awsRegion;
   const account = record.recipientAccountId;
-  const botId = record.responseElements.botId;
+  const botName = record.responseElements.botName;
 
   return {
     UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
-    ResourceId: `arn:aws:lex:${region}:${account}:bot:${botId}`,
+    ResourceId: `arn:aws:lex:${region}:${account}:bot:${botName}`,
     ResourceName: record.responseElements.botName,
     EventName: record.eventName,
     EventSource: record.eventSource,
