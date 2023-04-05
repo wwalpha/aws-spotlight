@@ -7,9 +7,13 @@ on:
       - .github/workflows/push_release_events.yml
     branches-ignore:
       - releases/**
-  # workflow_run:
-  #   workflows:
-  #     - PUSH_B) Auth Manager Build
+  workflow_run:
+    workflows:
+      - PUSH_B) Cloudtrail Build
+    branches:
+      - master
+    types:
+      - completed
   workflow_dispatch:
 
 env:
