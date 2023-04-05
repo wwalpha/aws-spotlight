@@ -1,1 +1,13 @@
-{"IdentityType":"IAMUser","EventSource":"ec2.amazonaws.com","UserName":"test@test.com","ResourceId":"arn:aws:ec2:ap-northeast-1:999999999999:launch-template/lt-09bcb085b7dc5d962","ResourceName":"lt-09bcb085b7dc5d962","EventTime":"2023-02-04T01:07:09Z","UserAgent":"mgn.amazonaws.com","AWSRegion":"ap-northeast-1","EventId":"c48ec18c-8d8a-4b12-9646-5f4c6a39c86c","Service":"EC2 Launch Template","EventName":"CreateLaunchTemplate"}
+{
+  "IdentityType": "IAMUser",
+  "EventSource": "ec2.amazonaws.com",
+  "UserName": "test@test.com",
+  "ResourceId": "arn:aws:ec2:ap-northeast-1:999999999999:launch-template/lt-09bcb085b7dc5d962",
+  "ResourceName": "lt-09bcb085b7dc5d962",
+  "EventTime": "2023-02-04T01:07:09Z",
+  "UserAgent": "mgn.amazonaws.com",
+  "AWSRegion": "ap-northeast-1",
+  "EventId": "c48ec18c-8d8a-4b12-9646-5f4c6a39c86c",
+  "Service": "EC2",
+  "EventName": "CreateLaunchTemplate"
+}

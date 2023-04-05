@@ -1,1 +1,13 @@
-{"IdentityType":"IAMUser","EventSource":"ec2.amazonaws.com","UserName":"test@test.com","ResourceId":"arn:aws:ec2:ap-northeast-1:999999999999:network-insights-path/nip-04cbb496cba822127","ResourceName":"nip-04cbb496cba822127","EventTime":"2023-02-06T02:55:11Z","UserAgent":"AWS Internal","AWSRegion":"ap-northeast-1","EventId":"ea8d396b-03cc-48a6-84b9-b14f853ac23d","Service":"Network Insights Path","EventName":"CreateNetworkInsightsPath"}
+{
+  "IdentityType": "IAMUser",
+  "EventSource": "ec2.amazonaws.com",
+  "UserName": "test@test.com",
+  "ResourceId": "arn:aws:ec2:ap-northeast-1:999999999999:network-insights-path/nip-04cbb496cba822127",
+  "ResourceName": "nip-04cbb496cba822127",
+  "EventTime": "2023-02-06T02:55:11Z",
+  "UserAgent": "AWS Internal",
+  "AWSRegion": "ap-northeast-1",
+  "EventId": "ea8d396b-03cc-48a6-84b9-b14f853ac23d",
+  "Service": "Network Insights Path",
+  "EventName": "CreateNetworkInsightsPath"
+}

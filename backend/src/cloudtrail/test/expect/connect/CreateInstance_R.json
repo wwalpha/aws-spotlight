@@ -8,6 +8,6 @@
   "UserAgent": "ConnectConsole, aws-internal/3 aws-sdk-java/1.11.1030 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.292-b10 java/1.8.0_292 vendor/Oracle_Corporation cfg/retry-mode/legacy",
   "AWSRegion": "ap-northeast-1",
   "EventId": "2ebc40b4-4e53-4e87-ac9a-0a8bc090a438",
-  "Service": "Instance",
+  "Service": "Connect",
   "EventName": "CreateInstance"
 }

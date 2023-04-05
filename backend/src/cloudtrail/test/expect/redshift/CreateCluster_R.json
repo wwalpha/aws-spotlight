@@ -8,6 +8,6 @@
   "UserAgent": "aws-internal/3 aws-sdk-java/1.11.965 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
   "AWSRegion": "us-east-1",
   "EventId": "54677ea0-d177-495e-b418-5d7a84942d70",
-  "Service": "Cluster",
+  "Service": "Redshift",
   "EventName": "CreateCluster"
 }

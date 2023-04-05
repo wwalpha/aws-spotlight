@@ -8,6 +8,6 @@
   "UserAgent": "cloudformation.amazonaws.com",
   "AWSRegion": "ap-northeast-1",
   "EventId": "8d5d04c0-502b-40c5-a26b-862e67a1e77a",
-  "Service": "Stream",
+  "Service": "Kinesis",
   "EventName": "CreateStream"
 }
