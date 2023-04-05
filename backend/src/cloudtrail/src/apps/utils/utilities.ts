@@ -102,7 +102,8 @@ export const removeError = (records: CloudTrail.Record[]) => records.filter((ite
  */
 export const removeIgnore = (records: CloudTrail.Record[], events: EVENT_TYPE) =>
   records.filter((item) => {
-    const event = events[item.eventName];
+    const service = item.eventSource.split('.')[0].toUpperCase();
+    const event = events[`${service}_${item.eventName}`];
 
     if (event === undefined) {
       return true;

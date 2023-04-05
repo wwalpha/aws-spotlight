@@ -23,8 +23,9 @@ export const initializeEvents = async () => {
     TableName: Consts.Environments.TABLE_NAME_EVENT_TYPE,
   });
 
-  results.Items?.forEach((item) => {
-    EVENTS[item.EventName] = item;
+  results.Items.forEach((item) => {
+    const service = item.EventSource.split('.')[0].toUpperCase();
+    EVENTS[`${service}_${item.EventName}`] = item;
   });
 };
 
@@ -78,7 +79,8 @@ export const execute = async (message: SQSRecord) => {
 };
 
 const processRecord = async (record: CloudTrail.Record) => {
-  const definition = EVENTS[record.eventName];
+  const service = record.eventSource.split('.')[0].toUpperCase();
+  const definition = EVENTS[`${service}_${record.eventName}`];
 
   // new event
   if (!definition) {

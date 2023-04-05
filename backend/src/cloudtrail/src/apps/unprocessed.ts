@@ -159,7 +159,8 @@ const getUnprocessedRecords = async (events: Tables.EventType[]) => {
 };
 
 const processRecord = async (item: CloudTrail.Record) => {
-  const { TABLE_NAME_HISTORY, TABLE_NAME_RESOURCES, TABLE_NAME_UNPROCESSED } = Consts.Environments;
+  const { TABLE_NAME_EVENT_TYPE, TABLE_NAME_HISTORY, TABLE_NAME_RESOURCES, TABLE_NAME_UNPROCESSED } =
+    Consts.Environments;
 
   const createItems = Events.getCreateResourceItem(item);
   const deleteItems = await Events.getRemoveResourceItems(item);
@@ -207,6 +208,21 @@ const processRecord = async (item: CloudTrail.Record) => {
       EventTime: `${item.eventTime}_${item.eventID.substr(0, 8)}`,
     } as Tables.UnprocessedKey)
   );
+
+  // remove unprocessed flag
+  transactItems.push({
+    Update: {
+      TableName: TABLE_NAME_EVENT_TYPE,
+      Key: {
+        EventSource: item.eventSource,
+        EventName: item.eventName,
+      } as Tables.EventTypeKey,
+      UpdateExpression: 'REMOVE #Unprocessed',
+      ExpressionAttributeNames: {
+        '#Unprocessed': 'Unprocessed',
+      },
+    },
+  });
 
   await DynamodbHelper.getDocumentClient().transactWrite({
     TransactItems: transactItems,
