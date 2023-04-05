@@ -2,7 +2,7 @@
   "IdentityType": "AssumedRole",
   "EventSource": "ec2.amazonaws.com",
   "UserName": "EC2Role",
-  "ResourceId": "sg-07111150655b49758",
+  "ResourceId": "arn:aws:ec2:ap-northeast-1:999999999999:security-group/sg-07111150655b49758",
   "ResourceName": "sg-07111150655b49758",
   "EventTime": "2023-01-17T04:05:16Z",
   "UserAgent": "APN/1.0 HashiCorp/1.0 Terraform/1.3.5 (+https://www.terraform.io) terraform-provider-aws/4.50.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.44.177 (go1.19.3; linux; amd64)",

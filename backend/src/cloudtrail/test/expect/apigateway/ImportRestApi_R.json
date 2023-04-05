@@ -8,6 +8,6 @@
   "UserAgent": "cloudformation.amazonaws.com",
   "AWSRegion": "ap-northeast-1",
   "EventId": "86a4e780-56fc-422a-b95d-9f19ca5e2c11",
-  "Service": "APIGateway",
+  "Service": "Apigateway",
   "EventName": "ImportRestApi"
 }

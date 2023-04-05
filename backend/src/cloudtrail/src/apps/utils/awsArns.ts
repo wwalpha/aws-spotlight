@@ -6,58 +6,61 @@ export const ResourceARNs = {
   APIGATEWAY_VpcLink: (region: string, _: string, id?: string) => `arn:aws:apigateway:${region}::/vpclinks/${id}`,
 
   // redshift
-  REDSHIFT_Cluster: (region: string, account?: string, id?: string) =>
+  REDSHIFT_Cluster: (region: string, account: string, id?: string) =>
     `arn:aws:redshift:${region}:${account}:cluster:${id}`,
 
   // monitoring
-  MONITORING_Alarms: (region: string, account?: string, id?: string) =>
+  MONITORING_Dashboard: (region: string, account: string, id?: string) =>
+    `arn:aws:cloudwatch:${region}:${account}:dashboard:${id}`,
+
+  // monitoring
+  MONITORING_Alarm: (region: string, account: string, id?: string) =>
     `arn:aws:cloudwatch:${region}:${account}:alarm:${id}`,
 
   // cloudwatch logs
-  LOGS_LogGroup: (region: string, account?: string, id?: string) => `arn:aws:logs:${region}:${account}:log-group:${id}`,
+  LOGS_LogGroup: (region: string, account: string, id?: string) => `arn:aws:logs:${region}:${account}:log-group:${id}`,
 
   // lex
-  LEX_Bot: (region: string, account?: string, id?: string) => `arn:aws:lex:${region}:${account}:bot:${id}`,
+  LEX_Bot: (region: string, account: string, id?: string) => `arn:aws:lex:${region}:${account}:bot:${id}`,
 
   // lambda
-  LAMBDA_Function20150331: (region: string, account?: string, id?: string) =>
+  LAMBDA_Function20150331: (region: string, account: string, id?: string) =>
     `arn:aws:lambda:${region}:${account}:function:${id}`,
 
   // kinesis
-  KINESIS_Stream: (region: string, account?: string, id?: string) =>
-    `arn:aws:kinesis:${region}:${account}:stream/${id}`,
+  KINESIS_Stream: (region: string, account: string, id?: string) => `arn:aws:kinesis:${region}:${account}:stream/${id}`,
 
   // iot
-  IOT_TopicRule: (region: string, account?: string, id?: string) => `arn:aws:iot:${region}:${account}:rule/${id}`,
+  IOT_TopicRule: (region: string, account: string, id?: string) => `arn:aws:iot:${region}:${account}:rule/${id}`,
 
   // glue
-  GLUE_Database: (region: string, account?: string, id?: string) => `arn:aws:glue:${region}:${account}:database/${id}`,
+  GLUE_Database: (region: string, account: string, id?: string) => `arn:aws:glue:${region}:${account}:database/${id}`,
 
   // firehose
-  FIREHOSE_DeliveryStream: (region: string, account?: string, id?: string) =>
+  FIREHOSE_DeliveryStream: (region: string, account: string, id?: string) =>
     `arn:aws:firehose:${region}:${account}:deliverystream/${id}`,
 
   // events
-  EVENTS_Rule: (region: string, account?: string, id?: string) => `arn:aws:events:${region}:${account}:rule/${id}`,
+  EVENTS_Rule: (region: string, account: string, id?: string) => `arn:aws:events:${region}:${account}:rule/${id}`,
 
   // elasticfilesystem
-  ELASTICFILESYSTEM_FileSystem: (region: string, account?: string, id?: string) =>
+  ELASTICFILESYSTEM_FileSystem: (region: string, account: string, id?: string) =>
     `arn:aws:elasticfilesystem:${region}:${account}:file-system/${id}`,
 
   // ds
-  DS_Directory: (region: string, account?: string, id?: string) =>
+  DS_Directory: (region: string, account: string, id?: string) =>
     `arn:aws:clouddirectory:${region}:${account}:directory/${id}`,
 
   // codedeploy
-  CODEDEPLOY_Application: (region: string, account?: string, id?: string) =>
+  CODEDEPLOY_Application: (region: string, account: string, id?: string) =>
     `arn:aws:codedeploy:${region}:${account}:application/${id}`,
 
   // cloudfront
-  CLOUDFRONT_Distribution: (_: string, account?: string, id?: string) =>
+  CLOUDFRONT_Distribution: (_: string, account: string, id?: string) =>
     `arn:aws:cloudfront::${account}:distribution/${id}`,
 
   // autoscaling
-  AUTOSCALING_AutoScalingGroup: (region: string, account?: string, id?: string) =>
+  AUTOSCALING_AutoScalingGroup: (region: string, account: string, id?: string) =>
     `arn:aws:autoscaling:${region}:${account}:autoScalingGroup:*:autoScalingGroupName/${id}`,
 
   // route53
@@ -67,118 +70,115 @@ export const ResourceARNs = {
   S3_Bucket: (_: string, __?: string, id?: string) => `arn:aws:s3:::${id}`,
 
   // sqs
-  SQS_Queue: (region: string, account?: string, id?: string) => `arn:aws:sqs:${region}:${account}:${id}`,
+  SQS_Queue: (region: string, account: string, id?: string) => `arn:aws:sqs:${region}:${account}:${id}`,
 
   // sqs
-  SYNTHETICS_Canary: (region: string, account?: string, id?: string) =>
+  SYNTHETICS_Canary: (region: string, account: string, id?: string) =>
     `arn:aws:synthetics:${region}:${account}:canary:${id}`,
 
   // timestream
-  TIMESTREAM_Database: (region: string, account?: string, id?: string) =>
+  TIMESTREAM_Database: (region: string, account: string, id?: string) =>
     `arn:aws:timestream:${region}:${account}:database/${id}`,
 
   // transfer
-  TRANSFER_Server: (region: string, account?: string, id?: string) =>
+  TRANSFER_Server: (region: string, account: string, id?: string) =>
     `arn:aws:transfer:${region}:${account}:server/${id}`,
 
   // wafv2 ipset
-  WAFV2_IPSet: (region: string, account?: string, id?: string) => `arn:aws:wafv2:${region}:${account}:${id}`,
+  WAFV2_IPSet: (region: string, account: string, id?: string) => `arn:aws:wafv2:${region}:${account}:${id}`,
 
   // wafv2 webacl
-  WAFV2_WebACL: (region: string, account?: string, id?: string) => `arn:aws:wafv2:${region}:${account}:${id}`,
+  WAFV2_WebACL: (region: string, account: string, id?: string) => `arn:aws:wafv2:${region}:${account}:${id}`,
 
   // rds cluster parameter group
-  RDS_DBClusterParameterGroup: (region: string, account?: string, id?: string) =>
+  RDS_DBClusterParameterGroup: (region: string, account: string, id?: string) =>
     `arn:aws:rds:${region}:${account}:cluster-pg:${id}`,
 
   // rds parameter group
-  RDS_DBParameterGroup: (region: string, account?: string, id?: string) => `arn:aws:rds:${region}:${account}:pg:${id}`,
+  RDS_DBParameterGroup: (region: string, account: string, id?: string) => `arn:aws:rds:${region}:${account}:pg:${id}`,
 
   // rds db snapshot
-  RDS_DBSnapshot: (region: string, account?: string, id?: string) => `arn:aws:rds:${region}:${account}:snapshot:${id}`,
+  RDS_DBSnapshot: (region: string, account: string, id?: string) => `arn:aws:rds:${region}:${account}:snapshot:${id}`,
 
   // rds db subnet group
-  RDS_DBSubnetGroup: (region: string, account?: string, id?: string) => `arn:aws:rds:${region}:${account}:subgrp:${id}`,
+  RDS_DBSubnetGroup: (region: string, account: string, id?: string) => `arn:aws:rds:${region}:${account}:subgrp:${id}`,
 
   // elasticache subnet group
-  ELASTICACHE_CacheSubnetGroup: (region: string, account?: string, id?: string) =>
+  ELASTICACHE_CacheSubnetGroup: (region: string, account: string, id?: string) =>
     `arn:aws:elasticache:${region}:${account}:subnetgroup:${id}`,
 
   // iam
-  IAM_Role: (_: string, account?: string, id?: string) => `arn:aws:iam::${account}:role/${id}`,
+  IAM_Role: (_: string, account: string, id?: string) => `arn:aws:iam::${account}:role/${id}`,
 
   // ec2 client vpn endpoint
-  EC2_ClientVpnEndpoint: (region: string, account?: string, id?: string) =>
+  EC2_ClientVpnEndpoint: (region: string, account: string, id?: string) =>
     `arn:aws:ec2:${region}:${account}:client-vpn-endpoint/${id}`,
 
   // ec2 customer gateway
-  EC2_CustomerGateway: (region: string, account?: string, id?: string) =>
+  EC2_CustomerGateway: (region: string, account: string, id?: string) =>
     `arn:aws:ec2:${region}:${account}:customer-gateway/${id}`,
 
   // ec2 internet gateway
-  EC2_InternetGateway: (region: string, account?: string, id?: string) =>
+  EC2_InternetGateway: (region: string, account: string, id?: string) =>
     `arn:aws:ec2:${region}:${account}:internet-gateway/${id}`,
 
   // ec2 launch template
-  EC2_LaunchTemplate: (region: string, account?: string, id?: string) =>
+  EC2_LaunchTemplate: (region: string, account: string, id?: string) =>
     `arn:aws:ec2:${region}:${account}:launch-template/${id}`,
 
   // ec2 nat gateway
-  EC2_NatGateway: (region: string, account?: string, id?: string) =>
-    `arn:aws:ec2:${region}:${account}:natgateway/${id}`,
+  EC2_NatGateway: (region: string, account: string, id?: string) => `arn:aws:ec2:${region}:${account}:natgateway/${id}`,
 
   // ec2 network insights path
-  EC2_NetworkInsightsPath: (region: string, account?: string, id?: string) =>
+  EC2_NetworkInsightsPath: (region: string, account: string, id?: string) =>
     `arn:aws:ec2:${region}:${account}:network-insights-path/${id}`,
 
   // ec2 security group
-  EC2_SecurityGroup: (region: string, account?: string, id?: string) =>
+  EC2_SecurityGroup: (region: string, account: string, id?: string) =>
     `arn:aws:ec2:${region}:${account}:security-group/${id}`,
 
   // ec2 snapshot
-  EC2_Snapshot: (region: string, account?: string, id?: string) => `arn:aws:ec2:${region}:${account}:snapshot/${id}`,
+  EC2_Snapshot: (region: string, account: string, id?: string) => `arn:aws:ec2:${region}:${account}:snapshot/${id}`,
 
   // ec2 subnet
-  EC2_Subnet: (region: string, account?: string, id?: string) => `arn:aws:ec2:${region}:${account}:subnet/${id}`,
+  EC2_Subnet: (region: string, account: string, id?: string) => `arn:aws:ec2:${region}:${account}:subnet/${id}`,
 
   // ec2 transit gateway
-  EC2_TransitGateway: (region: string, account?: string, id?: string) =>
+  EC2_TransitGateway: (region: string, account: string, id?: string) =>
     `arn:aws:ec2:${region}:${account}:transit-gateway/${id}`,
 
   // ec2 volumn
-  EC2_Volume: (region: string, account?: string, id?: string) => `arn:aws:ec2:${region}:${account}:volume/${id}`,
+  EC2_Volume: (region: string, account: string, id?: string) => `arn:aws:ec2:${region}:${account}:volume/${id}`,
 
   // ec2 vpc
-  EC2_Vpc: (region: string, account?: string, id?: string) => `arn:aws:ec2:${region}:${account}:vpc/${id}`,
+  EC2_Vpc: (region: string, account: string, id?: string) => `arn:aws:ec2:${region}:${account}:vpc/${id}`,
 
   // ec2 vpc endpoint
-  EC2_VpcEndpoints: (region: string, account?: string, id?: string) =>
+  EC2_VpcEndpoints: (region: string, account: string, id?: string) =>
     `arn:aws:ec2:${region}:${account}:vpc-endpoint/${id}`,
 
   // ec2 vpc peering
-  EC2_VpcPeeringConnection: (region: string, account?: string, id?: string) =>
+  EC2_VpcPeeringConnection: (region: string, account: string, id?: string) =>
     `arn:aws:ec2:${region}:${account}:vpc-peering-connection/${id}`,
 
   // ec2 vpn connection
-  EC2_VpnConnection: (region: string, account?: string, id?: string) =>
+  EC2_VpnConnection: (region: string, account: string, id?: string) =>
     `arn:aws:ec2:${region}:${account}:vpn-connection/${id}`,
 
   // ec2 vpn gateway
-  EC2_VpnGateway: (region: string, account?: string, id?: string) =>
+  EC2_VpnGateway: (region: string, account: string, id?: string) =>
     `arn:aws:ec2:${region}:${account}:vpn-gateway/${id}`,
 
   // ec2 deregister image
-  EC2_DeregisterImage: (region: string, account?: string, id?: string) =>
-    `arn:aws:ec2:${region}:${account}:image/${id}`,
+  EC2_Image: (region: string, _: string, id?: string) => `arn:aws:ec2:${region}::image/${id}`,
 
   // ec2 release address
-  EC2_ReleaseAddress: (region: string, account?: string, id?: string) =>
-    `arn:aws:ec2:${region}:${account}:elastic-ip/${id}`,
+  EC2_IPAddress: (region: string, account: string, id?: string) => `arn:aws:ec2:${region}:${account}:elastic-ip/${id}`,
 
   // ec2 release address
-  EC2_Instances: (region: string, account?: string, id?: string) => `arn:aws:ec2:${region}:${account}:instance/${id}`,
+  EC2_Instances: (region: string, account: string, id?: string) => `arn:aws:ec2:${region}:${account}:instance/${id}`,
 
   // backup vault
-  BACKUP_BackupVault: (region: string, account?: string, id?: string) =>
+  BACKUP_BackupVault: (region: string, account: string, id?: string) =>
     `arn:aws:backup:${region}:${account}:backup-vault:${id}`,
 };

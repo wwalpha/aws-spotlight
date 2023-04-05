@@ -50,7 +50,7 @@ describe('apigateway.amazonaws.com', () => {
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:apigateway:ap-northeast-1::/apis/jrrfh5tt86');
-    const history = await getHistory({ EventId: '86a4e780-56fc-422a-b95d-9f19ca5e2c11' });
+    const history = await getHistory({ EventId: DeleteEvents.APIGATEWAY_DeleteRestApi.eventID });
 
     expect(resource).toBeUndefined();
 

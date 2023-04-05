@@ -1,4 +1,4 @@
-export { default as APIGATEWAY_DeleteRestApi } from './apigateway/APIGATEWAY_DeleteApi.json';
+export { default as APIGATEWAY_DeleteRestApi } from './apigateway/APIGATEWAY_DeleteRestApi.json';
 export { default as APIGATEWAY_DeleteVpcLink } from './apigateway/APIGATEWAY_DeleteVpcLink.json';
 export { default as APIGATEWAY_DeleteApi } from './apigateway/APIGATEWAY_DeleteApi.json';
 

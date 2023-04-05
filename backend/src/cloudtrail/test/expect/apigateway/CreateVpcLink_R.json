@@ -8,6 +8,6 @@
   "UserAgent": "aws-internal/3 aws-sdk-java/1.11.1030 Linux/5.4.102-52.177.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.292-b10 java/1.8.0_292 vendor/Oracle_Corporation cfg/retry-mode/legacy",
   "AWSRegion": "ap-northeast-1",
   "EventId": "fa4eb46f-041f-4b09-8b67-1ecd72362754",
-  "Service": "APIGateway",
+  "Service": "Apigateway",
   "EventName": "CreateVpcLink"
 }

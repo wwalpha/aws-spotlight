@@ -486,7 +486,7 @@ describe('ec2.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource('sg-07111150655b49758');
+    const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:security-group/sg-07111150655b49758');
     const history = await getHistory({ EventId: CreateEvents.EC2_CreateSecurityGroup.eventID });
 
     // fs.writeFileSync('CreateSecurityGroup_R.json', JSON.stringify(resource));
@@ -504,7 +504,7 @@ describe('ec2.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource('sg-07111150655b49758');
+    const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:security-group/sg-07111150655b49758');
     const history = await getHistory({ EventId: DeleteEvents.EC2_DeleteSecurityGroup.eventID });
 
     // fs.writeFileSync('DeleteSecurityGroup_H.json', JSON.stringify(history));

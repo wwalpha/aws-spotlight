@@ -32,7 +32,7 @@ const getResourceArn = (record: CloudTrail.Record) => {
 
   switch (key) {
     case 'APIGATEWAY_DeleteApi':
-      return ResourceARNs.APIGATEWAY_Api(region, account, record.requestParameters.restApiId);
+      return ResourceARNs.APIGATEWAY_Api(region, account, record.requestParameters.apiId);
     case 'APIGATEWAY_DeleteRestApi':
       return ResourceARNs.APIGATEWAY_Api(region, account, record.requestParameters.restApiId);
     case 'APIGATEWAY_DeleteVpcLink':
@@ -94,7 +94,7 @@ const getResourceArn = (record: CloudTrail.Record) => {
       return ResourceARNs.LAMBDA_Function20150331(region, account, record.requestParameters.functionName);
 
     case 'MONITORING_DeleteAlarms':
-      return ResourceARNs.MONITORING_Alarms(region, account, record.recipientAccountId);
+      return ResourceARNs.MONITORING_Alarm(region, account, record.recipientAccountId);
 
     case 'NETWORK-FIREWALL_DeleteFirewall':
       return record.responseElements.firewall.firewallArn;
@@ -230,9 +230,9 @@ const getResourceArn = (record: CloudTrail.Record) => {
     case 'EC2_DeleteVpnGateway':
       return ResourceARNs.EC2_VpnGateway(region, account, record.requestParameters.vpnGatewayId);
     case 'EC2_DeregisterImage':
-      return ResourceARNs.EC2_DeregisterImage(region, account, record.requestParameters.imageId);
+      return ResourceARNs.EC2_Image(region, account, record.requestParameters.imageId);
     case 'EC2_ReleaseAddress':
-      return ResourceARNs.EC2_ReleaseAddress(region, account, record.requestParameters.allocationId);
+      return ResourceARNs.EC2_IPAddress(region, account, record.requestParameters.allocationId);
     case 'EC2_TerminateInstances':
       return (record.responseElements.instancesSet.items as any[]).map((item: { instanceId: any }) =>
         ResourceARNs.EC2_Instances(region, account, item.instanceId)
@@ -243,7 +243,7 @@ const getResourceArn = (record: CloudTrail.Record) => {
     case 'BACKUP_DeleteBackupPlan':
       return record.responseElements.backupPlanArn;
     case 'BACKUP_DeleteBackupVault':
-      return ResourceARNs.EC2_SecurityGroup(region, account, record.requestParameters.backupVaultName);
+      return ResourceARNs.BACKUP_BackupVault(region, account, record.requestParameters.backupVaultName);
   }
 
   return undefined;
