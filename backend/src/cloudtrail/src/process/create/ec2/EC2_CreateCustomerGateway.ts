@@ -17,6 +17,6 @@ export const EC2_CreateCustomerGateway = (record: CloudTrail.Record): Tables.Res
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'Customer Gateway',
+    Service: 'EC2',
   };
 };

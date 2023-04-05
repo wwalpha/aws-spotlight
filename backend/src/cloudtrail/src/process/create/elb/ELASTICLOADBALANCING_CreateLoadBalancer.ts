@@ -12,5 +12,5 @@ export const ELASTICLOADBALANCING_CreateLoadBalancer = (record: CloudTrail.Recor
   IdentityType: record.userIdentity.type,
   UserAgent: record.userAgent,
   EventId: record.eventID,
-  Service: 'Load Balancer',
+  Service: 'EC2',
 });

@@ -17,6 +17,6 @@ export const REDSHIFT_CreateCluster = (record: CloudTrail.Record): Tables.Resour
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'Cluster',
+    Service: 'Redshift',
   };
 };

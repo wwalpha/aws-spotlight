@@ -12,5 +12,5 @@ export const FIREHOSE_CreateDeliveryStream = (record: CloudTrail.Record): Tables
   IdentityType: record.userIdentity.type,
   UserAgent: record.userAgent,
   EventId: record.eventID,
-  Service: 'DeliveryStream',
+  Service: 'Firehose',
 });

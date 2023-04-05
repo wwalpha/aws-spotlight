@@ -13,6 +13,6 @@ export const EC2_CreateSecurityGroup = (record: CloudTrail.Record): Tables.Resou
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'VPC Security Group',
+    Service: 'EC2',
   };
 };

@@ -16,6 +16,6 @@ export const MONITORING_PutDashboard = (record: CloudTrail.Record): Tables.Resou
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'CloudWatch Alarm',
+    Service: 'CloudWatch',
   };
 };

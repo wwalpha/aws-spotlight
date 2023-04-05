@@ -17,6 +17,6 @@ export const EC2_CreateVpcPeeringConnection = (record: CloudTrail.Record): Table
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'VPC Peering',
+    Service: 'EC2',
   };
 };

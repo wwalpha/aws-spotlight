@@ -17,6 +17,6 @@ export const CODEDEPLOY_CreateApplication = (record: CloudTrail.Record): Tables.
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'CodeDeploy Application',
+    Service: 'CodeDeploy',
   };
 };

@@ -17,6 +17,6 @@ export const IOT_CreateTopicRule = (record: CloudTrail.Record): Tables.Resource 
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'IoT Rule',
+    Service: 'IoT',
   };
 };

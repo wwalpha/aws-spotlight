@@ -17,6 +17,6 @@ export const AUTOSCALING_CreateAutoScalingGroup = (record: CloudTrail.Record): T
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'AutoScaling Group',
+    Service: 'EC2',
   };
 };

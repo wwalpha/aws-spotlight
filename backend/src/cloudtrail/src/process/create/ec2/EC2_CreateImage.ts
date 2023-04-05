@@ -16,6 +16,6 @@ export const EC2_CreateImage = (record: CloudTrail.Record): Tables.Resource => {
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'AMI',
+    Service: 'EC2',
   };
 };

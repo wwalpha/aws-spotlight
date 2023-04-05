@@ -13,6 +13,6 @@ export const ECR_CreateRepository = (record: CloudTrail.Record): Tables.Resource
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'ECR Repository',
+    Service: 'ECR',
   };
 };

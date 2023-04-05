@@ -12,5 +12,5 @@ export const ELASTICLOADBALANCING_CreateTargetGroup = (record: CloudTrail.Record
   IdentityType: record.userIdentity.type,
   UserAgent: record.userAgent,
   EventId: record.eventID,
-  Service: 'Target Group',
+  Service: 'EC2',
 });

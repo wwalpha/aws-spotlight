@@ -12,5 +12,5 @@ export const IAM_CreateSAMLProvider = (record: CloudTrail.Record): Tables.Resour
   IdentityType: record.userIdentity.type,
   UserAgent: record.userAgent,
   EventId: record.eventID,
-  Service: 'SAML Provider',
+  Service: 'IAM',
 });

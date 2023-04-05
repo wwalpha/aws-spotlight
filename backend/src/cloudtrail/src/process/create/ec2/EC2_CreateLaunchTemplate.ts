@@ -17,6 +17,6 @@ export const EC2_CreateLaunchTemplate = (record: CloudTrail.Record): Tables.Reso
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'EC2 Launch Template',
+    Service: 'EC2',
   };
 };

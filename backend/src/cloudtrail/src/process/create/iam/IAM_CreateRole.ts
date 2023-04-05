@@ -12,5 +12,5 @@ export const IAM_CreateRole = (record: CloudTrail.Record): Tables.Resource => ({
   IdentityType: record.userIdentity.type,
   UserAgent: record.userAgent,
   EventId: record.eventID,
-  Service: 'Role',
+  Service: 'IAM',
 });

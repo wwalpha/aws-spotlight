@@ -17,6 +17,6 @@ export const LOGS_CreateLogGroup = (record: CloudTrail.Record): Tables.Resource 
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'CloudWatch Logs',
+    Service: 'CloudWatchLogs',
   };
 };

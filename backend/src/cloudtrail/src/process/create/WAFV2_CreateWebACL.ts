@@ -12,5 +12,5 @@ export const WAFV2_CreateWebACL = (record: CloudTrail.Record): Tables.Resource =
   IdentityType: record.userIdentity.type,
   UserAgent: record.userAgent,
   EventId: record.eventID,
-  Service: 'WEB ACL',
+  Service: 'Wafv2',
 });

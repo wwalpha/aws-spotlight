@@ -12,5 +12,5 @@ export const CLOUDFORMATION_CreateStack = (record: CloudTrail.Record): Tables.Re
   IdentityType: record.userIdentity.type,
   UserAgent: record.userAgent,
   EventId: record.eventID,
-  Service: 'CloudFormation Stack',
+  Service: 'CloudFormation',
 });

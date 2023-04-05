@@ -12,5 +12,5 @@ export const BATCH_CreateComputeEnvironment = (record: CloudTrail.Record): Table
   IdentityType: record.userIdentity.type,
   UserAgent: record.userAgent,
   EventId: record.eventID,
-  Service: 'Environment',
+  Service: 'Batch',
 });

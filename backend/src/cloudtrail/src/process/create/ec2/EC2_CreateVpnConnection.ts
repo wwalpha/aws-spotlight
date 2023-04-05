@@ -17,6 +17,6 @@ export const EC2_CreateVpnConnection = (record: CloudTrail.Record): Tables.Resou
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'Site to Site VPN',
+    Service: 'EC2',
   };
 };

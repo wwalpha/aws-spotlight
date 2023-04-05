@@ -12,5 +12,5 @@ export const BACKUP_CreateBackupVault = (record: CloudTrail.Record): Tables.Reso
   IdentityType: record.userIdentity.type,
   UserAgent: record.userAgent,
   EventId: record.eventID,
-  Service: 'Backup Vault',
+  Service: 'Backup',
 });

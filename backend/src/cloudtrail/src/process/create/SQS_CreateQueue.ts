@@ -18,6 +18,6 @@ export const SQS_CreateQueue = (record: CloudTrail.Record): Tables.Resource => {
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'Queue',
+    Service: 'SQS',
   };
 };

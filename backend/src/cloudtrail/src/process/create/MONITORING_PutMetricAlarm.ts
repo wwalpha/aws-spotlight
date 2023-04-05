@@ -17,6 +17,6 @@ export const MONITORING_PutMetricAlarm = (record: CloudTrail.Record): Tables.Res
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'CloudWatch Alarm',
+    Service: 'CloudWatch',
   };
 };

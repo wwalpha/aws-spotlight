@@ -15,6 +15,6 @@ export const ROUTE53_CreateHostedZone = (record: CloudTrail.Record): Tables.Reso
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'HostedZone',
+    Service: 'Route53',
   };
 };

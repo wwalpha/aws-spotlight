@@ -12,5 +12,5 @@ export const STATES_CreateStateMachine = (record: CloudTrail.Record): Tables.Res
   IdentityType: record.userIdentity.type,
   UserAgent: record.userAgent,
   EventId: record.eventID,
-  Service: 'StateMachine',
+  Service: 'StepFunction',
 });

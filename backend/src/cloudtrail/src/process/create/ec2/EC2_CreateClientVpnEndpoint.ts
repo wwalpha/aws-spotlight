@@ -17,6 +17,6 @@ export const EC2_CreateClientVpnEndpoint = (record: CloudTrail.Record): Tables.R
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'Client VPN',
+    Service: 'EC2',
   };
 };

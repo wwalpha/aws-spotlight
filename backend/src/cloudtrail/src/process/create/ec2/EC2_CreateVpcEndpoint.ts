@@ -17,6 +17,6 @@ export const EC2_CreateVpcEndpoint = (record: CloudTrail.Record): Tables.Resourc
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'VPC Endpoint',
+    Service: 'EC2',
   };
 };

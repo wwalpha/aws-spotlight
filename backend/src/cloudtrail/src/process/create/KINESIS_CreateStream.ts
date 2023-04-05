@@ -17,6 +17,6 @@ export const KINESIS_CreateStream = (record: CloudTrail.Record): Tables.Resource
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'Stream',
+    Service: 'Kinesis',
   };
 };

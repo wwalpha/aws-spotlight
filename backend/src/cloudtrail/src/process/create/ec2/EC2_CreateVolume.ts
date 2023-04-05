@@ -17,6 +17,6 @@ export const EC2_CreateVolume = (record: CloudTrail.Record): Tables.Resource => 
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'Volume',
+    Service: 'EC2',
   };
 };

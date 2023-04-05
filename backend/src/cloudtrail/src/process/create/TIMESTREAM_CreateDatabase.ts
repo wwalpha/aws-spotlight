@@ -12,5 +12,5 @@ export const TIMESTREAM_CreateDatabase = (record: CloudTrail.Record): Tables.Res
   IdentityType: record.userIdentity.type,
   UserAgent: record.userAgent,
   EventId: record.eventID,
-  Service: 'TimeStream Database',
+  Service: 'TimeStream',
 });

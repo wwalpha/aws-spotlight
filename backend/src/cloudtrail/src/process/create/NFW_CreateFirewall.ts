@@ -13,6 +13,6 @@ export const NFW_CreateFirewall = (record: CloudTrail.Record): Tables.Resource =
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'Network Firewall',
+    Service: 'NetworkFirewall',
   };
 };

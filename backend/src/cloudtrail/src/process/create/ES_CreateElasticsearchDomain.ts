@@ -12,5 +12,5 @@ export const ES_CreateElasticsearchDomain = (record: CloudTrail.Record): Tables.
   IdentityType: record.userIdentity.type,
   UserAgent: record.userAgent,
   EventId: record.eventID,
-  Service: 'Domain',
+  Service: 'Elasticsearch',
 });

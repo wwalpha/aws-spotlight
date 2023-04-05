@@ -16,6 +16,6 @@ export const EC2_CreateNetworkInsightsPath = (record: CloudTrail.Record): Tables
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'Network Insights Path',
+    Service: 'EC2',
   };
 };

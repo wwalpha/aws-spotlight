@@ -17,6 +17,6 @@ export const EC2_CreateInternetGateway = (record: CloudTrail.Record): Tables.Res
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'Internet Gateway',
+    Service: 'EC2',
   };
 };

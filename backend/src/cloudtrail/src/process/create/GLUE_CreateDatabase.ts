@@ -17,6 +17,6 @@ export const GLUE_CreateDatabase = (record: CloudTrail.Record): Tables.Resource 
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'Glue Database',
+    Service: 'Glue',
   };
 };

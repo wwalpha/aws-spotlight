@@ -13,6 +13,6 @@ export const EC2_CreateSubnet = (record: CloudTrail.Record): Tables.Resource => 
     IdentityType: record.userIdentity.type,
     UserAgent: record.userAgent,
     EventId: record.eventID,
-    Service: 'VPC Subnet',
+    Service: 'EC2',
   };
 };
