@@ -52,6 +52,14 @@ const start = async () => {
   });
 
   await helper.bulk(TABLE_NAME_EVENT_TYPE, newEvents);
+
+  const newIgnores = Ignores.filter((item) => {
+    const exist = allEvents.Items.find((e) => e.EventName === item.EventName && e.EventSource === item.EventSource);
+
+    return exist === undefined;
+  });
+
+  await helper.bulk(TABLE_NAME_EVENT_TYPE, newIgnores);
 };
 
 const getEvents = (): Tables.EventType[] => {

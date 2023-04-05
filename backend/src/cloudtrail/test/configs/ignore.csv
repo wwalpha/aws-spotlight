@@ -1,6 +1,6 @@
 AttachInternetGateway,ec2.amazonaws.com,true
-ModifySubnetAttribute,ec2.amazonaws.com,true
 AuthorizeSecurityGroupEgress,ec2.amazonaws.com,true
+ModifySubnetAttribute,ec2.amazonaws.com,true
 ModifyPrivateDnsNameOptions,ec2.amazonaws.com,true
 ModifyVpcAttribute,ec2.amazonaws.com,true
 AssociateIamInstanceProfile,ec2.amazonaws.com,true
@@ -149,7 +149,6 @@ ListExports,dynamodb.amazonaws.com,true
 ResetUserPassword,ds.amazonaws.com,true
 TestMetricFilter,logs.amazonaws.com,true
 OAuth2Response_GET,cognito-idp.amazonaws.com,true
-StartExecution,states.amazonaws.com,true
 ListContributorInsights,dynamodb.amazonaws.com,true
 SendSerialConsoleSSHPublicKey,ec2-instance-connect.amazonaws.com,true
 EnableEnhancedMonitoring,kinesis.amazonaws.com,true
@@ -170,7 +169,6 @@ PutResourcePolicy,logs.amazonaws.com,true
 DeleteKeyPair,ec2.amazonaws.com,true
 EnableVgwRoutePropagation,ec2.amazonaws.com,true
 SendSSHPublicKey,ec2-instance-connect.amazonaws.com,true
-UpdateStateMachine,states.amazonaws.com,true
 StartExecution,states.amazonaws.com,true
 AssociateSourceServers,mgn.amazonaws.com,true
 ModifyVpcPeeringConnectionOptions,ec2.amazonaws.com,true
@@ -225,7 +223,6 @@ SendAgentMetricsForMgn,mgn.amazonaws.com,true
 CreateSessionForMgn,mgn.amazonaws.com,true
 CreateWorkGroup,athena.amazonaws.com,true
 DeleteWorkGroup,athena.amazonaws.com,true
-DeleteNetworkInsightsAnalysis,ec2.amazonaws.com,true
 CreateUserPoolClient,cognito-idp.amazonaws.com,true
 AssociateInstanceStorageConfig,connect.amazonaws.com,true
 UpdateJobQueue,batch.amazonaws.com,true
