@@ -39,6 +39,7 @@ export * from './ec2/EC2_CreateSubnet';
 export * from './ec2/EC2_CreateSecurityGroup';
 export * from './ec2/EC2_CreateInternetGateway';
 export * from './ec2/EC2_CreateNetworkInsightsPath';
+export * from './ec2/EC2_CreateLaunchTemplate';
 
 export * from './ECR_CreateRepository';
 
@@ -61,15 +62,18 @@ export * from './KINESIS_CreateStream';
 
 export * from './LAMBDA_CreateFunction20150331';
 export * from './LEX_CreateBot';
+export * from './LOGS_CreateLogGroup';
 
 export * from './MONITORING_PutMetricAlarm';
 export * from './MONITORING_PutDashboard';
 
 export * from './NFW_CreateFirewall';
 
-export * from './RDS_CreateDBCluster';
-export * from './RDS_CreateDBInstance';
-export * from './RDS_CreateDBProxy';
+export * from './rds/RDS_CreateDBCluster';
+export * from './rds/RDS_CreateDBInstance';
+export * from './rds/RDS_CreateDBProxy';
+export * from './rds/RDS_CreateDBClusterParameterGroup';
+export * from './rds/RDS_CreateDBParameterGroup';
 
 export * from './REDSHIFT_CreateCluster';
 export * from './ROUTE53_CreateHostedZone';

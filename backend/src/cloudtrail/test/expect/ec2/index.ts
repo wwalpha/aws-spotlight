@@ -70,3 +70,7 @@ export { default as DeleteInternetGateway_H } from './DeleteInternetGateway_H.js
 export { default as EC2_CreateNetworkInsightsPath_H } from './EC2_CreateNetworkInsightsPath_H.json';
 export { default as EC2_CreateNetworkInsightsPath_R } from './EC2_CreateNetworkInsightsPath_R.json';
 export { default as EC2_DeleteNetworkInsightsPath_H } from './EC2_DeleteNetworkInsightsPath_H.json';
+
+export { default as EC2_CreateLaunchTemplate_H } from './EC2_CreateLaunchTemplate_H.json';
+export { default as EC2_CreateLaunchTemplate_R } from './EC2_CreateLaunchTemplate_R.json';
+export { default as EC2_DeleteLaunchTemplate_H } from './EC2_DeleteLaunchTemplate_H.json';

@@ -37,6 +37,7 @@ export { default as EC2_DeleteSubnet } from './ec2/EC2_DeleteSubnet.json';
 export { default as EC2_DeleteSecurityGroup } from './ec2/EC2_DeleteSecurityGroup.json';
 export { default as EC2_DeleteInternetGateway } from './ec2/EC2_DeleteInternetGateway.json';
 export { default as EC2_DeleteNetworkInsightsPath } from './ec2/EC2_DeleteNetworkInsightsPath.json';
+export { default as EC2_DeleteLaunchTemplate } from './ec2/EC2_DeleteLaunchTemplate.json';
 
 export { default as ECR_DeleteRepository } from './ecr/ECR_DeleteRepository.json';
 
@@ -57,16 +58,18 @@ export { default as KINESIS_DeleteStream } from './kinesis/KINESIS_DeleteStream.
 
 export { default as LAMBDA_DeleteFunction20150331 } from './lambda/LAMBDA_DeleteFunction20150331.json';
 export { default as LEX_DeleteBot } from './LEX_DeleteBot.json';
+export { default as LOGS_DeleteLogGroup } from './LOGS_DeleteLogGroup.json';
 
 export { default as MONITORING_DeleteAlarms } from './MONITORING_DeleteAlarms.json';
-
-export { default as MGN_DeleteLaunchTemplate } from './MGN_DeleteLaunchTemplate.json';
 
 export { default as NFW_DeleteFirewall } from './NFW_DeleteFirewall.json';
 
 export { default as RDS_DeleteDBCluster } from './rds/RDS_DeleteDBCluster.json';
 export { default as RDS_DeleteDBInstance } from './rds/RDS_DeleteDBInstance.json';
 export { default as RDS_DeleteDBProxy } from './rds/RDS_DeleteDBProxy.json';
+export { default as RDS_DeleteDBClusterParameterGroup } from './rds/RDS_DeleteDBClusterParameterGroup.json';
+export { default as RDS_DeleteDBParameterGroup } from './rds/RDS_DeleteDBParameterGroup.json';
+export { default as RDS_DeleteDBSnapshot } from './rds/RDS_DeleteDBSnapshot.json';
 
 export { default as REDSHIFT_DeleteCluster } from './redshift/REDSHIFT_DeleteCluster.json';
 export { default as ROUTE53_DeleteHostedZone } from './ROUTE53_DeleteHostedZone.json';

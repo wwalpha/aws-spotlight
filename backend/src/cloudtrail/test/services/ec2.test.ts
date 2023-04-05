@@ -590,4 +590,38 @@ describe('ec2.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.EC2_DeleteNetworkInsightsPath_H);
   });
+
+  test('EC2_CreateLaunchTemplate', async () => {
+    const event = await sendMessage(CreateEvents.EC2_CreateLaunchTemplate);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:launch-template/lt-09bcb085b7dc5d962');
+    const history = await getHistory({ EventId: CreateEvents.EC2_CreateLaunchTemplate.eventID });
+
+    // fs.writeFileSync('EC2_CreateLaunchTemplate_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('EC2_CreateLaunchTemplate_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.EC2_CreateLaunchTemplate_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.EC2_CreateLaunchTemplate_H);
+  });
+
+  test('EC2_DeleteLaunchTemplate', async () => {
+    const event = await sendMessage(DeleteEvents.EC2_DeleteLaunchTemplate);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:launch-template/lt-09bcb085b7dc5d962');
+    const history = await getHistory({ EventId: DeleteEvents.EC2_DeleteLaunchTemplate.eventID });
+
+    // fs.writeFileSync('EC2_DeleteLaunchTemplate_H.json', JSON.stringify(history));
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.EC2_DeleteLaunchTemplate_H);
+  });
 });

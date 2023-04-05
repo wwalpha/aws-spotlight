@@ -40,6 +40,7 @@ export { default as EC2_CreateSubnet } from './ec2/EC2_CreateSubnet.json';
 export { default as EC2_CreateSecurityGroup } from './ec2/EC2_CreateSecurityGroup.json';
 export { default as EC2_CreateInternetGateway } from './ec2/EC2_CreateInternetGateway.json';
 export { default as EC2_CreateNetworkInsightsPath } from './ec2/EC2_CreateNetworkInsightsPath.json';
+export { default as EC2_CreateLaunchTemplate } from './ec2/EC2_CreateLaunchTemplate.json';
 
 export { default as ECR_CreateRepository } from './ECR_CreateRepository.json';
 
@@ -58,19 +59,22 @@ export { default as IOT_CreateTopicRule } from './IOT_CreateTopicRule.json';
 
 export { default as LAMBDA_CreateFunction20150331 } from './LAMBDA_CreateFunction20150331.json';
 export { default as LEX_CreateBot } from './LEX_CreateBot.json';
+export { default as LOGS_CreateLogGroup } from './LOGS_CreateLogGroup.json';
 
 export { default as KINESIS_CreateStream } from './KINESIS_CreateStream.json';
 
 export { default as MONITORING_PutMetricAlarm } from './monitoring/MONITORING_PutMetricAlarm.json';
 export { default as MONITORING_PutDashboard } from './monitoring/MONITORING_PutDashboard.json';
 
-export { default as MGN_CreateLaunchTemplate } from './MGN_CreateLaunchTemplate.json';
-
 export { default as NFW_CreateFirewall } from './NFW_CreateFirewall.json';
 
 export { default as RDS_CreateDBCluster } from './rds/RDS_CreateDBCluster.json';
 export { default as RDS_CreateDBInstance } from './rds/RDS_CreateDBInstance.json';
 export { default as RDS_CreateDBProxy } from './rds/RDS_CreateDBProxy.json';
+export { default as RDS_CreateDBClusterParameterGroup } from './rds/RDS_CreateDBClusterParameterGroup.json';
+export { default as RDS_CreateDBParameterGroup } from './rds/RDS_CreateDBParameterGroup.json';
+export { default as RDS_CreateDBSnapshot } from './rds/RDS_CreateDBSnapshot.json';
+export { default as RDS_CopyDBSnapshot } from './rds/RDS_CopyDBSnapshot.json';
 
 export { default as REDSHIFT_CreateCluster } from './REDSHIFT_CreateCluster.json';
 export { default as ROUTE53_CreateHostedZone } from './ROUTE53_CreateHostedZone.json';

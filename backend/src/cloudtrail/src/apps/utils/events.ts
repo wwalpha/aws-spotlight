@@ -84,6 +84,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.EC2_CreateInternetGateway(record)];
     case 'EC2_CreateNetworkInsightsPath':
       return [CreateEvent.EC2_CreateNetworkInsightsPath(record)];
+    case 'EC2_CreateLaunchTemplate':
+      return [CreateEvent.EC2_CreateLaunchTemplate(record)];
 
     case 'ECR_CreateRepository':
       return [CreateEvent.ECR_CreateRepository(record)];
@@ -123,6 +125,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.LAMBDA_CreateFunction20150331(record)];
     case 'LEX_CreateBot':
       return [CreateEvent.LEX_CreateBot(record)];
+    case 'LOGS_CreateLogGroup':
+      return [CreateEvent.LOGS_CreateLogGroup(record)];
 
     case 'MONITORING_PutMetricAlarm':
       return [CreateEvent.MONITORING_PutMetricAlarm(record)];
@@ -138,6 +142,14 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.RDS_CreateDBInstance(record)];
     case 'RDS_CreateDBProxy':
       return [CreateEvent.RDS_CreateDBProxy(record)];
+    case 'RDS_CreateDBClusterParameterGroup':
+      return [CreateEvent.RDS_CreateDBClusterParameterGroup(record)];
+    case 'RDS_CreateDBParameterGroup':
+      return [CreateEvent.RDS_CreateDBParameterGroup(record)];
+    // case 'RDS_CreateDBSnapshot':
+    //   return [CreateEvent.RDS_CreateDBSnapshot(record)];
+    // case 'RDS_CopyDBSnapshot':
+    //   return [CreateEvent.RDS_CopyDBSnapshot(record)];
 
     case 'REDSHIFT_CreateCluster':
       return [CreateEvent.REDSHIFT_CreateCluster(record)];
@@ -275,6 +287,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.EC2_DeleteInternetGateway(record)];
     case 'EC2_DeleteNetworkInsightsPath':
       return [DeleteEvent.EC2_DeleteNetworkInsightsPath(record)];
+    case 'EC2_DeleteLaunchTemplate':
+      return [DeleteEvent.EC2_DeleteLaunchTemplate(record)];
 
     case 'ECR_DeleteRepository':
       return [DeleteEvent.ECR_DeleteRepository(record)];
@@ -314,6 +328,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.LAMBDA_DeleteFunction20150331(record)];
     case 'LEX_DeleteBot':
       return [DeleteEvent.LEX_DeleteBot(record)];
+    case 'LOGS_DeleteLogGroup':
+      return [DeleteEvent.LOGS_DeleteLogGroup(record)];
 
     case 'MONITORING_DeleteAlarms':
       return DeleteEvent.MONITORING_DeleteAlarms(record);
@@ -327,6 +343,10 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.RDS_DeleteDBInstance(record)];
     case 'RDS_DeleteDBProxy':
       return [DeleteEvent.RDS_DeleteDBProxy(record)];
+    case 'RDS_DeleteDBClusterParameterGroup':
+      return [DeleteEvent.RDS_DeleteDBClusterParameterGroup(record)];
+    case 'RDS_DeleteDBParameterGroup':
+      return [DeleteEvent.RDS_DeleteDBParameterGroup(record)];
 
     case 'REDSHIFT_DeleteCluster':
       return [DeleteEvent.REDSHIFT_DeleteCluster(record)];

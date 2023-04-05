@@ -67,6 +67,8 @@ CreateRouteTable,ec2.amazonaws.com,create
 DeleteRouteTable,ec2.amazonaws.com,delete
 CreateNetworkInsightsPath,ec2.amazonaws.com,create
 DeleteNetworkInsightsPath,ec2.amazonaws.com,delete
+CreateLaunchTemplate,ec2.amazonaws.com,create
+DeleteLaunchTemplate,ec2.amazonaws.com,delete
 CreateDatabase,glue.amazonaws.com,create
 DeleteDatabase,glue.amazonaws.com,delete
 CreateDatabase,timestream.amazonaws.com,create
@@ -100,12 +102,18 @@ CreateFunction20150331,lambda.amazonaws.com,create
 DeleteFunction20150331,lambda.amazonaws.com,delete
 CreateBot,lex.amazonaws.com,create
 DeleteBot,lex.amazonaws.com,delete
+CreateLogGroup,logs.amazonaws.com,create
+DeleteLogGroup,logs.amazonaws.com,delete
 CreateDBCluster,rds.amazonaws.com,create
 DeleteDBCluster,rds.amazonaws.com,delete
 CreateDBInstance,rds.amazonaws.com,create
 DeleteDBInstance,rds.amazonaws.com,delete
 CreateDBProxy,rds.amazonaws.com,create
 DeleteDBProxy,rds.amazonaws.com,delete
+CreateDBClusterParameterGroup,rds.amazonaws.com,create
+DeleteDBClusterParameterGroup,rds.amazonaws.com,delete
+CreateDBParameterGroup,rds.amazonaws.com,create
+DeleteDBParameterGroup,rds.amazonaws.com,delete
 CreateCluster,redshift.amazonaws.com,create
 DeleteCluster,redshift.amazonaws.com,delete
 CreateHostedZone,route53.amazonaws.com,create

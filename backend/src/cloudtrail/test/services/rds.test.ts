@@ -105,4 +105,72 @@ describe('rds.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.RDS_DeleteDBProxy_H);
   });
+
+  test('RDS_CreateDBClusterParameterGroup', async () => {
+    const event = await sendMessage(CreateEvents.RDS_CreateDBClusterParameterGroup);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:cluster-pg:test01');
+    const history = await getHistory({ EventId: CreateEvents.RDS_CreateDBClusterParameterGroup.eventID });
+
+    // fs.writeFileSync('RDS_CreateDBClusterParameterGroup_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('RDS_CreateDBClusterParameterGroup_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.RDS_CreateDBClusterParameterGroup_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EXPECTS.RDS_CreateDBClusterParameterGroup_H);
+  });
+
+  test('RDS_DeleteDBClusterParameterGroup', async () => {
+    const event = await sendMessage(DeleteEvents.RDS_DeleteDBClusterParameterGroup);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:cluster-pg:test01');
+    const history = await getHistory({ EventId: DeleteEvents.RDS_DeleteDBClusterParameterGroup.eventID });
+
+    // fs.writeFileSync('RDS_DeleteDBClusterParameterGroup_H.json', JSON.stringify(history));
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EXPECTS.RDS_DeleteDBClusterParameterGroup_H);
+  });
+
+  test('RDS_CreateDBParameterGroup', async () => {
+    const event = await sendMessage(CreateEvents.RDS_CreateDBParameterGroup);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:pg:cdc-enable');
+    const history = await getHistory({ EventId: CreateEvents.RDS_CreateDBParameterGroup.eventID });
+
+    // fs.writeFileSync('RDS_CreateDBParameterGroup_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('RDS_CreateDBParameterGroup_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.RDS_CreateDBParameterGroup_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EXPECTS.RDS_CreateDBParameterGroup_H);
+  });
+
+  test('RDS_DeleteDBParameterGroup', async () => {
+    const event = await sendMessage(DeleteEvents.RDS_DeleteDBParameterGroup);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:pg:cdc-enable');
+    const history = await getHistory({ EventId: DeleteEvents.RDS_DeleteDBParameterGroup.eventID });
+
+    // fs.writeFileSync('RDS_DeleteDBParameterGroup_H.json', JSON.stringify(history));
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EXPECTS.RDS_DeleteDBParameterGroup_H);
+  });
 });

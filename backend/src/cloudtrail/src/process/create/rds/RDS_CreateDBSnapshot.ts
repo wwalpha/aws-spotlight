@@ -1,10 +1,10 @@
 import { defaultTo } from 'lodash';
 import { CloudTrail, Tables } from 'typings';
 
-export const RDS_CreateDBProxy = (record: CloudTrail.Record): Tables.Resource => ({
+export const RDS_CreateDBSnapshot = (record: CloudTrail.Record): Tables.Resource => ({
   UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
-  ResourceId: record.responseElements.dBProxy.dBProxyArn,
-  ResourceName: record.responseElements.dBProxy.dBProxyName,
+  ResourceId: record.responseElements.dBSnapshotArn,
+  ResourceName: record.responseElements.dBSnapshotIdentifier,
   EventName: record.eventName,
   EventSource: record.eventSource,
   EventTime: record.eventTime,
@@ -12,5 +12,5 @@ export const RDS_CreateDBProxy = (record: CloudTrail.Record): Tables.Resource =>
   IdentityType: record.userIdentity.type,
   UserAgent: record.userAgent,
   EventId: record.eventID,
-  Service: 'RDS Proxy',
+  Service: 'RDS',
 });

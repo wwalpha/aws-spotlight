@@ -29,7 +29,7 @@
   "userAgent": "mgn.amazonaws.com",
   "requestParameters": {
     "DeleteLaunchTemplateRequest": {
-      "LaunchTemplateId": "lt-086df64233dc3780e"
+      "LaunchTemplateId": "lt-09bcb085b7dc5d962"
     }
   },
   "responseElements": {
@@ -39,7 +39,7 @@
       "launchTemplate": {
         "createTime": "2023-02-06T02:42:22.000Z",
         "createdBy": "arn:aws:sts::999999999999:assumed-role/AWSServiceRoleForApplicationMigrationService/8dda2067-fb38-4c32-9799-b6e2f58c8b3a",
-        "launchTemplateId": "lt-086df64233dc3780e",
+        "launchTemplateId": "lt-09bcb085b7dc5d962",
         "latestVersionNumber": 2,
         "defaultVersionNumber": 2,
         "launchTemplateName": "created-and-used-by-application-migration-service-s-6b7f436bdbfb6b0a1-230602-024222"
