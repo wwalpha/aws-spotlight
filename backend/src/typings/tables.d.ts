@@ -109,6 +109,7 @@ export namespace Tables {
    * Table - Unprocessed
    */
   interface Unprocessed extends UnprocessedKey {
+    EventSource: string;
     Raw: string;
   }
 

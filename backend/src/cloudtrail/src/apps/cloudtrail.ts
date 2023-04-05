@@ -119,6 +119,7 @@ const processNewEventType = async (record: CloudTrail.Record) => {
       EventName: record.eventName,
       EventTime: `${record.eventTime}_${record.eventID.substr(0, 8)}`,
       Raw: JSON.stringify(record),
+      EventSource: record.eventSource,
     } as Tables.Unprocessed)
   );
 
@@ -153,6 +154,7 @@ const processUnprocessed = async (record: CloudTrail.Record) => {
       EventName: record.eventName,
       EventTime: `${record.eventTime}_${record.eventID.substr(0, 8)}`,
       Raw: JSON.stringify(record),
+      EventSource: record.eventSource,
     } as Tables.Unprocessed,
   ]);
 };
