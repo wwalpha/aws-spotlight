@@ -1,0 +1,28 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5KHXRMBMRI",
+    "arn": "arn:aws:iam::334678299258:user/kei.sugiyasu@dxc.com",
+    "accountId": "334678299258",
+    "accessKeyId": "AKIAU33DBSJ5F4UM42YV",
+    "userName": "kei.sugiyasu@dxc.com"
+  },
+  "eventTime": "2021-10-15T03:18:12Z",
+  "eventSource": "elasticache.amazonaws.com",
+  "eventName": "DeleteCacheSubnetGroup",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "106.73.1.65",
+  "userAgent": "APN/1.0 HashiCorp/1.0 Terraform/1.0.8 (+https://www.terraform.io) terraform-provider-aws/3.62.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.40.56 (go1.16; linux; amd64)",
+  "requestParameters": {
+    "cacheSubnetGroupName": "containersample-dev-redis"
+  },
+  "responseElements": null,
+  "requestID": "444ad2a5-304f-4494-92bc-b7ef602e146a",
+  "eventID": "e8009d66-27a4-4258-b608-ec453f397486",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "334678299258",
+  "eventCategory": "Management"
+}

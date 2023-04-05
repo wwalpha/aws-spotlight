@@ -92,6 +92,10 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
 
     case 'ELASTICFILESYSTEM_CreateFileSystem':
       return [CreateEvent.ELASTICFILESYSTEM_CreateFileSystem(record)];
+    case 'ELASTICACHE_CreateCacheCluster':
+      return [CreateEvent.ELASTICACHE_CreateCacheCluster(record)];
+    case 'ELASTICACHE_CreateCacheSubnetGroup':
+      return [CreateEvent.ELASTICACHE_CreateCacheSubnetGroup(record)];
 
     case 'ELASTICLOADBALANCING_CreateLoadBalancer':
       return [CreateEvent.ELASTICLOADBALANCING_CreateLoadBalancer(record)];
@@ -146,6 +150,8 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.RDS_CreateDBClusterParameterGroup(record)];
     case 'RDS_CreateDBParameterGroup':
       return [CreateEvent.RDS_CreateDBParameterGroup(record)];
+    case 'RDS_CreateDBSubnetGroup':
+      return [CreateEvent.RDS_CreateDBSubnetGroup(record)];
     // case 'RDS_CreateDBSnapshot':
     //   return [CreateEvent.RDS_CreateDBSnapshot(record)];
     // case 'RDS_CopyDBSnapshot':
@@ -295,6 +301,10 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
 
     case 'ELASTICFILESYSTEM_DeleteFileSystem':
       return [DeleteEvent.ELASTICFILESYSTEM_DeleteFileSystem(record)];
+    case 'ELASTICACHE_DeleteCacheCluster':
+      return [DeleteEvent.ELASTICACHE_DeleteCacheCluster(record)];
+    case 'ELASTICACHE_DeleteCacheSubnetGroup':
+      return [DeleteEvent.ELASTICACHE_DeleteCacheSubnetGroup(record)];
     case 'ELASTICLOADBALANCING_DeleteLoadBalancer':
       return [DeleteEvent.ELASTICLOADBALANCING_DeleteLoadBalancer(record)];
     case 'ELASTICLOADBALANCING_DeleteTargetGroup':
@@ -347,6 +357,8 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.RDS_DeleteDBClusterParameterGroup(record)];
     case 'RDS_DeleteDBParameterGroup':
       return [DeleteEvent.RDS_DeleteDBParameterGroup(record)];
+    case 'RDS_DeleteDBSubnetGroup':
+      return [DeleteEvent.RDS_DeleteDBSubnetGroup(record)];
 
     case 'REDSHIFT_DeleteCluster':
       return [DeleteEvent.REDSHIFT_DeleteCluster(record)];

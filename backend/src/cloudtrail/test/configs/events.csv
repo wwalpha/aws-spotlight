@@ -69,6 +69,10 @@ CreateNetworkInsightsPath,ec2.amazonaws.com,create
 DeleteNetworkInsightsPath,ec2.amazonaws.com,delete
 CreateLaunchTemplate,ec2.amazonaws.com,create
 DeleteLaunchTemplate,ec2.amazonaws.com,delete
+CreateCacheCluster,elasticache.amazonaws.com,create
+DeleteCacheCluster,elasticache.amazonaws.com,delete
+CreateCacheSubnetGroup,elasticache.amazonaws.com,create
+DeleteCacheSubnetGroup,elasticache.amazonaws.com,delete
 CreateDatabase,glue.amazonaws.com,create
 DeleteDatabase,glue.amazonaws.com,delete
 CreateDatabase,timestream.amazonaws.com,create
@@ -114,6 +118,8 @@ CreateDBClusterParameterGroup,rds.amazonaws.com,create
 DeleteDBClusterParameterGroup,rds.amazonaws.com,delete
 CreateDBParameterGroup,rds.amazonaws.com,create
 DeleteDBParameterGroup,rds.amazonaws.com,delete
+CreateDBSubnetGroup,rds.amazonaws.com,create
+DeleteDBSubnetGroup,rds.amazonaws.com,delete
 CreateCluster,redshift.amazonaws.com,create
 DeleteCluster,redshift.amazonaws.com,delete
 CreateHostedZone,route53.amazonaws.com,create

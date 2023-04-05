@@ -42,6 +42,8 @@ export * from './ec2/EC2_DeleteLaunchTemplate';
 export * from './ECR_DeleteRepository';
 
 export * from './ELASTICFILESYSTEM_DeleteFileSystem';
+export * from './elasticache/ELASTICACHE_DeleteCacheCluster';
+export * from './elasticache/ELASTICACHE_DeleteCacheSubnetGroup';
 export * from './elb/ELASTICLOADBALANCING_DeleteLoadBalancer';
 export * from './elb/ELASTICLOADBALANCING_DeleteTargetGroup';
 export * from './EKS_DeleteCluster';
@@ -72,6 +74,7 @@ export * from './rds/RDS_DeleteDBInstance';
 export * from './rds/RDS_DeleteDBProxy';
 export * from './rds/RDS_DeleteDBClusterParameterGroup';
 export * from './rds/RDS_DeleteDBParameterGroup';
+export * from './rds/RDS_DeleteDBSubnetGroup';
 
 export * from './REDSHIFT_DeleteCluster';
 export * from './ROUTE53_DeleteHostedZone';

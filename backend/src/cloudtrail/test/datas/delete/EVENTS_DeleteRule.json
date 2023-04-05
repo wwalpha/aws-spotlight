@@ -1,0 +1,44 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROAU33DBSJ5PI62AQB53:EXPDnBzgoQe6Q63QTc",
+    "arn": "arn:aws:sts::334678299258:assumed-role/AWSServiceRoleForFIS/EXPDnBzgoQe6Q63QTc",
+    "accountId": "334678299258",
+    "accessKeyId": "ASIAU33DBSJ5DJV4F2VT",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROAU33DBSJ5PI62AQB53",
+        "arn": "arn:aws:iam::334678299258:role/aws-service-role/fis.amazonaws.com/AWSServiceRoleForFIS",
+        "accountId": "334678299258",
+        "userName": "AWSServiceRoleForFIS"
+      },
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2023-01-23T06:16:50Z",
+        "mfaAuthenticated": "false"
+      }
+    },
+    "invokedBy": "fis.amazonaws.com"
+  },
+  "eventTime": "2023-01-23T06:16:50Z",
+  "eventSource": "events.amazonaws.com",
+  "eventName": "DeleteRule",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "fis.amazonaws.com",
+  "userAgent": "fis.amazonaws.com",
+  "requestParameters": {
+    "name": "FIS-Experiment-EXPDnBzgoQe6Q63QTc",
+    "force": false
+  },
+  "responseElements": null,
+  "requestID": "d1ea80eb-93dc-4419-8e4b-feeb4e4496b6",
+  "eventID": "c432c230-f7a7-4d53-a81c-992cd9272161",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2015-10-07",
+  "managementEvent": true,
+  "recipientAccountId": "334678299258",
+  "eventCategory": "Management"
+}

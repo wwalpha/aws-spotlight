@@ -1,0 +1,83 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::334678299258:user/ktou@dxc.com",
+    "accountId": "334678299258",
+    "accessKeyId": "ASIAU33DBSJ5KRN4AQNF",
+    "userName": "ktou@dxc.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-10T07:47:44Z"
+      }
+    }
+  },
+  "eventTime": "2021-06-10T07:51:09Z",
+  "eventSource": "rds.amazonaws.com",
+  "eventName": "CreateDBSubnetGroup",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "console.amazonaws.com",
+  "requestParameters": {
+    "dBSubnetGroupName": "default-vpc-08f77b07c34029b7a",
+    "dBSubnetGroupDescription": "Created from the RDS Management Console",
+    "subnetIds": [
+      "subnet-08b591d227107ffc5",
+      "subnet-003cfdcdbaf257d95",
+      "subnet-0221940ce594a9f84",
+      "subnet-0d950c1a77269f980"
+    ]
+  },
+  "responseElements": {
+    "dBSubnetGroupName": "default-vpc-08f77b07c34029b7a",
+    "dBSubnetGroupDescription": "Created from the RDS Management Console",
+    "vpcId": "vpc-08f77b07c34029b7a",
+    "subnetGroupStatus": "Complete",
+    "subnets": [
+      {
+        "subnetIdentifier": "subnet-0d950c1a77269f980",
+        "subnetAvailabilityZone": {
+          "name": "ap-northeast-1a"
+        },
+        "subnetOutpost": {},
+        "subnetStatus": "Active"
+      },
+      {
+        "subnetIdentifier": "subnet-0221940ce594a9f84",
+        "subnetAvailabilityZone": {
+          "name": "ap-northeast-1d"
+        },
+        "subnetOutpost": {},
+        "subnetStatus": "Active"
+      },
+      {
+        "subnetIdentifier": "subnet-003cfdcdbaf257d95",
+        "subnetAvailabilityZone": {
+          "name": "ap-northeast-1a"
+        },
+        "subnetOutpost": {},
+        "subnetStatus": "Active"
+      },
+      {
+        "subnetIdentifier": "subnet-08b591d227107ffc5",
+        "subnetAvailabilityZone": {
+          "name": "ap-northeast-1d"
+        },
+        "subnetOutpost": {},
+        "subnetStatus": "Active"
+      }
+    ],
+    "dBSubnetGroupArn": "arn:aws:rds:ap-northeast-1:334678299258:subgrp:default-vpc-08f77b07c34029b7a"
+  },
+  "requestID": "82e685bb-7456-44fd-8737-f9e3fa8831e3",
+  "eventID": "35e0f66f-defd-40c5-924b-698a72a08118",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "334678299258"
+}

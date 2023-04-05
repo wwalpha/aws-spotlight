@@ -44,6 +44,8 @@ export * from './ec2/EC2_CreateLaunchTemplate';
 export * from './ECR_CreateRepository';
 
 export * from './ELASTICFILESYSTEM_CreateFileSystem';
+export * from './elasticache/ELASTICACHE_CreateCacheCluster';
+export * from './elasticache/ELASTICACHE_CreateCacheSubnetGroup';
 export * from './elb/ELASTICLOADBALANCING_CreateLoadBalancer';
 export * from './elb/ELASTICLOADBALANCING_CreateTargetGroup';
 export * from './EKS_CreateCluster';
@@ -74,6 +76,7 @@ export * from './rds/RDS_CreateDBInstance';
 export * from './rds/RDS_CreateDBProxy';
 export * from './rds/RDS_CreateDBClusterParameterGroup';
 export * from './rds/RDS_CreateDBParameterGroup';
+export * from './rds/RDS_CreateDBSubnetGroup';
 
 export * from './REDSHIFT_CreateCluster';
 export * from './ROUTE53_CreateHostedZone';

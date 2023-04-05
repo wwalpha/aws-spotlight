@@ -1,0 +1,62 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5KHXRMBMRI",
+    "arn": "arn:aws:iam::334678299258:user/kei.sugiyasu@dxc.com",
+    "accountId": "334678299258",
+    "accessKeyId": "AKIAU33DBSJ5F4UM42YV",
+    "userName": "kei.sugiyasu@dxc.com"
+  },
+  "eventTime": "2021-10-15T04:04:17Z",
+  "eventSource": "elasticache.amazonaws.com",
+  "eventName": "CreateCacheSubnetGroup",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "106.73.1.65",
+  "userAgent": "APN/1.0 HashiCorp/1.0 Terraform/1.0.8 (+https://www.terraform.io) terraform-provider-aws/3.62.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.40.56 (go1.16; linux; amd64)",
+  "requestParameters": {
+    "cacheSubnetGroupName": "containersample-dev-redis",
+    "cacheSubnetGroupDescription": "Managed by Terraform",
+    "subnetIds": [
+      "subnet-003cfdcdbaf257d95",
+      "subnet-0221940ce594a9f84"
+    ],
+    "tags": [
+      {
+        "key": "RSC",
+        "value": "containersample"
+      },
+      {
+        "key": "ENV",
+        "value": "dev"
+      }
+    ]
+  },
+  "responseElements": {
+    "cacheSubnetGroupName": "containersample-dev-redis",
+    "cacheSubnetGroupDescription": "Managed by Terraform",
+    "vpcId": "vpc-08f77b07c34029b7a",
+    "subnets": [
+      {
+        "subnetIdentifier": "subnet-0221940ce594a9f84",
+        "subnetAvailabilityZone": {
+          "name": "ap-northeast-1d"
+        }
+      },
+      {
+        "subnetIdentifier": "subnet-003cfdcdbaf257d95",
+        "subnetAvailabilityZone": {
+          "name": "ap-northeast-1a"
+        }
+      }
+    ],
+    "aRN": "arn:aws:elasticache:ap-northeast-1:334678299258:subnetgroup:containersample-dev-redis"
+  },
+  "requestID": "c9bbd3cf-3928-4b98-b73c-7f890a46d636",
+  "eventID": "88117661-15c6-44ef-a4f3-5cfd037656ca",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "334678299258",
+  "eventCategory": "Management"
+}

@@ -41,6 +41,9 @@ export { default as EC2_DeleteLaunchTemplate } from './ec2/EC2_DeleteLaunchTempl
 
 export { default as ECR_DeleteRepository } from './ecr/ECR_DeleteRepository.json';
 
+export { default as ELASTICACHE_DeleteCacheCluster } from './elasticache/ELASTICACHE_DeleteCacheCluster.json';
+export { default as ELASTICACHE_DeleteCacheSubnetGroup } from './elasticache/ELASTICACHE_DeleteCacheSubnetGroup.json';
+
 export { default as EKS_DeleteCluster } from './eks/EKS_DeleteCluster.json';
 export { default as ELASTICFILESYSTEM_DeleteFileSystem } from './efs/ELASTICFILESYSTEM_DeleteFileSystem.json';
 export { default as ES_DeleteElasticsearchDomain } from './es/ES_DeleteElasticsearchDomain.json';
@@ -70,6 +73,7 @@ export { default as RDS_DeleteDBProxy } from './rds/RDS_DeleteDBProxy.json';
 export { default as RDS_DeleteDBClusterParameterGroup } from './rds/RDS_DeleteDBClusterParameterGroup.json';
 export { default as RDS_DeleteDBParameterGroup } from './rds/RDS_DeleteDBParameterGroup.json';
 export { default as RDS_DeleteDBSnapshot } from './rds/RDS_DeleteDBSnapshot.json';
+export { default as RDS_DeleteDBSubnetGroup } from './rds/RDS_DeleteDBSubnetGroup.json';
 
 export { default as REDSHIFT_DeleteCluster } from './redshift/REDSHIFT_DeleteCluster.json';
 export { default as ROUTE53_DeleteHostedZone } from './ROUTE53_DeleteHostedZone.json';

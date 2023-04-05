@@ -44,6 +44,9 @@ export { default as EC2_CreateLaunchTemplate } from './ec2/EC2_CreateLaunchTempl
 
 export { default as ECR_CreateRepository } from './ECR_CreateRepository.json';
 
+export { default as ELASTICACHE_CreateCacheCluster } from './elasticcache/ELASTICACHE_CreateCacheCluster.json';
+export { default as ELASTICACHE_CreateCacheSubnetGroup } from './elasticcache/ELASTICACHE_CreateCacheSubnetGroup.json';
+
 export { default as EKS_CreateCluster } from './EKS_CreateCluster.json';
 export { default as ELASTICFILESYSTEM_CreateFileSystem } from './ELASTICFILESYSTEM_CreateFileSystem.json';
 export { default as ES_CreateElasticsearchDomain } from './ES_CreateElasticsearchDomain.json';
@@ -75,6 +78,7 @@ export { default as RDS_CreateDBClusterParameterGroup } from './rds/RDS_CreateDB
 export { default as RDS_CreateDBParameterGroup } from './rds/RDS_CreateDBParameterGroup.json';
 export { default as RDS_CreateDBSnapshot } from './rds/RDS_CreateDBSnapshot.json';
 export { default as RDS_CopyDBSnapshot } from './rds/RDS_CopyDBSnapshot.json';
+export { default as RDS_CreateDBSubnetGroup } from './rds/RDS_CreateDBSubnetGroup.json';
 
 export { default as REDSHIFT_CreateCluster } from './REDSHIFT_CreateCluster.json';
 export { default as ROUTE53_CreateHostedZone } from './ROUTE53_CreateHostedZone.json';

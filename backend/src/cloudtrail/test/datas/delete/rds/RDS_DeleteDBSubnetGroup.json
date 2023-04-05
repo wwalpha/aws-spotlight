@@ -1,0 +1,33 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5KHXRMBMRI",
+    "arn": "arn:aws:iam::334678299258:user/kei.sugiyasu@dxc.com",
+    "accountId": "334678299258",
+    "accessKeyId": "AKIAU33DBSJ5F4UM42YV",
+    "userName": "kei.sugiyasu@dxc.com"
+  },
+  "eventTime": "2021-10-15T03:15:11Z",
+  "eventSource": "rds.amazonaws.com",
+  "eventName": "DeleteDBSubnetGroup",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "106.73.1.65",
+  "userAgent": "APN/1.0 HashiCorp/1.0 Terraform/1.0.8 (+https://www.terraform.io) terraform-provider-aws/3.62.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.40.56 (go1.16; linux; amd64)",
+  "requestParameters": {
+    "dBSubnetGroupName": "containersample-dev"
+  },
+  "responseElements": null,
+  "requestID": "e0e6957d-f773-4985-944f-5f021db72abd",
+  "eventID": "26b90b64-88b6-4145-9156-503ab1510916",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "334678299258",
+  "eventCategory": "Management",
+  "tlsDetails": {
+    "tlsVersion": "TLSv1.2",
+    "cipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
+    "clientProvidedHostHeader": "rds.ap-northeast-1.amazonaws.com"
+  }
+}
