@@ -451,3 +451,9 @@ AssociateCustomerProfilesDomain,connect.amazonaws.com,true
 PutLifecycleConfiguration,elasticfilesystem.amazonaws.com,true
 UpdateMethod,apigateway.amazonaws.com,true
 ValidateResourcePolicy,secretsmanager.amazonaws.com,true
+CreateRoute,apigateway.amazonaws.com,true
+DeleteRoute,apigateway.amazonaws.com,true
+CreateDeployment,apigateway.amazonaws.com,true
+CreateService,servicediscovery.amazonaws.com,true
+DeleteService,servicediscovery.amazonaws.com,true
+UpdateTable,dynamodb.amazonaws.com,true

@@ -89,6 +89,10 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
 
     case 'ECR_CreateRepository':
       return [CreateEvent.ECR_CreateRepository(record)];
+    case 'ECS_CreateCluster':
+      return [CreateEvent.ECS_CreateCluster(record)];
+    case 'EVENTS_PutRule':
+      return [CreateEvent.EVENTS_PutRule(record)];
 
     case 'ELASTICFILESYSTEM_CreateFileSystem':
       return [CreateEvent.ELASTICFILESYSTEM_CreateFileSystem(record)];
@@ -298,6 +302,10 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
 
     case 'ECR_DeleteRepository':
       return [DeleteEvent.ECR_DeleteRepository(record)];
+    case 'ECS_DeleteCluster':
+      return [DeleteEvent.ECS_DeleteCluster(record)];
+    case 'EVENTS_DeleteRule':
+      return [DeleteEvent.EVENTS_DeleteRule(record)];
 
     case 'ELASTICFILESYSTEM_DeleteFileSystem':
       return [DeleteEvent.ELASTICFILESYSTEM_DeleteFileSystem(record)];

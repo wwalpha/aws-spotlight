@@ -50,6 +50,8 @@ export * from './elb/ELASTICLOADBALANCING_CreateLoadBalancer';
 export * from './elb/ELASTICLOADBALANCING_CreateTargetGroup';
 export * from './EKS_CreateCluster';
 export * from './ES_CreateElasticsearchDomain';
+export * from './ECS_CreateCluster';
+export * from './EVENTS_PutRule';
 
 export * from './FIREHOSE_CreateDeliveryStream';
 

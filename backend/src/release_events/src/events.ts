@@ -17,39 +17,39 @@ const start = async () => {
     TableName: TABLE_NAME_EVENT_TYPE,
   });
 
-  const updateItems = allEvents.Items.map<Tables.EventType>((item) => {
-    if (item.Unconfirmed === false) {
-      return item;
-    }
+  // const updateItems = allEvents.Items.map<Tables.EventType>((item) => {
+  //   if (item.Unconfirmed === false) {
+  //     return item;
+  //   }
 
-    const event = Events.find((e) => e.EventName === item.EventName && e.EventSource === item.EventSource);
+  //   const event = Events.find((e) => e.EventName === item.EventName && e.EventSource === item.EventSource);
 
-    if (event) {
-      return {
-        ...event,
-        Unprocessed: true,
-      };
-    }
+  //   if (event) {
+  //     return {
+  //       ...event,
+  //       Unprocessed: true,
+  //     };
+  //   }
 
-    const ignore = Ignores.find((e) => e.EventName === item.EventName && e.EventSource === item.EventSource);
+  //   const ignore = Ignores.find((e) => e.EventName === item.EventName && e.EventSource === item.EventSource);
 
-    if (ignore) {
-      return {
-        ...ignore,
-        Unprocessed: true,
-      };
-    }
+  //   if (ignore) {
+  //     return {
+  //       ...ignore,
+  //       Unprocessed: true,
+  //     };
+  //   }
 
-    return item;
-  });
+  //   return item;
+  // });
 
-  await helper.bulk(TABLE_NAME_EVENT_TYPE, updateItems);
+  // await helper.bulk(TABLE_NAME_EVENT_TYPE, updateItems);
 
   const newEvents = Events.filter((item) => {
     const exist = allEvents.Items.find((e) => e.EventName === item.EventName && e.EventSource === item.EventSource);
 
     return exist === undefined;
-  });
+  }).map((item) => ({ ...item, Unprocessed: true }));
 
   await helper.bulk(TABLE_NAME_EVENT_TYPE, newEvents);
 
@@ -57,7 +57,7 @@ const start = async () => {
     const exist = allEvents.Items.find((e) => e.EventName === item.EventName && e.EventSource === item.EventSource);
 
     return exist === undefined;
-  });
+  }).map((item) => ({ ...item, Unprocessed: true }));
 
   await helper.bulk(TABLE_NAME_EVENT_TYPE, newIgnores);
 };

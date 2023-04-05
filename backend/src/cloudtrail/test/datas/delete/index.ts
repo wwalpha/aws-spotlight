@@ -40,6 +40,8 @@ export { default as EC2_DeleteNetworkInsightsPath } from './ec2/EC2_DeleteNetwor
 export { default as EC2_DeleteLaunchTemplate } from './ec2/EC2_DeleteLaunchTemplate.json';
 
 export { default as ECR_DeleteRepository } from './ecr/ECR_DeleteRepository.json';
+export { default as ECS_DeleteCluster } from './ECS_DeleteCluster.json';
+export { default as EVENTS_DeleteRule } from './EVENTS_DeleteRule.json';
 
 export { default as ELASTICACHE_DeleteCacheCluster } from './elasticache/ELASTICACHE_DeleteCacheCluster.json';
 export { default as ELASTICACHE_DeleteCacheSubnetGroup } from './elasticache/ELASTICACHE_DeleteCacheSubnetGroup.json';

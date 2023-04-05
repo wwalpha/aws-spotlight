@@ -28,6 +28,10 @@ CreateTable,dynamodb.amazonaws.com,create
 DeleteTable,dynamodb.amazonaws.com,delete
 CreateMicrosoftAD,ds.amazonaws.com,create
 DeleteDirectory,ds.amazonaws.com,delete
+CreateCluster,ecs.amazonaws.com,create
+DeleteCluster,ecs.amazonaws.com,delete
+PutRule,events.amazonaws.com,create
+DeleteRule,events.amazonaws.com,delete
 RunInstances,ec2.amazonaws.com,create
 TerminateInstances,ec2.amazonaws.com,delete
 CreateImage,ec2.amazonaws.com,create
@@ -147,3 +151,4 @@ CreateServer,transfer.amazonaws.com,create
 DeleteServer,transfer.amazonaws.com,delete
 CreateTopic,sns.amazonaws.com,create
 DeleteTopic,sns.amazonaws.com,delete
+

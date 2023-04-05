@@ -43,6 +43,8 @@ export { default as EC2_CreateNetworkInsightsPath } from './ec2/EC2_CreateNetwor
 export { default as EC2_CreateLaunchTemplate } from './ec2/EC2_CreateLaunchTemplate.json';
 
 export { default as ECR_CreateRepository } from './ECR_CreateRepository.json';
+export { default as ECS_CreateCluster } from './ECS_CreateCluster.json';
+export { default as EVENTS_PutRule } from './EVENTS_PutRule.json';
 
 export { default as ELASTICACHE_CreateCacheCluster } from './elasticcache/ELASTICACHE_CreateCacheCluster.json';
 export { default as ELASTICACHE_CreateCacheSubnetGroup } from './elasticcache/ELASTICACHE_CreateCacheSubnetGroup.json';

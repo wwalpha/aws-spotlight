@@ -40,6 +40,7 @@ export * from './ec2/EC2_DeleteNetworkInsightsPath';
 export * from './ec2/EC2_DeleteLaunchTemplate';
 
 export * from './ECR_DeleteRepository';
+export * from './ECS_DeleteCluster';
 
 export * from './ELASTICFILESYSTEM_DeleteFileSystem';
 export * from './elasticache/ELASTICACHE_DeleteCacheCluster';
@@ -48,6 +49,7 @@ export * from './elb/ELASTICLOADBALANCING_DeleteLoadBalancer';
 export * from './elb/ELASTICLOADBALANCING_DeleteTargetGroup';
 export * from './EKS_DeleteCluster';
 export * from './ES_DeleteElasticsearchDomain';
+export * from './EVENTS_DeleteRule';
 
 export * from './FIREHOSE_DeleteDeliveryStream';
 
