@@ -3,15 +3,15 @@
   "userIdentity": {
     "type": "AssumedRole",
     "principalId": "AROAU33DBSJ5PI62AQB53:EXPDnBzgoQe6Q63QTc",
-    "arn": "arn:aws:sts::334678299258:assumed-role/AWSServiceRoleForFIS/EXPDnBzgoQe6Q63QTc",
-    "accountId": "334678299258",
+    "arn": "arn:aws:sts::999999999999:assumed-role/AWSServiceRoleForFIS/EXPDnBzgoQe6Q63QTc",
+    "accountId": "999999999999",
     "accessKeyId": "ASIAU33DBSJ5DJV4F2VT",
     "sessionContext": {
       "sessionIssuer": {
         "type": "Role",
         "principalId": "AROAU33DBSJ5PI62AQB53",
-        "arn": "arn:aws:iam::334678299258:role/aws-service-role/fis.amazonaws.com/AWSServiceRoleForFIS",
-        "accountId": "334678299258",
+        "arn": "arn:aws:iam::999999999999:role/aws-service-role/fis.amazonaws.com/AWSServiceRoleForFIS",
+        "accountId": "999999999999",
         "userName": "AWSServiceRoleForFIS"
       },
       "webIdFederationData": {},
@@ -39,6 +39,6 @@
   "eventType": "AwsApiCall",
   "apiVersion": "2015-10-07",
   "managementEvent": true,
-  "recipientAccountId": "334678299258",
+  "recipientAccountId": "999999999999",
   "eventCategory": "Management"
 }

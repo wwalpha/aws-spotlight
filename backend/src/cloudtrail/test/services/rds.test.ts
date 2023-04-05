@@ -173,4 +173,38 @@ describe('rds.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.RDS_DeleteDBParameterGroup_H);
   });
+
+  test('RDS_CreateDBSubnetGroup', async () => {
+    const event = await sendMessage(CreateEvents.RDS_CreateDBSubnetGroup);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:subgrp:agnew-test-postgresql');
+    const history = await getHistory({ EventId: CreateEvents.RDS_CreateDBSubnetGroup.eventID });
+
+    // fs.writeFileSync('RDS_CreateDBSubnetGroup_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('RDS_CreateDBSubnetGroup_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.RDS_CreateDBSubnetGroup_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EXPECTS.RDS_CreateDBSubnetGroup_H);
+  });
+
+  test('RDS_DeleteDBSubnetGroup', async () => {
+    const event = await sendMessage(DeleteEvents.RDS_DeleteDBSubnetGroup);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:subgrp:agnew-test-postgresql');
+    const history = await getHistory({ EventId: DeleteEvents.RDS_DeleteDBSubnetGroup.eventID });
+
+    // fs.writeFileSync('RDS_DeleteDBSubnetGroup_H.json', JSON.stringify(history));
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EXPECTS.RDS_DeleteDBSubnetGroup_H);
+  });
 });

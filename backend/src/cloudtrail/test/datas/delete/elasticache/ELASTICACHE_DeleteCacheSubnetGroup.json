@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDAU33DBSJ5KHXRMBMRI",
-    "arn": "arn:aws:iam::334678299258:user/kei.sugiyasu@dxc.com",
-    "accountId": "334678299258",
+    "arn": "arn:aws:iam::999999999999:user/test@testcom",
+    "accountId": "999999999999",
     "accessKeyId": "AKIAU33DBSJ5F4UM42YV",
-    "userName": "kei.sugiyasu@dxc.com"
+    "userName": "test@testcom"
   },
   "eventTime": "2021-10-15T03:18:12Z",
   "eventSource": "elasticache.amazonaws.com",
@@ -23,6 +23,6 @@
   "readOnly": false,
   "eventType": "AwsApiCall",
   "managementEvent": true,
-  "recipientAccountId": "334678299258",
+  "recipientAccountId": "999999999999",
   "eventCategory": "Management"
 }

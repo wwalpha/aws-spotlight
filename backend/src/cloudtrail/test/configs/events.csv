@@ -145,3 +145,7 @@ CreateReplicationInstance,dms.amazonaws.com,create
 DeleteReplicationInstance,dms.amazonaws.com,delete
 CreateServer,transfer.amazonaws.com,create
 DeleteServer,transfer.amazonaws.com,delete
+
+
+PutRule,events.amazonaws.com,create
+DeleteRule,events.amazonaws.com,delete

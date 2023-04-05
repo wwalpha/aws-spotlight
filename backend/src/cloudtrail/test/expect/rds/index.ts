@@ -16,3 +16,7 @@ export { default as RDS_DeleteDBClusterParameterGroup_H } from './RDS_DeleteDBCl
 export { default as RDS_CreateDBParameterGroup_H } from './RDS_CreateDBParameterGroup_H.json';
 export { default as RDS_CreateDBParameterGroup_R } from './RDS_CreateDBParameterGroup_R.json';
 export { default as RDS_DeleteDBParameterGroup_H } from './RDS_DeleteDBParameterGroup_H.json';
+
+export { default as RDS_CreateDBSubnetGroup_H } from './RDS_CreateDBSubnetGroup_H.json';
+export { default as RDS_CreateDBSubnetGroup_R } from './RDS_CreateDBSubnetGroup_R.json';
+export { default as RDS_DeleteDBSubnetGroup_H } from './RDS_DeleteDBSubnetGroup_H.json';
