@@ -1,9 +1,7 @@
 import AWS from 'aws-sdk';
 import { getHistory, getResource, sendMessage } from '@test/configs/utils';
-import ELASTICLOADBALANCING_CreateLoadBalancer from '../datas/create/ELASTICLOADBALANCING_CreateLoadBalancer.json';
-import ELASTICLOADBALANCING_CreateTargetGroup from '../datas/create/ELASTICLOADBALANCING_CreateTargetGroup.json';
-import ELASTICLOADBALANCING_DeleteLoadBalancer from '../datas/delete/ELASTICLOADBALANCING_DeleteLoadBalancer.json';
-import ELASTICLOADBALANCING_DeleteTargetGroup from '../datas/delete/ELASTICLOADBALANCING_DeleteTargetGroup.json';
+import * as CreateEvents from '@test/datas/create';
+import * as DeleteEvents from '@test/datas/delete';
 
 import { cloudtrail } from '@src/index';
 import {
@@ -24,7 +22,7 @@ AWS.config.update({
 
 describe('elasticloadbalancing.amazonaws.com', () => {
   test('CreateLoadBalancer', async () => {
-    const event = await sendMessage(ELASTICLOADBALANCING_CreateLoadBalancer);
+    const event = await sendMessage(CreateEvents.ELASTICLOADBALANCING_CreateLoadBalancer);
 
     await cloudtrail(event);
 
@@ -41,7 +39,7 @@ describe('elasticloadbalancing.amazonaws.com', () => {
   });
 
   test('CreateTargetGroup', async () => {
-    const event = await sendMessage(ELASTICLOADBALANCING_CreateTargetGroup);
+    const event = await sendMessage(CreateEvents.ELASTICLOADBALANCING_CreateTargetGroup);
 
     await cloudtrail(event);
 
@@ -58,7 +56,7 @@ describe('elasticloadbalancing.amazonaws.com', () => {
   });
 
   test('DeleteLoadBalancer', async () => {
-    const event = await sendMessage(ELASTICLOADBALANCING_DeleteLoadBalancer);
+    const event = await sendMessage(DeleteEvents.ELASTICLOADBALANCING_DeleteLoadBalancer);
 
     await cloudtrail(event);
 
@@ -74,7 +72,7 @@ describe('elasticloadbalancing.amazonaws.com', () => {
   });
 
   test('DeleteTargetGroup', async () => {
-    const event = await sendMessage(ELASTICLOADBALANCING_DeleteTargetGroup);
+    const event = await sendMessage(DeleteEvents.ELASTICLOADBALANCING_DeleteTargetGroup);
 
     await cloudtrail(event);
 

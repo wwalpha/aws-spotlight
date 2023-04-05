@@ -1,7 +1,7 @@
 import AWS from 'aws-sdk';
 import { getHistory, getResource, sendMessage } from '@test/configs/utils';
-import DYNAMODB_CreateTable from '../datas/create/DYNAMODB_CreateTable.json';
-import DYNAMODB_DeleteTable from '../datas/delete/DYNAMODB_DeleteTable.json';
+import * as CreateEvents from '@test/datas/create';
+import * as DeleteEvents from '@test/datas/delete';
 import { cloudtrail } from '@src/index';
 import * as DYNAMODB from '@test/expect/dynamodb';
 import * as fs from 'fs';
@@ -15,7 +15,7 @@ AWS.config.update({
 
 describe.only('dynamodb.amazonaws.com', () => {
   test('CreateTable', async () => {
-    const event = await sendMessage(DYNAMODB_CreateTable);
+    const event = await sendMessage(CreateEvents.DYNAMODB_CreateTable);
 
     await cloudtrail(event);
 
@@ -32,7 +32,7 @@ describe.only('dynamodb.amazonaws.com', () => {
   });
 
   test('DeleteTable', async () => {
-    const event = await sendMessage(DYNAMODB_DeleteTable);
+    const event = await sendMessage(DeleteEvents.DYNAMODB_DeleteTable);
 
     await cloudtrail(event);
 

@@ -1,5 +1,7 @@
 import * as CreateEvent from '@src/process/create';
 import * as DeleteEvent from '@src/process/delete';
+import * as RemoveService from '@src/process/delete/RemoveService';
+
 import { CloudTrail, Tables } from 'typings';
 import { Consts, DynamodbHelper } from '.';
 
@@ -28,6 +30,9 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
     case 'BATCH_CreateComputeEnvironment':
       return [CreateEvent.BATCH_CreateComputeEnvironment(record)];
 
+    case 'BATCH_CreateComputeEnvironment':
+      return [CreateEvent.BATCH_CreateComputeEnvironment(record)];
+
     case 'CODEBUILD_CreateProject':
       return [CreateEvent.CODEBUILD_CreateProject(record)];
     case 'CODEDEPLOY_CreateApplication':
@@ -36,8 +41,6 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
       return [CreateEvent.CONNECT_CreateInstance(record)];
     case 'CLOUDFRONT_CreateDistribution':
       return [CreateEvent.CLOUDFRONT_CreateDistribution(record)];
-    case 'CLOUDFORMATION_CreateStack':
-      return [CreateEvent.CLOUDFORMATION_CreateStack(record)];
 
     case 'DYNAMODB_CreateTable':
       return [CreateEvent.DYNAMODB_CreateTable(record)];
@@ -163,6 +166,7 @@ export const getCreateResourceItem = (record: CloudTrail.Record): Tables.Resourc
 
     case 'REDSHIFT_CreateCluster':
       return [CreateEvent.REDSHIFT_CreateCluster(record)];
+
     case 'ROUTE53_CreateHostedZone':
       return [CreateEvent.ROUTE53_CreateHostedZone(record)];
 
@@ -223,43 +227,10 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
 
   switch (key) {
-    case 'APIGATEWAY_DeleteApi':
-      return [DeleteEvent.APIGATEWAY_DeleteApi(record)];
-    case 'APIGATEWAY_DeleteRestApi':
-      return [DeleteEvent.APIGATEWAY_DeleteRestApi(record)];
-    case 'APIGATEWAY_DeleteVpcLink':
-      return [DeleteEvent.APIGATEWAY_DeleteVpcLink(record)];
-    case 'AUTOSCALING_DeleteAutoScalingGroup':
-      return [DeleteEvent.AUTOSCALING_DeleteAutoScalingGroup(record)];
-    case 'APPMESH_DeleteMesh':
-      return [DeleteEvent.APPMESH_DeleteMesh(record)];
-
     case 'BACKUP_DeleteBackupPlan':
       return [DeleteEvent.BACKUP_DeleteBackupPlan(record)];
     case 'BACKUP_DeleteBackupVault':
       return [DeleteEvent.BACKUP_DeleteBackupVault(record)];
-    case 'BATCH_DeleteComputeEnvironment':
-      return [DeleteEvent.BATCH_DeleteComputeEnvironment(record)];
-
-    case 'CODEBUILD_DeleteProject':
-      return [DeleteEvent.CODEBUILD_DeleteProject(record)];
-
-    case 'CODEDEPLOY_DeleteApplication':
-      return [DeleteEvent.CODEDEPLOY_DeleteApplication(record)];
-
-    case 'CLOUDFRONT_DeleteDistribution':
-      return [DeleteEvent.CLOUDFRONT_DeleteDistribution(record)];
-    case 'CONNECT_DeleteInstance':
-      return [DeleteEvent.CONNECT_DeleteInstance(record)];
-    case 'CLOUDFORMATION_DeleteStack':
-      return [DeleteEvent.CLOUDFORMATION_DeleteStack(record)];
-
-    case 'DYNAMODB_DeleteTable':
-      return [DeleteEvent.DYNAMODB_DeleteTable(record)];
-    case 'DS_DeleteDirectory':
-      return [DeleteEvent.DS_DeleteDirectory(record)];
-    case 'DMS_DeleteReplicationInstance':
-      return [DeleteEvent.DMS_DeleteReplicationInstance(record)];
 
     case 'EC2_TerminateInstances':
       return DeleteEvent.EC2_TerminateInstances(record);
@@ -300,15 +271,6 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
     case 'EC2_DeleteLaunchTemplate':
       return [DeleteEvent.EC2_DeleteLaunchTemplate(record)];
 
-    case 'ECR_DeleteRepository':
-      return [DeleteEvent.ECR_DeleteRepository(record)];
-    case 'ECS_DeleteCluster':
-      return [DeleteEvent.ECS_DeleteCluster(record)];
-    case 'EVENTS_DeleteRule':
-      return [DeleteEvent.EVENTS_DeleteRule(record)];
-
-    case 'ELASTICFILESYSTEM_DeleteFileSystem':
-      return [DeleteEvent.ELASTICFILESYSTEM_DeleteFileSystem(record)];
     case 'ELASTICACHE_DeleteCacheCluster':
       return [DeleteEvent.ELASTICACHE_DeleteCacheCluster(record)];
     case 'ELASTICACHE_DeleteCacheSubnetGroup':
@@ -317,16 +279,6 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.ELASTICLOADBALANCING_DeleteLoadBalancer(record)];
     case 'ELASTICLOADBALANCING_DeleteTargetGroup':
       return [DeleteEvent.ELASTICLOADBALANCING_DeleteTargetGroup(record)];
-    case 'EKS_DeleteCluster':
-      return [DeleteEvent.EKS_DeleteCluster(record)];
-    case 'ES_DeleteElasticsearchDomain':
-      return [DeleteEvent.ES_DeleteElasticsearchDomain(record)];
-
-    case 'FIREHOSE_DeleteDeliveryStream':
-      return [DeleteEvent.FIREHOSE_DeleteDeliveryStream(record)];
-
-    case 'GLUE_DeleteDatabase':
-      return [DeleteEvent.GLUE_DeleteDatabase(record)];
 
     case 'IAM_DeleteAccessKey':
       return [DeleteEvent.IAM_DeleteAccessKey(record)];
@@ -334,26 +286,9 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
       return [DeleteEvent.IAM_DeleteRole(record)];
     case 'IAM_DeleteSAMLProvider':
       return [DeleteEvent.IAM_DeleteSAMLProvider(record)];
-    case 'IOT_DeleteTopicRule':
-      return [DeleteEvent.IOT_DeleteTopicRule(record)];
+
     // case 'IAM_DeleteServiceLinkedRole':
     //   return [DeleteEvent.IAM_DeleteServiceLinkedRole(record)];
-
-    case 'KINESIS_DeleteStream':
-      return [DeleteEvent.KINESIS_DeleteStream(record)];
-
-    case 'LAMBDA_DeleteFunction20150331':
-      return [DeleteEvent.LAMBDA_DeleteFunction20150331(record)];
-    case 'LEX_DeleteBot':
-      return [DeleteEvent.LEX_DeleteBot(record)];
-    case 'LOGS_DeleteLogGroup':
-      return [DeleteEvent.LOGS_DeleteLogGroup(record)];
-
-    case 'MONITORING_DeleteAlarms':
-      return DeleteEvent.MONITORING_DeleteAlarms(record);
-
-    case 'NETWORK-FIREWALL_DeleteFirewall':
-      return [DeleteEvent.NFW_DeleteFirewall(record)];
 
     case 'RDS_DeleteDBCluster':
       return [DeleteEvent.RDS_DeleteDBCluster(record)];
@@ -368,34 +303,7 @@ const getRemoveResourceItem = (record: CloudTrail.Record): Tables.ResouceGSI1Key
     case 'RDS_DeleteDBSubnetGroup':
       return [DeleteEvent.RDS_DeleteDBSubnetGroup(record)];
 
-    case 'REDSHIFT_DeleteCluster':
-      return [DeleteEvent.REDSHIFT_DeleteCluster(record)];
-    case 'ROUTE53_DeleteHostedZone':
-      return [DeleteEvent.ROUTE53_DeleteHostedZone(record)];
-
-    case 'S3_DeleteBucket':
-      return [DeleteEvent.S3_DeleteBucket(record)];
-    case 'SNS_DeleteTopic':
-      return [DeleteEvent.SNS_DeleteTopic(record)];
-    case 'SYNTHETICS_DeleteCanary':
-      return [DeleteEvent.SYNTHETICS_DeleteCanary(record)];
-    case 'STATES_DeleteStateMachine':
-      return [DeleteEvent.STATES_DeleteStateMachine(record)];
-    case 'SQS_DeleteQueue':
-      return [DeleteEvent.SQS_DeleteQueue(record)];
-
-    case 'TRANSFER_DeleteServer':
-      return [DeleteEvent.TRANSFER_DeleteServer(record)];
-
-    case 'TIMESTREAM_DeleteDatabase':
-      return [DeleteEvent.TIMESTREAM_DeleteDatabase(record)];
-
-    case 'WAFV2_DeleteIPSet':
-      return [DeleteEvent.WAFV2_DeleteIPSet(record)];
-    case 'WAFV2_DeleteWebACL':
-      return [DeleteEvent.WAFV2_DeleteWebACL(record)];
-
     default:
-      return undefined;
+      return RemoveService.start(record).ResourceId !== undefined ? [RemoveService.start(record)] : undefined;
   }
 };

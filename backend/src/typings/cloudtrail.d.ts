@@ -51,7 +51,7 @@ export namespace CloudTrail {
     managementEvent?: string;
     readOnly?: boolean;
     resources?: string;
-    recipientAccountId?: string;
+    recipientAccountId: string;
     serviceEventDetails?: string;
     sharedEventID?: string;
     vpcEndpointId?: string;
