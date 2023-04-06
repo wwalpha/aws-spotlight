@@ -17,6 +17,14 @@ const start = async () => {
     TableName: TABLE_NAME_EVENT_TYPE,
   });
 
+  const existEvents = allEvents.Items.filter((item) => item.Unconfirmed === true)
+    .filter(
+      (item) => Ignores.find((i) => i.EventName === item.EventName && i.EventSource === item.EventSource) !== undefined
+    )
+    .map((item) => ({ ...item, Unprocessed: true, Unconfirmed: undefined, Ignore: true }));
+
+  await helper.bulk(TABLE_NAME_EVENT_TYPE, existEvents);
+
   // const updateItems = allEvents.Items.map<Tables.EventType>((item) => {
   //   if (item.Unconfirmed === false) {
   //     return item;
