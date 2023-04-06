@@ -270,6 +270,8 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
       return [record.responseElements.dBSnapshotArn, record.responseElements.dBSnapshotIdentifier];
     case 'RDS_CreateDBSubnetGroup':
       return [record.responseElements.dBSubnetGroupArn, record.responseElements.dBSubnetGroupName];
+    case 'RDS_CreateDBClusterSnapshot':
+      return [record.responseElements.dBClusterSnapshotArn, record.responseElements.dBClusterSnapshotIdentifier];
 
     case 'SERVERLESSREPO_CreateApplication':
       return [record.responseElements.applicationId, record.responseElements.name];

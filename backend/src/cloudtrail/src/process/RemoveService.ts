@@ -117,7 +117,7 @@ const getResourceArn = (record: CloudTrail.Record) => {
     case 'RDS_DeleteDBProxy':
       return record.responseElements.dBProxy.dBProxyArn;
     case 'RDS_DeleteDBSnapshot':
-      return ResourceARNs.RDS_DBSnapshot(region, account, record.requestParameters.dBClusterParameterGroupName);
+      return record.responseElements.dBSnapshotArn;
     case 'RDS_DeleteDBSubnetGroup':
       return ResourceARNs.RDS_DBSubnetGroup(region, account, record.requestParameters.dBSubnetGroupName);
 

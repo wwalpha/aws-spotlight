@@ -128,6 +128,8 @@ CreateDBParameterGroup,rds.amazonaws.com,create
 DeleteDBParameterGroup,rds.amazonaws.com,delete
 CreateDBSubnetGroup,rds.amazonaws.com,create
 DeleteDBSubnetGroup,rds.amazonaws.com,delete
+CreateDBClusterSnapshot,rds.amazonaws.com,create
+DeleteDBSnapshot,rds.amazonaws.com,delete
 CreateCluster,redshift.amazonaws.com,create
 DeleteCluster,redshift.amazonaws.com,delete
 CreateHostedZone,route53.amazonaws.com,create
