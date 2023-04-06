@@ -494,3 +494,5 @@ CreateLogStream,logs.amazonaws.com,true
 CreatePrivateDnsNamespace,servicediscovery.amazonaws.com,true
 DeleteNamespace,servicediscovery.amazonaws.com,true
 CreateHttpNamespace,servicediscovery.amazonaws.com,true
+CreateEnvironmentEC2,cloud9.amazonaws.com,true
+DeleteEnvironment,cloud9.amazonaws.com,true

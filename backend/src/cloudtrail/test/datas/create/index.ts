@@ -17,7 +17,6 @@ export { default as CODEDEPLOY_CreateApplication } from './CODEDEPLOY_CreateAppl
 export { default as CONNECT_CreateInstance } from './CONNECT_CreateInstance.json';
 export { default as CLOUDFRONT_CreateDistribution } from './CLOUDFRONT_CreateDistribution.json';
 export { default as CLOUDFORMATION_CreateStack } from './CLOUDFORMATION_CreateStack.json';
-export { default as CLOUD9_CreateEnvironmentEC2 } from './CLOUD9_CreateEnvironmentEC2.json';
 export { default as COGNITOIDP_CreateUserPool } from './cognito/COGNITO-IDP_CreateUserPool.json';
 export { default as COGNITOIDENTITY_CreateIdentityPool } from './cognito/COGNITO-IDENTITY_CreateIdentityPool.json';
 

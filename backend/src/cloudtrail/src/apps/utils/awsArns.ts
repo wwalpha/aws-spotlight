@@ -61,10 +61,6 @@ export const ResourceARNs = {
   CODEDEPLOY_Application: (region: string, account: string, id?: string) =>
     `arn:aws:codedeploy:${region}:${account}:application/${id}`,
 
-  // cloud9
-  CLOUD9_Environment: (region: string, account: string, id?: string) =>
-    `arn:aws:cloud9:${region}:${account}:environment:${id}`,
-
   // cognito
   COGNITO_IDENTITYPOOL: (region: string, account: string, id?: string) =>
     `arn:aws:cognito-identity:${region}:${account}:identitypool/${id}`,

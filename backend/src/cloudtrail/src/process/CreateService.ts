@@ -95,9 +95,6 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
       return [record.responseElements.stackId, record.requestParameters.stackName];
     case 'CLOUDFRONT_CreateDistribution':
       return [record.responseElements.distribution.aRN, record.responseElements.distribution.domainName];
-    case 'CLOUD9_CreateEnvironmentEC2':
-      name = record.requestParameters.name;
-      return [ResourceARNs.CLOUD9_Environment(region, account, name), name];
     case 'COGNITO-IDP_CreateUserPool':
       return [record.responseElements.userPool.arn, record.responseElements.userPool.name];
     case 'COGNITO-IDENTITY_CreateIdentityPool':
