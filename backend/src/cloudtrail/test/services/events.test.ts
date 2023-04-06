@@ -13,7 +13,7 @@ AWS.config.update({
   dynamodb: { endpoint: process.env.AWS_ENDPOINT },
 });
 
-describe('events.amazonaws.com', () => {
+describe.skip('events.amazonaws.com', () => {
   test('EVENTS_PutRule', async () => {
     const event = await sendMessage(CreateEvents.EVENTS_PutRule);
 

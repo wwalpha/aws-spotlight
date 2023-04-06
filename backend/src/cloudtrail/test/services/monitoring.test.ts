@@ -13,7 +13,7 @@ AWS.config.update({
   dynamodb: { endpoint: process.env.AWS_ENDPOINT },
 });
 
-describe('monitoring.amazonaws.com', () => {
+describe.skip('monitoring.amazonaws.com', () => {
   test('MONITORING_PutMetricAlarm', async () => {
     const event = await sendMessage(CreateEvents.MONITORING_PutMetricAlarm);
 

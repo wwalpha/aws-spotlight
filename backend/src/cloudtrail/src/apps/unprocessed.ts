@@ -176,7 +176,11 @@ const processRecord = async (record: CloudTrail.Record) => {
     .forEach((item) => transactItems.push(item));
   // リソース削除
   deleteItems
-    .map((item) => Utilities.getDeleteRecord(TABLE_NAME_RESOURCES, item))
+    .map((item) =>
+      Utilities.getDeleteRecord(TABLE_NAME_RESOURCES, {
+        ResourceId: item.ResourceId,
+      } as Tables.ResourceKey)
+    )
     .forEach((item) => transactItems.push(item));
 
   // remove unprocessed flag

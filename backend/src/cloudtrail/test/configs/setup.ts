@@ -74,13 +74,9 @@ const setup = async () => {
       TableName: TABLE_NAME_RESOURCES as string,
       BillingMode: 'PROVISIONED',
       ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
-      KeySchema: [
-        { AttributeName: 'ResourceId', KeyType: 'HASH' },
-        { AttributeName: 'EventTime', KeyType: 'RANGE' },
-      ],
+      KeySchema: [{ AttributeName: 'ResourceId', KeyType: 'HASH' }],
       AttributeDefinitions: [
         { AttributeName: 'ResourceId', AttributeType: 'S' },
-        { AttributeName: 'EventTime', AttributeType: 'S' },
         { AttributeName: 'EventSource', AttributeType: 'S' },
         { AttributeName: 'UserName', AttributeType: 'S' },
       ],
