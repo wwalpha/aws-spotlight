@@ -493,3 +493,4 @@ DeleteResourcePolicyStatement,lex.amazonaws.com,true
 CreateLogStream,logs.amazonaws.com,true
 CreatePrivateDnsNamespace,servicediscovery.amazonaws.com,true
 DeleteNamespace,servicediscovery.amazonaws.com,true
+CreateHttpNamespace,servicediscovery.amazonaws.com,true

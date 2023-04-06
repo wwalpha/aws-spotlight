@@ -19,7 +19,7 @@ export { default as CLOUDFRONT_CreateDistribution } from './CLOUDFRONT_CreateDis
 export { default as CLOUDFORMATION_CreateStack } from './CLOUDFORMATION_CreateStack.json';
 export { default as CLOUD9_CreateEnvironmentEC2 } from './CLOUD9_CreateEnvironmentEC2.json';
 export { default as COGNITOIDP_CreateUserPool } from './cognito/COGNITO-IDP_CreateUserPool.json';
-// export { default as COGNITOIDENTITY_CreateIdentityPool } from './cognito/COGNITO-IDENTITY_CreateIdentityPool.json';
+export { default as COGNITOIDENTITY_CreateIdentityPool } from './cognito/COGNITO-IDENTITY_CreateIdentityPool.json';
 
 export { default as DS_CreateMicrosoftAD } from './DS_CreateMicrosoftAD.json';
 export { default as DYNAMODB_CreateTable } from './DYNAMODB_CreateTable.json';

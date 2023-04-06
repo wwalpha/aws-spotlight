@@ -19,6 +19,7 @@ CreateComputeEnvironment,batch.amazonaws.com,create
 DeleteComputeEnvironment,batch.amazonaws.com,delete
 CreateEnvironmentEC2,cloud9.amazonaws.com,create
 CreateUserPool,cognito-idp.amazonaws.com,create
+CreateIdentityPool,cognito-identity.amazonaws.com,create
 CreateProject,codebuild.amazonaws.com,create
 DeleteProject,codebuild.amazonaws.com,delete
 CreateApplication,codedeploy.amazonaws.com,create

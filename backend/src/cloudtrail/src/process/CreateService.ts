@@ -100,6 +100,12 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
       return [ResourceARNs.CLOUD9_Environment(region, account, name), name];
     case 'COGNITO-IDP_CreateUserPool':
       return [record.responseElements.userPool.arn, record.responseElements.userPool.name];
+    case 'COGNITO-IDENTITY_CreateIdentityPool':
+      return [
+        ResourceARNs.COGNITO_IDENTITYPOOL(region, account, record.responseElements.identityPoolId),
+        record.responseElements.identityPoolName,
+      ];
+
     case 'DYNAMODB_CreateTable':
       return [record.responseElements.tableDescription.tableArn, record.responseElements.tableDescription.tableName];
     case 'DS_CreateMicrosoftAD':

@@ -17,41 +17,28 @@ const start = async () => {
     TableName: TABLE_NAME_EVENT_TYPE,
   });
 
-  const existEvents = allEvents.Items.filter((item) => item.Unconfirmed === true)
+  const existIgnores = allEvents.Items.filter((item) => item.Unconfirmed === true)
     .filter(
       (item) => Ignores.find((i) => i.EventName === item.EventName && i.EventSource === item.EventSource) !== undefined
     )
     .map((item) => ({ ...item, Unprocessed: true, Unconfirmed: undefined, Ignore: true }));
 
+  await helper.bulk(TABLE_NAME_EVENT_TYPE, existIgnores);
+
+  const existEvents = allEvents.Items.filter((item) => item.Unconfirmed === true)
+    .filter(
+      (item) => Events.find((i) => i.EventName === item.EventName && i.EventSource === item.EventSource) !== undefined
+    )
+    .map((item) => ({
+      ...item,
+      Unprocessed: true,
+      Unconfirmed: undefined,
+      Ignore: undefined,
+      Create: Events.find((i) => i.EventName === item.EventName && i.EventSource === item.EventSource)?.Create,
+      Delete: Events.find((i) => i.EventName === item.EventName && i.EventSource === item.EventSource)?.Delete,
+    }));
+
   await helper.bulk(TABLE_NAME_EVENT_TYPE, existEvents);
-
-  // const updateItems = allEvents.Items.map<Tables.EventType>((item) => {
-  //   if (item.Unconfirmed === false) {
-  //     return item;
-  //   }
-
-  //   const event = Events.find((e) => e.EventName === item.EventName && e.EventSource === item.EventSource);
-
-  //   if (event) {
-  //     return {
-  //       ...event,
-  //       Unprocessed: true,
-  //     };
-  //   }
-
-  //   const ignore = Ignores.find((e) => e.EventName === item.EventName && e.EventSource === item.EventSource);
-
-  //   if (ignore) {
-  //     return {
-  //       ...ignore,
-  //       Unprocessed: true,
-  //     };
-  //   }
-
-  //   return item;
-  // });
-
-  // await helper.bulk(TABLE_NAME_EVENT_TYPE, updateItems);
 
   const newEvents = Events.filter((item) => {
     const exist = allEvents.Items.find((e) => e.EventName === item.EventName && e.EventSource === item.EventSource);
@@ -68,6 +55,11 @@ const start = async () => {
   }).map((item) => ({ ...item, Unprocessed: true }));
 
   await helper.bulk(TABLE_NAME_EVENT_TYPE, newIgnores);
+
+  existIgnores.forEach((item) => console.log(item.EventName, item.EventSource));
+  existEvents.forEach((item) => console.log(item.EventName, item.EventSource));
+  newEvents.forEach((item) => console.log(item.EventName, item.EventSource));
+  newIgnores.forEach((item) => console.log(item.EventName, item.EventSource));
 };
 
 const getEvents = (): Tables.EventType[] => {

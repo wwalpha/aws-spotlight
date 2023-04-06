@@ -34,7 +34,43 @@ describe('cognito.amazonaws.com', () => {
     expect(history).toEqual(EXPECTS.COGNITOIDP_CreateUserPool_H);
   });
 
-  test.skip('APIGATEWAY_DeleteRestApi', async () => {
+  test.skip('COGNITOIDP_DeleteUserPool', async () => {
+    const event = await sendMessage(DeleteEvents.APIGATEWAY_DeleteRestApi);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('jrrfh5tt86');
+    const history = await getHistory({ EventId: DeleteEvents.APIGATEWAY_DeleteRestApi.eventID });
+
+    fs.writeFileSync('./test/expect/apigateway/APIGATEWAY_DeleteRestApi_H.json', JSON.stringify(history));
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    // expect(history).toEqual(EXPECTS.APIGATEWAY_DeleteRestApi_H);
+  });
+
+  test('COGNITOIDENTITY_CreateIdentityPool', async () => {
+    const event = await sendMessage(CreateEvents.COGNITOIDENTITY_CreateIdentityPool);
+
+    await cloudtrail(event);
+
+    const resource = await getResource(
+      'arn:aws:cognito-identity:ap-northeast-1:999999999999:identitypool/ap-northeast-1:904e93af-2e9c-4ce9-872b-72566f046d1d'
+    );
+    const history = await getHistory({ EventId: CreateEvents.COGNITOIDENTITY_CreateIdentityPool.eventID });
+
+    fs.writeFileSync('./test/expect/cognito/COGNITOIDENTITY_CreateIdentityPool_R.json', JSON.stringify(resource));
+    fs.writeFileSync('./test/expect/cognito/COGNITOIDENTITY_CreateIdentityPool_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.COGNITOIDENTITY_CreateIdentityPool_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EXPECTS.COGNITOIDENTITY_CreateIdentityPool_H);
+  });
+
+  test.skip('COGNITOIDENTITY_DeleteIdentityPool', async () => {
     const event = await sendMessage(DeleteEvents.APIGATEWAY_DeleteRestApi);
 
     await cloudtrail(event);
