@@ -1,10 +1,12 @@
 import { SQSRecord } from 'aws-lambda';
-import { DynamoDB, SQS } from 'aws-sdk';
+import { DynamoDB, SNS, SQS } from 'aws-sdk';
 import { defaultTo } from 'lodash';
 import winston from 'winston';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
+import { Consts } from '.';
 
 const sqsClient = new SQS();
+const snsClient = new SNS();
 const SQS_URL = process.env.SQS_URL as string;
 
 export const LoggerOptions: winston.LoggerOptions = {
@@ -115,3 +117,17 @@ export const removeIgnore = (records: CloudTrail.Record[], events: EVENT_TYPE) =
 
     return true;
   });
+
+export const sendMail = async (subject: string, message: string) => {
+  try {
+    await snsClient
+      .publish({
+        TopicArn: Consts.Environments.SNS_TOPIC_ARN,
+        Subject: subject,
+        Message: message,
+      })
+      .promise();
+  } catch (err) {
+    console.log(err);
+  }
+};

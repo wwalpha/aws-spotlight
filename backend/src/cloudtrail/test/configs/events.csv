@@ -37,8 +37,7 @@ CreateMicrosoftAD,ds.amazonaws.com,create
 DeleteDirectory,ds.amazonaws.com,delete
 CreateCluster,ecs.amazonaws.com,create
 DeleteCluster,ecs.amazonaws.com,delete
-PutRule,events.amazonaws.com,create
-DeleteRule,events.amazonaws.com,delete
+
 RunInstances,ec2.amazonaws.com,create
 TerminateInstances,ec2.amazonaws.com,delete
 CreateImage,ec2.amazonaws.com,create
@@ -138,10 +137,6 @@ CreateCluster,redshift.amazonaws.com,create
 DeleteCluster,redshift.amazonaws.com,delete
 CreateHostedZone,route53.amazonaws.com,create
 DeleteHostedZone,route53.amazonaws.com,delete
-PutMetricAlarm,monitoring.amazonaws.com,create
-DeleteAlarms,monitoring.amazonaws.com,delete
-PutDashboard,monitoring.amazonaws.com,create
-DeleteDashboards,monitoring.amazonaws.com,delete
 CreateFirewall,network-firewall.amazonaws.com,create
 DeleteFirewall,network-firewall.amazonaws.com,delete
 CreateBucket,s3.amazonaws.com,create

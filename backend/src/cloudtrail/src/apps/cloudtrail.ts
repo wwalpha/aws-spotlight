@@ -4,9 +4,9 @@ import { orderBy } from 'lodash';
 import zlib from 'zlib';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
 import { Utilities, Consts, Events, DynamodbHelper, AddTags, Logger } from './utils';
+import { sendMail } from './utils/utilities';
 
 const s3Client = new S3();
-const snsClient = new SNS();
 const EVENTS: EVENT_TYPE = {};
 const NOTIFIED: EVENT_TYPE = {};
 
@@ -85,16 +85,19 @@ const processRecord = async (record: CloudTrail.Record) => {
   // new event
   if (!definition) {
     await processNewEventType(record);
+    return;
   }
 
   // unprocess event
   if (definition?.Unprocessed === true) {
     await processUnprocessed(record);
+    return;
   }
 
   // create event || delete event
   if (definition?.Create === true || definition?.Delete === true) {
     await processUpdate(record);
+    return;
   }
 };
 
@@ -136,17 +139,7 @@ const processNewEventType = async (record: CloudTrail.Record) => {
       EventSource: record.eventSource,
     };
 
-    try {
-      await snsClient
-        .publish({
-          TopicArn: Consts.Environments.SNS_TOPIC_ARN,
-          Subject: 'New Event Type',
-          Message: `Event Source: ${record.eventSource}, Event Name: ${record.eventName}`,
-        })
-        .promise();
-    } catch (err) {
-      console.log(err);
-    }
+    await sendMail('New Event Type', `Event Source: ${record.eventSource}, Event Name: ${record.eventName}`);
   }
 };
 
@@ -163,50 +156,37 @@ const processUnprocessed = async (record: CloudTrail.Record) => {
 
 const processUpdate = async (record: CloudTrail.Record) => {
   const { TABLE_NAME_RESOURCES, TABLE_NAME_HISTORY } = Consts.Environments;
-  const createItems = Events.getCreateResourceItem(record);
-  const deleteItems = await Events.getRemoveResourceItems(record);
+
+  const [createItems, updateItems, deleteItems] = await Promise.all([
+    Events.getCreateResourceItem(record),
+    Events.getUpdateResourceItem(record),
+    Events.getRemoveResourceItems(record),
+  ]);
 
   const transactItems: DynamoDB.DocumentClient.TransactWriteItemList = [];
 
-  // create records
-  if (createItems) {
-    createItems.forEach((item) => Logger.info(`${item.EventName}, ${item.ResourceId}`));
+  // 新規リソース
+  createItems.forEach((item) => Logger.info(`CREATE: ${item.EventName}, ${item.ResourceId}`));
+  updateItems.forEach((item) => Logger.info(`UPDATE: ${item.EventName}, ${item.ResourceId}`));
+  deleteItems.forEach((item) => Logger.info(`DELETE: ${item.EventName}, ${item.ResourceId}`));
 
-    // add resource record
-    createItems
-      .map((item) => Utilities.getPutRecord(TABLE_NAME_RESOURCES, item))
-      .forEach((item) => transactItems.push(item));
-  }
-
-  // delete records
-  if (deleteItems) {
-    deleteItems.forEach((item) => Logger.info(`${item.EventName}, ${item.ResourceId}`));
-
-    deleteItems
-      .map(
-        (item) =>
-          ({
-            Delete: {
-              TableName: TABLE_NAME_RESOURCES,
-              Key: {
-                ResourceId: item.ResourceId,
-                EventTime: item.EventTime,
-              } as Tables.ResourceKey,
-              ConditionExpression: 'ResourceId = :ResourceId AND EventTime = :EventTime',
-              ExpressionAttributeValues: {
-                ':ResourceId': item.ResourceId,
-                ':EventTime': item.EventTime,
-              },
-            },
-          } as DynamoDB.DocumentClient.TransactWriteItem)
-      )
-      .forEach((item) => transactItems.push(item));
-  }
+  // リソース新規作成
+  createItems
+    .map((item) => Utilities.getPutRecord(TABLE_NAME_RESOURCES, item))
+    .forEach((item) => transactItems.push(item));
+  // リソース更新
+  updateItems
+    .map((item) => Utilities.getPutRecord(TABLE_NAME_RESOURCES, item))
+    .forEach((item) => transactItems.push(item));
+  // リソース削除
+  deleteItems
+    .map((item) => Utilities.getDeleteRecord(TABLE_NAME_RESOURCES, item))
+    .forEach((item) => transactItems.push(item));
 
   // add history record
   transactItems.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
 
-  await DynamodbHelper.getDocumentClient().transactWrite({
+  await DynamodbHelper.transactWrite({
     TransactItems: transactItems,
   });
 

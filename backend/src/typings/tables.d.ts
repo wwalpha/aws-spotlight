@@ -45,7 +45,6 @@ export namespace Tables {
    */
   interface ResourceKey {
     ResourceId: string;
-    EventTime: string;
   }
 
   /**
@@ -57,6 +56,7 @@ export namespace Tables {
     EventSource: string;
     EventName: string;
     EventId: string;
+    EventTime: string;
     AWSRegion: string;
     UserAgent: string;
     IdentityType: string;
@@ -109,6 +109,22 @@ export namespace Tables {
    * Table - Unprocessed
    */
   interface Unprocessed extends UnprocessedKey {
+    EventSource: string;
+    Raw: string;
+  }
+
+  /**
+   * Table - Errors Key
+   */
+  interface TErrorsKey {
+    EventName: string;
+    EventTime: string;
+  }
+
+  /**
+   * Table - TErrors
+   */
+  interface TErrors extends TErrorsKey {
     EventSource: string;
     Raw: string;
   }

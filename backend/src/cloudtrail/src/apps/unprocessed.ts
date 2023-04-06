@@ -106,21 +106,21 @@ export const processUpdate = async (events: Tables.EventType[]) => {
   await Promise.all(tasks);
 
   // remove unprocessed flag
-  const removeUnprocessedTasks = events.map((item) =>
-    DynamodbHelper.update({
-      TableName: Consts.Environments.TABLE_NAME_EVENT_TYPE,
-      Key: {
-        EventSource: item.EventSource,
-        EventName: item.EventName,
-      },
-      UpdateExpression: 'REMOVE #Unprocessed',
-      ExpressionAttributeNames: {
-        '#Unprocessed': 'Unprocessed',
-      },
-    })
-  );
+  // const removeUnprocessedTasks = events.map((item) =>
+  //   DynamodbHelper.update({
+  //     TableName: Consts.Environments.TABLE_NAME_EVENT_TYPE,
+  //     Key: {
+  //       EventSource: item.EventSource,
+  //       EventName: item.EventName,
+  //     },
+  //     UpdateExpression: 'REMOVE #Unprocessed',
+  //     ExpressionAttributeNames: {
+  //       '#Unprocessed': 'Unprocessed',
+  //     },
+  //   })
+  // );
 
-  await Promise.all(removeUnprocessedTasks);
+  // await Promise.all(removeUnprocessedTasks);
 };
 
 const getUnprocessedRecords = async (events: Tables.EventType[]) => {
@@ -154,64 +154,38 @@ const getUnprocessedRecords = async (events: Tables.EventType[]) => {
   }, [] as Tables.Unprocessed[]);
 };
 
-const processRecord = async (item: CloudTrail.Record) => {
+const processRecord = async (record: CloudTrail.Record) => {
   const { TABLE_NAME_EVENT_TYPE, TABLE_NAME_HISTORY, TABLE_NAME_RESOURCES, TABLE_NAME_UNPROCESSED } =
     Consts.Environments;
 
-  const createItems = Events.getCreateResourceItem(item);
-  const deleteItems = await Events.getRemoveResourceItems(item);
+  const [createItems, updateItems, deleteItems] = await Promise.all([
+    Events.getCreateResourceItem(record),
+    Events.getUpdateResourceItem(record),
+    Events.getRemoveResourceItems(record),
+  ]);
 
   const transactItems: DynamoDB.DocumentClient.TransactWriteItemList = [];
 
-  // create records
-  if (createItems) {
-    // add resource record
-    createItems
-      .map((item) => Utilities.getPutRecord(TABLE_NAME_RESOURCES, item))
-      .forEach((item) => transactItems.push(item));
-  }
-
-  // delete records
-  if (deleteItems) {
-    deleteItems
-      .map(
-        (item) =>
-          ({
-            Delete: {
-              TableName: TABLE_NAME_RESOURCES,
-              Key: {
-                ResourceId: item.ResourceId,
-                EventTime: item.EventTime,
-              } as Tables.ResourceKey,
-              ConditionExpression: 'ResourceId = :ResourceId AND EventTime = :EventTime',
-              ExpressionAttributeValues: {
-                ':ResourceId': item.ResourceId,
-                ':EventTime': item.EventTime,
-              },
-            },
-          } as DynamoDB.DocumentClient.TransactWriteItem)
-      )
-      .forEach((item) => transactItems.push(item));
-  }
-
-  // add history record
-  transactItems.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(item)));
-
-  // delete unprocessed item
-  transactItems.push(
-    Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, {
-      EventName: item.eventName,
-      EventTime: `${item.eventTime}_${item.eventID.substr(0, 8)}`,
-    } as Tables.UnprocessedKey)
-  );
+  // リソース新規作成
+  createItems
+    .map((item) => Utilities.getPutRecord(TABLE_NAME_RESOURCES, item))
+    .forEach((item) => transactItems.push(item));
+  // リソース更新
+  updateItems
+    .map((item) => Utilities.getPutRecord(TABLE_NAME_RESOURCES, item))
+    .forEach((item) => transactItems.push(item));
+  // リソース削除
+  deleteItems
+    .map((item) => Utilities.getDeleteRecord(TABLE_NAME_RESOURCES, item))
+    .forEach((item) => transactItems.push(item));
 
   // remove unprocessed flag
   transactItems.push({
     Update: {
       TableName: TABLE_NAME_EVENT_TYPE,
       Key: {
-        EventSource: item.eventSource,
-        EventName: item.eventName,
+        EventSource: record.eventSource,
+        EventName: record.eventName,
       } as Tables.EventTypeKey,
       UpdateExpression: 'REMOVE #Unprocessed',
       ExpressionAttributeNames: {
@@ -220,10 +194,18 @@ const processRecord = async (item: CloudTrail.Record) => {
     },
   });
 
-  await DynamodbHelper.getDocumentClient().transactWrite({
+  // delete unprocessed item
+  transactItems.push(
+    Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, {
+      EventName: record.eventName,
+      EventTime: `${record.eventTime}_${record.eventID.substr(0, 8)}`,
+    } as Tables.UnprocessedKey)
+  );
+
+  // add history record
+  transactItems.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
+
+  await DynamodbHelper.transactWrite({
     TransactItems: transactItems,
   });
-
-  // add tags to resource
-  // await AddTags(createItems);
 };

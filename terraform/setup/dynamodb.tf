@@ -23,31 +23,6 @@ resource "aws_dynamodb_table" "event_type" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# Dynamodb Table - Notification
-# ----------------------------------------------------------------------------------------------
-# resource "aws_dynamodb_table" "notification" {
-#   name           = local.dynamodb_name_notification
-#   billing_mode   = "PROVISIONED"
-#   read_capacity  = 1
-#   write_capacity = 1
-#   hash_key       = "EventName"
-#   range_key      = "EventTime"
-
-#   attribute {
-#     name = "EventName"
-#     type = "S"
-#   }
-#   attribute {
-#     name = "EventTime"
-#     type = "S"
-#   }
-
-#   lifecycle {
-#     prevent_destroy = true
-#   }
-# }
-
-# ----------------------------------------------------------------------------------------------
 # Dynamodb Table - Resource
 # ----------------------------------------------------------------------------------------------
 resource "aws_dynamodb_table" "resource" {
@@ -106,21 +81,6 @@ resource "aws_dynamodb_table" "unprocessed" {
     name = "EventTime"
     type = "S"
   }
-  # attribute {
-  #   name = "EventTime"
-  #   type = "S"
-  # }
-
-  # local_secondary_index {
-  #   name            = "lsiIdx1"
-  #   range_key       = "EventTime"
-  #   projection_type = "ALL"
-  # }
-
-
-  # lifecycle {
-  #   prevent_destroy = true
-  # }
 }
 
 # ----------------------------------------------------------------------------------------------
@@ -174,5 +134,24 @@ resource "aws_dynamodb_table" "settings" {
 
   lifecycle {
     prevent_destroy = true
+  }
+}
+
+# ----------------------------------------------------------------------------------------------
+# Dynamodb Table - Errors
+# ----------------------------------------------------------------------------------------------
+resource "aws_dynamodb_table" "errors" {
+  name         = local.dynamodb_name_errors
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "EventName"
+  range_key    = "EventTime"
+
+  attribute {
+    name = "EventName"
+    type = "S"
+  }
+  attribute {
+    name = "EventTime"
+    type = "S"
   }
 }
