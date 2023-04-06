@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDAU33DBSJ5M2LXKXXXS",
-    "arn": "arn:aws:iam::999999999999:user/ktou@dxc.com",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
     "accountId": "999999999999",
     "accessKeyId": "AKIAU33DBSJ5I7MODBWM",
-    "userName": "ktou@dxc.com"
+    "userName": "test@test.com"
   },
   "eventTime": "2021-06-06T01:13:38Z",
   "eventSource": "events.amazonaws.com",

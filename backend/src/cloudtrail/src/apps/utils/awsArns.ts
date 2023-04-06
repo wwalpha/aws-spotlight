@@ -29,6 +29,10 @@ export const ResourceARNs = {
   // kinesis
   KINESIS_Stream: (region: string, account: string, id?: string) => `arn:aws:kinesis:${region}:${account}:stream/${id}`,
 
+  // kinesis analytics
+  KINESISANALYTICS_Application: (region: string, account: string, id?: string) =>
+    `arn:aws:kinesisanalytics:${region}:${account}:application/${id}`,
+
   // iot
   IOT_TopicRule: (region: string, account: string, id?: string) => `arn:aws:iot:${region}:${account}:rule/${id}`,
 

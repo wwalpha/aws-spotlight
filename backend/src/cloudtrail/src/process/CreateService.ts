@@ -216,6 +216,11 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
     case 'KINESIS_CreateStream':
       name = record.requestParameters.streamName;
       return [ResourceARNs.KINESIS_Stream(region, account, name), name];
+    case 'KINESISANALYTICS_CreateApplication':
+      return [
+        record.responseElements.applicationSummary.applicationARN,
+        record.responseElements.applicationSummary.applicationName,
+      ];
 
     case 'LOGS_CreateLogGroup':
       name = record.requestParameters.logGroupName;

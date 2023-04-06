@@ -69,7 +69,8 @@ export { default as LAMBDA_CreateFunction20150331 } from './LAMBDA_CreateFunctio
 export { default as LEX_CreateBot } from './LEX_CreateBot.json';
 export { default as LOGS_CreateLogGroup } from './LOGS_CreateLogGroup.json';
 
-export { default as KINESIS_CreateStream } from './KINESIS_CreateStream.json';
+export { default as KINESIS_CreateStream } from './kinesis/KINESIS_CreateStream.json';
+export { default as KINESIS_CreateApplication } from './kinesis/KINESIS_CreateApplication.json';
 
 export { default as MONITORING_PutMetricAlarm } from './monitoring/MONITORING_PutMetricAlarm.json';
 export { default as MONITORING_PutDashboard } from './monitoring/MONITORING_PutDashboard.json';

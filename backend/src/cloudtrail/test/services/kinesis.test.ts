@@ -42,4 +42,42 @@ describe('kinesis.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(KINESIS.DeleteStream_H);
   });
+
+  test('KINESIS_CreateApplication', async () => {
+    const event = await sendMessage(CreateEvents.KINESIS_CreateApplication);
+
+    await cloudtrail(event);
+
+    const resource = await getResource(
+      'arn:aws:kinesisanalytics:ap-northeast-1:999999999999:application/KinesisDataAnalytics_Test'
+    );
+    const history = await getHistory({ EventId: CreateEvents.KINESIS_CreateApplication.eventID });
+
+    fs.writeFileSync('./test/expect/kinesis/KINESIS_CreateApplication_R.json', JSON.stringify(resource));
+    fs.writeFileSync('./test/expect/kinesis/KINESIS_CreateApplication_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    // expect(resource).toEqual(EXPECTS.KINESIS_CreateApplication_R);
+
+    expect(history).not.toBeUndefined();
+    // expect(history).toEqual(EXPECTS.KINESIS_CreateApplication_H);
+  });
+
+  test('KINESIS_DeleteApplication', async () => {
+    const event = await sendMessage(DeleteEvents.KINESIS_DeleteApplication);
+
+    await cloudtrail(event);
+
+    const resource = await getResource(
+      'arn:aws:kinesisanalytics:ap-northeast-1:999999999999:application/KinesisDataAnalytics_Test'
+    );
+    const history = await getHistory({ EventId: DeleteEvents.KINESIS_DeleteApplication.eventID });
+
+    fs.writeFileSync('./test/expect/kinesis/KINESIS_DeleteApplication_H.json', JSON.stringify(history));
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    // expect(history).toEqual(EXPECTS.KINESIS_DeleteApplication_H);
+  });
 });

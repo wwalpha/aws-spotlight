@@ -85,6 +85,8 @@ const getResourceArn = (record: CloudTrail.Record) => {
 
     case 'KINESIS_DeleteStream':
       return ResourceARNs.KINESIS_Stream(region, account, record.requestParameters.streamName);
+    case 'KINESISANALYTICS_DeleteApplication':
+      return ResourceARNs.KINESISANALYTICS_Application(region, account, record.requestParameters.applicationName);
 
     case 'LOGS_DeleteLogGroup':
       return ResourceARNs.LOGS_LogGroup(region, account, record.requestParameters.logGroupName);

@@ -18,6 +18,8 @@ CreateProject,codebuild.amazonaws.com,create
 DeleteProject,codebuild.amazonaws.com,delete
 CreateApplication,codedeploy.amazonaws.com,create
 DeleteApplication,codedeploy.amazonaws.com,delete
+CreateRepository,codecommit.amazonaws.com,create
+DeleteRepository,codecommit.amazonaws.com,delete
 CreateInstance,connect.amazonaws.com,create
 DeleteInstance,connect.amazonaws.com,delete
 CreateDistribution,cloudfront.amazonaws.com,create
@@ -106,6 +108,8 @@ CreateTopicRule,iot.amazonaws.com,create
 DeleteTopicRule,iot.amazonaws.com,delete
 CreateStream,kinesis.amazonaws.com,create
 DeleteStream,kinesis.amazonaws.com,delete
+CreateApplication,kinesisanalytics.amazonaws.com,create
+DeleteApplication,kinesisanalytics.amazonaws.com,delete
 CreateFunction20150331,lambda.amazonaws.com,create
 DeleteFunction20150331,lambda.amazonaws.com,delete
 CreateBot,lex.amazonaws.com,create
@@ -151,4 +155,5 @@ CreateServer,transfer.amazonaws.com,create
 DeleteServer,transfer.amazonaws.com,delete
 CreateTopic,sns.amazonaws.com,create
 DeleteTopic,sns.amazonaws.com,delete
-
+CreateFileSystem,elasticfilesystem.amazonaws.com,create
+DeleteFileSystem,elasticfilesystem.amazonaws.com,delete

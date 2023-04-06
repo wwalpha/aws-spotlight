@@ -1,1 +1,13 @@
-{"IdentityType":"IAMUser","EventSource":"events.amazonaws.com","UserName":"ktou@dxc.com","ResourceId":"arn:aws:events:ap-northeast-1:999999999999:rule/ARMS_UnprocessedRule","ResourceName":"ARMS_UnprocessedRule","EventTime":"2021-06-06T01:13:38Z","UserAgent":"APN/1.0 HashiCorp/1.0 Terraform/0.15.3 (+https://www.terraform.io) terraform-provider-aws/3.44.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.38.53 (go1.16; linux; amd64)","AWSRegion":"ap-northeast-1","EventId":"86e79d59-cda4-4beb-984b-c67dd0bfa7b5","Service":"Events","EventName":"PutRule"}
+{
+  "IdentityType": "IAMUser",
+  "EventSource": "events.amazonaws.com",
+  "UserName": "test@test.com",
+  "ResourceId": "arn:aws:events:ap-northeast-1:999999999999:rule/ARMS_UnprocessedRule",
+  "ResourceName": "ARMS_UnprocessedRule",
+  "EventTime": "2021-06-06T01:13:38Z",
+  "UserAgent": "APN/1.0 HashiCorp/1.0 Terraform/0.15.3 (+https://www.terraform.io) terraform-provider-aws/3.44.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.38.53 (go1.16; linux; amd64)",
+  "AWSRegion": "ap-northeast-1",
+  "EventId": "86e79d59-cda4-4beb-984b-c67dd0bfa7b5",
+  "Service": "Events",
+  "EventName": "PutRule"
+}
