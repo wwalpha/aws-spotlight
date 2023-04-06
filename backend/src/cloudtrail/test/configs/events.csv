@@ -157,3 +157,4 @@ CreateTopic,sns.amazonaws.com,create
 DeleteTopic,sns.amazonaws.com,delete
 CreateFileSystem,elasticfilesystem.amazonaws.com,create
 DeleteFileSystem,elasticfilesystem.amazonaws.com,delete
+CreateApplication,serverlessrepo.amazonaws.com,create

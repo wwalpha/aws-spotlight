@@ -271,6 +271,8 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
     case 'RDS_CreateDBSubnetGroup':
       return [record.responseElements.dBSubnetGroupArn, record.responseElements.dBSubnetGroupName];
 
+    case 'SERVERLESSREPO_CreateApplication':
+      return [record.responseElements.applicationId, record.responseElements.name];
     case 'S3_CreateBucket':
       name = record.requestParameters.bucketName;
       return [ResourceARNs.S3_Bucket(region, account, name), name];

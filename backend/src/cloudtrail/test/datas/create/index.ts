@@ -94,6 +94,7 @@ export { default as SNS_CreateTopic } from './SNS_CreateTopic.json';
 export { default as SYNTHETICS_CreateCanary } from './SYNTHETICS_CreateCanary.json';
 export { default as STATES_CreateStateMachine } from './STATES_CreateStateMachine.json';
 export { default as SQS_CreateQueue } from './SQS_CreateQueue.json';
+export { default as SERVERLESSREPO_CreateApplication } from './SERVERLESSREPO_CreateApplication.json';
 
 export { default as TRANSFER_CreateServer } from './TRANSFER_CreateServer.json';
 
