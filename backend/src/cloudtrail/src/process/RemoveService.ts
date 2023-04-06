@@ -1,7 +1,7 @@
 import { ResourceARNs } from '@src/apps/utils/awsArns';
 import { CloudTrail, Tables } from 'typings';
 
-const MULTI_TASK = ['EC2_TerminateInstances', 'MONITORING_DeleteAlarms'];
+const MULTI_TASK = ['EC2_TerminateInstances', 'MONITORING_DeleteAlarms', 'MONITORING_DeleteDashboards'];
 
 export const start = (record: CloudTrail.Record): Tables.ResouceGSI1Key[] | undefined => {
   const key = `${record.eventSource.split('.')[0].toUpperCase()}_${record.eventName}`;
@@ -267,6 +267,11 @@ const getResourceArns = (record: CloudTrail.Record) => {
     case 'MONITORING_DeleteAlarms':
       return (record.requestParameters.alarmNames as string[]).map((item) =>
         ResourceARNs.MONITORING_Alarm(region, account, item)
+      );
+
+    case 'MONITORING_DeleteDashboards':
+      return (record.requestParameters.dashboardNames as string[]).map((item) =>
+        ResourceARNs.MONITORING_Dashboard(region, account, item)
       );
   }
 

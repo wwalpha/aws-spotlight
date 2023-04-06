@@ -70,7 +70,8 @@ export { default as LAMBDA_DeleteFunction20150331 } from './lambda/LAMBDA_Delete
 export { default as LEX_DeleteBot } from './LEX_DeleteBot.json';
 export { default as LOGS_DeleteLogGroup } from './LOGS_DeleteLogGroup.json';
 
-export { default as MONITORING_DeleteAlarms } from './MONITORING_DeleteAlarms.json';
+export { default as MONITORING_DeleteAlarms } from './monitoring/MONITORING_DeleteAlarms.json';
+export { default as MONITORING_DeleteDashboards } from './monitoring/MONITORING_DeleteDashboards.json';
 
 export { default as NFW_DeleteFirewall } from './NFW_DeleteFirewall.json';
 

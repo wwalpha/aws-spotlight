@@ -141,6 +141,7 @@ DeleteHostedZone,route53.amazonaws.com,delete
 PutMetricAlarm,monitoring.amazonaws.com,create
 DeleteAlarms,monitoring.amazonaws.com,delete
 PutDashboard,monitoring.amazonaws.com,create
+DeleteDashboards,monitoring.amazonaws.com,delete
 CreateFirewall,network-firewall.amazonaws.com,create
 DeleteFirewall,network-firewall.amazonaws.com,delete
 CreateBucket,s3.amazonaws.com,create

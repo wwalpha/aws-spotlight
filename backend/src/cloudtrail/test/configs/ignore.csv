@@ -496,3 +496,4 @@ DeleteNamespace,servicediscovery.amazonaws.com,true
 CreateHttpNamespace,servicediscovery.amazonaws.com,true
 CreateEnvironmentEC2,cloud9.amazonaws.com,true
 DeleteEnvironment,cloud9.amazonaws.com,true
+CreateParticipantConnection,participant-connect.amazonaws.com,true

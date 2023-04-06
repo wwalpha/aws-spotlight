@@ -59,4 +59,20 @@ describe('monitoring.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(Monitoring.PutDashboard_H);
   });
+
+  test('MONITORING_DeleteDashboards', async () => {
+    const event = await sendMessage(DeleteEvents.MONITORING_DeleteDashboards);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:cloudwatch::999999999999:dashboard/LambdaDashBoard');
+    const history = await getHistory({ EventId: DeleteEvents.MONITORING_DeleteDashboards.eventID });
+
+    // fs.writeFileSync('./test/expect/monitoring/MONITORING_DeleteDashboards_H.json', JSON.stringify(history));
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(Monitoring.MONITORING_DeleteDashboards_H);
+  });
 });
