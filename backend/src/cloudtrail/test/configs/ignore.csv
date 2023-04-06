@@ -48,6 +48,7 @@ DeleteListener,elasticloadbalancing.amazonaws.com,true
 ModifyLoadBalancerAttributes,elasticloadbalancing.amazonaws.com,true
 ModifyTargetGroupAttributes,elasticloadbalancing.amazonaws.com,true
 SetSecurityGroups,elasticloadbalancing.amazonaws.com,true
+RegisterTargets,elasticloadbalancing.amazonaws.com,true
 StartDBInstance,rds.amazonaws.com,true
 UpdateFunctionCode20150331v2,lambda.amazonaws.com,true
 UpdateFunctionConfiguration20150331v2,lambda.amazonaws.com,true
@@ -432,7 +433,6 @@ DeleteBackupSelection,backup.amazonaws.com,true
 CreateBackupSelection,backup.amazonaws.com,true
 CreateAccessPoint,elasticfilesystem.amazonaws.com,true
 DisconnectParticipant,participant-connect.amazonaws.com,true
-RegisterDirectory,workdocs.amazonaws.com,true
 StartChatContact,connect.amazonaws.com,true
 PutBackupVaultAccessPolicy,backup.amazonaws.com,true
 SendMessage,participant-connect.amazonaws.com,true
@@ -487,4 +487,9 @@ CreateResourcePolicyStatement,lex.amazonaws.com,true
 PutIntegration,profile.amazonaws.com,true
 PutComplianceItems,ssm.amazonaws.com,true
 RevokeToken,cognito-idp.amazonaws.com,true
-
+UpdateCluster,ecs.amazonaws.com,true
+CreateBotAlias,lex.amazonaws.com,true
+DeleteResourcePolicyStatement,lex.amazonaws.com,true
+CreateLogStream,logs.amazonaws.com,true
+CreatePrivateDnsNamespace,servicediscovery.amazonaws.com,true
+DeleteNamespace,servicediscovery.amazonaws.com,true

@@ -37,6 +37,9 @@ const getResourceArn = (record: CloudTrail.Record) => {
       return ResourceARNs.APIGATEWAY_Api(region, account, record.requestParameters.restApiId);
     case 'APIGATEWAY_DeleteVpcLink':
       return ResourceARNs.APIGATEWAY_VpcLink(region, account, record.requestParameters.vpcLinkId);
+    case 'APIGATEWAY_DeleteDomainName':
+      return ResourceARNs.APIGATEWAY_DomainName(region, account, record.requestParameters.domainName);
+
     case 'APPMESH_DeleteMesh':
       return record.responseElements.mesh.metadata.arn;
     case 'AUTOSCALING_DeleteAutoScalingGroup':
@@ -116,8 +119,8 @@ const getResourceArn = (record: CloudTrail.Record) => {
       return ResourceARNs.RDS_DBParameterGroup(region, account, record.requestParameters.dBParameterGroupName);
     case 'RDS_DeleteDBProxy':
       return record.responseElements.dBProxy.dBProxyArn;
-    case 'RDS_DeleteDBSnapshot':
-      return record.responseElements.dBSnapshotArn;
+    // case 'RDS_DeleteDBSnapshot':
+    //   return record.responseElements.dBSnapshotArn;
     case 'RDS_DeleteDBSubnetGroup':
       return ResourceARNs.RDS_DBSubnetGroup(region, account, record.requestParameters.dBSubnetGroupName);
 
@@ -133,6 +136,8 @@ const getResourceArn = (record: CloudTrail.Record) => {
       return record.requestParameters.stateMachineArn;
     case 'SYNTHETICS_DeleteCanary':
       return ResourceARNs.SYNTHETICS_Canary(region, account, record.requestParameters.name);
+    // case 'SERVICEDISCOVERY_DeleteNamespace':
+    //   return ResourceARNs.SYNTHETICS_Canary(region, account, record.requestParameters.name);
 
     case 'TIMESTREAM_DeleteDatabase':
       return ResourceARNs.TIMESTREAM_Database(region, account, record.requestParameters.databaseName);

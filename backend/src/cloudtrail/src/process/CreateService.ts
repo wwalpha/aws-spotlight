@@ -66,6 +66,9 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
       ];
     case 'APIGATEWAY_ImportRestApi':
       return [ResourceARNs.APIGATEWAY_Api(region, account, record.responseElements.id), record.responseElements.name];
+    case 'APIGATEWAY_CreateDomainName':
+      name = record.responseElements.domainName;
+      return [ResourceARNs.APIGATEWAY_DomainName(region, account, name), name];
 
     case 'APPMESH_CreateMesh':
       return [record.responseElements.mesh.metadata.arn, record.responseElements.mesh.meshName];
@@ -92,7 +95,11 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
       return [record.responseElements.stackId, record.requestParameters.stackName];
     case 'CLOUDFRONT_CreateDistribution':
       return [record.responseElements.distribution.aRN, record.responseElements.distribution.domainName];
-
+    case 'CLOUD9_CreateEnvironmentEC2':
+      name = record.requestParameters.name;
+      return [ResourceARNs.CLOUD9_Environment(region, account, name), name];
+    case 'COGNITO-IDP_CreateUserPool':
+      return [record.responseElements.userPool.arn, record.responseElements.userPool.name];
     case 'DYNAMODB_CreateTable':
       return [record.responseElements.tableDescription.tableArn, record.responseElements.tableDescription.tableName];
     case 'DS_CreateMicrosoftAD':
@@ -273,6 +280,9 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
     case 'RDS_CreateDBClusterSnapshot':
       return [record.responseElements.dBClusterSnapshotArn, record.responseElements.dBClusterSnapshotIdentifier];
 
+    // case 'SERVICEDISCOVERY_CreatePrivateDnsNamespace':
+    //   name = record.requestParameters.name;
+    //   return [ResourceARNs.SERVICEDISCOVERY_Namespace(region, account, name), name];
     case 'SERVERLESSREPO_CreateApplication':
       return [record.responseElements.applicationId, record.responseElements.name];
     case 'S3_CreateBucket':

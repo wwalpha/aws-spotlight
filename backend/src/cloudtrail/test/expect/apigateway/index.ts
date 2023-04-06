@@ -8,3 +8,5 @@ export { default as CreateApi_R } from './CreateApi_R.json';
 export { default as CreateVpcLink_H } from './CreateVpcLink_H.json';
 export { default as CreateVpcLink_R } from './CreateVpcLink_R.json';
 export { default as DeleteVpcLink_H } from './DeleteVpcLink_H.json';
+
+export { default as APIGATEWAY_DeleteApi_H } from './APIGATEWAY_DeleteApi_H.json';

@@ -1,6 +1,7 @@
 export { default as APIGATEWAY_DeleteRestApi } from './apigateway/APIGATEWAY_DeleteRestApi.json';
 export { default as APIGATEWAY_DeleteVpcLink } from './apigateway/APIGATEWAY_DeleteVpcLink.json';
 export { default as APIGATEWAY_DeleteApi } from './apigateway/APIGATEWAY_DeleteApi.json';
+export { default as APIGATEWAY_DeleteDomainName } from './apigateway/APIGATEWAY_DeleteDomainName.json';
 
 export { default as AUTOSCALING_DeleteAutoScalingGroup } from './autoscaling/AUTOSCALING_DeleteAutoScalingGroup.json';
 export { default as APPMESH_DeleteMesh } from './appmesh/APPMESH_DeleteMesh.json';

@@ -1,0 +1,13 @@
+{
+  "IdentityType": "IAMUser",
+  "EventSource": "apigateway.amazonaws.com",
+  "UserName": "test@test.com",
+  "ResourceId": "arn:aws:apigateway:ap-northeast-1::/domainnames/api.arms.onecloudlabo.com",
+  "ResourceName": "api.arms.onecloudlabo.com",
+  "EventTime": "2021-06-03T10:53:37Z",
+  "UserAgent": "APN/1.0 HashiCorp/1.0 Terraform/0.15.3 (+https://www.terraform.io) terraform-provider-aws/3.43.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.38.49 (go1.16; linux; amd64)",
+  "AWSRegion": "ap-northeast-1",
+  "EventId": "4466b678-59c8-4dce-bd05-e61c165f46b6",
+  "Service": "Apigateway",
+  "EventName": "CreateDomainName"
+}

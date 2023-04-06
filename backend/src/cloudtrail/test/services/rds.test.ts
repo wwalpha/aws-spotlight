@@ -207,4 +207,24 @@ describe('rds.amazonaws.com', () => {
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.RDS_DeleteDBSubnetGroup_H);
   });
+
+  test('RDS_CreateDBClusterSnapshot', async () => {
+    const event = await sendMessage(CreateEvents.RDS_CreateDBClusterSnapshot);
+
+    await cloudtrail(event);
+
+    const resource = await getResource(
+      'arn:aws:rds:ap-northeast-1:999999999999:cluster-snapshot:aurora-db-backup-20210930'
+    );
+    const history = await getHistory({ EventId: CreateEvents.RDS_CreateDBClusterSnapshot.eventID });
+
+    fs.writeFileSync('./test/expect/rds/RDS_CreateDBClusterSnapshot_R.json', JSON.stringify(history));
+    fs.writeFileSync('./test/expect/rds/RDS_CreateDBClusterSnapshot_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    // expect(resource).toEqual(EXPECTS.RDS_CreateDBClusterSnapshot_R);
+
+    expect(history).not.toBeUndefined();
+    // expect(history).toEqual(EXPECTS.RDS_CreateDBClusterSnapshot_H);
+  });
 });

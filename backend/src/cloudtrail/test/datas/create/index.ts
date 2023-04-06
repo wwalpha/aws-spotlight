@@ -2,6 +2,7 @@ export { default as APIGATEWAY_CreateRestApi } from './apigateway/APIGATEWAY_Cre
 export { default as APIGATEWAY_ImportRestApi } from './apigateway/APIGATEWAY_ImportRestApi.json';
 export { default as APIGATEWAY_CreateApi } from './apigateway/APIGATEWAY_CreateApi.json';
 export { default as APIGATEWAY_CreateVpcLink } from './apigateway/APIGATEWAY_CreateVpcLink.json';
+export { default as APIGATEWAY_CreateDomainName } from './apigateway/APIGATEWAY_CreateDomainName.json';
 
 export { default as AUTOSCALING_CreateAutoScalingGroup } from './AUTOSCALING_CreateAutoScalingGroup.json';
 export { default as APPMESH_CreateMesh } from './APPMESH_CreateMesh.json';
@@ -16,6 +17,9 @@ export { default as CODEDEPLOY_CreateApplication } from './CODEDEPLOY_CreateAppl
 export { default as CONNECT_CreateInstance } from './CONNECT_CreateInstance.json';
 export { default as CLOUDFRONT_CreateDistribution } from './CLOUDFRONT_CreateDistribution.json';
 export { default as CLOUDFORMATION_CreateStack } from './CLOUDFORMATION_CreateStack.json';
+export { default as CLOUD9_CreateEnvironmentEC2 } from './CLOUD9_CreateEnvironmentEC2.json';
+export { default as COGNITOIDP_CreateUserPool } from './cognito/COGNITO-IDP_CreateUserPool.json';
+// export { default as COGNITOIDENTITY_CreateIdentityPool } from './cognito/COGNITO-IDENTITY_CreateIdentityPool.json';
 
 export { default as DS_CreateMicrosoftAD } from './DS_CreateMicrosoftAD.json';
 export { default as DYNAMODB_CreateTable } from './DYNAMODB_CreateTable.json';
@@ -85,6 +89,7 @@ export { default as RDS_CreateDBParameterGroup } from './rds/RDS_CreateDBParamet
 export { default as RDS_CreateDBSnapshot } from './rds/RDS_CreateDBSnapshot.json';
 export { default as RDS_CopyDBSnapshot } from './rds/RDS_CopyDBSnapshot.json';
 export { default as RDS_CreateDBSubnetGroup } from './rds/RDS_CreateDBSubnetGroup.json';
+export { default as RDS_CreateDBClusterSnapshot } from './rds/RDS_CreateDBClusterSnapshot.json';
 
 export { default as REDSHIFT_CreateCluster } from './REDSHIFT_CreateCluster.json';
 export { default as ROUTE53_CreateHostedZone } from './ROUTE53_CreateHostedZone.json';

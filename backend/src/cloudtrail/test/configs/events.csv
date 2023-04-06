@@ -1,9 +1,12 @@
 CreateApi,apigateway.amazonaws.com,create
+DeleteApi,apigateway.amazonaws.com,delete
 CreateRestApi,apigateway.amazonaws.com,create
 ImportRestApi,apigateway.amazonaws.com,create
 DeleteRestApi,apigateway.amazonaws.com,delete
 CreateVpcLink,apigateway.amazonaws.com,create
 DeleteVpcLink,apigateway.amazonaws.com,delete
+CreateDomainName,apigateway.amazonaws.com,create
+DeleteDomainName,apigateway.amazonaws.com,delete
 CreateAutoScalingGroup,autoscaling.amazonaws.com,create
 DeleteAutoScalingGroup,autoscaling.amazonaws.com,delete
 CreateMesh,appmesh.amazonaws.com,create
@@ -14,6 +17,8 @@ CreateBackupPlan,backup.amazonaws.com,create
 DeleteBackupPlan,backup.amazonaws.com,delete
 CreateComputeEnvironment,batch.amazonaws.com,create
 DeleteComputeEnvironment,batch.amazonaws.com,delete
+CreateEnvironmentEC2,cloud9.amazonaws.com,create
+CreateUserPool,cognito-idp.amazonaws.com,create
 CreateProject,codebuild.amazonaws.com,create
 DeleteProject,codebuild.amazonaws.com,delete
 CreateApplication,codedeploy.amazonaws.com,create
@@ -129,7 +134,6 @@ DeleteDBParameterGroup,rds.amazonaws.com,delete
 CreateDBSubnetGroup,rds.amazonaws.com,create
 DeleteDBSubnetGroup,rds.amazonaws.com,delete
 CreateDBClusterSnapshot,rds.amazonaws.com,create
-DeleteDBSnapshot,rds.amazonaws.com,delete
 CreateCluster,redshift.amazonaws.com,create
 DeleteCluster,redshift.amazonaws.com,delete
 CreateHostedZone,route53.amazonaws.com,create

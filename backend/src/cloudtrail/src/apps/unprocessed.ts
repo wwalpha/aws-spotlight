@@ -85,14 +85,8 @@ export const processIgnore = async (events: Tables.EventType[]) => {
 
 export const processUpdate = async (events: Tables.EventType[]) => {
   const records = await getUnprocessedRecords(events);
-  const sorted = orderBy(records, ['EventTime'], ['asc']);
 
-  for (; sorted.length > 0; ) {
-    const record = sorted.shift();
-
-    // validation
-    if (!record) continue;
-
+  const tasks = records.map(async (record) => {
     try {
       // parse raw data
       const item = JSON.parse(record.Raw) as CloudTrail.Record;
@@ -107,7 +101,9 @@ export const processUpdate = async (events: Tables.EventType[]) => {
 
       throw err;
     }
-  }
+  });
+
+  await Promise.all(tasks);
 
   // remove unprocessed flag
   const removeUnprocessedTasks = events.map((item) =>

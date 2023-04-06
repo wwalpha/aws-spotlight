@@ -2,6 +2,9 @@ export const ResourceARNs = {
   // apigateway api
   APIGATEWAY_Api: (region: string, _: string, id?: string) => `arn:aws:apigateway:${region}::/apis/${id}`,
 
+  // apigateway domain
+  APIGATEWAY_DomainName: (region: string, _: string, id?: string) => `arn:aws:apigateway:${region}::/domainnames/${id}`,
+
   // apigateway vpclink
   APIGATEWAY_VpcLink: (region: string, _: string, id?: string) => `arn:aws:apigateway:${region}::/vpclinks/${id}`,
 
@@ -58,6 +61,10 @@ export const ResourceARNs = {
   CODEDEPLOY_Application: (region: string, account: string, id?: string) =>
     `arn:aws:codedeploy:${region}:${account}:application/${id}`,
 
+  // cloud9
+  CLOUD9_Environment: (region: string, account: string, id?: string) =>
+    `arn:aws:cloud9:${region}:${account}:environment:${id}`,
+
   // cloudfront
   CLOUDFRONT_Distribution: (_: string, account: string, id?: string) =>
     `arn:aws:cloudfront::${account}:distribution/${id}`,
@@ -68,6 +75,10 @@ export const ResourceARNs = {
 
   // route53
   ROUTE53_HostedZone: (_: string, __?: string, id?: string) => `arn:aws:route53:::hostedzone/${id}`,
+
+  // servicediscovery
+  SERVICEDISCOVERY_Namespace: (region: string, account: string, id?: string) =>
+    `arn:aws:servicediscovery:${region}:${account}:namespace/${id}`,
 
   // s3
   S3_Bucket: (_: string, __?: string, id?: string) => `arn:aws:s3:::${id}`,
