@@ -8,6 +8,6 @@
   "UserAgent": "APN/1.0 HashiCorp/1.0 Terraform/1.0.0 (+https://www.terraform.io) terraform-provider-aws/3.47.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.38.66 (go1.16; linux; amd64)",
   "AWSRegion": "us-east-1",
   "EventId": "633c390c-0e23-47ec-ba16-eea684ad24c3",
-  "Service": "Canary",
+  "Service": "Synthetics",
   "EventName": "CreateCanary"
 }

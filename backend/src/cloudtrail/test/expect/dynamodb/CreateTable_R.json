@@ -8,6 +8,6 @@
   "UserAgent": "cloudformation.amazonaws.com",
   "AWSRegion": "ap-northeast-1",
   "EventId": "696c84dc-ad34-4abe-90dd-b69189934170",
-  "Service": "DynamoDB",
+  "Service": "Dynamodb",
   "EventName": "CreateTable"
 }

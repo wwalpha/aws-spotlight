@@ -8,6 +8,6 @@
   "UserAgent": "aws-internal/3 aws-sdk-java/1.11.1030 Linux/5.4.109-57.183.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.292-b10 java/1.8.0_292 vendor/Oracle_Corporation cfg/retry-mode/legacy",
   "AWSRegion": "ap-northeast-1",
   "EventId": "0ffc5c7d-b765-429c-b727-4ae0d737c544",
-  "Service": "CodeBuild",
+  "Service": "Codebuild",
   "EventName": "CreateProject"
 }

@@ -1,7 +1,7 @@
 import { ResourceARNs } from '@src/apps/utils/awsArns';
 import { CloudTrail, Tables } from 'typings';
 
-const MULTI_TASK = ['EC2_TerminateInstances'];
+const MULTI_TASK = ['EC2_TerminateInstances', 'MONITORING_DeleteAlarms'];
 
 export const start = (record: CloudTrail.Record): Tables.ResouceGSI1Key[] | undefined => {
   const key = `${record.eventSource.split('.')[0].toUpperCase()}_${record.eventName}`;
@@ -92,9 +92,6 @@ const getResourceArn = (record: CloudTrail.Record) => {
       return ResourceARNs.LEX_Bot(region, account, record.requestParameters.name);
     case 'LAMBDA_DeleteFunction20150331':
       return ResourceARNs.LAMBDA_Function20150331(region, account, record.requestParameters.functionName);
-
-    case 'MONITORING_DeleteAlarms':
-      return ResourceARNs.MONITORING_Alarm(region, account, record.recipientAccountId);
 
     case 'NETWORK-FIREWALL_DeleteFirewall':
       return record.responseElements.firewall.firewallArn;
@@ -258,6 +255,11 @@ const getResourceArns = (record: CloudTrail.Record) => {
     case 'EC2_TerminateInstances':
       return (record.responseElements.instancesSet.items as any[]).map((item: { instanceId: any }) =>
         ResourceARNs.EC2_Instances(region, account, item.instanceId)
+      );
+
+    case 'MONITORING_DeleteAlarms':
+      return (record.requestParameters.alarmNames as string[]).map((item) =>
+        ResourceARNs.MONITORING_Alarm(region, account, item)
       );
   }
 

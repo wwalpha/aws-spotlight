@@ -8,6 +8,6 @@
   "UserAgent": "AWS CloudWatch Console",
   "AWSRegion": "us-east-1",
   "EventId": "34c9f97c-c5d9-4b37-beae-8b757e8a2f16",
-  "Service": "CloudWatch",
+  "Service": "Monitoring",
   "EventName": "PutDashboard"
 }

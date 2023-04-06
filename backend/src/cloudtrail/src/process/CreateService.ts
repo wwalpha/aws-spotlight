@@ -20,7 +20,7 @@ export const start = (record: CloudTrail.Record): Tables.Resource[] | undefined 
       IdentityType: record.userIdentity.type,
       UserAgent: record.userAgent,
       EventId: record.eventID,
-      Service: capitalize(serviceName),
+      Service: getServiceName(serviceName),
     }));
   }
 
@@ -40,7 +40,7 @@ export const start = (record: CloudTrail.Record): Tables.Resource[] | undefined 
       IdentityType: record.userIdentity.type,
       UserAgent: record.userAgent,
       EventId: record.eventID,
-      Service: capitalize(serviceName),
+      Service: getServiceName(serviceName),
     },
   ];
 };
@@ -153,15 +153,11 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
       name = record.responseElements.CreateSnapshotsResponse.snapshotSet.item.snapshotId;
       return [ResourceARNs.EC2_Snapshot(region, account, name), name];
     case 'EC2_CreateSubnet':
-      name = record.responseElements.subnet.subnetArn;
+      name = record.responseElements.subnet.subnetId;
       return [ResourceARNs.EC2_Subnet(region, account, name), name];
     case 'EC2_CreateTransitGateway':
       return [
-        ResourceARNs.EC2_TransitGateway(
-          region,
-          account,
-          record.responseElements.CreateTransitGatewayResponse.transitGateway.transitGatewayArn
-        ),
+        record.responseElements.CreateTransitGatewayResponse.transitGateway.transitGatewayArn,
         record.responseElements.publicIp,
       ];
     case 'EC2_CreateVolume':
@@ -189,10 +185,6 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
         ResourceARNs.EC2_IPAddress(region, account, record.responseElements.allocationId),
         record.responseElements.publicIp,
       ];
-    case 'EC2_TerminateInstances':
-      return (record.responseElements.instancesSet.items as any[]).map((item: { instanceId: any }) =>
-        ResourceARNs.EC2_Instances(region, account, item.instanceId)
-      );
     case 'EC2_CreateSecurityGroup':
       name = record.responseElements.groupId;
       return [ResourceARNs.EC2_SecurityGroup(region, account, name), name];
@@ -324,4 +316,17 @@ const getResourceInfos = (record: CloudTrail.Record): string[][] => {
   }
 
   return [];
+};
+
+const UPPERCASE = ['EC2', 'RDS', 'IAM', 'SNS', 'SQS', 'ECS', 'ECR', 'EKS', 'DMS'];
+
+const getServiceName = (serviceName: string) => {
+  if (UPPERCASE.includes(serviceName)) return serviceName;
+
+  if (serviceName === 'STATES') return 'StepFunction';
+  if (serviceName === 'LOGS') return 'CloudWatchLogs';
+  if (serviceName === 'ES') return 'Elasticsearch';
+  if (serviceName === 'DS') return 'DirectoryService';
+
+  return capitalize(serviceName);
 };

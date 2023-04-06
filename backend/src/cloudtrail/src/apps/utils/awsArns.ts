@@ -10,8 +10,7 @@ export const ResourceARNs = {
     `arn:aws:redshift:${region}:${account}:cluster:${id}`,
 
   // monitoring
-  MONITORING_Dashboard: (region: string, account: string, id?: string) =>
-    `arn:aws:cloudwatch:${region}:${account}:dashboard:${id}`,
+  MONITORING_Dashboard: (_: string, account: string, id?: string) => `arn:aws:cloudwatch::${account}:dashboard/${id}`,
 
   // monitoring
   MONITORING_Alarm: (region: string, account: string, id?: string) =>
@@ -138,7 +137,7 @@ export const ResourceARNs = {
     `arn:aws:ec2:${region}:${account}:security-group/${id}`,
 
   // ec2 snapshot
-  EC2_Snapshot: (region: string, account: string, id?: string) => `arn:aws:ec2:${region}:${account}:snapshot/${id}`,
+  EC2_Snapshot: (region: string, account: string, id?: string) => `arn:aws:ec2:${region}::snapshot/${id}`,
 
   // ec2 subnet
   EC2_Subnet: (region: string, account: string, id?: string) => `arn:aws:ec2:${region}:${account}:subnet/${id}`,

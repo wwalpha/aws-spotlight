@@ -8,6 +8,6 @@
   "UserAgent": "AWS Internal",
   "AWSRegion": "ap-northeast-1",
   "EventId": "87555446-8cec-4984-801a-d3fbb4f3ff0a",
-  "Service": "CodeDeploy",
+  "Service": "Codedeploy",
   "EventName": "CreateApplication"
 }

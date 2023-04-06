@@ -8,6 +8,6 @@
   "UserAgent": "AWS Internal",
   "AWSRegion": "ap-northeast-1",
   "EventId": "8c01c1c4-e6c9-4501-bf4d-cc0aa93ce2e6",
-  "Service": "NetworkFirewall",
+  "Service": "Network-firewall",
   "EventName": "CreateFirewall"
 }

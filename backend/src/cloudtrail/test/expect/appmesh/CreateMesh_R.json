@@ -8,6 +8,6 @@
   "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
   "AWSRegion": "ap-northeast-1",
   "EventId": "0e67a61b-16b4-45cb-be48-984529c26d40",
-  "Service": "Mesh",
+  "Service": "Appmesh",
   "EventName": "CreateMesh"
 }

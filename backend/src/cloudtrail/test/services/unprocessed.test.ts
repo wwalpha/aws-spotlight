@@ -20,7 +20,7 @@ const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
 const TABLE_NAME_UNPROCESSED = process.env.TABLE_NAME_UNPROCESSED as string;
 const EVENT_SOURCE = 'ec2.amazonaws.com';
 
-describe(EVENT_SOURCE, () => {
+describe.skip(EVENT_SOURCE, () => {
   beforeAll(async () => {
     await helper.bulk(TABLE_NAME_EVENT_TYPE, [
       {

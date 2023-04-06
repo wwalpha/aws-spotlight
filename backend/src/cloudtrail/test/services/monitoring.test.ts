@@ -51,7 +51,6 @@ describe('monitoring.amazonaws.com', () => {
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:cloudwatch::999999999999:dashboard/LambdaDashBoard');
-
     const history = await getHistory({ EventId: '34c9f97c-c5d9-4b37-beae-8b757e8a2f16' });
 
     expect(resource).not.toBeUndefined();

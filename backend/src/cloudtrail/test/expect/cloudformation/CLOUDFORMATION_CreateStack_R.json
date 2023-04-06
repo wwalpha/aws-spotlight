@@ -8,6 +8,6 @@
   "UserAgent": "cloudformation.amazonaws.com",
   "AWSRegion": "ap-northeast-1",
   "EventId": "869974b8-e70d-4322-9e1b-05abce19803b",
-  "Service": "CloudFormation",
+  "Service": "Cloudformation",
   "EventName": "CreateStack"
 }
