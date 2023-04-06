@@ -54,14 +54,9 @@ resource "aws_dynamodb_table" "resource" {
   name         = local.dynamodb_name_resources
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "ResourceId"
-  range_key    = "EventTime"
 
   attribute {
     name = "ResourceId"
-    type = "S"
-  }
-  attribute {
-    name = "EventTime"
     type = "S"
   }
 
