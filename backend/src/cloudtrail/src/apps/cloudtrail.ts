@@ -211,7 +211,7 @@ const processUpdate = async (record: CloudTrail.Record) => {
   });
 
   // add tags to resource
-  await AddTags(createItems);
+  // await AddTags(createItems);
 };
 
 /**
