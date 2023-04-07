@@ -2,8 +2,8 @@ import * as RemoveService from '@src/process/RemoveService';
 import * as CreateService from '@src/process/CreateService';
 import * as UpdateService from '@src/process/UpdateService';
 import { CloudTrail, Tables } from 'typings';
-import { ErrorService, ResourceService, UnprocessedService } from '@src/services';
-import { sendMail } from './utilities';
+import { ResourceService, UnprocessedService } from '@src/services';
+import _ from 'lodash';
 
 export const getCreateResourceItem = async (record: CloudTrail.Record): Promise<Tables.TResource[]> => {
   const records = CreateService.start(record);
@@ -49,23 +49,28 @@ export const getUpdateResourceItem = async (record: CloudTrail.Record): Promise<
   // イベント未実装
   if (!resource) return [];
 
-  // 既存データを検索する
-  const dataRow = await ResourceService.describe({
-    ResourceId: resource.ResourceId,
+  const tasks = resource.map(async (item) => {
+    // 既存データを検索する
+    const dataRow = await ResourceService.describe({
+      ResourceId: item.ResourceId,
+    });
+
+    // 既存データないの場合は、新規作成する
+    if (!dataRow) {
+      item.Revisions = [item.EventTime];
+      return item;
+    }
+
+    const revisions = [...dataRow.Revisions!, item.EventTime];
+
+    // 履歴を追加する
+    dataRow.Revisions = _.sortBy(revisions);
+
+    // リソース情報
+    return dataRow;
   });
 
-  // 既存データないの場合は、新規作成する
-  if (!dataRow) {
-    return [resource];
-  }
-
-  // 過去の作成時間は無視する
-  if (dataRow.EventTime > resource.EventTime) {
-    return [];
-  }
-
-  // リソース情報
-  return [resource];
+  return await Promise.all(tasks);
 };
 
 export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise<Tables.TResourceKey[]> => {

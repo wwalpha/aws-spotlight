@@ -116,8 +116,6 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
         record.responseElements.replicationInstance.replicationInstanceIdentifier,
       ];
 
-    case 'EVENTS_PutRule':
-      return [record.responseElements.ruleArn, record.requestParameters.name];
     case 'ES_CreateElasticsearchDomain':
       return [record.responseElements.domainStatus.aRN, record.responseElements.domainStatus.domainName];
     case 'ELASTICFILESYSTEM_CreateFileSystem':
@@ -241,13 +239,6 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
       return [ResourceARNs.LEX_Bot(region, account, name), name];
     case 'LAMBDA_CreateFunction20150331':
       return [record.responseElements.functionArn, record.responseElements.functionName];
-
-    case 'MONITORING_PutDashboard':
-      name = record.requestParameters.dashboardName;
-      return [ResourceARNs.MONITORING_Dashboard(region, account, name), name];
-    case 'MONITORING_PutMetricAlarm':
-      name = record.requestParameters.alarmName;
-      return [ResourceARNs.MONITORING_Alarm(region, account, name), name];
 
     case 'NETWORK-FIREWALL_CreateFirewall':
       return [record.responseElements.firewall.firewallArn, record.responseElements.firewall.firewallName];

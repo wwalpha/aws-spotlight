@@ -160,3 +160,9 @@ DeleteTopic,sns.amazonaws.com,delete
 CreateFileSystem,elasticfilesystem.amazonaws.com,create
 DeleteFileSystem,elasticfilesystem.amazonaws.com,delete
 CreateApplication,serverlessrepo.amazonaws.com,create
+PutMetricAlarm,monitoring.amazonaws.com,create
+DeleteAlarms,monitoring.amazonaws.com,create
+PutDashboard,monitoring.amazonaws.com,create
+PutRule,events.amazonaws.com,create
+DeleteRule,events.amazonaws.com,create
+

@@ -1,7 +1,7 @@
 import { ResourceARNs } from '@src/apps/utils/awsArns';
 import { CloudTrail, Tables } from 'typings';
 
-const MULTI_TASK = ['EC2_TerminateInstances', 'MONITORING_DeleteAlarms', 'MONITORING_DeleteDashboards'];
+const MULTI_TASK = ['EC2_TerminateInstances'];
 
 export const start = (record: CloudTrail.Record): Tables.TResourceKey[] | undefined => {
   const key = `${record.eventSource.split('.')[0].toUpperCase()}_${record.eventName}`;
@@ -64,8 +64,6 @@ const getResourceArn = (record: CloudTrail.Record) => {
     case 'DMS_DeleteReplicationInstance':
       return record.responseElements.replicationInstance.replicationInstanceArn;
 
-    case 'EVENTS_DeleteRule':
-      return ResourceARNs.EVENTS_Rule(region, account, record.requestParameters.name);
     case 'ES_DeleteElasticsearchDomain':
       return record.responseElements.domainStatus.aRN;
     case 'ELASTICFILESYSTEM_DeleteFileSystem':
@@ -260,16 +258,6 @@ const getResourceArns = (record: CloudTrail.Record) => {
     case 'EC2_TerminateInstances':
       return (record.responseElements.instancesSet.items as any[]).map((item: { instanceId: any }) =>
         ResourceARNs.EC2_Instances(region, account, item.instanceId)
-      );
-
-    case 'MONITORING_DeleteAlarms':
-      return (record.requestParameters.alarmNames as string[]).map((item) =>
-        ResourceARNs.MONITORING_Alarm(region, account, item)
-      );
-
-    case 'MONITORING_DeleteDashboards':
-      return (record.requestParameters.dashboardNames as string[]).map((item) =>
-        ResourceARNs.MONITORING_Dashboard(region, account, item)
       );
   }
 
