@@ -6,23 +6,23 @@ import { ErrorService, ResourceService, UnprocessedService } from '@src/services
 import { sendMail } from './utilities';
 
 export const getCreateResourceItem = async (record: CloudTrail.Record): Promise<Tables.Resource[]> => {
-  const items = CreateService.start(record);
+  const records = CreateService.start(record);
 
-  if (!items) return [];
+  if (!records) return [];
 
-  const results = await Promise.all(
-    items.map((item) =>
-      ResourceService.describe({
-        ResourceId: item.ResourceId,
-      })
-    )
+  const checkExistTasks = records.map((item) =>
+    ResourceService.describe({
+      ResourceId: item.ResourceId,
+    })
   );
+
+  const results = await Promise.all(checkExistTasks);
 
   // すでに存在しているの場合は、エラー通知
   const dataRows = results.filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
   if (dataRows.length !== 0) {
-    await sendMail('Resource Exist', `${dataRows[0].EventSource}\n${dataRows[0].EventName}\n${dataRows[0].ResourceId}`);
+    await sendMail('Resource Exist', `${record.eventSource}\n${record.eventName}\n${dataRows[0].ResourceId}`);
 
     const registTasks = dataRows.map((item) =>
       ErrorService.regist({
@@ -39,7 +39,7 @@ export const getCreateResourceItem = async (record: CloudTrail.Record): Promise<
     return [];
   }
 
-  return items;
+  return records;
 };
 
 export const getUpdateResourceItem = async (record: CloudTrail.Record): Promise<Tables.Resource[]> => {

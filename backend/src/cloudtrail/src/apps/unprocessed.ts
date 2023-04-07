@@ -112,9 +112,7 @@ const getUnprocessedRecords = async (events: Tables.TEventType[], createEvent: b
 };
 
 const processRecord = async (record: CloudTrail.Record) => {
-  console.log('processRecord start');
-  const { TABLE_NAME_EVENT_TYPE, TABLE_NAME_HISTORY, TABLE_NAME_RESOURCES, TABLE_NAME_UNPROCESSED } =
-    Consts.Environments;
+  const { TABLE_NAME_HISTORY, TABLE_NAME_RESOURCES, TABLE_NAME_UNPROCESSED } = Consts.Environments;
 
   const [createItems, updateItems, deleteItems] = await Promise.all([
     Events.getCreateResourceItem(record),
@@ -151,6 +149,4 @@ const processRecord = async (record: CloudTrail.Record) => {
   await DynamodbHelper.transactWrite({
     TransactItems: transactItems,
   });
-
-  console.log('processRecord end');
 };

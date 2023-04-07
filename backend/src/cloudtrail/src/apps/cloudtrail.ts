@@ -70,6 +70,7 @@ export const execute = async (message: SQSRecord) => {
     } catch (err) {
       hasError = true;
       Logger.error(err);
+      Logger.error(record);
     }
   }
 
@@ -134,17 +135,6 @@ const processNewEventType = async (record: CloudTrail.Record) => {
 
     await sendMail('New Event Type', `Event Source: ${record.eventSource}, Event Name: ${record.eventName}`);
   }
-};
-
-const processUnprocessed = async (record: CloudTrail.Record) => {
-  await DynamodbHelper.bulk(Consts.Environments.TABLE_NAME_UNPROCESSED, [
-    {
-      EventName: record.eventName,
-      EventTime: `${record.eventTime}_${record.eventID.substr(0, 8)}`,
-      Raw: JSON.stringify(record),
-      EventSource: record.eventSource,
-    } as Tables.TUnprocessed,
-  ]);
 };
 
 const processUpdate = async (record: CloudTrail.Record) => {

@@ -1,5 +1,5 @@
 import AWS from 'aws-sdk';
-import { getHistory, getResource, scanResource, sendMessage } from '@test/configs/utils';
+import { getHistory, getResource, sendMessage } from '@test/configs/utils';
 import { cloudtrail } from '@src/index';
 import * as CreateEvents from '@test/datas/create';
 import * as DeleteEvents from '@test/datas/delete';
@@ -13,7 +13,7 @@ AWS.config.update({
   dynamodb: { endpoint: process.env.AWS_ENDPOINT },
 });
 
-describe('EXPECTS.amazonaws.com', () => {
+describe('apigateway.amazonaws.com', () => {
   test('CreateRestApi', async () => {
     const event = await sendMessage(CreateEvents.APIGATEWAY_CreateRestApi);
 
@@ -29,6 +29,20 @@ describe('EXPECTS.amazonaws.com', () => {
     expect(history).toEqual(EXPECTS.CreateRestApi_H);
   });
 
+  test('DeleteRestApi', async () => {
+    const event = await sendMessage(DeleteEvents.APIGATEWAY_DeleteRestApi);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:apigateway:ap-northeast-1::/apis/jrrfh5tt86');
+    const history = await getHistory({ EventId: DeleteEvents.APIGATEWAY_DeleteRestApi.eventID });
+
+    expect(resource).toBeUndefined();
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EXPECTS.DeleteRestApi_H);
+  });
+
   test('ImportRestApi', async () => {
     const event = await sendMessage(CreateEvents.APIGATEWAY_ImportRestApi);
 
@@ -42,20 +56,6 @@ describe('EXPECTS.amazonaws.com', () => {
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.ImportRestApi_H);
-  });
-
-  test('DeleteRestApi', async () => {
-    const event = await sendMessage(DeleteEvents.APIGATEWAY_DeleteRestApi);
-
-    await cloudtrail(event);
-
-    const resource = await getResource('arn:aws:apigateway:ap-northeast-1::/apis/jrrfh5tt86');
-    const history = await getHistory({ EventId: DeleteEvents.APIGATEWAY_DeleteRestApi.eventID });
-
-    expect(resource).toBeUndefined();
-
-    expect(history).not.toBeUndefined();
-    expect(history).toEqual(EXPECTS.DeleteRestApi_H);
   });
 
   test('APIGATEWAY_CreateApi', async () => {

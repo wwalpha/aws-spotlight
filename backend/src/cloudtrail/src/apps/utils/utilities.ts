@@ -119,6 +119,7 @@ export const removeIgnore = (records: CloudTrail.Record[], events: EVENT_TYPE) =
   });
 
 export const sendMail = async (subject: string, message: string) => {
+  console.log(subject, message);
   try {
     await snsClient
       .publish({
@@ -128,6 +129,6 @@ export const sendMail = async (subject: string, message: string) => {
       })
       .promise();
   } catch (err) {
-    console.log(err);
+    Logger.error(err);
   }
 };

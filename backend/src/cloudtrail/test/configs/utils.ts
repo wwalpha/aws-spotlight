@@ -80,14 +80,21 @@ export const sendMessageOnly = async (body: Record<string, any>[]) => {
 };
 
 export const sendMessage = async (body: Record<string, any>): Promise<SQSEvent> => {
+  await pureMessages();
   await sendMessageOnly([body]);
 
-  const result = await sqsClient.receiveMessage({ QueueUrl: SQS_URL, MaxNumberOfMessages: 1 }).promise();
+  const result = await sqsClient
+    .receiveMessage({ QueueUrl: SQS_URL, MaxNumberOfMessages: 5, WaitTimeSeconds: 1 })
+    .promise();
 
   const messages = result.Messages;
 
   if (!messages || messages.length === 0) {
-    throw new Error();
+    throw new Error('Message not found');
+  }
+
+  if (messages.length > 1) {
+    throw new Error('Multiple messages found');
   }
 
   return {
@@ -105,6 +112,14 @@ export const sendMessage = async (body: Record<string, any>): Promise<SQSEvent> 
       },
     ],
   };
+};
+
+export const pureMessages = async () => {
+  await sqsClient
+    .purgeQueue({
+      QueueUrl: SQS_URL,
+    })
+    .promise();
 };
 
 export const getResource = async (ResourceId: string): Promise<Tables.Resource | undefined> => {
