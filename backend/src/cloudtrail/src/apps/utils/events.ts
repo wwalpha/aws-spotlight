@@ -85,7 +85,7 @@ export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise
     await UnprocessedService.regist({
       EventName: record.eventName,
       EventSource: record.eventSource,
-      EventTime: record.eventTime,
+      EventTime: `${record.eventTime}_${record.eventID.substring(0, 8)}`,
       Raw: JSON.stringify(record),
     });
 
