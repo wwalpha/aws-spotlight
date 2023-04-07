@@ -37,7 +37,7 @@ export const remove = async (key: Tables.TUnprocessedKey): Promise<void> => {
 
 /** 未処理イベント一覧 */
 export const getEvents = async () => {
-  const results = await DynamodbHelper.query<Tables.TUnprocessed>(Queries.getUniqEvents());
+  const results = await DynamodbHelper.scan<Tables.TUnprocessed>(Queries.getUniqEvents());
 
   // 未処理のイベント一覧
   return _.uniqWith(results.Items, _.isEqual);

@@ -116,7 +116,7 @@ const processNewEventType = async (record: CloudTrail.Record) => {
   transactItems.push(
     Utilities.getPutRecord(TABLE_NAME_UNPROCESSED, {
       EventName: record.eventName,
-      EventTime: `${record.eventTime}_${record.eventID.substr(0, 8)}`,
+      EventTime: `${record.eventTime}_${record.eventID.substring(0, 8)}`,
       Raw: JSON.stringify(record),
       EventSource: record.eventSource,
     } as Tables.TUnprocessed)

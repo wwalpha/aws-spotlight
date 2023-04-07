@@ -54,7 +54,7 @@ describe.skip(EVENT_SOURCE, () => {
       (item) =>
         ({
           EventName: item.eventName,
-          EventTime: `${item.eventTime}_${item.eventID.substr(0, 8)}`,
+          EventTime: `${item.eventTime}_${item.eventID.substring(0, 8)}`,
           Raw: JSON.stringify(item),
         } as Tables.TUnprocessed)
     );
@@ -71,7 +71,7 @@ describe.skip(EVENT_SOURCE, () => {
     const history = await getHistory({ EventId: '99999999-7469-441a-8f2e-f7aa5b61a46b' });
     const unprocess = await getUnprocessed({
       EventName: 'RunInstances',
-      EventTime: `${CreateEvents.EC2_RunInstances.eventTime}_${CreateEvents.EC2_RunInstances.eventID.substr(0, 8)}`,
+      EventTime: `${CreateEvents.EC2_RunInstances.eventTime}_${CreateEvents.EC2_RunInstances.eventID.substring(0, 8)}`,
     });
 
     expect(resource).not.toBeUndefined();

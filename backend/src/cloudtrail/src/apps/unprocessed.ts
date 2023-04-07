@@ -139,7 +139,7 @@ const processRecord = async (record: CloudTrail.Record) => {
   transactItems.push(
     Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, {
       EventName: record.eventName,
-      EventTime: `${record.eventTime}_${record.eventID.substr(0, 8)}`,
+      EventTime: `${record.eventTime}_${record.eventID.substring(0, 8)}`,
     } as Tables.TUnprocessedKey)
   );
 

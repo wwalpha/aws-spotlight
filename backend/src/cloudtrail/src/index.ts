@@ -38,7 +38,7 @@ export const cloudtrail = async (event: SQSEvent) => {
  */
 export const unprocessed = async () => {
   // get event type definition
-  const allEvents = await EventTypeService.getAll();
+  const allEvents = (await EventTypeService.getAll()).filter((item) => item.Unconfirmed === undefined);
   // get unprocessed events
   const unpEvents = await UnprocessedService.getEvents();
 

@@ -22,12 +22,12 @@ export const getCreateResourceItem = async (record: CloudTrail.Record): Promise<
   const dataRows = results.filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
   if (dataRows.length !== 0) {
-    await sendMail('Resource Exist', `${record.eventSource}\n${record.eventName}\n${dataRows[0].ResourceId}`);
+    // await sendMail('Resource Exist', `${record.eventSource}\n${record.eventName}\n${dataRows[0].ResourceId}`);
 
     const registTasks = dataRows.map((item) =>
-      ErrorService.regist({
+      UnprocessedService.regist({
         EventName: item.EventName,
-        EventTime: item.EventTime,
+        EventTime: `${item.EventTime}_${item.EventId.substring(0, 8)}`,
         EventSource: item.EventSource,
         Raw: JSON.stringify(record),
       })
