@@ -1,7 +1,7 @@
 import { RDS } from 'aws-sdk';
 import { Tables } from 'typings';
 
-export const RDS_DBInstance = async ({ AWSRegion, ResourceId, UserName }: Tables.Resource) => {
+export const RDS_DBInstance = async ({ AWSRegion, ResourceId, UserName }: Tables.TResource) => {
   const client = new RDS({ region: AWSRegion });
 
   // check resource exsit

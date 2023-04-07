@@ -2,7 +2,7 @@ import { defaultTo, capitalize } from 'lodash';
 import { ResourceARNs } from '@src/apps/utils/awsArns';
 import { CloudTrail, Tables } from 'typings';
 
-export const start = (record: CloudTrail.Record): Tables.Resource | undefined => {
+export const start = (record: CloudTrail.Record): Tables.TResource | undefined => {
   const serviceName = record.eventSource.split('.')[0].toUpperCase();
 
   const infos = getResourceInfo(record);

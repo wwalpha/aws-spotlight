@@ -1,7 +1,7 @@
 import { EC2 } from 'aws-sdk';
 import { Tables } from 'typings';
 
-export const EC2_Instance = async ({ AWSRegion, ResourceId, UserName }: Tables.Resource) => {
+export const EC2_Instance = async ({ AWSRegion, ResourceId, UserName }: Tables.TResource) => {
   const client = new EC2({ region: AWSRegion });
   const instanceId = ResourceId.split('/')[1];
 

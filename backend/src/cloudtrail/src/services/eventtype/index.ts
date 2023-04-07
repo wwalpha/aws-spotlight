@@ -11,7 +11,7 @@ export const getAll = async (): Promise<Tables.TEventType[]> => {
 
 /** 詳細取得 */
 export const describe = async (key: Tables.TEventTypeKey): Promise<Tables.TEventType | undefined> => {
-  const results = await DynamodbHelper.get<Tables.Resource>(Queries.get(key));
+  const results = await DynamodbHelper.get<Tables.TResource>(Queries.get(key));
 
   return results?.Item;
 };

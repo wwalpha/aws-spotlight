@@ -4,7 +4,7 @@ import { CloudTrail, Tables } from 'typings';
 
 const MULTI_TASK = ['EC2_RunInstances'];
 
-export const start = (record: CloudTrail.Record): Tables.Resource[] | undefined => {
+export const start = (record: CloudTrail.Record): Tables.TResource[] | undefined => {
   const serviceName = record.eventSource.split('.')[0].toUpperCase();
   const key = `${serviceName}_${record.eventName}`;
 

@@ -3,7 +3,7 @@ import { CloudTrail, Tables } from 'typings';
 
 const MULTI_TASK = ['EC2_TerminateInstances', 'MONITORING_DeleteAlarms', 'MONITORING_DeleteDashboards'];
 
-export const start = (record: CloudTrail.Record): Tables.ResourceKey[] | undefined => {
+export const start = (record: CloudTrail.Record): Tables.TResourceKey[] | undefined => {
   const key = `${record.eventSource.split('.')[0].toUpperCase()}_${record.eventName}`;
 
   if (MULTI_TASK.includes(key)) {

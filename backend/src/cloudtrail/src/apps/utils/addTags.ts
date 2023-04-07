@@ -2,7 +2,7 @@ import * as CreateTags from '@src/process/tags';
 import { Tables } from 'typings';
 import { Logger } from './utilities';
 
-const addTags = async (resources?: Tables.Resource[]): Promise<void> => {
+const addTags = async (resources?: Tables.TResource[]): Promise<void> => {
   // validation
   if (!resources) return;
 

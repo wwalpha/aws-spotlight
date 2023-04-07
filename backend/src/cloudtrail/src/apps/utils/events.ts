@@ -5,7 +5,7 @@ import { CloudTrail, Tables } from 'typings';
 import { ErrorService, ResourceService, UnprocessedService } from '@src/services';
 import { sendMail } from './utilities';
 
-export const getCreateResourceItem = async (record: CloudTrail.Record): Promise<Tables.Resource[]> => {
+export const getCreateResourceItem = async (record: CloudTrail.Record): Promise<Tables.TResource[]> => {
   const records = CreateService.start(record);
 
   if (!records) return [];
@@ -42,7 +42,7 @@ export const getCreateResourceItem = async (record: CloudTrail.Record): Promise<
   return records;
 };
 
-export const getUpdateResourceItem = async (record: CloudTrail.Record): Promise<Tables.Resource[]> => {
+export const getUpdateResourceItem = async (record: CloudTrail.Record): Promise<Tables.TResource[]> => {
   // リソース情報を揃える
   const resource = UpdateService.start(record);
 
@@ -68,7 +68,7 @@ export const getUpdateResourceItem = async (record: CloudTrail.Record): Promise<
   return [resource];
 };
 
-export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise<Tables.ResourceKey[]> => {
+export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise<Tables.TResourceKey[]> => {
   const items = RemoveService.start(record);
 
   if (!items) return [];

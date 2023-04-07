@@ -3,19 +3,19 @@ import { Consts } from '@src/apps/utils';
 import { Tables } from 'typings';
 
 /** データ取得 */
-export const get = (key: Tables.ResourceKey): GetItemInput => ({
+export const get = (key: Tables.TResourceKey): GetItemInput => ({
   TableName: Consts.Environments.TABLE_NAME_RESOURCES,
   Key: key,
 });
 
 /** データ登録 */
-export const put = (item: Tables.Resource): PutItemInput<Tables.Resource> => ({
+export const put = (item: Tables.TResource): PutItemInput<Tables.TResource> => ({
   TableName: Consts.Environments.TABLE_NAME_RESOURCES,
   Item: item,
 });
 
 /** データ削除 */
-export const del = (key: Tables.ResourceKey): DeleteItemInput => ({
+export const del = (key: Tables.TResourceKey): DeleteItemInput => ({
   TableName: Consts.Environments.TABLE_NAME_RESOURCES,
   Key: {
     id: key.ResourceId,

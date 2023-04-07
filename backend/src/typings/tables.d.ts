@@ -42,14 +42,14 @@ export namespace Tables {
   /**
    * Table - Resource Key
    */
-  interface ResourceKey {
+  interface TResourceKey {
     ResourceId: string;
   }
 
   /**
    * Table - Resource
    */
-  interface Resource extends ResourceKey {
+  interface TResource extends TResourceKey {
     ResourceName: string;
     UserName: string;
     EventSource: string;
@@ -60,6 +60,7 @@ export namespace Tables {
     UserAgent: string;
     IdentityType: string;
     Service: string;
+    Revisions?: string[];
   }
 
   interface ResouceGSI1Key {

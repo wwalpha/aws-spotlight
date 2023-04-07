@@ -122,8 +122,8 @@ export const pureMessages = async () => {
     .promise();
 };
 
-export const getResource = async (ResourceId: string): Promise<Tables.Resource | undefined> => {
-  const result = await helper.query<Tables.Resource>({
+export const getResource = async (ResourceId: string): Promise<Tables.TResource | undefined> => {
+  const result = await helper.query<Tables.TResource>({
     TableName: TABLE_NAME_RESOURCES,
     KeyConditionExpression: 'ResourceId = :ResourceId',
     ExpressionAttributeValues: {
@@ -186,8 +186,8 @@ export const scanHistory = async (): Promise<Tables.History[] | undefined> => {
   return result?.Items;
 };
 
-export const scanResource = async (): Promise<Tables.Resource[] | undefined> => {
-  const result = await helper.scan<Tables.Resource>({
+export const scanResource = async (): Promise<Tables.TResource[] | undefined> => {
+  const result = await helper.scan<Tables.TResource>({
     TableName: TABLE_NAME_RESOURCES,
   });
 
