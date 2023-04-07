@@ -2,72 +2,71 @@ import { DynamodbHelper } from '@alphax/dynamodb';
 import { Tables } from 'typings';
 import * as fs from 'fs';
 import * as path from 'path';
+import _ from 'lodash';
 
 const EVENTS_FILE = '../../cloudtrail/test/configs/events.csv';
 const IGNORE_FILE = '../../cloudtrail/test/configs/ignore.csv';
 
 const helper = new DynamodbHelper();
 const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
+const TABLE_NAME_UNPROCESSED = process.env.TABLE_NAME_UNPROCESSED as string;
 
 const start = async () => {
-  const Events = getEvents();
-  const Ignores = getIgnore();
+  const Events = [...getEvents(), ...getIgnore()];
 
-  const allEvents = await helper.scan<Tables.EventType>({
+  const allEvents = await helper.scan<Tables.TEventType>({
     TableName: TABLE_NAME_EVENT_TYPE,
   });
 
-  const existIgnores = allEvents.Items.filter((item) => item.Unconfirmed === true)
-    .filter(
-      (item) => Ignores.find((i) => i.EventName === item.EventName && i.EventSource === item.EventSource) !== undefined
-    )
-    .map((item) => ({ ...item, Unprocessed: true, Unconfirmed: undefined, Ignore: true }));
+  let unpEvents = (
+    await helper.scan<Tables.TEventType>({
+      TableName: TABLE_NAME_UNPROCESSED,
+      ProjectionExpression: 'EventName, EventSource',
+    })
+  ).Items;
 
-  await helper.bulk(TABLE_NAME_EVENT_TYPE, existIgnores);
+  // 未処理のイベント一覧
+  unpEvents = _.uniqWith(unpEvents, _.isEqual);
 
-  const existEvents = allEvents.Items.filter((item) => item.Unconfirmed === true)
-    .filter(
-      (item) => Events.find((i) => i.EventName === item.EventName && i.EventSource === item.EventSource) !== undefined
-    )
-    .map((item) => ({
-      ...item,
-      Unprocessed: true,
-      Unconfirmed: undefined,
-      Ignore: undefined,
-      Create: Events.find((i) => i.EventName === item.EventName && i.EventSource === item.EventSource)?.Create,
-      Delete: Events.find((i) => i.EventName === item.EventName && i.EventSource === item.EventSource)?.Delete,
-    }));
+  const existEvents = allEvents.Items.filter((item) => item.Unconfirmed === true).map((item) => {
+    const updatedEvents = Events.find((i) => i.EventName === item.EventName && i.EventSource === item.EventSource);
+
+    // 未実装のイベントならそのまあ
+    if (!updatedEvents) return item;
+
+    return {
+      ...updatedEvents,
+      Unprocessed:
+        unpEvents.find((upn) => upn.EventName === item.EventName && upn.EventSource === item.EventSource) !== undefined
+          ? true
+          : undefined,
+    };
+  });
 
   await helper.bulk(TABLE_NAME_EVENT_TYPE, existEvents);
 
+  // 新規イベント
   const newEvents = Events.filter((item) => {
     const exist = allEvents.Items.find((e) => e.EventName === item.EventName && e.EventSource === item.EventSource);
 
     return exist === undefined;
-  }).map((item) => ({ ...item, Unprocessed: true }));
+  }).map((item) => ({
+    ...item,
+    Unprocessed:
+      unpEvents.find((upn) => upn.EventName === item.EventName && upn.EventSource === item.EventSource) !== undefined
+        ? true
+        : undefined,
+  }));
 
   await helper.bulk(TABLE_NAME_EVENT_TYPE, newEvents);
-
-  const newIgnores = Ignores.filter((item) => {
-    const exist = allEvents.Items.find((e) => e.EventName === item.EventName && e.EventSource === item.EventSource);
-
-    return exist === undefined;
-  }).map((item) => ({ ...item, Unprocessed: true }));
-
-  await helper.bulk(TABLE_NAME_EVENT_TYPE, newIgnores);
-
-  existIgnores.forEach((item) => console.log(item.EventName, item.EventSource));
-  existEvents.forEach((item) => console.log(item.EventName, item.EventSource));
-  newEvents.forEach((item) => console.log(item.EventName, item.EventSource));
-  newIgnores.forEach((item) => console.log(item.EventName, item.EventSource));
 };
 
-const getEvents = (): Tables.EventType[] => {
+const getEvents = (): Tables.TEventType[] => {
   const texts = fs.readFileSync(path.join(__dirname, EVENTS_FILE)).toString();
 
   const lines = texts.split('\n').filter((item) => item !== '');
 
-  return lines.map<Tables.EventType>((item) => {
+  return lines.map<Tables.TEventType>((item) => {
     const values = item.split(',');
 
     return {
@@ -79,12 +78,12 @@ const getEvents = (): Tables.EventType[] => {
   });
 };
 
-const getIgnore = (): Tables.EventType[] => {
+const getIgnore = (): Tables.TEventType[] => {
   const texts = fs.readFileSync(path.join(__dirname, IGNORE_FILE)).toString();
 
   const lines = texts.split('\n').filter((item) => item !== '');
 
-  return lines.map<Tables.EventType>((item) => {
+  return lines.map<Tables.TEventType>((item) => {
     const values = item.split(',');
 
     return {

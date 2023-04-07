@@ -130,8 +130,8 @@ export const getHistory = async (key: Tables.HistoryKey): Promise<Tables.History
   return result?.Item;
 };
 
-export const getUnprocessed = async (key: Tables.UnprocessedKey): Promise<Tables.Unprocessed | undefined> => {
-  const result = await helper.get<Tables.Unprocessed>({
+export const getUnprocessed = async (key: Tables.TUnprocessedKey): Promise<Tables.TUnprocessed | undefined> => {
+  const result = await helper.get<Tables.TUnprocessed>({
     TableName: TABLE_NAME_UNPROCESSED,
     Key: key,
   });
@@ -142,7 +142,7 @@ export const getUnprocessed = async (key: Tables.UnprocessedKey): Promise<Tables
 export const updateEventType = async (eventSource: string, eventName: string, action: string): Promise<void> => {
   await helper.update({
     TableName: TABLE_NAME_EVENT_TYPE,
-    Key: { EventSource: eventSource, EventName: eventName } as Tables.EventTypeKey,
+    Key: { EventSource: eventSource, EventName: eventName } as Tables.TEventTypeKey,
     UpdateExpression: 'REMOVE #Unconfirmed, #Ignore',
     ExpressionAttributeNames: {
       '#Unconfirmed': 'Unconfirmed',
@@ -152,7 +152,7 @@ export const updateEventType = async (eventSource: string, eventName: string, ac
 
   await helper.update({
     TableName: TABLE_NAME_EVENT_TYPE,
-    Key: { EventSource: eventSource, EventName: eventName } as Tables.EventTypeKey,
+    Key: { EventSource: eventSource, EventName: eventName } as Tables.TEventTypeKey,
     UpdateExpression: 'SET #Action = :action',
     ExpressionAttributeNames: {
       '#Action': action,
@@ -179,8 +179,8 @@ export const scanResource = async (): Promise<Tables.Resource[] | undefined> => 
   return result?.Items;
 };
 
-export const scanUnprocessed = async (): Promise<Tables.Unprocessed[] | undefined> => {
-  const result = await helper.scan<Tables.Unprocessed>({
+export const scanUnprocessed = async (): Promise<Tables.TUnprocessed[] | undefined> => {
+  const result = await helper.scan<Tables.TUnprocessed>({
     TableName: TABLE_NAME_UNPROCESSED,
   });
 

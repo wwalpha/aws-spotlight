@@ -10,3 +10,6 @@ export { default as CreateVpcLink_R } from './CreateVpcLink_R.json';
 export { default as DeleteVpcLink_H } from './DeleteVpcLink_H.json';
 
 export { default as APIGATEWAY_DeleteApi_H } from './APIGATEWAY_DeleteApi_H.json';
+export { default as APIGATEWAY_CreateDomainName_H } from './APIGATEWAY_CreateDomainName_H.json';
+export { default as APIGATEWAY_CreateDomainName_R } from './APIGATEWAY_CreateDomainName_R.json';
+export { default as APIGATEWAY_DeleteDomainName_H } from './APIGATEWAY_DeleteDomainName_H.json';

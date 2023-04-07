@@ -8,4 +8,4 @@ export * from './system';
 
 import { Tables } from './tables';
 
-export type EVENT_TYPE = Record<string, Tables.EventType>;
+export type EVENT_TYPE = Record<string, Tables.TEventType>;

@@ -3,7 +3,7 @@ import { getHistory, getResource, scanResource, sendMessage } from '@test/config
 import { cloudtrail } from '@src/index';
 import * as CreateEvents from '@test/datas/create';
 import * as DeleteEvents from '@test/datas/delete';
-import * as APIGATEWAY from '@test/expect/apigateway';
+import * as EXPECTS from '@test/expect/apigateway';
 import * as fs from 'fs';
 
 AWS.config.update({
@@ -13,7 +13,7 @@ AWS.config.update({
   dynamodb: { endpoint: process.env.AWS_ENDPOINT },
 });
 
-describe('apigateway.amazonaws.com', () => {
+describe('EXPECTS.amazonaws.com', () => {
   test('CreateRestApi', async () => {
     const event = await sendMessage(CreateEvents.APIGATEWAY_CreateRestApi);
 
@@ -23,10 +23,10 @@ describe('apigateway.amazonaws.com', () => {
     const history = await getHistory({ EventId: '90baa69e-caed-44bb-85fe-004348b07ea0' });
 
     expect(resource).not.toBeUndefined();
-    expect(resource).toEqual(APIGATEWAY.CreateRestApi_R);
+    expect(resource).toEqual(EXPECTS.CreateRestApi_R);
 
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(APIGATEWAY.CreateRestApi_H);
+    expect(history).toEqual(EXPECTS.CreateRestApi_H);
   });
 
   test('ImportRestApi', async () => {
@@ -38,10 +38,10 @@ describe('apigateway.amazonaws.com', () => {
     const history = await getHistory({ EventId: '86a4e780-56fc-422a-b95d-9f19ca5e2c11' });
 
     expect(resource).not.toBeUndefined();
-    expect(resource).toEqual(APIGATEWAY.ImportRestApi_R);
+    expect(resource).toEqual(EXPECTS.ImportRestApi_R);
 
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(APIGATEWAY.ImportRestApi_H);
+    expect(history).toEqual(EXPECTS.ImportRestApi_H);
   });
 
   test('DeleteRestApi', async () => {
@@ -55,7 +55,7 @@ describe('apigateway.amazonaws.com', () => {
     expect(resource).toBeUndefined();
 
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(APIGATEWAY.DeleteRestApi_H);
+    expect(history).toEqual(EXPECTS.DeleteRestApi_H);
   });
 
   test('APIGATEWAY_CreateApi', async () => {
@@ -67,10 +67,10 @@ describe('apigateway.amazonaws.com', () => {
     const history = await getHistory({ EventId: 'ebf671db-0b6a-4936-999f-fa2a7516cdfd' });
 
     expect(resource).not.toBeUndefined();
-    expect(resource).toEqual(APIGATEWAY.CreateApi_R);
+    expect(resource).toEqual(EXPECTS.CreateApi_R);
 
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(APIGATEWAY.CreateApi_H);
+    expect(history).toEqual(EXPECTS.CreateApi_H);
   });
 
   test('APIGATEWAY_DeleteApi', async () => {
@@ -86,7 +86,7 @@ describe('apigateway.amazonaws.com', () => {
     expect(resource).toBeUndefined();
 
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(APIGATEWAY.APIGATEWAY_DeleteApi_H);
+    expect(history).toEqual(EXPECTS.APIGATEWAY_DeleteApi_H);
   });
 
   test('APIGATEWAY_CreateVpcLink', async () => {
@@ -98,10 +98,10 @@ describe('apigateway.amazonaws.com', () => {
     const history = await getHistory({ EventId: 'fa4eb46f-041f-4b09-8b67-1ecd72362754' });
 
     expect(resource).not.toBeUndefined();
-    expect(resource).toEqual(APIGATEWAY.CreateVpcLink_R);
+    expect(resource).toEqual(EXPECTS.CreateVpcLink_R);
 
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(APIGATEWAY.CreateVpcLink_H);
+    expect(history).toEqual(EXPECTS.CreateVpcLink_H);
   });
 
   test('APIGATEWAY_DeleteVpcLink', async () => {
@@ -115,7 +115,7 @@ describe('apigateway.amazonaws.com', () => {
     expect(resource).toBeUndefined();
 
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(APIGATEWAY.DeleteVpcLink_H);
+    expect(history).toEqual(EXPECTS.DeleteVpcLink_H);
   });
 
   test('APIGATEWAY_CreateDomainName', async () => {
@@ -126,14 +126,14 @@ describe('apigateway.amazonaws.com', () => {
     const resource = await getResource('arn:aws:apigateway:ap-northeast-1::/domainnames/api.arms.onecloudlabo.com');
     const history = await getHistory({ EventId: CreateEvents.APIGATEWAY_CreateDomainName.eventID });
 
-    fs.writeFileSync('./test/expect/apigateway/APIGATEWAY_CreateDomainName_R.json', JSON.stringify(resource));
-    fs.writeFileSync('./test/expect/apigateway/APIGATEWAY_CreateDomainName_H.json', JSON.stringify(history));
+    // fs.writeFileSync('./test/expect/apigateway/APIGATEWAY_CreateDomainName_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('./test/expect/apigateway/APIGATEWAY_CreateDomainName_H.json', JSON.stringify(history));
 
     expect(resource).not.toBeUndefined();
-    // expect(resource).toEqual(EXPECTS.APIGATEWAY_CreateDomainName_R);
+    expect(resource).toEqual(EXPECTS.APIGATEWAY_CreateDomainName_R);
 
     expect(history).not.toBeUndefined();
-    // expect(history).toEqual(EXPECTS.APIGATEWAY_CreateDomainName_H);
+    expect(history).toEqual(EXPECTS.APIGATEWAY_CreateDomainName_H);
   });
 
   test('APIGATEWAY_DeleteDomainName', async () => {
@@ -144,11 +144,11 @@ describe('apigateway.amazonaws.com', () => {
     const resource = await getResource('arn:aws:apigateway:ap-northeast-1::/domainnames/api.arms.onecloudlabo.com');
     const history = await getHistory({ EventId: DeleteEvents.APIGATEWAY_DeleteDomainName.eventID });
 
-    fs.writeFileSync('./test/expect/apigateway/APIGATEWAY_DeleteDomainName_H.json', JSON.stringify(history));
+    // fs.writeFileSync('./test/expect/apigateway/APIGATEWAY_DeleteDomainName_H.json', JSON.stringify(history));
 
     expect(resource).toBeUndefined();
 
     expect(history).not.toBeUndefined();
-    // expect(history).toEqual(EXPECTS.APIGATEWAY_DeleteDomainName_H);
+    expect(history).toEqual(EXPECTS.APIGATEWAY_DeleteDomainName_H);
   });
 });

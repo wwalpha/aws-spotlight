@@ -17,12 +17,12 @@ AWS.config.update({
 const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
 const TABLE_NAME_RESOURCES = process.env.TABLE_NAME_RESOURCES as string;
 
-const getEvents = (): Tables.EventType[] => {
+const getEvents = (): Tables.TEventType[] => {
   const texts = fs.readFileSync(path.join(__dirname, './events.csv')).toString();
 
   const lines = texts.split('\n').filter((item) => item !== '');
 
-  return lines.map<Tables.EventType>((item) => {
+  return lines.map<Tables.TEventType>((item) => {
     const values = item.split(',');
 
     return {

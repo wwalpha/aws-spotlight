@@ -2,7 +2,7 @@ export namespace Tables {
   /**
    * Table - EventType Key
    */
-  interface EventTypeKey {
+  interface TEventTypeKey {
     EventName: string;
     EventSource: string;
   }
@@ -10,8 +10,7 @@ export namespace Tables {
   /**
    * Table - EventType
    */
-  interface EventType extends EventTypeKey {
-    Unprocessed?: boolean;
+  interface TEventType extends TEventTypeKey {
     Create?: boolean;
     Delete?: boolean;
     Ignore?: boolean;
@@ -100,7 +99,7 @@ export namespace Tables {
   /**
    * Table - Unprocessed Key
    */
-  interface UnprocessedKey {
+  interface TUnprocessedKey {
     EventName: string;
     EventTime: string;
   }
@@ -108,7 +107,7 @@ export namespace Tables {
   /**
    * Table - Unprocessed
    */
-  interface Unprocessed extends UnprocessedKey {
+  interface TUnprocessed extends TUnprocessedKey {
     EventSource: string;
     Raw: string;
   }

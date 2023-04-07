@@ -1,8 +1,10 @@
 import { SQSEvent } from 'aws-lambda';
 import AWS from 'aws-sdk';
-import { execute, initializeEvents } from './apps/cloudtrail';
-import { getUnprocessedEvents, processIgnore, processUpdate } from './apps/unprocessed';
+import { execute } from './apps/cloudtrail';
+import { processIgnore, processUpdate } from './apps/unprocessed';
 import { Logger } from './apps/utils/utilities';
+import { initializeEvents } from './apps/commons';
+import { EventTypeService, UnprocessedService } from './services';
 
 // common settings
 AWS.config.update({
@@ -37,7 +39,16 @@ export const cloudtrail = async (event: SQSEvent) => {
  */
 export const unprocessed = async () => {
   // get event type definition
-  const events = await getUnprocessedEvents();
+  const allEvents = await EventTypeService.getAll();
+  // get unprocessed events
+  const unpEvents = await UnprocessedService.getEvents();
+
+  const events = unpEvents
+    .filter(
+      (u) => allEvents.find((all) => all.EventName === u.EventName && all.EventSource === u.EventSource) !== undefined
+    )
+    .map((u) => allEvents.find((all) => all.EventName === u.EventName && all.EventSource === u.EventSource))
+    .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
   // ignore records
   await processIgnore(events);

@@ -26,21 +26,18 @@ describe.skip(EVENT_SOURCE, () => {
       {
         EventSource: EVENT_SOURCE,
         EventName: 'RunInstances',
-        Unprocessed: true,
         Ignore: true,
         Unconfirmed: true,
       },
       {
         EventSource: EVENT_SOURCE,
         EventName: 'TerminateInstances',
-        Unprocessed: true,
         Ignore: true,
         Unconfirmed: true,
       },
       {
         EventSource: EVENT_SOURCE,
         EventName: 'AllocateAddress',
-        Unprocessed: true,
         Ignore: true,
         Unconfirmed: true,
       },
@@ -59,7 +56,7 @@ describe.skip(EVENT_SOURCE, () => {
           EventName: item.eventName,
           EventTime: `${item.eventTime}_${item.eventID.substr(0, 8)}`,
           Raw: JSON.stringify(item),
-        } as Tables.Unprocessed)
+        } as Tables.TUnprocessed)
     );
 
     await helper.bulk(TABLE_NAME_UNPROCESSED, unproccessed);

@@ -3,12 +3,11 @@ import { CloudTrail, Tables } from 'typings';
 
 const MULTI_TASK = ['EC2_TerminateInstances', 'MONITORING_DeleteAlarms', 'MONITORING_DeleteDashboards'];
 
-export const start = (record: CloudTrail.Record): Tables.ResouceGSI1Key[] | undefined => {
+export const start = (record: CloudTrail.Record): Tables.ResourceKey[] | undefined => {
   const key = `${record.eventSource.split('.')[0].toUpperCase()}_${record.eventName}`;
 
   if (MULTI_TASK.includes(key)) {
     return getResourceArns(record).map((item) => ({
-      EventSource: record.eventSource,
       ResourceId: item,
     }));
   }
@@ -19,7 +18,6 @@ export const start = (record: CloudTrail.Record): Tables.ResouceGSI1Key[] | unde
 
   return [
     {
-      EventSource: record.eventSource,
       ResourceId: arn,
     },
   ];

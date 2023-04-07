@@ -2,8 +2,7 @@ import * as RemoveService from '@src/process/RemoveService';
 import * as CreateService from '@src/process/CreateService';
 import * as UpdateService from '@src/process/UpdateService';
 import { CloudTrail, Tables } from 'typings';
-import { Consts, DynamodbHelper } from '.';
-import { ErrorService, ResourceService } from '@src/services';
+import { ErrorService, ResourceService, UnprocessedService } from '@src/services';
 import { sendMail } from './utilities';
 
 export const getCreateResourceItem = async (record: CloudTrail.Record): Promise<Tables.Resource[]> => {
@@ -69,16 +68,29 @@ export const getUpdateResourceItem = async (record: CloudTrail.Record): Promise<
   return [resource];
 };
 
-export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise<Tables.Resource[]> => {
+export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise<Tables.ResourceKey[]> => {
   const items = RemoveService.start(record);
 
   if (!items) return [];
 
-  const tasks = items.map((item) =>
-    ResourceService.describe({
+  const tasks = items.map(async (item) => {
+    const resource = await ResourceService.describe({
       ResourceId: item.ResourceId,
-    })
-  );
+    });
+
+    // リソースが存在する場合は、そのまま実行する
+    if (resource) return item;
+
+    // 未処理に登録する
+    await UnprocessedService.regist({
+      EventName: record.eventName,
+      EventSource: record.eventSource,
+      EventTime: record.eventTime,
+      Raw: JSON.stringify(record),
+    });
+
+    return undefined;
+  });
 
   // get all rows
   const results = await Promise.all(tasks);

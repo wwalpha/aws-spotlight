@@ -1,36 +1,14 @@
 import { DynamoDB } from 'aws-sdk';
-import { orderBy } from 'lodash';
 import { CloudTrail, Tables } from 'typings';
 import { Events, Consts, Utilities, DynamodbHelper } from './utils';
 import { Logger } from './utils/utilities';
-
-/**
- * Initialize Event Type Definition
- *
- * @returns
- */
-export const getUnprocessedEvents = async () => {
-  // get all event definitions
-  const results = await DynamodbHelper.scan<Tables.EventType>({
-    TableName: Consts.Environments.TABLE_NAME_EVENT_TYPE,
-    FilterExpression: '#Unprocessed = :Unprocessed AND attribute_not_exists(Unconfirmed)',
-    ExpressionAttributeNames: {
-      '#Unprocessed': 'Unprocessed',
-    },
-    ExpressionAttributeValues: {
-      ':Unprocessed': true,
-    },
-  });
-
-  return results.Items;
-};
 
 /**
  * Delete all ignore records
  *
  * @param events
  */
-export const processIgnore = async (events: Tables.EventType[]) => {
+export const processIgnore = async (events: Tables.TEventType[]) => {
   // filter ignore records
   const records = events.filter((item) => item.Ignore === true);
 
@@ -47,7 +25,7 @@ export const processIgnore = async (events: Tables.EventType[]) => {
     Logger.debug(`Ignore record process... EventName: ${item.EventName}, EventSource: ${item.EventSource}`);
 
     // find keys
-    const queryResult = await DynamodbHelper.query<Tables.Unprocessed>({
+    const queryResult = await DynamodbHelper.query<Tables.TUnprocessed>({
       TableName: Consts.Environments.TABLE_NAME_UNPROCESSED,
       ProjectionExpression: 'EventName, EventTime',
       KeyConditionExpression: '#EventName = :EventName',
@@ -66,26 +44,20 @@ export const processIgnore = async (events: Tables.EventType[]) => {
     if (queryResult.Items.length > 0) {
       await DynamodbHelper.truncate(Consts.Environments.TABLE_NAME_UNPROCESSED, queryResult.Items);
     }
-
-    if (item.Unprocessed === true) {
-      await DynamodbHelper.update({
-        TableName: Consts.Environments.TABLE_NAME_EVENT_TYPE,
-        Key: {
-          EventName: item.EventName,
-          EventSource: item.EventSource,
-        } as Tables.EventTypeKey,
-        UpdateExpression: 'REMOVE #Unprocessed',
-        ExpressionAttributeNames: {
-          '#Unprocessed': 'Unprocessed',
-        },
-      });
-    }
   }
 };
 
-export const processUpdate = async (events: Tables.EventType[]) => {
-  const records = await getUnprocessedRecords(events);
+export const processUpdate = async (events: Tables.TEventType[]) => {
+  const createRecords = await getUnprocessedRecords(events, true);
 
+  await processRecords(createRecords);
+
+  const removeRecords = await getUnprocessedRecords(events, false);
+
+  await processRecords(removeRecords);
+};
+
+const processRecords = async (records: Tables.TUnprocessed[]) => {
   const tasks = records.map(async (record) => {
     try {
       // parse raw data
@@ -104,33 +76,18 @@ export const processUpdate = async (events: Tables.EventType[]) => {
   });
 
   await Promise.all(tasks);
-
-  // remove unprocessed flag
-  // const removeUnprocessedTasks = events.map((item) =>
-  //   DynamodbHelper.update({
-  //     TableName: Consts.Environments.TABLE_NAME_EVENT_TYPE,
-  //     Key: {
-  //       EventSource: item.EventSource,
-  //       EventName: item.EventName,
-  //     },
-  //     UpdateExpression: 'REMOVE #Unprocessed',
-  //     ExpressionAttributeNames: {
-  //       '#Unprocessed': 'Unprocessed',
-  //     },
-  //   })
-  // );
-
-  // await Promise.all(removeUnprocessedTasks);
 };
 
-const getUnprocessedRecords = async (events: Tables.EventType[]) => {
+const getUnprocessedRecords = async (events: Tables.TEventType[], createEvent: boolean) => {
   const { TABLE_NAME_UNPROCESSED } = Consts.Environments;
 
-  const createEvents = events.filter((item) => item.Create === true);
-  const deleteEvents = events.filter((item) => item.Delete === true);
+  let processEvents =
+    createEvent === true
+      ? events.filter((item) => item.Create === true)
+      : events.filter((item) => item.Delete === true);
 
-  const tasks = [...createEvents, ...deleteEvents].map((item) =>
-    DynamodbHelper.query<Tables.Unprocessed>({
+  const tasks = processEvents.map((item) =>
+    DynamodbHelper.query<Tables.TUnprocessed>({
       TableName: TABLE_NAME_UNPROCESSED,
       KeyConditionExpression: '#EventName = :EventName',
       FilterExpression: '#EventSource = :EventSource',
@@ -151,10 +108,11 @@ const getUnprocessedRecords = async (events: Tables.EventType[]) => {
   // merge all records
   return allRecords.reduce((prev, curr) => {
     return [...prev, ...curr];
-  }, [] as Tables.Unprocessed[]);
+  }, [] as Tables.TUnprocessed[]);
 };
 
 const processRecord = async (record: CloudTrail.Record) => {
+  console.log('processRecord start');
   const { TABLE_NAME_EVENT_TYPE, TABLE_NAME_HISTORY, TABLE_NAME_RESOURCES, TABLE_NAME_UNPROCESSED } =
     Consts.Environments;
 
@@ -176,34 +134,15 @@ const processRecord = async (record: CloudTrail.Record) => {
     .forEach((item) => transactItems.push(item));
   // リソース削除
   deleteItems
-    .map((item) =>
-      Utilities.getDeleteRecord(TABLE_NAME_RESOURCES, {
-        ResourceId: item.ResourceId,
-      } as Tables.ResourceKey)
-    )
+    .map((item) => Utilities.getDeleteRecord(TABLE_NAME_RESOURCES, item))
     .forEach((item) => transactItems.push(item));
-
-  // remove unprocessed flag
-  transactItems.push({
-    Update: {
-      TableName: TABLE_NAME_EVENT_TYPE,
-      Key: {
-        EventSource: record.eventSource,
-        EventName: record.eventName,
-      } as Tables.EventTypeKey,
-      UpdateExpression: 'REMOVE #Unprocessed',
-      ExpressionAttributeNames: {
-        '#Unprocessed': 'Unprocessed',
-      },
-    },
-  });
 
   // delete unprocessed item
   transactItems.push(
     Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, {
       EventName: record.eventName,
       EventTime: `${record.eventTime}_${record.eventID.substr(0, 8)}`,
-    } as Tables.UnprocessedKey)
+    } as Tables.TUnprocessedKey)
   );
 
   // add history record
@@ -212,4 +151,6 @@ const processRecord = async (record: CloudTrail.Record) => {
   await DynamodbHelper.transactWrite({
     TransactItems: transactItems,
   });
+
+  console.log('processRecord end');
 };

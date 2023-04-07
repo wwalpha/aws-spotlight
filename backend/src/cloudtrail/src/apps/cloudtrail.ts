@@ -11,25 +11,6 @@ const EVENTS: EVENT_TYPE = {};
 const NOTIFIED: EVENT_TYPE = {};
 
 /**
- * Initialize Event Type Definition
- *
- * @returns
- */
-export const initializeEvents = async () => {
-  if (Object.keys(EVENTS).length !== 0) return;
-
-  // get all event definitions
-  const results = await DynamodbHelper.scan<Tables.EventType>({
-    TableName: Consts.Environments.TABLE_NAME_EVENT_TYPE,
-  });
-
-  results.Items.forEach((item) => {
-    const service = item.EventSource.split('.')[0].toUpperCase();
-    EVENTS[`${service}_${item.EventName}`] = item;
-  });
-};
-
-/**
  * Process SQS Message
  *
  * @param message
@@ -85,19 +66,11 @@ const processRecord = async (record: CloudTrail.Record) => {
   // new event
   if (!definition) {
     await processNewEventType(record);
-    return;
-  }
-
-  // unprocess event
-  if (definition?.Unprocessed === true) {
-    await processUnprocessed(record);
-    return;
   }
 
   // create event || delete event
   if (definition?.Create === true || definition?.Delete === true) {
     await processUpdate(record);
-    return;
   }
 };
 
@@ -112,10 +85,9 @@ const processNewEventType = async (record: CloudTrail.Record) => {
     Utilities.getPutRecord(TABLE_NAME_EVENT_TYPE, {
       EventName: record.eventName,
       EventSource: record.eventSource,
-      Unprocessed: true,
       Unconfirmed: true,
       Ignore: true,
-    } as Tables.EventType)
+    } as Tables.TEventType)
   );
 
   // add unprocess record
@@ -125,11 +97,11 @@ const processNewEventType = async (record: CloudTrail.Record) => {
       EventTime: `${record.eventTime}_${record.eventID.substr(0, 8)}`,
       Raw: JSON.stringify(record),
       EventSource: record.eventSource,
-    } as Tables.Unprocessed)
+    } as Tables.TUnprocessed)
   );
 
   // process transaction
-  await DynamodbHelper.getDocumentClient().transactWrite({
+  await DynamodbHelper.transactWrite({
     TransactItems: transactItems,
   });
 
@@ -150,7 +122,7 @@ const processUnprocessed = async (record: CloudTrail.Record) => {
       EventTime: `${record.eventTime}_${record.eventID.substr(0, 8)}`,
       Raw: JSON.stringify(record),
       EventSource: record.eventSource,
-    } as Tables.Unprocessed,
+    } as Tables.TUnprocessed,
   ]);
 };
 
@@ -168,7 +140,7 @@ const processUpdate = async (record: CloudTrail.Record) => {
   // 新規リソース
   createItems.forEach((item) => Logger.info(`CREATE: ${item.EventName}, ${item.ResourceId}`));
   updateItems.forEach((item) => Logger.info(`UPDATE: ${item.EventName}, ${item.ResourceId}`));
-  deleteItems.forEach((item) => Logger.info(`DELETE: ${item.EventName}, ${item.ResourceId}`));
+  deleteItems.forEach((item) => Logger.info(`DELETE: ${item.ResourceId}`));
 
   // リソース新規作成
   createItems
@@ -180,11 +152,7 @@ const processUpdate = async (record: CloudTrail.Record) => {
     .forEach((item) => transactItems.push(item));
   // リソース削除
   deleteItems
-    .map((item) =>
-      Utilities.getDeleteRecord(TABLE_NAME_RESOURCES, {
-        ResourceId: item.ResourceId,
-      } as Tables.ResourceKey)
-    )
+    .map((item) => Utilities.getDeleteRecord(TABLE_NAME_RESOURCES, item))
     .forEach((item) => transactItems.push(item));
 
   // add history record
