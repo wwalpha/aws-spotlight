@@ -34,13 +34,7 @@ const start = async () => {
     // 未実装のイベントならそのまあ
     if (!updatedEvents) return item;
 
-    return {
-      ...updatedEvents,
-      Unprocessed:
-        unpEvents.find((upn) => upn.EventName === item.EventName && upn.EventSource === item.EventSource) !== undefined
-          ? true
-          : undefined,
-    };
+    return updatedEvents;
   });
 
   await helper.bulk(TABLE_NAME_EVENT_TYPE, existEvents);
@@ -50,15 +44,12 @@ const start = async () => {
     const exist = allEvents.Items.find((e) => e.EventName === item.EventName && e.EventSource === item.EventSource);
 
     return exist === undefined;
-  }).map((item) => ({
-    ...item,
-    Unprocessed:
-      unpEvents.find((upn) => upn.EventName === item.EventName && upn.EventSource === item.EventSource) !== undefined
-        ? true
-        : undefined,
-  }));
+  });
 
   await helper.bulk(TABLE_NAME_EVENT_TYPE, newEvents);
+
+  existEvents.forEach((item) => console.log(item.EventName, item.EventSource));
+  newEvents.forEach((item) => console.log(item.EventName, item.EventSource));
 };
 
 const getEvents = (): Tables.TEventType[] => {
