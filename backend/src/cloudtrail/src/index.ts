@@ -1,9 +1,8 @@
 import { SQSEvent } from 'aws-lambda';
 import AWS from 'aws-sdk';
-import { execute } from './apps/cloudtrail';
+import { execute, initializeEvents } from './apps/cloudtrail';
 import { processIgnore, processUpdate } from './apps/unprocessed';
 import { Logger } from './apps/utils/utilities';
-import { initializeEvents } from './apps/commons';
 import { EventTypeService, UnprocessedService } from './services';
 
 // common settings
