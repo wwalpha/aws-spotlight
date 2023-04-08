@@ -154,6 +154,9 @@ const processRecord = async (record: CloudTrail.Record) => {
     } as Tables.TUnprocessedKey)
   );
 
+  // 実行する対象データがない
+  if (transactItems.length === 0) return;
+
   // add history record
   transactItems.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
 

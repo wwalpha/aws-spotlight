@@ -166,14 +166,15 @@ const processUpdate = async (record: CloudTrail.Record) => {
     .map((item) => Utilities.getDeleteRecord(TABLE_NAME_RESOURCES, item))
     .forEach((item) => transactItems.push(item));
 
-  if (transactItems.length > 0) {
-    // add history record
-    transactItems.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
+  // 実行する対象データがない
+  if (transactItems.length === 0) return;
 
-    await DynamodbHelper.transactWrite({
-      TransactItems: transactItems,
-    });
-  }
+  // add history record
+  transactItems.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
+
+  await DynamodbHelper.transactWrite({
+    TransactItems: transactItems,
+  });
 
   // add tags to resource
   // await AddTags(createItems);
