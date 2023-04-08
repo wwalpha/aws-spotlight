@@ -27,10 +27,14 @@ export const cloudtrail = async (event: SQSEvent) => {
   // get event type definition
   await initializeEvents();
 
-  // process message item
-  const tasks = event.Records.map((item) => execute(item));
+  for (;;) {
+    const message = event.Records.shift();
 
-  await Promise.all(tasks);
+    // not found
+    if (!message) break;
+
+    await execute(message);
+  }
 };
 
 /**

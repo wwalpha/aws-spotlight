@@ -1,4 +1,4 @@
-import { DynamoDB, S3, SNS } from 'aws-sdk';
+import { DynamoDB, S3 } from 'aws-sdk';
 import { SNSMessage, SQSRecord } from 'aws-lambda';
 import { orderBy } from 'lodash';
 import zlib from 'zlib';
@@ -37,7 +37,6 @@ export const initializeEvents = async () => {
  * @param message
  */
 export const execute = async (message: SQSRecord) => {
-  // get all records
   let records = await getRecords(message.body);
   // remove readonly records
   records = Utilities.removeReadOnly(records);
@@ -56,14 +55,13 @@ export const execute = async (message: SQSRecord) => {
 
   Logger.info(`Process Records: ${records.length}`);
 
-  const sorted = orderBy(records, ['eventTime'], ['asc']);
   let hasError = false;
 
-  for (; sorted.length > 0; ) {
-    const record = sorted.shift();
+  for (;;) {
+    const record = records.shift();
 
     // error check
-    if (!record) continue;
+    if (!record) break;
 
     try {
       await processRecord(record);
@@ -221,7 +219,10 @@ export const getRecords = async (message: string): Promise<CloudTrail.Record[]> 
   Logger.debug('Records', records);
 
   // merge all records
-  return records.reduce((prev, curr) => {
+  const newArray = records.reduce((prev, curr) => {
     return [...prev, ...curr.Records];
   }, [] as CloudTrail.Record[]);
+
+  // 時間順
+  return orderBy(newArray, ['eventTime'], ['asc']);
 };
