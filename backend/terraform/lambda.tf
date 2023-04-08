@@ -49,10 +49,6 @@ resource "aws_lambda_event_source_mapping" "cloudtrail" {
   batch_size                         = 5
   maximum_batching_window_in_seconds = 30
   enabled                            = true
-
-  scaling_config {
-    maximum_concurrency = 5
-  }
 }
 
 # ----------------------------------------------------------------------------------------------
