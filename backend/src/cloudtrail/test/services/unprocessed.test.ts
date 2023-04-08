@@ -52,6 +52,7 @@ describe(EVENT_SOURCE, () => {
         0,
         8
       )}`,
+      ResourceId: 'arn:aws:dynamodb:ap-northeast-1:999999999999:table/AutoNotification_AlarmConfigs',
       Raw: JSON.stringify(DeleteEvents.DYNAMODB_DeleteTable),
     });
 
