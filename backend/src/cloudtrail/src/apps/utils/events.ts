@@ -26,14 +26,20 @@ export const getCreateResourceItem = async (record: CloudTrail.Record): Promise<
   if (dataRows.length !== 0) {
     // await sendMail('Resource Exist', `${record.eventSource}\n${record.eventName}\n${dataRows[0].ResourceId}`);
 
-    const registTasks = dataRows.map((item) =>
+    const registTasks = dataRows.map(async (item) => {
+      // すでに登録されたIDは無視する
+      if (item.EventId === record.eventID) {
+        return;
+      }
+
       UnprocessedService.regist({
         EventName: item.EventName,
         EventTime: `${item.EventTime}_${item.EventId.substring(0, 8)}`,
         EventSource: item.EventSource,
+        ResourceId: item.ResourceId,
         Raw: JSON.stringify(record),
-      })
-    );
+      });
+    });
 
     await Promise.all(registTasks);
 
@@ -106,6 +112,7 @@ export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise
       EventName: record.eventName,
       EventSource: record.eventSource,
       EventTime: `${record.eventTime}_${record.eventID.substring(0, 8)}`,
+      ResourceId: item.ResourceId,
       Raw: JSON.stringify(record),
     });
 

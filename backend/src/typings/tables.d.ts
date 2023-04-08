@@ -111,6 +111,7 @@ export namespace Tables {
    */
   interface TUnprocessed extends TUnprocessedKey {
     EventSource: string;
+    ResourceId: string;
     Raw: string;
   }
 
