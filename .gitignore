@@ -11,3 +11,5 @@ node_modules
 *.lock
 *.local*
 test.log
+debug.log
+error.log

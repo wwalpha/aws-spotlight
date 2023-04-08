@@ -5,6 +5,7 @@ import { CloudTrail, Tables } from 'typings';
 import { ResourceService, UnprocessedService } from '@src/services';
 import _ from 'lodash';
 import { Logger } from './utilities';
+import { Consts } from '.';
 
 export const getCreateResourceItem = async (record: CloudTrail.Record): Promise<Tables.TResource[]> => {
   const records = CreateService.start(record);
@@ -59,6 +60,7 @@ export const getUpdateResourceItem = async (record: CloudTrail.Record): Promise<
     // 既存データないの場合は、新規作成する
     if (!dataRow) {
       item.Revisions = [item.EventTime];
+      item.Status = Consts.ResourceStatus.CREATED;
       return item;
     }
 
@@ -66,6 +68,16 @@ export const getUpdateResourceItem = async (record: CloudTrail.Record): Promise<
 
     // 履歴を追加する
     dataRow.Revisions = _.sortBy(revisions);
+
+    // 削除処理
+    if (record.eventName.toUpperCase().startsWith('DELETE')) {
+      const index = dataRow.Revisions.findIndex((r) => r === item.EventTime);
+
+      // 最後の場合、削除フラグ
+      if (index + 1 === revisions.length) {
+        dataRow.Status = Consts.ResourceStatus.DELETE;
+      }
+    }
 
     // リソース情報
     return dataRow;

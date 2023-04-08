@@ -61,6 +61,7 @@ export namespace Tables {
     IdentityType: string;
     Service: string;
     Revisions?: string[];
+    Status?: string;
   }
 
   interface ResouceGSI1Key {
