@@ -149,8 +149,8 @@ const processUpdate = async (record: CloudTrail.Record) => {
   const transactItems: DynamoDB.DocumentClient.TransactWriteItemList = [];
 
   // 新規リソース
-  createItems.forEach((item) => Logger.info(`CREATE: ${item.EventName}, ${item.ResourceId}`));
-  updateItems.forEach((item) => Logger.info(`UPDATE: ${item.EventName}, ${item.ResourceId}`));
+  createItems.forEach((item) => Logger.info(`CREATE: ${item.ResourceId}`));
+  updateItems.forEach((item) => Logger.info(`UPDATE: ${item.ResourceId}`));
   deleteItems.forEach((item) => Logger.info(`DELETE: ${item.ResourceId}`));
 
   // リソース新規作成
@@ -166,12 +166,14 @@ const processUpdate = async (record: CloudTrail.Record) => {
     .map((item) => Utilities.getDeleteRecord(TABLE_NAME_RESOURCES, item))
     .forEach((item) => transactItems.push(item));
 
-  // add history record
-  transactItems.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
+  if (transactItems.length > 0) {
+    // add history record
+    transactItems.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
 
-  await DynamodbHelper.transactWrite({
-    TransactItems: transactItems,
-  });
+    await DynamodbHelper.transactWrite({
+      TransactItems: transactItems,
+    });
+  }
 
   // add tags to resource
   // await AddTags(createItems);

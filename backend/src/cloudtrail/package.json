@@ -11,7 +11,7 @@
     "build:c": "docker build -f Dockerfile.CloudTrail -t arms-cloudtrail .",
     "build:u": "docker build -f Dockerfile.Unprocessed -t arms-unprocessed .",
     "test": "jest --forceExit --passWithNoTests",
-    "test:local": "jest test/services/ec2.test.ts --forceExit --passWithNoTests",
+    "test:local": "jest test/services/unprocessed.test.ts --forceExit --passWithNoTests",
     "debug": "ts-node -r tsconfig-paths/register -r dotenv/config test/debug.ts",
     "resource": "ts-node -r tsconfig-paths/register -r dotenv/config test/configs/resource.ts",
     "prep": "ts-node -r tsconfig-paths/register -r dotenv/config test/configs/prepare.ts",
@@ -32,7 +32,7 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
-    "@alphax/dynamodb": "^1.2.10",
+    "@alphax/dynamodb": "^1.2.11",
     "aws-sdk": "^2.907.0",
     "lodash": "^4.17.21",
     "winston": "^3.3.3"

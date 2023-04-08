@@ -7,20 +7,31 @@
     "accountId": "999999999999",
     "accessKeyId": "ASIA2KEX3JLIZDIDV7UY",
     "userName": "test001@test.com",
-    "sessionContext": { "attributes": { "creationDate": "2021-04-07T10:31:17Z", "mfaAuthenticated": "false" } }
+    "sessionContext": {
+      "attributes": {
+        "creationDate": "2021-04-07T10:31:17Z",
+        "mfaAuthenticated": "false"
+      }
+    }
   },
-  "eventTime": "2021-04-07T11:46:29Z",
+  "eventTime": "2021-04-15T11:46:29Z",
   "eventSource": "dynamodb.amazonaws.com",
   "eventName": "DeleteTable",
   "awsRegion": "ap-northeast-1",
   "sourceIPAddress": "165.225.111.58",
   "userAgent": "console.amazonaws.com",
-  "requestParameters": { "tableName": "AutoNotification_AlarmConfigs" },
+  "requestParameters": {
+    "tableName": "AutoNotification_AlarmConfigs"
+  },
   "responseElements": {
     "tableDescription": {
       "tableName": "AutoNotification_AlarmConfigs",
       "tableStatus": "DELETING",
-      "provisionedThroughput": { "numberOfDecreasesToday": 0, "readCapacityUnits": 0, "writeCapacityUnits": 0 },
+      "provisionedThroughput": {
+        "numberOfDecreasesToday": 0,
+        "readCapacityUnits": 0,
+        "writeCapacityUnits": 0
+      },
       "tableSizeBytes": 0,
       "itemCount": 0,
       "tableArn": "arn:aws:dynamodb:ap-northeast-1:999999999999:table/AutoNotification_AlarmConfigs",
@@ -33,7 +44,10 @@
         "billingMode": "PAY_PER_REQUEST",
         "lastUpdateToPayPerRequestDateTime": "Sep 9, 2019, 12:36:57 PM"
       },
-      "streamSpecification": { "streamEnabled": true, "streamViewType": "NEW_AND_OLD_IMAGES" },
+      "streamSpecification": {
+        "streamEnabled": true,
+        "streamViewType": "NEW_AND_OLD_IMAGES"
+      },
       "latestStreamLabel": "2019-09-23T02:54:53.691",
       "latestStreamArn": "arn:aws:dynamodb:ap-northeast-1:999999999999:table/AutoNotification_AlarmConfigs/stream/2019-09-23T02:54:53.691"
     }

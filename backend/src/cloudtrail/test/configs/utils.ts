@@ -22,6 +22,14 @@ const sqsClient = new SQS();
 const s3Client = new S3();
 const helper = new DynamodbHelper({ options: { endpoint: process.env.AWS_ENDPOINT } });
 
+export const trancateAll = async () => {
+  await Promise.all([
+    helper.truncateAll(TABLE_NAME_RESOURCES),
+    helper.truncateAll(TABLE_NAME_HISTORY),
+    helper.truncateAll(TABLE_NAME_UNPROCESSED),
+  ]);
+};
+
 export const receiveMessage = async () =>
   await sqsClient
     .receiveMessage({
@@ -143,6 +151,13 @@ export const getHistory = async (key: Tables.HistoryKey): Promise<Tables.History
   });
 
   return result?.Item;
+};
+
+export const registUnprocessed = async (item: Tables.TUnprocessed): Promise<void> => {
+  await helper.put<Tables.TUnprocessed>({
+    TableName: TABLE_NAME_UNPROCESSED,
+    Item: item,
+  });
 };
 
 export const getUnprocessed = async (key: Tables.TUnprocessedKey): Promise<Tables.TUnprocessed | undefined> => {

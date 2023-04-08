@@ -37,7 +37,6 @@ CreateMicrosoftAD,ds.amazonaws.com,create
 DeleteDirectory,ds.amazonaws.com,delete
 CreateCluster,ecs.amazonaws.com,create
 DeleteCluster,ecs.amazonaws.com,delete
-
 RunInstances,ec2.amazonaws.com,create
 TerminateInstances,ec2.amazonaws.com,delete
 CreateImage,ec2.amazonaws.com,create
