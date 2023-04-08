@@ -1,12 +1,17 @@
 import AWS from 'aws-sdk';
-import { DynamodbHelper } from '@alphax/dynamodb';
-import { getHistory, getResource, getUnprocessed, updateEventType } from '@test/configs/utils';
+import {
+  getHistory,
+  getResource,
+  getUnprocessed,
+  trancateAll,
+  sendMessageOnly,
+  receiveMessageData,
+  registUnprocessed,
+  scanResource,
+} from '@test/configs/utils';
 import * as CreateEvents from '@test/datas/create';
 import * as DeleteEvents from '@test/datas/delete';
-import * as Unprocessed from '@test/expect/unprocessed';
-import { unprocessed } from '@src/index';
-import { Tables } from 'typings';
-import * as fs from 'fs';
+import { cloudtrail, unprocessed } from '@src/index';
 
 AWS.config.update({
   region: process.env.AWS_REGION,
@@ -15,91 +20,56 @@ AWS.config.update({
   dynamodb: { endpoint: process.env.AWS_ENDPOINT },
 });
 
-const helper = new DynamodbHelper({ options: { endpoint: process.env.AWS_ENDPOINT } });
-const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
-const TABLE_NAME_UNPROCESSED = process.env.TABLE_NAME_UNPROCESSED as string;
 const EVENT_SOURCE = 'ec2.amazonaws.com';
 
-describe.skip(EVENT_SOURCE, () => {
-  beforeAll(async () => {
-    await helper.bulk(TABLE_NAME_EVENT_TYPE, [
-      {
-        EventSource: EVENT_SOURCE,
-        EventName: 'RunInstances',
-        Ignore: true,
-        Unconfirmed: true,
-      },
-      {
-        EventSource: EVENT_SOURCE,
-        EventName: 'TerminateInstances',
-        Ignore: true,
-        Unconfirmed: true,
-      },
-      {
-        EventSource: EVENT_SOURCE,
-        EventName: 'AllocateAddress',
-        Ignore: true,
-        Unconfirmed: true,
-      },
-    ]);
+describe(EVENT_SOURCE, () => {
+  afterEach(async () => {
+    await trancateAll();
+  });
 
-    CreateEvents.EC2_RunInstances.responseElements.instancesSet.items[0].instanceId = 'i-0fc5d99558e835799';
-    CreateEvents.EC2_RunInstances.eventID = '99999999-7469-441a-8f2e-f7aa5b61a46b';
-    DeleteEvents.EC2_TerminateInstances.responseElements.instancesSet.items[0].instanceId = 'i-0fc5d99558e835799';
-    DeleteEvents.EC2_TerminateInstances.eventID = '99999999-eb47-4d50-8104-6901bc67a17d';
+  test('Remove Resource Successful', async () => {
+    await sendMessageOnly([CreateEvents.DYNAMODB_CreateTable]);
+    await cloudtrail(await receiveMessageData());
 
-    const datas = [CreateEvents.EC2_RunInstances, DeleteEvents.EC2_TerminateInstances];
-
-    const unproccessed = datas.map(
-      (item) =>
-        ({
-          EventName: item.eventName,
-          EventTime: `${item.eventTime}_${item.eventID.substring(0, 8)}`,
-          Raw: JSON.stringify(item),
-        } as Tables.TUnprocessed)
+    let deleteProcessed = await getUnprocessed({
+      EventName: DeleteEvents.DYNAMODB_DeleteTable.eventName,
+      EventTime: `${DeleteEvents.DYNAMODB_DeleteTable.eventTime}_${DeleteEvents.DYNAMODB_DeleteTable.eventID.substring(
+        0,
+        8
+      )}`,
+    });
+    let dynamodb = await getResource(
+      'arn:aws:dynamodb:ap-northeast-1:999999999999:table/AutoNotification_AlarmConfigs'
     );
 
-    await helper.bulk(TABLE_NAME_UNPROCESSED, unproccessed);
-  });
+    expect(deleteProcessed).toBeUndefined();
+    expect(dynamodb).not.toBeUndefined();
 
-  test('EC2_RunInstances', async () => {
-    await updateEventType(EVENT_SOURCE, 'RunInstances', 'Create');
-
-    await unprocessed();
-
-    const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:instance/i-0fc5d99558e835799');
-    const history = await getHistory({ EventId: '99999999-7469-441a-8f2e-f7aa5b61a46b' });
-    const unprocess = await getUnprocessed({
-      EventName: 'RunInstances',
-      EventTime: `${CreateEvents.EC2_RunInstances.eventTime}_${CreateEvents.EC2_RunInstances.eventID.substring(0, 8)}`,
+    await registUnprocessed({
+      EventName: DeleteEvents.DYNAMODB_DeleteTable.eventName,
+      EventSource: DeleteEvents.DYNAMODB_DeleteTable.eventSource,
+      EventTime: `${DeleteEvents.DYNAMODB_DeleteTable.eventTime}_${DeleteEvents.DYNAMODB_DeleteTable.eventID.substring(
+        0,
+        8
+      )}`,
+      Raw: JSON.stringify(DeleteEvents.DYNAMODB_DeleteTable),
     });
 
-    expect(resource).not.toBeUndefined();
-    expect(resource).toEqual(Unprocessed.RunInstances_R);
-
-    expect(history).not.toBeUndefined();
-    expect(history).toEqual(Unprocessed.RunInstances_H);
-
-    expect(unprocess).toBeUndefined();
-  });
-
-  test('EC2_TerminateInstances', async () => {
-    await updateEventType(EVENT_SOURCE, 'TerminateInstances', 'Delete');
-
     await unprocessed();
 
-    // const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:instance/i-0fc5d99558e835799');
-    // const history = await getHistory({ EventId: '99999999-eb47-4d50-8104-6901bc67a17d' });
-    // const unprocess = await getUnprocessed({
-    //   EventName: 'TerminateInstances',
-    //   EventTime: `${DeleteEvents.EC2_TerminateInstances.eventTime}_99999999`,
-    // });
+    dynamodb = await getResource('arn:aws:dynamodb:ap-northeast-1:999999999999:table/AutoNotification_AlarmConfigs');
 
-    // expect(resource).toBeUndefined();
+    const deleteHistory = await getHistory({ EventId: DeleteEvents.DYNAMODB_DeleteTable.eventID });
+    deleteProcessed = await getUnprocessed({
+      EventName: DeleteEvents.DYNAMODB_DeleteTable.eventName,
+      EventTime: `${DeleteEvents.DYNAMODB_DeleteTable.eventTime}_${DeleteEvents.DYNAMODB_DeleteTable.eventID.substring(
+        0,
+        8
+      )}`,
+    });
 
-    // expect(history).not.toBeUndefined();
-    // expect(history).toEqual(Unprocessed.TerminateInstances_H);
-
-    // expect(unprocess).toBeUndefined();
+    expect(dynamodb).toBeUndefined();
+    expect(deleteProcessed).toBeUndefined();
+    expect(deleteHistory).not.toBeUndefined();
   });
 });

@@ -4,6 +4,7 @@ import * as UpdateService from '@src/process/UpdateService';
 import { CloudTrail, Tables } from 'typings';
 import { ResourceService, UnprocessedService } from '@src/services';
 import _ from 'lodash';
+import { Logger } from './utilities';
 
 export const getCreateResourceItem = async (record: CloudTrail.Record): Promise<Tables.TResource[]> => {
   const records = CreateService.start(record);
@@ -83,6 +84,8 @@ export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise
       ResourceId: item.ResourceId,
     });
 
+    Logger.debug(`Resource exist check: ${resource}`);
+
     // リソースが存在する場合は、そのまま実行する
     if (resource) return item;
 
@@ -93,6 +96,8 @@ export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise
       EventTime: `${record.eventTime}_${record.eventID.substring(0, 8)}`,
       Raw: JSON.stringify(record),
     });
+
+    Logger.debug('Unprocessed registed');
 
     return undefined;
   });

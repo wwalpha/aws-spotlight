@@ -2,7 +2,7 @@ import AWS from 'aws-sdk';
 import { getHistory, getResource, sendMessage } from '@test/configs/utils';
 import * as CreateEvents from '@test/datas/create';
 import * as DeleteEvents from '@test/datas/delete';
-import * as DMS from '@test/expect/dms';
+import * as EXPECTS from '@test/expect/dms';
 import { cloudtrail } from '@src/index';
 import * as fs from 'fs';
 
@@ -28,10 +28,10 @@ describe('dms.amazonaws.com', () => {
     // fs.writeFileSync('CreateReplicationInstance_H.json', JSON.stringify(history));
 
     expect(resource).not.toBeUndefined();
-    expect(resource).toEqual(DMS.CreateReplicationInstance_R);
+    expect(resource).toEqual(EXPECTS.CreateReplicationInstance_R);
 
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(DMS.CreateReplicationInstance_H);
+    expect(history).toEqual(EXPECTS.CreateReplicationInstance_H);
   });
 
   test('DMS_DeleteReplicationInstance', async () => {
@@ -44,11 +44,11 @@ describe('dms.amazonaws.com', () => {
     );
     const history = await getHistory({ EventId: 'fbb11b4f-9253-4014-9a3c-fdbb67b640cb' });
 
-    // fs.writeFileSync('DeleteReplicationInstance_H.json', JSON.stringify(history));
+    // fs.writeFileSync('./test/expect/dms/DMS_DeleteReplicationInstance_H.json', JSON.stringify(history));
 
     expect(resource).toBeUndefined();
 
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(DMS.DeleteReplicationInstance_H);
+    expect(history).toEqual(EXPECTS.DMS_DeleteReplicationInstance_H);
   });
 });

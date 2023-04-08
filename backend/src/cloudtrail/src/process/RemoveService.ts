@@ -132,9 +132,6 @@ const getResourceArn = (record: CloudTrail.Record) => {
       return record.requestParameters.stateMachineArn;
     case 'SYNTHETICS_DeleteCanary':
       return ResourceARNs.SYNTHETICS_Canary(region, account, record.requestParameters.name);
-    // case 'SERVICEDISCOVERY_DeleteNamespace':
-    //   return ResourceARNs.SYNTHETICS_Canary(region, account, record.requestParameters.name);
-
     case 'TIMESTREAM_DeleteDatabase':
       return ResourceARNs.TIMESTREAM_Database(region, account, record.requestParameters.databaseName);
     case 'TRANSFER_DeleteServer':

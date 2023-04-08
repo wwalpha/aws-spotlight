@@ -3,7 +3,7 @@ import { getHistory, getResource, sendMessage } from '@test/configs/utils';
 import * as CreateEvents from '@test/datas/create';
 import * as DeleteEvents from '@test/datas/delete';
 import { cloudtrail } from '@src/index';
-import * as DYNAMODB from '@test/expect/dynamodb';
+import * as EXPECTS from '@test/expect/dynamodb';
 import * as fs from 'fs';
 
 AWS.config.update({
@@ -25,10 +25,10 @@ describe.only('dynamodb.amazonaws.com', () => {
     const history = await getHistory({ EventId: '696c84dc-ad34-4abe-90dd-b69189934170' });
 
     expect(resource).not.toBeUndefined();
-    expect(resource).toEqual(DYNAMODB.CreateTable_R);
+    expect(resource).toEqual(EXPECTS.CreateTable_R);
 
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(DYNAMODB.CreateTable_H);
+    expect(history).toEqual(EXPECTS.CreateTable_H);
   });
 
   test('DeleteTable', async () => {
@@ -41,9 +41,11 @@ describe.only('dynamodb.amazonaws.com', () => {
     );
     const history = await getHistory({ EventId: '7bae1976-dd8e-4332-bc95-83c7844d515d' });
 
+    // fs.writeFileSync('./test/expect/dynamodb/DYNAMODB_DeleteTable_H.json', JSON.stringify(history));
+
     expect(resource).toBeUndefined();
 
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(DYNAMODB.DeleteTable_H);
+    expect(history).toEqual(EXPECTS.DYNAMODB_DeleteTable_H);
   });
 });

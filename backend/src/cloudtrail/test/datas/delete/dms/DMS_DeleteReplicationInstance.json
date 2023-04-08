@@ -180,7 +180,7 @@
       "engineVersion": "3.4.7",
       "autoMinorVersionUpgrade": true,
       "kmsKeyId": "arn:aws:kms:ap-northeast-1:999999999999:key/bb436397-98c0-468d-a510-78e8a4b0c58f",
-      "replicationInstanceArn": "arn:aws:dms:ap-northeast-1:999999999999:rep:4ZAYL4IJJETLZSQDIIKLFYL6L52NT6FR2QH6LTA",
+      "replicationInstanceArn": "arn:aws:dms:ap-northeast-1:999999999999:rep:IMG2PDS3YLM3PFGOMBNEY7LMODJ2Q4YA5AMOJLA",
       "replicationInstancePublicIpAddress": "54.168.80.234",
       "replicationInstancePrivateIpAddress": "10.0.143.29",
       "replicationInstancePublicIpAddresses": [
