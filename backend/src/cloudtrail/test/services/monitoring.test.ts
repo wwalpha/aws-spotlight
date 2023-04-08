@@ -1,9 +1,9 @@
 import AWS from 'aws-sdk';
-import { getHistory, getResource, sendMessage } from '@test/configs/utils';
+import { getHistory, getResource, scanResource, sendMessage } from '@test/configs/utils';
 import * as CreateEvents from '@test/datas/create';
 import * as DeleteEvents from '@test/datas/delete';
 import { cloudtrail } from '@src/index';
-import * as Monitoring from '@test/expect/monitoring';
+import * as EXPECTS from '@test/expect/monitoring';
 import * as fs from 'fs';
 
 AWS.config.update({
@@ -13,7 +13,7 @@ AWS.config.update({
   dynamodb: { endpoint: process.env.AWS_ENDPOINT },
 });
 
-describe.skip('monitoring.amazonaws.com', () => {
+describe('monitoring.amazonaws.com', () => {
   test('MONITORING_PutMetricAlarm', async () => {
     const event = await sendMessage(CreateEvents.MONITORING_PutMetricAlarm);
 
@@ -24,10 +24,10 @@ describe.skip('monitoring.amazonaws.com', () => {
     const history = await getHistory({ EventId: '41c4b80b-f16b-4d79-8ce3-e69900d4dd22' });
 
     expect(resource).not.toBeUndefined();
-    expect(resource).toEqual(Monitoring.PutMetricAlarm_R);
+    expect(resource).toEqual(EXPECTS.PutMetricAlarm_R);
 
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(Monitoring.PutMetricAlarm_H);
+    expect(history).toEqual(EXPECTS.PutMetricAlarm_H);
   });
 
   test('MONITORING_DeleteAlarms', async () => {
@@ -36,13 +36,15 @@ describe.skip('monitoring.amazonaws.com', () => {
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:cloudwatch:ap-northeast-1:999999999999:alarm:CloudWatch_Test08');
-
     const history = await getHistory({ EventId: '877eb4b7-a7d6-4eaf-9e59-9e22d8928f19' });
 
-    expect(resource).toBeUndefined();
+    // fs.writeFileSync('./test/expect/monitoring/MONITORING_DeleteAlarms_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('./test/expect/monitoring/MONITORING_DeleteAlarms_H.json', JSON.stringify(history));
 
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.MONITORING_DeleteAlarms_R);
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(Monitoring.DeleteAlarms_H);
+    expect(history).toEqual(EXPECTS.MONITORING_DeleteAlarms_H);
   });
 
   test('MONITORING_PutDashboard', async () => {
@@ -51,13 +53,13 @@ describe.skip('monitoring.amazonaws.com', () => {
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:cloudwatch::999999999999:dashboard/LambdaDashBoard');
-    const history = await getHistory({ EventId: '34c9f97c-c5d9-4b37-beae-8b757e8a2f16' });
+    const history = await getHistory({ EventId: CreateEvents.MONITORING_PutDashboard.eventID });
 
     expect(resource).not.toBeUndefined();
-    expect(resource).toEqual(Monitoring.PutDashboard_R);
+    expect(resource).toEqual(EXPECTS.PutDashboard_R);
 
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(Monitoring.PutDashboard_H);
+    expect(history).toEqual(EXPECTS.PutDashboard_H);
   });
 
   test('MONITORING_DeleteDashboards', async () => {
@@ -68,11 +70,12 @@ describe.skip('monitoring.amazonaws.com', () => {
     const resource = await getResource('arn:aws:cloudwatch::999999999999:dashboard/LambdaDashBoard');
     const history = await getHistory({ EventId: DeleteEvents.MONITORING_DeleteDashboards.eventID });
 
+    // fs.writeFileSync('./test/expect/monitoring/MONITORING_DeleteDashboards_R.json', JSON.stringify(resource));
     // fs.writeFileSync('./test/expect/monitoring/MONITORING_DeleteDashboards_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
-
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.MONITORING_DeleteDashboards_R);
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(Monitoring.MONITORING_DeleteDashboards_H);
+    expect(history).toEqual(EXPECTS.MONITORING_DeleteDashboards_H);
   });
 });

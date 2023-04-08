@@ -61,7 +61,6 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
       name = record.requestParameters.dashboardName;
       return [ResourceARNs.MONITORING_Dashboard(region, account, name), name];
     case 'MONITORING_PutMetricAlarm':
-      console.log(record.requestParameters.alarmName);
       name = record.requestParameters.alarmName;
       return [ResourceARNs.MONITORING_Alarm(region, account, name), name];
   }
