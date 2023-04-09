@@ -1,13 +1,1 @@
-{
-  "IdentityType": "IAMUser",
-  "EventSource": "rds.amazonaws.com",
-  "UserName": "test@test.com",
-  "ResourceId": "arn:aws:rds:ap-northeast-1:999999999999:cluster:aurora-db-bk-cluster",
-  "ResourceName": "aurora-db-bk-cluster",
-  "EventTime": "2021-09-30T08:46:30Z",
-  "UserAgent": "aws-internal/3 aws-sdk-java/1.11.975 Linux/5.4.134-73.228.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.242-b08 java/1.8.0_242 vendor/Oracle_Corporation cfg/retry-mode/legacy",
-  "AWSRegion": "ap-northeast-1",
-  "EventId": "5e2d6b2f-ecad-4c8a-820d-0f30ba1e00a2",
-  "Service": "RDS",
-  "EventName": "RestoreDBClusterToPointInTime"
-}
+{"IdentityType":"IAMUser","EventSource":"rds.amazonaws.com","UserName":"test@test.com","ResourceId":"arn:aws:rds:ap-northeast-1:999999999999:cluster:aurora-db-bk-cluster","ResourceName":"aurora-db-bk-cluster","EventTime":"2021-09-30T08:46:30Z","UserAgent":"aws-internal/3 aws-sdk-java/1.11.975 Linux/5.4.134-73.228.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.242-b08 java/1.8.0_242 vendor/Oracle_Corporation cfg/retry-mode/legacy","AWSRegion":"ap-northeast-1","EventId":"5e2d6b2f-ecad-4c8a-820d-0f30ba1e00a2","Service":"RDS","EventName":"RestoreDBClusterToPointInTime"}

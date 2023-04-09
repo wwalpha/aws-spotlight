@@ -126,6 +126,10 @@ RestoreDBClusterToPointInTime,rds.amazonaws.com,create
 DeleteDBCluster,rds.amazonaws.com,delete
 CreateDBInstance,rds.amazonaws.com,create
 DeleteDBInstance,rds.amazonaws.com,delete
+CreateOptionGroup,rds.amazonaws.com,create
+DeleteOptionGroup,rds.amazonaws.com,delete
+CreateDBSnapshot,rds.amazonaws.com,create
+DeleteDBSnapshot,rds.amazonaws.com,delete
 CreateDBProxy,rds.amazonaws.com,create
 DeleteDBProxy,rds.amazonaws.com,delete
 CreateDBClusterParameterGroup,rds.amazonaws.com,create

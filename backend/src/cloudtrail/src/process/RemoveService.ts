@@ -118,10 +118,12 @@ const getResourceArn = async (record: CloudTrail.Record) => {
       return ResourceARNs.RDS_DBParameterGroup(region, account, record.requestParameters.dBParameterGroupName);
     case 'RDS_DeleteDBProxy':
       return record.responseElements.dBProxy.dBProxyArn;
-    // case 'RDS_DeleteDBSnapshot':
-    //   return record.responseElements.dBSnapshotArn;
+    case 'RDS_DeleteDBSnapshot':
+      return record.responseElements.dBSnapshotArn;
     case 'RDS_DeleteDBSubnetGroup':
       return ResourceARNs.RDS_DBSubnetGroup(region, account, record.requestParameters.dBSubnetGroupName);
+    case 'RDS_DeleteOptionGroup':
+      return ResourceARNs.RDS_DBOptionGroup(region, account, record.requestParameters.optionGroupName);
 
     case 'S3_DeleteBucket':
       return ResourceARNs.S3_Bucket(region, account, record.requestParameters.bucketName);

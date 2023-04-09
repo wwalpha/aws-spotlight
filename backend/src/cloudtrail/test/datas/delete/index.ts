@@ -82,6 +82,7 @@ export { default as RDS_DeleteDBClusterParameterGroup } from './rds/RDS_DeleteDB
 export { default as RDS_DeleteDBParameterGroup } from './rds/RDS_DeleteDBParameterGroup.json';
 export { default as RDS_DeleteDBSnapshot } from './rds/RDS_DeleteDBSnapshot.json';
 export { default as RDS_DeleteDBSubnetGroup } from './rds/RDS_DeleteDBSubnetGroup.json';
+export { default as RDS_DeleteOptionGroup } from './rds/RDS_DeleteOptionGroup.json';
 
 export { default as REDSHIFT_DeleteCluster } from './redshift/REDSHIFT_DeleteCluster.json';
 export { default as ROUTE53_DeleteHostedZone } from './ROUTE53_DeleteHostedZone.json';

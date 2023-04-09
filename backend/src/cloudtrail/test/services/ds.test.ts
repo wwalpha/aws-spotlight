@@ -65,6 +65,24 @@ describe('ds.amazonaws.com', () => {
     expect(history).toEqual(EXPECTS.DS_ConnectDirectory_H);
   });
 
+  test.skip('DS_CreateDirectory', async () => {
+    const event = await sendMessage(CreateEvents.DS_CreateDirectory);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:clouddirectory:ap-northeast-1:999999999999:directory/d-95670380fd');
+    const history = await getHistory({ EventId: CreateEvents.DS_CreateDirectory.eventID });
+
+    fs.writeFileSync('./test/expect/ds/DS_CreateDirectory_R.json', JSON.stringify(resource));
+    fs.writeFileSync('./test/expect/ds/DS_CreateDirectory_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    // expect(resource).toEqual(EXPECTS.DS_CreateDirectory_R);
+
+    expect(history).not.toBeUndefined();
+    // expect(history).toEqual(EXPECTS.DS_CreateDirectory_H);
+  });
+
   test('DS_DeleteDirectory', async () => {
     const event = await sendMessage(DeleteEvents.DS_DeleteDirectory);
 

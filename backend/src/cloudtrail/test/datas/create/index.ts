@@ -23,6 +23,7 @@ export { default as COGNITOIDENTITY_CreateIdentityPool } from './cognito/COGNITO
 export { default as DS_CreateIdentityPoolDirectory } from './ds/DS_CreateIdentityPoolDirectory.json';
 export { default as DS_CreateMicrosoftAD } from './ds/DS_CreateMicrosoftAD.json';
 export { default as DS_ConnectDirectory } from './ds/DS_ConnectDirectory.json';
+export { default as DS_CreateDirectory } from './ds/DS_CreateDirectory.json';
 
 export { default as DYNAMODB_CreateTable } from './DYNAMODB_CreateTable.json';
 export { default as DMS_CreateReplicationInstance } from './DMS_CreateReplicationInstance.json';
@@ -93,6 +94,7 @@ export { default as RDS_CopyDBSnapshot } from './rds/RDS_CopyDBSnapshot.json';
 export { default as RDS_CreateDBSubnetGroup } from './rds/RDS_CreateDBSubnetGroup.json';
 export { default as RDS_CreateDBClusterSnapshot } from './rds/RDS_CreateDBClusterSnapshot.json';
 export { default as RDS_RestoreDBClusterToPointInTime } from './rds/RDS_RestoreDBClusterToPointInTime.json';
+export { default as RDS_CreateOptionGroup } from './rds/RDS_CreateOptionGroup.json';
 
 export { default as REDSHIFT_CreateCluster } from './REDSHIFT_CreateCluster.json';
 export { default as ROUTE53_CreateHostedZone } from './ROUTE53_CreateHostedZone.json';
