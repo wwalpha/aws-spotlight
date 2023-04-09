@@ -256,7 +256,7 @@ const getResourceArns = (record: CloudTrail.Record) => {
     case 'EC2_TerminateInstances':
       return (record.responseElements.instancesSet.items as any[])
         .map((item: { instanceId: string; currentState: { code: number }; previousState: { code: number } }) => {
-          if (item.currentState.code === 80 && item.previousState.code === 80) {
+          if (item.currentState.code === 48 && item.previousState.code === 48) {
             return;
           }
 
