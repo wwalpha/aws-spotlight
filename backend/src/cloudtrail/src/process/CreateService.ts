@@ -1,6 +1,7 @@
 import { defaultTo, capitalize } from 'lodash';
 import { ResourceARNs } from '@src/apps/utils/awsArns';
 import { CloudTrail, Tables } from 'typings';
+import { sendMail } from '@src/apps/utils/utilities';
 
 const MULTI_TASK = ['EC2_RunInstances'];
 
@@ -104,6 +105,10 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
       ];
 
     case 'DYNAMODB_CreateTable':
+      if (record.responseElements.tableDescription.tableId === 'a753ad71-8c4b-4258-a69b-6a27adacc559') {
+        sendMail('LOST RECORD', JSON.stringify(record));
+      }
+
       return [record.responseElements.tableDescription.tableArn, record.responseElements.tableDescription.tableName];
     case 'DS_CreateMicrosoftAD':
       return [
@@ -194,8 +199,10 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
         record.responseElements.publicIp,
       ];
     case 'EC2_CreateSecurityGroup':
-      name = record.responseElements.groupId;
-      return [ResourceARNs.EC2_SecurityGroup(region, account, name), name];
+      return [
+        ResourceARNs.EC2_SecurityGroup(region, account, record.responseElements.groupId),
+        record.requestParameters.groupName,
+      ];
 
     case 'ELASTICACHE_CreateCacheCluster':
       return [record.responseElements.aRN, record.responseElements.cacheClusterId];

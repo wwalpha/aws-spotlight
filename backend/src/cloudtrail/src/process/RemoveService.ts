@@ -1,9 +1,11 @@
+import { Consts } from '@src/apps/utils';
 import { ResourceARNs } from '@src/apps/utils/awsArns';
+import { ResourceService } from '@src/services';
 import { CloudTrail, Tables } from 'typings';
 
 const MULTI_TASK = ['EC2_TerminateInstances'];
 
-export const start = (record: CloudTrail.Record): Tables.TResourceKey[] | undefined => {
+export const start = async (record: CloudTrail.Record): Promise<Tables.TResourceKey[] | undefined> => {
   const key = `${record.eventSource.split('.')[0].toUpperCase()}_${record.eventName}`;
 
   if (MULTI_TASK.includes(key)) {
@@ -12,7 +14,7 @@ export const start = (record: CloudTrail.Record): Tables.TResourceKey[] | undefi
     }));
   }
 
-  const arn = getResourceArn(record);
+  const arn = await getResourceArn(record);
 
   if (!arn) return undefined;
 
@@ -23,7 +25,7 @@ export const start = (record: CloudTrail.Record): Tables.TResourceKey[] | undefi
   ];
 };
 
-const getResourceArn = (record: CloudTrail.Record) => {
+const getResourceArn = async (record: CloudTrail.Record) => {
   const region = record.awsRegion;
   const account = record.recipientAccountId;
   const key = `${record.eventSource.split('.')[0].toUpperCase()}_${record.eventName}`;
@@ -236,7 +238,20 @@ const getResourceArn = (record: CloudTrail.Record) => {
         ResourceARNs.EC2_Instances(region, account, item.instanceId)
       );
     case 'EC2_DeleteSecurityGroup':
-      return ResourceARNs.EC2_SecurityGroup(region, account, record.requestParameters.groupId);
+      const groupId = record.requestParameters.groupId;
+      const groupName = record.requestParameters.groupId;
+
+      // グループID 存在しない場合、リソース前から探す
+      if (!groupId) {
+        const resource = await ResourceService.getByName(Consts.EVENT_SOURCE.EC2, groupName, 'security-group');
+
+        // リソースあり
+        if (resource.length !== 0) {
+          return ResourceARNs.EC2_SecurityGroup(region, account, resource[0].ResourceId);
+        }
+      }
+
+      return ResourceARNs.EC2_SecurityGroup(region, account, groupId);
 
     case 'BACKUP_DeleteBackupPlan':
       return record.responseElements.backupPlanArn;
@@ -254,15 +269,10 @@ const getResourceArns = (record: CloudTrail.Record) => {
 
   switch (key) {
     case 'EC2_TerminateInstances':
-      return (record.responseElements.instancesSet.items as any[])
-        .map((item: { instanceId: string; currentState: { code: number }; previousState: { code: number } }) => {
-          if (item.currentState.code === 48 && item.previousState.code === 48) {
-            return;
-          }
-
-          return ResourceARNs.EC2_Instances(region, account, item.instanceId);
-        })
-        .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
+      return (record.responseElements.instancesSet.items as any[]).map(
+        (item: { instanceId: string; currentState: { code: number }; previousState: { code: number } }) =>
+          ResourceARNs.EC2_Instances(region, account, item.instanceId)
+      );
   }
 
   return [];

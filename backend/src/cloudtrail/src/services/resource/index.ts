@@ -32,3 +32,14 @@ export const update = async (item: Tables.TResource): Promise<void> => {
 export const remove = async (key: Tables.TResourceKey): Promise<void> => {
   await DynamodbHelper.delete(Queries.del(key));
 };
+
+/** 詳細取得 */
+export const getByName = async (eventSource: string, name: string, filter?: string): Promise<Tables.TResource[]> => {
+  const results = await DynamodbHelper.query<Tables.TResource>(Queries.queryByName(eventSource, name));
+
+  if (filter) {
+    return results.Items.filter((item) => item.ResourceId.indexOf(filter) !== -1);
+  }
+
+  return results.Items;
+};

@@ -152,7 +152,7 @@ export const ResourceARNs = {
     `arn:aws:ec2:${region}:${account}:security-group/${id}`,
 
   // ec2 snapshot
-  EC2_Snapshot: (region: string, account: string, id?: string) => `arn:aws:ec2:${region}::snapshot/${id}`,
+  EC2_Snapshot: (region: string, _: string, id?: string) => `arn:aws:ec2:${region}::snapshot/${id}`,
 
   // ec2 subnet
   EC2_Subnet: (region: string, account: string, id?: string) => `arn:aws:ec2:${region}:${account}:subnet/${id}`,

@@ -128,6 +128,11 @@ const processRecord = async (record: CloudTrail.Record) => {
     Logger.debug(item.Delete);
   });
 
+  // 処理データなし
+  if (transactItems.length === 0) {
+    return;
+  }
+
   // 一括登録
   await DynamodbHelper.transactWrite({
     TransactItems: transactItems,

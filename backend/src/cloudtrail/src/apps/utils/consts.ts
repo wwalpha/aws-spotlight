@@ -11,3 +11,7 @@ export const ResourceStatus = {
   CREATED: 'Created',
   DELETE: 'Deleted',
 };
+
+export const EVENT_SOURCE = {
+  EC2: 'ec2.amazonaws.com',
+};

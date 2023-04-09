@@ -109,22 +109,37 @@ export const getUpdateResourceItems = async (record: CloudTrail.Record): Promise
 };
 
 export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise<DynamoDB.TransactWriteItemList> => {
-  const items = RemoveService.start(record) ?? [];
+  const items = (await RemoveService.start(record)) ?? [];
   const rets: DynamoDB.TransactWriteItemList = [];
 
   // 対象データなし
   if (items.length === 0) return rets;
 
   const { TABLE_NAME_RESOURCES, TABLE_NAME_UNPROCESSED, TABLE_NAME_HISTORY } = Consts.Environments;
+  const key = `${record.eventSource.split('.')[0].toUpperCase()}_${record.eventName}`;
+
+  if (key === 'EC2_TerminateInstances') {
+    const dataRow = record.responseElements.instancesSet.items[0];
+
+    // 終了から終了のレコードは無視する
+    if (dataRow.currentState.code === 48 && dataRow.previousState.code === 48) {
+      rets.push(Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, Utilities.getRemoveUnprocessed(record)));
+    }
+
+    return rets;
+  }
 
   const tasks = items.map(async (item) => {
     const resource = await ResourceService.describe({
       ResourceId: item.ResourceId,
     });
 
+    // if (item.currentState.code === 48 && item.previousState.code === 48) {
+    //   return;
+    // }
     // リソース存在しない場合は
     if (!resource) {
-      // 履歴追加
+      // 未処理追加
       rets.push(Utilities.getPutRecord(TABLE_NAME_UNPROCESSED, Utilities.getUnprocessedItem(record, item.ResourceId)));
 
       return;

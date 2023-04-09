@@ -22,14 +22,17 @@ export const del = (key: Tables.TResourceKey): DeleteItemInput => ({
   },
 });
 
-// export const minusCount = (key: Tables.TGroupsKey, count: number): UpdateInput => ({
-//   TableName: Environment.TABLE_NAME_GROUPS,
-//   Key: key,
-//   UpdateExpression: 'set #count = #count - :nums',
-//   ExpressionAttributeNames: {
-//     '#count': 'count',
-//   },
-//   ExpressionAttributeValues: {
-//     ':nums': count,
-//   },
-// });
+export const queryByName = (eventSource: string, name: string): QueryInput => ({
+  TableName: Consts.Environments.TABLE_NAME_RESOURCES,
+  KeyConditionExpression: '#EventSource = :EventSource',
+  FilterExpression: '#ResourceName = :ResourceName',
+  ExpressionAttributeNames: {
+    '#EventSource': 'EventSource',
+    '#ResourceName': 'ResourceName',
+  },
+  ExpressionAttributeValues: {
+    ':EventSource': eventSource,
+    ':ResourceName': name,
+  },
+  IndexName: 'gsiIdx1',
+});
