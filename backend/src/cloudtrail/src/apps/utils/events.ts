@@ -124,9 +124,8 @@ export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise
     // 終了から終了のレコードは無視する
     if (dataRow.currentState.code === 48 && dataRow.previousState.code === 48) {
       rets.push(Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, Utilities.getRemoveUnprocessed(record)));
+      return rets;
     }
-
-    return rets;
   }
 
   const tasks = items.map(async (item) => {
