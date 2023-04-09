@@ -62,7 +62,7 @@ describe(EVENT_SOURCE, () => {
 
   test('Unnormal Process', async () => {
     const removeTable = DeleteEvents.DYNAMODB_DeleteTable;
-    removeTable.eventTime = '2021-04-10T11:46:29Z';
+    removeTable.requestParameters.tableName = 'AutoNotification_AlarmConfigs2';
 
     await sendMessageOnly([removeTable, CreateEvents.DYNAMODB_CreateTable]);
 

@@ -1,6 +1,6 @@
 import { CloudTrail, EVENT_UNPROCESSED, Tables } from 'typings';
 import { Events, Consts, DynamodbHelper } from './utils';
-import { Logger } from './utils/utilities';
+import { Logger, checkMultipleOperations } from './utils/utilities';
 import _, { omit } from 'lodash';
 
 /**
@@ -122,10 +122,11 @@ const processRecord = async (record: CloudTrail.Record) => {
   // 登録レコードを作成する
   const transactItems = [...createItems, ...updateItems, ...deleteItems];
 
+  checkMultipleOperations(transactItems);
+
   transactItems.forEach((item) => {
-    Logger.debug(omit(item.Put, 'Item.Origin'));
-    Logger.debug(omit(item.Update, 'Item.Origin'));
-    Logger.debug(item.Delete);
+    Logger.debug(JSON.stringify(item.Put));
+    Logger.debug(JSON.stringify(item.Delete));
   });
 
   // 処理データなし

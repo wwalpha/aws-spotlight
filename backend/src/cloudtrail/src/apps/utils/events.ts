@@ -29,7 +29,7 @@ export const getCreateResourceItems = async (record: CloudTrail.Record): Promise
   const dataRows = results.filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
   // 既存データ存在しない、存在データ件数不一致
-  if (dataRows.length === 0 || items.length !== dataRows.length) {
+  if (dataRows.length === 0) {
     // リソース追加
     items.map((item) => rets.push(Utilities.getPutRecord(TABLE_NAME_RESOURCES, item)));
 
@@ -37,6 +37,16 @@ export const getCreateResourceItems = async (record: CloudTrail.Record): Promise
     rets.push(Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, Utilities.getRemoveUnprocessed(record)));
     // 履歴追加
     rets.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
+
+    return rets;
+  }
+
+  // 存在データ件数不一致、処理しない
+  if (items.length !== dataRows.length) {
+    // リソース
+    const resourceIds = items.map((item) => item.ResourceId);
+    // 未処理削除
+    rets.push(Utilities.getPutRecord(TABLE_NAME_UNPROCESSED, Utilities.getUnprocessedItem(record, resourceIds)));
 
     return rets;
   }
@@ -135,22 +145,26 @@ export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise
 
     // リソース存在しない場合は
     if (!resource) {
-      // 未処理追加
-      rets.push(Utilities.getPutRecord(TABLE_NAME_UNPROCESSED, Utilities.getUnprocessedItem(record, item.ResourceId)));
-
       return;
     }
 
     // リソース存在する場合は
-    // リソース削除
-    rets.push(Utilities.getDeleteRecord(TABLE_NAME_RESOURCES, item));
+    // リソース存在する場合は、リソース削除
+    return Utilities.getDeleteRecord(TABLE_NAME_RESOURCES, item);
   });
 
   // 検知処理を実行する
-  await Promise.all(tasks);
+  const dataRows = (await Promise.all(tasks)).filter(
+    (item): item is Exclude<typeof item, undefined> => item !== undefined
+  );
 
-  // 削除対象が存在する場合、履歴などを追加する
-  if (rets.length !== 0) {
+  // リソースが存在しない場合
+  if (dataRows.length === 0 || dataRows.length !== items.length) {
+    // リソース
+    const resourceIds = items.map((item) => item.ResourceId);
+    // 未処理追加
+    rets.push(Utilities.getPutRecord(TABLE_NAME_UNPROCESSED, Utilities.getUnprocessedItem(record, resourceIds)));
+  } else {
     // 履歴追加
     rets.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
     // 未処理削除

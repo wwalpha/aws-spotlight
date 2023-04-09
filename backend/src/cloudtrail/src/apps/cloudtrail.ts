@@ -4,7 +4,7 @@ import { omit, orderBy } from 'lodash';
 import zlib from 'zlib';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
 import { Utilities, Consts, Events, DynamodbHelper, AddTags, Logger } from './utils';
-import { sendMail } from './utils/utilities';
+import { checkMultipleOperations, sendMail } from './utils/utilities';
 
 const s3Client = new S3();
 const NOTIFIED: EVENT_TYPE = {};
@@ -139,10 +139,11 @@ const processUpdate = async (record: CloudTrail.Record) => {
   // 登録レコードを作成する
   const transactItems = [...createItems, ...updateItems, ...deleteItems];
 
+  checkMultipleOperations(transactItems);
+
   transactItems.forEach((item) => {
-    Logger.debug(omit(item.Put, 'Item.Origin'));
-    Logger.debug(omit(item.Update, 'Item.Origin'));
-    Logger.debug(item.Delete);
+    Logger.debug(JSON.stringify(item.Put));
+    Logger.debug(JSON.stringify(item.Delete));
   });
 
   // 処理データなし

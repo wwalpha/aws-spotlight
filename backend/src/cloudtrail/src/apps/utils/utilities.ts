@@ -1,6 +1,6 @@
 import { SQSRecord } from 'aws-lambda';
 import { DynamoDB, SNS, SQS } from 'aws-sdk';
-import { defaultTo } from 'lodash';
+import { defaultTo, omit } from 'lodash';
 import winston from 'winston';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
 import { Consts } from '.';
@@ -33,7 +33,7 @@ export const getHistoryItem = (record: CloudTrail.Record): Tables.History => ({
   Origin: JSON.stringify(record),
 });
 
-export const getUnprocessedItem = (record: CloudTrail.Record, arn: string): Tables.TUnprocessed => ({
+export const getUnprocessedItem = (record: CloudTrail.Record, arn: string | string[]): Tables.TUnprocessed => ({
   EventName: record.eventName,
   EventSource: record.eventSource,
   EventTime: `${record.eventTime}_${record.eventID.substring(0, 8)}`,
@@ -145,4 +145,17 @@ export const sendMail = async (subject: string, message: string) => {
   } catch (err) {
     Logger.error(err);
   }
+};
+
+export const checkMultipleOperations = (items: DynamoDB.TransactWriteItem[]) => {
+  console.log('checkMultipleOperations', items.length);
+
+  items.forEach((item) => {
+    if (item.Put) {
+      console.log(item.Put.TableName, omit(item.Put.Item, ['Raw', 'Origin']));
+    }
+    if (item.Delete) {
+      console.log(item.Delete.TableName, item.Delete.Key);
+    }
+  });
 };

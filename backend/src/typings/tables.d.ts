@@ -112,7 +112,7 @@ export namespace Tables {
   interface TUnprocessed extends TUnprocessedKey {
     EventSource: string;
     EventId: string;
-    ResourceId: string;
+    ResourceId: string | string[];
     Raw: string;
   }
 
