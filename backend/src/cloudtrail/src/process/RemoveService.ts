@@ -253,9 +253,15 @@ const getResourceArns = (record: CloudTrail.Record) => {
 
   switch (key) {
     case 'EC2_TerminateInstances':
-      return (record.responseElements.instancesSet.items as any[]).map((item: { instanceId: any }) =>
-        ResourceARNs.EC2_Instances(region, account, item.instanceId)
-      );
+      return (record.responseElements.instancesSet.items as any[])
+        .map((item: { instanceId: string; currentState: { code: number }; previousState: { code: number } }) => {
+          if (item.currentState.code === 80 && item.previousState.code === 80) {
+            return;
+          }
+
+          return ResourceARNs.EC2_Instances(region, account, item.instanceId);
+        })
+        .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
   }
 
   return [];
