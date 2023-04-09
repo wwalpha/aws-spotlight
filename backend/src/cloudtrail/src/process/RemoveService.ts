@@ -239,15 +239,16 @@ const getResourceArn = async (record: CloudTrail.Record) => {
       );
     case 'EC2_DeleteSecurityGroup':
       const groupId = record.requestParameters.groupId;
-      const groupName = record.requestParameters.groupId;
+      const groupName = record.requestParameters.groupName;
 
       // グループID 存在しない場合、リソース前から探す
       if (!groupId) {
         const resource = await ResourceService.getByName(Consts.EVENT_SOURCE.EC2, groupName, 'security-group');
 
+        console.log(resource);
         // リソースあり
         if (resource.length !== 0) {
-          return ResourceARNs.EC2_SecurityGroup(region, account, resource[0].ResourceId);
+          return resource[0].ResourceId;
         }
       }
 

@@ -29,7 +29,7 @@
   "sourceIPAddress": "35.75.17.11",
   "userAgent": "APN/1.0 HashiCorp/1.0 Terraform/1.3.5 (+https://www.terraform.io) terraform-provider-aws/4.50.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.44.177 (go1.19.3; linux; amd64)",
   "requestParameters": {
-    "groupId": "sg-07111150655b49758"
+    "groupName": "bluegreen_alb_sg-20230117040516059800000001"
   },
   "responseElements": {
     "requestId": "d6b1ece2-09d2-44a3-ba51-fabdf29c8810",
