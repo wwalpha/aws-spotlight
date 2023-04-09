@@ -20,3 +20,6 @@ export { default as RDS_DeleteDBParameterGroup_H } from './RDS_DeleteDBParameter
 export { default as RDS_CreateDBSubnetGroup_H } from './RDS_CreateDBSubnetGroup_H.json';
 export { default as RDS_CreateDBSubnetGroup_R } from './RDS_CreateDBSubnetGroup_R.json';
 export { default as RDS_DeleteDBSubnetGroup_H } from './RDS_DeleteDBSubnetGroup_H.json';
+
+export { default as RDS_RestoreDBClusterToPointInTime_H } from './RDS_RestoreDBClusterToPointInTime_H.json';
+export { default as RDS_RestoreDBClusterToPointInTime_R } from './RDS_RestoreDBClusterToPointInTime_R.json';

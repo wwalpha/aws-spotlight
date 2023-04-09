@@ -11,8 +11,9 @@
     "build:c": "docker build -f Dockerfile.CloudTrail -t arms-cloudtrail .",
     "build:u": "docker build -f Dockerfile.Unprocessed -t arms-unprocessed .",
     "test": "jest --forceExit --passWithNoTests",
-    "test:local": "jest test/services/unprocessed.test.ts --forceExit --passWithNoTests",
+    "test:local": "jest test/services/rds.test.ts --forceExit --passWithNoTests",
     "debug": "ts-node -r tsconfig-paths/register -r dotenv/config test/debug.ts",
+    "truncate": "ts-node -r tsconfig-paths/register -r dotenv/config test/truncate.ts",
     "resource": "ts-node -r tsconfig-paths/register -r dotenv/config test/configs/resource.ts",
     "prep": "ts-node -r tsconfig-paths/register -r dotenv/config test/configs/prepare.ts",
     "release": "ts-node -r dotenv/config test/release.ts"

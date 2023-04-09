@@ -145,7 +145,6 @@ RemoveTargets,events.amazonaws.com,true
 UpdateRestApi,apigateway.amazonaws.com,true
 AddPermission20150331v2,lambda.amazonaws.com,true
 AuthorizeClientVpnIngress,ec2.amazonaws.com,true
-ExportTableToPointInTime,dynamodb.amazonaws.com,true
 ListExports,dynamodb.amazonaws.com,true
 ResetUserPassword,ds.amazonaws.com,true
 TestMetricFilter,logs.amazonaws.com,true
@@ -394,7 +393,6 @@ RegisterWorkspaceDirectory,workspaces.amazonaws.com,true
 UpdateBackupPlan,backup.amazonaws.com,true
 RestoreStarted,backup.amazonaws.com,true
 DeleteKey,kms.amazonaws.com,true
-ConnectDirectory,ds.amazonaws.com,true
 UpdateRoute,apigateway.amazonaws.com,true
 ModifyImageAttribute,ec2.amazonaws.com,true
 UpdateAssociation,ssm.amazonaws.com,true

@@ -43,6 +43,24 @@ describe('rds.amazonaws.com', () => {
     expect(history).toEqual(EXPECTS.DeleteDBCluster_H);
   });
 
+  test('RDS_RestoreDBClusterToPointInTime', async () => {
+    const event = await sendMessage(CreateEvents.RDS_RestoreDBClusterToPointInTime);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:rds:ap-northeast-1:334678299258:cluster:aurora-db-bk-cluster');
+    const history = await getHistory({ EventId: CreateEvents.RDS_RestoreDBClusterToPointInTime.eventID });
+
+    // fs.writeFileSync('./test/expect/rds/RDS_RestoreDBClusterToPointInTime_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('./test/expect/rds/RDS_RestoreDBClusterToPointInTime_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.RDS_RestoreDBClusterToPointInTime_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EXPECTS.RDS_RestoreDBClusterToPointInTime_H);
+  });
+
   test('CreateDBInstance', async () => {
     const event = await sendMessage(CreateEvents.RDS_CreateDBInstance);
 

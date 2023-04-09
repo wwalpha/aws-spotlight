@@ -280,6 +280,8 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
       return [record.responseElements.dBSubnetGroupArn, record.responseElements.dBSubnetGroupName];
     case 'RDS_CreateDBClusterSnapshot':
       return [record.responseElements.dBClusterSnapshotArn, record.responseElements.dBClusterSnapshotIdentifier];
+    case 'RDS_RestoreDBClusterToPointInTime':
+      return [record.responseElements.dBClusterArn, record.responseElements.dBClusterIdentifier];
 
     // case 'SERVICEDISCOVERY_CreatePrivateDnsNamespace':
     //   name = record.requestParameters.name;
