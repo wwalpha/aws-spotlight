@@ -2,7 +2,7 @@ import AWS from 'aws-sdk';
 import { getHistory, getResource, sendMessage } from '@test/configs/utils';
 import * as CreateEvents from '@test/datas/create';
 import * as DeleteEvents from '@test/datas/delete';
-import * as DS from '@test/expect/ds';
+import * as EXPECTS from '@test/expect/ds';
 import { cloudtrail } from '@src/index';
 import * as fs from 'fs';
 
@@ -23,10 +23,46 @@ describe('ds.amazonaws.com', () => {
     const history = await getHistory({ EventId: '1b73543a-da8b-4900-a27e-620a094085f4' });
 
     expect(resource).not.toBeUndefined();
-    expect(resource).toEqual(DS.CreateMicrosoftAD_R);
+    expect(resource).toEqual(EXPECTS.CreateMicrosoftAD_R);
 
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(DS.CreateMicrosoftAD_H);
+    expect(history).toEqual(EXPECTS.CreateMicrosoftAD_H);
+  });
+
+  test('DS_CreateIdentityPoolDirectory', async () => {
+    const event = await sendMessage(CreateEvents.DS_CreateIdentityPoolDirectory);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:clouddirectory:ap-northeast-1:999999999999:directory/d-9567013a10');
+    const history = await getHistory({ EventId: CreateEvents.DS_CreateIdentityPoolDirectory.eventID });
+
+    // fs.writeFileSync('./test/expect/ds/DS_CreateIdentityPoolDirectory_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('./test/expect/ds/DS_CreateIdentityPoolDirectory_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.DS_CreateIdentityPoolDirectory_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EXPECTS.DS_CreateIdentityPoolDirectory_H);
+  });
+
+  test('DS_ConnectDirectory', async () => {
+    const event = await sendMessage(CreateEvents.DS_ConnectDirectory);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:clouddirectory:ap-northeast-1:999999999999:directory/d-9567038be0');
+    const history = await getHistory({ EventId: CreateEvents.DS_ConnectDirectory.eventID });
+
+    // fs.writeFileSync('./test/expect/ds/DS_ConnectDirectory_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('./test/expect/ds/DS_ConnectDirectory_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.DS_ConnectDirectory_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EXPECTS.DS_ConnectDirectory_H);
   });
 
   test('DS_DeleteDirectory', async () => {
@@ -40,6 +76,6 @@ describe('ds.amazonaws.com', () => {
     expect(resource).toBeUndefined();
 
     expect(history).not.toBeUndefined();
-    expect(history).toEqual(DS.DeleteDirectory_H);
+    expect(history).toEqual(EXPECTS.DeleteDirectory_H);
   });
 });

@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDAU33DBSJ5DNPIUVEYF",
-    "arn": "arn:aws:iam::999999999999:user/lin.ma@dxc.com",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
     "accountId": "999999999999",
     "accessKeyId": "ASIAU33DBSJ5LAM34GFQ",
-    "userName": "lin.ma@dxc.com",
+    "userName": "test@test.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
@@ -54,7 +54,7 @@
     "tagList": [
       {
         "key": "Owner",
-        "value": "lin.ma@dxc.com"
+        "value": "test@test.com"
       }
     ]
   },

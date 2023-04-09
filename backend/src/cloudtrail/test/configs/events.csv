@@ -34,6 +34,8 @@ DeleteStack,cloudformation.amazonaws.com,delete
 CreateTable,dynamodb.amazonaws.com,create
 DeleteTable,dynamodb.amazonaws.com,delete
 CreateMicrosoftAD,ds.amazonaws.com,create
+CreateIdentityPoolDirectory,ds.amazonaws.com,create
+ConnectDirectory,ds.amazonaws.com,create
 DeleteDirectory,ds.amazonaws.com,delete
 CreateCluster,ecs.amazonaws.com,create
 DeleteCluster,ecs.amazonaws.com,delete

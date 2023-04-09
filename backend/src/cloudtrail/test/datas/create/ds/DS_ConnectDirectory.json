@@ -1,0 +1,53 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5MDJEVKHR",
+    "userName": "test@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2021-10-11T23:43:05Z",
+        "mfaAuthenticated": "true"
+      }
+    }
+  },
+  "eventTime": "2021-10-12T00:20:43Z",
+  "eventSource": "ds.amazonaws.com",
+  "eventName": "ConnectDirectory",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.12.68 Linux/4.9.273-0.1.ac.226.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.302-b08 java/1.8.0_302 vendor/Oracle_Corporation cfg/retry-mode/standard",
+  "requestParameters": {
+    "name": "ap.onecloudemo.com",
+    "shortName": "ap",
+    "password": "HIDDEN_DUE_TO_SECURITY_REASONS",
+    "type": "Small",
+    "connectSettings": {
+      "vpcId": "vpc-08f77b07c34029b7a",
+      "subnetIds": [
+        "subnet-003cfdcdbaf257d95",
+        "subnet-0221940ce594a9f84"
+      ],
+      "customerDnsIps": [
+        "10.0.23.236"
+      ],
+      "customerUserName": "APServiceAccount",
+      "autoCredentialRotationEnabled": false
+    }
+  },
+  "responseElements": {
+    "directoryId": "d-9567038be0"
+  },
+  "requestID": "b4f6f562-e313-49fa-b42f-58e8dc4d6ebb",
+  "eventID": "1805bfe8-e1d2-464f-b95b-2b7edf01222d",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management"
+}

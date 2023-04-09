@@ -20,7 +20,10 @@ export { default as CLOUDFORMATION_CreateStack } from './CLOUDFORMATION_CreateSt
 export { default as COGNITOIDP_CreateUserPool } from './cognito/COGNITO-IDP_CreateUserPool.json';
 export { default as COGNITOIDENTITY_CreateIdentityPool } from './cognito/COGNITO-IDENTITY_CreateIdentityPool.json';
 
-export { default as DS_CreateMicrosoftAD } from './DS_CreateMicrosoftAD.json';
+export { default as DS_CreateIdentityPoolDirectory } from './ds/DS_CreateIdentityPoolDirectory.json';
+export { default as DS_CreateMicrosoftAD } from './ds/DS_CreateMicrosoftAD.json';
+export { default as DS_ConnectDirectory } from './ds/DS_ConnectDirectory.json';
+
 export { default as DYNAMODB_CreateTable } from './DYNAMODB_CreateTable.json';
 export { default as DMS_CreateReplicationInstance } from './DMS_CreateReplicationInstance.json';
 

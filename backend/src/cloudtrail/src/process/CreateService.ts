@@ -111,6 +111,8 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
 
       return [record.responseElements.tableDescription.tableArn, record.responseElements.tableDescription.tableName];
     case 'DS_CreateMicrosoftAD':
+    case 'DS_CreateIdentityPoolDirectory':
+    case 'DS_ConnectDirectory':
       return [
         ResourceARNs.DS_Directory(region, account, record.responseElements.directoryId),
         record.requestParameters.name,
