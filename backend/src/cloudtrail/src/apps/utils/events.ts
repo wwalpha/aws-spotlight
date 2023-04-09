@@ -144,14 +144,18 @@ export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise
     // リソース存在する場合は
     // リソース削除
     rets.push(Utilities.getDeleteRecord(TABLE_NAME_RESOURCES, item));
-    // 履歴追加
-    rets.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
-    // 未処理削除
-    rets.push(Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, Utilities.getRemoveUnprocessed(record)));
   });
 
   // 検知処理を実行する
   await Promise.all(tasks);
+
+  // 削除対象が存在する場合、履歴などを追加する
+  if (rets.length !== 0) {
+    // 履歴追加
+    rets.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
+    // 未処理削除
+    rets.push(Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, Utilities.getRemoveUnprocessed(record)));
+  }
 
   return rets;
 };
