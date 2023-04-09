@@ -90,6 +90,7 @@ const getResourceArn = (record: CloudTrail.Record) => {
     case 'LOGS_DeleteLogGroup':
       return ResourceARNs.LOGS_LogGroup(region, account, record.requestParameters.logGroupName);
     case 'LEX_DeleteBot':
+      if (!record.requestParameters.name) return undefined;
       return ResourceARNs.LEX_Bot(region, account, record.requestParameters.name);
     case 'LAMBDA_DeleteFunction20150331':
       return ResourceARNs.LAMBDA_Function20150331(region, account, record.requestParameters.functionName);
