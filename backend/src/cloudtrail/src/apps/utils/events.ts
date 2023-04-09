@@ -133,9 +133,6 @@ export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise
       ResourceId: item.ResourceId,
     });
 
-    // if (item.currentState.code === 48 && item.previousState.code === 48) {
-    //   return;
-    // }
     // リソース存在しない場合は
     if (!resource) {
       // 未処理追加

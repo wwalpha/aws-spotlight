@@ -111,14 +111,7 @@ const processNewEventType = async (record: CloudTrail.Record) => {
   );
 
   // add unprocess record
-  transactItems.push(
-    Utilities.getPutRecord(TABLE_NAME_UNPROCESSED, {
-      EventName: record.eventName,
-      EventTime: `${record.eventTime}_${record.eventID.substring(0, 8)}`,
-      Raw: JSON.stringify(record),
-      EventSource: record.eventSource,
-    } as Tables.TUnprocessed)
-  );
+  transactItems.push(Utilities.getPutRecord(TABLE_NAME_UNPROCESSED, Utilities.getUnprocessedItem(record, 'NEW')));
 
   // process transaction
   await DynamodbHelper.transactWrite({

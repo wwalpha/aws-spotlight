@@ -37,6 +37,7 @@ export const getUnprocessedItem = (record: CloudTrail.Record, arn: string): Tabl
   EventName: record.eventName,
   EventSource: record.eventSource,
   EventTime: `${record.eventTime}_${record.eventID.substring(0, 8)}`,
+  EventId: record.eventID,
   Raw: JSON.stringify(record),
   ResourceId: arn,
 });
