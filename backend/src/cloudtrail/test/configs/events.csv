@@ -33,6 +33,7 @@ CreateStack,cloudformation.amazonaws.com,create
 DeleteStack,cloudformation.amazonaws.com,delete
 CreateTable,dynamodb.amazonaws.com,create
 DeleteTable,dynamodb.amazonaws.com,delete
+CreateDirectory,ds.amazonaws.com,create
 CreateMicrosoftAD,ds.amazonaws.com,create
 CreateIdentityPoolDirectory,ds.amazonaws.com,create
 ConnectDirectory,ds.amazonaws.com,create
@@ -45,6 +46,7 @@ CreateImage,ec2.amazonaws.com,create
 DeregisterImage,ec2.amazonaws.com,delete
 CreateSnapshot,ec2.amazonaws.com,create
 CreateSnapshots,ec2.amazonaws.com,create
+RestoreSnapshotFromRecycleBin,ec2.amazonaws.com,create
 DeleteSnapshot,ec2.amazonaws.com,delete
 CreateNatGateway,ec2.amazonaws.com,create
 DeleteNatGateway,ec2.amazonaws.com,delete

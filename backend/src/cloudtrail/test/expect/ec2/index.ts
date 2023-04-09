@@ -74,3 +74,6 @@ export { default as EC2_DeleteNetworkInsightsPath_H } from './EC2_DeleteNetworkI
 export { default as EC2_CreateLaunchTemplate_H } from './EC2_CreateLaunchTemplate_H.json';
 export { default as EC2_CreateLaunchTemplate_R } from './EC2_CreateLaunchTemplate_R.json';
 export { default as EC2_DeleteLaunchTemplate_H } from './EC2_DeleteLaunchTemplate_H.json';
+
+export { default as EC2_RestoreSnapshotFromRecycleBin_H } from './EC2_RestoreSnapshotFromRecycleBin_H.json';
+export { default as EC2_RestoreSnapshotFromRecycleBin_R } from './EC2_RestoreSnapshotFromRecycleBin_R.json';

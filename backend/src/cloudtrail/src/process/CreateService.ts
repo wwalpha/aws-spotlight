@@ -168,6 +168,9 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
     case 'EC2_CreateSnapshots':
       name = record.responseElements.CreateSnapshotsResponse.snapshotSet.item.snapshotId;
       return [ResourceARNs.EC2_Snapshot(region, account, name), name];
+    case 'EC2_RestoreSnapshotFromRecycleBin':
+      name = record.responseElements.RestoreSnapshotFromRecycleBinResponse.snapshotId;
+      return [ResourceARNs.EC2_Snapshot(region, account, name), name];
     case 'EC2_CreateSubnet':
       name = record.responseElements.subnet.subnetId;
       return [ResourceARNs.EC2_Subnet(region, account, name), name];

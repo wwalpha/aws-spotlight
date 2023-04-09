@@ -102,6 +102,24 @@ describe('ec2.amazonaws.com', () => {
     expect(history).toEqual(EC2.CreateSnapshots_H);
   });
 
+  test('EC2_RestoreSnapshotFromRecycleBin', async () => {
+    const event = await sendMessage(CreateEvents.EC2_RestoreSnapshotFromRecycleBin);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:ec2:ap-northeast-1::snapshot/snap-0a15b34fdb9d3c87b');
+    const history = await getHistory({ EventId: CreateEvents.EC2_RestoreSnapshotFromRecycleBin.eventID });
+
+    // fs.writeFileSync('./test/expect/ec2/EC2_RestoreSnapshotFromRecycleBin_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('./test/expect/ec2/EC2_RestoreSnapshotFromRecycleBin_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.EC2_RestoreSnapshotFromRecycleBin_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.EC2_RestoreSnapshotFromRecycleBin_H);
+  });
+
   test('EC2_DeleteSnapshot', async () => {
     const event = await sendMessage(DeleteEvents.EC2_DeleteSnapshot);
 

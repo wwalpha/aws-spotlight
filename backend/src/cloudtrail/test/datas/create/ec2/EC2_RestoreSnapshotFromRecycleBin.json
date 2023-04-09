@@ -1,0 +1,52 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::334678299258:user/ktou@dxc.com",
+    "accountId": "334678299258",
+    "accessKeyId": "ASIAU33DBSJ5J2VFT6HO",
+    "userName": "ktou@dxc.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2021-12-01T00:28:04Z",
+        "mfaAuthenticated": "true"
+      }
+    }
+  },
+  "eventTime": "2021-12-01T00:39:16Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "RestoreSnapshotFromRecycleBin",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
+  "requestParameters": {
+    "RestoreSnapshotFromRecycleBinRequest": {
+      "SnapshotId": "snap-0a15b34fdb9d3c87b"
+    }
+  },
+  "responseElements": {
+    "RestoreSnapshotFromRecycleBinResponse": {
+      "xmlns": "http://ec2.amazonaws.com/doc/2016-11-15/",
+      "snapshotId": "snap-0a15b34fdb9d3c87b",
+      "encrypted": true,
+      "requestId": "051c33ee-d463-4fbf-86e9-eba4cae88b68",
+      "volumeId": "vol-0eba4c80091559e03",
+      "progress": "100%",
+      "description": "",
+      "startTime": "2021-12-01T00:36:24.429Z",
+      "ownerId": 334678299258,
+      "volumeSize": 100,
+      "status": "recovering"
+    }
+  },
+  "requestID": "051c33ee-d463-4fbf-86e9-eba4cae88b68",
+  "eventID": "4bc67b3a-662e-464f-bbe3-4862ec56caa6",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "334678299258",
+  "eventCategory": "Management"
+}
