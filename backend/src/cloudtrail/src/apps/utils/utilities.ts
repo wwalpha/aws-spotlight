@@ -33,6 +33,11 @@ export const getHistoryItem = (record: CloudTrail.Record): Tables.History => ({
   Origin: JSON.stringify(record),
 });
 
+export const getRemoveUnprocessed = (record: CloudTrail.Record): Tables.TUnprocessedKey => ({
+  EventName: record.eventName,
+  EventTime: `${record.eventTime}_${record.eventID.substring(0, 8)}`,
+});
+
 export const getPutRecord = (tableName: string, item: any): DynamoDB.DocumentClient.TransactWriteItem => ({
   Put: {
     TableName: tableName,

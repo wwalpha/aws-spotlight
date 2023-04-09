@@ -136,39 +136,17 @@ const processNewEventType = async (record: CloudTrail.Record) => {
 };
 
 const processUpdate = async (record: CloudTrail.Record) => {
-  const { TABLE_NAME_RESOURCES, TABLE_NAME_HISTORY } = Consts.Environments;
-
+  // Resource ARN 情報を取得する
   const [createItems, updateItems, deleteItems] = await Promise.all([
-    Events.getCreateResourceItem(record),
-    Events.getUpdateResourceItem(record),
+    Events.getCreateResourceItems(record),
+    Events.getUpdateResourceItems(record),
     Events.getRemoveResourceItems(record),
   ]);
 
-  const transactItems: DynamoDB.DocumentClient.TransactWriteItemList = [];
+  console.log(record.eventName, createItems, updateItems, deleteItems);
 
-  // 新規リソース
-  createItems.forEach((item) => Logger.info(`CREATE: ${item.ResourceId}`));
-  updateItems.forEach((item) => Logger.info(`UPDATE: ${item.ResourceId}`));
-  deleteItems.forEach((item) => Logger.info(`DELETE: ${item.ResourceId}`));
-
-  // リソース新規作成
-  createItems
-    .map((item) => Utilities.getPutRecord(TABLE_NAME_RESOURCES, item))
-    .forEach((item) => transactItems.push(item));
-  // リソース更新
-  updateItems
-    .map((item) => Utilities.getPutRecord(TABLE_NAME_RESOURCES, item))
-    .forEach((item) => transactItems.push(item));
-  // リソース削除
-  deleteItems
-    .map((item) => Utilities.getDeleteRecord(TABLE_NAME_RESOURCES, item))
-    .forEach((item) => transactItems.push(item));
-
-  // 実行する対象データがない
-  if (transactItems.length === 0) return;
-
-  // add history record
-  transactItems.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
+  // 登録レコードを作成する
+  const transactItems = [...createItems, ...updateItems, ...deleteItems];
 
   await DynamodbHelper.transactWrite({
     TransactItems: transactItems,

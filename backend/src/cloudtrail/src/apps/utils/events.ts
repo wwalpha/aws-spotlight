@@ -1,63 +1,68 @@
+import { DynamoDB } from 'aws-sdk';
+import { ResourceService } from '@src/services';
 import * as RemoveService from '@src/process/RemoveService';
 import * as CreateService from '@src/process/CreateService';
 import * as UpdateService from '@src/process/UpdateService';
 import { CloudTrail, Tables } from 'typings';
-import { ResourceService, UnprocessedService } from '@src/services';
+import { Consts, Utilities } from '.';
 import _ from 'lodash';
-import { Logger } from './utilities';
-import { Consts } from '.';
 
-export const getCreateResourceItem = async (record: CloudTrail.Record): Promise<Tables.TResource[]> => {
-  const records = CreateService.start(record);
+export const getCreateResourceItems = async (record: CloudTrail.Record): Promise<DynamoDB.TransactWriteItemList> => {
+  const items = CreateService.start(record) ?? [];
+  const rets: DynamoDB.TransactWriteItemList = [];
 
-  if (!records) return [];
+  // 対象データなし
+  if (items.length === 0) return rets;
 
-  const checkExistTasks = records.map((item) =>
-    ResourceService.describe({
-      ResourceId: item.ResourceId,
-    })
+  const { TABLE_NAME_RESOURCES, TABLE_NAME_UNPROCESSED, TABLE_NAME_HISTORY } = Consts.Environments;
+
+  // 既存データ検索
+  const results = await Promise.all(
+    items.map((item) =>
+      ResourceService.describe({
+        ResourceId: item.ResourceId,
+      })
+    )
   );
 
-  const results = await Promise.all(checkExistTasks);
-
-  // すでに存在しているの場合は、エラー通知
+  // すでに存在している場合は、未処理から削除する
   const dataRows = results.filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
-  if (dataRows.length !== 0) {
-    // await sendMail('Resource Exist', `${record.eventSource}\n${record.eventName}\n${dataRows[0].ResourceId}`);
+  // 既存データ存在しない、存在データ件数不一致
+  if (dataRows.length === 0 || items.length !== dataRows.length) {
+    // リソース追加
+    items.map((item) => rets.push(Utilities.getPutRecord(TABLE_NAME_RESOURCES, item)));
 
-    const registTasks = dataRows.map(async (item) => {
-      // すでに登録されたIDは無視する
-      if (item.EventId === record.eventID) {
-        return;
-      }
+    // 未処理削除
+    rets.push(Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, Utilities.getRemoveUnprocessed(record)));
+    // 履歴追加
+    rets.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
 
-      UnprocessedService.regist({
-        EventName: item.EventName,
-        EventTime: `${item.EventTime}_${item.EventId.substring(0, 8)}`,
-        EventSource: item.EventSource,
-        ResourceId: item.ResourceId,
-        Raw: JSON.stringify(record),
-      });
-    });
-
-    await Promise.all(registTasks);
-
-    // 処理しない
-    return [];
+    return rets;
   }
 
-  return records;
+  // 既存データ存在する場合
+  const sameResource = dataRows.filter((item) => item.EventId === record.eventID);
+
+  // 同じイベントの場合、未処理データを削除する
+  if (sameResource.length !== 0) {
+    // 未処理削除
+    rets.push(Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, Utilities.getRemoveUnprocessed(record)));
+  }
+
+  return rets;
 };
 
-export const getUpdateResourceItem = async (record: CloudTrail.Record): Promise<Tables.TResource[]> => {
-  // リソース情報を揃える
-  const resource = UpdateService.start(record);
+export const getUpdateResourceItems = async (record: CloudTrail.Record): Promise<DynamoDB.TransactWriteItemList> => {
+  const items = UpdateService.start(record) ?? [];
+  const rets: DynamoDB.TransactWriteItemList = [];
 
-  // イベント未実装
-  if (!resource) return [];
+  // 対象データなし
+  if (items.length === 0) return rets;
 
-  const tasks = resource.map(async (item) => {
+  const { TABLE_NAME_RESOURCES, TABLE_NAME_UNPROCESSED, TABLE_NAME_HISTORY } = Consts.Environments;
+
+  const tasks = items.map(async (item) => {
     // 既存データを検索する
     const dataRow = await ResourceService.describe({
       ResourceId: item.ResourceId,
@@ -67,12 +72,13 @@ export const getUpdateResourceItem = async (record: CloudTrail.Record): Promise<
     if (!dataRow) {
       item.Revisions = [item.EventTime];
       item.Status = Consts.ResourceStatus.CREATED;
-      return item;
+
+      rets.push(Utilities.getPutRecord(TABLE_NAME_RESOURCES, item));
+      return;
     }
 
+    // 既存データある場合は、履歴を追加する
     const revisions = [...dataRow.Revisions!, item.EventTime];
-
-    // 履歴を追加する
     dataRow.Revisions = _.sortBy(revisions);
 
     // 削除処理
@@ -85,45 +91,51 @@ export const getUpdateResourceItem = async (record: CloudTrail.Record): Promise<
       }
     }
 
-    // リソース情報
-    return dataRow;
+    rets.push(Utilities.getPutRecord(TABLE_NAME_RESOURCES, dataRow));
   });
 
-  return await Promise.all(tasks);
+  // 処理実行する
+  await Promise.all(tasks);
+
+  // 処理リソースがある場合、履歴などを追加する
+  if (rets.length !== 0) {
+    // 未処理削除
+    rets.push(Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, Utilities.getRemoveUnprocessed(record)));
+    // 履歴追加
+    rets.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
+  }
+
+  return rets;
 };
 
-export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise<Tables.TResourceKey[]> => {
-  const items = RemoveService.start(record);
+export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise<DynamoDB.TransactWriteItemList> => {
+  const items = RemoveService.start(record) ?? [];
+  const rets: DynamoDB.TransactWriteItemList = [];
 
-  if (!items) return [];
+  // 対象データなし
+  if (items.length === 0) return rets;
+
+  const { TABLE_NAME_RESOURCES, TABLE_NAME_UNPROCESSED, TABLE_NAME_HISTORY } = Consts.Environments;
 
   const tasks = items.map(async (item) => {
     const resource = await ResourceService.describe({
       ResourceId: item.ResourceId,
     });
 
-    Logger.debug(`Resource exist check: ${resource}`);
+    // リソース存在しない場合は、処理終了
+    if (!resource) return;
 
-    // リソースが存在する場合は、そのまま実行する
-    if (resource) return item;
-
-    // 未処理に登録する
-    await UnprocessedService.regist({
-      EventName: record.eventName,
-      EventSource: record.eventSource,
-      EventTime: `${record.eventTime}_${record.eventID.substring(0, 8)}`,
-      ResourceId: item.ResourceId,
-      Raw: JSON.stringify(record),
-    });
-
-    Logger.debug('Unprocessed registed');
-
-    return undefined;
+    // リソース存在する場合は
+    // リソース削除
+    rets.push(Utilities.getDeleteRecord(TABLE_NAME_RESOURCES, item));
+    // 未処理削除
+    rets.push(Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, Utilities.getRemoveUnprocessed(record)));
+    // 履歴追加
+    rets.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
   });
 
-  // get all rows
-  const results = await Promise.all(tasks);
+  // 検知処理を実行する
+  await Promise.all(tasks);
 
-  // merge all records
-  return results.filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
+  return rets;
 };

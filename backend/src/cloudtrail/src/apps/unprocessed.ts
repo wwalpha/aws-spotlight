@@ -1,6 +1,5 @@
-import { DynamoDB } from 'aws-sdk';
 import { CloudTrail, EVENT_UNPROCESSED, Tables } from 'typings';
-import { Events, Consts, Utilities, DynamodbHelper } from './utils';
+import { Events, Consts, DynamodbHelper } from './utils';
 import { Logger } from './utils/utilities';
 import _ from 'lodash';
 
@@ -18,10 +17,10 @@ export const processIgnore = async (events: Tables.TEventType[]) => {
   // no records
   if (records.length === 0) return;
 
-  for (; records.length > 0; ) {
+  for (;;) {
     const item = records.shift();
 
-    if (!item) continue;
+    if (!item) break;
 
     Logger.debug(`Ignore record process... EventName: ${item.EventName}, EventSource: ${item.EventSource}`);
 
@@ -42,36 +41,27 @@ export const processIgnore = async (events: Tables.TEventType[]) => {
     });
 
     // delete keys
-    if (queryResult.Items.length > 0) {
-      await DynamodbHelper.truncate(Consts.Environments.TABLE_NAME_UNPROCESSED, queryResult.Items);
-    }
+    await DynamodbHelper.truncate(Consts.Environments.TABLE_NAME_UNPROCESSED, queryResult.Items);
   }
 };
 
 export const processUpdate = async (events: Tables.TEventType[]) => {
   const records = await getUnprocessedRecords(events);
+  const eventSources: EVENT_UNPROCESSED = groupByEventSource(records);
 
-  console.log('events', events);
-
-  await processRecords(records);
-};
-
-const processRecords = async (records: Tables.TUnprocessed[]) => {
-  const events: EVENT_UNPROCESSED = groupByEventSource(records);
-
-  const tasks = Object.keys(events).map(async (item) => {
-    const values = events[item];
+  const tasks = Object.keys(eventSources).map(async (item) => {
+    const values = eventSources[item];
 
     const sorted = _.orderBy(values, ['EventTime'], ['asc']);
 
     // TODO
     sorted.forEach((item) => console.log(item.EventName, item.EventSource, item.EventTime));
 
-    for (; sorted.length > 0; ) {
+    for (;;) {
       const record = sorted.shift();
 
       // error check
-      if (!record) continue;
+      if (!record) break;
 
       try {
         // parse raw data
@@ -122,44 +112,19 @@ const getUnprocessedRecords = async (events: Tables.TEventType[]) => {
 };
 
 const processRecord = async (record: CloudTrail.Record) => {
-  const { TABLE_NAME_HISTORY, TABLE_NAME_RESOURCES, TABLE_NAME_UNPROCESSED } = Consts.Environments;
-
+  // Resource ARN 情報を取得する
   const [createItems, updateItems, deleteItems] = await Promise.all([
-    Events.getCreateResourceItem(record),
-    Events.getUpdateResourceItem(record),
+    Events.getCreateResourceItems(record),
+    Events.getUpdateResourceItems(record),
     Events.getRemoveResourceItems(record),
   ]);
 
-  const transactItems: DynamoDB.DocumentClient.TransactWriteItemList = [];
-
   console.log(record.eventName, createItems, updateItems, deleteItems);
-  // リソース新規作成
-  createItems
-    .map((item) => Utilities.getPutRecord(TABLE_NAME_RESOURCES, item))
-    .forEach((item) => transactItems.push(item));
-  // リソース更新
-  updateItems
-    .map((item) => Utilities.getPutRecord(TABLE_NAME_RESOURCES, item))
-    .forEach((item) => transactItems.push(item));
-  // リソース削除
-  deleteItems
-    .map((item) => Utilities.getDeleteRecord(TABLE_NAME_RESOURCES, item))
-    .forEach((item) => transactItems.push(item));
 
-  // delete unprocessed item
-  transactItems.push(
-    Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, {
-      EventName: record.eventName,
-      EventTime: `${record.eventTime}_${record.eventID.substring(0, 8)}`,
-    } as Tables.TUnprocessedKey)
-  );
+  // 登録レコードを作成する
+  const transactItems = [...createItems, ...updateItems, ...deleteItems];
 
-  // 実行する対象データがない
-  if (transactItems.length === 0) return;
-
-  // add history record
-  transactItems.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
-
+  // 一括登録
   await DynamodbHelper.transactWrite({
     TransactItems: transactItems,
   });
