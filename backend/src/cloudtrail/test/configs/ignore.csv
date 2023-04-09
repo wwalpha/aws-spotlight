@@ -354,7 +354,6 @@ CreateElasticsearchServiceRole,es.amazonaws.com,true
 RegisterThing,iot.amazonaws.com,true
 DeleteBucketPolicy,s3.amazonaws.com,true
 ModifyDBClusterParameterGroup,rds.amazonaws.com,true
-CreateIdentityPoolDirectory,ds.amazonaws.com,true
 DisableKey,kms.amazonaws.com,true
 PutBot,lex.amazonaws.com,true
 DescribeDomainConfiguration,iot.amazonaws.com,true
