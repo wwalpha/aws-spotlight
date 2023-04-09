@@ -46,6 +46,7 @@ describe(EVENT_SOURCE, () => {
     expect(dynamodb).not.toBeUndefined();
 
     await registUnprocessed({
+      EventId: DeleteEvents.DYNAMODB_DeleteTable.eventID,
       EventName: DeleteEvents.DYNAMODB_DeleteTable.eventName,
       EventSource: DeleteEvents.DYNAMODB_DeleteTable.eventSource,
       EventTime: `${DeleteEvents.DYNAMODB_DeleteTable.eventTime}_${DeleteEvents.DYNAMODB_DeleteTable.eventID.substring(

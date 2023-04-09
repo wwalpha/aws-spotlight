@@ -245,7 +245,6 @@ const getResourceArn = async (record: CloudTrail.Record) => {
       if (!groupId) {
         const resource = await ResourceService.getByName(Consts.EVENT_SOURCE.EC2, groupName, 'security-group');
 
-        console.log(resource);
         // リソースあり
         if (resource.length !== 0) {
           return resource[0].ResourceId;
