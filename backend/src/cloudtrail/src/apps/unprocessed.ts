@@ -122,12 +122,12 @@ const processRecord = async (record: CloudTrail.Record) => {
   // 登録レコードを作成する
   const transactItems = [...createItems, ...updateItems, ...deleteItems];
 
-  checkMultipleOperations(transactItems);
+  // checkMultipleOperations(transactItems);
 
-  transactItems.forEach((item) => {
-    Logger.debug(JSON.stringify(item.Put));
-    Logger.debug(JSON.stringify(item.Delete));
-  });
+  // transactItems.forEach((item) => {
+  //   Logger.debug(JSON.stringify(item.Put));
+  //   Logger.debug(JSON.stringify(item.Delete));
+  // });
 
   // 処理データなし
   if (transactItems.length === 0) {

@@ -152,10 +152,10 @@ export const checkMultipleOperations = (items: DynamoDB.TransactWriteItem[]) => 
 
   items.forEach((item) => {
     if (item.Put) {
-      console.log(item.Put.TableName, omit(item.Put.Item, ['Raw', 'Origin']));
+      console.log('PUT', item.Put.TableName, omit(item.Put.Item, ['Raw', 'Origin']));
     }
     if (item.Delete) {
-      console.log(item.Delete.TableName, item.Delete.Key);
+      console.log('DELETE', item.Delete.TableName, item.Delete.Key);
     }
   });
 };

@@ -62,7 +62,8 @@ describe(EVENT_SOURCE, () => {
 
   test('Unnormal Process', async () => {
     const removeTable = DeleteEvents.DYNAMODB_DeleteTable;
-    removeTable.requestParameters.tableName = 'AutoNotification_AlarmConfigs2';
+    removeTable.responseElements.tableDescription.tableArn =
+      'arn:aws:dynamodb:ap-northeast-1:999999999999:table/AutoNotification_AlarmConfigs2';
 
     await sendMessageOnly([removeTable, CreateEvents.DYNAMODB_CreateTable]);
 

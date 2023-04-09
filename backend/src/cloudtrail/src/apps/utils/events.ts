@@ -42,7 +42,7 @@ export const getCreateResourceItems = async (record: CloudTrail.Record): Promise
   }
 
   // 存在データ件数不一致、処理しない
-  if (items.length !== dataRows.length) {
+  if (dataRows.length !== 0 && items.length !== dataRows.length) {
     // リソース
     const resourceIds = items.map((item) => item.ResourceId);
     // 未処理削除
@@ -165,6 +165,8 @@ export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise
     // 未処理追加
     rets.push(Utilities.getPutRecord(TABLE_NAME_UNPROCESSED, Utilities.getUnprocessedItem(record, resourceIds)));
   } else {
+    // リソース削除
+    dataRows.forEach((item) => rets.push(item));
     // 履歴追加
     rets.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
     // 未処理削除

@@ -14,7 +14,7 @@
       }
     }
   },
-  "eventTime": "2021-04-15T11:46:29Z",
+  "eventTime": "2021-04-16T11:46:29Z",
   "eventSource": "dynamodb.amazonaws.com",
   "eventName": "DeleteTable",
   "awsRegion": "ap-northeast-1",
