@@ -1,6 +1,6 @@
 import { DynamoDB, S3 } from 'aws-sdk';
 import { SNSMessage, SQSRecord } from 'aws-lambda';
-import { orderBy } from 'lodash';
+import { omit, orderBy } from 'lodash';
 import zlib from 'zlib';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
 import { Utilities, Consts, Events, DynamodbHelper, AddTags, Logger } from './utils';
@@ -143,10 +143,14 @@ const processUpdate = async (record: CloudTrail.Record) => {
     Events.getRemoveResourceItems(record),
   ]);
 
-  console.log(record.eventName, createItems, updateItems, deleteItems);
-
   // 登録レコードを作成する
   const transactItems = [...createItems, ...updateItems, ...deleteItems];
+
+  transactItems.forEach((item) => {
+    Logger.debug(omit(item.Put, 'Item.Origin'));
+    Logger.debug(omit(item.Update, 'Item.Origin'));
+    Logger.debug(item.Delete);
+  });
 
   await DynamodbHelper.transactWrite({
     TransactItems: transactItems,

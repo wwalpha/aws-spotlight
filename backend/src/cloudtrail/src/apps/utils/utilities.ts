@@ -33,6 +33,14 @@ export const getHistoryItem = (record: CloudTrail.Record): Tables.History => ({
   Origin: JSON.stringify(record),
 });
 
+export const getUnprocessedItem = (record: CloudTrail.Record, arn: string): Tables.TUnprocessed => ({
+  EventName: record.eventName,
+  EventSource: record.eventSource,
+  EventTime: `${record.eventTime}_${record.eventID.substring(0, 8)}`,
+  Raw: JSON.stringify(record),
+  ResourceId: arn,
+});
+
 export const getRemoveUnprocessed = (record: CloudTrail.Record): Tables.TUnprocessedKey => ({
   EventName: record.eventName,
   EventTime: `${record.eventTime}_${record.eventID.substring(0, 8)}`,

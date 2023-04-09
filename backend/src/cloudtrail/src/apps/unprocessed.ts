@@ -1,7 +1,7 @@
 import { CloudTrail, EVENT_UNPROCESSED, Tables } from 'typings';
 import { Events, Consts, DynamodbHelper } from './utils';
 import { Logger } from './utils/utilities';
-import _ from 'lodash';
+import _, { omit } from 'lodash';
 
 /**
  * Delete all ignore records
@@ -119,10 +119,14 @@ const processRecord = async (record: CloudTrail.Record) => {
     Events.getRemoveResourceItems(record),
   ]);
 
-  console.log(record.eventName, createItems, updateItems, deleteItems);
-
   // 登録レコードを作成する
   const transactItems = [...createItems, ...updateItems, ...deleteItems];
+
+  transactItems.forEach((item) => {
+    Logger.debug(omit(item.Put, 'Item.Origin'));
+    Logger.debug(omit(item.Update, 'Item.Origin'));
+    Logger.debug(item.Delete);
+  });
 
   // 一括登録
   await DynamodbHelper.transactWrite({

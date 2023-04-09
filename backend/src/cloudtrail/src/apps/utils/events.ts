@@ -60,7 +60,7 @@ export const getUpdateResourceItems = async (record: CloudTrail.Record): Promise
   // 対象データなし
   if (items.length === 0) return rets;
 
-  const { TABLE_NAME_RESOURCES, TABLE_NAME_UNPROCESSED, TABLE_NAME_HISTORY } = Consts.Environments;
+  const { TABLE_NAME_RESOURCES, TABLE_NAME_HISTORY } = Consts.Environments;
 
   const tasks = items.map(async (item) => {
     // 既存データを検索する
@@ -71,7 +71,9 @@ export const getUpdateResourceItems = async (record: CloudTrail.Record): Promise
     // 既存データないの場合は、新規作成する
     if (!dataRow) {
       item.Revisions = [item.EventTime];
-      item.Status = Consts.ResourceStatus.CREATED;
+      item.Status = record.eventName.toUpperCase().startsWith('DELETE')
+        ? Consts.ResourceStatus.DELETE
+        : Consts.ResourceStatus.CREATED;
 
       rets.push(Utilities.getPutRecord(TABLE_NAME_RESOURCES, item));
       return;
@@ -99,8 +101,6 @@ export const getUpdateResourceItems = async (record: CloudTrail.Record): Promise
 
   // 処理リソースがある場合、履歴などを追加する
   if (rets.length !== 0) {
-    // 未処理削除
-    rets.push(Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, Utilities.getRemoveUnprocessed(record)));
     // 履歴追加
     rets.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
   }
@@ -122,16 +122,21 @@ export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise
       ResourceId: item.ResourceId,
     });
 
-    // リソース存在しない場合は、処理終了
-    if (!resource) return;
+    // リソース存在しない場合は
+    if (!resource) {
+      // 履歴追加
+      rets.push(Utilities.getPutRecord(TABLE_NAME_UNPROCESSED, Utilities.getUnprocessedItem(record, item.ResourceId)));
+
+      return;
+    }
 
     // リソース存在する場合は
     // リソース削除
     rets.push(Utilities.getDeleteRecord(TABLE_NAME_RESOURCES, item));
-    // 未処理削除
-    rets.push(Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, Utilities.getRemoveUnprocessed(record)));
     // 履歴追加
     rets.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
+    // 未処理削除
+    rets.push(Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, Utilities.getRemoveUnprocessed(record)));
   });
 
   // 検知処理を実行する
