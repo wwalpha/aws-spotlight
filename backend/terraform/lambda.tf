@@ -15,6 +15,7 @@ resource "aws_lambda_function" "cloudtrail" {
       TABLE_NAME_UNPROCESSED = local.dynamodb_name_unprocessed
       TABLE_NAME_HISTORY     = local.dynamodb_name_history
       TABLE_NAME_ERRORS      = local.dynamodb_name_errors
+      TABLE_NAME_IGNORES     = local.dynamodb_name_ignores
       SQS_URL                = data.aws_sqs_queue.cloudtrail.url
       SNS_TOPIC_ARN          = data.aws_sns_topic.admin.arn
     }

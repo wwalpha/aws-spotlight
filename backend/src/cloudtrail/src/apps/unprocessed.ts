@@ -1,7 +1,8 @@
 import { CloudTrail, EVENT_UNPROCESSED, Tables } from 'typings';
-import { Events, Consts, DynamodbHelper } from './utils';
+import { Events, Consts, DynamodbHelper, Utilities } from './utils';
 import { Logger, checkMultipleOperations } from './utils/utilities';
-import _, { omit } from 'lodash';
+import _ from 'lodash';
+import { IgnoreService } from '@src/services';
 
 /**
  * Delete all ignore records
@@ -28,8 +29,8 @@ export const processIgnore = async (events: Tables.TEventType[]) => {
     const queryResult = await DynamodbHelper.query<Tables.TUnprocessed>({
       TableName: Consts.Environments.TABLE_NAME_UNPROCESSED,
       ProjectionExpression: 'EventName, EventTime',
-      KeyConditionExpression: '#EventName = :EventName',
-      FilterExpression: '#EventSource = :EventSource',
+      KeyConditionExpression: '#EventSource = :EventSource',
+      FilterExpression: '#EventName = :EventName',
       ExpressionAttributeNames: {
         '#EventName': 'EventName',
         '#EventSource': 'EventSource',
@@ -38,7 +39,12 @@ export const processIgnore = async (events: Tables.TEventType[]) => {
         ':EventName': item?.EventName,
         ':EventSource': item?.EventSource,
       },
+      IndexName: 'gsiIdx1',
     });
+
+    const registTasks = queryResult.Items.map((item) => IgnoreService.regist(Utilities.getIgnoreItem(item.Raw as any)));
+
+    await Promise.all(registTasks);
 
     // delete keys
     await DynamodbHelper.truncate(Consts.Environments.TABLE_NAME_UNPROCESSED, queryResult.Items);

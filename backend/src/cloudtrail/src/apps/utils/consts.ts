@@ -4,6 +4,7 @@ export const Environments = {
   TABLE_NAME_ERRORS: process.env.TABLE_NAME_ERRORS as string,
   TABLE_NAME_HISTORY: process.env.TABLE_NAME_HISTORY as string,
   TABLE_NAME_UNPROCESSED: process.env.TABLE_NAME_UNPROCESSED as string,
+  TABLE_NAME_IGNORES: process.env.TABLE_NAME_IGNORES as string,
   SNS_TOPIC_ARN: process.env.SNS_TOPIC_ARN as string,
 };
 

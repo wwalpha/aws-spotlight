@@ -112,10 +112,29 @@ const setup = async () => {
       AttributeDefinitions: [
         { AttributeName: 'EventName', AttributeType: 'S' },
         { AttributeName: 'EventTime', AttributeType: 'S' },
+        { AttributeName: 'EventSource', AttributeType: 'S' },
+      ],
+      GlobalSecondaryIndexes: [
+        {
+          IndexName: 'gsiIdx1',
+          KeySchema: [
+            { AttributeName: 'EventSource', KeyType: 'HASH' },
+            { AttributeName: 'EventName', KeyType: 'RANGE' },
+          ],
+          Projection: { ProjectionType: 'ALL' },
+          ProvisionedThroughput: { WriteCapacityUnits: 100, ReadCapacityUnits: 100 },
+        },
       ],
     }),
     helper.getClient().createTable({
       TableName: process.env.TABLE_NAME_HISTORY as string,
+      BillingMode: 'PROVISIONED',
+      ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
+      KeySchema: [{ AttributeName: 'EventId', KeyType: 'HASH' }],
+      AttributeDefinitions: [{ AttributeName: 'EventId', AttributeType: 'S' }],
+    }),
+    helper.getClient().createTable({
+      TableName: process.env.TABLE_NAME_IGNORES as string,
       BillingMode: 'PROVISIONED',
       ProvisionedThroughput: { ReadCapacityUnits: 100, WriteCapacityUnits: 100 },
       KeySchema: [{ AttributeName: 'EventId', KeyType: 'HASH' }],

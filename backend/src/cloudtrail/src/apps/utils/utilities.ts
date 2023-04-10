@@ -3,7 +3,8 @@ import { DynamoDB, SNS, SQS } from 'aws-sdk';
 import { defaultTo, omit } from 'lodash';
 import winston from 'winston';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
-import { Consts } from '.';
+import { Consts, Utilities } from '.';
+import { IgnoreService } from '@src/services';
 
 const sqsClient = new SQS();
 const snsClient = new SNS();
@@ -16,6 +17,22 @@ export const LoggerOptions: winston.LoggerOptions = {
 };
 
 export const Logger = winston.createLogger(LoggerOptions);
+
+/**
+ * Get ignore record
+ *
+ * @param record
+ * @returns
+ */
+export const getIgnoreItem = (record: CloudTrail.Record): Tables.TIgnore => ({
+  EventId: record.eventID,
+  EventName: record.eventName,
+  EventSource: record.eventSource,
+  AWSRegion: record.awsRegion,
+  EventTime: record.eventTime,
+  UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
+  Raw: JSON.stringify(record),
+});
 
 /**
  * Get history record
@@ -116,21 +133,55 @@ export const removeError = (records: CloudTrail.Record[]) => records.filter((ite
  * @param records
  * @returns
  */
-export const removeIgnore = (records: CloudTrail.Record[], events: EVENT_TYPE) =>
-  records.filter((item) => {
+export const removeIgnore = async (records: CloudTrail.Record[], events: EVENT_TYPE) => {
+  const ignoreRecords = records.filter((item) => {
     const service = item.eventSource.split('.')[0].toUpperCase();
     const event = events[`${service}_${item.eventName}`];
 
+    // 未定義のイベントは無視する
     if (event === undefined) {
+      return false;
+    }
+
+    // 同じリソース
+    if (event.EventSource !== item.eventSource) {
+      return false;
+    }
+
+    // 同じイベント
+    if (event.EventName !== item.eventName) {
+      return false;
+    }
+
+    return event.Ignore === true;
+  });
+
+  const registTasks = ignoreRecords.map((item) => IgnoreService.regist(Utilities.getIgnoreItem(item)));
+
+  await Promise.all(registTasks);
+
+  return records.filter((item) => {
+    const service = item.eventSource.split('.')[0].toUpperCase();
+    const event = events[`${service}_${item.eventName}`];
+
+    // 未定義のイベントは無視する
+    if (event === undefined) {
+      return false;
+    }
+
+    // 同じリソース
+    if (event.EventSource !== item.eventSource) {
       return true;
     }
 
-    if (event.EventSource === item.eventSource) {
-      return !(event.Ignore === true);
+    // 同じイベント
+    if (event.EventName !== item.eventName) {
+      return true;
     }
 
-    return true;
+    return event.Ignore !== true;
   });
+};
 
 export const sendMail = async (subject: string, message: string) => {
   console.log(subject, message);

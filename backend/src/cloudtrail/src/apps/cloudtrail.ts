@@ -43,7 +43,7 @@ export const execute = async (message: SQSRecord) => {
   // remove error records
   records = Utilities.removeError(records);
   // remove ignore records
-  records = Utilities.removeIgnore(records, EVENTS);
+  records = await Utilities.removeIgnore(records, EVENTS);
 
   // no process records
   if (records.length === 0) {

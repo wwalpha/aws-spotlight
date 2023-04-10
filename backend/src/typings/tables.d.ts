@@ -151,6 +151,25 @@ export namespace Tables {
     Origin: string;
   }
 
+  /**
+   * Table - Ignore Key
+   */
+  interface TIgnoreKey {
+    EventId: string;
+  }
+
+  /**
+   * Table - Ignore
+   */
+  interface TIgnore extends TIgnoreKey {
+    UserName: string;
+    EventTime: string;
+    EventSource: string;
+    EventName: string;
+    AWSRegion: string;
+    Raw: string;
+  }
+
   interface UserKey {
     // id
     UserId: string;

@@ -113,6 +113,24 @@ resource "aws_dynamodb_table" "history" {
 }
 
 # ----------------------------------------------------------------------------------------------
+# Dynamodb Table - History
+# ----------------------------------------------------------------------------------------------
+resource "aws_dynamodb_table" "ignores" {
+  name         = local.dynamodb_name_ignores
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "EventId"
+
+  attribute {
+    name = "EventId"
+    type = "S"
+  }
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+# ----------------------------------------------------------------------------------------------
 # Dynamodb Table - User
 # ----------------------------------------------------------------------------------------------
 resource "aws_dynamodb_table" "user" {
