@@ -810,3 +810,4 @@ DeleteProduct,servicecatalog.amazonaws.com,true
 CreateApp,pinpoint.amazonaws.com,true
 CreateWorkspaces,workspaces.amazonaws.com,true
 TerminateProvisionedProduct,servicecatalog.amazonaws.com,true
+ExportTableToPointInTime,dynamodb.amazonaws.com,true
