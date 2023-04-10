@@ -28,9 +28,7 @@ export const processIgnore = async (events: Tables.TEventType[]) => {
     // find keys
     const queryResult = await DynamodbHelper.query<Tables.TUnprocessed>({
       TableName: Consts.Environments.TABLE_NAME_UNPROCESSED,
-      ProjectionExpression: 'EventName, EventTime',
-      KeyConditionExpression: '#EventSource = :EventSource',
-      FilterExpression: '#EventName = :EventName',
+      KeyConditionExpression: '#EventSource = :EventSource AND #EventName = :EventName',
       ExpressionAttributeNames: {
         '#EventName': 'EventName',
         '#EventSource': 'EventSource',
@@ -42,7 +40,9 @@ export const processIgnore = async (events: Tables.TEventType[]) => {
       IndexName: 'gsiIdx1',
     });
 
-    const registTasks = queryResult.Items.map((item) => IgnoreService.regist(Utilities.getIgnoreItem(item.Raw as any)));
+    const registTasks = queryResult.Items.map((item) =>
+      IgnoreService.regist(Utilities.getIgnoreItem(JSON.parse(item.Raw) as CloudTrail.Record))
+    );
 
     await Promise.all(registTasks);
 
