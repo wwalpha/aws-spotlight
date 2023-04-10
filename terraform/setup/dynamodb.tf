@@ -107,7 +107,7 @@ resource "aws_dynamodb_table" "history" {
     type = "S"
   }
   attribute {
-    name = "EventTime"
+    name = "EventName"
     type = "S"
   }
   attribute {
@@ -140,7 +140,7 @@ resource "aws_dynamodb_table" "ignores" {
     type = "S"
   }
   attribute {
-    name = "EventTime"
+    name = "EventName"
     type = "S"
   }
   attribute {
