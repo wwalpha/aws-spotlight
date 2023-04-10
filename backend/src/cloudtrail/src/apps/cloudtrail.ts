@@ -140,6 +140,9 @@ const processUpdate = async (record: CloudTrail.Record) => {
   const transactItems = [...createItems, ...updateItems, ...deleteItems];
 
   // checkMultipleOperations(transactItems);
+  if (record.eventID === '510f6344-992a-4142-bf04-e54f673a4b43') {
+    checkMultipleOperations(transactItems);
+  }
 
   // transactItems.forEach((item) => {
   //   Logger.debug(JSON.stringify(item.Put));
