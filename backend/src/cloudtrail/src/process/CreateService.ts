@@ -1,9 +1,9 @@
-import { defaultTo, capitalize } from 'lodash';
 import { ResourceARNs } from '@src/apps/utils/awsArns';
-import { CloudTrail, Tables } from 'typings';
 import { sendMail } from '@src/apps/utils/utilities';
+import { defaultTo, capitalize } from 'lodash';
+import { CloudTrail, Tables } from 'typings';
 
-const MULTI_TASK = ['EC2_RunInstances'];
+const MULTI_TASK = ['EC2_RunInstances', 'EC2_CreateSnapshots'];
 
 export const start = (record: CloudTrail.Record): Tables.TResource[] | undefined => {
   const serviceName = record.eventSource.split('.')[0].toUpperCase();
@@ -166,9 +166,6 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
     case 'EC2_CreateSnapshot':
       name = record.responseElements.snapshotId;
       return [ResourceARNs.EC2_Snapshot(region, account, name), name];
-    case 'EC2_CreateSnapshots':
-      name = record.responseElements.CreateSnapshotsResponse.snapshotSet.item.snapshotId;
-      return [ResourceARNs.EC2_Snapshot(region, account, name), name];
     case 'EC2_RestoreSnapshotFromRecycleBin':
       name = record.responseElements.RestoreSnapshotFromRecycleBinResponse.snapshotId;
       return [ResourceARNs.EC2_Snapshot(region, account, name), name];
@@ -296,7 +293,6 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
       return [record.responseElements.dBClusterSnapshotArn, record.responseElements.dBClusterSnapshotIdentifier];
     case 'RDS_RestoreDBClusterToPointInTime':
       return [record.responseElements.dBClusterArn, record.responseElements.dBClusterIdentifier];
-
     case 'RDS_CreateOptionGroup':
       return [record.responseElements.optionGroupArn, record.responseElements.optionGroupName];
 
@@ -352,6 +348,15 @@ const getResourceInfos = (record: CloudTrail.Record): string[][] => {
         ResourceARNs.EC2_Instances(region, account, item.instanceId),
         item.instanceId,
       ]);
+    case 'EC2_CreateSnapshots':
+      const items = record.responseElements.CreateSnapshotsResponse.snapshotSet.item;
+
+      if (Array.isArray(items)) {
+        return items.map((item) => [ResourceARNs.EC2_Snapshot(region, account, item.snapshotId), item.snapshotId]);
+      }
+
+      const snapshotId = items.snapshotId;
+      return [ResourceARNs.EC2_Snapshot(region, account, snapshotId), snapshotId];
   }
 
   return [];

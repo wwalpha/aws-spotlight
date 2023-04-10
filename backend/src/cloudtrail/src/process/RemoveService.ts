@@ -55,7 +55,20 @@ const getResourceArn = async (record: CloudTrail.Record) => {
     case 'CODEBUILD_DeleteProject':
       return record.requestParameters.name;
     case 'CLOUDFORMATION_DeleteStack':
-      return record.requestParameters.stackName;
+      const stackName = record.requestParameters.stackName as string;
+
+      // ARN ではない場合、名前で検索する
+      if (!stackName.startsWith('arn')) {
+        const resource = await ResourceService.getByName(Consts.EVENT_SOURCE.CLOUDFORMATION, stackName, 'stack');
+
+        // リソースあり
+        if (resource.length !== 0) {
+          return resource[0].ResourceId;
+        }
+      }
+
+      return stackName;
+
     case 'CLOUDFRONT_DeleteDistribution':
       return ResourceARNs.CLOUDFRONT_Distribution(region, account, record.requestParameters.id);
 

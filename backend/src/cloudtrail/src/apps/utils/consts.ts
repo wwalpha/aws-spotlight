@@ -15,4 +15,5 @@ export const ResourceStatus = {
 
 export const EVENT_SOURCE = {
   EC2: 'ec2.amazonaws.com',
+  CLOUDFORMATION: 'cloudformation.amazonaws.com',
 };
