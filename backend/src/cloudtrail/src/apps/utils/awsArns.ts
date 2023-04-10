@@ -46,6 +46,10 @@ export const ResourceARNs = {
   FIREHOSE_DeliveryStream: (region: string, account: string, id?: string) =>
     `arn:aws:firehose:${region}:${account}:deliverystream/${id}`,
 
+  // fsx
+  FSX_FileSystem: (region: string, account: string, id?: string) =>
+    `arn:aws:fsx:${region}:${account}:file-system/${id}`,
+
   // events
   EVENTS_Rule: (region: string, account: string, id?: string) => `arn:aws:events:${region}:${account}:rule/${id}`,
 

@@ -228,6 +228,9 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
 
     case 'FIREHOSE_CreateDeliveryStream':
       return [record.responseElements.deliveryStreamARN, record.requestParameters.deliveryStreamName];
+    case 'FSX_CreateFileSystem':
+      return [record.responseElements.fileSystem.resourceARN, record.responseElements.fileSystem.fileSystemId];
+
     case 'GLUE_CreateDatabase':
       name = record.requestParameters.databaseInput.name;
       return [ResourceARNs.GLUE_Database(region, account, name), name];

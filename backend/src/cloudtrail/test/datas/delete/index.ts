@@ -58,6 +58,7 @@ export { default as ES_DeleteElasticsearchDomain } from './ES_DeleteElasticsearc
 export { default as FIREHOSE_DeleteDeliveryStream } from './kinesis/FIREHOSE_DeleteDeliveryStream.json';
 export { default as KINESIS_DeleteApplication } from './kinesis/KINESIS_DeleteApplication.json';
 export { default as KINESIS_DeleteStream } from './kinesis/KINESIS_DeleteStream.json';
+export { default as FSX_DeleteFileSystem } from './FSX_DeleteFileSystem.json';
 
 export { default as GLUE_DeleteDatabase } from './GLUE_DeleteDatabase.json';
 

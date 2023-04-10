@@ -79,6 +79,9 @@ const getResourceArn = async (record: CloudTrail.Record) => {
 
     case 'FIREHOSE_DeleteDeliveryStream':
       return ResourceARNs.FIREHOSE_DeliveryStream(region, account, record.requestParameters.deliveryStreamName);
+    case 'FSX_DeleteFileSystem':
+      return ResourceARNs.FSX_FileSystem(region, account, record.requestParameters.fileSystemId);
+
     case 'GLUE_DeleteDatabase':
       return ResourceARNs.GLUE_Database(region, account, record.requestParameters.name);
     case 'IOT_DeleteTopicRule':

@@ -66,6 +66,7 @@ export { default as ELASTICFILESYSTEM_CreateFileSystem } from './ELASTICFILESYST
 export { default as ES_CreateElasticsearchDomain } from './ES_CreateElasticsearchDomain.json';
 
 export { default as FIREHOSE_CreateDeliveryStream } from './FIREHOSE_CreateDeliveryStream.json';
+export { default as FSX_CreateFileSystem } from './FSX_CreateFileSystem.json';
 
 export { default as GLUE_CreateDatabase } from './GLUE_CreateDatabase.json';
 

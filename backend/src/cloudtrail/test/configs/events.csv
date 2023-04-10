@@ -176,4 +176,5 @@ PutDashboard,monitoring.amazonaws.com,create
 DeleteDashboards,monitoring.amazonaws.com,create
 PutRule,events.amazonaws.com,create
 DeleteRule,events.amazonaws.com,create
-
+CreateFileSystem,fsx.amazonaws.com,create
+DeleteFileSystem,fsx.amazonaws.com,delete
