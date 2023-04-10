@@ -81,6 +81,13 @@ resource "aws_dynamodb_table" "unprocessed" {
     name = "EventTime"
     type = "S"
   }
+
+  global_secondary_index {
+    name            = "gsiIdx1"
+    hash_key        = "EventSource"
+    range_key       = "EventName"
+    projection_type = "ALL"
+  }
 }
 
 # ----------------------------------------------------------------------------------------------

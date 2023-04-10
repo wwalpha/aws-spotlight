@@ -620,7 +620,6 @@ UpdateAccount,apigateway.amazonaws.com,true
 DeleteConfigurationTemplate,elasticbeanstalk.amazonaws.com,true
 CreateChart,sqlworkbench.amazonaws.com,true
 EnableSagemakerServicecatalogPortfolio,sagemaker.amazonaws.com,true
-DeleteApplication,elasticbeanstalk.amazonaws.com,true
 DeleteDeployment,greengrass.amazonaws.com,true
 DeleteProvisioningTemplate,iot.amazonaws.com,true
 UpdateDocumentationPart,apigateway.amazonaws.com,true
@@ -668,7 +667,6 @@ CreateConfigurationTemplate,elasticbeanstalk.amazonaws.com,true
 DeleteInstance,workdocs.amazonaws.com,true
 DeleteRouteResponse,apigateway.amazonaws.com,true
 UpdateEnvironment,elasticbeanstalk.amazonaws.com,true
-CreateApplication,elasticbeanstalk.amazonaws.com,true
 UpdateApp,amplify.amazonaws.com,true
 MfaRegister_GET,cognito-idp.amazonaws.com,true
 AssociateDefaultView,resource-explorer-2.amazonaws.com,true
@@ -774,7 +772,6 @@ StartDetectorModelAnalysis,iotevents.amazonaws.com,true
 ListImports,dynamodb.amazonaws.com,true
 CreateProvisioningTemplateVersion,iot.amazonaws.com,true
 CreateStorageLocation,elasticbeanstalk.amazonaws.com,true
-RebuildEnvironment,elasticbeanstalk.amazonaws.com,true
 CreateFirewallPolicy,network-firewall.amazonaws.com,true
 DeleteRetentionPolicy,logs.amazonaws.com,true
 CreateAnalysis,quicksight.amazonaws.com,true
