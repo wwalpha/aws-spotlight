@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@alphax/dynamodb": "^1.2.11",
+    "@alphax/dynamodb": "^1.2.12",
     "axios": "^0.21.1",
     "jsonwebtoken": "^8.5.1",
     "jwk-to-pem": "^2.0.5",
