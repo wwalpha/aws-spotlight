@@ -81,6 +81,10 @@ resource "aws_dynamodb_table" "unprocessed" {
     name = "EventTime"
     type = "S"
   }
+  attribute {
+    name = "EventSource"
+    type = "S"
+  }
 
   global_secondary_index {
     name            = "gsiIdx1"
