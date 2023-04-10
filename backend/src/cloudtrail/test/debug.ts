@@ -3,13 +3,13 @@
 import { cloudtrail, unprocessed } from '../src/index';
 import { DynamodbHelper } from '@alphax/dynamodb';
 import { receiveMessageData, sendMessage, sendMessageOnly, updateEventType } from './configs/utils';
-import EC2_CreateImage from './datas/create/EC2_CreateImage.json';
-import EC2_RunInstances from './datas/create/EC2_RunInstances.json';
-import EC2_TerminateInstances from './datas/delete/EC2_TerminateInstances.json';
-import RDS_CreateDBCluster from './datas/create/RDS_CreateDBCluster.json';
-import ELASTICLOADBALANCING_CreateLoadBalancer from './datas/create/ELASTICLOADBALANCING_CreateLoadBalancer.json';
+import { ResourceService } from '@src/services';
+import * as fs from 'fs';
+import { Tables } from 'typings';
 
 const TABLE_NAME_UNPROCESSED = process.env.TABLE_NAME_UNPROCESSED as string;
+const TABLE_NAME_RESOURCES = process.env.TABLE_NAME_RESOURCES as string;
+const TABLE_NAME_HISTORY = process.env.TABLE_NAME_HISTORY as string;
 const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
 
 const helper = new DynamodbHelper();
@@ -27,17 +27,6 @@ const startU = async () => {
   await unprocessed();
 };
 
-const startC = async () => {
-  const events = [EC2_CreateImage, EC2_RunInstances, RDS_CreateDBCluster, ELASTICLOADBALANCING_CreateLoadBalancer];
-
-  const tasks = events.map(async (item) => {
-    const event = await sendMessage(item);
-    await cloudtrail(event);
-  });
-
-  await Promise.all(tasks);
-};
-
 const updateEvent = async () => {
   // start();
 
@@ -52,21 +41,18 @@ const test = async () => {
     {
       EventSource: 'ec2.amazonaws.com',
       EventName: 'RunInstances',
-      Unprocessed: true,
       Ignore: true,
       Unconfirmed: true,
     },
     {
       EventSource: 'ec2.amazonaws.com',
       EventName: 'TerminateInstances',
-      Unprocessed: true,
       Ignore: true,
       Unconfirmed: true,
     },
     {
       EventSource: 'ec2.amazonaws.com',
       EventName: 'AllocateAddress',
-      Unprocessed: true,
       Ignore: true,
       Unconfirmed: true,
     },
@@ -83,4 +69,24 @@ const debug = async () => {
   await cloudtrail(datas);
 };
 
-debug();
+const output = async () => {
+  const date = '2023-02-01';
+  const results = await Promise.all([
+    ResourceService.getListByEventSource('ec2.amazonaws.com', date),
+    ResourceService.getListByEventSource('rds.amazonaws.com', date),
+    ResourceService.getListByEventSource('fsx.amazonaws.com', date),
+    ResourceService.getListByEventSource('ds.amazonaws.com', date),
+  ]);
+
+  const newArray = results.reduce((prev, curr) => {
+    return [...prev, ...curr];
+  }, [] as Tables.TResource[]);
+
+  const dataRows = newArray.map((item) => `${item.UserName},${item.Service},${item.ResourceName},${item.ResourceId}`);
+
+  fs.writeFileSync('resources.csv', dataRows.join('\n'));
+};
+
+// debug();
+// startU();
+output();

@@ -43,3 +43,9 @@ export const getByName = async (eventSource: string, name: string, filter?: stri
 
   return results.Items;
 };
+
+export const getListByEventSource = async (eventSource: string, eventTime?: string): Promise<Tables.TResource[]> => {
+  const results = await DynamodbHelper.query<Tables.TResource>(Queries.getListByEventSource(eventSource, eventTime));
+
+  return results.Items;
+};

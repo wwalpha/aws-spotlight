@@ -36,3 +36,32 @@ export const queryByName = (eventSource: string, name: string): QueryInput => ({
   },
   IndexName: 'gsiIdx1',
 });
+
+export const getListByEventSource = (eventSource: string, eventTime?: string): QueryInput => {
+  const query: QueryInput = {
+    TableName: Consts.Environments.TABLE_NAME_RESOURCES,
+    ProjectionExpression: 'UserName, Service, ResourceName, ResourceId',
+    KeyConditionExpression: '#EventSource = :EventSource',
+    ExpressionAttributeNames: {
+      '#EventSource': 'EventSource',
+    },
+    ExpressionAttributeValues: {
+      ':EventSource': eventSource,
+    },
+    IndexName: 'gsiIdx1',
+  };
+
+  if (eventTime) {
+    query.FilterExpression = '#EventTime < :EventTime';
+    query.ExpressionAttributeNames = {
+      ...query.ExpressionAttributeNames,
+      '#EventTime': 'EventTime',
+    };
+    query.ExpressionAttributeValues = {
+      ...query.ExpressionAttributeValues,
+      ':EventTime': eventTime,
+    };
+  }
+
+  return query;
+};
