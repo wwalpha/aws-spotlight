@@ -1,0 +1,139 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROAU33DBSJ5IOXXJ3TNT:AWSBackup-AWSBackupDefaultServiceRole",
+    "arn": "arn:aws:sts::999999999999:assumed-role/AWSBackupDefaultServiceRole/AWSBackup-AWSBackupDefaultServiceRole",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5KMO46MGJ",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROAU33DBSJ5IOXXJ3TNT",
+        "arn": "arn:aws:iam::999999999999:role/service-role/AWSBackupDefaultServiceRole",
+        "accountId": "999999999999",
+        "userName": "AWSBackupDefaultServiceRole"
+      },
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2022-08-05T15:45:32Z",
+        "mfaAuthenticated": "false"
+      }
+    },
+    "invokedBy": "backup.amazonaws.com"
+  },
+  "eventTime": "2022-08-05T15:45:35Z",
+  "eventSource": "rds.amazonaws.com",
+  "eventName": "RestoreDBInstanceToPointInTime",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "backup.amazonaws.com",
+  "userAgent": "backup.amazonaws.com",
+  "requestParameters": {
+    "targetDBInstanceIdentifier": "cis-rds-backup-test-recovery",
+    "restoreTime": "Aug 5, 2022 3:20:00 PM",
+    "useLatestRestorableTime": false,
+    "dBInstanceClass": "db.m5.large",
+    "port": 5432,
+    "dBSubnetGroupName": "cis-db_subnet-sql-test",
+    "multiAZ": false,
+    "publiclyAccessible": false,
+    "autoMinorVersionUpgrade": true,
+    "licenseModel": "postgresql-license",
+    "engine": "postgres",
+    "optionGroupName": "default:postgres-14",
+    "copyTagsToSnapshot": false,
+    "storageType": "gp2",
+    "enableIAMDatabaseAuthentication": false,
+    "dBParameterGroupName": "default.postgres14",
+    "sourceDbiResourceId": "db-5BCXY6WQGEKFEZQUMJA4B3SEHE"
+  },
+  "responseElements": {
+    "dBInstanceIdentifier": "cis-rds-backup-test-recovery",
+    "dBInstanceClass": "db.m5.large",
+    "engine": "postgres",
+    "dBInstanceStatus": "creating",
+    "masterUsername": "postgres",
+    "allocatedStorage": 20,
+    "preferredBackupWindow": "12:30-14:30",
+    "backupRetentionPeriod": 35,
+    "dBSecurityGroups": [],
+    "vpcSecurityGroups": [
+      {
+        "vpcSecurityGroupId": "sg-0ab6c77a3ec5257d3",
+        "status": "active"
+      }
+    ],
+    "dBParameterGroups": [
+      {
+        "dBParameterGroupName": "default.postgres14",
+        "parameterApplyStatus": "in-sync"
+      }
+    ],
+    "dBSubnetGroup": {
+      "dBSubnetGroupName": "cis-db_subnet-sql-test",
+      "dBSubnetGroupDescription": "cis test",
+      "vpcId": "vpc-08f77b07c34029b7a",
+      "subnetGroupStatus": "Complete",
+      "subnets": [
+        {
+          "subnetIdentifier": "subnet-03e5673d7e92b32e4",
+          "subnetAvailabilityZone": {
+            "name": "ap-northeast-1a"
+          },
+          "subnetOutpost": {},
+          "subnetStatus": "Active"
+        },
+        {
+          "subnetIdentifier": "subnet-0eda29a6e632cc59a",
+          "subnetAvailabilityZone": {
+            "name": "ap-northeast-1c"
+          },
+          "subnetOutpost": {},
+          "subnetStatus": "Active"
+        }
+      ]
+    },
+    "preferredMaintenanceWindow": "wed:14:45-wed:15:15",
+    "pendingModifiedValues": {},
+    "multiAZ": false,
+    "engineVersion": "14.1",
+    "autoMinorVersionUpgrade": true,
+    "readReplicaDBInstanceIdentifiers": [],
+    "licenseModel": "postgresql-license",
+    "storageThroughput": 0,
+    "optionGroupMemberships": [
+      {
+        "optionGroupName": "default:postgres-14",
+        "status": "pending-apply"
+      }
+    ],
+    "publiclyAccessible": false,
+    "storageType": "gp2",
+    "dbInstancePort": 0,
+    "storageEncrypted": true,
+    "kmsKeyId": "arn:aws:kms:ap-northeast-1:999999999999:key/3c252dc0-7b1e-4181-ba49-c345022d5c1e",
+    "dbiResourceId": "db-CAHEZZBXYU2GFTW76XQIUYGHOE",
+    "cACertificateIdentifier": "rds-ca-2019",
+    "domainMemberships": [],
+    "copyTagsToSnapshot": false,
+    "monitoringInterval": 0,
+    "dBInstanceArn": "arn:aws:rds:ap-northeast-1:999999999999:db:cis-rds-backup-test-recovery",
+    "iAMDatabaseAuthenticationEnabled": false,
+    "performanceInsightsEnabled": false,
+    "deletionProtection": false,
+    "associatedRoles": [],
+    "httpEndpointEnabled": false,
+    "maxAllocatedStorage": 1000,
+    "tagList": [],
+    "customerOwnedIpEnabled": false,
+    "networkType": "IPV4",
+    "backupTarget": "region"
+  },
+  "requestID": "248f5ee1-e8c4-4bf3-9a6c-3b4797b42fe1",
+  "eventID": "0df27050-c88b-4a26-912c-0c38c7d0d31a",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management"
+}

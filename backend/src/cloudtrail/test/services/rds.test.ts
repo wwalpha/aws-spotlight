@@ -51,14 +51,68 @@ describe('rds.amazonaws.com', () => {
     const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:cluster:aurora-db-bk-cluster');
     const history = await getHistory({ EventId: CreateEvents.RDS_RestoreDBClusterToPointInTime.eventID });
 
-    fs.writeFileSync('./test/expect/rds/RDS_RestoreDBClusterToPointInTime_R.json', JSON.stringify(resource));
-    fs.writeFileSync('./test/expect/rds/RDS_RestoreDBClusterToPointInTime_H.json', JSON.stringify(history));
+    // fs.writeFileSync('./test/expect/rds/RDS_RestoreDBClusterToPointInTime_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('./test/expect/rds/RDS_RestoreDBClusterToPointInTime_H.json', JSON.stringify(history));
 
     expect(resource).not.toBeUndefined();
-    // expect(resource).toEqual(EXPECTS.RDS_RestoreDBClusterToPointInTime_R);
+    expect(resource).toEqual(EXPECTS.RDS_RestoreDBClusterToPointInTime_R);
 
     expect(history).not.toBeUndefined();
-    // expect(history).toEqual(EXPECTS.RDS_RestoreDBClusterToPointInTime_H);
+    expect(history).toEqual(EXPECTS.RDS_RestoreDBClusterToPointInTime_H);
+  });
+
+  test('RDS_RestoreDBClusterFromSnapshot', async () => {
+    const event = await sendMessage(CreateEvents.RDS_RestoreDBClusterFromSnapshot);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:cluster:aurora-db2-cluster');
+    const history = await getHistory({ EventId: CreateEvents.RDS_RestoreDBClusterFromSnapshot.eventID });
+
+    // fs.writeFileSync('./test/expect/rds/RDS_RestoreDBClusterFromSnapshot_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('./test/expect/rds/RDS_RestoreDBClusterFromSnapshot_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.RDS_RestoreDBClusterFromSnapshot_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EXPECTS.RDS_RestoreDBClusterFromSnapshot_H);
+  });
+
+  test('RDS_RestoreDBInstanceFromDBSnapshot', async () => {
+    const event = await sendMessage(CreateEvents.RDS_RestoreDBInstanceFromDBSnapshot);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:db:nestle-envtestdb2');
+    const history = await getHistory({ EventId: CreateEvents.RDS_RestoreDBClusterToPointInTime.eventID });
+
+    // fs.writeFileSync('./test/expect/rds/RDS_RestoreDBInstanceFromDBSnapshot_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('./test/expect/rds/RDS_RestoreDBInstanceFromDBSnapshot_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.RDS_RestoreDBInstanceFromDBSnapshot_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EXPECTS.RDS_RestoreDBInstanceFromDBSnapshot_H);
+  });
+
+  test('RDS_RestoreDBInstanceToPointInTime', async () => {
+    const event = await sendMessage(CreateEvents.RDS_RestoreDBInstanceToPointInTime);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:db:cis-rds-backup-test-recovery');
+    const history = await getHistory({ EventId: CreateEvents.RDS_RestoreDBInstanceToPointInTime.eventID });
+
+    // fs.writeFileSync('./test/expect/rds/RDS_RestoreDBInstanceToPointInTime_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('./test/expect/rds/RDS_RestoreDBInstanceToPointInTime_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.RDS_RestoreDBInstanceToPointInTime_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EXPECTS.RDS_RestoreDBInstanceToPointInTime_H);
   });
 
   test('CreateDBInstance', async () => {

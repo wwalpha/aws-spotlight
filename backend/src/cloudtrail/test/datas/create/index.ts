@@ -96,8 +96,11 @@ export { default as RDS_CreateDBSnapshot } from './rds/RDS_CreateDBSnapshot.json
 export { default as RDS_CopyDBSnapshot } from './rds/RDS_CopyDBSnapshot.json';
 export { default as RDS_CreateDBSubnetGroup } from './rds/RDS_CreateDBSubnetGroup.json';
 export { default as RDS_CreateDBClusterSnapshot } from './rds/RDS_CreateDBClusterSnapshot.json';
-export { default as RDS_RestoreDBClusterToPointInTime } from './rds/RDS_RestoreDBClusterToPointInTime.json';
 export { default as RDS_CreateOptionGroup } from './rds/RDS_CreateOptionGroup.json';
+export { default as RDS_RestoreDBClusterFromSnapshot } from './rds/RDS_RestoreDBClusterFromSnapshot.json';
+export { default as RDS_RestoreDBClusterToPointInTime } from './rds/RDS_RestoreDBClusterToPointInTime.json';
+export { default as RDS_RestoreDBInstanceFromDBSnapshot } from './rds/RDS_RestoreDBInstanceFromDBSnapshot.json';
+export { default as RDS_RestoreDBInstanceToPointInTime } from './rds/RDS_RestoreDBInstanceToPointInTime.json';
 
 export { default as REDSHIFT_CreateCluster } from './REDSHIFT_CreateCluster.json';
 export { default as ROUTE53_CreateHostedZone } from './ROUTE53_CreateHostedZone.json';

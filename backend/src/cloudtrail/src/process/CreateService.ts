@@ -273,10 +273,14 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
         record.responseElements.hostedZone.name,
       ];
     case 'RDS_CreateDBCluster':
+    case 'RDS_RestoreDBClusterToPointInTime':
+    case 'RDS_RestoreDBClusterFromSnapshot':
       return [record.responseElements.dBClusterArn, record.responseElements.dBClusterIdentifier];
     case 'RDS_CreateDBClusterParameterGroup':
       return [record.responseElements.dBClusterParameterGroupArn, record.responseElements.dBClusterParameterGroupName];
     case 'RDS_CreateDBInstance':
+    case 'RDS_RestoreDBInstanceToPointInTime':
+    case 'RDS_RestoreDBInstanceFromDBSnapshot':
       return [record.responseElements.dBInstanceArn, record.responseElements.dBInstanceIdentifier];
     case 'RDS_CreateDBParameterGroup':
       return [record.responseElements.dBParameterGroupArn, record.responseElements.dBParameterGroupName];
@@ -292,6 +296,7 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
       return [record.responseElements.dBClusterSnapshotArn, record.responseElements.dBClusterSnapshotIdentifier];
     case 'RDS_RestoreDBClusterToPointInTime':
       return [record.responseElements.dBClusterArn, record.responseElements.dBClusterIdentifier];
+
     case 'RDS_CreateOptionGroup':
       return [record.responseElements.optionGroupArn, record.responseElements.optionGroupName];
 

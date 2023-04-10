@@ -126,6 +126,9 @@ CreateLogGroup,logs.amazonaws.com,create
 DeleteLogGroup,logs.amazonaws.com,delete
 CreateDBCluster,rds.amazonaws.com,create
 RestoreDBClusterToPointInTime,rds.amazonaws.com,create
+RestoreDBInstanceToPointInTime,rds.amazonaws.com,create
+RestoreDBInstanceFromDBSnapshot,rds.amazonaws.com,create
+RestoreDBClusterFromSnapshot,rds.amazonaws.com,create
 DeleteDBCluster,rds.amazonaws.com,delete
 CreateDBInstance,rds.amazonaws.com,create
 DeleteDBInstance,rds.amazonaws.com,delete
