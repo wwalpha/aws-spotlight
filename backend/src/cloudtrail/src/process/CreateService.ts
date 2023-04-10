@@ -62,7 +62,7 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
       return [ResourceARNs.APIGATEWAY_Api(region, account, record.responseElements.id), record.responseElements.name];
     case 'APIGATEWAY_CreateVpcLink':
       // 存在しない場合は、処理不要
-      if (!record.responseElements.vpcLinkI) return;
+      if (!record.responseElements.vpcLinkId) return;
 
       return [
         ResourceARNs.APIGATEWAY_VpcLink(region, account, record.responseElements.vpcLinkId),
@@ -359,7 +359,7 @@ const getResourceInfos = (record: CloudTrail.Record): string[][] => {
       }
 
       const snapshotId = items.snapshotId;
-      return [ResourceARNs.EC2_Snapshot(region, account, snapshotId), snapshotId];
+      return [[ResourceARNs.EC2_Snapshot(region, account, snapshotId), snapshotId]];
   }
 
   return [];

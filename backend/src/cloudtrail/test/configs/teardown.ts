@@ -34,6 +34,7 @@ const teardown = async () => {
   await dbClient.deleteTable({ TableName: process.env.TABLE_NAME_RESOURCES as string }).promise();
   await dbClient.deleteTable({ TableName: process.env.TABLE_NAME_UNPROCESSED as string }).promise();
   await dbClient.deleteTable({ TableName: process.env.TABLE_NAME_HISTORY as string }).promise();
+  await dbClient.deleteTable({ TableName: process.env.TABLE_NAME_IGNORES as string }).promise();
 
   console.log('jest teardown end...');
 };
