@@ -798,4 +798,15 @@ CreateTagOption,servicecatalog.amazonaws.com,true
 DisassociatePrincipalFromPortfolio,servicecatalog.amazonaws.com,true
 AssociateTagOptionWithResource,servicecatalog.amazonaws.com,true
 DisassociateTagOptionFromResource,servicecatalog.amazonaws.com,true
-TagResource20170331v2,lambda.amazonaws.com,true
+CreateDetector,guardduty.amazonaws.com,true
+DeleteInstanceV2,workdocs.amazonaws.com,true
+CreateWorkspace,aps.amazonaws.com,true
+CreateWorkspace,grafana.amazonaws.com,true
+CreateProduct,servicecatalog.amazonaws.com,true
+CreateConstraint,servicecatalog.amazonaws.com,true
+CreateDomain,profile.amazonaws.com,true
+CreateDomain,sagemaker.amazonaws.com,true
+DeleteProduct,servicecatalog.amazonaws.com,true
+CreateApp,pinpoint.amazonaws.com,true
+CreateWorkspaces,workspaces.amazonaws.com,true
+TerminateProvisionedProduct,servicecatalog.amazonaws.com,true
