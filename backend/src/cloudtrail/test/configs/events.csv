@@ -131,6 +131,7 @@ CreateDBInstance,rds.amazonaws.com,create
 DeleteDBInstance,rds.amazonaws.com,delete
 CreateOptionGroup,rds.amazonaws.com,create
 DeleteOptionGroup,rds.amazonaws.com,delete
+CopyDBSnapshot,rds.amazonaws.com,create
 CreateDBSnapshot,rds.amazonaws.com,create
 DeleteDBSnapshot,rds.amazonaws.com,delete
 CreateDBProxy,rds.amazonaws.com,create

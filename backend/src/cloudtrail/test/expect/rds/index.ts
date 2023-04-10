@@ -23,6 +23,9 @@ export { default as RDS_DeleteDBSubnetGroup_H } from './RDS_DeleteDBSubnetGroup_
 
 export { default as RDS_RestoreDBClusterToPointInTime_H } from './RDS_RestoreDBClusterToPointInTime_H.json';
 export { default as RDS_RestoreDBClusterToPointInTime_R } from './RDS_RestoreDBClusterToPointInTime_R.json';
+
+export { default as RDS_CopyDBSnapshot_H } from './RDS_CopyDBSnapshot_H.json';
+export { default as RDS_CopyDBSnapshot_R } from './RDS_CopyDBSnapshot_R.json';
 export { default as RDS_CreateDBSnapshot_H } from './RDS_CreateDBSnapshot_H.json';
 export { default as RDS_CreateDBSnapshot_R } from './RDS_CreateDBSnapshot_R.json';
 export { default as RDS_DeleteDBSnapshot_H } from './RDS_DeleteDBSnapshot_H.json';

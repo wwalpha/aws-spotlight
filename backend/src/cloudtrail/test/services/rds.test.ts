@@ -298,6 +298,24 @@ describe('rds.amazonaws.com', () => {
     expect(history).toEqual(EXPECTS.RDS_CreateDBSnapshot_H);
   });
 
+  test('RDS_CopyDBSnapshot', async () => {
+    const event = await sendMessage(CreateEvents.RDS_CopyDBSnapshot);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:snapshot:snp-database-3-20230209');
+    const history = await getHistory({ EventId: CreateEvents.RDS_CopyDBSnapshot.eventID });
+
+    // fs.writeFileSync('./test/expect/rds/RDS_CopyDBSnapshot_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('./test/expect/rds/RDS_CopyDBSnapshot_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.RDS_CopyDBSnapshot_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EXPECTS.RDS_CopyDBSnapshot_H);
+  });
+
   test('RDS_DeleteDBSnapshot', async () => {
     const event = await sendMessage(DeleteEvents.RDS_DeleteDBSnapshot);
 
