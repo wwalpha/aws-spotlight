@@ -63,7 +63,6 @@ export { default as ELASTICLOADBALANCING_CreateTargetGroup } from './elb/ELASTIC
 
 export { default as EKS_CreateCluster } from './EKS_CreateCluster.json';
 export { default as ELASTICFILESYSTEM_CreateFileSystem } from './ELASTICFILESYSTEM_CreateFileSystem.json';
-export { default as ELASTICBEANSTALK_CreateEnvironment } from './ELASTICBEANSTALK_CreateEnvironment.json';
 export { default as ES_CreateElasticsearchDomain } from './ES_CreateElasticsearchDomain.json';
 
 export { default as FIREHOSE_CreateDeliveryStream } from './FIREHOSE_CreateDeliveryStream.json';
