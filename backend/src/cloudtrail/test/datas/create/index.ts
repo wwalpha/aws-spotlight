@@ -33,6 +33,7 @@ export { default as EC2_CreateImage } from './ec2/EC2_CreateImage.json';
 export { default as EC2_CreateNatGateway } from './ec2/EC2_CreateNatGateway.json';
 export { default as EC2_CreateSnapshot } from './ec2/EC2_CreateSnapshot.json';
 export { default as EC2_CreateSnapshots } from './ec2/EC2_CreateSnapshots.json';
+export { default as EC2_CopySnapshot } from './ec2/EC2_CopySnapshot.json';
 export { default as EC2_RestoreSnapshotFromRecycleBin } from './ec2/EC2_RestoreSnapshotFromRecycleBin.json';
 export { default as EC2_RunInstances } from './ec2/EC2_RunInstances.json';
 export { default as EC2_CreateVpcPeeringConnection } from './ec2/EC2_CreateVpcPeeringConnection.json';

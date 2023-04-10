@@ -77,3 +77,6 @@ export { default as EC2_DeleteLaunchTemplate_H } from './EC2_DeleteLaunchTemplat
 
 export { default as EC2_RestoreSnapshotFromRecycleBin_H } from './EC2_RestoreSnapshotFromRecycleBin_H.json';
 export { default as EC2_RestoreSnapshotFromRecycleBin_R } from './EC2_RestoreSnapshotFromRecycleBin_R.json';
+
+export { default as EC2_CopySnapshot_H } from './EC2_CopySnapshot_H.json';
+export { default as EC2_CopySnapshot_R } from './EC2_CopySnapshot_R.json';

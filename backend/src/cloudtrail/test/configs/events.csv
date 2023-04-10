@@ -44,6 +44,7 @@ RunInstances,ec2.amazonaws.com,create
 TerminateInstances,ec2.amazonaws.com,delete
 CreateImage,ec2.amazonaws.com,create
 DeregisterImage,ec2.amazonaws.com,delete
+CopySnapshot,ec2.amazonaws.com,create
 CreateSnapshot,ec2.amazonaws.com,create
 CreateSnapshots,ec2.amazonaws.com,create
 RestoreSnapshotFromRecycleBin,ec2.amazonaws.com,create

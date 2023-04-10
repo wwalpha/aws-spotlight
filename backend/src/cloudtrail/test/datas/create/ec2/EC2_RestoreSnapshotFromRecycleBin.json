@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDAU33DBSJ5M2LXKXXXS",
-    "arn": "arn:aws:iam::334678299258:user/ktou@dxc.com",
-    "accountId": "334678299258",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
     "accessKeyId": "ASIAU33DBSJ5J2VFT6HO",
-    "userName": "ktou@dxc.com",
+    "userName": "test@test.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
@@ -37,7 +37,7 @@
       "progress": "100%",
       "description": "",
       "startTime": "2021-12-01T00:36:24.429Z",
-      "ownerId": 334678299258,
+      "ownerId": 999999999999,
       "volumeSize": 100,
       "status": "recovering"
     }
@@ -47,6 +47,6 @@
   "readOnly": false,
   "eventType": "AwsApiCall",
   "managementEvent": true,
-  "recipientAccountId": "334678299258",
+  "recipientAccountId": "999999999999",
   "eventCategory": "Management"
 }

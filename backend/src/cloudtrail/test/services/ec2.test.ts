@@ -72,6 +72,24 @@ describe('ec2.amazonaws.com', () => {
     expect(history).toEqual(EC2.DeregisterImage_H);
   });
 
+  test('EC2_CopySnapshot', async () => {
+    const event = await sendMessage(CreateEvents.EC2_CopySnapshot);
+
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:ec2:ap-northeast-1::snapshot/snap-031b3694bcd5fea93');
+    const history = await getHistory({ EventId: CreateEvents.EC2_CopySnapshot.eventID });
+
+    // fs.writeFileSync('./test/expect/ec2/EC2_CopySnapshot_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('./test/expect/ec2/EC2_CopySnapshot_H.json', JSON.stringify(history));
+
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EC2.EC2_CopySnapshot_R);
+
+    expect(history).not.toBeUndefined();
+    expect(history).toEqual(EC2.EC2_CopySnapshot_H);
+  });
+
   test('EC2_CreateSnapshot', async () => {
     const event = await sendMessage(CreateEvents.EC2_CreateSnapshot);
 

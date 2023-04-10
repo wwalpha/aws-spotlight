@@ -1,1 +1,13 @@
-{"IdentityType":"IAMUser","EventSource":"ec2.amazonaws.com","UserName":"ktou@dxc.com","ResourceId":"arn:aws:ec2:ap-northeast-1::snapshot/snap-0a15b34fdb9d3c87b","ResourceName":"snap-0a15b34fdb9d3c87b","EventTime":"2021-12-01T00:39:16Z","UserAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36","AWSRegion":"ap-northeast-1","EventId":"4bc67b3a-662e-464f-bbe3-4862ec56caa6","Service":"EC2","EventName":"RestoreSnapshotFromRecycleBin"}
+{
+  "IdentityType": "IAMUser",
+  "EventSource": "ec2.amazonaws.com",
+  "UserName": "test@test.com",
+  "ResourceId": "arn:aws:ec2:ap-northeast-1::snapshot/snap-0a15b34fdb9d3c87b",
+  "ResourceName": "snap-0a15b34fdb9d3c87b",
+  "EventTime": "2021-12-01T00:39:16Z",
+  "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
+  "AWSRegion": "ap-northeast-1",
+  "EventId": "4bc67b3a-662e-464f-bbe3-4862ec56caa6",
+  "Service": "EC2",
+  "EventName": "RestoreSnapshotFromRecycleBin"
+}

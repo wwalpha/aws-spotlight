@@ -162,6 +162,7 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
     case 'EC2_CreateNetworkInsightsPath':
       name = record.responseElements.CreateNetworkInsightsPathResponse.networkInsightsPath.networkInsightsPathId;
       return [ResourceARNs.EC2_NetworkInsightsPath(region, account, name), name];
+    case 'EC2_CopySnapshot':
     case 'EC2_CreateSnapshot':
       name = record.responseElements.snapshotId;
       return [ResourceARNs.EC2_Snapshot(region, account, name), name];
