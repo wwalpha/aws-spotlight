@@ -61,6 +61,9 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
     case 'APIGATEWAY_CreateRestApi':
       return [ResourceARNs.APIGATEWAY_Api(region, account, record.responseElements.id), record.responseElements.name];
     case 'APIGATEWAY_CreateVpcLink':
+      // 存在しない場合は、処理不要
+      if (!record.responseElements.vpcLinkI) return;
+
       return [
         ResourceARNs.APIGATEWAY_VpcLink(region, account, record.responseElements.vpcLinkId),
         record.responseElements.name,
