@@ -1,5 +1,5 @@
 {
-  "Status": "Created",
+  "Status": "Deleted",
   "IdentityType": "IAMUser",
   "UserName": "test@test.com",
   "ResourceName": "api.arms.onecloudlabo.com",
@@ -7,7 +7,8 @@
   "Service": "Apigateway",
   "EventName": "CreateDomainName",
   "Revisions": [
-    "2021-06-03T10:53:37Z"
+    "2021-06-03T10:53:37Z",
+    "2021-06-06T01:54:14Z"
   ],
   "EventSource": "apigateway.amazonaws.com",
   "ResourceId": "arn:aws:apigateway:ap-northeast-1::/domainnames/api.arms.onecloudlabo.com",
