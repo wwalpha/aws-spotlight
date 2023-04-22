@@ -1,6 +1,6 @@
 import { DynamoDB, S3 } from 'aws-sdk';
 import { SNSMessage, SQSRecord } from 'aws-lambda';
-import _, { orderBy } from 'lodash';
+import _, { orderBy, uniqBy } from 'lodash';
 import zlib from 'zlib';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
 import { Utilities, Consts, DynamodbHelper, Logger } from './utils';
@@ -154,6 +154,8 @@ const processRecords = async (records: CloudTrail.Record[]) => {
     const registItem = item ? item : lastestRes;
     // リビジョンを更新
     registItem.Revisions = _.orderBy([...times, ...registItem.Revisions]);
+    // distinct array
+    registItem.Revisions = _.uniq(registItem.Revisions);
 
     // 最後リソースのイベント時間とリビジョンの最後の時刻が一致する場合、ステータスを更新
     if (lastestRes.EventTime === registItem.Revisions[registItem.Revisions.length - 1]) {
@@ -172,7 +174,6 @@ const processRecords = async (records: CloudTrail.Record[]) => {
   // リソース登録情報を取得
   const registItems = await Promise.all(registTasks);
 
-  // console.log(registItems);
   // リソース情報を登録
   await DynamodbHelper.bulk(Environments.TABLE_NAME_RESOURCES, registItems);
   // 履歴情報を登録
@@ -260,5 +261,5 @@ export const getRecords = async (message: string): Promise<CloudTrail.Record[]> 
   }, [] as CloudTrail.Record[]);
 
   // 時間順
-  return orderBy(newArray, ['eventTime'], ['asc']);
+  return uniqBy(orderBy(newArray, ['eventTime'], ['asc']), 'eventId');
 };
