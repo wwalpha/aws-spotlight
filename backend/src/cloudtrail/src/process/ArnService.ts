@@ -453,11 +453,6 @@ const getRegistSingleResource = (record: CloudTrail.Record): ResourceInfo[] => {
       rets = [response.ruleArn, request.name];
       break;
 
-    case 'EVENTS_DeleteRule':
-      name = request.name;
-      rets = [ResourceARNs.EVENTS_Rule(region, account, name), name];
-      break;
-
     case 'MONITORING_PutDashboard':
       name = request.dashboardName;
       rets = [ResourceARNs.MONITORING_Dashboard(region, account, name), name];
@@ -515,18 +510,6 @@ const getRegistMultiResources = (record: CloudTrail.Record): ResourceInfo[] => {
           name: snapshotId,
         },
       ];
-
-    case 'MONITORING_DeleteAlarms':
-      return (request.alarmNames as string[]).map<ResourceInfo>((item) => ({
-        id: ResourceARNs.MONITORING_Alarm(region, account, item),
-        name: item,
-      }));
-
-    case 'MONITORING_DeleteDashboards':
-      return (request.dashboardNames as string[]).map((item) => ({
-        id: ResourceARNs.MONITORING_Dashboard(region, account, item),
-        name: item,
-      }));
   }
 
   return [];
@@ -630,6 +613,10 @@ const getRemoveSingleResource = (record: CloudTrail.Record): ResourceInfo | unde
 
     case 'ECR_DeleteRepository':
       arn = response.repository.repositoryArn;
+      break;
+
+    case 'EVENTS_DeleteRule':
+      arn = ResourceARNs.EVENTS_Rule(region, account, request.name);
       break;
 
     case 'FIREHOSE_DeleteDeliveryStream':
@@ -898,7 +885,14 @@ const getRemoveSingleResource = (record: CloudTrail.Record): ResourceInfo | unde
 };
 
 const getRemoveMultiResources = (record: CloudTrail.Record): ResourceInfo[] => {
-  const { awsRegion: region, recipientAccountId: account, responseElements: response, eventSource, eventName } = record;
+  const {
+    awsRegion: region,
+    recipientAccountId: account,
+    responseElements: response,
+    requestParameters: request,
+    eventSource,
+    eventName,
+  } = record;
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
 
   switch (key) {
@@ -908,6 +902,18 @@ const getRemoveMultiResources = (record: CloudTrail.Record): ResourceInfo[] => {
           id: ResourceARNs.EC2_Instances(region, account, item.instanceId),
         })
       );
+
+    case 'MONITORING_DeleteAlarms':
+      return (request.alarmNames as string[]).map<ResourceInfo>((item) => ({
+        id: ResourceARNs.MONITORING_Alarm(region, account, item),
+        name: item,
+      }));
+
+    case 'MONITORING_DeleteDashboards':
+      return (request.dashboardNames as string[]).map((item) => ({
+        id: ResourceARNs.MONITORING_Dashboard(region, account, item),
+        name: item,
+      }));
   }
 
   return [];
