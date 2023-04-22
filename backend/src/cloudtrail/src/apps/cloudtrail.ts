@@ -142,7 +142,7 @@ const processRecords = async (records: CloudTrail.Record[]) => {
   const registTasks = Object.keys(arns).map(async (key) => {
     // イベント時刻でソート
     const res = _.orderBy(arns[key], ['EventTime'], ['desc']);
-    const laststRes = res[0];
+    const lastestRes = res[0];
     // イベント時刻
     const times = res.map((item) => item.EventTime);
 
@@ -151,13 +151,19 @@ const processRecords = async (records: CloudTrail.Record[]) => {
       ResourceId: key,
     });
 
-    const registItem = item ? item : laststRes;
+    const registItem = item ? item : lastestRes;
     // リビジョンを更新
     registItem.Revisions = _.orderBy([...times, ...registItem.Revisions]);
 
     // 最後リソースのイベント時間とリビジョンの最後の時刻が一致する場合、ステータスを更新
-    if (laststRes.EventTime === registItem.Revisions[registItem.Revisions.length - 1]) {
-      registItem.Status = laststRes.Status;
+    if (lastestRes.EventTime === registItem.Revisions[registItem.Revisions.length - 1]) {
+      registItem.EventId = lastestRes.EventId;
+      registItem.EventName = lastestRes.EventName;
+      registItem.EventTime = lastestRes.EventTime;
+      registItem.IdentityType = lastestRes.IdentityType;
+      registItem.UserAgent = lastestRes.UserAgent;
+      registItem.UserName = lastestRes.UserName;
+      registItem.Status = lastestRes.Status;
     }
 
     return registItem;
