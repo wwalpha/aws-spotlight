@@ -1,5 +1,6 @@
 export * as Consts from './consts';
 export * as Events from './events';
+export { ResourceARNs } from './awsArns';
 export * as Utilities from './utilities';
 export { default as AddTags } from './addTags';
 export { Logger } from './utilities';

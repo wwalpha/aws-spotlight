@@ -7,60 +7,61 @@ import { CloudTrail, Tables } from 'typings';
 import { Consts, Utilities } from '.';
 import _ from 'lodash';
 
-export const getCreateResourceItems = async (record: CloudTrail.Record): Promise<DynamoDB.TransactWriteItemList> => {
-  const items = CreateService.start(record) ?? [];
-  const rets: DynamoDB.TransactWriteItemList = [];
+export const getCreateResourceItems = (record: CloudTrail.Record): Tables.TResource[] => {
+  return CreateService.start(record) ?? [];
+  // const items = CreateService.start(record) ?? [];
+  // const rets: DynamoDB.TransactWriteItemList = [];
 
-  // 対象データなし
-  if (items.length === 0) return rets;
+  // // 対象データなし
+  // if (items.length === 0) return rets;
 
-  const { TABLE_NAME_RESOURCES, TABLE_NAME_UNPROCESSED, TABLE_NAME_HISTORY } = Consts.Environments;
+  // const { TABLE_NAME_RESOURCES, TABLE_NAME_UNPROCESSED, TABLE_NAME_HISTORY } = Consts.Environments;
 
-  // 既存データ検索
-  const results = await Promise.all(
-    items.map((item) =>
-      ResourceService.describe({
-        ResourceId: item.ResourceId,
-      })
-    )
-  );
+  // // 既存データ検索
+  // const results = await Promise.all(
+  //   items.map((item) =>
+  //     ResourceService.describe({
+  //       ResourceId: item.ResourceId,
+  //     })
+  //   )
+  // );
 
-  // すでに存在している場合は、未処理から削除する
-  const dataRows = results.filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
+  // // すでに存在している場合は、未処理から削除する
+  // const dataRows = results.filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
-  // 既存データ存在しない、存在データ件数不一致
-  if (dataRows.length === 0) {
-    // リソース追加
-    items.map((item) => rets.push(Utilities.getPutRecord(TABLE_NAME_RESOURCES, item)));
+  // // 既存データ存在しない、存在データ件数不一致
+  // if (dataRows.length === 0) {
+  //   // リソース追加
+  //   items.map((item) => rets.push(Utilities.getPutRecord(TABLE_NAME_RESOURCES, item)));
 
-    // 未処理削除
-    rets.push(Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, Utilities.getRemoveUnprocessed(record)));
-    // 履歴追加
-    rets.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
+  //   // 未処理削除
+  //   rets.push(Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, Utilities.getRemoveUnprocessed(record)));
+  //   // 履歴追加
+  //   rets.push(Utilities.getPutRecord(TABLE_NAME_HISTORY, Utilities.getHistoryItem(record)));
 
-    return rets;
-  }
+  //   return rets;
+  // }
 
-  // 存在データ件数不一致、処理しない
-  if (dataRows.length !== 0 && items.length !== dataRows.length) {
-    // リソース
-    const resourceIds = items.map((item) => item.ResourceId);
-    // 未処理削除
-    rets.push(Utilities.getPutRecord(TABLE_NAME_UNPROCESSED, Utilities.getUnprocessedItem(record, resourceIds)));
+  // // 存在データ件数不一致、処理しない
+  // if (dataRows.length !== 0 && items.length !== dataRows.length) {
+  //   // リソース
+  //   const resourceIds = items.map((item) => item.ResourceId);
+  //   // 未処理削除
+  //   rets.push(Utilities.getPutRecord(TABLE_NAME_UNPROCESSED, Utilities.getUnprocessedItem(record, resourceIds)));
 
-    return rets;
-  }
+  //   return rets;
+  // }
 
-  // 既存データ存在する場合
-  const sameResource = dataRows.filter((item) => item.EventId === record.eventID);
+  // // 既存データ存在する場合
+  // const sameResource = dataRows.filter((item) => item.EventId === record.eventID);
 
-  // 同じイベントの場合、未処理データを削除する
-  if (sameResource.length !== 0) {
-    // 未処理削除
-    rets.push(Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, Utilities.getRemoveUnprocessed(record)));
-  }
+  // // 同じイベントの場合、未処理データを削除する
+  // if (sameResource.length !== 0) {
+  //   // 未処理削除
+  //   rets.push(Utilities.getDeleteRecord(TABLE_NAME_UNPROCESSED, Utilities.getRemoveUnprocessed(record)));
+  // }
 
-  return rets;
+  // return rets;
 };
 
 export const getUpdateResourceItems = async (record: CloudTrail.Record): Promise<DynamoDB.TransactWriteItemList> => {
@@ -82,7 +83,7 @@ export const getUpdateResourceItems = async (record: CloudTrail.Record): Promise
     if (!dataRow) {
       item.Revisions = [item.EventTime];
       item.Status = record.eventName.toUpperCase().startsWith('DELETE')
-        ? Consts.ResourceStatus.DELETE
+        ? Consts.ResourceStatus.DELETED
         : Consts.ResourceStatus.CREATED;
 
       rets.push(Utilities.getPutRecord(TABLE_NAME_RESOURCES, item));
@@ -99,7 +100,7 @@ export const getUpdateResourceItems = async (record: CloudTrail.Record): Promise
 
       // 最後の場合、削除フラグ
       if (index + 1 === revisions.length) {
-        dataRow.Status = Consts.ResourceStatus.DELETE;
+        dataRow.Status = Consts.ResourceStatus.DELETED;
       }
     }
 

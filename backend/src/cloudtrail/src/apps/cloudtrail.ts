@@ -1,10 +1,13 @@
 import { DynamoDB, S3 } from 'aws-sdk';
 import { SNSMessage, SQSRecord } from 'aws-lambda';
-import { omit, orderBy } from 'lodash';
+import _, { orderBy } from 'lodash';
 import zlib from 'zlib';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
-import { Utilities, Consts, Events, DynamodbHelper, AddTags, Logger } from './utils';
+import { Utilities, Consts, DynamodbHelper, Logger } from './utils';
 import { checkMultipleOperations, sendMail } from './utils/utilities';
+import * as ArnService from '@src/process/ArnService';
+import { ResourceService } from '@src/services';
+import { Environments } from './utils/consts';
 
 const s3Client = new S3();
 const NOTIFIED: EVENT_TYPE = {};
@@ -55,21 +58,16 @@ export const execute = async (message: SQSRecord) => {
 
   Logger.info(`Process Records: ${records.length}`);
 
+  // 新規イベント
+  await processNewRecords(records);
+
   let hasError = false;
 
-  for (;;) {
-    const record = records.shift();
-
-    // error check
-    if (!record) break;
-
-    try {
-      await processRecord(record);
-    } catch (err) {
-      hasError = true;
-      Logger.error(err);
-      Logger.error(record);
-    }
+  try {
+    await processRecords(records);
+  } catch (err) {
+    hasError = true;
+    Logger.error(err);
   }
 
   // no error
@@ -79,21 +77,103 @@ export const execute = async (message: SQSRecord) => {
   }
 };
 
-const processRecord = async (record: CloudTrail.Record) => {
-  const service = record.eventSource.split('.')[0].toUpperCase();
-  const definition = EVENTS[`${service}_${record.eventName}`];
+const processNewRecords = async (records: CloudTrail.Record[]) => {
+  const newRecords = records.filter((item) => {
+    const service = item.eventSource.split('.')[0].toUpperCase();
+    const definition = EVENTS[`${service}_${item.eventName}`];
 
-  // new event
-  if (!definition) {
-    await processNewEventType(record);
-  }
+    return definition === undefined;
+  });
 
-  // create event || delete event
-  if (definition?.Create === true || definition?.Delete === true) {
-    await processUpdate(record);
-  }
+  // 一括登録イベント
+  const tasks = newRecords.map((item) => processNewEventType(item));
+
+  await Promise.all(tasks);
 };
 
+const processRecords = async (records: CloudTrail.Record[]) => {
+  // 処理対象のみ
+  const targets = records.filter((item) => {
+    const service = item.eventSource.split('.')[0].toUpperCase();
+    const definition = EVENTS[`${service}_${item.eventName}`];
+
+    if (definition?.Create === true || definition?.Delete === true) {
+      return true;
+    }
+
+    return false;
+  });
+
+  const histories: Tables.THistory[] = [];
+  const resources: Tables.TResource[] = [];
+  const unprocesses: Tables.TUnprocessed[] = [];
+
+  // 処理可能なデータを分ける
+  targets.forEach(async (item) => {
+    const arns = ArnService.start(item);
+
+    if (arns.length === 0) {
+      unprocesses.push(Utilities.getUnprocessedItem(item, 'NEW'));
+    } else {
+      arns.forEach((arn) => resources.push(arn));
+      histories.push(Utilities.getHistoryItem(item));
+    }
+  });
+
+  // 処理不能なデータを未処理テーブルに登録する
+  await DynamodbHelper.bulk(Environments.TABLE_NAME_UNPROCESSED, unprocesses);
+  // console.log(resources);
+
+  const results = _.chain(resources)
+    .groupBy((x) => x.ResourceId)
+    .map((values, key) => ({ [key]: values }))
+    .value();
+
+  const arns: Record<string, Tables.TResource[]> = {};
+  // console.log(results);
+
+  results.forEach((item) => {
+    Object.keys(item).forEach((o) => {
+      arns[o] = item[o];
+    });
+  });
+
+  // console.log(arns);
+  const registTasks = Object.keys(arns).map(async (key) => {
+    // イベント時刻でソート
+    const res = _.orderBy(arns[key], ['EventTime'], ['desc']);
+    const laststRes = res[0];
+    // イベント時刻
+    const times = res.map((item) => item.EventTime);
+
+    // 既存のリソース情報を取得
+    const item = await ResourceService.describe({
+      ResourceId: key,
+    });
+
+    const registItem = item ? item : laststRes;
+    // リビジョンを更新
+    registItem.Revisions = _.orderBy([...times, ...registItem.Revisions]);
+
+    // 最後リソースのイベント時間とリビジョンの最後の時刻が一致する場合、ステータスを更新
+    if (laststRes.EventTime === registItem.Revisions[registItem.Revisions.length - 1]) {
+      registItem.Status = laststRes.Status;
+    }
+
+    return registItem;
+  });
+
+  // リソース登録情報を取得
+  const registItems = await Promise.all(registTasks);
+
+  // console.log(registItems);
+  // リソース情報を登録
+  await DynamodbHelper.bulk(Environments.TABLE_NAME_RESOURCES, registItems);
+  // 履歴情報を登録
+  await DynamodbHelper.bulk(Environments.TABLE_NAME_HISTORY, histories);
+};
+
+// 新しいイベントの登録
 const processNewEventType = async (record: CloudTrail.Record) => {
   Logger.debug('Start execute new event type...');
 
@@ -126,40 +206,6 @@ const processNewEventType = async (record: CloudTrail.Record) => {
 
     await sendMail('New Event Type', `Event Source: ${record.eventSource}, Event Name: ${record.eventName}`);
   }
-};
-
-const processUpdate = async (record: CloudTrail.Record) => {
-  // Resource ARN 情報を取得する
-  const [createItems, updateItems, deleteItems] = await Promise.all([
-    Events.getCreateResourceItems(record),
-    Events.getUpdateResourceItems(record),
-    Events.getRemoveResourceItems(record),
-  ]);
-
-  // 登録レコードを作成する
-  const transactItems = [...createItems, ...updateItems, ...deleteItems];
-
-  // checkMultipleOperations(transactItems);
-  if (record.eventID === '510f6344-992a-4142-bf04-e54f673a4b43') {
-    checkMultipleOperations(transactItems);
-  }
-
-  // transactItems.forEach((item) => {
-  //   Logger.debug(JSON.stringify(item.Put));
-  //   Logger.debug(JSON.stringify(item.Delete));
-  // });
-
-  // 処理データなし
-  if (transactItems.length === 0) {
-    return;
-  }
-
-  await DynamodbHelper.transactWrite({
-    TransactItems: transactItems,
-  });
-
-  // add tags to resource
-  // await AddTags(createItems);
 };
 
 /**

@@ -21,6 +21,7 @@ export const start = (record: CloudTrail.Record): Tables.TResource[] | undefined
       UserAgent: record.userAgent,
       EventId: record.eventID,
       Service: getServiceName(serviceName),
+      Revisions: [],
     }));
   }
 
@@ -41,6 +42,7 @@ export const start = (record: CloudTrail.Record): Tables.TResource[] | undefined
       UserAgent: record.userAgent,
       EventId: record.eventID,
       Service: getServiceName(serviceName),
+      Revisions: [],
     },
   ];
 };

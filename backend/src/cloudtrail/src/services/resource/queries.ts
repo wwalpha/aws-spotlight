@@ -6,6 +6,7 @@ import { Tables } from 'typings';
 export const get = (key: Tables.TResourceKey): GetItemInput => ({
   TableName: Consts.Environments.TABLE_NAME_RESOURCES,
   Key: key,
+  ConsistentRead: true,
 });
 
 /** データ登録 */

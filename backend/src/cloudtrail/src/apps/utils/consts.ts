@@ -10,10 +10,12 @@ export const Environments = {
 
 export const ResourceStatus = {
   CREATED: 'Created',
-  DELETE: 'Deleted',
+  DELETED: 'Deleted',
 };
 
 export const EVENT_SOURCE = {
   EC2: 'ec2.amazonaws.com',
   CLOUDFORMATION: 'cloudformation.amazonaws.com',
 };
+
+export const SERVICE_EVENT = {};

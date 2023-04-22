@@ -50,7 +50,7 @@ export namespace Tables {
    * Table - Resource
    */
   interface TResource extends TResourceKey {
-    ResourceName: string;
+    ResourceName?: string;
     UserName: string;
     EventSource: string;
     EventName: string;
@@ -60,7 +60,7 @@ export namespace Tables {
     UserAgent: string;
     IdentityType: string;
     Service: string;
-    Revisions?: string[];
+    Revisions: string[];
     Status?: string;
   }
 
@@ -135,14 +135,14 @@ export namespace Tables {
   /**
    * Table - History Key
    */
-  interface HistoryKey {
+  interface THistoryKey {
     EventId: string;
   }
 
   /**
    * Table - History
    */
-  interface History extends HistoryKey {
+  interface THistory extends THistoryKey {
     UserName: string;
     EventTime: string;
     EventSource: string;

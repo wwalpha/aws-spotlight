@@ -142,12 +142,12 @@ export const getResource = async (ResourceId: string): Promise<Tables.TResource 
   return result?.Items[0];
 };
 
-export const getHistory = async (key: Tables.HistoryKey): Promise<Tables.History | undefined> => {
-  const result = await helper.get<Tables.History>({
+export const getHistory = async (key: Tables.THistoryKey): Promise<Tables.THistory | undefined> => {
+  const result = await helper.get<Tables.THistory>({
     TableName: TABLE_NAME_HISTORY,
     Key: {
       EventId: key.EventId,
-    } as Tables.HistoryKey,
+    } as Tables.THistoryKey,
   });
 
   return result?.Item;
@@ -193,8 +193,8 @@ export const updateEventType = async (eventSource: string, eventName: string, ac
   });
 };
 
-export const scanHistory = async (): Promise<Tables.History[] | undefined> => {
-  const result = await helper.scan<Tables.History>({
+export const scanHistory = async (): Promise<Tables.THistory[] | undefined> => {
+  const result = await helper.scan<Tables.THistory>({
     TableName: TABLE_NAME_HISTORY,
   });
 

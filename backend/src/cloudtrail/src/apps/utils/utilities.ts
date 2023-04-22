@@ -3,8 +3,7 @@ import { DynamoDB, SNS, SQS } from 'aws-sdk';
 import { defaultTo, omit } from 'lodash';
 import winston from 'winston';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
-import { Consts, Utilities } from '.';
-import { IgnoreService } from '@src/services';
+import { Consts, DynamodbHelper, Utilities } from '.';
 
 const sqsClient = new SQS();
 const snsClient = new SNS();
@@ -40,7 +39,7 @@ export const getIgnoreItem = (record: CloudTrail.Record): Tables.TIgnore => ({
  * @param record
  * @returns
  */
-export const getHistoryItem = (record: CloudTrail.Record): Tables.History => ({
+export const getHistoryItem = (record: CloudTrail.Record): Tables.THistory => ({
   EventId: record.eventID,
   EventName: record.eventName,
   EventSource: record.eventSource,
@@ -156,9 +155,10 @@ export const removeIgnore = async (records: CloudTrail.Record[], events: EVENT_T
     return event.Ignore === true;
   });
 
-  const registTasks = ignoreRecords.map((item) => IgnoreService.regist(Utilities.getIgnoreItem(item)));
+  const ignoreRegists = ignoreRecords.map((item) => Utilities.getIgnoreItem(item));
 
-  await Promise.all(registTasks);
+  // 一括登録
+  await DynamodbHelper.bulk(Consts.Environments.TABLE_NAME_IGNORES, ignoreRegists);
 
   return records.filter((item) => {
     const service = item.eventSource.split('.')[0].toUpperCase();
