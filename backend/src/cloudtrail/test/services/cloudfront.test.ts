@@ -37,7 +37,7 @@ describe('cloudfront.amazonaws.com', () => {
     const resource = await getResource('arn:aws:cloudfront::999999999999:distribution/E1AU9D0469FO98');
     const history = await getHistory({ EventId: '8853f4c6-cbd1-408d-addc-4f6591b07514' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(CLOUDFRONT.DeleteDistribution_H);

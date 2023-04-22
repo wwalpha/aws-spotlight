@@ -37,7 +37,7 @@ describe('ec2.amazonaws.com', () => {
     const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:instance/i-0fc5d99558e8357e8');
     const history = await getHistory({ EventId: '1c9916ba-eb47-4d50-8104-6901bc67a17d' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.TerminateInstances_H);
@@ -66,7 +66,7 @@ describe('ec2.amazonaws.com', () => {
     const resource = await getResource('arn:aws:ec2:ap-northeast-1::image/ami-094a52a9a2b58d074');
     const history = await getHistory({ EventId: 'e8da5c18-a3dc-4218-bc77-a721c3f6218c' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeregisterImage_H);
@@ -146,7 +146,7 @@ describe('ec2.amazonaws.com', () => {
     const resource = await getResource('arn:aws:ec2:ap-northeast-1::snapshot/snap-0ea8b3632c0ff21d6');
     const history = await getHistory({ EventId: 'fdd36f8d-946c-4731-93f1-c4918d13580d' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteSnapshot_H);
@@ -175,7 +175,7 @@ describe('ec2.amazonaws.com', () => {
     const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:natgateway/nat-0cb758692bd70f8e6');
     const history = await getHistory({ EventId: '178a7cbd-de61-49f7-bd54-ad61d7f62a89' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteNatGateway_H);
@@ -208,7 +208,7 @@ describe('ec2.amazonaws.com', () => {
     );
     const history = await getHistory({ EventId: '52240267-bf17-470c-8df3-245fb7139217' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteClientVpnEndpoint_H);
@@ -241,7 +241,7 @@ describe('ec2.amazonaws.com', () => {
     );
     const history = await getHistory({ EventId: 'cfde640d-77a8-4150-8eeb-f4627fbf55b7' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteVpcPeeringConnection_H);
@@ -270,7 +270,7 @@ describe('ec2.amazonaws.com', () => {
     const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:vpc/vpc-0bda49e0068536141');
     const history = await getHistory({ EventId: '6bef224f-75de-446b-aa16-34029a7bc641' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteVpc_H);
@@ -299,7 +299,7 @@ describe('ec2.amazonaws.com', () => {
     const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:volume/vol-084879c77b49adac0');
     const history = await getHistory({ EventId: '1cd49a17-061e-478b-ad90-a36274a30037' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteVolume_H);
@@ -328,7 +328,7 @@ describe('ec2.amazonaws.com', () => {
     const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:vpc-endpoint/vpce-0ef9277730bf26b70');
     const history = await getHistory({ EventId: '325e694c-c7d7-45d8-8d5b-134922b5e495' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteVpcEndpoints_H);
@@ -357,7 +357,7 @@ describe('ec2.amazonaws.com', () => {
     const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:elastic-ip/eipalloc-044e12137f28d65f6');
     const history = await getHistory({ EventId: '84c6084c-4746-4730-b36d-0ff2f83e5f85' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.ReleaseAddress_H);
@@ -390,7 +390,7 @@ describe('ec2.amazonaws.com', () => {
     );
     const history = await getHistory({ EventId: '301c5afc-4502-4da2-99ae-692445d85c22' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteCustomerGateway_H);
@@ -419,7 +419,7 @@ describe('ec2.amazonaws.com', () => {
     const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:vpn-connection/vpn-06d78c43438fa98fe');
     const history = await getHistory({ EventId: '22278e71-190b-499a-8792-e9324e13e78b' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteVpnConnection_H);
@@ -448,7 +448,7 @@ describe('ec2.amazonaws.com', () => {
     const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:vpn-gateway/vgw-08c87ca4468c13b6f');
     const history = await getHistory({ EventId: '2318fbd9-4740-40e4-87e2-47264d2173b4' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteVpnGateway_H);
@@ -482,7 +482,7 @@ describe('ec2.amazonaws.com', () => {
 
     // fs.writeFileSync('DeleteTransitGateway_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteTransitGateway_H);
@@ -511,7 +511,7 @@ describe('ec2.amazonaws.com', () => {
     const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:subnet/subnet-0d840b9ab96eb41ca');
     const history = await getHistory({ EventId: DeleteEvents.EC2_DeleteSubnet.eventID });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteSubnet_H);
@@ -545,7 +545,7 @@ describe('ec2.amazonaws.com', () => {
 
     // fs.writeFileSync('DeleteSecurityGroup_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     // expect(history).toEqual(EC2.DeleteSecurityGroup_H);
@@ -583,7 +583,7 @@ describe('ec2.amazonaws.com', () => {
 
     // fs.writeFileSync('DeleteInternetGateway_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.DeleteInternetGateway_H);
@@ -621,7 +621,7 @@ describe('ec2.amazonaws.com', () => {
 
     // fs.writeFileSync('EC2_DeleteNetworkInsightsPath_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.EC2_DeleteNetworkInsightsPath_H);
@@ -655,7 +655,7 @@ describe('ec2.amazonaws.com', () => {
 
     // fs.writeFileSync('EC2_DeleteLaunchTemplate_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EC2.EC2_DeleteLaunchTemplate_H);

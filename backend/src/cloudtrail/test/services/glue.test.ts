@@ -42,7 +42,7 @@ describe('glue.amazonaws.com', () => {
 
     // fs.writeFileSync('GLUE_DeleteDatabase_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.GLUE_DeleteDatabase_H);

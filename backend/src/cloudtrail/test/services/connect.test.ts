@@ -41,7 +41,7 @@ describe('connect.amazonaws.com', () => {
     );
     const history = await getHistory({ EventId: '0f3f66dc-d704-4bd4-b37a-06ecee7b9f6a' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(CONNECT.DeleteInstance_H);

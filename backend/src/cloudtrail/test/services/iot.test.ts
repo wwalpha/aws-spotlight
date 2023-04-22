@@ -42,7 +42,7 @@ describe('iot.amazonaws.com', () => {
 
     // fs.writeFileSync('IOT_DeleteTopicRule_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.IOT_DeleteTopicRule_H);

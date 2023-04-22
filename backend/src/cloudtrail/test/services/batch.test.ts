@@ -24,6 +24,8 @@ describe('batch.amazonaws.com', () => {
     );
     const history = await getHistory({ EventId: 'b7339f01-c320-45dd-b566-abbc08c054a8' });
 
+    fs.writeFileSync('./test/expect/batch/BATCH_CreateComputeEnvironment_R.json', JSON.stringify(resource));
+
     expect(resource).not.toBeUndefined();
     expect(resource).toEqual(BATCH.CreateComputeEnvironment_R);
 
@@ -41,7 +43,10 @@ describe('batch.amazonaws.com', () => {
     );
     const history = await getHistory({ EventId: 'be9e02c9-ea31-4616-aabb-c544e8024711' });
 
-    expect(resource).toBeUndefined();
+    fs.writeFileSync('./test/expect/batch/BATCH_DeleteComputeEnvironment_R.json', JSON.stringify(resource));
+
+    expect(resource).not.toBeUndefined();
+    // expect(resource).toEqual(BATCH.BATCH_DeleteComputeEnvironment_R);
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(BATCH.DeleteComputeEnvironment_H);

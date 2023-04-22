@@ -39,7 +39,7 @@ describe('lex.amazonaws.com', () => {
 
     // fs.writeFileSync('./test/expect/lex/DeleteBot_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(LEX.DeleteBot_H);

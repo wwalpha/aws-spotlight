@@ -37,7 +37,7 @@ describe('es.amazonaws.com', () => {
     const resource = await getResource('arn:aws:es:ap-northeast-1:999999999999:domain/test');
     const history = await getHistory({ EventId: 'd7fb0dc4-f4aa-44c8-a5e3-b682ca114157' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(ES.DeleteElasticsearchDomain_H);

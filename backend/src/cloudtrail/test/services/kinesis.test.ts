@@ -37,7 +37,7 @@ describe('kinesis.amazonaws.com', () => {
     const resource = await getResource('arn:aws:kinesis:ap-northeast-1:999999999999:stream/engagement');
     const history = await getHistory({ EventId: 'd25d778d-9434-4097-bd61-ebaab3e98faa' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(KINESIS.DeleteStream_H);
@@ -75,7 +75,7 @@ describe('kinesis.amazonaws.com', () => {
 
     fs.writeFileSync('./test/expect/kinesis/KINESIS_DeleteApplication_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     // expect(history).toEqual(EXPECTS.KINESIS_DeleteApplication_H);

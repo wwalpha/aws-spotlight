@@ -40,7 +40,7 @@ describe('lambda.amazonaws.com', () => {
     );
     const history = await getHistory({ EventId: '78358ae7-e395-4813-a659-1cd40248272b' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(Lambda.DeleteFunction20150331_H);

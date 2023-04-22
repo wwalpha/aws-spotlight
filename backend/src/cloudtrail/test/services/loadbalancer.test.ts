@@ -65,7 +65,7 @@ describe('elasticloadbalancing.amazonaws.com', () => {
     );
     const history = await getHistory({ EventId: '46787bab-e6c6-4c49-b9c7-69bc0578a928' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(DeleteLoadBalancer_H);
@@ -81,7 +81,7 @@ describe('elasticloadbalancing.amazonaws.com', () => {
     );
     const history = await getHistory({ EventId: '0195aac9-8b72-4da5-b360-95c526363516' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(DeleteTargetGroup_H);

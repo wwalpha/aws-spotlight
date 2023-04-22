@@ -24,8 +24,8 @@ describe('dms.amazonaws.com', () => {
     );
     const history = await getHistory({ EventId: 'f0e00796-9fe0-40f7-81ec-b8538f172176' });
 
-    // fs.writeFileSync('CreateReplicationInstance_R.json', JSON.stringify(resource));
     // fs.writeFileSync('CreateReplicationInstance_H.json', JSON.stringify(history));
+    // fs.writeFileSync('./test/expect/dms/DMS_CreateReplicationInstance_R.json', JSON.stringify(resource));
 
     expect(resource).not.toBeUndefined();
     expect(resource).toEqual(EXPECTS.CreateReplicationInstance_R);
@@ -40,13 +40,15 @@ describe('dms.amazonaws.com', () => {
     await cloudtrail(event);
 
     const resource = await getResource(
-      'arn:aws:dms:ap-northeast-1:999999999999:rep:4ZAYL4IJJETLZSQDIIKLFYL6L52NT6FR2QH6LTA'
+      'arn:aws:dms:ap-northeast-1:999999999999:rep:IMG2PDS3YLM3PFGOMBNEY7LMODJ2Q4YA5AMOJLA'
     );
     const history = await getHistory({ EventId: 'fbb11b4f-9253-4014-9a3c-fdbb67b640cb' });
 
+    // fs.writeFileSync('./test/expect/dms/DMS_DeleteReplicationInstance_R.json', JSON.stringify(resource));
     // fs.writeFileSync('./test/expect/dms/DMS_DeleteReplicationInstance_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.DMS_DeleteReplicationInstance_R);
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.DMS_DeleteReplicationInstance_H);

@@ -37,7 +37,7 @@ describe('synthetics.amazonaws.com', () => {
     const resource = await getResource('arn:aws:synthetics:us-east-1:999999999999:canary:audit-region');
     const history = await getHistory({ EventId: '166ef8a9-da17-4390-be3e-5fe4bd9b29b6' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(SYNTHETICS.DeleteCanary_H);

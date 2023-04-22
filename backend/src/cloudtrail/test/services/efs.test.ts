@@ -37,7 +37,7 @@ describe('elasticfilesystem.amazonaws.com', () => {
     const resource = await getResource('arn:aws:elasticfilesystem:ap-northeast-1:999999999999:file-system/fs-d536f8f5');
     const history = await getHistory({ EventId: '7def94c1-bdcb-4546-8856-89b59abe586d' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EFS.DeleteFileSystem_H);

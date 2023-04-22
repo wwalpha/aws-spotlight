@@ -91,7 +91,7 @@ describe('ds.amazonaws.com', () => {
     const resource = await getResource('arn:aws:clouddirectory:ap-northeast-1:999999999999:directory/d-95671f95a5');
     const history = await getHistory({ EventId: 'd0fcee5a-ca83-4ff6-b6c3-ac41104b2aa0' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.DeleteDirectory_H);

@@ -42,7 +42,7 @@ describe('timestream.amazonaws.com', () => {
 
     // fs.writeFileSync('TIMESTREAM_DeleteDatabase_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.TIMESTREAM_DeleteDatabase_H);

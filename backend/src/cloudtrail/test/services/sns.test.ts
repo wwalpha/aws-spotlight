@@ -39,7 +39,7 @@ describe('sns.amazonaws.com', () => {
 
     // fs.writeFileSync('./test/expect/sns/SNS_DeleteTopic_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.SNS_DeleteTopic_H);

@@ -26,6 +26,7 @@ describe('cloudformation.amazonaws.com', () => {
 
     // fs.writeFileSync('CLOUDFORMATION_CreateStack_R.json', JSON.stringify(resource));
     // fs.writeFileSync('CLOUDFORMATION_CreateStack_H.json', JSON.stringify(history));
+    fs.writeFileSync('./test/expect/cloudformation/CLOUDFORMATION_CreateStack_R.json', JSON.stringify(resource));
 
     expect(resource).not.toBeUndefined();
     expect(resource).toEqual(EXPECTS.CLOUDFORMATION_CreateStack_R);
@@ -44,9 +45,10 @@ describe('cloudformation.amazonaws.com', () => {
     );
     const history = await getHistory({ EventId: DeleteEvents.CLOUDFORMATION_DeleteStack.eventID });
 
+    fs.writeFileSync('./test/expect/cloudformation/CLOUDFORMATION_DeleteStack_R.json', JSON.stringify(resource));
     // fs.writeFileSync('CLOUDFORMATION_DeleteStack_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.CLOUDFORMATION_DeleteStack_H);

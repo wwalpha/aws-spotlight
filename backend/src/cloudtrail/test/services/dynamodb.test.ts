@@ -43,7 +43,7 @@ describe.only('dynamodb.amazonaws.com', () => {
 
     // fs.writeFileSync('./test/expect/dynamodb/DYNAMODB_DeleteTable_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.DYNAMODB_DeleteTable_H);

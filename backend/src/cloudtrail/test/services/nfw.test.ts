@@ -36,7 +36,7 @@ describe('network-firewall.amazonaws.com', () => {
     const resource = await getResource('arn:aws:network-firewall:ap-northeast-1:999999999999:firewall/Sjin6-Firewall');
     const history = await getHistory({ EventId: '21e7ced6-a8ea-4abf-9dfc-9fb0e3553348' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(NFW.DeleteFirewall_H);

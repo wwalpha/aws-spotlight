@@ -41,7 +41,7 @@ describe('wafv2.amazonaws.com', () => {
     );
     const history = await getHistory({ EventId: '127eeb16-77c1-4617-9532-44b53cfa58e9' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(WAFV2.DeleteIPSet_H);
@@ -74,7 +74,7 @@ describe('wafv2.amazonaws.com', () => {
     );
     const history = await getHistory({ EventId: 'c0aa8749-274f-4d75-bd45-97747862e382' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(WAFV2.DeleteWebACL_H);

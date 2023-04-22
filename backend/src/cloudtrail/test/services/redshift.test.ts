@@ -37,7 +37,7 @@ describe('redshift.amazonaws.com', () => {
     const resource = await getResource('arn:aws:redshift:us-east-1:999999999999:cluster:redshift-cluster-1');
     const history = await getHistory({ EventId: 'e0fb538c-f822-4557-92bd-d60f1220058c' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(REDSHIFT.DeleteCluster_H);

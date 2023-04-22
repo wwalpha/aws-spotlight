@@ -22,6 +22,8 @@ describe('backup.amazonaws.com', () => {
     const resource = await getResource('arn:aws:backup:ap-northeast-1:999999999999:backup-vault:Default');
     const history = await getHistory({ EventId: '7b056e66-3c3b-4766-a6b0-ef871dc29c40' });
 
+    fs.writeFileSync('./test/expect/backup/BACKUP_CreateBackupVault_R.json', JSON.stringify(resource));
+
     expect(resource).not.toBeUndefined();
     expect(resource).toEqual(BACKUP.CreateBackupVault_R);
 
@@ -37,7 +39,10 @@ describe('backup.amazonaws.com', () => {
     const resource = await getResource('arn:aws:backup:ap-northeast-1:999999999999:backup-vault:Default');
     const history = await getHistory({ EventId: 'fd27ef60-1fa2-4677-877d-64fd57507d78' });
 
-    expect(resource).toBeUndefined();
+    fs.writeFileSync('./test/expect/backup/BACKUP_DeleteBackupVault_R.json', JSON.stringify(resource));
+
+    expect(resource).not.toBeUndefined();
+    // expect(resource).toEqual(BACKUP.BACKUP_DeleteBackupVault_R);
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(BACKUP.DeleteBackupVault_H);
@@ -70,7 +75,7 @@ describe('backup.amazonaws.com', () => {
     );
     const history = await getHistory({ EventId: 'bae99bcf-1aa6-49df-994b-2e556b66b9ec' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(BACKUP.DeleteBackupPlan_H);

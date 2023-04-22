@@ -37,7 +37,7 @@ describe('rds.amazonaws.com', () => {
     const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:cluster:database-4');
     const history = await getHistory({ EventId: '34f9f2ba-b63e-4e45-be5e-8e399d25f321' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.DeleteDBCluster_H);
@@ -138,7 +138,7 @@ describe('rds.amazonaws.com', () => {
     const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:db:onecloud-mysql');
     const history = await getHistory({ EventId: 'e4e10fdb-b574-41da-8d90-1251c5b84b6e' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.DeleteDBInstance_H);
@@ -172,7 +172,7 @@ describe('rds.amazonaws.com', () => {
 
     // fs.writeFileSync('RDS_DeleteDBProxy_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.RDS_DeleteDBProxy_H);
@@ -206,7 +206,7 @@ describe('rds.amazonaws.com', () => {
 
     // fs.writeFileSync('RDS_DeleteDBClusterParameterGroup_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.RDS_DeleteDBClusterParameterGroup_H);
@@ -240,7 +240,7 @@ describe('rds.amazonaws.com', () => {
 
     // fs.writeFileSync('RDS_DeleteDBParameterGroup_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.RDS_DeleteDBParameterGroup_H);
@@ -274,7 +274,7 @@ describe('rds.amazonaws.com', () => {
 
     // fs.writeFileSync('RDS_DeleteDBSubnetGroup_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.RDS_DeleteDBSubnetGroup_H);
@@ -328,7 +328,7 @@ describe('rds.amazonaws.com', () => {
 
     // fs.writeFileSync('./test/expect/rds/RDS_DeleteOptionGroup_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.RDS_DeleteOptionGroup_H);
@@ -380,7 +380,7 @@ describe('rds.amazonaws.com', () => {
 
     // fs.writeFileSync('./test/expect/rds/RDS_DeleteDBSnapshot_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.RDS_DeleteDBSnapshot_H);

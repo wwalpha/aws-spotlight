@@ -37,7 +37,7 @@ describe('states.amazonaws.com', () => {
     const resource = await getResource('arn:aws:states:ap-northeast-1:999999999999:stateMachine:BLyi9R1Js89B');
     const history = await getHistory({ EventId: '4ff266d5-4d9b-4c16-ad94-b8935b2f5f04' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(STATES.DeleteStateMachine_H);

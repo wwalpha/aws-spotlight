@@ -42,7 +42,7 @@ describe.skip('events.amazonaws.com', () => {
 
     // fs.writeFileSync('./test/expect/events/EVENTS_DeleteRule_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.EVENTS_DeleteRule_H);

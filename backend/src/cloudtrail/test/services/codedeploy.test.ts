@@ -42,7 +42,7 @@ describe('codedeploy.amazonaws.com', () => {
 
     // fs.writeFileSync('CODEDEPLOY_DeleteApplication_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.CODEDEPLOY_DeleteApplication_H);

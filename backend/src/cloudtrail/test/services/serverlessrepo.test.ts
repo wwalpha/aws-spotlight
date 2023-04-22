@@ -44,7 +44,7 @@ describe('serverlessrepo.amazonaws.com', () => {
 
     fs.writeFileSync('./test/expect/serverlessrepo/APIGATEWAY_DeleteRestApi_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     // expect(history).toEqual(EXPECTS.APIGATEWAY_DeleteRestApi_H);

@@ -37,7 +37,7 @@ describe('firehose.amazonaws.com', () => {
     const resource = await getResource('arn:aws:firehose:us-east-1:999999999999:deliverystream/firehose');
     const history = await getHistory({ EventId: '880cb754-d38d-4f30-88aa-1f167ded8990' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(FIREHOSE.DeleteDeliveryStream_H);

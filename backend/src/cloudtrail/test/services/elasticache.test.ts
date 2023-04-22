@@ -42,7 +42,7 @@ describe('elasticache.amazonaws.com', () => {
 
     // fs.writeFileSync('./test/expect/elasticache/ELASTICACHE_DeleteCacheCluster_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.ELASTICACHE_DeleteCacheCluster_H);
@@ -80,7 +80,7 @@ describe('elasticache.amazonaws.com', () => {
 
     // fs.writeFileSync('./test/expect/elasticache/ELASTICACHE_DeleteCacheSubnetGroup_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.ELASTICACHE_DeleteCacheSubnetGroup_H);

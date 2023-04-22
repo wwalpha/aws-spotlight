@@ -40,6 +40,7 @@ describe('apigateway.amazonaws.com', () => {
     const history = await getHistory({ EventId: DeleteEvents.APIGATEWAY_DeleteRestApi.eventID });
 
     // fs.writeFileSync('./test/expect/apigateway/DeleteRestApi_R.json', JSON.stringify(resource));
+    // fs.writeFileSync('./test/expect/apigateway/DeleteRestApi_H.json', JSON.stringify(history));
 
     expect(resource).not.toBeUndefined();
     expect(resource).toEqual(EXPECTS.DeleteRestApi_R);

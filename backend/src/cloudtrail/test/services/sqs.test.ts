@@ -37,7 +37,7 @@ describe('sqs.amazonaws.com', () => {
     const resource = await getResource('arn:aws:sqs:us-east-1:999999999999:arms-deadletter');
     const history = await getHistory({ EventId: '0114a86d-87b7-4102-97b2-53a77d228154' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(SQS.DeleteQueue_H);

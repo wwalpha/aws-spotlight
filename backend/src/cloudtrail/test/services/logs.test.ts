@@ -42,7 +42,7 @@ describe('logs.amazonaws.com', () => {
 
     // fs.writeFileSync('LOGS_DeleteLogGroup_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.LOGS_DeleteLogGroup_H);

@@ -37,7 +37,7 @@ describe('eks.amazonaws.com', () => {
     const resource = await getResource('arn:aws:eks:ap-northeast-1:999999999999:cluster/eks-cluster');
     const history = await getHistory({ EventId: '7b53a37a-6d75-4065-a34f-d009e0590e97' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EKS.DeleteCluster_H);

@@ -37,7 +37,7 @@ describe('codebuild.amazonaws.com', () => {
     const resource = await getResource('arn:aws:codebuild:ap-northeast-1:999999999999:project/test');
     const history = await getHistory({ EventId: '41804c2c-a898-42eb-ba29-21d55a05bf2f' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(CODEBUILD.DeleteProject_H);

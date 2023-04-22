@@ -42,7 +42,7 @@ describe('ecs.amazonaws.com', () => {
 
     // fs.writeFileSync('./test/expect/ecs/ECS_DeleteCluster_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.ECS_DeleteCluster_H);

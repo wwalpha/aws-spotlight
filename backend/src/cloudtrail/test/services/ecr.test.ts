@@ -37,7 +37,7 @@ describe('ecr.amazonaws.com', () => {
     const resource = await getResource('arn:aws:ecr:ap-northeast-1:999999999999:repository/nodejs-blue');
     const history = await getHistory({ EventId: '9c1e1eb1-1668-4420-bd24-bf38a3aa96ce' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(ECR.DeleteRepository_H);

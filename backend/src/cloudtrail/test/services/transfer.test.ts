@@ -42,7 +42,7 @@ describe('transfer.amazonaws.com', () => {
 
     // fs.writeFileSync('DeleteServer_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(TRANSFER.DeleteServer_H);

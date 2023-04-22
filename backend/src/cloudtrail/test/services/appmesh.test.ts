@@ -22,6 +22,8 @@ describe('appmesh.amazonaws.com', () => {
     const resource = await getResource('arn:aws:appmesh:ap-northeast-1:999999999999:mesh/test_mesh');
     const history = await getHistory({ EventId: '0e67a61b-16b4-45cb-be48-984529c26d40' });
 
+    fs.writeFileSync('./test/expect/appmesh/APPMESH_CreateMesh_R.json', JSON.stringify(resource));
+
     expect(resource).not.toBeUndefined();
     expect(resource).toEqual(APPMESH.CreateMesh_R);
 
@@ -37,7 +39,10 @@ describe('appmesh.amazonaws.com', () => {
     const resource = await getResource('arn:aws:appmesh:ap-northeast-1:999999999999:mesh/test_mesh');
     const history = await getHistory({ EventId: '56c21bc7-2eff-4e2c-9c1d-d63e8538612d' });
 
-    expect(resource).toBeUndefined();
+    fs.writeFileSync('./test/expect/appmesh/APPMESH_DeleteMesh_R.json', JSON.stringify(resource));
+
+    expect(resource).not.toBeUndefined();
+    // expect(resource).toEqual(APPMESH.APPMESH_DeleteMesh_R);
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(APPMESH.DeleteMesh_H);

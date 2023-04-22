@@ -36,7 +36,7 @@ describe('s3.amazonaws.com', () => {
     const resource = await getResource('arn:aws:s3:::test-backt-testfile01');
     const history = await getHistory({ EventId: '74167e6a-03ae-419a-94b1-387709ae56e2' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(S3.DeleteBucket_H);

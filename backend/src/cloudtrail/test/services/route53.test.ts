@@ -37,7 +37,7 @@ describe('route53.amazonaws.com', () => {
     const resource = await getResource('arn:aws:route53:::hostedzone/AAAAAAAAAAAAAAAA');
     const history = await getHistory({ EventId: '0528df1d-ea4c-4046-9ed7-11967e0ecb0c' });
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(ROUTE53.DeleteHostedZone_H);

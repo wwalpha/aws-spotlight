@@ -44,7 +44,7 @@ describe('cognito.amazonaws.com', () => {
 
     fs.writeFileSync('./test/expect/apigateway/APIGATEWAY_DeleteRestApi_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     // expect(history).toEqual(EXPECTS.APIGATEWAY_DeleteRestApi_H);
@@ -80,7 +80,7 @@ describe('cognito.amazonaws.com', () => {
 
     fs.writeFileSync('./test/expect/apigateway/APIGATEWAY_DeleteRestApi_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     // expect(history).toEqual(EXPECTS.APIGATEWAY_DeleteRestApi_H);

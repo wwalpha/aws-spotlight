@@ -42,7 +42,7 @@ describe('fsx.amazonaws.com', () => {
 
     // fs.writeFileSync('./test/expect/fsx/FSX_DeleteFileSystem_H.json', JSON.stringify(history));
 
-    expect(resource).toBeUndefined();
+    expect(resource).not.toBeUndefined();
 
     expect(history).not.toBeUndefined();
     expect(history).toEqual(EXPECTS.FSX_DeleteFileSystem_H);
