@@ -20,15 +20,13 @@ export const reCreate = async () => {
   await reResource();
 };
 
-export const reCreateFromBucket = async () => {
-  await postSQS();
-};
+export const reCreateFromBucket = async () => {};
 
-const postSQS = async (token?: string) => {
+const postSQS = async (s3Path: string, token?: string) => {
   const results = await s3Client
     .listObjectsV2({
       Bucket: BUCKET_NAME_CLOUDTRAIL,
-      Prefix: 'AWSLogs/99999999999/CloudTrail/',
+      Prefix: s3Path,
       ContinuationToken: token,
     })
     .promise();
@@ -56,7 +54,7 @@ const postSQS = async (token?: string) => {
   console.log(results.NextContinuationToken);
 
   if (results.NextContinuationToken) {
-    await postSQS(results.NextContinuationToken);
+    await postSQS(s3Path, results.NextContinuationToken);
   }
 };
 
@@ -97,7 +95,7 @@ const reResource = async (lastEvaluatedKey?: DynamoDB.DocumentClient.Key) => {
     return;
   }
 
-  const records = results.Items.map((item) => JSON.parse((item as Tables.History).Origin));
+  const records = results.Items.map((item) => JSON.parse((item as Tables.THistory).Origin));
 
   await s3Client
     .putObject({
