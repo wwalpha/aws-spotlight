@@ -3,7 +3,6 @@
 # ----------------------------------------------------------------------------------------------
 resource "aws_s3_bucket" "frontend" {
   bucket = local.bucket_name_frontend
-  acl    = "private"
 }
 
 # ----------------------------------------------------------------------------------------------
@@ -11,7 +10,6 @@ resource "aws_s3_bucket" "frontend" {
 # ----------------------------------------------------------------------------------------------
 resource "aws_s3_bucket" "environment" {
   bucket = local.bucket_name_environment
-  acl    = "private"
 }
 
 # ----------------------------------------------------------------------------------------------
@@ -19,13 +17,17 @@ resource "aws_s3_bucket" "environment" {
 # ----------------------------------------------------------------------------------------------
 resource "aws_s3_bucket" "archive" {
   bucket = local.bucket_name_archive
-  acl    = "private"
+}
 
-  lifecycle_rule {
-    id                                     = "weekly"
-    enabled                                = true
-    abort_incomplete_multipart_upload_days = 0
+resource "aws_s3_bucket_lifecycle_configuration" "archive" {
+  bucket = aws_s3_bucket.archive.id
 
+  rule {
+    id     = "weekly"
+    status = "Enabled"
+    abort_incomplete_multipart_upload {
+      days_after_initiation = 0
+    }
     expiration {
       days                         = 7
       expired_object_delete_marker = false

@@ -45,6 +45,11 @@ resource "aws_dynamodb_table" "resource" {
     type = "S"
   }
 
+  attribute {
+    name = "Status"
+    type = "S"
+  }
+
   global_secondary_index {
     name            = "gsiIdx1"
     hash_key        = "EventSource"
@@ -56,6 +61,13 @@ resource "aws_dynamodb_table" "resource" {
     name            = "gsiIdx2"
     hash_key        = "UserName"
     range_key       = "ResourceId"
+    projection_type = "ALL"
+  }
+
+  global_secondary_index {
+    name            = "gsiIdx3"
+    hash_key        = "EventSource"
+    range_key       = "Status"
     projection_type = "ALL"
   }
 
