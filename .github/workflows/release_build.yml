@@ -34,7 +34,7 @@ jobs:
     steps:
       # source checkout
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Install the latest version of Terraform CLI 
       # and configure the Terraform CLI configuration file with a Terraform Cloud user API token
@@ -88,7 +88,7 @@ jobs:
     steps:
       # Source checkout
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Setup Node.js
       - uses: actions/setup-node@v3
@@ -152,7 +152,7 @@ jobs:
     steps:
       # Source checkout
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Setup Node.js
       - uses: actions/setup-node@v3
@@ -216,7 +216,7 @@ jobs:
     steps:
       # Source checkout
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Setup Node.js
       - uses: actions/setup-node@v3
@@ -280,7 +280,7 @@ jobs:
     steps:
       # Source checkout
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Setup Node.js
       - uses: actions/setup-node@v3
@@ -306,7 +306,7 @@ jobs:
     steps:
       # Source checkout
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Setup Node.js
       - uses: actions/setup-node@v3
@@ -364,7 +364,7 @@ jobs:
     steps:
       # Source checkout
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Setup Node.js
       - uses: actions/setup-node@v3
@@ -422,7 +422,7 @@ jobs:
     steps:
       # source checkout
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Setup Node.js
       - uses: actions/setup-node@v3
@@ -452,7 +452,7 @@ jobs:
     steps:
       # source checkout
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Setup Node.js
       - uses: actions/setup-node@v3
