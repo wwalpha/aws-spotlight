@@ -32,3 +32,10 @@ export const update = async (item: Tables.TIgnore): Promise<void> => {
 export const remove = async (key: Tables.TIgnoreKey): Promise<void> => {
   await DynamodbHelper.delete(Queries.del(key));
 };
+
+/** グループ削除 */
+export const listByEventName = async (eventSource: string, eventName: string): Promise<Tables.TIgnore[]> => {
+  const res = await DynamodbHelper.query<Tables.TIgnore>(Queries.listByEventName(eventSource, eventName));
+
+  return res.Items || [];
+};
