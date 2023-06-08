@@ -1,6 +1,6 @@
 import { SQSRecord } from 'aws-lambda';
 import { DynamoDB, SNS, SQS } from 'aws-sdk';
-import { defaultTo, omit } from 'lodash';
+import { defaultTo, omit, uniqBy } from 'lodash';
 import winston from 'winston';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
 import { Consts, DynamodbHelper, Utilities } from '.';
@@ -157,8 +157,10 @@ export const removeIgnore = async (records: CloudTrail.Record[], events: EVENT_T
 
   const ignoreRegists = ignoreRecords.map((item) => Utilities.getIgnoreItem(item));
 
+  const uniqIgnores = uniqBy(ignoreRegists, 'EventId');
+
   // 一括登録
-  await DynamodbHelper.bulk(Consts.Environments.TABLE_NAME_IGNORES, ignoreRegists);
+  await DynamodbHelper.bulk(Consts.Environments.TABLE_NAME_IGNORES, uniqIgnores);
 
   return records.filter((item) => {
     const service = item.eventSource.split('.')[0].toUpperCase();
