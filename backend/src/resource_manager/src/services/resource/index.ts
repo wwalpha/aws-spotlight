@@ -49,3 +49,10 @@ export const getListByEventSource = async (eventSource: string, eventTime?: stri
 
   return results.Items;
 };
+
+/** リソース一覧取得 */
+export const listResources = async (): Promise<Tables.TResource[]> => {
+  const results = await DynamodbHelper.scan<Tables.TResource>(Queries.queryByCreated());
+
+  return results.Items;
+};

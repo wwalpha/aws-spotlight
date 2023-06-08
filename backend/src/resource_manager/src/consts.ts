@@ -12,6 +12,7 @@ export const Environments = {
   TABLE_NAME_IGNORES: process.env.TABLE_NAME_IGNORES as string,
   TABLE_NAME_EVENT_TYPE: process.env.TABLE_NAME_EVENT_TYPE as string,
   SNS_TOPIC_ARN_ADMIN: process.env.SNS_TOPIC_ARN_ADMIN as string,
+  S3_BUCKET_ARCHIVE: process.env.S3_BUCKET_ARCHIVE as string,
 };
 
 export const API_URLs = {

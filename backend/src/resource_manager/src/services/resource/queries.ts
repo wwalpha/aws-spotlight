@@ -1,4 +1,4 @@
-import { DeleteItemInput, GetItemInput, PutItemInput, QueryInput, UpdateInput } from '@alphax/dynamodb';
+import { DeleteItemInput, GetItemInput, PutItemInput, QueryInput, ScanInput, UpdateInput } from '@alphax/dynamodb';
 import { Environments } from '@src/consts';
 import { Tables } from 'typings';
 
@@ -20,6 +20,19 @@ export const del = (key: Tables.TResourceKey): DeleteItemInput => ({
   TableName: Environments.TABLE_NAME_RESOURCES,
   Key: {
     id: key.ResourceId,
+  },
+});
+
+/** データ */
+export const queryByCreated = (): ScanInput => ({
+  TableName: Environments.TABLE_NAME_RESOURCES,
+  ProjectionExpression: 'ResourceId, ResourceName, EventName, EventSource, UserName, Service',
+  FilterExpression: '#Status = :Status',
+  ExpressionAttributeNames: {
+    '#Status': 'Status',
+  },
+  ExpressionAttributeValues: {
+    ':Status': 'Created',
   },
 });
 
