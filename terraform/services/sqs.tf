@@ -11,7 +11,7 @@ resource "aws_sqs_queue" "cloudtrail" {
   receive_wait_time_seconds         = 5
   redrive_policy = jsonencode({
     deadLetterTargetArn = aws_sqs_queue.deadletter.arn
-    maxReceiveCount     = 10
+    maxReceiveCount     = 5
   })
 }
 
