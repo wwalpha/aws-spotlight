@@ -1,3 +1,4 @@
+import { DynamodbHelper as Helper } from '@alphax/dynamodb';
 import express from 'express';
 import { defaultTo } from 'lodash';
 import axios from 'axios';
@@ -66,3 +67,7 @@ export const listAdminUsers = async (): Promise<User.ListAdminUsersRequest> => {
 
   return response.data;
 };
+
+export const DynamodbHelper = new Helper({
+  options: { endpoint: process.env.AWS_ENDPOINT },
+});

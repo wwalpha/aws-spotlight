@@ -1,13 +1,11 @@
 import express from 'express';
 import { SNS } from 'aws-sdk';
 import { DynamodbHelper } from '@alphax/dynamodb';
-import { orderBy } from 'lodash';
 import { Resource, Tables } from 'typings';
 import { decodeToken, getToken, Logger } from './utils';
 import { ROLE, Environments } from './consts';
 
 const helper = new DynamodbHelper({ options: { endpoint: process.env.AWS_ENDPOINT } });
-const snsClient = new SNS();
 
 // health check
 export const healthCheck = (_: express.Request, res: express.Response) => {
@@ -112,56 +110,4 @@ export const getCategoryList = async (
 
     return { categories: Array.from(sets) };
   }
-};
-
-export const auditRegion = async (): Promise<void> => {
-  const settings = await helper.get<Tables.Settings.GlobalServices>({
-    TableName: Environments.TABLE_NAME_SETTINGS,
-    Key: {
-      Id: 'GLOBAL_SERVICES',
-    } as Tables.Settings.Key,
-  });
-
-  const services = settings?.Item?.Services;
-
-  const result = await helper.scan<Tables.TResource>({
-    TableName: Environments.TABLE_NAME_RESOURCES,
-    FilterExpression: 'AWSRegion <> :AWSRegion',
-    ExpressionAttributeValues: {
-      ':AWSRegion': 'ap-northeast-1',
-    },
-  });
-
-  const targets = result.Items.filter((item) => {
-    if (!services) return true;
-
-    // exclude global services
-    return !services.includes(item.EventSource);
-  })
-    // exclude arms system resource
-    .filter((item) => item.ResourceId.toUpperCase().indexOf('ARMS') === -1)
-    // include dxc user
-    .filter((item) => item.UserName.endsWith('dxc.com'));
-
-  // no targets
-  if (targets.length === 0) {
-    return;
-  }
-
-  // sort by username
-  const sorted = orderBy(targets, ['UserName', 'ResourceId'], ['asc', 'asc']);
-
-  // create message body
-  const messages = sorted.map((item) => {
-    return `<strong>UserName:</strong> ${item.UserName}  <strong>ARN:</strong> ${item.ResourceId}`;
-  });
-
-  // send to admin
-  await snsClient
-    .publish({
-      TopicArn: Environments.SNS_TOPIC_ARN_ADMIN,
-      Subject: 'Outscope region resources',
-      Message: messages.join('\n'),
-    })
-    .promise();
 };

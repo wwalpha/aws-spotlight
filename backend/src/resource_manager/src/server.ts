@@ -1,7 +1,8 @@
 import express from 'express';
 import AWS from 'aws-sdk';
 import { json, urlencoded } from 'body-parser';
-import { auditRegion, getCategoryList, getResourceList, healthCheck } from './app';
+import { getCategoryList, getResourceList, healthCheck } from './app';
+import { auditRegion } from './func';
 import { common } from './utils';
 
 AWS.config.update({
@@ -29,5 +30,7 @@ app.get('/resources/services/:service', async (req, res) => await common(req, re
 app.get('/resources/categories', async (req, res) => await common(req, res, getCategoryList));
 // get category list
 app.get('/resources/audit/region', async (req, res) => await common(req, res, auditRegion));
+// get category list
+app.get('/resources/reports', async (req, res) => await common(req, res, auditRegion));
 
 export default app;
