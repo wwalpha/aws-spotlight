@@ -44,7 +44,7 @@ export const receiveMessageData = async (): Promise<SQSEvent> => {
     .receiveMessage({
       QueueUrl: SQS_URL,
       MaxNumberOfMessages: 10,
-      WaitTimeSeconds: 1,
+      WaitTimeSeconds: 10,
     })
     .promise();
 

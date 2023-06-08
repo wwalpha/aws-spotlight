@@ -27,6 +27,8 @@ export const cloudtrail = async (event: SQSEvent) => {
   // get event type definition
   await initializeEvents();
 
+  Logger.info('Start process records', event.Records.length);
+
   for (;;) {
     const message = event.Records.shift();
 

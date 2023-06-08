@@ -236,8 +236,6 @@ export const getRecords = async (message: string): Promise<CloudTrail.Record[]> 
 
   const payload = JSON.parse(snsMessage.Message) as CloudTrail.Payload;
 
-  Logger.info(`S3 object keys length: ${payload.s3ObjectKey.length}`);
-
   // get files
   const tasks = payload.s3ObjectKey.map((item) =>
     s3Client
