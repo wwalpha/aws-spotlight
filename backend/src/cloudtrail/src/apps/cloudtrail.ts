@@ -41,12 +41,19 @@ export const initializeEvents = async () => {
  */
 export const execute = async (message: SQSRecord) => {
   let records = await getRecords(message.body);
+  Logger.info(`Process All Records: ${records.length}`);
+
   // remove readonly records
   records = Utilities.removeReadOnly(records);
+  Logger.info(`Excluding ReadOnly Records: ${records.length}`);
+
   // remove error records
   records = Utilities.removeError(records);
+  Logger.info(`Excluding Error Records: ${records.length}`);
+
   // remove ignore records
   records = await Utilities.removeIgnore(records, EVENTS);
+  Logger.info(`Excluding Ignore Records: ${records.length}`);
 
   // no process records
   if (records.length === 0) {
@@ -55,8 +62,6 @@ export const execute = async (message: SQSRecord) => {
 
     return;
   }
-
-  Logger.info(`Process Records: ${records.length}`);
 
   // 新規イベント
   await processNewRecords(records);
@@ -231,7 +236,7 @@ export const getRecords = async (message: string): Promise<CloudTrail.Record[]> 
 
   const payload = JSON.parse(snsMessage.Message) as CloudTrail.Payload;
 
-  Logger.debug('S3 object keys', payload.s3ObjectKey);
+  Logger.info(`S3 object keys length: ${payload.s3ObjectKey.length}`);
 
   // get files
   const tasks = payload.s3ObjectKey.map((item) =>
@@ -266,5 +271,5 @@ export const getRecords = async (message: string): Promise<CloudTrail.Record[]> 
   }, [] as CloudTrail.Record[]);
 
   // 時間順
-  return uniqBy(orderBy(newArray, ['eventTime'], ['asc']), 'eventId');
+  return orderBy(newArray, ['eventTime'], ['asc']);
 };
