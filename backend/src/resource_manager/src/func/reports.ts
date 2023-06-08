@@ -12,7 +12,7 @@ export const reports = async (): Promise<void> => {
   const filters = await SettingService.describe('REPORT_FILTERS');
   const filterServices: Record<string, string[]> = filters?.Services || {};
   const filterServiceKeys = Object.keys(filterServices);
-  const dataRows = new Array();
+  const dataRows: string[] = [];
 
   // title
   dataRows.push('"UserName","Service","ResourceName","EventName","EventTime","ResourceId"');
@@ -20,8 +20,9 @@ export const reports = async (): Promise<void> => {
   resources.forEach((item) => {
     const arns = item.ResourceId.split(':');
     const service = arns[2];
-    const subsystem = arns[5];
+    const subsystem = arns[5].split('/')[0];
 
+    // console.log(service, subsystem, filterServiceKeys.includes(service), filterServices[service]);
     // filter
     if (filterServiceKeys.includes(service) && filterServices[service].includes(subsystem)) {
       return;
