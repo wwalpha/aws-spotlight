@@ -117,14 +117,14 @@ const processRecords = async (records: CloudTrail.Record[]) => {
   targets.forEach(async (item) => {
     const arns = ArnService.start(item);
 
-    Logger.info(item);
-    Logger.info(arns);
-
     if (arns.length === 0) {
       unprocesses.push(Utilities.getUnprocessedItem(item, 'NEW'));
     } else {
       arns.forEach((arn) => resources.push(arn));
       histories.push(Utilities.getHistoryItem(item));
+
+      Logger.info(item);
+      Logger.info(arns);
     }
   });
 
