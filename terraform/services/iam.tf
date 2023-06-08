@@ -86,6 +86,22 @@ resource "aws_iam_role_policy_attachment" "ecs_task_cognito_idp" {
 }
 
 # ----------------------------------------------------------------------------------------------
+# AWS ECS Task Role Policy - S3
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy_attachment" "ecs_task_s3_full" {
+  role       = aws_iam_role.ecs_task.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS ECS Task Role Policy - SNS
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy_attachment" "ecs_task_sns_full" {
+  role       = aws_iam_role.ecs_task.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSNSFullAccess"
+}
+
+# ----------------------------------------------------------------------------------------------
 # AWS Role - AWS Batch
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role" "batch_service" {
