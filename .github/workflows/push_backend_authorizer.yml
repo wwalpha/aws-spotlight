@@ -12,6 +12,7 @@ on:
 env:
   AWS_DEFAULT_REGION: us-east-1
   WORKING_DIR: backend/src/authorizer
+  LAMBDA_FUNCTION_NAME: arms-authorizer-8cd531
 
 jobs:
   build:
@@ -54,5 +55,5 @@ jobs:
       - name: Lambda Deploy
         uses: appleboy/lambda-action@v0.1.3
         with:
-          function_name: arms-authorizer
+          function_name: ${{ env.LAMBDA_FUNCTION_NAME }}
           zip_file: ${{ steps.build.outputs.archive_file }}
