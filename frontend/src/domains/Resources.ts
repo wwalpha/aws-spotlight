@@ -4,7 +4,7 @@ import { Actions, Tables } from 'typings';
 export default class Resources {
   [immerable] = true;
 
-  datas: Record<string, Tables.Resource[]> = {};
+  datas: Record<string, Tables.TResource[]> = {};
 
   /** save resources */
   setResources({ eventSource, response }: Actions.GetResourcesPayload) {

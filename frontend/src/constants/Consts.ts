@@ -31,6 +31,7 @@ export const API_URLs = {
   SignIn: '/auth',
   InitiateAuth: '/auth/initiate',
   GetCategories: '/resources/categories',
+  GetReports: '/resources/reports',
   GetResources: (service: string) => `/resources/services/${service}`,
   GetReleaseNotes: '/system/releases',
   GetVersion: '/system/version',

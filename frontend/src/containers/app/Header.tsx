@@ -75,12 +75,17 @@ export const Header = () => {
     window.location.href = '/';
   };
 
+  const handleReport = async () => {
+    actions.reports();
+  };
+
   return (
     <AppBar
       position="static"
       className={clsx(classes.appBar, {
         // [classes.appBarShift]: open,
-      })}>
+      })}
+    >
       <Toolbar>
         <Typography variant="h6" noWrap className={classes.title}>
           {title}
@@ -99,6 +104,9 @@ export const Header = () => {
           /> */}
           {version}
         </div>
+        <IconButton color="inherit" onClick={handleReport}>
+          <SearchIcon fontSize="large" />
+        </IconButton>
         <IconButton color="inherit" onClick={handleExit}>
           <ExitToAppIcon fontSize="large" />
         </IconButton>

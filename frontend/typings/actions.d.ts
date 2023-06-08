@@ -48,3 +48,9 @@ export type GetResourcesPayload = {
 
 /** get resource action */
 export type GetResourcesAction = ReduxAction1<string, GetResourcesPayload>;
+
+/** get resource payload */
+export type GetReportsPayload = {};
+
+/** get resource action */
+export type GetReportsAction = ReduxAction0<GetReportsPayload>;
