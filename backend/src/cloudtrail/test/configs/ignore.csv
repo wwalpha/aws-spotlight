@@ -342,7 +342,6 @@ UpdateComputeEnvironment,batch.amazonaws.com,true
 RemoveTagsFromResource,rds.amazonaws.com,true
 RegisterJobDefinition,batch.amazonaws.com,true
 DeleteBotAlias,lex.amazonaws.com,true
-DeleteApi,apigateway.amazonaws.com,true
 DetachVpnGateway,ec2.amazonaws.com,true
 StartBuild,codebuild.amazonaws.com,true
 CreateIntegration,apigateway.amazonaws.com,true
