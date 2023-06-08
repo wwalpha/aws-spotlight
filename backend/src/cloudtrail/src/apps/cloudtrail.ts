@@ -52,7 +52,7 @@ export const execute = async (message: SQSRecord) => {
   Logger.info(`Excluding Error Records: ${records.length}`);
 
   // remove ignore records
-  records = await Utilities.removeIgnore(records, EVENTS);
+  records = Utilities.removeIgnore(records, EVENTS);
   Logger.info(`Excluding Ignore Records: ${records.length}`);
 
   // no process records
