@@ -1,5 +1,5 @@
 import { Environments } from '@src/consts';
-import { ResourceService } from '@src/services';
+import { ResourceService, SettingService } from '@src/services';
 import { GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { PublishCommand, SNSClient } from '@aws-sdk/client-sns';
@@ -9,12 +9,24 @@ const snsClient = new SNSClient({ region: process.env.AWS_REGION });
 
 export const reports = async (): Promise<void> => {
   const resources = await ResourceService.listResources();
+  const filters = await SettingService.describe('REPORT_FILTERS');
+  const filterServices: Record<string, string[]> = filters?.Services || {};
+  const filterServiceKeys = Object.keys(filterServices);
   const dataRows = new Array();
 
   // title
   dataRows.push('"UserName","Service","ResourceName","EventName","EventTime","ResourceId"');
 
   resources.forEach((item) => {
+    const arns = item.ResourceId.split(':');
+    const service = arns[2];
+    const subsystem = arns[5];
+
+    // filter
+    if (filterServiceKeys.includes(service) && filterServices[service].includes(subsystem)) {
+      return;
+    }
+
     // rows
     dataRows.push(
       `"${item.UserName}","${item.Service}","${item.ResourceName}","${item.EventName}","${item.EventTime.substring(

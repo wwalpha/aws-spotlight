@@ -191,6 +191,10 @@ export namespace Tables {
       Id: string;
     }
 
+    interface ReportFilter extends Key {
+      Services: Record<string, string[]>;
+    }
+
     interface Cognito extends Key {
       UserPoolId: string;
       ClientId: string;
