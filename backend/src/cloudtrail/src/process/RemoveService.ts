@@ -3,7 +3,7 @@ import { ResourceARNs } from '@src/apps/utils/awsArns';
 import { ResourceService } from '@src/services';
 import { CloudTrail, Tables } from 'typings';
 
-const MULTI_TASK = ['EC2_TerminateInstances'];
+const MULTI_TASK = ['EC2_TerminateInstances', 'MONITORING_DeleteAlarms', 'MONITORING_DeleteDashboards'];
 
 export const start = async (record: CloudTrail.Record): Promise<Tables.TResourceKey[] | undefined> => {
   const key = `${record.eventSource.split('.')[0].toUpperCase()}_${record.eventName}`;
@@ -94,6 +94,8 @@ const getResourceArn = async (record: CloudTrail.Record) => {
       return record.responseElements.cluster.clusterArn;
     case 'ECR_DeleteRepository':
       return record.responseElements.repository.repositoryArn;
+    case 'EVENTS_DeleteRule':
+      return record.responseElements.ruleArn;
 
     case 'FIREHOSE_DeleteDeliveryStream':
       return ResourceARNs.FIREHOSE_DeliveryStream(region, account, record.requestParameters.deliveryStreamName);
@@ -295,6 +297,14 @@ const getResourceArns = (record: CloudTrail.Record) => {
       return (record.responseElements.instancesSet.items as any[]).map(
         (item: { instanceId: string; currentState: { code: number }; previousState: { code: number } }) =>
           ResourceARNs.EC2_Instances(region, account, item.instanceId)
+      );
+    case 'MONITORING_DeleteAlarms':
+      return (record.requestParameters.alarmNames as string[]).map((item) =>
+        ResourceARNs.MONITORING_Alarm(region, account, item)
+      );
+    case 'MONITORING_DeleteDashboards':
+      return (record.requestParameters.dashboardNames as string[]).map((item) =>
+        ResourceARNs.MONITORING_Dashboard(region, account, item)
       );
   }
 

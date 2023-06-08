@@ -3,12 +3,7 @@ import { sendMail } from '@src/apps/utils/utilities';
 import { defaultTo, capitalize } from 'lodash';
 import { CloudTrail, Tables } from 'typings';
 
-const MULTI_TASK = [
-  'EC2_RunInstances',
-  'EC2_CreateSnapshots',
-  'MONITORING_DeleteAlarms',
-  'MONITORING_DeleteDashboards',
-];
+const MULTI_TASK = ['EC2_RunInstances', 'EC2_CreateSnapshots'];
 
 export const start = (record: CloudTrail.Record): Tables.TResource[] | undefined => {
   const serviceName = record.eventSource.split('.')[0].toUpperCase();
@@ -345,9 +340,6 @@ const getResourceInfo = (record: CloudTrail.Record): string[] | undefined => {
 
     case 'EVENTS_PutRule':
       return [record.responseElements.ruleArn, record.requestParameters.name];
-    case 'EVENTS_DeleteRule':
-      name = record.requestParameters.name;
-      return [ResourceARNs.EVENTS_Rule(region, account, name), name];
     case 'MONITORING_PutDashboard':
       name = record.requestParameters.dashboardName;
       return [ResourceARNs.MONITORING_Dashboard(region, account, name), name];
@@ -379,16 +371,6 @@ const getResourceInfos = (record: CloudTrail.Record): string[][] => {
 
       const snapshotId = items.snapshotId;
       return [[ResourceARNs.EC2_Snapshot(region, account, snapshotId), snapshotId]];
-    case 'MONITORING_DeleteAlarms':
-      return (record.requestParameters.alarmNames as string[]).map((item) => [
-        ResourceARNs.MONITORING_Alarm(region, account, item),
-        item,
-      ]);
-    case 'MONITORING_DeleteDashboards':
-      return (record.requestParameters.dashboardNames as string[]).map((item) => [
-        ResourceARNs.MONITORING_Dashboard(region, account, item),
-        item,
-      ]);
   }
 
   return [];
