@@ -1,15 +1,7 @@
 require('dotenv').config({ path: '.env.test' });
 
 import { DynamodbHelper } from '@alphax/dynamodb';
-import AWS from 'aws-sdk';
 import RESOURCE_DATAS from '../datas/resources.json';
-
-AWS.config.update({
-  region: process.env.AWS_REGION,
-  s3: { endpoint: process.env.AWS_ENDPOINT },
-  sqs: { endpoint: process.env.AWS_ENDPOINT },
-  dynamodb: { endpoint: process.env.AWS_ENDPOINT },
-});
 
 const TABLE_NAME_RESOURCES = process.env.TABLE_NAME_RESOURCES as string;
 

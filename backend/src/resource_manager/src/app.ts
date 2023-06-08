@@ -1,5 +1,4 @@
 import express from 'express';
-import { SNS } from 'aws-sdk';
 import { DynamodbHelper } from '@alphax/dynamodb';
 import { Resource, Tables } from 'typings';
 import { decodeToken, getToken, Logger } from './utils';

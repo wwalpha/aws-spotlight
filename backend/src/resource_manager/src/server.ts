@@ -1,15 +1,8 @@
 import express from 'express';
-import AWS from 'aws-sdk';
 import { json, urlencoded } from 'body-parser';
 import { getCategoryList, getResourceList, healthCheck } from './app';
 import { auditRegion, reports } from './func';
 import { common } from './utils';
-
-AWS.config.update({
-  region: process.env.AWS_REGION,
-  dynamodb: { endpoint: process.env.AWS_ENDPOINT },
-  sns: { endpoint: process.env.AWS_ENDPOINT },
-});
 
 // Instantiate application
 const app = express();

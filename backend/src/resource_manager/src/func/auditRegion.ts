@@ -1,10 +1,12 @@
-import { SNS } from 'aws-sdk';
+import { PublishCommand, SNSClient } from '@aws-sdk/client-sns';
 import { orderBy } from 'lodash';
 import { Environments } from '../consts';
 import { DynamodbHelper } from '../utils';
 import { Tables } from 'typings';
 
-const snsClient = new SNS();
+const snsClient = new SNSClient({
+  region: process.env.AWS_REGION,
+});
 
 export const auditRegion = async (): Promise<void> => {
   const settings = await DynamodbHelper.get<Tables.Settings.GlobalServices>({
@@ -49,11 +51,11 @@ export const auditRegion = async (): Promise<void> => {
   });
 
   // send to admin
-  await snsClient
-    .publish({
+  await snsClient.send(
+    new PublishCommand({
       TopicArn: Environments.SNS_TOPIC_ARN_ADMIN,
       Subject: 'Outscope region resources',
       Message: messages.join('\n'),
     })
-    .promise();
+  );
 };
