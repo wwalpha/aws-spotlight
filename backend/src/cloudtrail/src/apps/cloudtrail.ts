@@ -117,6 +117,9 @@ const processRecords = async (records: CloudTrail.Record[]) => {
   targets.forEach(async (item) => {
     const arns = ArnService.start(item);
 
+    Logger.info(item);
+    Logger.info(arns);
+
     if (arns.length === 0) {
       unprocesses.push(Utilities.getUnprocessedItem(item, 'NEW'));
     } else {
@@ -127,6 +130,8 @@ const processRecords = async (records: CloudTrail.Record[]) => {
 
   // 処理不能なデータを未処理テーブルに登録する
   await DynamodbHelper.bulk(Environments.TABLE_NAME_UNPROCESSED, unprocesses);
+
+  Logger.info(resources);
 
   const results = _.chain(resources)
     .groupBy((x) => x.ResourceId)
@@ -141,7 +146,6 @@ const processRecords = async (records: CloudTrail.Record[]) => {
     });
   });
 
-  // console.log(arns);
   const registTasks = Object.keys(arns).map(async (key) => {
     // イベント時刻でソート
     const res = _.orderBy(arns[key], ['EventTime'], ['desc']);

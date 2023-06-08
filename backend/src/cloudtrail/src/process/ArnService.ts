@@ -5,9 +5,9 @@ import { CloudTrail, ResourceInfo, Tables } from 'typings';
 const MULTI_TASK = [
   'EC2_RunInstances',
   'EC2_CreateSnapshots',
+  'EC2_TerminateInstances',
   'MONITORING_DeleteAlarms',
   'MONITORING_DeleteDashboards',
-  'EC2_TerminateInstances',
 ];
 
 export const start = (record: CloudTrail.Record): Tables.TResource[] => {
@@ -581,6 +581,13 @@ const getRemoveSingleResource = (record: CloudTrail.Record): ResourceInfo | unde
 
     case 'CLOUDFRONT_DeleteDistribution':
       arn = ResourceARNs.CLOUDFRONT_Distribution(region, account, request.id);
+      break;
+
+    case 'COGNITO-IDP_DeleteUserPool':
+      arn = ResourceARNs.COGNITO_USERPOOL(region, account, request.userPoolId);
+      break;
+    case 'COGNITO-IDENTITY_DeleteIdentityPool':
+      arn = ResourceARNs.COGNITO_IDENTITYPOOL(region, account, request.identityPoolId);
       break;
 
     case 'DYNAMODB_DeleteTable':
