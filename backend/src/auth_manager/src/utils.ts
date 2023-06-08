@@ -42,6 +42,7 @@ export const authenticateUser = (
 
         // These attributes are not mutable and should be removed from map.
         delete userAttributes.email_verified;
+        delete userAttributes.email;
         delete userAttributes['custom:tenant_id'];
 
         cognitoUser.completeNewPasswordChallenge(request.newPassword, userAttributes, callback);
