@@ -79,6 +79,14 @@ resource "aws_apigatewayv2_route" "get_resources_categories" {
   authorization_type = "CUSTOM"
 }
 
+resource "aws_apigatewayv2_route" "get_resources_reports" {
+  api_id             = local.apigateway_id
+  route_key          = "GET /resources/reports"
+  target             = "integrations/${local.apigateway_integration_resource}"
+  authorizer_id      = aws_apigatewayv2_authorizer.this.id
+  authorization_type = "CUSTOM"
+}
+
 resource "aws_apigatewayv2_route" "get_resources_audit_region" {
   api_id             = local.apigateway_id
   route_key          = "GET /resources/audit/region"
