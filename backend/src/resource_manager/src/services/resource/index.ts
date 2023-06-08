@@ -1,4 +1,4 @@
-import { DynamodbHelper } from '@src/apps/utils';
+import { DynamodbHelper } from '@src/utils';
 import { Tables } from 'typings';
 import * as Queries from './queries';
 
