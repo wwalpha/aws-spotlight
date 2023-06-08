@@ -17,7 +17,10 @@ export const reports = async (): Promise<void> => {
   resources.forEach((item) => {
     // rows
     dataRows.push(
-      `"${item.UserName}","${item.Service}","${item.ResourceName}","${item.EventName}","${item.EventTime}","${item.ResourceId}"`
+      `"${item.UserName}","${item.Service}","${item.ResourceName}","${item.EventName}","${item.EventTime.substring(
+        0,
+        10
+      )}","${item.ResourceId}"`
     );
   });
 
