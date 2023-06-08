@@ -4,7 +4,7 @@ import _, { orderBy, uniqBy } from 'lodash';
 import zlib from 'zlib';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
 import { Utilities, Consts, DynamodbHelper, Logger } from './utils';
-import { checkMultipleOperations, sendMail } from './utils/utilities';
+import { sendMail } from './utils/utilities';
 import * as ArnService from '@src/process/ArnService';
 import { ResourceService } from '@src/services';
 import { Environments } from './utils/consts';
@@ -223,6 +223,11 @@ const processNewEventType = async (record: CloudTrail.Record) => {
  */
 export const getRecords = async (message: string): Promise<CloudTrail.Record[]> => {
   const snsMessage = JSON.parse(message) as SNSMessage;
+
+  // skip validation message
+  if (snsMessage.Message.startsWith('CloudTrail validation message')) {
+    return [];
+  }
 
   const payload = JSON.parse(snsMessage.Message) as CloudTrail.Payload;
 
