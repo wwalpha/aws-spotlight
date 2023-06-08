@@ -12,12 +12,12 @@ export const reports = async (): Promise<void> => {
   const dataRows = new Array();
 
   // title
-  dataRows.push('"UserName","Service","ResourceName","EventName","ResourceId"');
+  dataRows.push('"UserName","Service","ResourceName","EventName","EventTime","ResourceId"');
 
   resources.forEach((item) => {
     // rows
     dataRows.push(
-      `"${item.UserName}","${item.Service}","${item.ResourceName}","${item.EventName}","${item.ResourceId}"`
+      `"${item.UserName}","${item.Service}","${item.ResourceName}","${item.EventName}","${item.EventTime}","${item.ResourceId}"`
     );
   });
 
