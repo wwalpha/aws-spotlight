@@ -348,7 +348,6 @@ CreateIntegration,apigateway.amazonaws.com,true
 CreateSecret,secretsmanager.amazonaws.com,true
 TestScheduleExpression,events.amazonaws.com,true
 CreateKey,kms.amazonaws.com,true
-DeleteIdentityPool,cognito-identity.amazonaws.com,true
 CreateElasticsearchServiceRole,es.amazonaws.com,true
 RegisterThing,iot.amazonaws.com,true
 DeleteBucketPolicy,s3.amazonaws.com,true
@@ -360,7 +359,6 @@ Unsubscribe,sns.amazonaws.com,true
 CreateDocument,ssm.amazonaws.com,true
 CreateIntentVersion,lex.amazonaws.com,true
 PutBucketLifecycle,s3.amazonaws.com,true
-DeleteUserPool,cognito-idp.amazonaws.com,true
 ListAccountIntegrations,profile.amazonaws.com,true
 DeleteUserPoolClient,cognito-idp.amazonaws.com,true
 AttachLoadBalancerTargetGroups,autoscaling.amazonaws.com,true

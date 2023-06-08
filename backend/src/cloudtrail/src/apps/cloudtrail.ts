@@ -127,7 +127,6 @@ const processRecords = async (records: CloudTrail.Record[]) => {
 
   // 処理不能なデータを未処理テーブルに登録する
   await DynamodbHelper.bulk(Environments.TABLE_NAME_UNPROCESSED, unprocesses);
-  // console.log(resources);
 
   const results = _.chain(resources)
     .groupBy((x) => x.ResourceId)
@@ -135,7 +134,6 @@ const processRecords = async (records: CloudTrail.Record[]) => {
     .value();
 
   const arns: Record<string, Tables.TResource[]> = {};
-  // console.log(results);
 
   results.forEach((item) => {
     Object.keys(item).forEach((o) => {

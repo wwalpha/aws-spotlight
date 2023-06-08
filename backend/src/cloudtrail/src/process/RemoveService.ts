@@ -72,6 +72,11 @@ const getResourceArn = async (record: CloudTrail.Record) => {
     case 'CLOUDFRONT_DeleteDistribution':
       return ResourceARNs.CLOUDFRONT_Distribution(region, account, record.requestParameters.id);
 
+    case 'COGNITO-IDP_DeleteUserPool':
+      return ResourceARNs.COGNITO_USERPOOL(region, account, record.requestParameters.userPoolId);
+    case 'COGNITO-IDENTITY_DeleteIdentityPool':
+      return ResourceARNs.COGNITO_IDENTITYPOOL(region, account, record.requestParameters.identityPoolId);
+
     case 'DYNAMODB_DeleteTable':
       return record.responseElements.tableDescription.tableArn;
     case 'DS_DeleteDirectory':

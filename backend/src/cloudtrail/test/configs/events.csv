@@ -18,7 +18,9 @@ DeleteBackupPlan,backup.amazonaws.com,delete
 CreateComputeEnvironment,batch.amazonaws.com,create
 DeleteComputeEnvironment,batch.amazonaws.com,delete
 CreateUserPool,cognito-idp.amazonaws.com,create
+DeleteUserPool,cognito-idp.amazonaws.com,delete
 CreateIdentityPool,cognito-identity.amazonaws.com,create
+DeleteIdentityPool,cognito-identity.amazonaws.com,delete
 CreateProject,codebuild.amazonaws.com,create
 DeleteProject,codebuild.amazonaws.com,delete
 CreateApplication,codedeploy.amazonaws.com,create
@@ -181,3 +183,4 @@ PutRule,events.amazonaws.com,create
 DeleteRule,events.amazonaws.com,create
 CreateFileSystem,fsx.amazonaws.com,create
 DeleteFileSystem,fsx.amazonaws.com,delete
+

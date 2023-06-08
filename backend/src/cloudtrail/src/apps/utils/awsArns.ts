@@ -66,6 +66,9 @@ export const ResourceARNs = {
     `arn:aws:codedeploy:${region}:${account}:application/${id}`,
 
   // cognito
+  COGNITO_USERPOOL: (region: string, account: string, id?: string) =>
+    `arn:aws:cognito-idp:${region}:${account}:userpool/${id}`,
+
   COGNITO_IDENTITYPOOL: (region: string, account: string, id?: string) =>
     `arn:aws:cognito-identity:${region}:${account}:identitypool/${id}`,
 
