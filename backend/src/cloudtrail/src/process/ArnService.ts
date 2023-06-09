@@ -314,7 +314,14 @@ const getRegistSingleResource = (record: CloudTrail.Record): ResourceInfo[] => {
       break;
 
     case 'KINESISANALYTICS_CreateApplication':
-      rets = [response.applicationSummary.applicationARN, response.applicationSummary.applicationName];
+      if (response.applicationSummary) {
+        rets = [response.applicationSummary.applicationARN, response.applicationSummary.applicationName];
+      }
+
+      if (response.applicationDetail) {
+        rets = [response.applicationDetail.applicationARN, response.applicationDetail.applicationName];
+      }
+
       break;
 
     case 'LOGS_CreateLogGroup':
