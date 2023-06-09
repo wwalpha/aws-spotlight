@@ -1,4 +1,4 @@
-import { Consts, ResourceARNs } from '@src/apps/utils';
+import { Consts, Logger, ResourceARNs } from '@src/apps/utils';
 import { capitalize, defaultTo } from 'lodash';
 import { CloudTrail, ResourceInfo, Tables } from 'typings';
 
@@ -14,31 +14,36 @@ export const start = (record: CloudTrail.Record): Tables.TResource[] => {
   const serviceName = record.eventSource.split('.')[0].toUpperCase();
   const key = `${serviceName}_${record.eventName}`;
 
-  // 登録リソース
-  const regists = MULTI_TASK.includes(key) ? getRegistMultiResources(record) : getRegistSingleResource(record);
-  // 削除リソース
-  const removes = MULTI_TASK.includes(key) ? getRemoveMultiResources(record) : [getRemoveSingleResource(record)];
-  // 全部リソース
-  const resources = [
-    ...regists,
-    ...removes.filter((item): item is Exclude<typeof item, undefined> => item !== undefined),
-  ];
+  try {
+    // 登録リソース
+    const regists = MULTI_TASK.includes(key) ? getRegistMultiResources(record) : getRegistSingleResource(record);
+    // 削除リソース
+    const removes = MULTI_TASK.includes(key) ? getRemoveMultiResources(record) : [getRemoveSingleResource(record)];
+    // 全部リソース
+    const resources = [
+      ...regists,
+      ...removes.filter((item): item is Exclude<typeof item, undefined> => item !== undefined),
+    ];
 
-  return resources.map((item) => ({
-    UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
-    ResourceId: item.id,
-    ResourceName: item.name,
-    EventName: record.eventName,
-    EventSource: record.eventSource,
-    EventTime: record.eventTime,
-    AWSRegion: record.awsRegion,
-    IdentityType: record.userIdentity.type,
-    UserAgent: record.userAgent,
-    EventId: record.eventID,
-    Service: getServiceName(serviceName),
-    Revisions: [],
-    Status: regists.length > 0 ? Consts.ResourceStatus.CREATED : Consts.ResourceStatus.DELETED,
-  }));
+    return resources.map((item) => ({
+      UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
+      ResourceId: item.id,
+      ResourceName: item.name,
+      EventName: record.eventName,
+      EventSource: record.eventSource,
+      EventTime: record.eventTime,
+      AWSRegion: record.awsRegion,
+      IdentityType: record.userIdentity.type,
+      UserAgent: record.userAgent,
+      EventId: record.eventID,
+      Service: getServiceName(serviceName),
+      Revisions: [],
+      Status: regists.length > 0 ? Consts.ResourceStatus.CREATED : Consts.ResourceStatus.DELETED,
+    }));
+  } catch (err) {
+    Logger.error('ArnService.start', record);
+    throw err;
+  }
 };
 
 const getRegistSingleResource = (record: CloudTrail.Record): ResourceInfo[] => {
