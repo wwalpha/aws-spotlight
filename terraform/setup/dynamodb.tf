@@ -207,22 +207,3 @@ resource "aws_dynamodb_table" "settings" {
     prevent_destroy = true
   }
 }
-
-# ----------------------------------------------------------------------------------------------
-# Dynamodb Table - Errors
-# ----------------------------------------------------------------------------------------------
-resource "aws_dynamodb_table" "errors" {
-  name         = local.dynamodb_name_errors
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "EventName"
-  range_key    = "EventTime"
-
-  attribute {
-    name = "EventName"
-    type = "S"
-  }
-  attribute {
-    name = "EventTime"
-    type = "S"
-  }
-}

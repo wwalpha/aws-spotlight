@@ -7,7 +7,6 @@ resource "aws_s3_object" "resource" {
   content = <<EOT
 TABLE_NAME_RESOURCES=${local.dynamodb_name_resources}
 TABLE_NAME_SETTINGS=${local.dynamodb_name_settings}
-TABLE_NAME_ERRORS=${local.dynamodb_name_errors}
 TABLE_NAME_UNPROCESSED=${local.dynamodb_name_unprocessed}
 TABLE_NAME_IGNORES=${local.dynamodb_name_ignores}
 TABLE_NAME_EVENT_TYPE=${local.dynamodb_name_event_type}
