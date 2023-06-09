@@ -1,8 +1,8 @@
-import { CloudTrail, EVENT_UNPROCESSED, Tables } from 'typings';
-import { Events, Consts, DynamodbHelper, Utilities } from './utils';
-import { Logger, checkMultipleOperations } from './utils/utilities';
+import { CloudTrail, Tables } from 'typings';
+import { Consts, DynamodbHelper } from './utils';
+import { Logger } from './utils/utilities';
 import _ from 'lodash';
-import { IgnoreService } from '@src/services';
+import { processRecords } from './cloudtrail';
 
 /**
  * Delete all ignore records
@@ -40,11 +40,11 @@ export const processIgnore = async (events: Tables.TEventType[]) => {
       IndexName: 'gsiIdx1',
     });
 
-    const registTasks = queryResult.Items.map((item) =>
-      IgnoreService.regist(Utilities.getIgnoreItem(JSON.parse(item.Raw) as CloudTrail.Record))
-    );
+    // const registTasks = queryResult.Items.map((item) =>
+    //   IgnoreService.regist(Utilities.getIgnoreItem(JSON.parse(item.Raw) as CloudTrail.Record))
+    // );
 
-    await Promise.all(registTasks);
+    // await Promise.all(registTasks);
 
     // delete keys
     await DynamodbHelper.truncate(Consts.Environments.TABLE_NAME_UNPROCESSED, queryResult.Items);
@@ -53,40 +53,43 @@ export const processIgnore = async (events: Tables.TEventType[]) => {
 
 export const processUpdate = async (events: Tables.TEventType[]) => {
   const records = await getUnprocessedRecords(events);
-  const eventSources: EVENT_UNPROCESSED = groupByEventSource(records);
+  // const eventSources: EVENT_UNPROCESSED = groupByEventSource(records);
 
-  const tasks = Object.keys(eventSources).map(async (item) => {
-    const values = eventSources[item];
+  const dataRows = records.map((r) => JSON.parse(r.Raw) as CloudTrail.Record);
 
-    const sorted = _.orderBy(values, ['EventTime'], ['asc']);
+  await processRecords(dataRows);
+  // const tasks = Object.keys(eventSources).map(async (item) => {
+  //   const values = eventSources[item];
 
-    // TODO
-    sorted.forEach((item) => console.log(item.EventName, item.EventSource, item.EventTime));
+  //   const sorted = _.orderBy(values, ['EventTime'], ['asc']);
 
-    for (;;) {
-      const record = sorted.shift();
+  //   // TODO
+  //   // sorted.forEach((item) => console.log(item.EventName, item.EventSource, item.EventTime));
 
-      // error check
-      if (!record) break;
+  //   for (;;) {
+  //     const record = sorted.shift();
 
-      try {
-        // parse raw data
-        const item = JSON.parse(record.Raw) as CloudTrail.Record;
+  //     // error check
+  //     if (!record) break;
 
-        await processRecord(item);
-      } catch (err) {
-        // dynamodb condition check
-        if ((err as any).code === 'TransactionCanceledException') {
-          Logger.error(err);
-          return;
-        }
+  //     try {
+  //       // parse raw data
+  //       const item = JSON.parse(record.Raw) as CloudTrail.Record;
 
-        throw err;
-      }
-    }
-  });
+  //       await processRecord(item);
+  //     } catch (err) {
+  //       // dynamodb condition check
+  //       if ((err as any).code === 'TransactionCanceledException') {
+  //         Logger.error(err);
+  //         return;
+  //       }
 
-  await Promise.all(tasks);
+  //       throw err;
+  //     }
+  //   }
+  // });
+
+  // await Promise.all(tasks);
 };
 
 const getUnprocessedRecords = async (events: Tables.TEventType[]) => {
@@ -117,48 +120,48 @@ const getUnprocessedRecords = async (events: Tables.TEventType[]) => {
   }, [] as Tables.TUnprocessed[]);
 };
 
-const processRecord = async (record: CloudTrail.Record) => {
-  // Resource ARN 情報を取得する
-  const [createItems, updateItems, deleteItems] = await Promise.all([
-    Events.getCreateResourceItems(record),
-    Events.getUpdateResourceItems(record),
-    Events.getRemoveResourceItems(record),
-  ]);
+// const processRecord = async (record: CloudTrail.Record) => {
+//   // Resource ARN 情報を取得する
+//   const [createItems, updateItems, deleteItems] = await Promise.all([
+//     Events.getCreateResourceItems(record),
+//     Events.getUpdateResourceItems(record),
+//     Events.getRemoveResourceItems(record),
+//   ]);
 
-  // 登録レコードを作成する
-  const transactItems = [...createItems, ...updateItems, ...deleteItems];
+//   // 登録レコードを作成する
+//   const transactItems = [...createItems, ...updateItems, ...deleteItems];
 
-  // checkMultipleOperations(transactItems);
+//   // checkMultipleOperations(transactItems);
 
-  // transactItems.forEach((item) => {
-  //   Logger.debug(JSON.stringify(item.Put));
-  //   Logger.debug(JSON.stringify(item.Delete));
-  // });
+//   // transactItems.forEach((item) => {
+//   //   Logger.debug(JSON.stringify(item.Put));
+//   //   Logger.debug(JSON.stringify(item.Delete));
+//   // });
 
-  // 処理データなし
-  if (transactItems.length === 0) {
-    return;
-  }
+//   // 処理データなし
+//   if (transactItems.length === 0) {
+//     return;
+//   }
 
-  // 一括登録
-  await DynamodbHelper.transactWrite({
-    TransactItems: transactItems,
-  });
-};
+//   // 一括登録
+//   await DynamodbHelper.transactWrite({
+//     TransactItems: transactItems,
+//   });
+// };
 
-const groupByEventSource = (records: Tables.TUnprocessed[]) => {
-  const events: EVENT_UNPROCESSED = {};
+// const groupByEventSource = (records: Tables.TUnprocessed[]) => {
+//   const events: EVENT_UNPROCESSED = {};
 
-  const results = _.chain(records)
-    .groupBy((x) => x.EventSource)
-    .map((values, key) => ({ [key]: values }))
-    .value();
+//   const results = _.chain(records)
+//     .groupBy((x) => x.EventSource)
+//     .map((values, key) => ({ [key]: values }))
+//     .value();
 
-  results.forEach((item) => {
-    Object.keys(item).forEach((o) => {
-      events[o] = item[o];
-    });
-  });
+//   results.forEach((item) => {
+//     Object.keys(item).forEach((o) => {
+//       events[o] = item[o];
+//     });
+//   });
 
-  return events;
-};
+//   return events;
+// };

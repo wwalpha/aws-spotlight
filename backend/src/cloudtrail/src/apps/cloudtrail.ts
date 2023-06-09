@@ -96,7 +96,7 @@ const processNewRecords = async (records: CloudTrail.Record[]) => {
   await Promise.all(tasks);
 };
 
-const processRecords = async (records: CloudTrail.Record[]) => {
+export const processRecords = async (records: CloudTrail.Record[]) => {
   // 処理対象のみ
   const targets = records.filter((item) => {
     const service = item.eventSource.split('.')[0].toUpperCase();
