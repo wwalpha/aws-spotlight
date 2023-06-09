@@ -61,7 +61,7 @@ export const processUpdate = async (events: Tables.TEventType[]) => {
 
   await DynamodbHelper.truncate(
     Consts.Environments.TABLE_NAME_UNPROCESSED,
-    records.map((r) => ({ EventName: r.EventName, EventSource: r.EventSource }))
+    records.map((r) => ({ EventName: r.EventName, EventTime: r.EventTime }))
   );
 
   // const tasks = Object.keys(eventSources).map(async (item) => {
