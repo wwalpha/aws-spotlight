@@ -61,6 +61,10 @@ export const ResourceARNs = {
   DS_Directory: (region: string, account: string, id?: string) =>
     `arn:aws:clouddirectory:${region}:${account}:directory/${id}`,
 
+  // codecommit
+  CODECOMMIT_Repository: (region: string, account: string, id?: string) =>
+    `arn:aws:codecommit:${region}:${account}:${id}`,
+
   // codedeploy
   CODEDEPLOY_Application: (region: string, account: string, id?: string) =>
     `arn:aws:codedeploy:${region}:${account}:application/${id}`,
@@ -169,6 +173,10 @@ export const ResourceARNs = {
   // ec2 security group
   EC2_SecurityGroup: (region: string, account: string, id?: string) =>
     `arn:aws:ec2:${region}:${account}:security-group/${id}`,
+
+  // ec2 route table
+  EC2_RouteTable: (region: string, account: string, id?: string) =>
+    `arn:aws:ec2:${region}:${account}:route-table/${id}`,
 
   // ec2 snapshot
   EC2_Snapshot: (region: string, _: string, id?: string) => `arn:aws:ec2:${region}::snapshot/${id}`,

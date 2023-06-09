@@ -121,6 +121,10 @@ const getRegistSingleResource = (record: CloudTrail.Record): ResourceInfo[] => {
       rets = [response.project.arn, response.project.name];
       break;
 
+    case 'CODECOMMIT_CreateRepository':
+      rets = [ResourceARNs.CODECOMMIT_Repository(region, account, request.repositoryName), request.repositoryName];
+      break;
+
     case 'CLOUDFORMATION_CreateStack':
       rets = [response.stackId, request.stackName];
       break;
@@ -271,6 +275,13 @@ const getRegistSingleResource = (record: CloudTrail.Record): ResourceInfo[] => {
 
     case 'EC2_CreateSecurityGroup':
       rets = [ResourceARNs.EC2_SecurityGroup(region, account, response.groupId), request.groupName];
+      break;
+
+    case 'EC2_CreateRouteTable':
+      rets = [
+        ResourceARNs.EC2_RouteTable(region, account, response.routeTable.routeTableId),
+        response.routeTable.routeTableId,
+      ];
       break;
 
     case 'ELASTICACHE_CreateCacheCluster':
@@ -580,6 +591,10 @@ const getRemoveSingleResource = (record: CloudTrail.Record): ResourceInfo | unde
       arn = request.name;
       break;
 
+    case 'CODECOMMIT_DeleteRepository':
+      arn = ResourceARNs.CODECOMMIT_Repository(region, account, request.repositoryName);
+      break;
+
     case 'CLOUDFORMATION_DeleteStack':
       const stackName = request.stackName as string;
 
@@ -884,6 +899,10 @@ const getRemoveSingleResource = (record: CloudTrail.Record): ResourceInfo | unde
       }
 
       arn = ResourceARNs.EC2_SecurityGroup(region, account, groupId);
+      break;
+
+    case 'EC2_DeleteRouteTable':
+      arn = ResourceARNs.EC2_RouteTable(region, account, request.routeTableId);
       break;
 
     case 'BACKUP_DeleteBackupPlan':
