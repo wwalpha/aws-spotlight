@@ -117,22 +117,6 @@ export namespace Tables {
   }
 
   /**
-   * Table - Errors Key
-   */
-  interface TErrorsKey {
-    EventName: string;
-    EventTime: string;
-  }
-
-  /**
-   * Table - TErrors
-   */
-  interface TErrors extends TErrorsKey {
-    EventSource: string;
-    Raw: string;
-  }
-
-  /**
    * Table - History Key
    */
   interface THistoryKey {
