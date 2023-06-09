@@ -1,5 +1,5 @@
 import { Consts, Logger, ResourceARNs } from '@src/apps/utils';
-import { CloudFormation } from 'aws-sdk';
+import { CloudFormation, EC2 } from 'aws-sdk';
 import { capitalize, defaultTo } from 'lodash';
 import { CloudTrail, ResourceInfo, Tables } from 'typings';
 
@@ -602,7 +602,8 @@ const getRemoveSingleResource = async (record: CloudTrail.Record): Promise<Resou
       const stackName = request.stackName as string;
 
       // ARN ではない場合、処理スキップする
-      if (!stackName.startsWith('arn')) {
+      if (stackName.startsWith('arn')) {
+        arn = stackName;
         break;
       }
 
@@ -904,13 +905,27 @@ const getRemoveSingleResource = async (record: CloudTrail.Record): Promise<Resou
 
     case 'EC2_DeleteSecurityGroup':
       const groupId = request.groupId;
+      const groupName = request.groupName;
 
-      // グループID 存在しない場合、既存リソースから
-      if (!groupId) {
+      // グループID 存在する場合、既存リソースから
+      if (groupId) {
+        arn = ResourceARNs.EC2_SecurityGroup(region, account, groupId);
         break;
       }
 
-      arn = ResourceARNs.EC2_SecurityGroup(region, account, groupId);
+      const ec2Client = new EC2({ region });
+      const sgRes = await ec2Client
+        .describeSecurityGroups({
+          GroupNames: [groupName],
+        })
+        .promise();
+
+      const sg = sgRes.SecurityGroups;
+      if (sg === undefined || sg.length === 0) {
+        break;
+      }
+
+      arn = ResourceARNs.EC2_SecurityGroup(region, account, sg[0].GroupId as string);
       break;
 
     case 'EC2_DeleteRouteTable':
