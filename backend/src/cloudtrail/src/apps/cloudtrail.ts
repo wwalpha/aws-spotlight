@@ -123,15 +123,15 @@ const processRecords = async (records: CloudTrail.Record[]) => {
       arns.forEach((arn) => resources.push(arn));
       histories.push(Utilities.getHistoryItem(item));
 
-      Logger.info(item);
-      Logger.info(arns);
+      Logger.info(JSON.stringify(item));
+      Logger.info(JSON.stringify(arns));
     }
   });
 
   // 処理不能なデータを未処理テーブルに登録する
   await DynamodbHelper.bulk(Environments.TABLE_NAME_UNPROCESSED, unprocesses);
 
-  Logger.info(resources);
+  Logger.info(JSON.stringify(resources));
 
   const results = _.chain(resources)
     .groupBy((x) => x.ResourceId)
