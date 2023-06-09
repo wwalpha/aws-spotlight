@@ -27,7 +27,7 @@ data "aws_iam_policy_document" "batch" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# AWS ECS Task Role Policy
+# AWS ECS Task Execution Role
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role_policy" "ecs_task_exec" {
   name = "s3_policy"

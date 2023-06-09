@@ -51,7 +51,9 @@ resource "aws_iam_role_policy" "cloudtrail" {
           "sqs:DeleteMessage",
           "sqs:ReceiveMessage",
           "sqs:GetQueueAttributes",
-          "sns:Publish"
+          "sns:Publish",
+          "cloudformation:listStacks",
+          "ec2:describeSecurityGroups",
         ]
         Resource = "*"
       },
@@ -157,7 +159,9 @@ resource "aws_iam_role_policy" "unprocessed" {
           "dynamodb:Scan",
           "dynamodb:Query",
           "dynamodb:UpdateItem",
-          "sns:Publish"
+          "sns:Publish",
+          "cloudformation:listStacks",
+          "ec2:describeSecurityGroups",
         ]
         Resource = "*"
       },
