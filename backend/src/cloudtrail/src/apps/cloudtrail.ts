@@ -115,7 +115,7 @@ export const processRecords = async (records: CloudTrail.Record[]) => {
 
   // 処理可能なデータを分ける
   targets.forEach(async (item) => {
-    const arns = ArnService.start(item);
+    const arns = await ArnService.start(item);
 
     if (arns.length === 0) {
       unprocesses.push(Utilities.getUnprocessedItem(item, 'NEW'));

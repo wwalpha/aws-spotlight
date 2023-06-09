@@ -1,4 +1,5 @@
 import { Consts, Logger, ResourceARNs } from '@src/apps/utils';
+import { CloudFormation } from 'aws-sdk';
 import { capitalize, defaultTo } from 'lodash';
 import { CloudTrail, ResourceInfo, Tables } from 'typings';
 
@@ -10,7 +11,7 @@ const MULTI_TASK = [
   'MONITORING_DeleteDashboards',
 ];
 
-export const start = (record: CloudTrail.Record): Tables.TResource[] => {
+export const start = async (record: CloudTrail.Record): Promise<Tables.TResource[]> => {
   const serviceName = record.eventSource.split('.')[0].toUpperCase();
   const key = `${serviceName}_${record.eventName}`;
 
@@ -18,7 +19,9 @@ export const start = (record: CloudTrail.Record): Tables.TResource[] => {
     // 登録リソース
     const regists = MULTI_TASK.includes(key) ? getRegistMultiResources(record) : getRegistSingleResource(record);
     // 削除リソース
-    const removes = MULTI_TASK.includes(key) ? getRemoveMultiResources(record) : [getRemoveSingleResource(record)];
+    const removes = MULTI_TASK.includes(key)
+      ? getRemoveMultiResources(record)
+      : [await getRemoveSingleResource(record)];
     // 全部リソース
     const resources = [
       ...regists,
@@ -538,7 +541,7 @@ const getRegistMultiResources = (record: CloudTrail.Record): ResourceInfo[] => {
   return [];
 };
 
-const getRemoveSingleResource = (record: CloudTrail.Record): ResourceInfo | undefined => {
+const getRemoveSingleResource = async (record: CloudTrail.Record): Promise<ResourceInfo | undefined> => {
   const {
     awsRegion: region,
     recipientAccountId: account,
@@ -603,7 +606,16 @@ const getRemoveSingleResource = (record: CloudTrail.Record): ResourceInfo | unde
         break;
       }
 
-      arn = stackName;
+      const client = new CloudFormation({ region });
+      const res = await client.listStacks().promise();
+
+      const stack = res.StackSummaries?.find((s) => s.StackName === stackName);
+
+      if (!stack) {
+        break;
+      }
+
+      arn = stack.StackId;
       break;
 
     case 'CLOUDFRONT_DeleteDistribution':
