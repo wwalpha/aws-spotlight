@@ -58,6 +58,12 @@ export const processUpdate = async (events: Tables.TEventType[]) => {
   const dataRows = records.map((r) => JSON.parse(r.Raw) as CloudTrail.Record);
 
   await processRecords(dataRows);
+
+  await DynamodbHelper.truncate(
+    Consts.Environments.TABLE_NAME_UNPROCESSED,
+    records.map((r) => ({ EventName: r.EventName, EventSource: r.EventSource }))
+  );
+
   // const tasks = Object.keys(eventSources).map(async (item) => {
   //   const values = eventSources[item];
 
