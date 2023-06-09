@@ -583,7 +583,7 @@ const getRemoveSingleResource = async (record: CloudTrail.Record): Promise<Resou
       break;
 
     case 'CONNECT_DeleteInstance':
-      arn = decodeURIComponent(request.InstanceId);
+      arn = ResourceARNs.CONNECT_Instance(region, account, request.InstanceId);
       break;
 
     case 'CODEDEPLOY_DeleteApplication':

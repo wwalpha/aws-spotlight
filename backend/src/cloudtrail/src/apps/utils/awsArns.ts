@@ -89,6 +89,10 @@ export const ResourceARNs = {
   CLOUDFRONT_Distribution: (_: string, account: string, id?: string) =>
     `arn:aws:cloudfront::${account}:distribution/${id}`,
 
+  // connect
+  CONNECT_Instance: (region: string, account: string, id?: string) =>
+    `arn:aws:connect:${region}:${account}:instance/${id}`,
+
   // autoscaling
   AUTOSCALING_AutoScalingGroup: (region: string, account: string, id?: string) =>
     `arn:aws:autoscaling:${region}:${account}:autoScalingGroup:*:autoScalingGroupName/${id}`,
