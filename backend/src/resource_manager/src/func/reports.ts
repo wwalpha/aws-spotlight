@@ -20,6 +20,13 @@ export const reports = async (): Promise<void> => {
   resources.forEach((item) => {
     const arns = item.ResourceId.split(':');
     const service = arns[2];
+
+    // invalid arn
+    if (arns.length < 6) {
+      console.log('Invalid ARN', item.ResourceId );
+      return;
+    }
+
     const subsystem = arns[5].indexOf('/') !== -1 ? arns[5].split('/')[0] : arns[5];
 
     // console.log(service, subsystem, filterServiceKeys.includes(service), filterServices[service]);
