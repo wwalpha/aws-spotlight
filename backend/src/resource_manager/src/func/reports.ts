@@ -20,7 +20,7 @@ export const reports = async (): Promise<void> => {
   resources.forEach((item) => {
     const arns = item.ResourceId.split(':');
     const service = arns[2];
-    const subsystem = arns[5].split('/')[0];
+    const subsystem = arns[5].indexOf('/') !== -1 ? arns[5].split('/')[0] : arns[5];
 
     // console.log(service, subsystem, filterServiceKeys.includes(service), filterServices[service]);
     // filter
