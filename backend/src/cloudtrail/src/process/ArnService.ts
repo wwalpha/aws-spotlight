@@ -7,6 +7,7 @@ const MULTI_TASK = [
   'EC2_RunInstances',
   'EC2_CreateSnapshots',
   'EC2_TerminateInstances',
+  'EC2_DeleteVpcEndpoints',
   'MONITORING_DeleteAlarms',
   'MONITORING_DeleteDashboards',
 ];
@@ -883,10 +884,6 @@ const getRemoveSingleResource = async (record: CloudTrail.Record): Promise<Resou
       arn = ResourceARNs.EC2_Vpc(region, account, request.vpcId);
       break;
 
-    case 'EC2_DeleteVpcEndpoints':
-      arn = ResourceARNs.EC2_VpcEndpoints(region, account, request.DeleteVpcEndpointsRequest.VpcEndpointId.content);
-      break;
-
     case 'EC2_DeleteVpcPeeringConnection':
       arn = ResourceARNs.EC2_VpcPeeringConnection(region, account, request.vpcPeeringConnectionId);
       break;
@@ -969,6 +966,13 @@ const getRemoveMultiResources = (record: CloudTrail.Record): ResourceInfo[] => {
       return (response.instancesSet.items as any[]).map<ResourceInfo>(
         (item: { instanceId: string; currentState: { code: number }; previousState: { code: number } }) => ({
           id: ResourceARNs.EC2_Instances(region, account, item.instanceId),
+        })
+      );
+
+    case 'EC2_DeleteVpcEndpoints':
+      return (request.DeleteVpcEndpointsRequest.VpcEndpointId as any[]).map<ResourceInfo>(
+        (item: { content: string;  }) => ({
+          id: ResourceARNs.EC2_VpcEndpoints(region, account, item.content),
         })
       );
 
