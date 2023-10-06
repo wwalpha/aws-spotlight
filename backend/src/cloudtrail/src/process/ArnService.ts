@@ -85,6 +85,10 @@ const getRegistSingleResource = (record: CloudTrail.Record): ResourceInfo[] => {
       rets = [ResourceARNs.APIGATEWAY_Api(region, account, response.id), response.name];
       break;
 
+    case 'APIGATEWAY_UpdateRestApi':
+      rets = [ResourceARNs.APIGATEWAY_Api(region, account, response.id), response.name];
+      break;
+
     case 'APIGATEWAY_CreateDomainName':
       name = response.domainName;
       rets = [ResourceARNs.APIGATEWAY_DomainName(region, account, name), name];
