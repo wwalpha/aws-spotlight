@@ -2,6 +2,7 @@ CreateApi,apigateway.amazonaws.com,create
 DeleteApi,apigateway.amazonaws.com,delete
 CreateRestApi,apigateway.amazonaws.com,create
 ImportRestApi,apigateway.amazonaws.com,create
+UpdateRestApi,apigateway.amazonaws.com,create
 DeleteRestApi,apigateway.amazonaws.com,delete
 CreateVpcLink,apigateway.amazonaws.com,create
 DeleteVpcLink,apigateway.amazonaws.com,delete
