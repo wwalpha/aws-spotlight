@@ -134,7 +134,9 @@ const getRegistSingleResource = (record: CloudTrail.Record): ResourceInfo[] => {
       break;
 
     case 'CLOUDFORMATION_CreateStack':
-      rets = [response.stackId, request.stackName];
+      const index = response.stackId.lastIndexOf('/');
+
+      rets = [response.stackId.substring(0, index), request.stackName];
       break;
 
     case 'CLOUDFRONT_CreateDistribution':
@@ -608,20 +610,11 @@ const getRemoveSingleResource = async (record: CloudTrail.Record): Promise<Resou
 
       // ARN ではない場合、処理スキップする
       if (stackName.startsWith('arn')) {
-        arn = stackName;
+        arn = stackName.substring(0, stackName.lastIndexOf('/'));
         break;
       }
 
-      const client = new CloudFormation({ region });
-      const res = await client.listStacks().promise();
-
-      const stack = res.StackSummaries?.find((s) => s.StackName === stackName);
-
-      if (!stack) {
-        break;
-      }
-
-      arn = stack.StackId;
+      arn = ResourceARNs.CLOUDFORMATION_Stack(region, account, stackName);
       break;
 
     case 'CLOUDFRONT_DeleteDistribution':
