@@ -963,7 +963,13 @@ const getRemoveMultiResources = (record: CloudTrail.Record): ResourceInfo[] => {
       );
 
     case 'EC2_DeleteVpcEndpoints':
-      return (request.DeleteVpcEndpointsRequest.VpcEndpointId as any[]).map<ResourceInfo>(
+      let ids = request.DeleteVpcEndpointsRequest.VpcEndpointId;
+
+      if (!Array.isArray(ids)) {
+        ids =[ids];
+      }
+
+      return (ids as any[]).map<ResourceInfo>(
         (item: { content: string;  }) => ({
           id: ResourceARNs.EC2_VpcEndpoints(region, account, item.content),
         })
