@@ -166,6 +166,7 @@ export const processRecords = async (records: CloudTrail.Record[]) => {
 
     // 最後リソースのイベント時間とリビジョンの最後の時刻が一致する場合、ステータスを更新
     if (lastestRes.EventTime === registItem.Revisions[registItem.Revisions.length - 1]) {
+      registItem.ResourceName = lastestRes.ResourceName || registItem.ResourceName;
       registItem.EventId = lastestRes.EventId;
       registItem.EventName = lastestRes.EventName;
       registItem.EventTime = lastestRes.EventTime;
