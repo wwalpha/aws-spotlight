@@ -142,7 +142,6 @@ DisassociateClientVpnTargetNetwork,ec2.amazonaws.com,true
 MarkAsArchived,mgn.amazonaws.com,true
 StartQueryExecution,athena.amazonaws.com,true
 RemoveTargets,events.amazonaws.com,true
-UpdateRestApi,apigateway.amazonaws.com,true
 AddPermission20150331v2,lambda.amazonaws.com,true
 AuthorizeClientVpnIngress,ec2.amazonaws.com,true
 ListExports,dynamodb.amazonaws.com,true

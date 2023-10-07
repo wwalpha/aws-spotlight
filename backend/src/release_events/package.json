@@ -9,6 +9,7 @@
     "initialize": "ts-node src/initialize.ts",
     "events": "ts-node -r dotenv/config src/events.ts",
     "patch": "ts-node -r dotenv/config src/utils.ts",
+    "patch:prod": "ts-node -r dotenv/config src/utils.ts dotenv_config_path=.env.prod",
     "test": "jest"
   },
   "devDependencies": {
