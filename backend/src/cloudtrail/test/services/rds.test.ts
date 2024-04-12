@@ -323,7 +323,7 @@ describe('rds.amazonaws.com', () => {
 
     await cloudtrail(event);
 
-    const resource = await getResource('arn:aws:rds:ap-northeast-1:334678299258:og:sas-ora-server-parameter-group');
+    const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:og:sas-ora-server-parameter-group');
     const history = await getHistory({ EventId: DeleteEvents.RDS_DeleteDBSubnetGroup.eventID });
 
     // fs.writeFileSync('./test/expect/rds/RDS_DeleteOptionGroup_H.json', JSON.stringify(history));
