@@ -174,7 +174,7 @@ const getRegistSingleResource = (record: CloudTrail.Record): ResourceInfo[] => {
       break;
 
     case 'ELASTICFILESYSTEM_CreateFileSystem':
-      rets = [ResourceARNs.ELASTICFILESYSTEM_FileSystem(region, account, response.fileSystemId), response.name];
+      rets = [ResourceARNs.ELASTICFILESYSTEM_FileSystem(region, account, response.fileSystemId), response.fileSystemId];
       break;
 
     case 'EKS_CreateCluster':
@@ -966,7 +966,7 @@ const getRemoveMultiResources = (record: CloudTrail.Record): ResourceInfo[] => {
       let ids = request.DeleteVpcEndpointsRequest.VpcEndpointId;
 
       if (!Array.isArray(ids)) {
-        ids =[ids];
+        ids =[request.DeleteVpcEndpointsRequest.VpcEndpointId.content];
       }
 
       return (ids as any[]).map<ResourceInfo>(
