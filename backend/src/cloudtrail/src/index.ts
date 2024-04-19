@@ -4,7 +4,7 @@ import { processIgnore, processUpdate } from './apps/unprocessed';
 import { Logger } from './apps/utils/utilities';
 import { EventTypeService, UnprocessedService } from './services';
 import { CloudTrail } from 'typings';
-import { DynamodbHelper } from './apps/utils';
+import { DynamodbHelper, Utilities } from './apps/utils';
 import { Environments } from './apps/utils/consts';
 
 // common settings
@@ -54,7 +54,7 @@ export const filtering = async (event: SQSEvent) => {
 
   Logger.info(`Start process records, ${event.Records.length}`);
 
-  let records:CloudTrail.Record[] = []
+  let records: CloudTrail.Record[] = [];
 
   for (;;) {
     const message = event.Records.shift();
@@ -64,7 +64,7 @@ export const filtering = async (event: SQSEvent) => {
 
     const results = await executeFiltering(message);
 
-    records=[...records, ...results];
+    records = [...records, ...results];
   }
 
   Logger.info(`New records, ${records.length}`);
@@ -72,7 +72,10 @@ export const filtering = async (event: SQSEvent) => {
   if (records.length === 0) return;
 
   // add records
-  await DynamodbHelper.bulk(Environments.TABLE_NAME_EVENTS, records);
+  await DynamodbHelper.bulk(
+    Environments.TABLE_NAME_EVENTS,
+    records.map((item) => Utilities.getEventsItem(item))
+  );
 };
 
 /**
