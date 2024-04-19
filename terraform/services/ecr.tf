@@ -51,6 +51,19 @@ resource "aws_ecr_repository" "cloudtrail" {
 }
 
 # ----------------------------------------------------------------------------------------------
+# ECR (Lambda) - Filtering
+# ----------------------------------------------------------------------------------------------
+resource "aws_ecr_repository" "filtering" {
+  name                 = "${local.project_name}/filtering/${local.suffix}"
+  image_tag_mutability = "MUTABLE"
+  force_delete         = true
+
+  image_scanning_configuration {
+    scan_on_push = false
+  }
+}
+
+# ----------------------------------------------------------------------------------------------
 # ECR (Lambda) - Unprocessed
 # ----------------------------------------------------------------------------------------------
 resource "aws_ecr_repository" "unprocessed" {

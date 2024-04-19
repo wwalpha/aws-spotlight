@@ -63,6 +63,7 @@ locals {
   # ECR
   # ----------------------------------------------------------------------------------------------
   ecr_repository_cloudtrail  = local.remote_services.ecr_repository_cloudtrail
+  ecr_repository_filtering   = local.remote_services.ecr_repository_filtering
   ecr_repository_unprocessed = local.remote_services.ecr_repository_unprocessed
 
   # ----------------------------------------------------------------------------------------------
@@ -105,6 +106,13 @@ data "aws_sns_topic" "admin" {
 # ----------------------------------------------------------------------------------------------
 data "aws_ecr_repository" "cloudtrail" {
   name = local.ecr_repository_cloudtrail
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS ECR Repository - Filtering
+# ----------------------------------------------------------------------------------------------
+data "aws_ecr_repository" "filtering" {
+  name = local.ecr_repository_filtering
 }
 
 # ----------------------------------------------------------------------------------------------
