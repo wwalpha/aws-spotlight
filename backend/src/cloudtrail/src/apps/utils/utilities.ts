@@ -1,12 +1,14 @@
 import { SQSRecord } from 'aws-lambda';
-import { DynamoDB, SNS, SQS } from 'aws-sdk';
 import { defaultTo, omit, uniqBy } from 'lodash';
+import { DeleteMessageCommand, ReceiveMessageCommand, SQSClient } from '@aws-sdk/client-sqs';
+import { PublishCommand, SNSClient } from '@aws-sdk/client-sns';
+import { TransactWriteItem } from '@aws-sdk/client-dynamodb';
 import winston from 'winston';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
 import { Consts, DynamodbHelper, Utilities } from '.';
 
-const sqsClient = new SQS();
-const snsClient = new SNS();
+const sqsClient = new SQSClient();
+const snsClient = new SNSClient();
 const SQS_URL = process.env.SQS_URL as string;
 
 export const LoggerOptions: winston.LoggerOptions = {
@@ -63,17 +65,14 @@ export const getRemoveUnprocessed = (record: CloudTrail.Record): Tables.TUnproce
   EventTime: `${record.eventTime}_${record.eventID.substring(0, 8)}`,
 });
 
-export const getPutRecord = (tableName: string, item: any): DynamoDB.DocumentClient.TransactWriteItem => ({
+export const getPutRecord = (tableName: string, item: any): TransactWriteItem => ({
   Put: {
     TableName: tableName,
     Item: item,
   },
 });
 
-export const getDeleteRecord = (
-  tableName: string,
-  key: DynamoDB.DocumentClient.Key
-): DynamoDB.DocumentClient.TransactWriteItem => ({
+export const getDeleteRecord = (tableName: string, key: Record<string, any>): TransactWriteItem => ({
   Delete: {
     TableName: tableName,
     Key: key,
@@ -86,12 +85,12 @@ export const getDeleteRecord = (
  * @returns
  */
 export const getSQSMessages = async () => {
-  const sqsResults = await sqsClient
-    .receiveMessage({
+  const sqsResults = await sqsClient.send(
+    new ReceiveMessageCommand({
       QueueUrl: SQS_URL,
       MaxNumberOfMessages: 10,
     })
-    .promise();
+  );
 
   return (sqsResults.Messages ??= []);
 };
@@ -102,12 +101,12 @@ export const getSQSMessages = async () => {
  * @param message
  */
 export const deleteSQSMessage = async (message: SQSRecord) => {
-  await sqsClient
-    .deleteMessage({
+  await sqsClient.send(
+    new DeleteMessageCommand({
       QueueUrl: SQS_URL,
       ReceiptHandle: message.receiptHandle,
     })
-    .promise();
+  );
 };
 
 /**
@@ -188,19 +187,19 @@ export const removeIgnore = (records: CloudTrail.Record[], events: EVENT_TYPE) =
 export const sendMail = async (subject: string, message: string) => {
   console.log(subject, message);
   try {
-    await snsClient
-      .publish({
+    await snsClient.send(
+      new PublishCommand({
         TopicArn: Consts.Environments.SNS_TOPIC_ARN,
         Subject: subject,
         Message: message,
       })
-      .promise();
+    );
   } catch (err) {
     Logger.error(err);
   }
 };
 
-export const checkMultipleOperations = (items: DynamoDB.TransactWriteItem[]) => {
+export const checkMultipleOperations = (items: TransactWriteItem[]) => {
   console.log('checkMultipleOperations', items.length);
 
   items.forEach((item) => {

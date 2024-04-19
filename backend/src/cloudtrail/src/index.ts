@@ -1,20 +1,19 @@
 import { SQSEvent } from 'aws-lambda';
-import AWS from 'aws-sdk';
 import { execute, executeFiltering, initializeEvents } from './apps/cloudtrail';
 import { processIgnore, processUpdate } from './apps/unprocessed';
 import { Logger } from './apps/utils/utilities';
 import { EventTypeService, UnprocessedService } from './services';
 
 // common settings
-AWS.config.update({
-  region: process.env.AWS_REGION,
-  ec2: { endpoint: process.env.AWS_ENDPOINT },
-  rds: { endpoint: process.env.AWS_ENDPOINT },
-  s3: { endpoint: process.env.AWS_ENDPOINT },
-  sqs: { endpoint: process.env.AWS_ENDPOINT },
-  sns: { endpoint: process.env.AWS_ENDPOINT },
-  dynamodb: { endpoint: process.env.AWS_ENDPOINT },
-});
+// AWS.config.update({
+//   region: process.env.AWS_REGION,
+//   ec2: { endpoint: process.env.AWS_ENDPOINT },
+//   rds: { endpoint: process.env.AWS_ENDPOINT },
+//   s3: { endpoint: process.env.AWS_ENDPOINT },
+//   sqs: { endpoint: process.env.AWS_ENDPOINT },
+//   sns: { endpoint: process.env.AWS_ENDPOINT },
+//   dynamodb: { endpoint: process.env.AWS_ENDPOINT },
+// });
 
 /**
  * App Entry

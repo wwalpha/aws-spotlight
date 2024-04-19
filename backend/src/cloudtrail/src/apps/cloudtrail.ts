@@ -1,5 +1,6 @@
-import { DynamoDB, S3 } from 'aws-sdk';
 import { SNSMessage, SQSRecord } from 'aws-lambda';
+import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { TransactWriteItem } from '@aws-sdk/client-dynamodb';
 import _, { orderBy, uniqBy } from 'lodash';
 import zlib from 'zlib';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
@@ -9,7 +10,7 @@ import * as ArnService from '@src/process/ArnService';
 import { ResourceService } from '@src/services';
 import { Environments } from './utils/consts';
 
-const s3Client = new S3();
+const s3Client = new S3Client();
 const NOTIFIED: EVENT_TYPE = {};
 const EVENTS: EVENT_TYPE = {};
 
@@ -225,7 +226,7 @@ export const processRecords = async (records: CloudTrail.Record[]) => {
 const processNewEventType = async (record: CloudTrail.Record) => {
   Logger.debug('Start execute new event type...');
 
-  const transactItems: DynamoDB.DocumentClient.TransactWriteItemList = [];
+  const transactItems: TransactWriteItem[] = [];
   const { TABLE_NAME_EVENT_TYPE, TABLE_NAME_UNPROCESSED } = Consts.Environments;
 
   // add event type
@@ -274,12 +275,12 @@ export const getRecords = async (message: string): Promise<CloudTrail.Record[]> 
 
   // get files
   const tasks = payload.s3ObjectKey.map((item) =>
-    s3Client
-      .getObject({
+    s3Client.send(
+      new GetObjectCommand({
         Bucket: payload.s3Bucket,
         Key: item,
       })
-      .promise()
+    )
   );
 
   // get all files

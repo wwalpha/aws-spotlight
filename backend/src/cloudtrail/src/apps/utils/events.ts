@@ -1,4 +1,4 @@
-import { DynamoDB } from 'aws-sdk';
+import { TransactWriteItem, TransactWriteItemsCommand } from '@aws-sdk/client-dynamodb';
 import { ResourceService } from '@src/services';
 import * as RemoveService from '@src/process/RemoveService';
 import * as CreateService from '@src/process/CreateService';
@@ -64,9 +64,9 @@ export const getCreateResourceItems = (record: CloudTrail.Record): Tables.TResou
   // return rets;
 };
 
-export const getUpdateResourceItems = async (record: CloudTrail.Record): Promise<DynamoDB.TransactWriteItemList> => {
+export const getUpdateResourceItems = async (record: CloudTrail.Record): Promise<TransactWriteItem[]> => {
   const items = UpdateService.start(record) ?? [];
-  const rets: DynamoDB.TransactWriteItemList = [];
+  const rets: TransactWriteItem[] = [];
 
   // 対象データなし
   if (items.length === 0) return rets;
@@ -119,9 +119,9 @@ export const getUpdateResourceItems = async (record: CloudTrail.Record): Promise
   return rets;
 };
 
-export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise<DynamoDB.TransactWriteItemList> => {
+export const getRemoveResourceItems = async (record: CloudTrail.Record): Promise<TransactWriteItem[]> => {
   const items = (await RemoveService.start(record)) ?? [];
-  const rets: DynamoDB.TransactWriteItemList = [];
+  const rets: TransactWriteItem[] = [];
 
   // 対象データなし
   if (items.length === 0) return rets;

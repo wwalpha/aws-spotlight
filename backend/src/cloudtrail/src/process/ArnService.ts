@@ -1,5 +1,5 @@
 import { Consts, Logger, ResourceARNs } from '@src/apps/utils';
-import { CloudFormation, EC2 } from 'aws-sdk';
+import { DescribeSecurityGroupsCommand, EC2Client } from '@aws-sdk/client-ec2';
 import { capitalize, defaultTo } from 'lodash';
 import { CloudTrail, ResourceInfo, Tables } from 'typings';
 
@@ -907,12 +907,12 @@ const getRemoveSingleResource = async (record: CloudTrail.Record): Promise<Resou
         break;
       }
 
-      const ec2Client = new EC2({ region });
-      const sgRes = await ec2Client
-        .describeSecurityGroups({
+      const ec2Client = new EC2Client({ region });
+      const sgRes = await ec2Client.send(
+        new DescribeSecurityGroupsCommand({
           GroupNames: [groupName],
         })
-        .promise();
+      );
 
       const sg = sgRes.SecurityGroups;
       if (sg === undefined || sg.length === 0) {
@@ -966,14 +966,12 @@ const getRemoveMultiResources = (record: CloudTrail.Record): ResourceInfo[] => {
       let ids = request.DeleteVpcEndpointsRequest.VpcEndpointId;
 
       if (!Array.isArray(ids)) {
-        ids =[request.DeleteVpcEndpointsRequest.VpcEndpointId.content];
+        ids = [request.DeleteVpcEndpointsRequest.VpcEndpointId.content];
       }
 
-      return (ids as any[]).map<ResourceInfo>(
-        (item: { content: string;  }) => ({
-          id: ResourceARNs.EC2_VpcEndpoints(region, account, item.content),
-        })
-      );
+      return (ids as any[]).map<ResourceInfo>((item: { content: string }) => ({
+        id: ResourceARNs.EC2_VpcEndpoints(region, account, item.content),
+      }));
 
     case 'MONITORING_DeleteAlarms':
       return (request.alarmNames as string[]).map<ResourceInfo>((item) => ({
