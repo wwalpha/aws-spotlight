@@ -29,3 +29,19 @@ resource "aws_sns_topic_subscription" "cloudtrail" {
   protocol  = "sqs"
   endpoint  = aws_sqs_queue.cloudtrail.arn
 }
+
+# ----------------------------------------------------------------------------------------------
+# AWS SNS Topic Subscription - Filtering
+# ----------------------------------------------------------------------------------------------
+resource "aws_sns_topic" "filtering" {
+  name = "${local.project_name}-filtering-${local.suffix}"
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS SNS Topic Subscription - Filtering
+# ----------------------------------------------------------------------------------------------
+resource "aws_sns_topic_subscription" "filtering" {
+  topic_arn = aws_sns_topic.filtering.arn
+  protocol  = "sqs"
+  endpoint  = aws_sqs_queue.filtering.arn
+}
