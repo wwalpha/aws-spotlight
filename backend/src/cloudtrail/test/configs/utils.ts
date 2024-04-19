@@ -1,6 +1,5 @@
 import { DynamodbHelper } from '@alphax/dynamodb';
 import { SNSMessage, SQSEvent, SQSRecord } from 'aws-lambda';
-// import AWS, { S3, SQS } from 'aws-sdk';
 import { PurgeQueueCommand, ReceiveMessageCommand, SQSClient, SendMessageCommand } from '@aws-sdk/client-sqs';
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import zlib from 'zlib';
@@ -42,6 +41,8 @@ export const receiveMessage = async () =>
   );
 
 export const receiveMessageData = async (): Promise<SQSEvent> => {
+  console.log(`SQS_URL: ${SQS_URL}`);
+
   const result = await sqsClient.send(
     new ReceiveMessageCommand({
       QueueUrl: SQS_URL,

@@ -1,5 +1,5 @@
 import { SNSMessage, SQSRecord } from 'aws-lambda';
-import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { GetObjectCommand, S3 } from '@aws-sdk/client-s3';
 import { TransactWriteItem } from '@aws-sdk/client-dynamodb';
 import _, { orderBy, uniqBy } from 'lodash';
 import zlib from 'zlib';
@@ -10,7 +10,7 @@ import * as ArnService from '@src/process/ArnService';
 import { ResourceService } from '@src/services';
 import { Environments } from './utils/consts';
 
-const s3Client = new S3Client();
+const s3Client = new S3();
 const NOTIFIED: EVENT_TYPE = {};
 const EVENTS: EVENT_TYPE = {};
 
@@ -280,16 +280,18 @@ export const getRecords = async (message: string): Promise<CloudTrail.Record[]> 
   const files = await Promise.all(tasks);
 
   // unzip content
-  const records = files
-    .map((item) => {
-      const content = item.Body;
+  const records = (
+    await Promise.all(
+      files.map(async (item) => {
+        const content = await item.Body?.transformToByteArray();
 
-      if (!content) return undefined;
+        if (!content) return undefined;
 
-      // @ts-ignore
-      return JSON.parse(zlib.gunzipSync(content)) as CloudTrail.Event;
-    })
-    .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
+        // @ts-ignore
+        return JSON.parse(zlib.gunzipSync(content)) as CloudTrail.Event;
+      })
+    )
+  ).filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
   Logger.debug('Records', records);
 
