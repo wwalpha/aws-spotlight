@@ -14,6 +14,7 @@ locals {
   # Dynamodb Tables
   # ----------------------------------------------------------------------------------------------
   dynamodb_name_event_type  = "${local.project_name}-eventtype-${local.suffix}"
+  dynamodb_name_events      = "${local.project_name}-events-${local.suffix}"
   dynamodb_name_resources   = "${local.project_name}-resources-${local.suffix}"
   dynamodb_name_unprocessed = "${local.project_name}-unprocessed-${local.suffix}"
   dynamodb_name_history     = "${local.project_name}-histories-${local.suffix}"
