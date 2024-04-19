@@ -65,7 +65,7 @@ export const getEventsItem = (record: CloudTrail.Record): Tables.TEvents => ({
   EventTime: record.eventTime,
   UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
   RequestParameters: JSON.stringify(record.requestParameters),
-  ResponseElements: JSON.stringify(record.responseElements),
+  ResponseElements: record.responseElements !== undefined ? JSON.stringify(record.responseElements) : undefined,
   Origin: JSON.stringify(record),
 });
 

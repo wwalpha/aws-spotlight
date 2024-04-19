@@ -34,7 +34,7 @@ export namespace Tables {
     EventName: string;
     AWSRegion: string;
     RequestParameters: string;
-    ResponseElements: string;
+    ResponseElements?: string;
     Origin: string;
   }
 
