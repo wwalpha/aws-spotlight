@@ -243,7 +243,7 @@ const processNewEventType = async (record: CloudTrail.Record) => {
 
   // process transaction
   await DynamodbHelper.transactWrite({
-    TransactItems: transactItems,
+    TransactItems: transactItems as any,
   });
 
   if (!NOTIFIED[record.eventName]) {
