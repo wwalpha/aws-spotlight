@@ -99,8 +99,8 @@ resource "aws_lambda_function_event_invoke_config" "filtering" {
 resource "aws_lambda_event_source_mapping" "filtering" {
   event_source_arn                   = data.aws_sqs_queue.filtering.arn
   function_name                      = aws_lambda_function.filtering.arn
-  batch_size                         = 5
-  maximum_batching_window_in_seconds = 30
+  batch_size                         = 50
+  maximum_batching_window_in_seconds = 15
   enabled                            = true
 }
 
