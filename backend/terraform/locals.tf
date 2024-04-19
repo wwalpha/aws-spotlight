@@ -131,6 +131,14 @@ data "aws_ssm_parameter" "cloudtrail_repo_url" {
 }
 
 # ----------------------------------------------------------------------------------------------
+# SSM Parameter Store - Filtering repository url
+# ----------------------------------------------------------------------------------------------
+data "aws_ssm_parameter" "filtering_repo_url" {
+  depends_on = [aws_ssm_parameter.filtering_repo_url]
+  name       = aws_ssm_parameter.filtering_repo_url.name
+}
+
+# ----------------------------------------------------------------------------------------------
 # SSM Parameter Store - Unprocessed repository url
 # ----------------------------------------------------------------------------------------------
 data "aws_ssm_parameter" "unprocessed_repo_url" {
