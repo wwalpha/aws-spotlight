@@ -54,23 +54,25 @@ export const filtering = async (event: SQSEvent) => {
 
   Logger.info(`Start process records, ${event.Records.length}`);
 
-  const records = await Promise.all(event.Records.map(async (message) => {
+  let records:CloudTrail.Record[] = []
+
+  for (;;) {
+    const message = event.Records.shift();
+
     // not found
-    if (!message) return [];
+    if (!message) break;
 
-    return await executeFiltering(message);
-  }));
+    const results = await executeFiltering(message);
 
-  const newRecords = records.reduce((prev, curr) => {
-    return [...prev, ...curr];
-  }, [] as CloudTrail.Record[]);
+    records=[...records, ...results];
+  }
 
-  Logger.info(`New records, ${newRecords.length}`);
+  Logger.info(`New records, ${records.length}`);
 
-  if (newRecords.length === 0) return;
+  if (records.length === 0) return;
 
   // add records
-  await DynamodbHelper.bulk(Environments.TABLE_NAME_EVENTS, newRecords);
+  await DynamodbHelper.bulk(Environments.TABLE_NAME_EVENTS, records);
 };
 
 /**
