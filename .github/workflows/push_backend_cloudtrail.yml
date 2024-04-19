@@ -84,14 +84,14 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY_FILTERING:$IMAGE_TAG
           docker tag $ECR_REPOSITORY_FILTERING $ECR_REGISTRY/$ECR_REPOSITORY_FILTERINGL:latest
           docker push $ECR_REGISTRY/$ECR_REPOSITORY_FILTERING:latest
-          echo "::set-output name=image_filtering::$ECR_REGISTRY/$ECR_REPOSITORY_FILTERING:$IMAGE_TAG"
+          echo "image_filtering=$ECR_REGISTRY/$ECR_REPOSITORY_FILTERING:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
           docker build -f "Dockerfile.Unprocessed" -t $ECR_REPOSITORY_UNPROCESSED .
           docker tag $ECR_REPOSITORY_UNPROCESSED $ECR_REGISTRY/$ECR_REPOSITORY_UNPROCESSED:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY_UNPROCESSED:$IMAGE_TAG
           docker tag $ECR_REPOSITORY_UNPROCESSED $ECR_REGISTRY/$ECR_REPOSITORY_UNPROCESSED:latest
           docker push $ECR_REGISTRY/$ECR_REPOSITORY_UNPROCESSED:latest
-          echo "::set-output name=image_unprocessed::$ECR_REGISTRY/$ECR_REPOSITORY_UNPROCESSED:$IMAGE_TAG"
+          echo "image_unprocessed=$ECR_REGISTRY/$ECR_REPOSITORY_UNPROCESSED:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
       # Lambda Deploy
       - name: Lambda Deploy
