@@ -102,6 +102,10 @@ resource "aws_lambda_event_source_mapping" "filtering" {
   batch_size                         = 50
   maximum_batching_window_in_seconds = 15
   enabled                            = true
+
+  scaling_config {
+    maximum_concurrency = 50
+  }
 }
 
 # ----------------------------------------------------------------------------------------------
