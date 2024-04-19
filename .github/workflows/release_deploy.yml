@@ -39,7 +39,7 @@ jobs:
     steps:
       # source checkout
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Install the latest version of Terraform CLI 
       # and configure the Terraform CLI configuration file with a Terraform Cloud user API token
@@ -271,12 +271,12 @@ jobs:
     steps:
       # source checkout
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Setup Node.js
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16.x
+          node-version: 20
 
       # Install and Build
       - name: Build
@@ -327,12 +327,12 @@ jobs:
     steps:
       # source checkout
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Setup Node.js
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16.x
+          node-version: 20
 
       # Installation
       - name: Build
@@ -367,9 +367,9 @@ jobs:
 
     steps:
       # Setup Node.js
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16.x
+          node-version: 20
 
       # AWS Credentials
       - name: Configure AWS credentials
