@@ -1,6 +1,6 @@
 import { SQSEvent } from 'aws-lambda';
 import AWS from 'aws-sdk';
-import { execute, initializeEvents } from './apps/cloudtrail';
+import { execute, executeFiltering, initializeEvents } from './apps/cloudtrail';
 import { processIgnore, processUpdate } from './apps/unprocessed';
 import { Logger } from './apps/utils/utilities';
 import { EventTypeService, UnprocessedService } from './services';
@@ -37,6 +37,27 @@ export const cloudtrail = async (event: SQSEvent) => {
 
     await execute(message);
   }
+};
+
+/**
+ * App Entry
+ *
+ * @returns
+ */
+export const filtering = async (event: SQSEvent) => {
+  Logger.info('event', event);
+
+  // get event type definition
+  await initializeEvents();
+
+  Logger.info('Start process records', event.Records.length);
+
+  await Promise.all(event.Records.map(async (message) => {
+    // not found
+    if (!message) return;
+
+    await executeFiltering(message);
+  }));
 };
 
 /**

@@ -39,6 +39,39 @@ export const initializeEvents = async () => {
  *
  * @param message
  */
+export const executeFiltering = async (message: SQSRecord) => {
+  let records = await getRecords(message.body);
+  Logger.info(`Process All Records: ${records.length}`);
+
+  // remove readonly records
+  records = Utilities.removeReadOnly(records);
+  Logger.info(`Excluding ReadOnly Records: ${records.length}`);
+
+  // remove error records
+  records = Utilities.removeError(records);
+  Logger.info(`Excluding Error Records: ${records.length}`);
+
+  // remove ignore records
+  records = Utilities.removeIgnore(records, EVENTS);
+  Logger.info(`Excluding Ignore Records: ${records.length}`);
+
+  // no process records
+  if (records.length === 0) {
+    // delete message
+    await Utilities.deleteSQSMessage(message);
+
+    return;
+  }
+
+  // delete message
+  await Utilities.deleteSQSMessage(message);
+};
+
+/**
+ * Process SQS Message
+ *
+ * @param message
+ */
 export const execute = async (message: SQSRecord) => {
   let records = await getRecords(message.body);
   Logger.info(`Process All Records: ${records.length}`);
