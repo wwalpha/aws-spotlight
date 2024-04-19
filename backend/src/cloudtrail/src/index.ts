@@ -29,7 +29,7 @@ export const cloudtrail = async (event: SQSEvent) => {
   // get event type definition
   await initializeEvents();
 
-  Logger.info('Start process records', event.Records.length);
+  Logger.info(`Start process records, ${event.Records.length}`);
 
   for (;;) {
     const message = event.Records.shift();
@@ -52,7 +52,7 @@ export const filtering = async (event: SQSEvent) => {
   // get event type definition
   await initializeEvents();
 
-  Logger.info('Start process records', event.Records.length);
+  Logger.info(`Start process records, ${event.Records.length}`);
 
   const records = await Promise.all(event.Records.map(async (message) => {
     // not found
@@ -65,7 +65,7 @@ export const filtering = async (event: SQSEvent) => {
     return [...prev, ...curr];
   }, [] as CloudTrail.Record[]);
 
-  Logger.info('New records', newRecords.length);
+  Logger.info(`New records, ${newRecords.length}`);
 
   if (newRecords.length === 0) return;
 
