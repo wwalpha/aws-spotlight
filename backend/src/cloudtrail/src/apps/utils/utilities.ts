@@ -51,6 +51,24 @@ export const getHistoryItem = (record: CloudTrail.Record): Tables.THistory => ({
   Origin: JSON.stringify(record),
 });
 
+/**
+ * Get events record
+ *
+ * @param record
+ * @returns
+ */
+export const getEventsItem = (record: CloudTrail.Record): Tables.TEvents => ({
+  EventId: record.eventID,
+  EventName: record.eventName,
+  EventSource: record.eventSource,
+  AWSRegion: record.awsRegion,
+  EventTime: record.eventTime,
+  UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
+  RequestParameters: JSON.stringify(record.requestParameters),
+  ResponseElements: JSON.stringify(record.responseElements),
+  Origin: JSON.stringify(record),
+});
+
 export const getUnprocessedItem = (record: CloudTrail.Record, arn: string | string[]): Tables.TUnprocessed => ({
   EventName: record.eventName,
   EventSource: record.eventSource,

@@ -3,6 +3,9 @@ import { execute, executeFiltering, initializeEvents } from './apps/cloudtrail';
 import { processIgnore, processUpdate } from './apps/unprocessed';
 import { Logger } from './apps/utils/utilities';
 import { EventTypeService, UnprocessedService } from './services';
+import { CloudTrail } from 'typings';
+import { DynamodbHelper } from './apps/utils';
+import { Environments } from './apps/utils/consts';
 
 // common settings
 // AWS.config.update({
@@ -51,12 +54,23 @@ export const filtering = async (event: SQSEvent) => {
 
   Logger.info('Start process records', event.Records.length);
 
-  await Promise.all(event.Records.map(async (message) => {
+  const records = await Promise.all(event.Records.map(async (message) => {
     // not found
-    if (!message) return;
+    if (!message) return [];
 
-    await executeFiltering(message);
+    return await executeFiltering(message);
   }));
+
+  const newRecords = records.reduce((prev, curr) => {
+    return [...prev, ...curr];
+  }, [] as CloudTrail.Record[]);
+
+  Logger.info('New records', newRecords.length);
+
+  if (newRecords.length === 0) return;
+
+  // add records
+  await DynamodbHelper.bulk(Environments.TABLE_NAME_EVENTS, newRecords);
 };
 
 /**

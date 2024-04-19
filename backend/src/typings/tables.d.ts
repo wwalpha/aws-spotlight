@@ -17,27 +17,26 @@ export namespace Tables {
     Unconfirmed?: boolean;
   }
 
-  // /**
-  //  * Table - Notification Key
-  //  */
-  // interface NotificationKey {
-  //   EventName: string;
-  //   EventSource: string;
-  // }
+  /**
+   * Table - Events Key
+   */
+  interface TEventsKey {
+    EventId: string;
+  }
 
-  // /**
-  //  * Table - Notification
-  //  */
-  // interface Notification extends NotificationKey {
-  //   EventSource: string;
-  //   UserName: string;
-  //   AWSRegion: string;
-  //   ResourceName: string;
-  //   ResourceArn: string;
-  //   Target: string;
-  //   requestParameters: string;
-  //   responseElements: string;
-  // }
+  /**
+   * Table - Events
+   */
+  interface TEvents extends TEventsKey {
+    UserName: string;
+    EventTime: string;
+    EventSource: string;
+    EventName: string;
+    AWSRegion: string;
+    RequestParameters: string;
+    ResponseElements: string;
+    Origin: string;
+  }
 
   /**
    * Table - Resource Key

@@ -56,16 +56,9 @@ export const executeFiltering = async (message: SQSRecord) => {
   records = Utilities.removeIgnore(records, EVENTS);
   Logger.info(`Excluding Ignore Records: ${records.length}`);
 
-  // no process records
-  if (records.length === 0) {
-    // delete message
-    await Utilities.deleteSQSMessage(message);
-
-    return;
-  }
-
-  // delete message
   await Utilities.deleteSQSMessage(message);
+
+  return records;
 };
 
 /**
