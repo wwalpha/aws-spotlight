@@ -1,15 +1,17 @@
 import { DynamodbHelper } from '@alphax/dynamodb';
 import { SNSMessage, SQSEvent, SQSRecord } from 'aws-lambda';
-import AWS, { S3, SQS } from 'aws-sdk';
+// import AWS, { S3, SQS } from 'aws-sdk';
+import { PurgeQueueCommand, ReceiveMessageCommand, SQSClient, SendMessageCommand } from '@aws-sdk/client-sqs';
+import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import zlib from 'zlib';
 import { Tables } from 'typings';
 
-AWS.config.update({
-  region: process.env.AWS_REGION,
-  s3: { endpoint: process.env.AWS_ENDPOINT },
-  sqs: { endpoint: process.env.AWS_ENDPOINT },
-  dynamodb: { endpoint: process.env.AWS_ENDPOINT },
-});
+// AWS.config.update({
+//   region: process.env.AWS_REGION,
+//   s3: { endpoint: process.env.AWS_ENDPOINT },
+//   sqs: { endpoint: process.env.AWS_ENDPOINT },
+//   dynamodb: { endpoint: process.env.AWS_ENDPOINT },
+// });
 
 const S3_BUCKET = process.env.S3_BUCKET as string;
 const SQS_URL = process.env.SQS_URL as string;
@@ -18,8 +20,8 @@ const TABLE_NAME_HISTORY = process.env.TABLE_NAME_HISTORY as string;
 const TABLE_NAME_UNPROCESSED = process.env.TABLE_NAME_UNPROCESSED as string;
 const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
 
-const sqsClient = new SQS();
-const s3Client = new S3();
+const sqsClient = new SQSClient();
+const s3Client = new S3Client();
 const helper = new DynamodbHelper({ options: { endpoint: process.env.AWS_ENDPOINT } });
 
 export const trancateAll = async () => {
@@ -31,22 +33,22 @@ export const trancateAll = async () => {
 };
 
 export const receiveMessage = async () =>
-  await sqsClient
-    .receiveMessage({
+  await sqsClient.send(
+    new ReceiveMessageCommand({
       QueueUrl: SQS_URL,
       MaxNumberOfMessages: 10,
       WaitTimeSeconds: 1,
     })
-    .promise();
+  );
 
 export const receiveMessageData = async (): Promise<SQSEvent> => {
-  const result = await sqsClient
-    .receiveMessage({
+  const result = await sqsClient.send(
+    new ReceiveMessageCommand({
       QueueUrl: SQS_URL,
       MaxNumberOfMessages: 10,
       WaitTimeSeconds: 10,
     })
-    .promise();
+  );
 
   const ret = (result.Messages ||= []).map<SQSRecord>((item) => ({
     messageId: item.MessageId as string,
@@ -68,32 +70,38 @@ export const receiveMessageData = async (): Promise<SQSEvent> => {
 export const sendMessageOnly = async (body: Record<string, any>[]) => {
   const key = `test/${getRandom()}.json.gz`;
 
-  await s3Client
-    .putObject({
-      Bucket: S3_BUCKET,
-      Key: key,
-      Body: zlib.gzipSync(JSON.stringify({ Records: body })),
-      ContentType: 'application/gz',
-    })
-    .promise();
+  console.log('sendMessageOnly', key);
 
-  await sqsClient
-    .sendMessage({
-      QueueUrl: SQS_URL,
-      MessageBody: JSON.stringify({
-        Message: JSON.stringify({ s3Bucket: S3_BUCKET, s3ObjectKey: [key] }),
-      } as SNSMessage),
-    })
-    .promise();
+  try {
+    await s3Client.send(
+      new PutObjectCommand({
+        Bucket: S3_BUCKET,
+        Key: key,
+        Body: zlib.gzipSync(JSON.stringify({ Records: body })),
+        ContentType: 'application/gz',
+      })
+    );
+
+    await sqsClient.send(
+      new SendMessageCommand({
+        QueueUrl: SQS_URL,
+        MessageBody: JSON.stringify({
+          Message: JSON.stringify({ s3Bucket: S3_BUCKET, s3ObjectKey: [key] }),
+        } as SNSMessage),
+      })
+    );
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const sendMessage = async (body: Record<string, any>): Promise<SQSEvent> => {
   await pureMessages();
   await sendMessageOnly([body]);
 
-  const result = await sqsClient
-    .receiveMessage({ QueueUrl: SQS_URL, MaxNumberOfMessages: 5, WaitTimeSeconds: 1 })
-    .promise();
+  const result = await sqsClient.send(
+    new ReceiveMessageCommand({ QueueUrl: SQS_URL, MaxNumberOfMessages: 5, WaitTimeSeconds: 1 })
+  );
 
   const messages = result.Messages;
 
@@ -123,11 +131,11 @@ export const sendMessage = async (body: Record<string, any>): Promise<SQSEvent> 
 };
 
 export const pureMessages = async () => {
-  await sqsClient
-    .purgeQueue({
+  await sqsClient.send(
+    new PurgeQueueCommand({
       QueueUrl: SQS_URL,
     })
-    .promise();
+  );
 };
 
 export const getResource = async (ResourceId: string): Promise<Tables.TResource | undefined> => {
