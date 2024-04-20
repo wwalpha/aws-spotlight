@@ -1,11 +1,11 @@
 import { SQSRecord } from 'aws-lambda';
-import { defaultTo, omit, uniqBy } from 'lodash';
+import { defaultTo, omit } from 'lodash';
 import { DeleteMessageCommand, ReceiveMessageCommand, SQSClient } from '@aws-sdk/client-sqs';
 import { PublishCommand, SNSClient } from '@aws-sdk/client-sns';
 import { TransactWriteItem } from '@aws-sdk/client-dynamodb';
 import winston from 'winston';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
-import { Consts, DynamodbHelper, Utilities } from '.';
+import { Consts } from '.';
 
 const sqsClient = new SQSClient();
 const snsClient = new SNSClient();

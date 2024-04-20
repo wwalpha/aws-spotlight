@@ -1,4 +1,5 @@
 import { SQSEvent } from 'aws-lambda';
+import _ from 'lodash';
 import { execute, executeFiltering, initializeEvents } from './apps/cloudtrail';
 import { processIgnore, processUpdate } from './apps/unprocessed';
 import { Logger } from './apps/utils/utilities';
@@ -71,11 +72,14 @@ export const filtering = async (event: SQSEvent) => {
 
   if (records.length === 0) return;
 
-  // add records
-  await DynamodbHelper.bulk(
-    Environments.TABLE_NAME_EVENTS,
-    records.map((item) => Utilities.getEventsItem(item))
+  // get unique records
+  const dataRows = _.uniqBy(
+    records.map((item) => Utilities.getEventsItem(item)),
+    'EventId'
   );
+
+  // bulk insert
+  await DynamodbHelper.bulk(Environments.TABLE_NAME_EVENTS, dataRows);
 };
 
 /**
