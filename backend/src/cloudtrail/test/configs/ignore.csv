@@ -574,7 +574,6 @@ SAML2Response_POST,cognito-idp.amazonaws.com,true
 RegisterDirectory,workdocs.amazonaws.com,true
 GetBackendAuth,amplifybackend.amazonaws.com,true
 PutScheduledUpdateGroupAction,autoscaling.amazonaws.com,true
-ImportApi,apigateway.amazonaws.com,true
 CreateLoggerDefinitionVersion,greengrass.amazonaws.com,true
 PutDeliveryChannel,config.amazonaws.com,true
 PurgeQueue,sqs.amazonaws.com,true

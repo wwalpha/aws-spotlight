@@ -1,5 +1,6 @@
 CreateApi,apigateway.amazonaws.com,create
 DeleteApi,apigateway.amazonaws.com,delete
+ImportApi,apigateway.amazonaws.com,create
 CreateRestApi,apigateway.amazonaws.com,create
 ImportRestApi,apigateway.amazonaws.com,create
 UpdateRestApi,apigateway.amazonaws.com,create
