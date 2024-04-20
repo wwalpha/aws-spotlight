@@ -151,35 +151,6 @@ export const removeError = (records: CloudTrail.Record[]) => records.filter((ite
  * @returns
  */
 export const removeIgnore = (records: CloudTrail.Record[], events: EVENT_TYPE) => {
-  // const ignoreRecords = records.filter((item) => {
-  //   const service = item.eventSource.split('.')[0].toUpperCase();
-  //   const event = events[`${service}_${item.eventName}`];
-
-  //   // 未定義のイベントは無視する
-  //   if (event === undefined) {
-  //     return false;
-  //   }
-
-  //   // 同じリソース
-  //   if (event.EventSource !== item.eventSource) {
-  //     return false;
-  //   }
-
-  //   // 同じイベント
-  //   if (event.EventName !== item.eventName) {
-  //     return false;
-  //   }
-
-  //   return event.Ignore === true;
-  // });
-
-  // const ignoreRegists = ignoreRecords.map((item) => Utilities.getIgnoreItem(item));
-
-  // const uniqIgnores = uniqBy(ignoreRegists, 'EventId');
-
-  // 一括登録
-  // await DynamodbHelper.bulk(Consts.Environments.TABLE_NAME_IGNORES, uniqIgnores);
-
   return records.filter((item) => {
     const service = item.eventSource.split('.')[0].toUpperCase();
     const event = events[`${service}_${item.eventName}`];

@@ -62,6 +62,7 @@ const getRegistSingleResource = (record: Tables.TEvents): ResourceInfo[] => {
   const response = record.ResponseElements ? JSON.parse(record.ResponseElements) : {};
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
   let name = '';
+  let id = '';
   let rets: string[] = [];
 
   switch (key) {
@@ -74,7 +75,8 @@ const getRegistSingleResource = (record: Tables.TEvents): ResourceInfo[] => {
       break;
 
     case 'APIGATEWAY_CreateVpcLink':
-      rets = [ResourceARNs.APIGATEWAY_VpcLink(region, account, response.vpcLinkId), response.name];
+      id = response.id ? response.id : response.vpcLinkId;
+      rets = [ResourceARNs.APIGATEWAY_VpcLink(region, account, id), response.name];
 
       break;
 
@@ -134,9 +136,13 @@ const getRegistSingleResource = (record: Tables.TEvents): ResourceInfo[] => {
       break;
 
     case 'CLOUDFORMATION_CreateStack':
-      const index = response.stackId.lastIndexOf('/');
+      const createStackIndex = response.stackId.lastIndexOf('/');
 
-      rets = [response.stackId.substring(0, index), request.stackName];
+      rets = [response.stackId.substring(0, createStackIndex), request.stackName];
+      break;
+
+    case 'CLOUDFORMATION_CreateChangeSet':
+      rets = [ResourceARNs.CLOUDFORMATION_Stack(region, account, request.stackName), request.stackName];
       break;
 
     case 'CLOUDFRONT_CreateDistribution':

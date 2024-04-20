@@ -77,13 +77,8 @@ export const ResourceARNs = {
     `arn:aws:cognito-identity:${region}:${account}:identitypool/${id}`,
 
   // cloudformation
-  CLOUDFORMATION_Stack: (
-    region: string,
-    account: string,
-    stackName: string,
-    id?: string
-  ) => `arn:aws:cloudformation:${region}:${account}:stack/${stackName}/${id}	
-  `,
+  CLOUDFORMATION_Stack: (region: string, account: string, stackName: string) =>
+    `arn:aws:cloudformation:${region}:${account}:stack/${stackName}`,
 
   // cloudfront
   CLOUDFRONT_Distribution: (_: string, account: string, id?: string) =>
