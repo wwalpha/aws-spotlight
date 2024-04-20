@@ -127,7 +127,6 @@ UntagResource,ecr.amazonaws.com,true
 UpdateStateMachine,states.amazonaws.com,true
 PutPermission,events.amazonaws.com,true
 DisableVgwRoutePropagation,ec2.amazonaws.com,true
-CreateChangeSet,cloudformation.amazonaws.com,true
 UpdateTable,timestream.amazonaws.com,true
 PutTargets,events.amazonaws.com,true
 CreateKeyPair,ec2.amazonaws.com,true

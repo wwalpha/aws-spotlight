@@ -35,6 +35,7 @@ CreateDistribution,cloudfront.amazonaws.com,create
 DeleteDistribution,cloudfront.amazonaws.com,delete
 CreateStack,cloudformation.amazonaws.com,create
 DeleteStack,cloudformation.amazonaws.com,delete
+CreateChangeSet,cloudformation.amazonaws.com,create
 CreateTable,dynamodb.amazonaws.com,create
 DeleteTable,dynamodb.amazonaws.com,delete
 CreateDirectory,ds.amazonaws.com,create
