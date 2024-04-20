@@ -52,17 +52,17 @@ export const processIgnore = async (events: Tables.TEventType[]) => {
 };
 
 export const processUpdate = async (events: Tables.TEventType[]) => {
-  const records = await getUnprocessedRecords(events);
+  // const records = await getUnprocessedRecords(events);
   // const eventSources: EVENT_UNPROCESSED = groupByEventSource(records);
 
-  const dataRows = records.map((r) => JSON.parse(r.Raw) as CloudTrail.Record);
+  // const dataRows = records.map((r) => JSON.parse(r.Raw) as CloudTrail.Record);
 
-  await processRecords(dataRows);
+  // await processRecords(dataRows);
 
-  await DynamodbHelper.truncate(
-    Consts.Environments.TABLE_NAME_UNPROCESSED,
-    records.map((r) => ({ EventName: r.EventName, EventTime: r.EventTime }))
-  );
+  // await DynamodbHelper.truncate(
+  //   Consts.Environments.TABLE_NAME_UNPROCESSED,
+  //   records.map((r) => ({ EventName: r.EventName, EventTime: r.EventTime }))
+  // );
 
   // const tasks = Object.keys(eventSources).map(async (item) => {
   //   const values = eventSources[item];

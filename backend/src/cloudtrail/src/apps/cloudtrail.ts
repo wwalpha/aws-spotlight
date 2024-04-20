@@ -1,6 +1,6 @@
 import { SNSMessage, SQSRecord } from 'aws-lambda';
 import { GetObjectCommand, S3 } from '@aws-sdk/client-s3';
-import { TransactWriteItem } from '@aws-sdk/client-dynamodb';
+import { DynamoDB, TransactWriteItem } from '@aws-sdk/client-dynamodb';
 import _, { orderBy, uniqBy } from 'lodash';
 import zlib from 'zlib';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
@@ -62,57 +62,28 @@ export const executeFiltering = async (message: SQSRecord) => {
 };
 
 /**
- * Process SQS Message
+ * Process events
  *
  * @param message
  */
-export const execute = async (message: SQSRecord) => {
-  let records = await getRecords(message.body);
-  Logger.info(`Process All Records: ${records.length}`);
-
-  // remove readonly records
-  records = Utilities.removeReadOnly(records);
-  Logger.info(`Excluding ReadOnly Records: ${records.length}`);
-
-  // remove error records
-  records = Utilities.removeError(records);
-  Logger.info(`Excluding Error Records: ${records.length}`);
-
-  // remove ignore records
-  records = Utilities.removeIgnore(records, EVENTS);
-  Logger.info(`Excluding Ignore Records: ${records.length}`);
-
-  // no process records
-  if (records.length === 0) {
-    // delete message
-    await Utilities.deleteSQSMessage(message);
-
-    return;
-  }
-
+export const execute = async (events: Tables.TEvents[]) => {
   // 新規イベント
-  await processNewRecords(records);
+  await processNewRecords(events);
 
   let hasError = false;
 
   try {
-    await processRecords(records);
+    await processRecords(events);
   } catch (err) {
     hasError = true;
     Logger.error(err);
   }
-
-  // no error
-  if (hasError === false) {
-    // delete message
-    await Utilities.deleteSQSMessage(message);
-  }
 };
 
-const processNewRecords = async (records: CloudTrail.Record[]) => {
+const processNewRecords = async (records: Tables.TEvents[]) => {
   const newRecords = records.filter((item) => {
-    const service = item.eventSource.split('.')[0].toUpperCase();
-    const definition = EVENTS[`${service}_${item.eventName}`];
+    const service = item.EventSource.split('.')[0].toUpperCase();
+    const definition = EVENTS[`${service}_${item.EventName}`];
 
     return definition === undefined;
   });
@@ -123,11 +94,11 @@ const processNewRecords = async (records: CloudTrail.Record[]) => {
   await Promise.all(tasks);
 };
 
-export const processRecords = async (records: CloudTrail.Record[]) => {
+export const processRecords = async (events: Tables.TEvents[]) => {
   // 処理対象のみ
-  const targets = records.filter((item) => {
-    const service = item.eventSource.split('.')[0].toUpperCase();
-    const definition = EVENTS[`${service}_${item.eventName}`];
+  const targets = events.filter((item) => {
+    const service = item.EventSource.split('.')[0].toUpperCase();
+    const definition = EVENTS[`${service}_${item.EventName}`];
 
     if (definition?.Create === true || definition?.Delete === true) {
       return true;
@@ -150,15 +121,15 @@ export const processRecords = async (records: CloudTrail.Record[]) => {
       arns.forEach((arn) => resources.push(arn));
       histories.push(Utilities.getHistoryItem(item));
 
-      Logger.info(JSON.stringify(item));
-      Logger.info(JSON.stringify(arns));
+      // Logger.info(JSON.stringify(item));
+      // Logger.info(JSON.stringify(arns));
     }
   });
 
   // 処理不能なデータを未処理テーブルに登録する
   await DynamodbHelper.bulk(Environments.TABLE_NAME_UNPROCESSED, unprocesses);
 
-  Logger.info(JSON.stringify(resources));
+  // Logger.info(JSON.stringify(resources));
 
   const results = _.chain(resources)
     .groupBy((x) => x.ResourceId)
@@ -216,7 +187,7 @@ export const processRecords = async (records: CloudTrail.Record[]) => {
 };
 
 // 新しいイベントの登録
-const processNewEventType = async (record: CloudTrail.Record) => {
+const processNewEventType = async (record: Tables.TEvents) => {
   Logger.debug('Start execute new event type...');
 
   const transactItems: TransactWriteItem[] = [];
@@ -225,8 +196,8 @@ const processNewEventType = async (record: CloudTrail.Record) => {
   // add event type
   transactItems.push(
     Utilities.getPutRecord(TABLE_NAME_EVENT_TYPE, {
-      EventName: record.eventName,
-      EventSource: record.eventSource,
+      EventName: record.EventName,
+      EventSource: record.EventSource,
       Unconfirmed: true,
       Ignore: true,
     } as Tables.TEventType)
@@ -240,13 +211,13 @@ const processNewEventType = async (record: CloudTrail.Record) => {
     TransactItems: transactItems as any,
   });
 
-  if (!NOTIFIED[record.eventName]) {
-    NOTIFIED[record.eventName] = {
-      EventName: record.eventName,
-      EventSource: record.eventSource,
+  if (!NOTIFIED[record.EventName]) {
+    NOTIFIED[record.EventName] = {
+      EventName: record.EventName,
+      EventSource: record.EventSource,
     };
 
-    await sendMail('New Event Type', `Event Source: ${record.eventSource}, Event Name: ${record.eventName}`);
+    await sendMail('New Event Type', `Event Source: ${record.EventSource}, Event Name: ${record.EventName}`);
   }
 };
 

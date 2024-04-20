@@ -4,7 +4,7 @@ import { execute, executeFiltering, initializeEvents } from './apps/cloudtrail';
 import { processIgnore, processUpdate } from './apps/unprocessed';
 import { Logger } from './apps/utils/utilities';
 import { EventTypeService, UnprocessedService } from './services';
-import { CloudTrail } from 'typings';
+import { CloudTrail, Tables } from 'typings';
 import { DynamodbHelper, Utilities } from './apps/utils';
 import { Environments } from './apps/utils/consts';
 
@@ -24,22 +24,14 @@ import { Environments } from './apps/utils/consts';
  *
  * @returns
  */
-export const cloudtrail = async (event: SQSEvent) => {
-  Logger.info('event', event);
+export const cloudtrail = async (events: Tables.TEvents[]) => {
+  // Logger.info('events', events);
 
   // get event type definition
   await initializeEvents();
 
-  Logger.info(`Start process records, ${event.Records.length}`);
-
-  for (;;) {
-    const message = event.Records.shift();
-
-    // not found
-    if (!message) break;
-
-    await execute(message);
-  }
+  // execute
+  await execute(events);
 };
 
 /**

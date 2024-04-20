@@ -41,13 +41,13 @@ export const getIgnoreItem = (record: CloudTrail.Record): Tables.TIgnore => ({
  * @param record
  * @returns
  */
-export const getHistoryItem = (record: CloudTrail.Record): Tables.THistory => ({
-  EventId: record.eventID,
-  EventName: record.eventName,
-  EventSource: record.eventSource,
-  AWSRegion: record.awsRegion,
-  EventTime: record.eventTime,
-  UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
+export const getHistoryItem = (record: Tables.TEvents): Tables.THistory => ({
+  EventId: record.EventId,
+  EventName: record.EventName,
+  EventSource: record.EventSource,
+  AWSRegion: record.AWSRegion,
+  EventTime: record.EventTime,
+  UserName: record.UserName,
   Origin: JSON.stringify(record),
 });
 
@@ -66,21 +66,22 @@ export const getEventsItem = (record: CloudTrail.Record): Tables.TEvents => ({
   UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
   RequestParameters: JSON.stringify(record.requestParameters),
   ResponseElements: record.responseElements !== undefined ? JSON.stringify(record.responseElements) : undefined,
+  AccountId: record.recipientAccountId,
   Origin: JSON.stringify(record),
 });
 
-export const getUnprocessedItem = (record: CloudTrail.Record, arn: string | string[]): Tables.TUnprocessed => ({
-  EventName: record.eventName,
-  EventSource: record.eventSource,
-  EventTime: `${record.eventTime}_${record.eventID.substring(0, 8)}`,
-  EventId: record.eventID,
+export const getUnprocessedItem = (record: Tables.TEvents, arn: string | string[]): Tables.TUnprocessed => ({
+  EventName: record.EventName,
+  EventSource: record.EventSource,
+  EventTime: `${record.EventTime}_${record.EventId.substring(0, 8)}`,
+  EventId: record.EventId,
   Raw: JSON.stringify(record),
   ResourceId: arn,
 });
 
-export const getRemoveUnprocessed = (record: CloudTrail.Record): Tables.TUnprocessedKey => ({
-  EventName: record.eventName,
-  EventTime: `${record.eventTime}_${record.eventID.substring(0, 8)}`,
+export const getRemoveUnprocessed = (record: Tables.TEvents): Tables.TUnprocessedKey => ({
+  EventName: record.EventName,
+  EventTime: `${record.EventTime}_${record.EventId.substring(0, 8)}`,
 });
 
 export const getPutRecord = (tableName: string, item: any): TransactWriteItem => ({

@@ -12,9 +12,9 @@ const MULTI_TASK = [
   'MONITORING_DeleteDashboards',
 ];
 
-export const start = async (record: CloudTrail.Record): Promise<Tables.TResource[]> => {
-  const serviceName = record.eventSource.split('.')[0].toUpperCase();
-  const key = `${serviceName}_${record.eventName}`;
+export const start = async (record: Tables.TEvents): Promise<Tables.TResource[]> => {
+  const serviceName = record.EventSource.split('.')[0].toUpperCase();
+  const key = `${serviceName}_${record.EventName}`;
 
   try {
     // 登録リソース
@@ -30,16 +30,14 @@ export const start = async (record: CloudTrail.Record): Promise<Tables.TResource
     ];
 
     return resources.map((item) => ({
-      UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
+      UserName: record.UserName,
       ResourceId: item.id,
       ResourceName: item.name,
-      EventName: record.eventName,
-      EventSource: record.eventSource,
-      EventTime: record.eventTime,
-      AWSRegion: record.awsRegion,
-      IdentityType: record.userIdentity.type,
-      UserAgent: record.userAgent,
-      EventId: record.eventID,
+      EventName: record.EventName,
+      EventSource: record.EventSource,
+      EventTime: record.EventTime,
+      AWSRegion: record.AWSRegion,
+      EventId: record.EventId,
       Service: getServiceName(serviceName),
       Revisions: [],
       Status: regists.length > 0 ? Consts.ResourceStatus.CREATED : Consts.ResourceStatus.DELETED,
@@ -50,15 +48,16 @@ export const start = async (record: CloudTrail.Record): Promise<Tables.TResource
   }
 };
 
-const getRegistSingleResource = (record: CloudTrail.Record): ResourceInfo[] => {
+const getRegistSingleResource = (record: Tables.TEvents): ResourceInfo[] => {
   const {
-    awsRegion: region,
-    recipientAccountId: account,
-    responseElements: response,
-    requestParameters: request,
-    eventSource,
-    eventName,
+    AWSRegion: region,
+    AccountId: account,
+    EventSource: eventSource,
+    EventName: eventName,
   } = record;
+
+  const request = JSON.parse(record.RequestParameters);
+  const response = record.ResponseElements ? JSON.parse(record.ResponseElements) : {};
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
   let name = '';
   let rets: string[] = [];
@@ -508,15 +507,15 @@ const getRegistSingleResource = (record: CloudTrail.Record): ResourceInfo[] => {
   ];
 };
 
-const getRegistMultiResources = (record: CloudTrail.Record): ResourceInfo[] => {
+const getRegistMultiResources = (record: Tables.TEvents): ResourceInfo[] => {
   const {
-    awsRegion: region,
-    recipientAccountId: account,
-    responseElements: response,
-    requestParameters: request,
-    eventSource,
-    eventName,
+    AWSRegion: region,
+    AccountId: account,
+    EventSource: eventSource,
+    EventName: eventName,
   } = record;
+  const response = record.ResponseElements  ? JSON.parse(record.ResponseElements) : {}
+
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
 
   switch (key) {
@@ -548,15 +547,15 @@ const getRegistMultiResources = (record: CloudTrail.Record): ResourceInfo[] => {
   return [];
 };
 
-const getRemoveSingleResource = async (record: CloudTrail.Record): Promise<ResourceInfo | undefined> => {
+const getRemoveSingleResource = async (record: Tables.TEvents): Promise<ResourceInfo | undefined> => {
   const {
-    awsRegion: region,
-    recipientAccountId: account,
-    responseElements: response,
-    requestParameters: request,
-    eventSource,
-    eventName,
+    AWSRegion: region,
+    AccountId: account,
+    EventSource: eventSource,
+    EventName: eventName,
   } = record;
+  const request = JSON.parse(record.RequestParameters);
+  const response = record.ResponseElements ? JSON.parse(record.ResponseElements) : {};
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
   let arn = undefined;
 
@@ -943,15 +942,16 @@ const getRemoveSingleResource = async (record: CloudTrail.Record): Promise<Resou
   };
 };
 
-const getRemoveMultiResources = (record: CloudTrail.Record): ResourceInfo[] => {
+const getRemoveMultiResources = (record: Tables.TEvents): ResourceInfo[] => {
   const {
-    awsRegion: region,
-    recipientAccountId: account,
-    responseElements: response,
-    requestParameters: request,
-    eventSource,
-    eventName,
+    AWSRegion: region,
+    AccountId: account,
+    EventSource: eventSource,
+    EventName: eventName,
   } = record;
+
+  const request = JSON.parse(record.RequestParameters);
+  const response = record.ResponseElements ? JSON.parse(record.ResponseElements) : {};
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
 
   switch (key) {

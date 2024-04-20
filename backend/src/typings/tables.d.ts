@@ -33,6 +33,7 @@ export namespace Tables {
     EventSource: string;
     EventName: string;
     AWSRegion: string;
+    AccountId: string;
     RequestParameters: string;
     ResponseElements?: string;
     Origin: string;
@@ -56,8 +57,8 @@ export namespace Tables {
     EventId: string;
     EventTime: string;
     AWSRegion: string;
-    UserAgent: string;
-    IdentityType: string;
+    UserAgent?: string;
+    IdentityType?: string;
     Service: string;
     Revisions: string[];
     Status?: string;
