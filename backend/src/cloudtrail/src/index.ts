@@ -55,21 +55,19 @@ export const filtering = async (event: SQSEvent) => {
 
   Logger.info(`Start process records, ${event.Records.length}`);
 
-  let records: CloudTrail.Record[] = [];
+  const results = await Promise.all(
+    event.Records.map(async (item) => {
+      if (!item) return [];
 
-  for (;;) {
-    const message = event.Records.shift();
+      return await executeFiltering(item);
+    })
+  );
 
-    // not found
-    if (!message) break;
+  const records = results.reduce((prev, curr) => {
+    return [...prev, ...curr];
+  }, [] as CloudTrail.Record[]);
 
-    const results = await executeFiltering(message);
-
-    records = [...records, ...results];
-  }
-
-  Logger.info(`New records, ${records.length}`);
-
+  // no records
   if (records.length === 0) return;
 
   // get unique records
