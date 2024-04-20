@@ -1,7 +1,14 @@
-import { Consts, Logger, ResourceARNs } from '@src/apps/utils';
-import { DescribeSecurityGroupsCommand, EC2Client } from '@aws-sdk/client-ec2';
+import { Consts, DynamodbHelper, Logger, ResourceARNs } from '@src/apps/utils';
+import {
+  DescribeSecurityGroupsCommand,
+  DescribeVpcsCommand,
+  EC2Client,
+  GetSecurityGroupsForVpcCommand,
+  GetSecurityGroupsForVpcCommandOutput,
+} from '@aws-sdk/client-ec2';
 import { capitalize, defaultTo } from 'lodash';
 import { CloudTrail, ResourceInfo, Tables } from 'typings';
+import { ResourceService } from '@src/services';
 
 const MULTI_TASK = [
   'EC2_RunInstances',
@@ -49,12 +56,7 @@ export const start = async (record: Tables.TEvents): Promise<Tables.TResource[]>
 };
 
 const getRegistSingleResource = (record: Tables.TEvents): ResourceInfo[] => {
-  const {
-    AWSRegion: region,
-    AccountId: account,
-    EventSource: eventSource,
-    EventName: eventName,
-  } = record;
+  const { AWSRegion: region, AccountId: account, EventSource: eventSource, EventName: eventName } = record;
 
   const request = JSON.parse(record.RequestParameters);
   const response = record.ResponseElements ? JSON.parse(record.ResponseElements) : {};
@@ -72,13 +74,12 @@ const getRegistSingleResource = (record: Tables.TEvents): ResourceInfo[] => {
       break;
 
     case 'APIGATEWAY_CreateVpcLink':
-      // 存在しない場合は、処理不要
-      if (!response.vpcLinkId) {
-        break;
-      }
-
       rets = [ResourceARNs.APIGATEWAY_VpcLink(region, account, response.vpcLinkId), response.name];
 
+      break;
+
+    case 'APIGATEWAY_ImportApi':
+      rets = [ResourceARNs.APIGATEWAY_Api(region, account, response.apiId), response.name];
       break;
 
     case 'APIGATEWAY_ImportRestApi':
@@ -508,13 +509,8 @@ const getRegistSingleResource = (record: Tables.TEvents): ResourceInfo[] => {
 };
 
 const getRegistMultiResources = (record: Tables.TEvents): ResourceInfo[] => {
-  const {
-    AWSRegion: region,
-    AccountId: account,
-    EventSource: eventSource,
-    EventName: eventName,
-  } = record;
-  const response = record.ResponseElements  ? JSON.parse(record.ResponseElements) : {}
+  const { AWSRegion: region, AccountId: account, EventSource: eventSource, EventName: eventName } = record;
+  const response = record.ResponseElements ? JSON.parse(record.ResponseElements) : {};
 
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
 
@@ -548,12 +544,7 @@ const getRegistMultiResources = (record: Tables.TEvents): ResourceInfo[] => {
 };
 
 const getRemoveSingleResource = async (record: Tables.TEvents): Promise<ResourceInfo | undefined> => {
-  const {
-    AWSRegion: region,
-    AccountId: account,
-    EventSource: eventSource,
-    EventName: eventName,
-  } = record;
+  const { AWSRegion: region, AccountId: account, EventSource: eventSource, EventName: eventName } = record;
   const request = JSON.parse(record.RequestParameters);
   const response = record.ResponseElements ? JSON.parse(record.ResponseElements) : {};
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
@@ -906,19 +897,15 @@ const getRemoveSingleResource = async (record: Tables.TEvents): Promise<Resource
         break;
       }
 
-      const ec2Client = new EC2Client({ region });
-      const sgRes = await ec2Client.send(
-        new DescribeSecurityGroupsCommand({
-          GroupNames: [groupName],
-        })
+      const results = await ResourceService.getByName(eventSource, groupName);
+      const finded = results.find((item) =>
+        item.ResourceId.startsWith(`arn:aws:ec2:${region}:${account}:security-group`)
       );
 
-      const sg = sgRes.SecurityGroups;
-      if (sg === undefined || sg.length === 0) {
-        break;
+      if (finded !== undefined) {
+        arn = finded.ResourceId;
       }
 
-      arn = ResourceARNs.EC2_SecurityGroup(region, account, sg[0].GroupId as string);
       break;
 
     case 'EC2_DeleteRouteTable':
@@ -943,12 +930,7 @@ const getRemoveSingleResource = async (record: Tables.TEvents): Promise<Resource
 };
 
 const getRemoveMultiResources = (record: Tables.TEvents): ResourceInfo[] => {
-  const {
-    AWSRegion: region,
-    AccountId: account,
-    EventSource: eventSource,
-    EventName: eventName,
-  } = record;
+  const { AWSRegion: region, AccountId: account, EventSource: eventSource, EventName: eventName } = record;
 
   const request = JSON.parse(record.RequestParameters);
   const response = record.ResponseElements ? JSON.parse(record.ResponseElements) : {};
