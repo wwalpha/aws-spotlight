@@ -55,12 +55,20 @@ resource "aws_lambda_event_source_mapping" "cloudtrail" {
 # Lambda Function - Filtering
 # ----------------------------------------------------------------------------------------------
 resource "aws_lambda_function" "filtering" {
-  function_name = "${local.project_name}-filtering-${local.suffix}"
-  package_type  = "Image"
-  image_uri     = data.aws_ssm_parameter.filtering_repo_url.value
-  memory_size   = 512
-  role          = aws_iam_role.cloudtrail.arn
-  timeout       = 300
+  function_name     = "${local.project_name}-filtering-${local.suffix}"
+  s3_bucket         = data.aws_s3_object.lambda_filtering.bucket
+  s3_key            = data.aws_s3_object.lambda_filtering.key
+  s3_object_version = data.aws_s3_object.lambda_filtering.version_id
+  handler           = local.lambda_handler
+  memory_size       = 256
+  role              = aws_iam_role.cloudtrail.arn
+  runtime           = local.lambda_runtime
+  timeout           = 300
+
+  layers = [
+    aws_lambda_layer_version.libraries.arn
+  ]
+
   environment {
     variables = {
       TABLE_NAME_EVENT_TYPE  = local.dynamodb_name_event_type
@@ -72,12 +80,6 @@ resource "aws_lambda_function" "filtering" {
       SQS_URL                = data.aws_sqs_queue.filtering.url
       SNS_TOPIC_ARN          = data.aws_sns_topic.admin.arn
     }
-  }
-
-  lifecycle {
-    ignore_changes = [
-      image_uri
-    ]
   }
 }
 

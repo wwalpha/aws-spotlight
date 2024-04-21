@@ -14,12 +14,11 @@ locals {
   project_name    = local.remote_setup.project_name
   project_name_uc = local.remote_setup.project_name_uc
 
-
   # ----------------------------------------------------------------------------------------------
   # Lambda
   # ----------------------------------------------------------------------------------------------
   lambda_handler          = "index.handler"
-  lambda_runtime          = "nodejs14.x"
+  lambda_runtime          = "nodejs20.x"
   lambda_basic_policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 
   # ----------------------------------------------------------------------------------------------
@@ -60,6 +59,8 @@ locals {
   # ----------------------------------------------------------------------------------------------
   bucket_name_environment = local.remote_setup.bucket_name_environment
   bucket_name_archive     = local.remote_setup.bucket_name_archive
+
+  bucket_key_lambda_filtering = local.remote_setup.bucket_key_lambda_filtering
 
   # ----------------------------------------------------------------------------------------------
   # ECR
@@ -154,4 +155,12 @@ data "aws_ssm_parameter" "filtering_repo_url" {
 data "aws_ssm_parameter" "unprocessed_repo_url" {
   depends_on = [aws_ssm_parameter.unprocessed_repo_url]
   name       = aws_ssm_parameter.unprocessed_repo_url.name
+}
+
+# ----------------------------------------------------------------------------------------------
+# S3 Object - Lambda filtering module
+# ----------------------------------------------------------------------------------------------
+data "aws_s3_object" "lambda_filtering" {
+  bucket = local.bucket_name_archive
+  key    = local.bucket_key_lambda_filtering
 }
