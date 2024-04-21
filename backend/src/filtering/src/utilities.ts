@@ -5,6 +5,7 @@ import { SNSMessage, SQSRecord } from 'aws-lambda';
 import { DeleteMessageCommand, SQSClient } from '@aws-sdk/client-sqs';
 import { CloudTrail, Tables } from 'typings';
 import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { gunzipSync } from 'node:zlib';
 
 const options: winston.LoggerOptions = {
   level: process.env.LOG_LEVEL,
@@ -103,10 +104,10 @@ export const getRecords = async (message: string): Promise<CloudTrail.Record[]> 
       files.map(async (item) => {
         const content = await item.Body?.transformToByteArray();
 
-        if (!content) return undefined;
+        if (content === undefined) return undefined;
 
-        // @ts-ignore
-        return JSON.parse(zlib.gunzipSync(content)) as CloudTrail.Event;
+        //@ts-ignore
+        return JSON.parse(gunzipSync(content)) as CloudTrail.Event;
       })
     )
   ).filter((item): item is Exclude<typeof item, undefined> => item !== undefined);

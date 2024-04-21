@@ -1,4 +1,4 @@
-import { SQSEvent, SQSRecord } from 'aws-lambda';
+import { Handler, SQSEvent, SQSRecord } from 'aws-lambda';
 import _ from 'lodash';
 import { CloudTrail } from 'typings';
 import { DynamodbHelper, Logger } from './utilities';
@@ -6,7 +6,7 @@ import * as Utilities from './utilities';
 
 const TABLE_NAME_RAW = process.env.TABLE_NAME_RAW as string;
 
-export const handler = async (event: SQSEvent): Promise<void> => {
+export const handler: Handler = async (event: SQSEvent) => {
   Logger.info('event', event);
   Logger.info(`Start process records, ${event.Records.length}`);
 
