@@ -19,6 +19,13 @@ resource "aws_s3_bucket" "archive" {
   bucket = local.bucket_name_archive
 }
 
+resource "aws_s3_bucket_versioning" "archive" {
+  bucket = aws_s3_bucket.archive.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
 resource "aws_s3_bucket_lifecycle_configuration" "archive" {
   bucket = aws_s3_bucket.archive.id
 
