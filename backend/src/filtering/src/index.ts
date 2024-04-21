@@ -10,27 +10,11 @@ export const handler: Handler = async (event: SQSEvent) => {
   Logger.info('event', event);
   Logger.info(`Start process records, ${event.Records.length}`);
 
-  const results = await Promise.all(
+  await Promise.all(
     event.Records.map(async (item) => {
       return await executeFiltering(item);
     })
   );
-
-  const records = results.reduce((prev, curr) => {
-    return [...prev, ...curr];
-  }, [] as CloudTrail.Record[]);
-
-  // no records
-  if (records.length === 0) return;
-
-  // get unique records
-  const dataRows = _.uniqBy(
-    records.map((item) => Utilities.getEventsItem(item)),
-    'EventId'
-  );
-
-  // bulk insert
-  await DynamodbHelper.bulk(TABLE_NAME_RAW, dataRows);
 };
 
 /**
@@ -50,7 +34,27 @@ const executeFiltering = async (message: SQSRecord) => {
   records = Utilities.removeError(records);
   Logger.info(`Excluding Error Records: ${records.length}`);
 
-  await Utilities.deleteSQSMessage(message);
+  if (records.length === 0) {
+    return;
+  }
 
-  return records;
+  // get unique records
+  const dataRows = _.uniqBy(
+    records.map((item) => Utilities.getEventsItem(item)),
+    'EventId'
+  );
+
+  try {
+    // bulk insert
+    await DynamodbHelper.bulk(TABLE_NAME_RAW, dataRows);
+
+    Logger.info(`Bulk Insert: ${dataRows.length}`);
+
+    // delete message
+    await Utilities.deleteSQSMessage(message);
+
+    Logger.info(`Delete Message: ${message.messageId}`);
+  } catch (e) {
+    Logger.error(e);
+  }
 };
