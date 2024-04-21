@@ -1,6 +1,5 @@
 import { Handler, SQSEvent, SQSRecord } from 'aws-lambda';
 import _ from 'lodash';
-import { CloudTrail } from 'typings';
 import { DynamodbHelper, Logger } from './utilities';
 import * as Utilities from './utilities';
 
@@ -55,6 +54,18 @@ const executeFiltering = async (message: SQSRecord) => {
 
     Logger.info(`Delete Message: ${message.messageId}`);
   } catch (e) {
+    const err = e as unknown as Error;
+
+    if (err.name === 'ThrottlingException') {
+      Logger.error('ThrottlingException', err.message);
+      return;
+    }
+
+    if (err.name === 'LimitExceededException') {
+      Logger.error('LimitExceededException', err.message);
+      return;
+    }
+
     Logger.error(e);
   }
 };
