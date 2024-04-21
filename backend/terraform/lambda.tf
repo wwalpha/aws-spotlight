@@ -290,11 +290,11 @@ resource "aws_lambda_function" "streaming" {
   memory_size       = 256
   role              = aws_iam_role.streaming.arn
   runtime           = local.lambda_runtime
-  timeout           = 300
+  timeout           = 30
 
   environment {
     variables = {
-      EVENTS_TOPIC_ARN = local.dynamodb_name_raw
+      EVENTS_TOPIC_ARN = data.aws_sns_topic.filtering_events.arn
     }
   }
 }
