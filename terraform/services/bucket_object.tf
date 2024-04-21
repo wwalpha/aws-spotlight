@@ -20,11 +20,26 @@ EOT
 }
 
 # ----------------------------------------------------------------------------------------------
-# S3 Object - Lambda filtering module
+# S3 Object - Lambda filtering raw module
 # ----------------------------------------------------------------------------------------------
-resource "aws_s3_object" "lambda_filtering" {
+resource "aws_s3_object" "lambda_filtering_raw" {
   bucket = local.bucket_name_archive
-  key    = local.bucket_key_lambda_filtering
+  key    = local.bucket_key_lambda_filtering_raw
+  source = data.archive_file.lambda_default.output_path
+
+  lifecycle {
+    ignore_changes = [
+      etag
+    ]
+  }
+}
+
+# ----------------------------------------------------------------------------------------------
+# S3 Object - Lambda filtering events module
+# ----------------------------------------------------------------------------------------------
+resource "aws_s3_object" "lambda_filtering_events" {
+  bucket = local.bucket_name_archive
+  key    = local.bucket_key_lambda_filtering_events
   source = data.archive_file.lambda_default.output_path
 
   lifecycle {

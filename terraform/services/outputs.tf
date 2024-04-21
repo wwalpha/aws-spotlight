@@ -181,10 +181,17 @@ output "cloudmap_service_token" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# Lambda module bucket key - Filtering
+# Lambda module bucket key - Filtering Raw
 # ----------------------------------------------------------------------------------------------
-output "bucket_key_lambda_filtering" {
-  value = local.bucket_key_lambda_filtering
+output "bucket_key_lambda_filtering_raw" {
+  value = local.bucket_key_lambda_filtering_raw
+}
+
+# ----------------------------------------------------------------------------------------------
+# Lambda module bucket key - Filtering Events
+# ----------------------------------------------------------------------------------------------
+output "bucket_key_lambda_filtering_events" {
+  value = local.bucket_key_lambda_filtering_events
 }
 
 # ----------------------------------------------------------------------------------------------
