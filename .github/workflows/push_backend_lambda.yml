@@ -1,4 +1,4 @@
-name: PUSH_B) Lambda Filtering Build
+name: PUSH_B) Lambda Building
 
 on:
   push:
