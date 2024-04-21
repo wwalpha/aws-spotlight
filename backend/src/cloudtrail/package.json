@@ -34,7 +34,7 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@alphax/dynamodb": "^1.2.14",
+    "@alphax/dynamodb": "^1.2.15",
     "@aws-sdk/client-dynamodb": "^3.556.0",
     "@aws-sdk/client-ec2": "^3.557.0",
     "@aws-sdk/client-rds": "^3.556.0",
