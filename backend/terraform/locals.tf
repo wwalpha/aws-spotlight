@@ -60,8 +60,9 @@ locals {
   bucket_name_environment = local.remote_setup.bucket_name_environment
   bucket_name_archive     = local.remote_setup.bucket_name_archive
 
-  bucket_key_lambda_filtering = local.remote_services.bucket_key_lambda_filtering
-  bucket_key_lambda_streaming = local.remote_services.bucket_key_lambda_streaming
+  bucket_key_lambda_filtering_raw    = local.remote_services.bucket_key_lambda_filtering_raw
+  bucket_key_lambda_filtering_events = local.remote_services.bucket_key_lambda_filtering_events
+  bucket_key_lambda_streaming        = local.remote_services.bucket_key_lambda_streaming
 
   # ----------------------------------------------------------------------------------------------
   # ECR
@@ -72,13 +73,14 @@ locals {
   # ----------------------------------------------------------------------------------------------
   # SNS
   # ----------------------------------------------------------------------------------------------
-  sns_topic_name_admin = local.remote_services.sns_topic_name_admin
+  sns_topic_name_admin            = local.remote_services.sns_topic_name_admin
+  sns_topic_name_filtering_events = local.remote_services.sns_topic_name_filtering_events
 
   # ----------------------------------------------------------------------------------------------
   # SQS
   # ----------------------------------------------------------------------------------------------
-  sqs_name_cloudtrail = local.remote_services.sqs_name_cloudtrail
-  sqs_name_filtering  = local.remote_services.sqs_name_filtering
+  sqs_name_cloudtrail    = local.remote_services.sqs_name_cloudtrail
+  sqs_name_filtering_raw = local.remote_services.sqs_name_filtering_raw
 }
 
 # ----------------------------------------------------------------------------------------------
@@ -101,8 +103,8 @@ data "aws_sqs_queue" "cloudtrail" {
 # ----------------------------------------------------------------------------------------------
 # AWS SQS Queue
 # ----------------------------------------------------------------------------------------------
-data "aws_sqs_queue" "filtering" {
-  name = local.sqs_name_filtering
+data "aws_sqs_queue" "filtering_raw" {
+  name = local.sqs_name_filtering_raw
 }
 
 # ----------------------------------------------------------------------------------------------
@@ -110,6 +112,13 @@ data "aws_sqs_queue" "filtering" {
 # ----------------------------------------------------------------------------------------------
 data "aws_sns_topic" "admin" {
   name = local.sns_topic_name_admin
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS SNS Topic
+# ----------------------------------------------------------------------------------------------
+data "aws_sns_topic" "filtering_events" {
+  name = local.sns_topic_name_filtering_events
 }
 
 # ----------------------------------------------------------------------------------------------
@@ -143,11 +152,19 @@ data "aws_ssm_parameter" "unprocessed_repo_url" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# S3 Object - Lambda filtering module
+# S3 Object - Lambda filtering raw module
 # ----------------------------------------------------------------------------------------------
-data "aws_s3_object" "lambda_filtering" {
+data "aws_s3_object" "lambda_filtering_raw" {
   bucket = local.bucket_name_archive
-  key    = local.bucket_key_lambda_filtering
+  key    = local.bucket_key_lambda_filtering_raw
+}
+
+# ----------------------------------------------------------------------------------------------
+# S3 Object - Lambda filtering events module
+# ----------------------------------------------------------------------------------------------
+data "aws_s3_object" "lambda_filtering_events" {
+  bucket = local.bucket_name_archive
+  key    = local.bucket_key_lambda_filtering_events
 }
 
 # ----------------------------------------------------------------------------------------------

@@ -31,17 +31,33 @@ resource "aws_sns_topic_subscription" "cloudtrail" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# AWS SNS Topic Subscription - Filtering
+# AWS SNS Topic Subscription - Filtering Raw
 # ----------------------------------------------------------------------------------------------
-resource "aws_sns_topic" "filtering" {
-  name = "${local.project_name}-filtering-${local.suffix}"
+resource "aws_sns_topic" "filtering_raw" {
+  name = "${local.project_name}-filtering-raw-${local.suffix}"
 }
 
 # ----------------------------------------------------------------------------------------------
-# AWS SNS Topic Subscription - Filtering
+# AWS SNS Topic Subscription - Filtering Raw
 # ----------------------------------------------------------------------------------------------
-resource "aws_sns_topic_subscription" "filtering" {
-  topic_arn = aws_sns_topic.filtering.arn
+resource "aws_sns_topic_subscription" "filtering_raw" {
+  topic_arn = aws_sns_topic.filtering_raw.arn
   protocol  = "sqs"
-  endpoint  = aws_sqs_queue.filtering.arn
+  endpoint  = aws_sqs_queue.filtering_raw.arn
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS SNS Topic Subscription - Filtering Events
+# ----------------------------------------------------------------------------------------------
+resource "aws_sns_topic" "filtering_events" {
+  name = "${local.project_name}-filtering-events-${local.suffix}"
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS SNS Topic Subscription - Filtering Events
+# ----------------------------------------------------------------------------------------------
+resource "aws_sns_topic_subscription" "filtering_events" {
+  topic_arn = aws_sns_topic.filtering_events.arn
+  protocol  = "sqs"
+  endpoint  = aws_sqs_queue.filtering_events.arn
 }

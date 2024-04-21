@@ -52,13 +52,13 @@ resource "aws_lambda_event_source_mapping" "cloudtrail" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# Lambda Function - Filtering
+# Lambda Function - Filtering Raw
 # ----------------------------------------------------------------------------------------------
-resource "aws_lambda_function" "filtering" {
-  function_name     = "${local.project_name}-filtering-${local.suffix}"
-  s3_bucket         = data.aws_s3_object.lambda_filtering.bucket
-  s3_key            = data.aws_s3_object.lambda_filtering.key
-  s3_object_version = data.aws_s3_object.lambda_filtering.version_id
+resource "aws_lambda_function" "filtering_raw" {
+  function_name     = "${local.project_name}-filtering-raw-${local.suffix}"
+  s3_bucket         = data.aws_s3_object.lambda_filtering_raw.bucket
+  s3_key            = data.aws_s3_object.lambda_filtering_raw.key
+  s3_object_version = data.aws_s3_object.lambda_filtering_raw.version_id
   handler           = local.lambda_handler
   memory_size       = 512
   role              = aws_iam_role.cloudtrail.arn
@@ -72,16 +72,16 @@ resource "aws_lambda_function" "filtering" {
   environment {
     variables = {
       TABLE_NAME_RAW = local.dynamodb_name_raw
-      SQS_URL        = data.aws_sqs_queue.filtering.url
+      SQS_URL        = data.aws_sqs_queue.filtering
     }
   }
 }
 
 # ----------------------------------------------------------------------------------------------
-# Lambda Function - Filtering
+# Lambda Function - Filtering Raw
 # ----------------------------------------------------------------------------------------------
-resource "aws_lambda_function_event_invoke_config" "filtering" {
-  function_name = aws_lambda_function.filtering.function_name
+resource "aws_lambda_function_event_invoke_config" "filtering_raw" {
+  function_name = aws_lambda_function.filtering_raw.function_name
 
   destination_config {
     on_failure {
@@ -91,11 +91,65 @@ resource "aws_lambda_function_event_invoke_config" "filtering" {
 }
 
 # ---------------------------------------------------------------------------------------------
-# Lambda Event Source Mapping - Filtering
+# Lambda Event Source Mapping - Filtering Raw
 # ---------------------------------------------------------------------------------------------
-resource "aws_lambda_event_source_mapping" "filtering" {
-  event_source_arn                   = data.aws_sqs_queue.filtering.arn
-  function_name                      = aws_lambda_function.filtering.arn
+resource "aws_lambda_event_source_mapping" "filtering_raw" {
+  event_source_arn                   = data.aws_sqs_queue.filtering_raw.arn
+  function_name                      = aws_lambda_function.filtering_raw.arn
+  batch_size                         = 10
+  maximum_batching_window_in_seconds = 10
+  enabled                            = true
+
+  scaling_config {
+    maximum_concurrency = 200
+  }
+}
+
+# ----------------------------------------------------------------------------------------------
+# Lambda Function - Filtering Events
+# ----------------------------------------------------------------------------------------------
+resource "aws_lambda_function" "filtering_events" {
+  function_name     = "${local.project_name}-filtering-events-${local.suffix}"
+  s3_bucket         = data.aws_s3_object.lambda_filtering_events.bucket
+  s3_key            = data.aws_s3_object.lambda_filtering_events.key
+  s3_object_version = data.aws_s3_object.lambda_filtering_events.version_id
+  handler           = local.lambda_handler
+  memory_size       = 512
+  role              = aws_iam_role.cloudtrail.arn
+  runtime           = local.lambda_runtime
+  timeout           = 300
+
+  layers = [
+    aws_lambda_layer_version.libraries.arn
+  ]
+
+  environment {
+    variables = {
+      TABLE_NAME_RAW = local.dynamodb_name_raw
+      SQS_URL        = data.aws_sqs_queue.filtering_raw.url
+    }
+  }
+}
+
+# ----------------------------------------------------------------------------------------------
+# Lambda Function - Filtering Events
+# ----------------------------------------------------------------------------------------------
+resource "aws_lambda_function_event_invoke_config" "filtering_events" {
+  function_name = aws_lambda_function.filtering_events.function_name
+
+  destination_config {
+    on_failure {
+      destination = data.aws_sns_topic.admin.arn
+    }
+  }
+}
+
+# ---------------------------------------------------------------------------------------------
+# Lambda Event Source Mapping - Filtering Events
+# ---------------------------------------------------------------------------------------------
+resource "aws_lambda_event_source_mapping" "filtering_events" {
+  event_source_arn                   = data.aws_sqs_queue.filtering_events.arn
+  function_name                      = aws_lambda_function.filtering_events.arn
   batch_size                         = 10
   maximum_batching_window_in_seconds = 10
   enabled                            = true
@@ -155,7 +209,7 @@ resource "aws_lambda_function_event_invoke_config" "unprocessed" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# Lambda Function - CloudTrail
+# Lambda Function - Authorizer
 # ----------------------------------------------------------------------------------------------
 resource "aws_lambda_function" "authorizer" {
   function_name = "${local.project_name}-authorizer-${local.suffix}"
@@ -229,9 +283,9 @@ resource "aws_lambda_function_event_invoke_config" "authorizer" {
 # ----------------------------------------------------------------------------------------------
 resource "aws_lambda_function" "streaming" {
   function_name     = "${local.project_name}-streaming-${local.suffix}"
-  s3_bucket         = data.aws_s3_object.lambda_filtering.bucket
-  s3_key            = data.aws_s3_object.lambda_filtering.key
-  s3_object_version = data.aws_s3_object.lambda_filtering.version_id
+  s3_bucket         = data.aws_s3_object.lambda_streaming.bucket
+  s3_key            = data.aws_s3_object.lambda_streaming.key
+  s3_object_version = data.aws_s3_object.lambda_streaming.version_id
   handler           = local.lambda_handler
   memory_size       = 256
   role              = aws_iam_role.cloudtrail.arn
@@ -240,8 +294,7 @@ resource "aws_lambda_function" "streaming" {
 
   environment {
     variables = {
-      TABLE_NAME_RAW    = local.dynamodb_name_raw
-      TABLE_NAME_EVENTS = local.dynamodb_name_events
+      EVENTS_TOPIC_ARN = local.dynamodb_name_raw
     }
   }
 }
