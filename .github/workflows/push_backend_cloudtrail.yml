@@ -97,15 +97,8 @@ jobs:
       - name: Lambda Deploy
         uses: appleboy/lambda-action@v0.1.9
         with:
-          function_name: arms-filtering-8cd531
-          image_uri: ${{ steps.build-image.outputs.image_filtering }}
-
-      # Lambda Deploy
-      # - name: Lambda Deploy
-      #   uses: appleboy/lambda-action@v0.1.9
-      #   with:
-      #     function_name: arms-unprocessed-8cd531
-      #     image_uri: ${{ steps.build-image.outputs.image_unprocessed }}
+          function_name: arms-unprocessed-8cd531
+          image_uri: ${{ steps.build-image.outputs.image_unprocessed }}
 
       # Update Repository URL
       - name: Update repository url
