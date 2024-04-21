@@ -40,6 +40,28 @@ export namespace Tables {
   }
 
   /**
+   * Table - Raw Key
+   */
+  interface TRawKey {
+    EventId: string;
+  }
+
+  /**
+   * Table - Raw
+   */
+  interface TRaw extends TRawKey {
+    UserName: string;
+    EventTime: string;
+    EventSource: string;
+    EventName: string;
+    AWSRegion: string;
+    AccountId: string;
+    RequestParameters: string;
+    ResponseElements?: string;
+    Origin: string;
+  }
+
+  /**
    * Table - Resource Key
    */
   interface TResourceKey {

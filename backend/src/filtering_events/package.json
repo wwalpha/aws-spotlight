@@ -1,6 +1,6 @@
 {
-  "name": "filtering-raw",
-  "version": "1.0.2",
+  "name": "filtering-events",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "prebuild": "rm -rf dist",
