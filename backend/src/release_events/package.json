@@ -26,7 +26,7 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
-    "@alphax/dynamodb": "^1.2.13",
+    "@alphax/dynamodb": "^1.2.14",
     "aws-sdk": "^2.1328.0",
     "lodash": "^4.17.21",
     "winston": "^3.3.3"
