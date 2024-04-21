@@ -20,11 +20,26 @@ EOT
 }
 
 # ----------------------------------------------------------------------------------------------
-# S3 Object - Lambda start module
+# S3 Object - Lambda filtering module
 # ----------------------------------------------------------------------------------------------
 resource "aws_s3_object" "lambda_filtering" {
   bucket = local.bucket_name_archive
   key    = local.bucket_key_lambda_filtering
+  source = data.archive_file.lambda_default.output_path
+
+  lifecycle {
+    ignore_changes = [
+      etag
+    ]
+  }
+}
+
+# ----------------------------------------------------------------------------------------------
+# S3 Object - Lambda streaming module
+# ----------------------------------------------------------------------------------------------
+resource "aws_s3_object" "lambda_streaming" {
+  bucket = local.bucket_name_archive
+  key    = local.bucket_key_lambda_streaming
   source = data.archive_file.lambda_default.output_path
 
   lifecycle {

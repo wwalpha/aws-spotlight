@@ -56,6 +56,7 @@ locals {
   bucket_name_archive     = local.remote_setup.bucket_name_archive
 
   bucket_key_lambda_filtering = "lambda_modules/filtering.zip"
+  bucket_key_lambda_streaming = "lambda_modules/streaming.zip"
 
   # ----------------------------------------------------------------------------------------------
   # Route53

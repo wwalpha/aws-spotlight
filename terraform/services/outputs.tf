@@ -172,3 +172,10 @@ output "cloudmap_service_token" {
 output "bucket_key_lambda_filtering" {
   value = local.bucket_key_lambda_filtering
 }
+
+# ----------------------------------------------------------------------------------------------
+# Lambda module bucket key - Streaming
+# ----------------------------------------------------------------------------------------------
+output "bucket_key_lambda_streaming" {
+  value = local.bucket_key_lambda_streaming
+}

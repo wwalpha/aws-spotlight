@@ -26,9 +26,11 @@ resource "aws_dynamodb_table" "event_type" {
 # Dynamodb Table - Raw
 # ----------------------------------------------------------------------------------------------
 resource "aws_dynamodb_table" "raw" {
-  name         = local.dynamodb_name_raw
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "EventId"
+  name             = local.dynamodb_name_raw
+  billing_mode     = "PAY_PER_REQUEST"
+  hash_key         = "EventId"
+  stream_enabled   = true
+  stream_view_type = "KEYS_ONLY"
 
   attribute {
     name = "EventId"
@@ -118,9 +120,11 @@ resource "aws_dynamodb_table" "resource" {
 # Dynamodb Table - Events
 # ----------------------------------------------------------------------------------------------
 resource "aws_dynamodb_table" "events" {
-  name         = local.dynamodb_name_events
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "EventId"
+  name             = local.dynamodb_name_events
+  billing_mode     = "PAY_PER_REQUEST"
+  hash_key         = "EventId"
+  stream_enabled   = true
+  stream_view_type = "KEYS_ONLY"
 
   attribute {
     name = "EventId"
