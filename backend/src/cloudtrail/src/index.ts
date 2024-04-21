@@ -8,17 +8,6 @@ import { CloudTrail, Tables } from 'typings';
 import { DynamodbHelper, Utilities } from './apps/utils';
 import { Environments } from './apps/utils/consts';
 
-// common settings
-// AWS.config.update({
-//   region: process.env.AWS_REGION,
-//   ec2: { endpoint: process.env.AWS_ENDPOINT },
-//   rds: { endpoint: process.env.AWS_ENDPOINT },
-//   s3: { endpoint: process.env.AWS_ENDPOINT },
-//   sqs: { endpoint: process.env.AWS_ENDPOINT },
-//   sns: { endpoint: process.env.AWS_ENDPOINT },
-//   dynamodb: { endpoint: process.env.AWS_ENDPOINT },
-// });
-
 /**
  * App Entry
  *
@@ -42,15 +31,10 @@ export const cloudtrail = async (events: Tables.TEvents[]) => {
 export const filtering = async (event: SQSEvent) => {
   Logger.info('event', event);
 
-  // get event type definition
-  await initializeEvents();
-
   Logger.info(`Start process records, ${event.Records.length}`);
 
   const results = await Promise.all(
     event.Records.map(async (item) => {
-      if (!item) return [];
-
       return await executeFiltering(item);
     })
   );
@@ -69,7 +53,7 @@ export const filtering = async (event: SQSEvent) => {
   );
 
   // bulk insert
-  await DynamodbHelper.bulk(Environments.TABLE_NAME_EVENTS, dataRows);
+  await DynamodbHelper.bulk(Environments.TABLE_NAME_RAW, dataRows);
 };
 
 /**
