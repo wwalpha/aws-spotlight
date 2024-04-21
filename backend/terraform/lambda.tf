@@ -58,7 +58,7 @@ resource "aws_lambda_function" "filtering" {
   function_name = "${local.project_name}-filtering-${local.suffix}"
   package_type  = "Image"
   image_uri     = data.aws_ssm_parameter.filtering_repo_url.value
-  memory_size   = 1024
+  memory_size   = 512
   role          = aws_iam_role.cloudtrail.arn
   timeout       = 300
   environment {
@@ -66,6 +66,7 @@ resource "aws_lambda_function" "filtering" {
       TABLE_NAME_EVENT_TYPE  = local.dynamodb_name_event_type
       TABLE_NAME_EVENTS      = local.dynamodb_name_events
       TABLE_NAME_RESOURCES   = local.dynamodb_name_resources
+      TABLE_NAME_RAW         = local.dynamodb_name_raw
       TABLE_NAME_UNPROCESSED = local.dynamodb_name_unprocessed
       TABLE_NAME_IGNORES     = local.dynamodb_name_ignores
       SQS_URL                = data.aws_sqs_queue.filtering.url
