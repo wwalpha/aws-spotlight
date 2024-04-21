@@ -288,7 +288,7 @@ resource "aws_lambda_function" "streaming" {
   s3_object_version = data.aws_s3_object.lambda_streaming.version_id
   handler           = local.lambda_handler
   memory_size       = 256
-  role              = aws_iam_role.cloudtrail.arn
+  role              = aws_iam_role.streaming.arn
   runtime           = local.lambda_runtime
   timeout           = 300
 

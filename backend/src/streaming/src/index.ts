@@ -16,9 +16,9 @@ export const handler: DynamoDBStreamHandler = async (event: DynamoDBStreamEvent)
   Logger.info('event', event);
   Logger.info(`Start process records, ${event.Records.length}`);
 
-  const ids = event.Records.map((item) => item.eventID).filter(
-    (item): item is Exclude<typeof item, undefined> => item !== undefined
-  );
+  const ids = event.Records.filter((item) => item.eventName === 'INSERT')
+    .map((item) => item.eventID)
+    .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
   // send to SNS
   await snsClient.send(

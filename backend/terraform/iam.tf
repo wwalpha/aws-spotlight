@@ -61,7 +61,6 @@ resource "aws_iam_role_policy" "cloudtrail" {
   })
 }
 
-
 # ----------------------------------------------------------------------------------------------
 # AWS Role - AWS Batch JOB
 # ----------------------------------------------------------------------------------------------
@@ -185,7 +184,6 @@ resource "aws_iam_role_policy_attachment" "authorizer" {
   policy_arn = local.lambda_basic_policy_arn
 }
 
-
 # ----------------------------------------------------------------------------------------------
 # AWS Lambda Role - Synthetics
 # ----------------------------------------------------------------------------------------------
@@ -233,14 +231,6 @@ resource "aws_iam_role" "streaming" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# AWS IAM Role Policy - Streaming S3 ReadOnly Policy
-# ----------------------------------------------------------------------------------------------
-resource "aws_iam_role_policy_attachment" "streaming_s3" {
-  role       = aws_iam_role.streaming.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
-}
-
-# ----------------------------------------------------------------------------------------------
 # AWS IAM Role Policy - Streaming Basic Policy
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role_policy_attachment" "streaming_basic" {
@@ -274,12 +264,7 @@ resource "aws_iam_role_policy" "streaming_policy" {
           "dynamodb:GetShardIterator",
           "dynamodb:DescribeStream",
           "dynamodb:ListStreams",
-          "sqs:DeleteMessage",
-          "sqs:ReceiveMessage",
-          "sqs:GetQueueAttributes",
           "sns:Publish",
-          "cloudformation:listStacks",
-          "ec2:describeSecurityGroups",
         ]
         Resource = "*"
       },
