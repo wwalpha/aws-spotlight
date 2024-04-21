@@ -219,3 +219,70 @@ resource "aws_iam_role_policy" "synthetics" {
     ]
   })
 }
+
+# ----------------------------------------------------------------------------------------------
+# AWS IAM Role - Streaming
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role" "streaming" {
+  name               = "${local.project_name_uc}_Lambda_StreamingRole${local.suffix}"
+  assume_role_policy = data.aws_iam_policy_document.lambda.json
+
+  lifecycle {
+    create_before_destroy = false
+  }
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS IAM Role Policy - Streaming S3 ReadOnly Policy
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy_attachment" "streaming_s3" {
+  role       = aws_iam_role.streaming.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS IAM Role Policy - Streaming Basic Policy
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy_attachment" "streaming_basic" {
+  role       = aws_iam_role.streaming.name
+  policy_arn = local.lambda_basic_policy_arn
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS IAM Role Policy - Streaming Inline Policy
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy" "streaming_policy" {
+  name = "Inline_Policy"
+  role = aws_iam_role.streaming.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "dynamodb:DescribeTable",
+          "dynamodb:BatchGetItem",
+          "dynamodb:BatchWriteItem",
+          "dynamodb:PutItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:GetItem",
+          "dynamodb:Scan",
+          "dynamodb:Query",
+          "dynamodb:UpdateItem",
+          "dynamodb:GetRecords",
+          "dynamodb:GetShardIterator",
+          "dynamodb:DescribeStream",
+          "dynamodb:ListStreams",
+          "sqs:DeleteMessage",
+          "sqs:ReceiveMessage",
+          "sqs:GetQueueAttributes",
+          "sns:Publish",
+          "cloudformation:listStacks",
+          "ec2:describeSecurityGroups",
+        ]
+        Resource = "*"
+      },
+    ]
+  })
+}
