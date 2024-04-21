@@ -107,7 +107,8 @@ export const getRecords = async (message: string): Promise<CloudTrail.Record[]> 
         if (content === undefined) return undefined;
 
         //@ts-ignore
-        return JSON.parse(gunzipSync(content)) as CloudTrail.Event;
+        // return JSON.parse(gunzipSync(content)) as CloudTrail.Event;
+        return {} as CloudTrail.Event;
       })
     )
   ).filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
