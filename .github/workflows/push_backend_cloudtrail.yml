@@ -12,10 +12,10 @@ on:
 env:
   AWS_DEFAULT_REGION: us-east-1
   ECR_REPOSITORY_CLOUDTRAIL: arms/cloudtrail/8cd531
-  ECR_REPOSITORY_FILTERING: arms/filtering/8cd531
+  # ECR_REPOSITORY_FILTERING: arms/filtering/8cd531
   ECR_REPOSITORY_UNPROCESSED: arms/unprocessed/8cd531
   SSM_PARAMETER_NAME_CLOUDTRAIL: /arms/repository_url/cloudtrail/8cd531
-  SSM_PARAMETER_NAME_FILTERING: /arms/repository_url/filtering/8cd531
+  # SSM_PARAMETER_NAME_FILTERING: /arms/repository_url/filtering/8cd531
   SSM_PARAMETER_NAME_UNPROCESSED: /arms/repository_url/unprocessed/8cd531
   WORKING_DIR: backend/src/cloudtrail
 
@@ -79,13 +79,6 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY_CLOUDTRAIL:latest
           echo "::set-output name=image_cloudtrail::$ECR_REGISTRY/$ECR_REPOSITORY_CLOUDTRAIL:$IMAGE_TAG"
 
-          docker build -f "Dockerfile.Filtering" -t $ECR_REPOSITORY_FILTERING .
-          docker tag $ECR_REPOSITORY_FILTERING $ECR_REGISTRY/$ECR_REPOSITORY_FILTERING:$IMAGE_TAG
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY_FILTERING:$IMAGE_TAG
-          docker tag $ECR_REPOSITORY_FILTERING $ECR_REGISTRY/$ECR_REPOSITORY_FILTERING:latest
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY_FILTERING:latest
-          echo "image_filtering=$ECR_REGISTRY/$ECR_REPOSITORY_FILTERING:$IMAGE_TAG" >> $GITHUB_OUTPUT
-
           docker build -f "Dockerfile.Unprocessed" -t $ECR_REPOSITORY_UNPROCESSED .
           docker tag $ECR_REPOSITORY_UNPROCESSED $ECR_REGISTRY/$ECR_REPOSITORY_UNPROCESSED:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY_UNPROCESSED:$IMAGE_TAG
@@ -108,17 +101,16 @@ jobs:
           image_uri: ${{ steps.build-image.outputs.image_filtering }}
 
       # Lambda Deploy
-      - name: Lambda Deploy
-        uses: appleboy/lambda-action@v0.1.9
-        with:
-          function_name: arms-unprocessed-8cd531
-          image_uri: ${{ steps.build-image.outputs.image_unprocessed }}
+      # - name: Lambda Deploy
+      #   uses: appleboy/lambda-action@v0.1.9
+      #   with:
+      #     function_name: arms-unprocessed-8cd531
+      #     image_uri: ${{ steps.build-image.outputs.image_unprocessed }}
 
       # Update Repository URL
       - name: Update repository url
         run: |
           aws ssm put-parameter --name $SSM_PARAMETER_NAME_CLOUDTRAIL --type "String" --value ${{ steps.build-image.outputs.image_cloudtrail }} --overwrite
-          aws ssm put-parameter --name $SSM_PARAMETER_NAME_FILTERING --type "String" --value ${{ steps.build-image.outputs.image_filtering }} --overwrite
           aws ssm put-parameter --name $SSM_PARAMETER_NAME_UNPROCESSED --type "String" --value ${{ steps.build-image.outputs.image_unprocessed }} --overwrite
       
       # Update event type table

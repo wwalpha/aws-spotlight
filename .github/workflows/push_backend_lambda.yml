@@ -1,0 +1,23 @@
+name: PUSH_B) Lambda Filtering Build
+
+on:
+  push:
+    paths:
+      - backend/src/filtering/**
+      - .github/workflows/push_backend_filtering.yml
+    branches-ignore:
+      - releases/**
+  workflow_dispatch:
+
+jobs:
+  Filtering:
+    uses: ./.github/workflows/reuse_lambda.yml
+    with:
+      region: us-east-1
+      working-directory: backend/src/filtering
+      environment: dev
+      outputs-bucket: arms-archive-8cd531
+      function-name: filtering
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
