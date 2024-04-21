@@ -23,6 +23,39 @@ resource "aws_dynamodb_table" "event_type" {
 }
 
 # ----------------------------------------------------------------------------------------------
+# Dynamodb Table - Raw
+# ----------------------------------------------------------------------------------------------
+resource "aws_dynamodb_table" "raw" {
+  name         = local.dynamodb_name_raw
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "EventId"
+
+  attribute {
+    name = "EventId"
+    type = "S"
+  }
+  attribute {
+    name = "EventName"
+    type = "S"
+  }
+  attribute {
+    name = "EventSource"
+    type = "S"
+  }
+
+  global_secondary_index {
+    name            = "gsiIdx1"
+    hash_key        = "EventSource"
+    range_key       = "EventName"
+    projection_type = "ALL"
+  }
+
+  lifecycle {
+    prevent_destroy = false
+  }
+}
+
+# ----------------------------------------------------------------------------------------------
 # Dynamodb Table - Resource
 # ----------------------------------------------------------------------------------------------
 resource "aws_dynamodb_table" "resource" {
