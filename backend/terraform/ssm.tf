@@ -2,10 +2,9 @@
 # SSM Parameter Store - CloudTrail repository url
 # ----------------------------------------------------------------------------------------------
 resource "aws_ssm_parameter" "cloudtrail_repo_url" {
-  name      = "/${local.project_name}/repository_url/cloudtrail"
-  type      = "String"
-  value     = "${data.aws_ecr_repository.cloudtrail.repository_url}:latest"
-  overwrite = true
+  name  = "/${local.project_name}/repository_url/cloudtrail"
+  type  = "String"
+  value = "${data.aws_ecr_repository.cloudtrail.repository_url}:latest"
 
   lifecycle {
     ignore_changes = [
