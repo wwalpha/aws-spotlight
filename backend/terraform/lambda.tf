@@ -60,7 +60,7 @@ resource "aws_lambda_function" "filtering" {
   s3_key            = data.aws_s3_object.lambda_filtering.key
   s3_object_version = data.aws_s3_object.lambda_filtering.version_id
   handler           = local.lambda_handler
-  memory_size       = 256
+  memory_size       = 512
   role              = aws_iam_role.cloudtrail.arn
   runtime           = local.lambda_runtime
   timeout           = 300
@@ -225,24 +225,32 @@ resource "aws_lambda_function_event_invoke_config" "authorizer" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# Lambda Function - Release
+# Lambda Function - Streaming
 # ----------------------------------------------------------------------------------------------
-# resource "aws_lambda_function" "release" {
-#   function_name     = "${local.project_name}-release-${local.suffix}"
-#   s3_bucket         = data.aws_s3_object.lambda_start.bucket
-#   s3_key            = data.aws_s3_object.lambda_start.key
-#   s3_object_version = data.aws_s3_object.lambda_start.version_id
-#   memory_size       = 256
-#   role              = aws_iam_role.cloudtrail.arn
-#   timeout           = 60
+resource "aws_lambda_function" "streaming" {
+  function_name     = "${local.project_name}-streaming-${local.suffix}"
+  s3_bucket         = data.aws_s3_object.lambda_filtering.bucket
+  s3_key            = data.aws_s3_object.lambda_filtering.key
+  s3_object_version = data.aws_s3_object.lambda_filtering.version_id
+  handler           = local.lambda_handler
+  memory_size       = 256
+  role              = aws_iam_role.cloudtrail.arn
+  runtime           = local.lambda_runtime
+  timeout           = 300
 
-#   environment {
-#     variables = {
-#       TABLE_NAME_RESOURCES   = local.dynamodb_name_resources
-#       TABLE_NAME_HISTORY     = local.dynamodb_name_resources
-#       BUCKET_NAME_ARCHIVE    = local.dynamodb_name_unprocessed
-#       BUCKET_NAME_CLOUDTRAIL = local.dynamodb_name_history
-#       SQS_URL                = data.aws_sqs_queue.cloudtrail.url
-#     }
-#   }
-# }
+  environment {
+    variables = {
+      TABLE_NAME_RAW    = local.dynamodb_name_raw
+      TABLE_NAME_EVENTS = local.dynamodb_name_events
+    }
+  }
+}
+
+# ---------------------------------------------------------------------------------------------
+# Lambda Event Source Mapping - Streaming
+# ---------------------------------------------------------------------------------------------
+resource "aws_lambda_event_source_mapping" "streaming" {
+  event_source_arn  = data.aws_dynamodb_table.raw.stream_arn
+  function_name     = aws_lambda_function.streaming.function_name
+  starting_position = "LATEST"
+}

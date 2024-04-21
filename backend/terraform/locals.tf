@@ -61,12 +61,12 @@ locals {
   bucket_name_archive     = local.remote_setup.bucket_name_archive
 
   bucket_key_lambda_filtering = local.remote_services.bucket_key_lambda_filtering
+  bucket_key_lambda_streaming = local.remote_services.bucket_key_lambda_streaming
 
   # ----------------------------------------------------------------------------------------------
   # ECR
   # ----------------------------------------------------------------------------------------------
   ecr_repository_cloudtrail  = local.remote_services.ecr_repository_cloudtrail
-  ecr_repository_filtering   = local.remote_services.ecr_repository_filtering
   ecr_repository_unprocessed = local.remote_services.ecr_repository_unprocessed
 
   # ----------------------------------------------------------------------------------------------
@@ -120,13 +120,6 @@ data "aws_ecr_repository" "cloudtrail" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# AWS ECR Repository - Filtering
-# ----------------------------------------------------------------------------------------------
-data "aws_ecr_repository" "filtering" {
-  name = local.ecr_repository_filtering
-}
-
-# ----------------------------------------------------------------------------------------------
 # AWS ECR Repository - Unprocessed
 # ----------------------------------------------------------------------------------------------
 data "aws_ecr_repository" "unprocessed" {
@@ -139,14 +132,6 @@ data "aws_ecr_repository" "unprocessed" {
 data "aws_ssm_parameter" "cloudtrail_repo_url" {
   depends_on = [aws_ssm_parameter.cloudtrail_repo_url]
   name       = aws_ssm_parameter.cloudtrail_repo_url.name
-}
-
-# ----------------------------------------------------------------------------------------------
-# SSM Parameter Store - Filtering repository url
-# ----------------------------------------------------------------------------------------------
-data "aws_ssm_parameter" "filtering_repo_url" {
-  depends_on = [aws_ssm_parameter.filtering_repo_url]
-  name       = aws_ssm_parameter.filtering_repo_url.name
 }
 
 # ----------------------------------------------------------------------------------------------
@@ -163,4 +148,19 @@ data "aws_ssm_parameter" "unprocessed_repo_url" {
 data "aws_s3_object" "lambda_filtering" {
   bucket = local.bucket_name_archive
   key    = local.bucket_key_lambda_filtering
+}
+
+# ----------------------------------------------------------------------------------------------
+# S3 Object - Lambda streaming module
+# ----------------------------------------------------------------------------------------------
+data "aws_s3_object" "lambda_streaming" {
+  bucket = local.bucket_name_archive
+  key    = local.bucket_key_lambda_streaming
+}
+
+# ----------------------------------------------------------------------------------------------
+# Dynamodb Table - raw
+# ----------------------------------------------------------------------------------------------
+data "aws_dynamodb_table" "raw" {
+  name = local.dynamodb_name_raw
 }
