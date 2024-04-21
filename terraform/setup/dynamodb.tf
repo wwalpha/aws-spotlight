@@ -36,6 +36,11 @@ resource "aws_dynamodb_table" "resource" {
   }
 
   attribute {
+    name = "ResourceName"
+    type = "S"
+  }
+
+  attribute {
     name = "EventSource"
     type = "S"
   }
@@ -53,7 +58,7 @@ resource "aws_dynamodb_table" "resource" {
   global_secondary_index {
     name            = "gsiIdx1"
     hash_key        = "EventSource"
-    range_key       = "ResourceId"
+    range_key       = "ResourceName"
     projection_type = "ALL"
   }
 
