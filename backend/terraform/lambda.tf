@@ -71,14 +71,8 @@ resource "aws_lambda_function" "filtering" {
 
   environment {
     variables = {
-      TABLE_NAME_EVENT_TYPE  = local.dynamodb_name_event_type
-      TABLE_NAME_EVENTS      = local.dynamodb_name_events
-      TABLE_NAME_RESOURCES   = local.dynamodb_name_resources
-      TABLE_NAME_RAW         = local.dynamodb_name_raw
-      TABLE_NAME_UNPROCESSED = local.dynamodb_name_unprocessed
-      TABLE_NAME_IGNORES     = local.dynamodb_name_ignores
-      SQS_URL                = data.aws_sqs_queue.filtering.url
-      SNS_TOPIC_ARN          = data.aws_sns_topic.admin.arn
+      TABLE_NAME_RAW = local.dynamodb_name_raw
+      SQS_URL        = data.aws_sqs_queue.filtering.url
     }
   }
 }
