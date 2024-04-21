@@ -1,0 +1,20 @@
+{
+  "name": "filtering",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc --init"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.137",
+    "@types/node": "^20.12.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.556.0",
+    "lodash": "^4.17.21",
+    "winston": "^3.13.0"
+  }
+}

@@ -53,8 +53,8 @@ export const executeFiltering = async (message: SQSRecord) => {
   Logger.info(`Excluding Error Records: ${records.length}`);
 
   // remove ignore records
-  records = Utilities.removeIgnore(records, EVENTS);
-  Logger.info(`Excluding Ignore Records: ${records.length}`);
+  // records = Utilities.removeIgnore(records, EVENTS);
+  // Logger.info(`Excluding Ignore Records: ${records.length}`);
 
   await Utilities.deleteSQSMessage(message);
 
@@ -182,8 +182,6 @@ export const processRecords = async (events: Tables.TEvents[]) => {
 
   // リソース情報を登録
   await DynamodbHelper.bulk(Environments.TABLE_NAME_RESOURCES, registItems);
-  // 履歴情報を登録
-  await DynamodbHelper.bulk(Environments.TABLE_NAME_HISTORY, histories);
 };
 
 // 新しいイベントの登録
