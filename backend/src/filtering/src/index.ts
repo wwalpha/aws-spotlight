@@ -1,4 +1,4 @@
-import { SNSMessage, SQSEvent, SQSRecord } from 'aws-lambda';
+import { SQSEvent, SQSRecord } from 'aws-lambda';
 import _ from 'lodash';
 import { CloudTrail } from 'typings';
 import { DynamodbHelper, Logger } from './utilities';
