@@ -79,8 +79,9 @@ locals {
   # ----------------------------------------------------------------------------------------------
   # SQS
   # ----------------------------------------------------------------------------------------------
-  sqs_name_cloudtrail    = local.remote_services.sqs_name_cloudtrail
-  sqs_name_filtering_raw = local.remote_services.sqs_name_filtering_raw
+  sqs_name_cloudtrail       = local.remote_services.sqs_name_cloudtrail
+  sqs_name_filtering_raw    = local.remote_services.sqs_name_filtering_raw
+  sqs_name_filtering_events = local.remote_services.sqs_name_filtering_events
 }
 
 # ----------------------------------------------------------------------------------------------
@@ -105,6 +106,13 @@ data "aws_sqs_queue" "cloudtrail" {
 # ----------------------------------------------------------------------------------------------
 data "aws_sqs_queue" "filtering_raw" {
   name = local.sqs_name_filtering_raw
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS SQS Queue
+# ----------------------------------------------------------------------------------------------
+data "aws_sqs_queue" "filtering_events" {
+  name = local.sqs_name_filtering_events
 }
 
 # ----------------------------------------------------------------------------------------------

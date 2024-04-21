@@ -72,7 +72,7 @@ resource "aws_lambda_function" "filtering_raw" {
   environment {
     variables = {
       TABLE_NAME_RAW = local.dynamodb_name_raw
-      SQS_URL        = data.aws_sqs_queue.filtering
+      SQS_URL        = data.aws_sqs_queue.filtering_raw.url
     }
   }
 }
@@ -114,7 +114,7 @@ resource "aws_lambda_function" "filtering_events" {
   s3_key            = data.aws_s3_object.lambda_filtering_events.key
   s3_object_version = data.aws_s3_object.lambda_filtering_events.version_id
   handler           = local.lambda_handler
-  memory_size       = 512
+  memory_size       = 1024
   role              = aws_iam_role.cloudtrail.arn
   runtime           = local.lambda_runtime
   timeout           = 300
