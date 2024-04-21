@@ -5,7 +5,6 @@ resource "aws_cloudwatch_event_rule" "unprocessed" {
   name                = "${local.project_name_uc}_UnprocessedRule"
   description         = "unprocessed schedule"
   schedule_expression = "cron(0 0/3 * * ? *)"
-  is_enabled          = true
 }
 
 # ----------------------------------------------------------------------------------------------
