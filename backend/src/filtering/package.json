@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "prebuild": "rm -rf dist",
-    "build": "tsc"
+    "build": "tsc",
+    "postbuild": "cd dist && zip -rq ../dist.zip ."
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.137",
