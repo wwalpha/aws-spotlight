@@ -75,6 +75,7 @@ locals {
   # ----------------------------------------------------------------------------------------------
   sns_topic_name_admin            = local.remote_services.sns_topic_name_admin
   sns_topic_name_filtering_events = local.remote_services.sns_topic_name_filtering_events
+  sns_topic_name_cloudtrail       = local.remote_services.sns_topic_name_cloudtrail
 
   # ----------------------------------------------------------------------------------------------
   # SQS
@@ -127,6 +128,13 @@ data "aws_sns_topic" "admin" {
 # ----------------------------------------------------------------------------------------------
 data "aws_sns_topic" "filtering_events" {
   name = local.sns_topic_name_filtering_events
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS SNS Topic
+# ----------------------------------------------------------------------------------------------
+data "aws_sns_topic" "cloudtrail" {
+  name = local.sns_topic_name_cloudtrail
 }
 
 # ----------------------------------------------------------------------------------------------

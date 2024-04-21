@@ -71,8 +71,9 @@ resource "aws_lambda_function" "filtering_raw" {
 
   environment {
     variables = {
-      TABLE_NAME_RAW = local.dynamodb_name_raw
-      SQS_URL        = data.aws_sqs_queue.filtering_raw.url
+      TABLE_NAME_RAW   = local.dynamodb_name_raw
+      SQS_URL_RAW      = data.aws_sqs_queue.filtering_raw.url
+      TOPIC_ARN_EVENTS = data.aws_sns_topic.filtering_events.arn
     }
   }
 }
@@ -125,8 +126,10 @@ resource "aws_lambda_function" "filtering_events" {
 
   environment {
     variables = {
-      TABLE_NAME_RAW = local.dynamodb_name_raw
-      SQS_URL        = data.aws_sqs_queue.filtering_raw.url
+      TABLE_NAME_RAW       = local.dynamodb_name_raw
+      TABLE_NAME_EVENTS    = local.dynamodb_name_events
+      SQS_URL_EVENTS       = data.aws_sqs_queue.filtering_events.url
+      TOPIC_ARN_CLOUDTRAIL = data.aws_sns_topic.cloudtrail.arn
     }
   }
 }
@@ -281,29 +284,29 @@ resource "aws_lambda_function_event_invoke_config" "authorizer" {
 # ----------------------------------------------------------------------------------------------
 # Lambda Function - Streaming
 # ----------------------------------------------------------------------------------------------
-resource "aws_lambda_function" "streaming" {
-  function_name     = "${local.project_name}-streaming-${local.suffix}"
-  s3_bucket         = data.aws_s3_object.lambda_streaming.bucket
-  s3_key            = data.aws_s3_object.lambda_streaming.key
-  s3_object_version = data.aws_s3_object.lambda_streaming.version_id
-  handler           = local.lambda_handler
-  memory_size       = 256
-  role              = aws_iam_role.streaming.arn
-  runtime           = local.lambda_runtime
-  timeout           = 30
+# resource "aws_lambda_function" "streaming" {
+#   function_name     = "${local.project_name}-streaming-${local.suffix}"
+#   s3_bucket         = data.aws_s3_object.lambda_streaming.bucket
+#   s3_key            = data.aws_s3_object.lambda_streaming.key
+#   s3_object_version = data.aws_s3_object.lambda_streaming.version_id
+#   handler           = local.lambda_handler
+#   memory_size       = 256
+#   role              = aws_iam_role.streaming.arn
+#   runtime           = local.lambda_runtime
+#   timeout           = 30
 
-  environment {
-    variables = {
-      EVENTS_TOPIC_ARN = data.aws_sns_topic.filtering_events.arn
-    }
-  }
-}
+#   environment {
+#     variables = {
+#       EVENTS_TOPIC_ARN = data.aws_sns_topic.filtering_events.arn
+#     }
+#   }
+# }
 
 # ---------------------------------------------------------------------------------------------
 # Lambda Event Source Mapping - Streaming
 # ---------------------------------------------------------------------------------------------
-resource "aws_lambda_event_source_mapping" "streaming" {
-  event_source_arn  = data.aws_dynamodb_table.raw.stream_arn
-  function_name     = aws_lambda_function.streaming.function_name
-  starting_position = "LATEST"
-}
+# resource "aws_lambda_event_source_mapping" "streaming" {
+#   event_source_arn  = data.aws_dynamodb_table.raw.stream_arn
+#   function_name     = aws_lambda_function.streaming.function_name
+#   starting_position = "LATEST"
+# }
