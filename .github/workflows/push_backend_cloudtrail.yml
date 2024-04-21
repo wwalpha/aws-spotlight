@@ -12,10 +12,8 @@ on:
 env:
   AWS_DEFAULT_REGION: us-east-1
   ECR_REPOSITORY_CLOUDTRAIL: arms/cloudtrail/8cd531
-  # ECR_REPOSITORY_FILTERING: arms/filtering/8cd531
   ECR_REPOSITORY_UNPROCESSED: arms/unprocessed/8cd531
   SSM_PARAMETER_NAME_CLOUDTRAIL: /arms/repository_url/cloudtrail/8cd531
-  # SSM_PARAMETER_NAME_FILTERING: /arms/repository_url/filtering/8cd531
   SSM_PARAMETER_NAME_UNPROCESSED: /arms/repository_url/unprocessed/8cd531
   WORKING_DIR: backend/src/cloudtrail
 
