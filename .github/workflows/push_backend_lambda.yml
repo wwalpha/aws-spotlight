@@ -3,34 +3,34 @@ name: PUSH_B) Lambda Building
 on:
   push:
     paths:
-      - backend/src/filtering/**
-      - backend/src/streaming/**
+      - backend/src/filtering_raw/**
+      - backend/src/filtering_events/**
       - .github/workflows/push_backend_filtering.yml
     branches-ignore:
       - releases/**
   workflow_dispatch:
 
 jobs:
-  Filtering:
+  FilteringRaw:
     uses: ./.github/workflows/reuse_lambda.yml
     with:
       region: us-east-1
-      working-directory: backend/src/filtering
+      working-directory: backend/src/filtering_raw
       environment: dev
       outputs-bucket: arms-archive-8cd531
-      function-name: filtering
+      function-name: filtering_raw
     secrets:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-  Streaming:
+  FilteringEvents:
     uses: ./.github/workflows/reuse_lambda.yml
     with:
       region: us-east-1
-      working-directory: backend/src/streaming
+      working-directory: backend/src/filtering_events
       environment: dev
       outputs-bucket: arms-archive-8cd531
-      function-name: streaming
+      function-name: filtering_events
     secrets:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
