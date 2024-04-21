@@ -165,3 +165,10 @@ output "cloudmap_service_user" {
 output "cloudmap_service_token" {
   value = aws_service_discovery_service.token.name
 }
+
+# ----------------------------------------------------------------------------------------------
+# Lambda module bucket key - Filtering
+# ----------------------------------------------------------------------------------------------
+output "bucket_key_lambda_filtering" {
+  value = local.bucket_key_lambda_filtering
+}

@@ -60,7 +60,7 @@ locals {
   bucket_name_environment = local.remote_setup.bucket_name_environment
   bucket_name_archive     = local.remote_setup.bucket_name_archive
 
-  bucket_key_lambda_filtering = local.remote_setup.bucket_key_lambda_filtering
+  bucket_key_lambda_filtering = local.remote_services.bucket_key_lambda_filtering
 
   # ----------------------------------------------------------------------------------------------
   # ECR
