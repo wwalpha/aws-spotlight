@@ -101,7 +101,7 @@ resource "aws_lambda_event_source_mapping" "filtering" {
   enabled                            = true
 
   scaling_config {
-    maximum_concurrency = 50
+    maximum_concurrency = 200
   }
 }
 
