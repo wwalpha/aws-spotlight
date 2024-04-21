@@ -1,11 +1,12 @@
+import { DeleteMessageCommand, SQSClient } from '@aws-sdk/client-sqs';
+import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { PublishCommand, SNSClient } from '@aws-sdk/client-sns';
 import winston from 'winston';
 import { DynamodbHelper as Helper } from '@alphax/dynamodb';
 import { defaultTo, orderBy } from 'lodash';
 import { SNSMessage, SQSRecord } from 'aws-lambda';
-import { DeleteMessageCommand, SQSClient } from '@aws-sdk/client-sqs';
-import { CloudTrail, Tables } from 'typings';
-import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { gunzipSync } from 'node:zlib';
+import { CloudTrail, Tables } from 'typings';
 
 const options: winston.LoggerOptions = {
   level: process.env.LOG_LEVEL,
@@ -17,8 +18,10 @@ export const DynamodbHelper = new Helper({ logger: options });
 export const Logger = winston.createLogger(options);
 
 const sqsClient = new SQSClient();
+const snsClient = new SNSClient();
 const s3Client = new S3Client();
-const SQS_URL = process.env.SQS_URL as string;
+const SQS_URL_RAW = process.env.SQS_URL_RAW as string;
+const TOPIC_ARN_EVENTS = process.env.TOPIC_ARN_EVENTS as string;
 
 /**
  * Get events record
@@ -26,7 +29,7 @@ const SQS_URL = process.env.SQS_URL as string;
  * @param record
  * @returns
  */
-export const getEventsItem = (record: CloudTrail.Record): Tables.TEvents => ({
+export const getEventsItem = (record: CloudTrail.Record): Tables.TRaw => ({
   EventId: record.eventID,
   EventName: record.eventName,
   EventSource: record.eventSource,
@@ -39,6 +42,15 @@ export const getEventsItem = (record: CloudTrail.Record): Tables.TEvents => ({
   Origin: JSON.stringify(record),
 });
 
+export const sendToSNS = async (ids: string[]) => {
+  // send to SNS
+  await snsClient.send(
+    new PublishCommand({
+      TopicArn: TOPIC_ARN_EVENTS,
+      Message: ids.join(', '),
+    })
+  );
+};
 /**
  * delete sqs message
  *
@@ -47,7 +59,7 @@ export const getEventsItem = (record: CloudTrail.Record): Tables.TEvents => ({
 export const deleteSQSMessage = async (message: SQSRecord) => {
   await sqsClient.send(
     new DeleteMessageCommand({
-      QueueUrl: SQS_URL,
+      QueueUrl: SQS_URL_RAW,
       ReceiptHandle: message.receiptHandle,
     })
   );
