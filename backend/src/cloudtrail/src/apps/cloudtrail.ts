@@ -1,16 +1,13 @@
-import { SNSMessage, SQSRecord } from 'aws-lambda';
-import { GetObjectCommand, S3 } from '@aws-sdk/client-s3';
-import { DynamoDB, TransactWriteItem } from '@aws-sdk/client-dynamodb';
-import _, { orderBy, uniqBy } from 'lodash';
-import zlib from 'zlib';
-import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
+import { SQSRecord } from 'aws-lambda';
+import { TransactWriteItem } from '@aws-sdk/client-dynamodb';
+import _ from 'lodash';
+import { EVENT_TYPE, Tables } from 'typings';
 import { Utilities, Consts, DynamodbHelper, Logger } from './utils';
 import { sendMail } from './utils/utilities';
 import * as ArnService from '@src/process/ArnService';
-import { ResourceService } from '@src/services';
+import { EventService, ResourceService } from '@src/services';
 import { Environments } from './utils/consts';
 
-const s3Client = new S3();
 const NOTIFIED: EVENT_TYPE = {};
 const EVENTS: EVENT_TYPE = {};
 
@@ -36,50 +33,32 @@ export const initializeEvents = async () => {
 };
 
 /**
- * Process SQS Message
- *
- * @param message
- */
-export const executeFiltering = async (message: SQSRecord) => {
-  let records = await getRecords(message.body);
-  Logger.info(`Process All Records: ${records.length}`);
-
-  // remove readonly records
-  records = Utilities.removeReadOnly(records);
-  Logger.info(`Excluding ReadOnly Records: ${records.length}`);
-
-  // remove error records
-  records = Utilities.removeError(records);
-  Logger.info(`Excluding Error Records: ${records.length}`);
-
-  // remove ignore records
-  // records = Utilities.removeIgnore(records, EVENTS);
-  // Logger.info(`Excluding Ignore Records: ${records.length}`);
-
-  await Utilities.deleteSQSMessage(message);
-
-  return records;
-};
-
-/**
  * Process events
  *
  * @param message
  */
-export const execute = async (events: Tables.TEvents[]) => {
-  // 新規イベント
-  await processNewRecords(events);
+export const execute = async (message: SQSRecord) => {
+  // get all records
+  const results = await Promise.all(
+    message.body.split(',').map(async (eventId) => EventService.describe({ EventId: eventId }))
+  );
 
-  let hasError = false;
+  const dataRows = results.filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
-  try {
-    await processRecords(events);
-  } catch (err) {
-    hasError = true;
-    Logger.error(err);
-  }
+  // 新規イベントの処理
+  await processNewRecords(dataRows);
+  // 既存イベントの処理
+  await processRecords(dataRows);
+
+  // delete message
+  await Utilities.deleteSQSMessage(message);
+
+  Logger.info(`Delete Message: ${message.messageId}`);
 };
 
+/**
+ * Process new records
+ */
 const processNewRecords = async (records: Tables.TEvents[]) => {
   const newRecords = records.filter((item) => {
     const service = item.EventSource.split('.')[0].toUpperCase();
@@ -89,12 +68,14 @@ const processNewRecords = async (records: Tables.TEvents[]) => {
   });
 
   // 一括登録イベント
-  const tasks = newRecords.map((item) => processNewEventType(item));
-
-  await Promise.all(tasks);
+  await Promise.all(newRecords.map((item) => processNewEventType(item)));
 };
 
-export const processRecords = async (events: Tables.TEvents[]) => {
+/**
+ * Process records
+ * @param events
+ */
+const processRecords = async (events: Tables.TEvents[]) => {
   // 処理対象のみ
   const targets = events.filter((item) => {
     const service = item.EventSource.split('.')[0].toUpperCase();
@@ -107,7 +88,6 @@ export const processRecords = async (events: Tables.TEvents[]) => {
     return false;
   });
 
-  const histories: Tables.THistory[] = [];
   const resources: Tables.TResource[] = [];
   const unprocesses: Tables.TUnprocessed[] = [];
 
@@ -119,10 +99,6 @@ export const processRecords = async (events: Tables.TEvents[]) => {
       unprocesses.push(Utilities.getUnprocessedItem(item, 'NEW'));
     } else {
       arns.forEach((arn) => resources.push(arn));
-      histories.push(Utilities.getHistoryItem(item));
-
-      // Logger.info(JSON.stringify(item));
-      // Logger.info(JSON.stringify(arns));
     }
   });
 
@@ -217,58 +193,4 @@ const processNewEventType = async (record: Tables.TEvents) => {
 
     await sendMail('New Event Type', `Event Source: ${record.EventSource}, Event Name: ${record.EventName}`);
   }
-};
-
-/**
- * get all s3 bucket object
- *
- * @param message
- * @returns
- */
-export const getRecords = async (message: string): Promise<CloudTrail.Record[]> => {
-  const snsMessage = JSON.parse(message) as SNSMessage;
-
-  // skip validation message
-  if (snsMessage.Message.startsWith('CloudTrail validation message')) {
-    return [];
-  }
-
-  const payload = JSON.parse(snsMessage.Message) as CloudTrail.Payload;
-
-  // get files
-  const tasks = payload.s3ObjectKey.map((item) =>
-    s3Client.send(
-      new GetObjectCommand({
-        Bucket: payload.s3Bucket,
-        Key: item,
-      })
-    )
-  );
-
-  // get all files
-  const files = await Promise.all(tasks);
-
-  // unzip content
-  const records = (
-    await Promise.all(
-      files.map(async (item) => {
-        const content = await item.Body?.transformToByteArray();
-
-        if (!content) return undefined;
-
-        // @ts-ignore
-        return JSON.parse(zlib.gunzipSync(content)) as CloudTrail.Event;
-      })
-    )
-  ).filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
-
-  Logger.debug('Records', records);
-
-  // merge all records
-  const newArray = records.reduce((prev, curr) => {
-    return [...prev, ...curr.Records];
-  }, [] as CloudTrail.Record[]);
-
-  // 時間順
-  return orderBy(newArray, ['eventTime'], ['asc']);
 };

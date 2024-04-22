@@ -1,13 +1,6 @@
 import { Consts, DynamodbHelper, Logger, ResourceARNs } from '@src/apps/utils';
-import {
-  DescribeSecurityGroupsCommand,
-  DescribeVpcsCommand,
-  EC2Client,
-  GetSecurityGroupsForVpcCommand,
-  GetSecurityGroupsForVpcCommandOutput,
-} from '@aws-sdk/client-ec2';
-import { capitalize, defaultTo } from 'lodash';
-import { CloudTrail, ResourceInfo, Tables } from 'typings';
+import { capitalize } from 'lodash';
+import { ResourceInfo, Tables } from 'typings';
 import { ResourceService } from '@src/services';
 
 const MULTI_TASK = [
@@ -18,6 +11,8 @@ const MULTI_TASK = [
   'MONITORING_DeleteAlarms',
   'MONITORING_DeleteDashboards',
 ];
+
+const users: Record<string,string> = {}
 
 export const start = async (record: Tables.TEvents): Promise<Tables.TResource[]> => {
   const serviceName = record.EventSource.split('.')[0].toUpperCase();
@@ -35,9 +30,11 @@ export const start = async (record: Tables.TEvents): Promise<Tables.TResource[]>
       ...regists,
       ...removes.filter((item): item is Exclude<typeof item, undefined> => item !== undefined),
     ];
+    // ユーザ名取得
+    const userName = await getUserName(record.UserName);
 
     return resources.map((item) => ({
-      UserName: record.UserName,
+      UserName: userName,
       ResourceId: item.id,
       ResourceName: item.name,
       EventName: record.EventName,
@@ -481,7 +478,7 @@ const getRegistSingleResource = (record: Tables.TEvents): ResourceInfo[] => {
       break;
 
     case 'IAM_CreateRole':
-      rets = [response.role.arn, response.role.roleName];
+      rets = [response.role.arn, request.roleName];
       break;
 
     case 'IAM_CreateSAMLProvider':
@@ -988,4 +985,19 @@ const getServiceName = (serviceName: string) => {
   if (serviceName === 'DS') return 'DirectoryService';
 
   return capitalize(serviceName);
+};
+
+const getUserName = async (userName: string) => {
+  if (userName.startsWith('AWSServiceRole')) return userName;
+  if (userName.endsWith('@dxc.com')) return userName;
+  if (Object.keys(users).includes(userName)) return users[userName];
+
+  const result = await ResourceService.getByName('iam.amazonaws.com', userName);
+
+  if (result.length !== 1) return userName;
+
+  // backup
+  users[userName] = result[0].UserName;
+
+  return result[0].UserName;
 };

@@ -10,6 +10,7 @@
     "events": "ts-node -r dotenv/config src/events.ts",
     "patch": "ts-node -r dotenv/config src/utils.ts",
     "patch:prod": "ts-node -r dotenv/config src/utils.ts dotenv_config_path=.env.prod",
+    "debug": "ts-node -r dotenv/config src/debug.ts",
     "test": "jest"
   },
   "devDependencies": {

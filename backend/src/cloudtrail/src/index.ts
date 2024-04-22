@@ -1,59 +1,32 @@
-import { SQSEvent } from 'aws-lambda';
 import _ from 'lodash';
-import { execute, executeFiltering, initializeEvents } from './apps/cloudtrail';
+import { Handler, SQSEvent } from 'aws-lambda';
+import { execute, initializeEvents } from './apps/cloudtrail';
 import { processIgnore, processUpdate } from './apps/unprocessed';
 import { Logger } from './apps/utils/utilities';
 import { EventTypeService, UnprocessedService } from './services';
-import { CloudTrail, Tables } from 'typings';
-import { DynamodbHelper, Utilities } from './apps/utils';
-import { Environments } from './apps/utils/consts';
 
 /**
  * App Entry
  *
  * @returns
  */
-export const cloudtrail = async (events: Tables.TEvents[]) => {
-  // Logger.info('events', events);
+export const cloudtrail: Handler = async (events: SQSEvent) => {
+  Logger.info('events', events);
 
-  // get event type definition
-  await initializeEvents();
+  try {
+    // get event type definition
+    await initializeEvents();
 
-  // execute
-  await execute(events);
-};
-
-/**
- * App Entry
- *
- * @returns
- */
-export const filtering = async (event: SQSEvent) => {
-  Logger.info('event', event);
-
-  Logger.info(`Start process records, ${event.Records.length}`);
-
-  const results = await Promise.all(
-    event.Records.map(async (item) => {
-      return await executeFiltering(item);
-    })
-  );
-
-  const records = results.reduce((prev, curr) => {
-    return [...prev, ...curr];
-  }, [] as CloudTrail.Record[]);
-
-  // no records
-  if (records.length === 0) return;
-
-  // get unique records
-  const dataRows = _.uniqBy(
-    records.map((item) => Utilities.getEventsItem(item)),
-    'EventId'
-  );
-
-  // bulk insert
-  await DynamodbHelper.bulk(Environments.TABLE_NAME_RAW, dataRows);
+    // execute process
+    await Promise.all(
+      events.Records.map(async (item) => {
+        // execute
+        await execute(item);
+      })
+    );
+  } catch (e) {
+    Logger.error(e);
+  }
 };
 
 /**
