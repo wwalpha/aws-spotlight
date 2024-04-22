@@ -157,6 +157,11 @@ export const processRecords = async (events: Tables.TEvents[]) => {
       registItem.Status = lastestRes.Status;
     }
 
+    // リソース名が未設定の場合、リソースIDから取得
+    if (registItem.ResourceName === undefined) {
+      registItem.ResourceName = registItem.ResourceId.split('/')[1];
+    }
+
     return registItem;
   });
 
