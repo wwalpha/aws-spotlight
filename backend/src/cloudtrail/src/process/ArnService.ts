@@ -587,7 +587,12 @@ const getRemoveSingleResource = async (record: Tables.TEvents): Promise<Resource
       break;
 
     case 'CONNECT_DeleteInstance':
-      arn = decodeURIComponent(request.InstanceId);
+      if (request.InstanceId.length === 36) {
+        arn = ResourceARNs.CONNECT_Instance(region, account, request.InstanceId);
+      } else {
+        arn = decodeURIComponent(request.InstanceId);
+      }
+
       break;
 
     case 'CODEDEPLOY_DeleteApplication':
