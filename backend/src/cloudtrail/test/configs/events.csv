@@ -186,3 +186,6 @@ PutRule,events.amazonaws.com,create
 DeleteRule,events.amazonaws.com,delete
 CreateFileSystem,fsx.amazonaws.com,create
 DeleteFileSystem,fsx.amazonaws.com,delete
+CreateEnvironmentEC2,cloud9.amazonaws.com,create
+CreateEnvironmentSSH,cloud9.amazonaws.com,create
+DeleteEnvironment,cloud9.amazonaws.com,delete
