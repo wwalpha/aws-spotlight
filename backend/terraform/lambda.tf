@@ -27,7 +27,7 @@ resource "aws_lambda_function" "cloudtrail" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# Lambda Function - CloudTrail
+# Lambda Function Event Invok Dead Queue - CloudTrail
 # ----------------------------------------------------------------------------------------------
 resource "aws_lambda_function_event_invoke_config" "cloudtrail" {
   function_name = aws_lambda_function.cloudtrail.function_name
