@@ -59,7 +59,7 @@ resource "aws_lambda_function" "filtering_raw" {
   s3_key            = data.aws_s3_object.lambda_filtering_raw.key
   s3_object_version = data.aws_s3_object.lambda_filtering_raw.version_id
   handler           = local.lambda_handler
-  memory_size       = 1024
+  memory_size       = 2048
   role              = aws_iam_role.cloudtrail.arn
   runtime           = local.lambda_runtime
   timeout           = 300
