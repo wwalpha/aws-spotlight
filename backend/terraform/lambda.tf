@@ -5,7 +5,7 @@ resource "aws_lambda_function" "cloudtrail" {
   function_name = "${local.project_name}-cloudtrail-${local.suffix}"
   package_type  = "Image"
   image_uri     = data.aws_ssm_parameter.cloudtrail_repo_url.value
-  memory_size   = 1024
+  memory_size   = 512
   role          = aws_iam_role.cloudtrail.arn
   timeout       = 300
   environment {
