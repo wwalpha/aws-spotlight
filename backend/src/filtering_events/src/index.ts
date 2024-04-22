@@ -70,6 +70,9 @@ const filtering = async (message: SQSRecord) => {
 
     Logger.info(`Bulk Insert: ${eventRows.length}`);
 
+    // send to sns
+    await Utilities.sendToSNS(eventRows);
+
     // delete message
     await Utilities.deleteSQSMessage(message);
 
