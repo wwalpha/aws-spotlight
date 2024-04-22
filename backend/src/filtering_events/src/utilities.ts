@@ -60,7 +60,6 @@ export const getEventsItem = (record: CloudTrail.Record): Tables.TEvents => ({
   RequestParameters: JSON.stringify(record.requestParameters),
   ResponseElements: record.responseElements !== undefined ? JSON.stringify(record.responseElements) : undefined,
   AccountId: record.recipientAccountId,
-  Origin: JSON.stringify(record),
 });
 
 /**

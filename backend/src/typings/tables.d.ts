@@ -36,7 +36,6 @@ export namespace Tables {
     AccountId: string;
     RequestParameters: string;
     ResponseElements?: string;
-    Origin: string;
   }
 
   /**
