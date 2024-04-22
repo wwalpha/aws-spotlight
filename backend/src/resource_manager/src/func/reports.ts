@@ -15,7 +15,7 @@ export const reports = async (): Promise<void> => {
   const dataRows: string[] = [];
 
   // title
-  dataRows.push('"UserName","Service","ResourceName","EventName","EventTime","ResourceId"');
+  dataRows.push('"UserName","Service","Region","ResourceName","EventName","EventTime","ResourceId"');
 
   resources.forEach((item) => {
     const arns = item.ResourceId.split(':');
@@ -23,7 +23,7 @@ export const reports = async (): Promise<void> => {
 
     // invalid arn
     if (arns.length < 6) {
-      console.log('Invalid ARN', item.ResourceId );
+      console.log('Invalid ARN', item.ResourceId);
       return;
     }
 
@@ -37,7 +37,7 @@ export const reports = async (): Promise<void> => {
 
     // rows
     dataRows.push(
-      `"${item.UserName}","${item.Service}","${item.ResourceName}","${item.EventName}","${item.EventTime.substring(
+      `"${item.UserName}","${item.AWSRegion}","${item.Service}","${item.ResourceName}","${item.EventName}","${item.EventTime.substring(
         0,
         10
       )}","${item.ResourceId}"`

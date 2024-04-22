@@ -26,7 +26,7 @@ export const del = (key: Tables.TResourceKey): DeleteItemInput => ({
 /** データ */
 export const queryByCreated = (): ScanInput => ({
   TableName: Environments.TABLE_NAME_RESOURCES,
-  ProjectionExpression: 'ResourceId, ResourceName, EventName, EventTime, EventSource, UserName, Service',
+  ProjectionExpression: 'ResourceId, ResourceName, AWSRegion, EventName, EventTime, EventSource, UserName, Service',
   FilterExpression: '#Status = :Status',
   ExpressionAttributeNames: {
     '#Status': 'Status',
