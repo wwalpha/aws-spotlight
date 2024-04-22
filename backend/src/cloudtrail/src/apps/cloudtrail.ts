@@ -75,7 +75,7 @@ const processNewRecords = async (records: Tables.TEvents[]) => {
  * Process records
  * @param events
  */
-const processRecords = async (events: Tables.TEvents[]) => {
+export const processRecords = async (events: Tables.TEvents[]) => {
   // 処理対象のみ
   const targets = events.filter((item) => {
     const service = item.EventSource.split('.')[0].toUpperCase();

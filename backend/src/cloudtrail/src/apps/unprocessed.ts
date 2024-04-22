@@ -1,4 +1,4 @@
-import { CloudTrail, Tables } from 'typings';
+import { Tables } from 'typings';
 import { Consts, DynamodbHelper } from './utils';
 import { Logger } from './utils/utilities';
 import _ from 'lodash';
@@ -54,34 +54,24 @@ export const processIgnore = async (events: Tables.TEventType[]) => {
 export const processUpdate = async (events: Tables.TEventType[]) => {
   // const records = await getUnprocessedRecords(events);
   // const eventSources: EVENT_UNPROCESSED = groupByEventSource(records);
-
   // const dataRows = records.map((r) => JSON.parse(r.Raw) as CloudTrail.Record);
-
   // await processRecords(dataRows);
-
   // await DynamodbHelper.truncate(
   //   Consts.Environments.TABLE_NAME_UNPROCESSED,
   //   records.map((r) => ({ EventName: r.EventName, EventTime: r.EventTime }))
   // );
-
   // const tasks = Object.keys(eventSources).map(async (item) => {
   //   const values = eventSources[item];
-
   //   const sorted = _.orderBy(values, ['EventTime'], ['asc']);
-
   //   // TODO
   //   // sorted.forEach((item) => console.log(item.EventName, item.EventSource, item.EventTime));
-
   //   for (;;) {
   //     const record = sorted.shift();
-
   //     // error check
   //     if (!record) break;
-
   //     try {
   //       // parse raw data
   //       const item = JSON.parse(record.Raw) as CloudTrail.Record;
-
   //       await processRecord(item);
   //     } catch (err) {
   //       // dynamodb condition check
@@ -89,12 +79,10 @@ export const processUpdate = async (events: Tables.TEventType[]) => {
   //         Logger.error(err);
   //         return;
   //       }
-
   //       throw err;
   //     }
   //   }
   // });
-
   // await Promise.all(tasks);
 };
 
