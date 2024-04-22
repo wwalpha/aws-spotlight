@@ -12,7 +12,7 @@ const MULTI_TASK = [
   'MONITORING_DeleteDashboards',
 ];
 
-const users: Record<string,string> = {}
+const users: Record<string, string> = {};
 
 export const start = async (record: Tables.TEvents): Promise<Tables.TResource[]> => {
   const serviceName = record.EventSource.split('.')[0].toUpperCase();

@@ -92,15 +92,20 @@ export const processRecords = async (events: Tables.TEvents[]) => {
   const unprocesses: Tables.TUnprocessed[] = [];
 
   // 処理可能なデータを分ける
-  targets.forEach(async (item) => {
+  for (;;) {
+    const item = targets.pop();
+    if (item === undefined) break;
+
     const arns = await ArnService.start(item);
 
     if (arns.length === 0) {
       unprocesses.push(Utilities.getUnprocessedItem(item, 'NEW'));
     } else {
-      arns.forEach((arn) => resources.push(arn));
+      arns.forEach((arn) => {
+        resources.push(arn);
+      });
     }
-  });
+  }
 
   // 処理不能なデータを未処理テーブルに登録する
   await DynamodbHelper.bulk(Environments.TABLE_NAME_UNPROCESSED, unprocesses);
