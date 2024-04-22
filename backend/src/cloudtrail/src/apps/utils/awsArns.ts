@@ -61,6 +61,10 @@ export const ResourceARNs = {
   DS_Directory: (region: string, account: string, id?: string) =>
     `arn:aws:clouddirectory:${region}:${account}:directory/${id}`,
 
+  // dms
+  DMS_ReplicationInstance: (region: string, account: string, id?: string) =>
+    `arn:aws:dms:${region}:${account}:rep/${id}`,
+
   // codecommit
   CODECOMMIT_Repository: (region: string, account: string, id?: string) =>
     `arn:aws:codecommit:${region}:${account}:${id}`,

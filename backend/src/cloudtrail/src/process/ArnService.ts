@@ -167,7 +167,11 @@ const getRegistSingleResource = (record: Tables.TEvents): ResourceInfo[] => {
 
     case 'DMS_CreateReplicationInstance':
       rets = [
-        response.replicationInstance.replicationInstanceArn,
+        ResourceARNs.DMS_ReplicationInstance(
+          region,
+          account,
+          response.replicationInstance.replicationInstanceIdentifier
+        ),
         response.replicationInstance.replicationInstanceIdentifier,
       ];
       break;
@@ -630,7 +634,11 @@ const getRemoveSingleResource = async (record: Tables.TEvents): Promise<Resource
       break;
 
     case 'DMS_DeleteReplicationInstance':
-      arn = response.replicationInstance.replicationInstanceArn;
+      arn = ResourceARNs.DMS_ReplicationInstance(
+        region,
+        account,
+        response.replicationInstance.replicationInstanceIdentifier
+      );
       break;
 
     case 'ES_DeleteElasticsearchDomain':
