@@ -1,4 +1,4 @@
-import { Handler, SQSEvent, SQSRecord } from 'aws-lambda';
+import { Handler, SNSMessage, SQSEvent, SQSRecord } from 'aws-lambda';
 import _ from 'lodash';
 import { DynamodbHelper, Logger } from './utilities';
 import * as Utilities from './utilities';
@@ -45,7 +45,7 @@ const getDataRows = async (eventIds: string[]) => {
  * @param message
  */
 const filtering = async (message: SQSRecord) => {
-  const eventIds = message.body.split(',');
+  const eventIds = (JSON.parse(message.body) as SNSMessage).Message.split(',');
   // get data rows
   const dataRows = await getDataRows(eventIds);
 

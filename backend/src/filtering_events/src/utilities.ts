@@ -113,7 +113,7 @@ export const sendToSNS = async (events: Tables.TEvents[]) => {
   await snsClient.send(
     new PublishCommand({
       TopicArn: TOPIC_ARN_CLOUDTRAIL,
-      Message: events.map((item) => item.EventId).join(', '),
+      Message: events.map((item) => item.EventId).join(','),
     })
   );
 };

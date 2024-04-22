@@ -47,7 +47,7 @@ export const sendToSNS = async (ids: string[]) => {
   await snsClient.send(
     new PublishCommand({
       TopicArn: TOPIC_ARN_EVENTS,
-      Message: ids.join(', '),
+      Message: ids.join(','),
     })
   );
 };
