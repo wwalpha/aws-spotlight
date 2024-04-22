@@ -5,7 +5,7 @@ resource "aws_lambda_function" "cloudtrail" {
   function_name = "${local.project_name}-cloudtrail-${local.suffix}"
   package_type  = "Image"
   image_uri     = data.aws_ssm_parameter.cloudtrail_repo_url.value
-  memory_size   = 512
+  memory_size   = 1024
   role          = aws_iam_role.cloudtrail.arn
   timeout       = 300
   environment {
@@ -59,7 +59,7 @@ resource "aws_lambda_function" "filtering_raw" {
   s3_key            = data.aws_s3_object.lambda_filtering_raw.key
   s3_object_version = data.aws_s3_object.lambda_filtering_raw.version_id
   handler           = local.lambda_handler
-  memory_size       = 512
+  memory_size       = 1024
   role              = aws_iam_role.cloudtrail.arn
   runtime           = local.lambda_runtime
   timeout           = 300
@@ -114,7 +114,7 @@ resource "aws_lambda_function" "filtering_events" {
   s3_key            = data.aws_s3_object.lambda_filtering_events.key
   s3_object_version = data.aws_s3_object.lambda_filtering_events.version_id
   handler           = local.lambda_handler
-  memory_size       = 512
+  memory_size       = 1024
   role              = aws_iam_role.cloudtrail.arn
   runtime           = local.lambda_runtime
   timeout           = 300
