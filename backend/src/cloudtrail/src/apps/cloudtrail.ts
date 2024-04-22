@@ -51,7 +51,7 @@ export const execute = async (message: SQSRecord) => {
   await processRecords(dataRows);
 
   // delete message
-  await Utilities.deleteSQSMessage(message);
+  await Utilities.deleteSQSMessage(Consts.SQS_URL_CLOUDTRAIL, message);
 
   Logger.info(`Delete Message: ${message.messageId}`);
 };

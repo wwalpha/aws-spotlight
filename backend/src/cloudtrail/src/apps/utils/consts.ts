@@ -12,3 +12,5 @@ export const ResourceStatus = {
 };
 
 export const SERVICE_EVENT = {};
+
+export const SQS_URL_CLOUDTRAIL = process.env.SQS_URL_CLOUDTRAIL as string;

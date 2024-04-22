@@ -9,7 +9,6 @@ import { Consts } from '.';
 
 const sqsClient = new SQSClient();
 const snsClient = new SNSClient();
-const SQS_URL = process.env.SQS_URL as string;
 
 export const LoggerOptions: winston.LoggerOptions = {
   level: process.env.LOG_LEVEL,
@@ -99,30 +98,14 @@ export const getDeleteRecord = (tableName: string, key: Record<string, any>): Tr
 });
 
 /**
- * Receive SQS Messages
- *
- * @returns
- */
-export const getSQSMessages = async () => {
-  const sqsResults = await sqsClient.send(
-    new ReceiveMessageCommand({
-      QueueUrl: SQS_URL,
-      MaxNumberOfMessages: 10,
-    })
-  );
-
-  return (sqsResults.Messages ??= []);
-};
-
-/**
  * delete sqs message
  *
  * @param message
  */
-export const deleteSQSMessage = async (message: SQSRecord) => {
+export const deleteSQSMessage = async (url: string, message: SQSRecord) => {
   await sqsClient.send(
     new DeleteMessageCommand({
-      QueueUrl: SQS_URL,
+      QueueUrl: url,
       ReceiptHandle: message.receiptHandle,
     })
   );
