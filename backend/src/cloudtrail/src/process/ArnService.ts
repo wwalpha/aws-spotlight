@@ -132,6 +132,14 @@ const getRegistSingleResource = (record: Tables.TEvents): ResourceInfo[] => {
       rets = [ResourceARNs.CODECOMMIT_Repository(region, account, request.repositoryName), request.repositoryName];
       break;
 
+    case 'CLOUD9_CreateEnvironmentEC2':
+      rets = [ResourceARNs.CLOUD9_Environment(region, account, response.environmentId), request.name];
+      break;
+
+    case 'CLOUD9_CreateEnvironmentSSH':
+      rets = [ResourceARNs.CLOUD9_Environment(region, account, response.environmentId), request.name];
+      break;
+
     case 'CLOUDFORMATION_CreateStack':
       const createStackIndex = response.stackId.lastIndexOf('/');
 
@@ -605,6 +613,10 @@ const getRemoveSingleResource = async (record: Tables.TEvents): Promise<Resource
 
     case 'CODECOMMIT_DeleteRepository':
       arn = ResourceARNs.CODECOMMIT_Repository(region, account, request.repositoryName);
+      break;
+
+    case 'CLOUD9_DeleteEnvironment':
+      arn = ResourceARNs.CLOUD9_Environment(region, account, request.environmentId);
       break;
 
     case 'CLOUDFORMATION_DeleteStack':

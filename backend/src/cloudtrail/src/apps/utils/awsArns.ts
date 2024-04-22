@@ -80,6 +80,10 @@ export const ResourceARNs = {
   COGNITO_IDENTITYPOOL: (region: string, account: string, id?: string) =>
     `arn:aws:cognito-identity:${region}:${account}:identitypool/${id}`,
 
+  // cloud9
+  CLOUD9_Environment: (region: string, account: string, id: string) =>
+    `arn:aws:cloud9:${region}:${account}:environment:${id}`,
+
   // cloudformation
   CLOUDFORMATION_Stack: (region: string, account: string, stackName: string) =>
     `arn:aws:cloudformation:${region}:${account}:stack/${stackName}`,
