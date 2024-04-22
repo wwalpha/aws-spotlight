@@ -76,6 +76,8 @@ const processNewRecords = async (records: Tables.TEvents[]) => {
  * @param events
  */
 export const processRecords = async (events: Tables.TEvents[]) => {
+  Logger.info('Start execute process records...');
+
   // 処理対象のみ
   const targets = events.filter((item) => {
     const service = item.EventSource.split('.')[0].toUpperCase();

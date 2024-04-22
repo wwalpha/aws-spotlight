@@ -25,8 +25,7 @@ export const del = (key: Tables.TResourceKey): DeleteItemInput => ({
 
 export const queryByName = (eventSource: string, name: string): QueryInput => ({
   TableName: Consts.Environments.TABLE_NAME_RESOURCES,
-  KeyConditionExpression: '#EventSource = :EventSource',
-  FilterExpression: '#ResourceName = :ResourceName',
+  KeyConditionExpression: '#EventSource = :EventSource AND #ResourceName = :ResourceName',
   ExpressionAttributeNames: {
     '#EventSource': 'EventSource',
     '#ResourceName': 'ResourceName',
