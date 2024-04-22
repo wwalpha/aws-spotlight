@@ -51,6 +51,7 @@ export const sendToSNS = async (ids: string[]) => {
     })
   );
 };
+
 /**
  * delete sqs message
  *

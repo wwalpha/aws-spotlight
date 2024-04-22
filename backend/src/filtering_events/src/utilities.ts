@@ -4,6 +4,11 @@ import { defaultTo } from 'lodash';
 import { SQSRecord } from 'aws-lambda';
 import { DeleteMessageCommand, SQSClient } from '@aws-sdk/client-sqs';
 import { CloudTrail, EVENT_TYPE, Tables } from 'typings';
+import { PublishCommand, SNSClient } from '@aws-sdk/client-sns';
+
+const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
+const SQS_URL_EVENTS = process.env.SQS_URL_EVENTS as string;
+const TOPIC_ARN_CLOUDTRAIL = process.env.TOPIC_ARN_CLOUDTRAIL as string;
 
 const options: winston.LoggerOptions = {
   level: process.env.LOG_LEVEL,
@@ -15,9 +20,8 @@ export const DynamodbHelper = new Helper({ logger: options });
 export const Logger = winston.createLogger(options);
 
 const sqsClient = new SQSClient();
-const SQS_URL = process.env.SQS_URL as string;
+const snsClient = new SNSClient();
 const EVENTS: EVENT_TYPE = {};
-const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
 
 /**
  * Initialize Event Type Definition
@@ -67,7 +71,7 @@ export const getEventsItem = (record: CloudTrail.Record): Tables.TEvents => ({
 export const deleteSQSMessage = async (message: SQSRecord) => {
   await sqsClient.send(
     new DeleteMessageCommand({
-      QueueUrl: SQS_URL,
+      QueueUrl: SQS_URL_EVENTS,
       ReceiptHandle: message.receiptHandle,
     })
   );
@@ -102,4 +106,14 @@ export const removeIgnore = (dataRows: Tables.TRaw[]) => {
 
     return event.Ignore !== true;
   });
+};
+
+export const sendToSNS = async (events: Tables.TEvents[]) => {
+  // send to SNS
+  await snsClient.send(
+    new PublishCommand({
+      TopicArn: TOPIC_ARN_CLOUDTRAIL,
+      Message: events.map((item) => item.EventId).join(', '),
+    })
+  );
 };

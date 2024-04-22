@@ -16,7 +16,7 @@ export const handler: Handler = async (event: SQSEvent) => {
 
   await Promise.all(
     event.Records.map(async (item) => {
-      return await processMessage(item);
+      return await filtering(item);
     })
   );
 };
@@ -44,7 +44,7 @@ const getDataRows = async (eventIds: string[]) => {
  *
  * @param message
  */
-const processMessage = async (message: SQSRecord) => {
+const filtering = async (message: SQSRecord) => {
   const eventIds = message.body.split(',');
   // get data rows
   const dataRows = await getDataRows(eventIds);

@@ -126,10 +126,11 @@ resource "aws_lambda_function" "filtering_events" {
 
   environment {
     variables = {
-      TABLE_NAME_RAW       = local.dynamodb_name_raw
-      TABLE_NAME_EVENTS    = local.dynamodb_name_events
-      SQS_URL_EVENTS       = data.aws_sqs_queue.filtering_events.url
-      TOPIC_ARN_CLOUDTRAIL = data.aws_sns_topic.cloudtrail.arn
+      TABLE_NAME_RAW        = local.dynamodb_name_raw
+      TABLE_NAME_EVENTS     = local.dynamodb_name_events
+      TABLE_NAME_EVENT_TYPE = local.dynamodb_name_event_type
+      SQS_URL_EVENTS        = data.aws_sqs_queue.filtering_events.url
+      TOPIC_ARN_CLOUDTRAIL  = data.aws_sns_topic.cloudtrail.arn
     }
   }
 }
