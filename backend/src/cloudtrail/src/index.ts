@@ -18,12 +18,7 @@ export const cloudtrail: Handler = async (events: SQSEvent) => {
     await initializeEvents();
 
     // execute process
-    await Promise.all(
-      events.Records.map(async (item) => {
-        // execute
-        await execute(item);
-      })
-    );
+    await Promise.all(events.Records.map((item) => execute(item)));
   } catch (e) {
     Logger.error(e);
   }

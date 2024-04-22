@@ -41,7 +41,7 @@ export const execute = async (message: SQSRecord) => {
   const eventIds = (JSON.parse(message.body) as SNSMessage).Message.split(',');
 
   // get all records
-  const results = await Promise.all(eventIds.map(async (eventId) => EventService.describe({ EventId: eventId })));
+  const results = await Promise.all(eventIds.map(async (eventId) => await EventService.describe({ EventId: eventId })));
 
   const dataRows = results.filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 

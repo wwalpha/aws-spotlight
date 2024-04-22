@@ -964,11 +964,12 @@ const getRemoveMultiResources = (record: Tables.TEvents): ResourceInfo[] => {
       let ids = request.DeleteVpcEndpointsRequest.VpcEndpointId;
 
       if (!Array.isArray(ids)) {
-        ids = [request.DeleteVpcEndpointsRequest.VpcEndpointId.content];
+        ids = [request.DeleteVpcEndpointsRequest.VpcEndpointId];
       }
 
       return (ids as any[]).map<ResourceInfo>((item: { content: string }) => ({
         id: ResourceARNs.EC2_VpcEndpoints(region, account, item.content),
+        name: item.content,
       }));
 
     case 'MONITORING_DeleteAlarms':
