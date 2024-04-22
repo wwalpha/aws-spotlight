@@ -1002,6 +1002,7 @@ const getServiceName = (serviceName: string) => {
 
 const getUserName = async (userName: string) => {
   if (userName.startsWith('AWSServiceRole')) return userName;
+  if (userName.startsWith('AWSBackupDefault')) return userName;
   if (userName.endsWith('@dxc.com')) return userName;
   if (Object.keys(users).includes(userName)) return users[userName];
 
