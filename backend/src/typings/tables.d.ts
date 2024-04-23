@@ -78,11 +78,7 @@ export namespace Tables {
     EventName: string;
     EventId: string;
     AWSRegion: string;
-    UserAgent?: string;
-    IdentityType?: string;
     Service: string;
-    Revisions: string[];
-    Status?: string;
   }
 
   interface ResouceGSI1Key {
@@ -97,25 +93,27 @@ export namespace Tables {
     EventName: string;
     EventTime: string;
     AWSRegion: string;
-    UserAgent: string;
-    IdentityType: string;
     Service: string;
   }
 
-  interface ResouceGSI2Key {
-    UserName: string;
+  /**
+   * Table - History Key
+   */
+  interface THistoryKey {
     ResourceId: string;
+    EventTime: string;
   }
 
-  interface ResouceGSI2 extends ResouceGSI2Key {
-    ResourceName: string;
-    EventId: string;
+  /**
+   * Table - History
+   */
+  interface THistory extends THistoryKey {
+    ResourceName?: string;
+    UserName: string;
     EventSource: string;
     EventName: string;
-    EventTime: string;
+    EventId: string;
     AWSRegion: string;
-    UserAgent: string;
-    IdentityType: string;
     Service: string;
   }
 
@@ -134,44 +132,6 @@ export namespace Tables {
     EventSource: string;
     EventId: string;
     ResourceId: string | string[];
-    Raw: string;
-  }
-
-  /**
-   * Table - History Key
-   */
-  interface THistoryKey {
-    EventId: string;
-  }
-
-  /**
-   * Table - History
-   */
-  interface THistory extends THistoryKey {
-    UserName: string;
-    EventTime: string;
-    EventSource: string;
-    EventName: string;
-    AWSRegion: string;
-    Origin: string;
-  }
-
-  /**
-   * Table - Ignore Key
-   */
-  interface TIgnoreKey {
-    EventId: string;
-  }
-
-  /**
-   * Table - Ignore
-   */
-  interface TIgnore extends TIgnoreKey {
-    UserName: string;
-    EventTime: string;
-    EventSource: string;
-    EventName: string;
-    AWSRegion: string;
     Raw: string;
   }
 

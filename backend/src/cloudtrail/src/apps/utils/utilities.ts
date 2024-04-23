@@ -19,38 +19,6 @@ export const LoggerOptions: winston.LoggerOptions = {
 export const Logger = winston.createLogger(LoggerOptions);
 
 /**
- * Get ignore record
- *
- * @param record
- * @returns
- */
-export const getIgnoreItem = (record: CloudTrail.Record): Tables.TIgnore => ({
-  EventId: record.eventID,
-  EventName: record.eventName,
-  EventSource: record.eventSource,
-  AWSRegion: record.awsRegion,
-  EventTime: record.eventTime,
-  UserName: defaultTo(record.userIdentity?.userName, record.userIdentity.sessionContext?.sessionIssuer?.userName),
-  Raw: JSON.stringify(record),
-});
-
-/**
- * Get history record
- *
- * @param record
- * @returns
- */
-export const getHistoryItem = (record: Tables.TEvents): Tables.THistory => ({
-  EventId: record.EventId,
-  EventName: record.EventName,
-  EventSource: record.EventSource,
-  AWSRegion: record.AWSRegion,
-  EventTime: record.EventTime,
-  UserName: record.UserName,
-  Origin: JSON.stringify(record),
-});
-
-/**
  * Get events record
  *
  * @param record
