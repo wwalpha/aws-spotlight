@@ -486,7 +486,7 @@ const getRegistSingleResource = (record: Tables.TEvents): ResourceInfo[] => {
       break;
 
     case 'IAM_CreateAccessKey':
-      rets = [response.accessKey.accessKeyId, response.accessKey.userName];
+      rets = [response.accessKey.accessKeyId, response.accessKey.accessKeyId];
       break;
 
     case 'IAM_CreateRole':
