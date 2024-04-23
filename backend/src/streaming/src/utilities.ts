@@ -30,7 +30,7 @@ const getHistoryItem = (record: Tables.TResource): Tables.THistory => ({
 export const execute = async (key: Tables.TResourceKey) => {
   const dataRows = await DynamodbHelper.query<Tables.TResource>({
     TableName: TABLE_NAME_RESOURCES,
-    KeyConditionExpression: '#ResourceId = :ResourceId and #EventTime < :EventTime',
+    KeyConditionExpression: '#ResourceId = :ResourceId and #EventTime LT :EventTime',
     ExpressionAttributeNames: {
       '#ResourceId': 'ResourceId',
       '#EventTime': 'EventTime',
