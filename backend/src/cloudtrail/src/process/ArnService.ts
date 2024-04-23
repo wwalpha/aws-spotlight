@@ -316,10 +316,8 @@ const getRegistSingleResource = (record: Tables.TEvents): ResourceInfo[] => {
       break;
 
     case 'ELASTICLOADBALANCING_CreateLoadBalancer':
-      if (response.loadBalancers.length === 0) {
+      if (response.loadBalancers.length !== 0) {
         rets = [response.loadBalancers[0].loadBalancerArn, response.loadBalancers[0].loadBalancerName];
-      } else {
-        rets = [request.loadBalancerName, request.loadBalancerName];
       }
 
       break;
