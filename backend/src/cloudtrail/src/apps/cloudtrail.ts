@@ -76,100 +76,80 @@ const processNewRecords = async (records: Tables.TEvents[]) => {
  * @param events
  */
 export const processRecords = async (events: Tables.TEvents[]) => {
-  Logger.info('Start execute process records...');
-
-  // 処理対象のみ
-  const targets = events.filter((item) => {
-    const service = item.EventSource.split('.')[0].toUpperCase();
-    const definition = EVENTS[`${service}_${item.EventName}`];
-
-    if (definition?.Create === true || definition?.Delete === true) {
-      return true;
-    }
-
-    return false;
-  });
-
-  const resources: Tables.TResource[] = [];
-  const unprocesses: Tables.TUnprocessed[] = [];
-
-  // 処理可能なデータを分ける
-  for (;;) {
-    const item = targets.pop();
-    if (item === undefined) break;
-
-    const arns = await ArnService.start(item);
-
-    if (arns.length === 0) {
-      unprocesses.push(Utilities.getUnprocessedItem(item, 'NEW'));
-    } else {
-      arns.forEach((arn) => {
-        resources.push(arn);
-      });
-    }
-  }
-
-  // 処理不能なデータを未処理テーブルに登録する
-  await DynamodbHelper.bulk(Environments.TABLE_NAME_UNPROCESSED, unprocesses);
-
-  // Logger.info(JSON.stringify(resources));
-
-  const results = _.chain(resources)
-    .groupBy((x) => x.ResourceId)
-    .map((values, key) => ({ [key]: values }))
-    .value();
-
-  const arns: Record<string, Tables.TResource[]> = {};
-
-  results.forEach((item) => {
-    Object.keys(item).forEach((o) => {
-      arns[o] = item[o];
-    });
-  });
-
-  const registTasks = Object.keys(arns).map(async (key) => {
-    // イベント時刻でソート
-    const res = _.orderBy(arns[key], ['EventTime'], ['desc']);
-    const lastestRes = res[0];
-    // イベント時刻
-    const times = res.map((item) => item.EventTime);
-
-    // 既存のリソース情報を取得
-    const item = await ResourceService.describe({
-      ResourceId: key,
-    });
-
-    const registItem = item ? item : lastestRes;
-    // リビジョンを更新
-    registItem.Revisions = _.orderBy([...times, ...registItem.Revisions]);
-    // distinct array
-    registItem.Revisions = _.uniq(registItem.Revisions);
-
-    // 最後リソースのイベント時間とリビジョンの最後の時刻が一致する場合、ステータスを更新
-    if (lastestRes.EventTime === registItem.Revisions[registItem.Revisions.length - 1]) {
-      registItem.ResourceName = lastestRes.ResourceName || registItem.ResourceName;
-      registItem.EventId = lastestRes.EventId;
-      registItem.EventName = lastestRes.EventName;
-      registItem.EventTime = lastestRes.EventTime;
-      registItem.IdentityType = lastestRes.IdentityType;
-      registItem.UserAgent = lastestRes.UserAgent;
-      registItem.UserName = lastestRes.UserName;
-      registItem.Status = lastestRes.Status;
-    }
-
-    // リソース名が未設定の場合、リソースIDから取得
-    if (registItem.ResourceName === undefined) {
-      registItem.ResourceName = registItem.ResourceId.split('/')[1];
-    }
-
-    return registItem;
-  });
-
-  // リソース登録情報を取得
-  const registItems = await Promise.all(registTasks);
-
-  // リソース情報を登録
-  await DynamodbHelper.bulk(Environments.TABLE_NAME_RESOURCES, registItems);
+  // Logger.info('Start execute process records...');
+  // // 処理対象のみ
+  // const targets = events.filter((item) => {
+  //   const service = item.EventSource.split('.')[0].toUpperCase();
+  //   const definition = EVENTS[`${service}_${item.EventName}`];
+  //   if (definition?.Create === true || definition?.Delete === true) {
+  //     return true;
+  //   }
+  //   return false;
+  // });
+  // const resources: Tables.TResource[] = [];
+  // const unprocesses: Tables.TUnprocessed[] = [];
+  // // 処理可能なデータを分ける
+  // for (;;) {
+  //   const item = targets.pop();
+  //   if (item === undefined) break;
+  //   const arns = await ArnService.start(item);
+  //   if (arns.length === 0) {
+  //     unprocesses.push(Utilities.getUnprocessedItem(item, 'NEW'));
+  //   } else {
+  //     arns.forEach((arn) => {
+  //       resources.push(arn);
+  //     });
+  //   }
+  // }
+  // // 処理不能なデータを未処理テーブルに登録する
+  // await DynamodbHelper.bulk(Environments.TABLE_NAME_UNPROCESSED, unprocesses);
+  // // Logger.info(JSON.stringify(resources));
+  // const results = _.chain(resources)
+  //   .groupBy((x) => x.ResourceId)
+  //   .map((values, key) => ({ [key]: values }))
+  //   .value();
+  // const arns: Record<string, Tables.TResource[]> = {};
+  // results.forEach((item) => {
+  //   Object.keys(item).forEach((o) => {
+  //     arns[o] = item[o];
+  //   });
+  // });
+  // const registTasks = Object.keys(arns).map(async (key) => {
+  //   // イベント時刻でソート
+  //   const res = _.orderBy(arns[key], ['EventTime'], ['desc']);
+  //   const lastestRes = res[0];
+  //   // イベント時刻
+  //   const times = res.map((item) => item.EventTime);
+  //   // 既存のリソース情報を取得
+  //   const item = await ResourceService.describe({
+  //     ResourceId: key,
+  //   });
+  //   const registItem = item ? item : lastestRes;
+  //   // リビジョンを更新
+  //   registItem.Revisions = _.orderBy([...times, ...registItem.Revisions]);
+  //   // distinct array
+  //   registItem.Revisions = _.uniq(registItem.Revisions);
+  //   // 最後リソースのイベント時間とリビジョンの最後の時刻が一致する場合、ステータスを更新
+  //   if (lastestRes.EventTime === registItem.Revisions[registItem.Revisions.length - 1]) {
+  //     registItem.ResourceName = lastestRes.ResourceName || registItem.ResourceName;
+  //     registItem.EventId = lastestRes.EventId;
+  //     registItem.EventName = lastestRes.EventName;
+  //     registItem.EventTime = lastestRes.EventTime;
+  //     registItem.IdentityType = lastestRes.IdentityType;
+  //     registItem.UserAgent = lastestRes.UserAgent;
+  //     registItem.UserName = lastestRes.UserName;
+  //     registItem.Status = lastestRes.Status;
+  //   }
+  //   // リソース名が未設定の場合、リソースIDから取得
+  //   if (registItem.ResourceName === undefined) {
+  //     registItem.ResourceName = registItem.ResourceId.split('/')[1];
+  //   }
+  //   return registItem;
+  // });
+  // // リソース登録情報を取得
+  // const registItems = await Promise.all(registTasks);
+  // // リソース情報を登録
+  // await DynamodbHelper.bulk(Environments.TABLE_NAME_RESOURCES, registItems);
 };
 
 // 新しいイベントの登録
