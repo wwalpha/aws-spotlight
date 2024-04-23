@@ -45,8 +45,8 @@ resource "aws_lambda_function_event_invoke_config" "cloudtrail" {
 resource "aws_lambda_event_source_mapping" "cloudtrail" {
   event_source_arn                   = data.aws_sqs_queue.cloudtrail.arn
   function_name                      = aws_lambda_function.cloudtrail.arn
-  batch_size                         = 5
-  maximum_batching_window_in_seconds = 30
+  batch_size                         = 1
+  maximum_batching_window_in_seconds = 10
   enabled                            = true
 }
 
