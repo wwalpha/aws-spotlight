@@ -15,7 +15,7 @@ export const reports = async (): Promise<void> => {
   const dataRows: string[] = [];
 
   // title
-  dataRows.push('"UserName","Service","Region","ResourceName","EventName","EventTime","ResourceId"');
+  dataRows.push('"UserName","Region","Service","ResourceName","EventName","EventTime","ResourceId"');
 
   resources.forEach((item) => {
     const arns = item.ResourceId.split(':');
