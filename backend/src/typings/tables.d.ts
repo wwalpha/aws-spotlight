@@ -79,6 +79,7 @@ export namespace Tables {
     EventId: string;
     AWSRegion: string;
     Service: string;
+    Status?: string;
   }
 
   interface ResouceGSI1Key {
@@ -115,6 +116,7 @@ export namespace Tables {
     EventId: string;
     AWSRegion: string;
     Service: string;
+    Status?: string;
   }
 
   /**
