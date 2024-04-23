@@ -235,6 +235,11 @@ export const processRecords2 = async (events: Tables.TEvents[]) => {
     return [...prev, ...curr];
   }, [] as Tables.TResource[]);
 
+  // logging
+  mergedItems.forEach((item) => {
+    console.log(item.ResourceId, item.EventTime);
+  });
+
   // リソース情報を登録
   await DynamodbHelper.bulk(Environments.TABLE_NAME_RESOURCES, mergedItems);
 };
