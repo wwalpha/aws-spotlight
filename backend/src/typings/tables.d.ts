@@ -65,6 +65,7 @@ export namespace Tables {
    */
   interface TResourceKey {
     ResourceId: string;
+    EventTime: string;
   }
 
   /**
@@ -76,7 +77,6 @@ export namespace Tables {
     EventSource: string;
     EventName: string;
     EventId: string;
-    EventTime: string;
     AWSRegion: string;
     UserAgent?: string;
     IdentityType?: string;

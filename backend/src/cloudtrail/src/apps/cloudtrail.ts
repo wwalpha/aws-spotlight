@@ -41,7 +41,7 @@ export const execute = async (message: SQSRecord) => {
   const eventIds = (JSON.parse(message.body) as SNSMessage).Message.split(',');
 
   // get all records
-  const results = await Promise.all(eventIds.map(async (eventId) => await EventService.describe({ EventId: eventId })));
+  const results = await Promise.all(eventIds.map((eventId) => EventService.describe({ EventId: eventId })));
 
   const dataRows = results.filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
@@ -205,4 +205,56 @@ const processNewEventType = async (record: Tables.TEvents) => {
 
     await sendMail('New Event Type', `Event Source: ${record.EventSource}, Event Name: ${record.EventName}`);
   }
+};
+
+/**
+ * Process events
+ *
+ * @param message
+ */
+export const execute2 = async (message: SQSRecord) => {
+  const eventIds = (JSON.parse(message.body) as SNSMessage).Message.split(',');
+
+  // get all records
+  const results = await Promise.all(eventIds.map((eventId) => EventService.describe({ EventId: eventId })));
+
+  const dataRows = results.filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
+
+  // 新規イベントの処理
+  // await processNewRecords(dataRows);
+  // 既存イベントの処理
+  await processRecords2(dataRows);
+
+  // delete message
+  await Utilities.deleteSQSMessage(Consts.SQS_URL_CLOUDTRAIL, message);
+
+  Logger.info(`Delete Message: ${message.messageId}`);
+};
+
+/**
+ * Process records
+ * @param events
+ */
+export const processRecords2 = async (events: Tables.TEvents[]) => {
+  Logger.info('Start execute process records...');
+
+  // 処理対象のみ
+  const targets = events.filter((item) => {
+    const service = item.EventSource.split('.')[0].toUpperCase();
+    const definition = EVENTS[`${service}_${item.EventName}`];
+
+    if (definition?.Create === true || definition?.Delete === true) {
+      return true;
+    }
+
+    return false;
+  });
+
+  const arns = await Promise.all(targets.map((item) => ArnService.start(item)));
+  const mergedItems = arns.reduce((prev, curr) => {
+    return [...prev, ...curr];
+  }, [] as Tables.TResource[]);
+
+  // リソース情報を登録
+  await DynamodbHelper.bulk(Environments.TABLE_NAME_RESOURCES, mergedItems);
 };
