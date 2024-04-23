@@ -181,10 +181,6 @@ resource "aws_dynamodb_table" "history" {
     name = "EventTime"
     type = "S"
   }
-
-  lifecycle {
-    prevent_destroy = true
-  }
 }
 
 # ----------------------------------------------------------------------------------------------
