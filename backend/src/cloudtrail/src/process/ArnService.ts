@@ -317,7 +317,9 @@ const getRegistSingleResource = (record: Tables.TEvents): ResourceInfo[] => {
 
     case 'ELASTICLOADBALANCING_CreateLoadBalancer':
       if (response.loadBalancers.length !== 0) {
-        rets = [response.loadBalancers[0].loadBalancerArn, response.loadBalancers[0].loadBalancerName];
+        const elbArn = response.loadBalancers[0].loadBalancerArn;
+
+        rets = [elbArn.substring(0, elbArn.lastIndexOf('/')), response.loadBalancers[0].loadBalancerName];
       }
 
       break;
@@ -821,7 +823,7 @@ const getRemoveSingleResource = async (record: Tables.TEvents): Promise<Resource
       break;
 
     case 'ELASTICLOADBALANCING_DeleteLoadBalancer':
-      arn = request.loadBalancerArn;
+      arn = request.loadBalancerArn.substring(0, request.loadBalancerArn.lastIndexOf('/'));
       break;
 
     case 'ELASTICLOADBALANCING_DeleteTargetGroup':
