@@ -316,7 +316,12 @@ const getRegistSingleResource = (record: Tables.TEvents): ResourceInfo[] => {
       break;
 
     case 'ELASTICLOADBALANCING_CreateLoadBalancer':
-      rets = [response.loadBalancers[0].loadBalancerArn, response.loadBalancers[0].loadBalancerName];
+      if (response.loadBalancers.length === 0) {
+        rets = [response.loadBalancers[0].loadBalancerArn, response.loadBalancers[0].loadBalancerName];
+      } else {
+        rets = [response.loadBalancerName, response.loadBalancerName];
+      }
+
       break;
 
     case 'ELASTICLOADBALANCING_CreateTargetGroup':
