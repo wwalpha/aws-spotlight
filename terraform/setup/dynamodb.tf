@@ -61,10 +61,12 @@ resource "aws_dynamodb_table" "raw" {
 # Dynamodb Table - Resource
 # ----------------------------------------------------------------------------------------------
 resource "aws_dynamodb_table" "resource" {
-  name         = local.dynamodb_name_resources
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "ResourceId"
-  range_key    = "EventTime"
+  name             = local.dynamodb_name_resources
+  billing_mode     = "PAY_PER_REQUEST"
+  hash_key         = "ResourceId"
+  range_key        = "EventTime"
+  stream_enabled   = true
+  stream_view_type = "KEYS_ONLY"
 
   attribute {
     name = "ResourceId"
@@ -102,11 +104,9 @@ resource "aws_dynamodb_table" "resource" {
 # Dynamodb Table - Events
 # ----------------------------------------------------------------------------------------------
 resource "aws_dynamodb_table" "events" {
-  name             = local.dynamodb_name_events
-  billing_mode     = "PAY_PER_REQUEST"
-  hash_key         = "EventId"
-  stream_enabled   = true
-  stream_view_type = "KEYS_ONLY"
+  name         = local.dynamodb_name_events
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "EventId"
 
   attribute {
     name = "EventId"
@@ -169,26 +169,17 @@ resource "aws_dynamodb_table" "unprocessed" {
 resource "aws_dynamodb_table" "history" {
   name         = local.dynamodb_name_history
   billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "EventId"
+  hash_key     = "ResourceId"
+  range_key    = "EventTime"
 
   attribute {
-    name = "EventId"
-    type = "S"
-  }
-  attribute {
-    name = "EventName"
-    type = "S"
-  }
-  attribute {
-    name = "EventSource"
+    name = "ResourceId"
     type = "S"
   }
 
-  global_secondary_index {
-    name            = "gsiIdx1"
-    hash_key        = "EventSource"
-    range_key       = "EventName"
-    projection_type = "ALL"
+  attribute {
+    name = "EventTime"
+    type = "S"
   }
 
   lifecycle {
@@ -199,35 +190,35 @@ resource "aws_dynamodb_table" "history" {
 # ----------------------------------------------------------------------------------------------
 # Dynamodb Table - History
 # ----------------------------------------------------------------------------------------------
-resource "aws_dynamodb_table" "ignores" {
-  name         = local.dynamodb_name_ignores
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "EventId"
+# resource "aws_dynamodb_table" "ignores" {
+#   name         = local.dynamodb_name_ignores
+#   billing_mode = "PAY_PER_REQUEST"
+#   hash_key     = "EventId"
 
-  attribute {
-    name = "EventId"
-    type = "S"
-  }
-  attribute {
-    name = "EventName"
-    type = "S"
-  }
-  attribute {
-    name = "EventSource"
-    type = "S"
-  }
+#   attribute {
+#     name = "EventId"
+#     type = "S"
+#   }
+#   attribute {
+#     name = "EventName"
+#     type = "S"
+#   }
+#   attribute {
+#     name = "EventSource"
+#     type = "S"
+#   }
 
-  global_secondary_index {
-    name            = "gsiIdx1"
-    hash_key        = "EventSource"
-    range_key       = "EventName"
-    projection_type = "ALL"
-  }
+#   global_secondary_index {
+#     name            = "gsiIdx1"
+#     hash_key        = "EventSource"
+#     range_key       = "EventName"
+#     projection_type = "ALL"
+#   }
 
-  lifecycle {
-    prevent_destroy = true
-  }
-}
+#   lifecycle {
+#     prevent_destroy = true
+#   }
+# }
 
 # ----------------------------------------------------------------------------------------------
 # Dynamodb Table - User
