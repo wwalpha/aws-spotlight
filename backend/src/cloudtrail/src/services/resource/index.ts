@@ -18,6 +18,7 @@ export const regist = async (item: Tables.TResource): Promise<void> => {
 export const update = async (item: Tables.TResource): Promise<void> => {
   const groupInfo = await describe({
     ResourceId: item.ResourceId,
+    EventTime: item.EventTime,
   });
 
   // if exists
