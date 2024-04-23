@@ -192,8 +192,8 @@ data "aws_s3_object" "lambda_streaming" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# Dynamodb Table - raw
+# Dynamodb Table - Resources
 # ----------------------------------------------------------------------------------------------
-data "aws_dynamodb_table" "raw" {
-  name = local.dynamodb_name_raw
+data "aws_dynamodb_table" "resources" {
+  name = local.dynamodb_name_resources
 }

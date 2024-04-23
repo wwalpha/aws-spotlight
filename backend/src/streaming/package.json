@@ -16,7 +16,8 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@aws-sdk/client-sns": "^3.556.0",
+    "@alphax/dynamodb": "^1.2.15",
+    "lodash": "^4.17.21",
     "winston": "^3.13.0"
   }
 }
