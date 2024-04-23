@@ -309,7 +309,7 @@ resource "aws_lambda_function" "streaming" {
 # Lambda Event Source Mapping - Streaming
 # ---------------------------------------------------------------------------------------------
 resource "aws_lambda_event_source_mapping" "streaming" {
-  event_source_arn  = data.aws_dynamodb_table.resources.arn
+  event_source_arn  = data.aws_dynamodb_table.resources.stream_arn
   function_name     = aws_lambda_function.streaming.function_name
   starting_position = "LATEST"
 }
