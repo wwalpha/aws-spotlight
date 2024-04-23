@@ -6,6 +6,6 @@ COPY dist $LAMBDA_TASK_ROOT
 RUN echo package-lock=false > .npmrc
 RUN npm install --production
 
-CMD ["index.cloudtrail"]
+CMD ["index.cloudtrail2"]
 
 

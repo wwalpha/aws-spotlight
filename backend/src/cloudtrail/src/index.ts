@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { Handler, SQSEvent } from 'aws-lambda';
-import { execute, initializeEvents } from './apps/cloudtrail';
+import { execute, execute2, initializeEvents } from './apps/cloudtrail';
 import { processIgnore, processUpdate } from './apps/unprocessed';
 import { Logger } from './apps/utils/utilities';
 import { EventTypeService, UnprocessedService } from './services';
@@ -19,6 +19,25 @@ export const cloudtrail: Handler = async (events: SQSEvent) => {
 
     // execute process
     await Promise.all(events.Records.map((item) => execute(item)));
+  } catch (e) {
+    Logger.error(e);
+  }
+};
+
+/**
+ * App Entry
+ *
+ * @returns
+ */
+export const cloudtrail2: Handler = async (events: SQSEvent) => {
+  Logger.info('events', events);
+
+  try {
+    // get event type definition
+    await initializeEvents();
+
+    // execute process
+    await Promise.all(events.Records.map((item) => execute2(item)));
   } catch (e) {
     Logger.error(e);
   }

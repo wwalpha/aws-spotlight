@@ -64,6 +64,7 @@ resource "aws_dynamodb_table" "resource" {
   name         = local.dynamodb_name_resources
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "ResourceId"
+  range_key    = "EventTime"
 
   attribute {
     name = "ResourceId"
@@ -76,17 +77,12 @@ resource "aws_dynamodb_table" "resource" {
   }
 
   attribute {
+    name = "EventTime"
+    type = "S"
+  }
+
+  attribute {
     name = "EventSource"
-    type = "S"
-  }
-
-  attribute {
-    name = "UserName"
-    type = "S"
-  }
-
-  attribute {
-    name = "Status"
     type = "S"
   }
 
@@ -94,20 +90,6 @@ resource "aws_dynamodb_table" "resource" {
     name            = "gsiIdx1"
     hash_key        = "EventSource"
     range_key       = "ResourceName"
-    projection_type = "ALL"
-  }
-
-  global_secondary_index {
-    name            = "gsiIdx2"
-    hash_key        = "UserName"
-    range_key       = "ResourceId"
-    projection_type = "ALL"
-  }
-
-  global_secondary_index {
-    name            = "gsiIdx3"
-    hash_key        = "EventSource"
-    range_key       = "Status"
     projection_type = "ALL"
   }
 
