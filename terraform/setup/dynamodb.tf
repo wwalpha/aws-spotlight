@@ -188,39 +188,6 @@ resource "aws_dynamodb_table" "history" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# Dynamodb Table - History
-# ----------------------------------------------------------------------------------------------
-# resource "aws_dynamodb_table" "ignores" {
-#   name         = local.dynamodb_name_ignores
-#   billing_mode = "PAY_PER_REQUEST"
-#   hash_key     = "EventId"
-
-#   attribute {
-#     name = "EventId"
-#     type = "S"
-#   }
-#   attribute {
-#     name = "EventName"
-#     type = "S"
-#   }
-#   attribute {
-#     name = "EventSource"
-#     type = "S"
-#   }
-
-#   global_secondary_index {
-#     name            = "gsiIdx1"
-#     hash_key        = "EventSource"
-#     range_key       = "EventName"
-#     projection_type = "ALL"
-#   }
-
-#   lifecycle {
-#     prevent_destroy = true
-#   }
-# }
-
-# ----------------------------------------------------------------------------------------------
 # Dynamodb Table - User
 # ----------------------------------------------------------------------------------------------
 resource "aws_dynamodb_table" "user" {

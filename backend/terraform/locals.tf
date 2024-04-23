@@ -44,7 +44,6 @@ locals {
   dynamodb_name_history     = local.remote_setup.dynamodb_name_history
   dynamodb_name_users       = local.remote_setup.dynamodb_name_users
   dynamodb_name_settings    = local.remote_setup.dynamodb_name_settings
-  dynamodb_name_ignores     = local.remote_setup.dynamodb_name_ignores
 
   # ----------------------------------------------------------------------------------------------
   # CloudMap
