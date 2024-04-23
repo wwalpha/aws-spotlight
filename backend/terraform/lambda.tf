@@ -2,13 +2,12 @@
 # Lambda Function - CloudTrail
 # ----------------------------------------------------------------------------------------------
 resource "aws_lambda_function" "cloudtrail" {
-  function_name                  = "${local.project_name}-cloudtrail-${local.suffix}"
-  package_type                   = "Image"
-  image_uri                      = data.aws_ssm_parameter.cloudtrail_repo_url.value
-  memory_size                    = 1024
-  role                           = aws_iam_role.cloudtrail.arn
-  timeout                        = 300
-  reserved_concurrent_executions = 1
+  function_name = "${local.project_name}-cloudtrail-${local.suffix}"
+  package_type  = "Image"
+  image_uri     = data.aws_ssm_parameter.cloudtrail_repo_url.value
+  memory_size   = 1024
+  role          = aws_iam_role.cloudtrail.arn
+  timeout       = 300
 
   environment {
     variables = {
@@ -309,7 +308,9 @@ resource "aws_lambda_function" "streaming" {
 # Lambda Event Source Mapping - Streaming
 # ---------------------------------------------------------------------------------------------
 resource "aws_lambda_event_source_mapping" "streaming" {
-  event_source_arn  = data.aws_dynamodb_table.resources.stream_arn
-  function_name     = aws_lambda_function.streaming.function_name
-  starting_position = "LATEST"
+  event_source_arn                   = data.aws_dynamodb_table.resources.stream_arn
+  function_name                      = aws_lambda_function.streaming.function_name
+  starting_position                  = "LATEST"
+  batch_size                         = 10
+  maximum_batching_window_in_seconds = 10
 }
