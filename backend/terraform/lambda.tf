@@ -296,6 +296,10 @@ resource "aws_lambda_function" "streaming" {
   runtime           = local.lambda_runtime
   timeout           = 30
 
+  layers = [
+    aws_lambda_layer_version.libraries.arn
+  ]
+
   environment {
     variables = {
       TABLE_NAME_RESOURCES = local.dynamodb_name_resources
