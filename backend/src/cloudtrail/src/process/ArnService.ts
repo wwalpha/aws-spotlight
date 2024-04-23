@@ -133,11 +133,11 @@ const getRegistSingleResource = (record: Tables.TEvents): ResourceInfo[] => {
       break;
 
     case 'CLOUD9_CreateEnvironmentEC2':
-      rets = [ResourceARNs.CLOUD9_Environment(region, account, response.environmentId), request.name];
-      break;
-
     case 'CLOUD9_CreateEnvironmentSSH':
-      rets = [ResourceARNs.CLOUD9_Environment(region, account, response.environmentId), request.name];
+      if (response.environmentId !== undefined) {
+        rets = [ResourceARNs.CLOUD9_Environment(region, account, response.environmentId), request.name];
+      }
+
       break;
 
     case 'CLOUDFORMATION_CreateStack':
