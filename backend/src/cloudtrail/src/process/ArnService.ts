@@ -481,11 +481,11 @@ const getRegistSingleResource = (record: Tables.TEvents): ResourceInfo[] => {
       break;
 
     case 'WAFV2_CreateIPSet':
-      rets = [response.summary.aRN, response.summary.name];
+      rets = [response.summary.aRN.substring(0, response.summary.aRN.lastIndexOf('/')), response.summary.name];
       break;
 
     case 'WAFV2_CreateWebACL':
-      rets = [response.summary.aRN, response.summary.name];
+      rets = [response.summary.aRN.substring(0, response.summary.aRN.lastIndexOf('/')), response.summary.name];
       break;
 
     case 'IAM_CreateAccessKey':
@@ -802,7 +802,7 @@ const getRemoveSingleResource = async (record: Tables.TEvents): Promise<Resource
       arn = ResourceARNs.WAFV2_IPSet(
         region,
         account,
-        `${(request.scope as string).toLowerCase()}/ipset/${request.name}/${request.id}`
+        `${(request.scope as string).toLowerCase()}/ipset/${request.name}`
       );
       break;
 
@@ -810,7 +810,7 @@ const getRemoveSingleResource = async (record: Tables.TEvents): Promise<Resource
       arn = ResourceARNs.WAFV2_WebACL(
         region,
         account,
-        `${(request.scope as string).toLowerCase()}/webacl/${request.name}/${request.id}`
+        `${(request.scope as string).toLowerCase()}/webacl/${request.name}`
       );
       break;
 
