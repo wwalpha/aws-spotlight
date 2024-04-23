@@ -155,7 +155,8 @@ export const getHistory = async (key: Tables.THistoryKey): Promise<Tables.THisto
   const result = await helper.get<Tables.THistory>({
     TableName: TABLE_NAME_HISTORY,
     Key: {
-      EventId: key.EventId,
+      ResourceId: key.ResourceId,
+      EventTime: key.EventTime,
     } as Tables.THistoryKey,
   });
 
