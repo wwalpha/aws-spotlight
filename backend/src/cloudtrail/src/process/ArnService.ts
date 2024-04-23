@@ -33,7 +33,7 @@ export const start = async (record: Tables.TEvents): Promise<Tables.TResource[]>
     // ユーザ名取得
     const userName = await getUserName(record.UserName);
 
-    return resources.map((item) => ({
+    return resources.map<Tables.TResource>((item) => ({
       UserName: userName,
       ResourceId: item.id,
       ResourceName: item.name,
@@ -43,7 +43,6 @@ export const start = async (record: Tables.TEvents): Promise<Tables.TResource[]>
       AWSRegion: record.AWSRegion,
       EventId: record.EventId,
       Service: getServiceName(serviceName),
-      Revisions: [],
       Status: regists.length > 0 ? Consts.ResourceStatus.CREATED : Consts.ResourceStatus.DELETED,
     }));
   } catch (err) {
