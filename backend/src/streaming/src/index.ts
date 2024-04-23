@@ -7,10 +7,18 @@ export const handler: DynamoDBStreamHandler = async (event: DynamoDBStreamEvent)
   Logger.info(`Start process records, ${event.Records.length}`);
 
   const keys = event.Records.filter((item) => item.eventName === 'INSERT' || item.eventName === 'MODIFY')
-    .map<Tables.TResourceKey>((item) => ({
-      ResourceId: item.dynamodb?.Keys?.ResourceId?.S || '',
-      EventTime: item.dynamodb?.Keys?.EventTime?.S || '',
-    }))
+    .map<Tables.TResourceKey | undefined>((item) => {
+      const keys = item.dynamodb?.Keys;
+
+      if (keys === undefined) {
+        return undefined;
+      }
+
+      return {
+        ResourceId: keys.ResourceId?.S || '',
+        EventTime: keys.EventTime?.S || '',
+      };
+    })
     .filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
   Logger.info('Keys', keys);
