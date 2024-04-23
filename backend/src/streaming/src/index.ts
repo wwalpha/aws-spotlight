@@ -6,7 +6,7 @@ export const handler: DynamoDBStreamHandler = async (event: DynamoDBStreamEvent)
   Logger.info('event', event);
   Logger.info(`Start process records, ${event.Records.length}`);
 
-  const keys = event.Records.filter((item) => item.eventName === 'INSERT')
+  const keys = event.Records.filter((item) => item.eventName === 'INSERT' || item.eventName === 'MODIFY')
     .map<Tables.TResourceKey>((item) => ({
       ResourceId: item.dynamodb?.NewImage?.ResourceId?.S || '',
       EventTime: item.dynamodb?.NewImage?.EventTime?.S || '',
