@@ -5,6 +5,7 @@ on:
     paths:
       - backend/src/filtering_raw/**
       - backend/src/filtering_events/**
+      - backend/src/streaming/**
       - .github/workflows/push_backend_filtering.yml
     branches-ignore:
       - releases/**
@@ -34,4 +35,15 @@ jobs:
     secrets:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    
+
+  Streaming:
+    uses: ./.github/workflows/reuse_lambda.yml
+    with:
+      region: us-east-1
+      working-directory: backend/src/streaming
+      environment: dev
+      outputs-bucket: arms-archive-8cd531
+      function-name: streaming
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
