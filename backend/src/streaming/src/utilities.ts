@@ -1,8 +1,8 @@
 import winston from 'winston';
 import { DynamodbHelper as Helper } from '@alphax/dynamodb';
-import { TransactWriteItem } from '@aws-sdk/client-dynamodb';
-import { chain, orderBy } from 'lodash';
+import { orderBy } from 'lodash';
 import { Tables } from 'typings';
+import { TransactWriteCommandInput } from '@aws-sdk/lib-dynamodb';
 
 const TABLE_NAME_RESOURCES = process.env.TABLE_NAME_RESOURCES as string;
 const TABLE_NAME_HISTORIES = process.env.TABLE_NAME_HISTORIES as string;
@@ -40,63 +40,28 @@ export const execute = async (key: Tables.TResourceKey) => {
   const lastestRes = res[0];
   const removed = dataRows.filter((item) => item.EventTime !== lastestRes.EventTime);
 
-  // history transaction
-  // const historyTransaction = removed.map<TransactWriteItem>((item) => ({
-  //   Put: {
-  //     TableName: TABLE_NAME_HISTORIES,
-  //     Item: {
-  //       ResourceId: { S: item.ResourceId },
-  //       EventTime: { S: item.EventTime },
-  //       ResourceName: { S: item.ResourceName as any },
-  //       UserName: { S: item.UserName },
-  //       EventSource: { S: item.EventSource },
-  //       EventName: { S: item.EventName },
-  //       EventId: { S: item.EventId },
-  //       AWSRegion: { S: item.AWSRegion },
-  //       Service: { S: item.Service },
-  //       Status: { S: item.Status as any },
-  //     },
-  //   },
-  // }));
-
-  const items: TransactWriteItem[] = [];
+  const input: TransactWriteCommandInput = {
+    TransactItems: [],
+  };
 
   removed.forEach((item) => {
-    items.push({
+    input.TransactItems?.push({
       Put: {
         TableName: TABLE_NAME_HISTORIES,
-        Item: {
-          ResourceId: { S: item.ResourceId },
-          EventTime: { S: item.EventTime },
-          ResourceName: { S: item.ResourceName as any },
-          UserName: { S: item.UserName },
-          EventSource: { S: item.EventSource },
-          EventName: { S: item.EventName },
-          EventId: { S: item.EventId },
-          AWSRegion: { S: item.AWSRegion },
-          Service: { S: item.Service },
-          Status: { S: item.Status as any },
-        },
+        Item: { ...item },
       },
     });
 
-    items.push({
+    input.TransactItems?.push({
       Delete: {
         TableName: TABLE_NAME_RESOURCES,
         Key: {
-          ResourceId: { S: item.ResourceId },
-          EventTime: { S: item.EventTime },
+          ResourceId: item.ResourceId,
+          EventTime: item.EventTime,
         },
       },
     });
   });
 
-  await DynamodbHelper.getDocumentClient().transactWrite({
-    TransactItems: items,
-  });
-
-  // transaction write
-  // await DynamodbHelper.transactWrite({
-  //   TransactItems: items,
-  // });
+  await DynamodbHelper.transactWrite(input);
 };

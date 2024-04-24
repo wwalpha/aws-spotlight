@@ -20,6 +20,7 @@
   "dependencies": {
     "@alphax/dynamodb": "^1.2.15",
     "@aws-sdk/client-dynamodb": "^3.556.0",
+    "@aws-sdk/lib-dynamodb": "^3.556.0",
     "lodash": "^4.17.21",
     "winston": "^3.13.0"
   }
