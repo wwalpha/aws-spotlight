@@ -1,6 +1,6 @@
 import winston from 'winston';
 import { DynamodbHelper as Helper } from '@alphax/dynamodb';
-import { orderBy } from 'lodash';
+import { orderBy, uniq } from 'lodash';
 import { Tables } from 'typings';
 
 const TABLE_NAME_RESOURCES = process.env.TABLE_NAME_RESOURCES as string;
@@ -38,6 +38,11 @@ export const execute = async (key: Tables.TResourceKey) => {
   const res = orderBy(dataRows, ['EventTime'], ['desc']);
   const lastestRes = res[0];
   const removed = dataRows.filter((item) => item.EventTime !== lastestRes.EventTime);
+  const uniqArray = uniq(
+    dataRows
+      .map((item) => item.ResourceName)
+      .filter((item): item is Exclude<typeof item, undefined> => item !== undefined)
+  );
 
   // latest only
   if (removed.length === 0) {
@@ -49,7 +54,10 @@ export const execute = async (key: Tables.TResourceKey) => {
     removed.map((item) =>
       DynamodbHelper.put({
         TableName: TABLE_NAME_HISTORIES,
-        Item: { ...item },
+        Item: {
+          ...item,
+          ResourceName: item.ResourceName === undefined && uniqArray.length === 1 ? uniqArray[0] : item.ResourceName,
+        },
       })
     )
   );
@@ -73,4 +81,15 @@ export const execute = async (key: Tables.TResourceKey) => {
       })
     )
   );
+
+  // resource name not exist
+  if (lastestRes.ResourceName === undefined && uniqArray.length === 1) {
+    await DynamodbHelper.put({
+      TableName: TABLE_NAME_RESOURCES,
+      Item: {
+        ...lastestRes,
+        ResourceName: uniqArray[0],
+      },
+    });
+  }
 };
