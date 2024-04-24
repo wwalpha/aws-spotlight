@@ -91,8 +91,12 @@ export const execute = async (key: Tables.TResourceKey) => {
     });
   });
 
-  // transaction write
-  await DynamodbHelper.transactWrite({
+  await DynamodbHelper.getDocumentClient().transactWrite({
     TransactItems: items,
   });
+
+  // transaction write
+  // await DynamodbHelper.transactWrite({
+  //   TransactItems: items,
+  // });
 };
