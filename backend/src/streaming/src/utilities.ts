@@ -40,6 +40,11 @@ export const execute = async (key: Tables.TResourceKey) => {
   const lastestRes = res[0];
   const removed = dataRows.filter((item) => item.EventTime !== lastestRes.EventTime);
 
+  // latest only
+  if (removed.length === 0) {
+    return;
+  }
+
   const input: TransactWriteCommandInput = {
     TransactItems: [],
   };
