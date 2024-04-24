@@ -1,7 +1,7 @@
 import winston from 'winston';
 import { DynamodbHelper as Helper } from '@alphax/dynamodb';
 import { TransactWriteItem } from '@aws-sdk/client-dynamodb';
-import { orderBy } from 'lodash';
+import { chain, orderBy } from 'lodash';
 import { Tables } from 'typings';
 
 const TABLE_NAME_RESOURCES = process.env.TABLE_NAME_RESOURCES as string;
@@ -16,16 +16,6 @@ const options: winston.LoggerOptions = {
 export const DynamodbHelper = new Helper({ logger: options });
 export const Logger = winston.createLogger(options);
 
-/**
- * Get events record
- *
- * @param record
- * @returns
- */
-const getHistoryItem = (record: Tables.TResource): Tables.THistory => ({
-  ...record,
-});
-
 export const execute = async (key: Tables.TResourceKey) => {
   const results = await DynamodbHelper.query<Tables.TResource>({
     TableName: TABLE_NAME_RESOURCES,
@@ -36,6 +26,7 @@ export const execute = async (key: Tables.TResourceKey) => {
     ExpressionAttributeValues: {
       ':ResourceId': key.ResourceId,
     },
+    ConsistentRead: true,
   });
 
   const dataRows = results.Items;
@@ -50,37 +41,58 @@ export const execute = async (key: Tables.TResourceKey) => {
   const removed = dataRows.filter((item) => item.EventTime !== lastestRes.EventTime);
 
   // history transaction
-  const historyTransaction = removed.map<TransactWriteItem>((item) => ({
-    Put: {
-      TableName: TABLE_NAME_HISTORIES,
-      Item: {
-        ResourceId: { S: item.ResourceId },
-        EventTime: { S: item.EventTime },
-        ResourceName: { S: item.ResourceName as any },
-        UserName: { S: item.UserName },
-        EventSource: { S: item.EventSource },
-        EventName: { S: item.EventName },
-        EventId: { S: item.EventId },
-        AWSRegion: { S: item.AWSRegion },
-        Service: { S: item.Service },
-        Status: { S: item.Status as any },
-      },
-    },
-  }));
+  // const historyTransaction = removed.map<TransactWriteItem>((item) => ({
+  //   Put: {
+  //     TableName: TABLE_NAME_HISTORIES,
+  //     Item: {
+  //       ResourceId: { S: item.ResourceId },
+  //       EventTime: { S: item.EventTime },
+  //       ResourceName: { S: item.ResourceName as any },
+  //       UserName: { S: item.UserName },
+  //       EventSource: { S: item.EventSource },
+  //       EventName: { S: item.EventName },
+  //       EventId: { S: item.EventId },
+  //       AWSRegion: { S: item.AWSRegion },
+  //       Service: { S: item.Service },
+  //       Status: { S: item.Status as any },
+  //     },
+  //   },
+  // }));
 
-  // resource transaction
-  const resourceTransaction = removed.map<TransactWriteItem>((item) => ({
-    Delete: {
-      TableName: TABLE_NAME_RESOURCES,
-      Key: {
-        ResourceId: { S: item.ResourceId },
-        EventTime: { S: item.EventTime },
+  const items: TransactWriteItem[] = [];
+
+  removed.forEach((item) => {
+    items.push({
+      Put: {
+        TableName: TABLE_NAME_HISTORIES,
+        Item: {
+          ResourceId: { S: item.ResourceId },
+          EventTime: { S: item.EventTime },
+          ResourceName: { S: item.ResourceName as any },
+          UserName: { S: item.UserName },
+          EventSource: { S: item.EventSource },
+          EventName: { S: item.EventName },
+          EventId: { S: item.EventId },
+          AWSRegion: { S: item.AWSRegion },
+          Service: { S: item.Service },
+          Status: { S: item.Status as any },
+        },
       },
-    },
-  }));
+    });
+
+    items.push({
+      Delete: {
+        TableName: TABLE_NAME_RESOURCES,
+        Key: {
+          ResourceId: { S: item.ResourceId },
+          EventTime: { S: item.EventTime },
+        },
+      },
+    });
+  });
 
   // transaction write
   await DynamodbHelper.transactWrite({
-    TransactItems: [...historyTransaction, ...resourceTransaction],
+    TransactItems: items,
   });
 };
