@@ -1,5 +1,5 @@
-import { Consts, DynamodbHelper, Logger, ResourceARNs } from '@src/apps/utils';
-import { capitalize } from 'lodash';
+import { Consts, Logger, ResourceARNs } from '@src/apps/utils';
+import { capitalize, defaultTo } from 'lodash';
 import { ResourceInfo, Tables } from 'typings';
 import { ResourceService } from '@src/services';
 
@@ -133,7 +133,10 @@ const getRegistSingleResource = (record: Tables.TEvents): ResourceInfo[] => {
 
     case 'CLOUD9_CreateEnvironmentEC2':
     case 'CLOUD9_CreateEnvironmentSSH':
-      rets = [ResourceARNs.CLOUD9_Environment(region, account, response.environmentId), request.name];
+      rets = [
+        ResourceARNs.CLOUD9_Environment(region, account, defaultTo(response.environmentId, request.name)),
+        request.name,
+      ];
 
       break;
 
