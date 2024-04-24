@@ -263,7 +263,8 @@ resource "aws_iam_role_policy" "streaming_policy" {
           "dynamodb:GetRecords",
           "dynamodb:GetShardIterator",
           "dynamodb:DescribeStream",
-          "dynamodb:ListStreams"
+          "dynamodb:ListStreams",
+          "sns:Publish"
         ]
         Resource = "*"
       },
