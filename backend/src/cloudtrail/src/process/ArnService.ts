@@ -133,7 +133,7 @@ const getRegistSingleResource = (record: Tables.TEvents): ResourceInfo[] => {
 
     case 'CLOUD9_CreateEnvironmentEC2':
     case 'CLOUD9_CreateEnvironmentSSH':
-      rets = [ResourceARNs.CLOUD9_Environment(region, account, request.name), request.name];
+      rets = [ResourceARNs.CLOUD9_Environment(region, account, response.environmentId), request.name];
 
       break;
 
@@ -571,6 +571,7 @@ const getRemoveSingleResource = async (record: Tables.TEvents): Promise<Resource
   const response = record.ResponseElements ? JSON.parse(record.ResponseElements) : {};
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
   let arn = undefined;
+  let scope = undefined;
 
   switch (key) {
     case 'APIGATEWAY_DeleteApi':
@@ -803,19 +804,27 @@ const getRemoveSingleResource = async (record: Tables.TEvents): Promise<Resource
       break;
 
     case 'WAFV2_DeleteIPSet':
-      arn = ResourceARNs.WAFV2_IPSet(
-        region,
-        account,
-        `${(request.scope as string).toLowerCase()}/ipset/${request.name}`
-      );
+      scope = request.scope as string;
+
+      if (scope === 'CLOUDFRONT') {
+        scope = 'global';
+      } else {
+        scope = scope.toLowerCase();
+      }
+
+      arn = ResourceARNs.WAFV2_IPSet(region, account, `${scope}/ipset/${request.name}`);
       break;
 
     case 'WAFV2_DeleteWebACL':
-      arn = ResourceARNs.WAFV2_WebACL(
-        region,
-        account,
-        `${(request.scope as string).toLowerCase()}/webacl/${request.name}`
-      );
+      scope = request.scope as string;
+
+      if (scope === 'CLOUDFRONT') {
+        scope = 'global';
+      } else {
+        scope = scope.toLowerCase();
+      }
+
+      arn = ResourceARNs.WAFV2_WebACL(region, account, `${scope}/webacl/${request.name}`);
       break;
 
     case 'ELASTICACHE_DeleteCacheCluster':

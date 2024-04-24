@@ -201,7 +201,7 @@ export const execute2 = async (message: SQSRecord) => {
   const dataRows = results.filter((item): item is Exclude<typeof item, undefined> => item !== undefined);
 
   // 新規イベントの処理
-  // await processNewRecords(dataRows);
+  await processNewRecords(dataRows);
   // 既存イベントの処理
   await processRecords2(dataRows);
 
