@@ -32,15 +32,19 @@ export const cloudtrail: Handler = async (events: SQSEvent) => {
 export const cloudtrail2: Handler = async (events: SQSEvent) => {
   Logger.info('events', events);
 
-  try {
-    // get event type definition
-    await initializeEvents();
+  // get event type definition
+  await initializeEvents();
 
-    // execute process
-    await Promise.all(events.Records.map((item) => execute2(item)));
-  } catch (e) {
-    Logger.error(e);
-  }
+  // execute process
+  await Promise.all(
+    events.Records.map(async (item) => {
+      try {
+        await execute2(item);
+      } catch (e) {
+        Logger.error(e);
+      }
+    })
+  );
 };
 
 /**
