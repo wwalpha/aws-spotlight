@@ -319,6 +319,11 @@ const getRegistSingleResource = (record: Tables.TEvents): ResourceInfo[] => {
         const elbArn = response.loadBalancers[0].loadBalancerArn;
 
         rets = [elbArn.substring(0, elbArn.lastIndexOf('/')), response.loadBalancers[0].loadBalancerName];
+      } else {
+        rets = [
+          ResourceARNs.ELASTICLOADBALANCING_LoadBalancer(region, account, `app/${request.loadBalancerName}`),
+          request.loadBalancerName,
+        ];
       }
 
       break;
@@ -824,6 +829,8 @@ const getRemoveSingleResource = async (record: Tables.TEvents): Promise<Resource
     case 'ELASTICLOADBALANCING_DeleteLoadBalancer':
       if (request.loadBalancerArn !== undefined) {
         arn = request.loadBalancerArn.substring(0, request.loadBalancerArn.lastIndexOf('/'));
+      } else {
+        arn = ResourceARNs.ELASTICLOADBALANCING_LoadBalancer(region, account, `app/${request.loadBalancerName}`);
       }
 
       break;

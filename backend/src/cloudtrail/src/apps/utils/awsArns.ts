@@ -58,7 +58,7 @@ export const ResourceARNs = {
     `arn:aws:elasticfilesystem:${region}:${account}:file-system/${id}`,
 
   // elasticloadbalancing
-  ELASTICLOADBALANCING_FileSystem: (region: string, account: string, id?: string) =>
+  ELASTICLOADBALANCING_LoadBalancer: (region: string, account: string, id?: string) =>
     `arn:aws:elasticloadbalancing:${region}:${account}:loadbalancer/${id}`,
 
   // ds
