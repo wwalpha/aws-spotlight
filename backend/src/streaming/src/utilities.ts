@@ -61,6 +61,14 @@ export const execute = async (key: Tables.TResourceKey) => {
     )
   );
 
+  console.log(
+    'REMOVE KEY:',
+    removed.map<Tables.TResourceKey>((item) => ({
+      ResourceId: item.ResourceId,
+      EventTime: item.EventTime,
+    }))
+  );
+
   await Promise.all(
     removed.map((item) =>
       DynamodbHelper.delete({
