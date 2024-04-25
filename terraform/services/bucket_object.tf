@@ -63,3 +63,31 @@ resource "aws_s3_object" "lambda_streaming" {
     ]
   }
 }
+
+# ----------------------------------------------------------------------------------------------
+# S3 Object - Lambda libraries module
+# ----------------------------------------------------------------------------------------------
+resource "aws_s3_object" "lambda_libraries" {
+  bucket = local.bucket_name_archive
+  key    = local.bucket_key_lambda_libraries
+  source = "${path.module}/libraries.zip"
+
+  lifecycle {
+    ignore_changes = [
+      etag
+    ]
+  }
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS Lambda Layer libraries
+# ----------------------------------------------------------------------------------------------
+resource "null_resource" "libraries" {
+  triggers = {
+    file_content_md5 = md5(file("${path.module}/libraries/package.json"))
+  }
+
+  provisioner "local-exec" {
+    command = "sh ${path.module}/libraries/scripts.sh"
+  }
+}

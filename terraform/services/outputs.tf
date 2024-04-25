@@ -200,3 +200,10 @@ output "bucket_key_lambda_filtering_events" {
 output "bucket_key_lambda_streaming" {
   value = local.bucket_key_lambda_streaming
 }
+
+# ----------------------------------------------------------------------------------------------
+# Lambda module bucket key - Libraries
+# ----------------------------------------------------------------------------------------------
+output "bucket_key_lambda_libraries" {
+  value = local.bucket_key_lambda_libraries
+}

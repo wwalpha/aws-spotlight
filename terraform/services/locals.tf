@@ -58,6 +58,7 @@ locals {
   bucket_key_lambda_filtering_raw    = "lambda_modules/filtering_raw.zip"
   bucket_key_lambda_filtering_events = "lambda_modules/filtering_events.zip"
   bucket_key_lambda_streaming        = "lambda_modules/streaming.zip"
+  bucket_key_lambda_libraries        = "lambda_modules/libraries.zip"
 
   # ----------------------------------------------------------------------------------------------
   # Route53

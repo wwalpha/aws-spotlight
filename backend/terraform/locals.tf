@@ -62,6 +62,7 @@ locals {
   bucket_key_lambda_filtering_raw    = local.remote_services.bucket_key_lambda_filtering_raw
   bucket_key_lambda_filtering_events = local.remote_services.bucket_key_lambda_filtering_events
   bucket_key_lambda_streaming        = local.remote_services.bucket_key_lambda_streaming
+  bucket_key_lambda_libraries        = local.remote_services.bucket_key_lambda_libraries
 
   # ----------------------------------------------------------------------------------------------
   # ECR
@@ -188,6 +189,14 @@ data "aws_s3_object" "lambda_filtering_events" {
 data "aws_s3_object" "lambda_streaming" {
   bucket = local.bucket_name_archive
   key    = local.bucket_key_lambda_streaming
+}
+
+# ----------------------------------------------------------------------------------------------
+# S3 Object - Lambda libraries module
+# ----------------------------------------------------------------------------------------------
+data "aws_s3_object" "lambda_libraries" {
+  bucket = local.bucket_name_archive
+  key    = local.bucket_key_lambda_libraries
 }
 
 # ----------------------------------------------------------------------------------------------
