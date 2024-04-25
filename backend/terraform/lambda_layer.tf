@@ -17,7 +17,7 @@ resource "null_resource" "libraries" {
 resource "aws_lambda_layer_version" "libraries" {
   depends_on = [null_resource.libraries]
   filename   = "${path.module}/libraries.zip"
-  layer_name = "${local.project_name}-libraries"
+  layer_name = "${local.project_name}-libraries-${local.suffix}"
 
   compatible_runtimes = ["nodejs20.x"]
 }

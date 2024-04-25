@@ -1,7 +1,7 @@
 mkdir nodejs
-cp package.json nodejs
+cp ./libraries/package.json nodejs/
 cd nodejs
 npm i
-cd ../
+cd ..
 zip -r libraries.zip nodejs
 rm -rf nodejs
