@@ -36,21 +36,6 @@ resource "aws_dynamodb_table" "raw" {
     name = "EventId"
     type = "S"
   }
-  attribute {
-    name = "EventName"
-    type = "S"
-  }
-  attribute {
-    name = "EventSource"
-    type = "S"
-  }
-
-  global_secondary_index {
-    name            = "gsiIdx1"
-    hash_key        = "EventSource"
-    range_key       = "EventName"
-    projection_type = "ALL"
-  }
 
   lifecycle {
     prevent_destroy = false
