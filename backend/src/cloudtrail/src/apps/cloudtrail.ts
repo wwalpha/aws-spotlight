@@ -235,11 +235,14 @@ export const processRecords2 = async (events: Tables.TEvents[]) => {
     return [...prev, ...curr];
   }, [] as Tables.TResource[]);
 
+  const jsonItems = mergedItems.map((item) => JSON.stringify(item));
+  const uniqueItems = _.uniq(jsonItems).map((item) => JSON.parse(item));
+
   // logging
-  mergedItems.forEach((item) => {
+  uniqueItems.forEach((item) => {
     console.log(item.ResourceId, item.EventTime);
   });
 
   // リソース情報を登録
-  await DynamodbHelper.bulk(Environments.TABLE_NAME_RESOURCES, mergedItems);
+  await DynamodbHelper.bulk(Environments.TABLE_NAME_RESOURCES, uniqueItems);
 };
