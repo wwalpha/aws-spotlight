@@ -1,0 +1,11 @@
+{
+  "name": "nodejs",
+  "version": "1.0.3",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@alphax/dynamodb": "^1.2.15",
+    "lodash": "^4.17.21",
+    "winston": "^3.13.0"
+  }
+}
