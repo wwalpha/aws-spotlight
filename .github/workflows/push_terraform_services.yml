@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 env:
-  TF_VAR_admin_email: ${{ secrets.ADMIN_EMAIL }} 
+  TF_VAR_admin_email: ${{ secrets.ADMIN_EMAIL }}
   AWS_DEFAULT_REGION: us-east-1
   WORKING_DIR: terraform/services
 
@@ -38,12 +38,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
 
-      # Install the latest version of Terraform CLI 
+      # Install the latest version of Terraform CLI
       # and configure the Terraform CLI configuration file with a Terraform Cloud user API token
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 1.4.6
+          terraform_version: 1.6.2
 
       # Terraform Apply
       - name: Terraform Apply
