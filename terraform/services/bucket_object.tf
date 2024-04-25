@@ -68,9 +68,10 @@ resource "aws_s3_object" "lambda_streaming" {
 # S3 Object - Lambda libraries module
 # ----------------------------------------------------------------------------------------------
 resource "aws_s3_object" "lambda_libraries" {
-  bucket = local.bucket_name_archive
-  key    = local.bucket_key_lambda_libraries
-  source = "${path.module}/libraries.zip"
+  depends_on = [null_resource.libraries]
+  bucket     = local.bucket_name_archive
+  key        = local.bucket_key_lambda_libraries
+  source     = "${path.module}/libraries.zip"
 
   lifecycle {
     ignore_changes = [
