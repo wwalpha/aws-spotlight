@@ -1,29 +1,22 @@
-name: PUSH_T) Setup Build
+name: PUSH_T) Terraform Build
 
 on:
   push:
     paths:
-      - terraform/setup/**
-      - terraform/services/**
-      - backend/terraform/**
-      - .github/workflows/push_terraform_setup.yml
-      - .github/workflows/push_terraform_services.yml
-      - .github/workflows/push_terraform_backend.yml
+      - terraform/**
+      - .github/workflows/push_terraform.yml
     branches-ignore:
       - releases/**
   workflow_dispatch:
 
 env:
   AWS_DEFAULT_REGION: us-east-1
-  WORKING_DIR: terraform/setup
+  WORKING_DIR: terraform
+  Environment: dev
 
 jobs:
   Update:
     runs-on: ubuntu-20.04
-    environment:
-      name: dev
-    env:
-      TF_VAR_domain_name: ${{ secrets.DOMAIN_NAME }}
     defaults:
       run:
         working-directory: ${{ env.WORKING_DIR }}
@@ -37,8 +30,6 @@ jobs:
       # and configure the Terraform CLI configuration file with a Terraform Cloud user API token
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.6.2
 
       # AWS Credentials
       - name: Configure AWS credentials
@@ -52,5 +43,6 @@ jobs:
       - name: Terraform Apply
         run: |
           terraform init
+          terraform workspace select ${{ env.Environment }}
           terraform plan -out=setup
           terraform apply "setup"
