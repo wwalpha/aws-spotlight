@@ -7,7 +7,13 @@ on:
       - .github/workflows/push_terraform.yml
     branches-ignore:
       - releases/**
-  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - PUSH_B) Lambda Building
+    branches:
+      - master
+    types:
+      - completed
 
 env:
   AWS_DEFAULT_REGION: us-east-1
