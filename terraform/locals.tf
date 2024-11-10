@@ -18,6 +18,17 @@ locals {
   # S3 Bucket
   # ----------------------------------------------------------------------------------------------
   bucket_name_material = "${local.project_name}-material-${local.region}-${local.environment}"
+
+
+  lambda_default_content = <<EOT
+exports.handler = async (event) => {
+  const response = {
+    statusCode: 200,
+    body: JSON.stringify('Hello from Lambda!'),
+  };
+  return response;
+};
+EOT
 }
 
 # ----------------------------------------------------------------------------------------------
