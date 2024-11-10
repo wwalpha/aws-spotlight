@@ -6,6 +6,16 @@ resource "aws_s3_bucket" "material" {
 }
 
 # ----------------------------------------------------------------------------------------------
+# AWS S3 Bucket Versioning - Enabled
+# ----------------------------------------------------------------------------------------------
+resource "aws_s3_bucket_versioning" "material" {
+  bucket = aws_s3_bucket.material.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+# ----------------------------------------------------------------------------------------------
 # Archive file - Athena Daily Query
 # ----------------------------------------------------------------------------------------------
 data "archive_file" "daily_query" {

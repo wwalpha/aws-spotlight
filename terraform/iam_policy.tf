@@ -10,7 +10,7 @@ resource "aws_iam_role_policy_attachment" "daily_query_lambda_basic" {
 # AWS IAM Role Policy - Athena Daily Query (Lambda Baisc)
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role_policy" "daily_query_athena_execution" {
-  name = "AthenaDailyQueryLambdaAthenaExecutionPolicy"
+  name = "AthenaExecutionPolicy"
   role = aws_iam_role.daily_query.name
   policy = jsonencode({
     Version = "2012-10-17"
@@ -23,6 +23,18 @@ resource "aws_iam_role_policy" "daily_query_athena_execution" {
           "athena:GetQueryResults",
         ]
         Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:ListBucket",
+        ]
+        Resource = [
+          aws_s3_bucket.material.arn,
+          "${aws_s3_bucket.material.arn}/*"
+        ]
       },
     ]
   })

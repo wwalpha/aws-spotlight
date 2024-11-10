@@ -9,7 +9,7 @@ resource "aws_athena_workgroup" "this" {
     publish_cloudwatch_metrics_enabled = false
 
     result_configuration {
-      output_location = "s3://${aws_s3_bucket.material.bucket}/athena/"
+      output_location = "s3://${aws_s3_bucket.material.bucket}/AthenaResult/"
 
       acl_configuration {
         s3_acl_option = "BUCKET_OWNER_FULL_CONTROL"
