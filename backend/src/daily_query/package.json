@@ -1,0 +1,17 @@
+{
+  "name": "daily_query",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "tsc",
+    "postbuild": "cd dist && zip -rq ../dist.zip ."
+  },
+  "dependencies": {
+    "@aws-sdk/client-athena": "^3.687.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "typescript": "^5.6.3"
+  }
+}
