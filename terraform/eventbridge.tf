@@ -3,7 +3,8 @@
 # ----------------------------------------------------------------------------------------------
 resource "aws_cloudwatch_event_rule" "athena_daily_query" {
   name                = "${local.project_name}-daily-query-${local.environment}"
-  schedule_expression = "cron(0 0 * * ? *)"
+  schedule_expression = "cron(0 1 * * ? *)"
+  state               = local.isDev ? "DISABLED" : "ENABLED"
 }
 
 # ----------------------------------------------------------------------------------------------

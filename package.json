@@ -7,5 +7,8 @@
   "license": "MIT",
   "scripts": {
     "actions": "act push --secret-file .secrets --platform ubuntu-18.04=wwalpha/act-ubuntu:18.04 -W ./.github/test/"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5"
   }
 }
