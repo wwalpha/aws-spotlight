@@ -50,8 +50,7 @@ export const start = async (record: CloudTrailRecord): Promise<Tables.TResource[
     }));
   } catch (err) {
     Logger.error(`ArnService.start. EventId: ${record.eventId}`, record);
-    exit(1);
-    // throw err;
+    throw err;
   }
 };
 
