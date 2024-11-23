@@ -1,5 +1,6 @@
 export * as Consts from './consts';
 export * as Utilities from './utilities';
+export { ResourceARNs } from './awsArns';
 export { Logger } from './utilities';
 
 import { DynamodbHelper as Helper } from '@alphax/dynamodb';

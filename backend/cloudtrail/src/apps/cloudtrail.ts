@@ -1,9 +1,10 @@
+import _ from 'lodash';
 import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { parse } from 'csv-parse/sync';
+import { EventTypeService, ResourceService } from '@src/services';
+import * as ArnService from '@src/process/ArnService';
 import { CloudTrailRaw, CloudTrailRecord, EVENT_TYPE, Tables } from 'typings';
-import { Consts, DynamodbHelper, Logger } from './utils';
-import { EventTypeService } from '@src/services';
-import { sendMail } from './utils/utilities';
+import { Consts, DynamodbHelper, Logger, Utilities } from './utils';
 
 const client = new S3Client();
 const NOTIFIED: EVENT_TYPE = {};
@@ -83,6 +84,7 @@ export const processRecords = async (records: CloudTrailRecord[]) => {
   await checkNewEventType(records);
 
   // process records
+  await registRecords(records);
 };
 
 const checkNewEventType = async (records: CloudTrailRecord[]) => {
@@ -115,6 +117,52 @@ const addNewEventType = async (record: CloudTrailRecord) => {
       EventSource: record.eventSource,
     };
 
-    // await sendMail('New Event Type', `Event Source: ${record.eventSource}, Event Name: ${record.eventName}`);
+    await Utilities.sendMail('New Event Type', `Event Source: ${record.eventSource}, Event Name: ${record.eventName}`);
   }
+};
+
+const registRecords = async (records: CloudTrailRecord[]) => {
+  Logger.info('Start execute process records...');
+
+  // 処理対象のみ
+  const filtered = records.filter((item) => {
+    const service = item.eventSource.split('.')[0].toUpperCase();
+    const definition = EVENTS[`${service}_${item.eventName}`];
+
+    if (definition?.Create === true || definition?.Delete === true) {
+      return true;
+    }
+
+    return false;
+  });
+
+  // リソースのARNを取得
+  const arns = await Promise.all(filtered.map((item) => ArnService.start(item)));
+  // 二次元配列を一次元に変換
+  const mergedItems = arns.reduce((prev, curr) => {
+    return [...prev, ...curr];
+  }, [] as Tables.TResource[]);
+
+  // ARN でグルーピングする
+  // const groupedItems = _.groupBy(mergedItems, 'ResourceId');
+
+  // // ARN ごとに最新のイベントを取得
+  // const latestItems = Object.values(groupedItems).map((items) => {
+  //   return items.reduce((prev, curr) => {
+  //     return new Date(prev.EventTime) > new Date(curr.EventTime) ? prev : curr;
+  //   });
+  // });
+
+  // 重複を削除
+  // const jsonItems = mergedItems.map((item) => JSON.stringify(item));
+  // const uniqueItems = _.uniq(jsonItems).map((item) => JSON.parse(item));
+
+  // logging
+  // uniqueItems.forEach((item) => {
+  //   console.log(item.ResourceId, item.EventTime);
+  // });
+  mergedItems.forEach((item) => console.log(item.ResourceId, item.Status, item.EventTime));
+
+  // リソース情報を登録
+  await Promise.all(mergedItems.map((item) => ResourceService.registLatest(item)));
 };

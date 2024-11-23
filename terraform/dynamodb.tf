@@ -26,20 +26,12 @@ resource "aws_dynamodb_table" "event_type" {
 # Dynamodb Table - Resource
 # ----------------------------------------------------------------------------------------------
 resource "aws_dynamodb_table" "resource" {
-  name             = local.dynamodb_name_resources
-  billing_mode     = "PAY_PER_REQUEST"
-  hash_key         = "ResourceId"
-  range_key        = "EventTime"
-  stream_enabled   = true
-  stream_view_type = "KEYS_ONLY"
+  name         = local.dynamodb_name_resources
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "ResourceId"
 
   attribute {
     name = "ResourceId"
-    type = "S"
-  }
-
-  attribute {
-    name = "EventTime"
     type = "S"
   }
 

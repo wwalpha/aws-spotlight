@@ -30,26 +30,26 @@ export interface CloudTrailRecord {
   eventVersion: string;
   userIdentity: {
     type: string;
-    userName?: string;
-    principalId: string;
+    username?: string;
+    principalid: string;
     arn: string;
-    accountId: string;
-    accessKeyId: string;
-    sessionContext: {
-      sessionIssuer: {
+    accountid: string;
+    accesskeyid: string;
+    sessioncontext: {
+      sessionissuer: {
         type: string;
-        principalId: string;
+        principalid: string;
         arn: string;
-        accountId: string;
-        userName: string;
+        accountid: string;
+        username: string;
       };
-      webIdFederationData: {};
+      webidfederationdata: {};
       attributes: {
-        mfaAuthenticated: string;
-        creationDate: string;
+        mfaauthenticated: string;
+        creationdate: string;
       };
     };
-    invokedBy: string;
+    invokedby: string;
   };
   eventSource: string;
   eventName: string;
@@ -78,4 +78,9 @@ export interface CloudTrailRecord {
     cipherSuite: string;
     clientProvidedHostHeader: string;
   };
+}
+
+export interface ResourceInfo {
+  id: string;
+  name?: string;
 }

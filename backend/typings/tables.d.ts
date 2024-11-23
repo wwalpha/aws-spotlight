@@ -65,13 +65,13 @@ export namespace Tables {
    */
   interface TResourceKey {
     ResourceId: string;
-    EventTime: string;
   }
 
   /**
    * Table - Resource
    */
   interface TResource extends TResourceKey {
+    EventTime: string;
     ResourceName?: string;
     UserName: string;
     EventSource: string;

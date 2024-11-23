@@ -40,7 +40,7 @@ resource "aws_lambda_permission" "daily_batch" {
 resource "aws_lambda_function" "cloudtrail_process" {
   function_name     = "${local.project_name}-cloudtrail-process-${local.environment}"
   handler           = "index.handler"
-  memory_size       = 128
+  memory_size       = 256
   role              = aws_iam_role.cloudtrail_process.arn
   runtime           = "nodejs20.x"
   s3_bucket         = aws_s3_object.cloudtrail_process.bucket
@@ -51,6 +51,7 @@ resource "aws_lambda_function" "cloudtrail_process" {
   environment {
     variables = {
       TABLE_NAME_EVENT_TYPE = aws_dynamodb_table.event_type.name
+      TABLE_NAME_RESOURCES  = aws_dynamodb_table.resource.name
       SNS_TOPIC_ARN         = aws_sns_topic.admin.arn
     }
   }
