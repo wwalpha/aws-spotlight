@@ -1,9 +1,0 @@
-{
-  "Origin": "{\"eventVersion\":\"1.08\",\"userIdentity\":{\"type\":\"IAMUser\",\"principalId\":\"AIDA2KEX3JLIRRBCMUZZM\",\"arn\":\"arn:aws:iam::999999999999:user/test001@test.com\",\"accountId\":\"999999999999\",\"accessKeyId\":\"ASIA2KEX3JLIYX3LHWNU\",\"userName\":\"test001@test.com\",\"sessionContext\":{\"sessionIssuer\":{},\"webIdFederationData\":{},\"attributes\":{\"mfaAuthenticated\":\"false\",\"creationDate\":\"2021-04-28T02:41:55Z\"}}},\"eventTime\":\"2021-04-28T05:01:46Z\",\"eventSource\":\"ec2.amazonaws.com\",\"eventName\":\"CreateSnapshots\",\"awsRegion\":\"ap-northeast-1\",\"sourceIPAddress\":\"165.225.110.140\",\"userAgent\":\"console.ec2.amazonaws.com\",\"requestParameters\":{\"CreateSnapshotsRequest\":{\"Description\":\"YS_TEST1_20210428\",\"InstanceSpecification\":{\"ExcludeBootVolume\":false,\"InstanceId\":\"i-0c424a66ab9f64345\"},\"CopyTagsFromSource\":\"volume\"}},\"responseElements\":{\"CreateSnapshotsResponse\":{\"xmlns\":\"http://ec2.amazonaws.com/doc/2016-11-15/\",\"requestId\":\"0e596408-695e-4589-9d99-fe8321dc53c8\",\"snapshotSet\":{\"item\":{\"tagSet\":\"\",\"snapshotId\":\"snap-0ea8b3632c0ff21d6\",\"encrypted\":false,\"volumeId\":\"vol-02194841d3f221c03\",\"description\":\"YS_TEST1_20210428\",\"progress\":\"\",\"startTime\":\"2021-04-28T05:01:46.036Z\",\"state\":\"pending\",\"ownerId\":999999999999,\"volumeSize\":10}}}},\"requestID\":\"0e596408-695e-4589-9d99-fe8321dc53c8\",\"eventID\":\"874f5a46-560b-4e77-81b7-441837c3399c\",\"readOnly\":false,\"eventType\":\"AwsApiCall\",\"managementEvent\":true,\"eventCategory\":\"Management\",\"recipientAccountId\":\"999999999999\"}",
-  "EventSource": "ec2.amazonaws.com",
-  "UserName": "test001@test.com",
-  "EventTime": "2021-04-28T05:01:46Z",
-  "EventId": "874f5a46-560b-4e77-81b7-441837c3399c",
-  "AWSRegion": "ap-northeast-1",
-  "EventName": "CreateSnapshots"
-}

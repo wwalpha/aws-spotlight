@@ -1,9 +1,0 @@
-{
-  "Origin": "{\"eventVersion\":\"1.08\",\"userIdentity\":{\"type\":\"IAMUser\",\"principalId\":\"AIDA2KEX3JLIYUA7ET75O\",\"arn\":\"arn:aws:iam::999999999999:user/test001@test.com\",\"accountId\":\"999999999999\",\"accessKeyId\":\"ASIAJBNMCCKLPQ6JUFJA\",\"userName\":\"test001@test.com\",\"sessionContext\":{\"sessionIssuer\":{},\"webIdFederationData\":{},\"attributes\":{\"mfaAuthenticated\":\"false\",\"creationDate\":\"2021-04-08T00:22:39Z\"}},\"invokedBy\":\"cloudformation.amazonaws.com\"},\"eventTime\":\"2021-04-08T01:56:39Z\",\"eventSource\":\"lambda.amazonaws.com\",\"eventName\":\"DeleteFunction20150331\",\"awsRegion\":\"ap-northeast-1\",\"sourceIPAddress\":\"cloudformation.amazonaws.com\",\"userAgent\":\"cloudformation.amazonaws.com\",\"requestParameters\":{\"functionName\":\"RekogDemoSetupEngagementMeter\"},\"responseElements\":null,\"requestID\":\"d2a7874c-fd0f-4fa1-9e06-77bc224942e8\",\"eventID\":\"78358ae7-e395-4813-a659-1cd40248272b\",\"readOnly\":false,\"eventType\":\"AwsApiCall\",\"managementEvent\":true,\"eventCategory\":\"Management\",\"recipientAccountId\":\"999999999999\"}",
-  "EventSource": "lambda.amazonaws.com",
-  "UserName": "test001@test.com",
-  "EventTime": "2021-04-08T01:56:39Z",
-  "EventId": "78358ae7-e395-4813-a659-1cd40248272b",
-  "AWSRegion": "ap-northeast-1",
-  "EventName": "DeleteFunction20150331"
-}
