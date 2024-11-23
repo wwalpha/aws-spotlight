@@ -3,10 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "debug": "ts-node -r tsconfig-paths/register -r dotenv/config src/index.ts",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.145",
+    "@types/lodash": "^4.17.13",
+    "@types/node": "^22.9.2",
     "dotenv": "^16.4.5",
     "prettier": "^3.3.3",
+    "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.10",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.2"
@@ -14,6 +23,7 @@
   "dependencies": {
     "@alphax/dynamodb": "^1.2.16",
     "@aws-sdk/client-s3": "^3.699.0",
+    "csv-parse": "^5.6.0",
     "lodash": "^4.17.21"
   }
 }
