@@ -69,3 +69,10 @@ export const registLatest = async (item: Tables.TResource): Promise<void> => {
     }
   }
 };
+
+/** リソース一覧取得 */
+export const listResources = async (): Promise<Tables.TResource[]> => {
+  const results = await DynamodbHelper.scan<Tables.TResource>(Queries.queryByCreated());
+
+  return results.Items;
+};

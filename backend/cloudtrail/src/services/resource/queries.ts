@@ -1,4 +1,4 @@
-import { DeleteItemInput, GetItemInput, PutItemInput, QueryInput, UpdateInput } from '@alphax/dynamodb';
+import { DeleteItemInput, GetItemInput, PutItemInput, QueryInput, ScanInput, UpdateInput } from '@alphax/dynamodb';
 import { Consts } from '@src/apps/utils';
 import { Tables } from 'typings';
 
@@ -65,3 +65,16 @@ export const getListByEventSource = (eventSource: string, eventTime?: string): Q
 
   return query;
 };
+
+/** データ */
+export const queryByCreated = (): ScanInput => ({
+  TableName: Consts.Environments.TABLE_NAME_RESOURCES,
+  ProjectionExpression: 'ResourceId, ResourceName, AWSRegion, EventName, EventTime, EventSource, UserName, Service',
+  FilterExpression: '#Status = :Status',
+  ExpressionAttributeNames: {
+    '#Status': 'Status',
+  },
+  ExpressionAttributeValues: {
+    ':Status': 'Created',
+  },
+});
