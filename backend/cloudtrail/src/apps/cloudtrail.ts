@@ -161,7 +161,7 @@ const registRecords = async (records: CloudTrailRecord[]) => {
   // uniqueItems.forEach((item) => {
   //   console.log(item.ResourceId, item.EventTime);
   // });
-  mergedItems.forEach((item) => console.log(item.ResourceId, item.Status, item.EventTime));
+  // mergedItems.forEach((item) => console.log(item.ResourceId, item.Status, item.EventTime));
 
   // リソース情報を登録
   await Promise.all(mergedItems.map((item) => ResourceService.registLatest(item)));
