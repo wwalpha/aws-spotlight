@@ -53,7 +53,7 @@ export namespace CloudTrail {
     resources?: string;
     recipientAccountId: string;
     serviceEventDetails?: string;
-    sharedEventID?: string;
+    sharedEventId?: string;
     vpcEndpointId?: string;
     eventCategory: string;
     addendum?: string;
