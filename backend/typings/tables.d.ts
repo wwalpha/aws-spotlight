@@ -38,27 +38,27 @@ export namespace Tables {
     ResponseElements?: string;
   }
 
-  /**
-   * Table - Raw Key
-   */
-  interface TRawKey {
-    EventId: string;
-  }
+  // /**
+  //  * Table - Raw Key
+  //  */
+  // interface TRawKey {
+  //   EventId: string;
+  // }
 
-  /**
-   * Table - Raw
-   */
-  interface TRaw extends TRawKey {
-    UserName: string;
-    EventTime: string;
-    EventSource: string;
-    EventName: string;
-    AWSRegion: string;
-    AccountId: string;
-    RequestParameters: string;
-    ResponseElements?: string;
-    Origin: string;
-  }
+  // /**
+  //  * Table - Raw
+  //  */
+  // interface TRaw extends TRawKey {
+  //   UserName: string;
+  //   EventTime: string;
+  //   EventSource: string;
+  //   EventName: string;
+  //   AWSRegion: string;
+  //   AccountId: string;
+  //   RequestParameters: string;
+  //   ResponseElements?: string;
+  //   Origin: string;
+  // }
 
   /**
    * Table - Resource Key
@@ -97,27 +97,27 @@ export namespace Tables {
     Service: string;
   }
 
-  /**
-   * Table - History Key
-   */
-  interface THistoryKey {
-    ResourceId: string;
-    EventTime: string;
-  }
+  // /**
+  //  * Table - History Key
+  //  */
+  // interface THistoryKey {
+  //   ResourceId: string;
+  //   EventTime: string;
+  // }
 
-  /**
-   * Table - History
-   */
-  interface THistory extends THistoryKey {
-    ResourceName?: string;
-    UserName: string;
-    EventSource: string;
-    EventName: string;
-    EventId: string;
-    AWSRegion: string;
-    Service: string;
-    Status?: string;
-  }
+  // /**
+  //  * Table - History
+  //  */
+  // interface THistory extends THistoryKey {
+  //   ResourceName?: string;
+  //   UserName: string;
+  //   EventSource: string;
+  //   EventName: string;
+  //   EventId: string;
+  //   AWSRegion: string;
+  //   Service: string;
+  //   Status?: string;
+  // }
 
   /**
    * Table - Unprocessed Key
