@@ -78,39 +78,6 @@ resource "aws_dynamodb_table" "resource" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# Dynamodb Table - Events
-# ----------------------------------------------------------------------------------------------
-resource "aws_dynamodb_table" "events" {
-  name         = local.dynamodb_name_events
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "EventId"
-
-  attribute {
-    name = "EventId"
-    type = "S"
-  }
-  attribute {
-    name = "EventName"
-    type = "S"
-  }
-  attribute {
-    name = "EventSource"
-    type = "S"
-  }
-
-  global_secondary_index {
-    name            = "gsiIdx1"
-    hash_key        = "EventSource"
-    range_key       = "EventName"
-    projection_type = "ALL"
-  }
-
-  lifecycle {
-    prevent_destroy = false
-  }
-}
-
-# ----------------------------------------------------------------------------------------------
 # Dynamodb Table - Unprocessed
 # ----------------------------------------------------------------------------------------------
 resource "aws_dynamodb_table" "unprocessed" {
@@ -137,24 +104,6 @@ resource "aws_dynamodb_table" "unprocessed" {
     hash_key        = "EventSource"
     range_key       = "EventName"
     projection_type = "ALL"
-  }
-}
-
-# ----------------------------------------------------------------------------------------------
-# Dynamodb Table - User
-# ----------------------------------------------------------------------------------------------
-resource "aws_dynamodb_table" "user" {
-  name         = local.dynamodb_name_user
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "UserId"
-
-  attribute {
-    name = "UserId"
-    type = "S"
-  }
-
-  lifecycle {
-    prevent_destroy = true
   }
 }
 

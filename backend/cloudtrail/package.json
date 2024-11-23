@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "debug": "ts-node -r tsconfig-paths/register -r dotenv/config src/index.ts",
+    "debug": "ts-node -r tsconfig-paths/register -r dotenv/config src/index.ts dotenv_config_path=.env.dev",
     "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,6 +23,7 @@
   "dependencies": {
     "@alphax/dynamodb": "^1.2.16",
     "@aws-sdk/client-s3": "^3.699.0",
+    "@aws-sdk/client-sns": "^3.699.0",
     "csv-parse": "^5.6.0",
     "lodash": "^4.17.21"
   }

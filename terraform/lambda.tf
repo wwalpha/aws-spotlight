@@ -46,5 +46,12 @@ resource "aws_lambda_function" "cloudtrail_process" {
   s3_bucket         = aws_s3_object.cloudtrail_process.bucket
   s3_key            = aws_s3_object.cloudtrail_process.key
   s3_object_version = aws_s3_object.cloudtrail_process.version_id
-  timeout           = 900
+  timeout           = 300
+
+  environment {
+    variables = {
+      TABLE_NAME_EVENT_TYPE = aws_dynamodb_table.event_type.name
+      SNS_TOPIC_ARN         = aws_sns_topic.admin.arn
+    }
+  }
 }

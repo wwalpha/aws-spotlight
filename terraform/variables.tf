@@ -10,8 +10,18 @@ variable "athena_table_name" {
   default     = "cloudtrail_logs_us_east_1"
 }
 
+# ----------------------------------------------------------------------------------------------
+# CloudTrail Bucket Name
+# ----------------------------------------------------------------------------------------------
 variable "cloudtrail_bucket_name" {
   description = "The name of the CloudTrail bucket"
   type        = string
   default     = "logs-cloudtrail-global-334678299258-us-east-1"
+}
+
+# ----------------------------------------------------------------------------------------------
+# Administrator Email Address
+# ----------------------------------------------------------------------------------------------
+variable "admin_email" {
+  default = "ktou@dxc.com"
 }

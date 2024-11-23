@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { Handler, S3Event } from 'aws-lambda';
-import { getRecords } from './apps/cloudtrail';
+import { getRecords, initializeEvents, processRecords } from './apps/cloudtrail';
 import { Logger } from './apps/utils';
 
 export const cloudtrail: Handler = async (events: S3Event) => {
@@ -10,8 +10,14 @@ export const cloudtrail: Handler = async (events: S3Event) => {
   const key = _.get(events, 'Records[0].s3.object.key');
 
   try {
-    // download s3 file to local
-    await getRecords(bucket, key);
+    // Get records from S3
+    const records = await getRecords(bucket, key);
+
+    // Initialize Event Type
+    await initializeEvents();
+
+    // Process records
+    await processRecords(records);
   } catch (e) {
     Logger.error(e);
   }
