@@ -7,9 +7,9 @@ resource "aws_iam_role" "daily_query" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# AWS IAM Role - DynamoDB Daily Import
+# AWS IAM Role - CloudTrail Process
 # ----------------------------------------------------------------------------------------------
-resource "aws_iam_role" "daily_import" {
-  name               = "${upper(local.project_name)}-DynamoDBDailyImportRole"
+resource "aws_iam_role" "cloudtrail_process" {
+  name               = "${upper(local.project_name)}-LambdaCloudTrailProcessRole"
   assume_role_policy = data.aws_iam_policy_document.lambda.json
 }

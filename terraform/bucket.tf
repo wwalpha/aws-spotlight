@@ -44,11 +44,11 @@ resource "aws_s3_object" "daily_query" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# S3 Object - DynamoDB Daily Import
+# S3 Object - CloudTrail Process
 # ----------------------------------------------------------------------------------------------
-resource "aws_s3_object" "daily_import" {
+resource "aws_s3_object" "cloudtrail_process" {
   bucket = aws_s3_bucket.material.bucket
-  key    = "modules/daily_import.zip"
+  key    = "modules/cloudtrail_process.zip"
   source = data.archive_file.default.output_path
 
   lifecycle {
@@ -57,4 +57,3 @@ resource "aws_s3_object" "daily_import" {
     ]
   }
 }
-
