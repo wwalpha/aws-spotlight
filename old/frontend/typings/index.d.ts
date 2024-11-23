@@ -4,4 +4,4 @@ export * from './types';
 
 export { Actions };
 
-export * from '../../backend/src/typings/index';
+export * from '../../../backend/src/typings/index';
