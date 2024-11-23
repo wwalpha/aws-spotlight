@@ -1,0 +1,41 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLITXUJMHVE",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-07T10:31:17Z" }
+    }
+  },
+  "eventTime": "2021-04-07T10:32:44Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "TerminateInstances",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": { "instancesSet": { "items": [{ "instanceId": "i-0fc5d99558e8357e8" }] } },
+  "responseElements": {
+    "instancesSet": {
+      "items": [
+        {
+          "instanceId": "i-0fc5d99558e8357e8",
+          "currentState": { "code": 48, "name": "terminated" },
+          "previousState": { "code": 80, "name": "stopped" }
+        }
+      ]
+    }
+  },
+  "requestID": "25426243-6c8c-40a6-91ad-012b23992fb5",
+  "eventID": "1c9916ba-eb47-4d50-8104-6901bc67a17d",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

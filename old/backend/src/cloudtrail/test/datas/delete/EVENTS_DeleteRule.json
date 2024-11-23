@@ -1,0 +1,39 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5KNMAEFUX",
+    "userName": "test@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventTime": "2021-06-06T01:49:02Z",
+  "eventSource": "events.amazonaws.com",
+  "eventName": "DeleteRule",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "35.74.254.8",
+  "userAgent": "APN/1.0 HashiCorp/1.0 Terraform/0.15.3 (+https://www.terraform.io) terraform-provider-aws/3.44.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.38.53 (go1.16; linux; amd64) exec-env/CloudShell",
+  "requestParameters": {
+    "force": false,
+    "eventBusName": "default",
+    "name": "ARMS_UnprocessedRule"
+  },
+  "responseElements": null,
+  "requestID": "80576990-efec-483e-9c61-88c0b61f54dd",
+  "eventID": "bdeb2e78-39b8-4291-9e3a-0b55cd2fe6c9",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2015-10-07",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

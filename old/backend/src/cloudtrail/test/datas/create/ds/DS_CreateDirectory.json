@@ -1,0 +1,49 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5MDJEVKHR",
+    "userName": "test@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2021-10-11T23:43:05Z",
+        "mfaAuthenticated": "true"
+      }
+    }
+  },
+  "eventTime": "2021-10-11T23:45:34Z",
+  "eventSource": "ds.amazonaws.com",
+  "eventName": "CreateDirectory",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.12.68 Linux/4.9.273-0.1.ac.226.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.302-b08 java/1.8.0_302 vendor/Oracle_Corporation cfg/retry-mode/standard",
+  "requestParameters": {
+    "name": "demo.com",
+    "shortName": "demo",
+    "password": "HIDDEN_DUE_TO_SECURITY_REASONS",
+    "type": "Small",
+    "setAsDefault": false,
+    "vpcSettings": {
+      "vpcId": "vpc-08f77b07c34029b7a",
+      "subnetIds": [
+        "subnet-003cfdcdbaf257d95",
+        "subnet-0221940ce594a9f84"
+      ]
+    }
+  },
+  "responseElements": {
+    "directoryId": "d-95670380fd"
+  },
+  "requestID": "74fe238b-b14e-4703-98b5-7d0541f570b3",
+  "eventID": "a513f7dd-450f-49d3-a298-fe841ddf448c",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management"
+}

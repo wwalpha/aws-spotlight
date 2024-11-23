@@ -1,0 +1,50 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLI3YFKAM3HW",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI42AV5LEM",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-21T03:06:50Z" }
+    }
+  },
+  "eventTime": "2021-03-21T03:08:17Z",
+  "eventSource": "codecommit.amazonaws.com",
+  "eventName": "CreateRepository",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "126.17.85.102",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.962 Linux/5.4.95-47.164.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+  "requestParameters": { "repositoryName": "One-Cloud-tanaka", "repositoryDescription": "" },
+  "responseElements": {
+    "repositoryMetadata": {
+      "accountId": "999999999999",
+      "repositoryId": "af4991fa-e895-4f6e-9b58-a8f0bd6c4fdf",
+      "repositoryName": "One-Cloud-tanaka",
+      "lastModifiedDate": "Mar 21, 2021 3:08:17 AM",
+      "creationDate": "Mar 21, 2021 3:08:17 AM",
+      "cloneUrlHttp": "https://git-codecommit.ap-northeast-1.amazonaws.com/v1/repos/One-Cloud-tanaka",
+      "cloneUrlSsh": "ssh://git-codecommit.ap-northeast-1.amazonaws.com/v1/repos/One-Cloud-tanaka",
+      "arn": "arn:aws:codecommit:ap-northeast-1:999999999999:One-Cloud-tanaka"
+    }
+  },
+  "requestID": "eb1531d9-9bdf-4a59-8544-17b2e400dfad",
+  "eventID": "ecd62cad-0dc7-4df1-85e7-29bda0b40225",
+  "readOnly": false,
+  "resources": [
+    {
+      "accountId": "999999999999",
+      "type": "AWS::CodeCommit::Repository",
+      "ARN": "arn:aws:codecommit:ap-northeast-1:999999999999:One-Cloud-tanaka"
+    }
+  ],
+  "eventType": "AwsApiCall",
+  "apiVersion": "2015-04-13",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

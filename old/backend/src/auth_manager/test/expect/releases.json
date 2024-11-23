@@ -1,0 +1,24 @@
+{
+  "infos": [
+    {
+      "version": "v0.2.1",
+      "date": "2021-06-03",
+      "texts": [
+        {
+          "type": "FEATURE",
+          "text": "release text"
+        }
+      ]
+    },
+    {
+      "version": "v0.2.0",
+      "date": "2021-06-01",
+      "texts": [
+        {
+          "type": "FEATURE",
+          "text": "release text"
+        }
+      ]
+    }
+  ]
+}

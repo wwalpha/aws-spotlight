@@ -1,0 +1,59 @@
+name: PUSH_B) Authorizer Build
+
+on:
+  push:
+    paths:
+      - backend/src/authorizer/**
+      - .github/workflows/push_backend_authorizer.yml
+    branches-ignore:
+      - releases/**
+  workflow_dispatch:
+
+env:
+  AWS_DEFAULT_REGION: us-east-1
+  WORKING_DIR: backend/src/authorizer
+  LAMBDA_FUNCTION_NAME: arms-authorizer-8cd531
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    environment:
+      name: dev
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}
+
+    steps:
+      # source checkout
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Setup Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Install and Build
+      - name: Build
+        id: build
+        run: |
+          tsc -v
+          yarn install
+          yarn build
+          cd dist && zip -r -q archive.zip *
+          echo "::set-output name=archive_file::$GITHUB_WORKSPACE/$WORKING_DIR/dist/archive.zip"
+
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Lambda Deploy
+      - name: Lambda Deploy
+        uses: appleboy/lambda-action@v0.1.9
+        with:
+          function_name: ${{ env.LAMBDA_FUNCTION_NAME }}
+          zip_file: ${{ steps.build.outputs.archive_file }}

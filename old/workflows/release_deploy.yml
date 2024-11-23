@@ -1,0 +1,390 @@
+name: RELEASE_D) Production Deploy
+
+on:
+  release:
+    types:
+      - released
+
+env:
+  AWS_DEFAULT_REGION: us-east-1
+  WORKING_DIR_TERRAFORM: terraform
+  WORKING_DIR_BACKEND: backend
+  ECS_CLUSTER_NAME: arms-cluster-44e2a0
+  ECS_TAKS_DEFINITION_FILE: task_definition.json
+  ECS_TAKS_DEFINITION_AUTH: arms-auth-44e2a0
+  ECS_TAKS_DEFINITION_RESOURCE: arms-resource-44e2a0
+  ECS_TAKS_DEFINITION_USER: arms-user-44e2a0
+  ECS_SERVICE_NAME_AUTH: auth_manager
+  ECS_SERVICE_NAME_RESOURCE: resource_manager
+  ECS_SERVICE_NAME_USER: user_manager
+  LAMBDA_FUNCTION_CLOUDTRAIL: arms-cloudtrail-44e2a0
+  LAMBDA_FUNCTION_UNPROCESSED: arms-unprocessed-44e2a0
+  LAMBDA_FUNCTION_AUTHORIZER: arms-authorizer-44e2a0
+  SSM_PARAMETER_NAME_AUTH: /arms/repository_url/auth_manager/44e2a0
+  SSM_PARAMETER_NAME_RESOURCE: /arms/repository_url/resource_manager/44e2a0
+  SSM_PARAMETER_NAME_USER: /arms/repository_url/user_manager/44e2a0
+  SSM_PARAMETER_NAME_CLOUDTRAIL: /arms/repository_url/cloudtrail/44e2a0
+  SSM_PARAMETER_NAME_UNPROCESSED: /arms/repository_url/unprocessed/44e2a0
+  SSM_PARAMETER_NAME_FRONTEND: /arms/frontend/44e2a0
+
+jobs:
+  Terraform:
+    runs-on: ubuntu-20.04
+    environment:
+      name: prod
+    env:
+      TF_VAR_domain_name: ${{ secrets.DOMAIN_NAME }}
+      TF_VAR_admin_email: ${{ secrets.ADMIN_EMAIL }}
+
+    steps:
+      # source checkout
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Install the latest version of Terraform CLI
+      # and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.6.2
+
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Terraform Setup
+      - name: Terraform Setup
+        working-directory: ${{ env.WORKING_DIR_TERRAFORM }}/setup
+        run: |
+          mv main.tf.prod main.tf
+          terraform init
+          terraform apply -auto-approve
+
+      # Terraform Service
+      - name: Terraform Service
+        working-directory: ${{ env.WORKING_DIR_TERRAFORM }}/services
+        run: |
+          mv main.tf.prod main.tf
+          terraform init
+          terraform apply -auto-approve
+
+      # Terraform Backend
+      - name: Terraform Backend
+        working-directory: ${{ env.WORKING_DIR_BACKEND }}/terraform
+        run: |
+          mv main.tf.prod main.tf
+          terraform init
+          terraform apply -auto-approve
+
+  # [ECS] Auth Manager
+  ECS_Auth:
+    runs-on: ubuntu-20.04
+    needs:
+      - Terraform
+    concurrency: auth_manager
+    environment:
+      name: prod
+
+    steps:
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Get ECS informations
+      - name: Get ECS informations
+        id: ecs
+        run: |
+          aws ecs describe-task-definition --task-definition $ECS_TAKS_DEFINITION_AUTH | jq .taskDefinition > $ECS_TAKS_DEFINITION_FILE
+          image=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_AUTH --with-decryption | jq -r .Parameter.Value)
+          echo "::set-output name=definition::$GITHUB_WORKSPACE/$WORKING_DIR/$ECS_TAKS_DEFINITION_FILE"
+          echo "::set-output name=image::$image"
+
+      # update task definition
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: render-web-container
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: ${{ steps.ecs.outputs.definition }}
+          container-name: ${{ env.ECS_TAKS_DEFINITION_AUTH }}
+          image: ${{ steps.ecs.outputs.image }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.render-web-container.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE_NAME_AUTH }}
+          cluster: ${{ env.ECS_CLUSTER_NAME }}
+          wait-for-service-stability: true
+          force-new-deployment: true
+
+  # [ECS] Resource Manager
+  ECS_Resource:
+    runs-on: ubuntu-20.04
+    needs:
+      - Terraform
+    concurrency: resource_manager
+    environment:
+      name: prod
+
+    steps:
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Get ECS informations
+      - name: Get ECS informations
+        id: ecs
+        run: |
+          aws ecs describe-task-definition --task-definition $ECS_TAKS_DEFINITION_RESOURCE | jq .taskDefinition > $ECS_TAKS_DEFINITION_FILE
+          image=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_RESOURCE --with-decryption | jq -r .Parameter.Value)
+          echo "::set-output name=definition::$GITHUB_WORKSPACE/$WORKING_DIR/$ECS_TAKS_DEFINITION_FILE"
+          echo "::set-output name=image::$image"
+
+      # update task definition
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: render-web-container
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: ${{ steps.ecs.outputs.definition }}
+          container-name: ${{ env.ECS_TAKS_DEFINITION_RESOURCE }}
+          image: ${{ steps.ecs.outputs.image }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.render-web-container.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE_NAME_RESOURCE }}
+          cluster: ${{ env.ECS_CLUSTER_NAME }}
+          wait-for-service-stability: true
+          force-new-deployment: true
+
+  # [ECS] User Manager
+  ECS_User:
+    runs-on: ubuntu-20.04
+    needs:
+      - Terraform
+    concurrency: user_manager
+    environment:
+      name: prod
+
+    steps:
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Get ECS informations
+      - name: Get ECS informations
+        id: ecs
+        run: |
+          aws ecs describe-task-definition --task-definition $ECS_TAKS_DEFINITION_USER | jq .taskDefinition > $ECS_TAKS_DEFINITION_FILE
+          image=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_USER --with-decryption | jq -r .Parameter.Value)
+          echo "::set-output name=definition::$GITHUB_WORKSPACE/$WORKING_DIR/$ECS_TAKS_DEFINITION_FILE"
+          echo "::set-output name=image::$image"
+
+      # update task definition
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: render-web-container
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: ${{ steps.ecs.outputs.definition }}
+          container-name: ${{ env.ECS_TAKS_DEFINITION_USER }}
+          image: ${{ steps.ecs.outputs.image }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.render-web-container.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE_NAME_USER }}
+          cluster: ${{ env.ECS_CLUSTER_NAME }}
+          wait-for-service-stability: true
+          force-new-deployment: true
+
+  # [Lambda]
+  Lambda:
+    runs-on: ubuntu-20.04
+    needs:
+      - Terraform
+    concurrency: lambda
+    environment:
+      name: prod
+
+    steps:
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Get Lambda informations
+      - name: Get Lambda informations
+        id: lambda
+        run: |
+          cloudtrail=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_CLOUDTRAIL --with-decryption | jq -r .Parameter.Value)
+          unprocessed=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_UNPROCESSED --with-decryption | jq -r .Parameter.Value)
+          echo "::set-output name=cloudtrail::$cloudtrail"
+          echo "::set-output name=unprocessed::$unprocessed"
+
+      # Lambda Deploy
+      - name: Lambda Deploy
+        uses: appleboy/lambda-action@v0.1.9
+        with:
+          function_name: ${{ env.LAMBDA_FUNCTION_CLOUDTRAIL }}
+          image_uri: ${{ steps.lambda.outputs.cloudtrail }}
+
+      # Lambda Deploy
+      - name: Lambda Deploy
+        uses: appleboy/lambda-action@v0.1.9
+        with:
+          function_name: ${{ env.LAMBDA_FUNCTION_UNPROCESSED }}
+          image_uri: ${{ steps.lambda.outputs.unprocessed }}
+
+  # [Lambda] Authorizer
+  Lambda_Authorizer:
+    runs-on: ubuntu-20.04
+    needs:
+      - Terraform
+    concurrency: authorizer
+    environment:
+      name: prod
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR_BACKEND }}/src/authorizer
+
+    steps:
+      # source checkout
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Setup Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Install and Build
+      - name: Build
+        id: build
+        run: |
+          yarn install
+          yarn build
+          cd dist && zip -r -q archive.zip *
+          echo "::set-output name=archive_file::$GITHUB_WORKSPACE/$WORKING_DIR_BACKEND/src/authorizer/dist/archive.zip"
+
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Lambda Deploy
+      - name: Lambda Deploy
+        uses: appleboy/lambda-action@v0.1.9
+        with:
+          function_name: ${{ env.LAMBDA_FUNCTION_AUTHORIZER }}
+          zip_file: ${{ steps.build.outputs.archive_file }}
+
+  # Release Events
+  Release_Events:
+    runs-on: ubuntu-20.04
+    needs:
+      - ECS_Auth
+      - ECS_User
+      - ECS_Resource
+    concurrency: events
+    environment:
+      name: prod
+    env:
+      TABLE_NAME_EVENT_TYPE: arms-eventtype-44e2a0
+      TABLE_NAME_HISTORY: arms-histories-44e2a0
+      TABLE_NAME_RESOURCES: arms-resources-44e2a0
+      TABLE_NAME_SETTINGS: arms-settings-44e2a0
+      TABLE_NAME_UNPROCESSED: arms-unprocessed-44e2a0
+      BUCKET_NAME_ARCHIVE: arms-archive-44e2a0
+      SQS_URL: ${{ secrets.SQS_URL }}
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR_BACKEND }}/src/release_events
+
+    steps:
+      # source checkout
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Setup Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Installation
+      - name: Build
+        run: |
+          yarn install
+
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # AWS Credentials
+      - name: Release Notes
+        run: |
+          yarn initialize
+          yarn events
+          yarn patch
+
+  # [Frontend]
+  Frontend:
+    runs-on: ubuntu-20.04
+    needs:
+      - Release_Events
+    environment:
+      name: prod
+    env:
+      BUCKET_NAME_ARCHIVE: ${{ secrets.BUCKET_NAME_ARCHIVE }}
+      BUCKET_NAME_FRONTEND: ${{ secrets.BUCKET_NAME_FRONTEND }}
+
+    steps:
+      # Setup Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Deploy frontend
+      - name: Deploy
+        env:
+          FILE_NAME: ${{ github.sha }}
+        run: |
+          filepath=$(aws ssm get-parameter --name $SSM_PARAMETER_NAME_FRONTEND --with-decryption | jq -r .Parameter.Value)
+          aws s3 cp $filepath dist.zip
+          unzip dist.zip -d ./dist/
+          aws s3 cp dist s3://$BUCKET_NAME_FRONTEND/ --recursive --region $AWS_DEFAULT_REGION

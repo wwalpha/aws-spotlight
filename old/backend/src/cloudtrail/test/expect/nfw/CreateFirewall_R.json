@@ -1,0 +1,13 @@
+{
+  "IdentityType": "IAMUser",
+  "EventSource": "network-firewall.amazonaws.com",
+  "UserName": "test@test.com",
+  "ResourceId": "arn:aws:network-firewall:ap-northeast-1:999999999999:firewall/Sjin6-Firewall",
+  "ResourceName": "Sjin6-Firewall",
+  "EventTime": "2023-01-06T05:14:49Z",
+  "UserAgent": "AWS Internal",
+  "AWSRegion": "ap-northeast-1",
+  "EventId": "8c01c1c4-e6c9-4501-bf4d-cc0aa93ce2e6",
+  "Service": "Network-firewall",
+  "EventName": "CreateFirewall"
+}

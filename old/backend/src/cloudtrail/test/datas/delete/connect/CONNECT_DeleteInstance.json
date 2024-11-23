@@ -1,0 +1,36 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5HU3X5Y7LZ",
+    "arn": "arn:aws:iam::999999999999:user/mosada@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5H6RW4DVB",
+    "userName": "mosada@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2021-09-29T06:05:26Z",
+        "mfaAuthenticated": "false"
+      }
+    }
+  },
+  "eventTime": "2021-09-29T06:15:45Z",
+  "eventSource": "connect.amazonaws.com",
+  "eventName": "DeleteInstance",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "133.106.44.2",
+  "userAgent": "ConnectConsole, aws-internal/3 aws-sdk-java/1.11.1030 Linux/4.9.273-0.1.ac.226.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.302-b08 java/1.8.0_302 vendor/Oracle_Corporation cfg/retry-mode/standard",
+  "requestParameters": {
+    "InstanceId": "arn%3Aaws%3Aconnect%3Aap-northeast-1%3A999999999999%3Ainstance%2F14c561e5-5dbf-4048-8c16-779db493a66a"
+  },
+  "responseElements": null,
+  "requestID": "352e2586-e2c4-490c-9b45-3f6dc8245340",
+  "eventID": "0f3f66dc-d704-4bd4-b37a-06ecee7b9f6a",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management"
+}

@@ -1,0 +1,37 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5EJPIQPNHG",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5II2BHGV3",
+    "userName": "test@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2021-10-21T02:14:48Z",
+        "mfaAuthenticated": "false"
+      }
+    }
+  },
+  "eventTime": "2021-10-21T08:18:59Z",
+  "eventSource": "rds.amazonaws.com",
+  "eventName": "DeleteOptionGroup",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.138",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.975 Linux/5.4.134-73.228.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.242-b08 java/1.8.0_242 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "requestParameters": {
+    "optionGroupName": "sas-ora-server-parameter-group"
+  },
+  "responseElements": null,
+  "requestID": "f3700cf9-c140-48a2-9bff-7d549c0ebc20",
+  "eventID": "086c3a82-eb8d-467f-9ade-ae3e2bf69a37",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management",
+  "sessionCredentialFromConsole": "true"
+}

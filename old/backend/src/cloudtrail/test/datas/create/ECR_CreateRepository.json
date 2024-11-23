@@ -1,0 +1,70 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5FB7SO5AB",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2023-01-17T01:07:17Z",
+        "mfaAuthenticated": "true"
+      }
+    }
+  },
+  "eventTime": "2023-01-17T01:49:42Z",
+  "eventSource": "ecr.amazonaws.com",
+  "eventName": "CreateRepository",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
+  "requestParameters": {
+    "repositoryName": "nodejs-blue",
+    "imageTagMutability": "MUTABLE",
+    "imageScanningConfiguration": {
+      "scanOnPush": false
+    },
+    "encryptionConfiguration": {
+      "encryptionType": "AES256"
+    }
+  },
+  "responseElements": {
+    "repository": {
+      "repositoryArn": "arn:aws:ecr:ap-northeast-1:999999999999:repository/nodejs-blue",
+      "registryId": "999999999999",
+      "repositoryName": "nodejs-blue",
+      "repositoryUri": "999999999999.dkr.ecr.ap-northeast-1.amazonaws.com/nodejs-blue",
+      "createdAt": "Jan 17, 2023, 1:49:42 AM",
+      "imageTagMutability": "MUTABLE",
+      "imageScanningConfiguration": {
+        "scanOnPush": false
+      },
+      "encryptionConfiguration": {
+        "encryptionType": "AES256"
+      }
+    }
+  },
+  "requestID": "0363f939-6042-4f06-a882-72e54c25f5e8",
+  "eventID": "0b72cf23-70be-4837-9c1e-2b624723d2c8",
+  "readOnly": false,
+  "resources": [
+    {
+      "accountId": "999999999999",
+      "ARN": "arn:aws:ecr:ap-northeast-1:999999999999:repository/nodejs-blue"
+    }
+  ],
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management",
+  "tlsDetails": {
+    "tlsVersion": "TLSv1.2",
+    "cipherSuite": "ECDHE-RSA-AES128-SHA",
+    "clientProvidedHostHeader": "ecr.ap-northeast-1.amazonaws.com"
+  },
+  "sessionCredentialFromConsole": "true"
+}

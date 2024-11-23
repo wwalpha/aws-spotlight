@@ -1,0 +1,203 @@
+[
+  {
+    "Id": "GLOBAL_SERVICES",
+    "Services": ["iam.amazonaws.com", "route53.amazonaws.com", "cloudfront.amazonaws.com"]
+  },
+  {
+    "Id": "RELEASE",
+    "Texts": [
+      {
+        "version": "v0.4.0",
+        "date": "2021-07-31",
+        "texts": [
+          {
+            "type": "FEATURE",
+            "text": "[Backend] Auto add tag for cost filter (EC2, RDS)"
+          },
+          {
+            "type": "FEATURE",
+            "text": "[Backend] Added new audit resources. (WAFV2)"
+          }
+        ]
+      },
+      {
+        "version": "v0.3.9",
+        "date": "2021-07-31",
+        "texts": [
+          {
+            "type": "FEATURE",
+            "text": "[Backend] Added new audit resources. (EC2)"
+          }
+        ]
+      },
+      {
+        "version": "v0.3.7",
+        "date": "2021-07-03",
+        "texts": [
+          {
+            "type": "FEATURE",
+            "text": "[Backend] Added new audit resources. (CloudFront, SQS, Firehose, Kinesis, Lex)"
+          }
+        ]
+      },
+      {
+        "version": "v0.3.6",
+        "date": "2021-07-03",
+        "texts": [
+          {
+            "type": "FEATURE",
+            "text": "[Backend] Added new audit resources. (AppMesh, Route53, Connect)"
+          }
+        ]
+      },
+      {
+        "version": "v0.3.5",
+        "date": "2021-07-02",
+        "texts": [
+          {
+            "type": "FEATURE",
+            "text": "[Backend] Auto detect new events and notify administrators."
+          },
+          {
+            "type": "FEATURE",
+            "text": "[Backend] Auto detect out-of-region resources and nofity administrators"
+          }
+        ]
+      },
+      {
+        "version": "v0.3.4",
+        "date": "2021-06-30",
+        "texts": [
+          {
+            "type": "FEATURE",
+            "text": "[Backend] Added new events. (DeleteBackupVault,CreateBackupPlan,DeleteBackupPlan)"
+          },
+          {
+            "type": "BUGFIX",
+            "text": "fix some bugs."
+          }
+        ]
+      },
+      {
+        "version": "v0.3.3",
+        "date": "2021-06-26",
+        "texts": [
+          {
+            "type": "FEATURE",
+            "text": "[Backend] Added new events. (PutDashboard, CreateBackupVault)"
+          },
+          {
+            "type": "BUGFIX",
+            "text": "fix some bugs."
+          }
+        ]
+      },
+      {
+        "version": "v0.3.2",
+        "date": "2021-06-25",
+        "texts": [
+          {
+            "type": "BUGFIX",
+            "text": "fix some bugs."
+          }
+        ]
+      },
+      {
+        "version": "v0.3.1",
+        "date": "2021-06-25",
+        "texts": [
+          {
+            "type": "FEATURE",
+            "text": "[Fronted] Added new target resources. (elasticsearch, redshift, codebuild)"
+          },
+          {
+            "type": "FEATURE",
+            "text": "[Backend] Added new events. (elasticsearch, redshift, codebuild)"
+          },
+          {
+            "type": "BUGFIX",
+            "text": "Some bug fixs."
+          }
+        ]
+      },
+      {
+        "version": "v0.3.0",
+        "date": "2021-06-24",
+        "texts": [
+          {
+            "type": "FEATURE",
+            "text": "[Frontend] Auto resign use cookies."
+          },
+          {
+            "type": "BUGFIX",
+            "text": "Some bug fixs."
+          }
+        ]
+      },
+      {
+        "version": "v0.2.9",
+        "date": "2021-06-23",
+        "texts": [
+          {
+            "type": "FEATURE",
+            "text": "[Frontend] Added new target resources. (Lambda,IAM)"
+          },
+          {
+            "type": "FEATURE",
+            "text": "[Backend] Added CreateVpcEndpoint / DeleteVpcEndpoints events."
+          }
+        ]
+      },
+      {
+        "version": "v0.2.8",
+        "date": "2021-06-23",
+        "texts": [
+          {
+            "type": "FEATURE",
+            "text": "[Frontend] Added Credentials class for token lifecycle management"
+          },
+          {
+            "type": "FEATURE",
+            "text": "[API] Version api implemented"
+          },
+          {
+            "type": "FEATURE",
+            "text": "[API] Refresh token api implemented"
+          }
+        ]
+      },
+      {
+        "version": "v0.2.7",
+        "date": "2021-06-19",
+        "texts": [
+          {
+            "type": "FEATURE",
+            "text": "[IAM] Add new events, CreateRole | DeleteRole"
+          },
+          {
+            "type": "FEATURE",
+            "text": "[EC2] Add new events, CreateVolume | DeleteVolume"
+          },
+          {
+            "type": "FEATURE",
+            "text": "[Lambda] Add new events, CreateFunction20150331 | DeleteFunction20150331"
+          }
+        ]
+      },
+      {
+        "version": "v0.2.6",
+        "date": "2021-06-18",
+        "texts": [
+          {
+            "type": "FEATURE",
+            "text": "Release notes api is implemented."
+          },
+          {
+            "type": "FEATURE",
+            "text": "Only show categories for which data exists."
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-07-03T03:14:21Z" }
+    }
+  },
+  "eventTime": "2021-07-03T08:13:34Z",
+  "eventSource": "firehose.amazonaws.com",
+  "eventName": "DeleteDeliveryStream",
+  "awsRegion": "us-east-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "console.amazonaws.com",
+  "requestParameters": { "deliveryStreamName": "firehose", "allowForceDelete": false },
+  "responseElements": null,
+  "requestID": "f977e351-85ba-2bfa-a02d-fd3fe669d93f",
+  "eventID": "880cb754-d38d-4f30-88aa-1f167ded8990",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

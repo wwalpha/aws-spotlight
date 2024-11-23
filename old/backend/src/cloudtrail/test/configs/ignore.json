@@ -1,0 +1,202 @@
+[
+  {
+    "EventName": "BackupDeleted",
+    "EventSource": "backup.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "BackupJobCompleted",
+    "EventSource": "backup.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "BackupJobStarted",
+    "EventSource": "backup.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "RecoveryPointCreated",
+    "EventSource": "backup.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "CheckMfa",
+    "EventSource": "signin.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "ConsoleLogin",
+    "EventSource": "signin.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "CreateGrant",
+    "EventSource": "kms.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "RetireGrant",
+    "EventSource": "kms.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "AssociateRouteTable",
+    "EventSource": "ec2.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "DisassociateRouteTable",
+    "EventSource": "ec2.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "RebootInstances",
+    "EventSource": "ec2.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "SharedSnapshotVolumeCreated",
+    "EventSource": "ec2.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "ModifySecurityGroupRules",
+    "EventSource": "ec2.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "CreateRoute",
+    "EventSource": "ec2.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "AuthorizeSecurityGroupIngress",
+    "EventSource": "ec2.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "CreateTags",
+    "EventSource": "ec2.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "ReplaceRoute",
+    "EventSource": "ec2.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "DeleteRoute",
+    "EventSource": "ec2.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "CreateNetworkInterface",
+    "EventSource": "ec2.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "DeleteNetworkInterface",
+    "EventSource": "ec2.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "ModifyNetworkInterfaceAttribute",
+    "EventSource": "ec2.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "CreateNetworkInterfacePermission",
+    "EventSource": "ec2.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "StartInstances",
+    "EventSource": "ec2.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "StopInstances",
+    "EventSource": "ec2.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "CreateBackup",
+    "EventSource": "dynamodb.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "DeleteBackup",
+    "EventSource": "dynamodb.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "CreateLogStream",
+    "EventSource": "logs.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "StopDBInstance",
+    "EventSource": "rds.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "RegisterTargets",
+    "EventSource": "elasticloadbalancing.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "DeregisterTargets",
+    "EventSource": "elasticloadbalancing.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "ModifyListener",
+    "EventSource": "elasticloadbalancing.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "DisassociateSubnets",
+    "EventSource": "network-firewall.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "UpdateFirewallDeleteProtection",
+    "EventSource": "network-firewall.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "AssociateFirewallPolicy",
+    "EventSource": "network-firewall.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "AssociateSubnets",
+    "EventSource": "network-firewall.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "UpdateRuleGroup",
+    "EventSource": "network-firewall.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "UpdateLoggingConfiguration",
+    "EventSource": "network-firewall.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "UpdateSubnetChangeProtection",
+    "EventSource": "network-firewall.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "EndSecretVersionDelete",
+    "EventSource": "secretsmanager.amazonaws.com",
+    "Ignore": true
+  },
+  {
+    "EventName": "StartSecretVersionDelete",
+    "EventSource": "secretsmanager.amazonaws.com",
+    "Ignore": true
+  }
+]

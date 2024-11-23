@@ -1,0 +1,68 @@
+name: PUSH_B) Release Events
+
+on:
+  push:
+    paths:
+      - backend/src/release_events/**
+      - .github/workflows/push_release_events.yml
+    branches-ignore:
+      - releases/**
+  workflow_run:
+    workflows:
+      - PUSH_B) Cloudtrail Build
+    branches:
+      - master
+    types:
+      - completed
+  workflow_dispatch:
+
+env:
+  AWS_DEFAULT_REGION: us-east-1
+  WORKING_DIR: backend/src/release_events
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    environment:
+      name: dev
+    env:
+      TABLE_NAME_EVENT_TYPE: arms-eventtype-8cd531
+      TABLE_NAME_HISTORY: arms-histories-8cd531
+      TABLE_NAME_RESOURCES: arms-resources-8cd531
+      TABLE_NAME_SETTINGS: arms-settings-8cd531
+      TABLE_NAME_UNPROCESSED: arms-unprocessed-8cd531
+      BUCKET_NAME_ARCHIVE: arms-archive-8cd531
+      SQS_URL: ${{ secrets.SQS_URL }}
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}
+
+    steps:
+      # source checkout
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Setup Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Installation
+      - name: Build
+        run: |
+          yarn install
+
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # AWS Credentials
+      - name: Release Notes
+        run: |
+          yarn initialize
+          yarn events
+          yarn patch

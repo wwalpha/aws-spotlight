@@ -1,0 +1,110 @@
+name: PUSH_B) Token Manager Build
+
+on:
+  push:
+    paths:
+      - backend/src/token_manager/**
+      - .github/workflows/push_backend_token_manager.yml
+    branches-ignore:
+      - releases/**
+  workflow_dispatch:
+
+env:
+  AWS_DEFAULT_REGION: us-east-1
+  ECS_TAKS_DEFINITION_FILE: task_definition.json
+  SSM_PARAMETER_NAME: /arms/repository_url
+  WORKING_DIR: backend/src/token_manager
+  ENV_SUFFIX: 8cd531
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    environment:
+      name: dev
+    env:
+      ECS_CLUSTER_NAME: ${{ format('arms-cluster-{0}', secrets.ENV_SUFFIX) }}
+      ECS_SERVICE_NAME: token_manager
+      ECS_TAKS_DEFINITION: ${{ format('arms-token-{0}', secrets.ENV_SUFFIX) }}
+      ECR_REPOSITORY: ${{ format('arms/token/{0}', secrets.ENV_SUFFIX) }}
+    defaults:
+      run:
+        working-directory: backend/src/token_manager
+
+    steps:
+      # source checkout
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Setup Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Install and Build
+      - name: Build
+        run: |
+          yarn install
+          yarn build
+
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Unit Test
+      # - name: Unit Test
+      #   run: |
+      #     docker-compose up -d --build
+      #     sleep 10
+      #     yarn test
+      #     docker-compose down
+
+      # Get latest task definition
+      - name: Update ecs task definition
+        id: filepath
+        run: |
+          aws ecs describe-task-definition --task-definition $ECS_TAKS_DEFINITION | jq .taskDefinition > $ECS_TAKS_DEFINITION_FILE
+          echo "::set-output name=definition::$GITHUB_WORKSPACE/$WORKING_DIR/$ECS_TAKS_DEFINITION_FILE"
+
+      # ECR Login
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      # docker build and push
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t $ECR_REPOSITORY .
+          docker tag $ECR_REPOSITORY $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+      # update task definition
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: render-web-container
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: ${{ steps.filepath.outputs.definition }}
+          container-name: ${{ env.ECS_TAKS_DEFINITION }}
+          image: ${{ steps.build-image.outputs.image }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.render-web-container.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE_NAME }}
+          cluster: ${{ env.ECS_CLUSTER_NAME }}
+          wait-for-service-stability: false
+          force-new-deployment: true
+
+      # Update Repository URL
+      - name: Update ecs repository url
+        run: |
+          aws ssm put-parameter --name $SSM_PARAMETER_NAME/$ECS_SERVICE_NAME --type "String" --value ${{ steps.build-image.outputs.image }} --overwrite

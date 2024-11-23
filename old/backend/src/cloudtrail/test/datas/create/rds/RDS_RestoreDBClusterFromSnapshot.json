@@ -1,0 +1,108 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5DNPIUVEYF",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5LPBQKMUV",
+    "userName": "test@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2022-03-10T01:01:27Z",
+        "mfaAuthenticated": "true"
+      }
+    }
+  },
+  "eventTime": "2022-03-10T01:53:41Z",
+  "eventSource": "rds.amazonaws.com",
+  "eventName": "RestoreDBClusterFromSnapshot",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "AWS Internal",
+  "userAgent": "AWS Internal",
+  "requestParameters": {
+    "dBClusterIdentifier": "aurora-db2-cluster",
+    "snapshotIdentifier": "aurora-db-backup-20210930",
+    "engine": "aurora-postgresql",
+    "engineVersion": "11.9",
+    "port": 25432,
+    "dBSubnetGroupName": "default-vpc-08f77b07c34029b7a",
+    "vpcSecurityGroupIds": [
+      "sg-0ebab2eb839d96018"
+    ],
+    "kmsKeyId": "3c252dc0-7b1e-4181-ba49-c345022d5c1e",
+    "enableIAMDatabaseAuthentication": true,
+    "enableCloudwatchLogsExports": [
+      "postgresql"
+    ],
+    "engineMode": "provisioned",
+    "dBClusterParameterGroupName": "default.aurora-postgresql11",
+    "copyTagsToSnapshot": true
+  },
+  "responseElements": {
+    "allocatedStorage": 1,
+    "availabilityZones": [
+      "ap-northeast-1c",
+      "ap-northeast-1a",
+      "ap-northeast-1d"
+    ],
+    "backupRetentionPeriod": 6,
+    "databaseName": "firstdb",
+    "dBClusterIdentifier": "aurora-db2-cluster",
+    "dBClusterParameterGroup": "default.aurora-postgresql11",
+    "dBSubnetGroup": "default-vpc-08f77b07c34029b7a",
+    "status": "creating",
+    "endpoint": "aurora-db2-cluster.cluster-c71cbtvdqkpj.ap-northeast-1.rds.amazonaws.com",
+    "readerEndpoint": "aurora-db2-cluster.cluster-ro-c71cbtvdqkpj.ap-northeast-1.rds.amazonaws.com",
+    "multiAZ": false,
+    "engine": "aurora-postgresql",
+    "engineVersion": "11.9",
+    "port": 25432,
+    "masterUsername": "postgres",
+    "preferredBackupWindow": "15:05-15:35",
+    "preferredMaintenanceWindow": "tue:16:00-tue:16:30",
+    "readReplicaIdentifiers": [],
+    "dBClusterMembers": [],
+    "vpcSecurityGroups": [
+      {
+        "vpcSecurityGroupId": "sg-0ebab2eb839d96018",
+        "status": "active"
+      }
+    ],
+    "hostedZoneId": "Z24O6O9L7SGTNB",
+    "storageEncrypted": true,
+    "kmsKeyId": "arn:aws:kms:ap-northeast-1:999999999999:key/3c252dc0-7b1e-4181-ba49-c345022d5c1e",
+    "dbClusterResourceId": "cluster-VCVNIGPEDXNDVYOBQOLJKZINAQ",
+    "dBClusterArn": "arn:aws:rds:ap-northeast-1:999999999999:cluster:aurora-db2-cluster",
+    "associatedRoles": [],
+    "iAMDatabaseAuthenticationEnabled": true,
+    "clusterCreateTime": "Mar 10, 2022 1:53:40 AM",
+    "enabledCloudwatchLogsExports": [
+      "postgresql"
+    ],
+    "engineMode": "provisioned",
+    "autoMinorVersionUpgrade": false,
+    "deletionProtection": false,
+    "httpEndpointEnabled": false,
+    "copyTagsToSnapshot": true,
+    "crossAccountClone": false,
+    "domainMemberships": [],
+    "tagList": [
+      {
+        "key": "Owner",
+        "value": "test@test.com"
+      }
+    ],
+    "networkType": "IPV4"
+  },
+  "requestID": "ec982a41-60ce-4d9d-a2d9-742dd681eb5a",
+  "eventID": "fc8b981f-b427-49a8-8909-58879e3ad97d",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management",
+  "sessionCredentialFromConsole": "true"
+}

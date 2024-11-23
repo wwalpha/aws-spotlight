@@ -1,0 +1,32 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-06-14T02:59:32Z" }
+    },
+    "invokedBy": "cloudformation.amazonaws.com"
+  },
+  "eventTime": "2021-06-14T03:08:13Z",
+  "eventSource": "iam.amazonaws.com",
+  "eventName": "DeleteRole",
+  "awsRegion": "us-east-1",
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "requestParameters": { "roleName": "rds-monitoring-role" },
+  "responseElements": null,
+  "requestID": "e437a4be-df15-4a54-b651-389d12cdd862",
+  "eventID": "2a6c2b17-635c-463b-80ce-3d3da6cf98c0",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

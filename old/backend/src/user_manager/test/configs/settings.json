@@ -1,0 +1,8 @@
+[
+  {
+    "Id": "TENANT_ADMIN",
+    "ClientId": "3ufbckbi3hhe0rkf2j5v937599",
+    "IdentityPoolId": "us-east-1:c487b042-a392-4da3-826a-99999999999",
+    "UserPoolId": "us-east-1_9999999999"
+  }
+]

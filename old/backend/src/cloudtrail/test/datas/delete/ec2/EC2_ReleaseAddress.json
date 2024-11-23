@@ -1,0 +1,31 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "creationDate": "2021-07-19T10:59:09Z", "mfaAuthenticated": "true" }
+    }
+  },
+  "eventTime": "2021-07-19T12:25:06Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "ReleaseAddress",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": { "allocationId": "eipalloc-044e12137f28d65f6", "networkBorderGroup": "ap-northeast-1" },
+  "responseElements": { "requestId": "f48b6660-cbd9-4160-85f9-eaeebc2e4795", "_return": true },
+  "requestID": "f48b6660-cbd9-4160-85f9-eaeebc2e4795",
+  "eventID": "84c6084c-4746-4730-b36d-0ff2f83e5f85",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management"
+}
