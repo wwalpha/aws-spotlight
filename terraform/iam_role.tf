@@ -1,8 +1,8 @@
 # ----------------------------------------------------------------------------------------------
-# AWS IAM Role - Athena Daily Query
+# AWS IAM Role - Athena Daily Batch
 # ----------------------------------------------------------------------------------------------
-resource "aws_iam_role" "daily_query" {
-  name               = "${upper(local.project_name)}-AthenaDailyQueryRole"
+resource "aws_iam_role" "daily_batch" {
+  name               = "${upper(local.project_name)}-AthenaDailyBatchRole"
   assume_role_policy = data.aws_iam_policy_document.lambda.json
 }
 

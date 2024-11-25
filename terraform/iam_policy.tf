@@ -1,17 +1,17 @@
 # ----------------------------------------------------------------------------------------------
 # AWS IAM Role Policy - Athena Daily Query (Lambda Baisc)
 # ----------------------------------------------------------------------------------------------
-resource "aws_iam_role_policy_attachment" "daily_query_lambda_basic" {
-  role       = aws_iam_role.daily_query.name
+resource "aws_iam_role_policy_attachment" "daily_batch_lambda_basic" {
+  role       = aws_iam_role.daily_batch.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
 # ----------------------------------------------------------------------------------------------
 # AWS IAM Role Policy - Athena Daily Query (Lambda Baisc)
 # ----------------------------------------------------------------------------------------------
-resource "aws_iam_role_policy" "daily_query_athena_execution" {
+resource "aws_iam_role_policy" "daily_batch_athena_execution" {
   name = "AthenaExecutionPolicy"
-  role = aws_iam_role.daily_query.name
+  role = aws_iam_role.daily_batch.name
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [

@@ -5,11 +5,11 @@ resource "aws_lambda_function" "daily_batch" {
   function_name     = "${local.project_name}-daily-batch-${local.environment}"
   handler           = "index.handler"
   memory_size       = 128
-  role              = aws_iam_role.daily_query.arn
+  role              = aws_iam_role.daily_batch.arn
   runtime           = "nodejs20.x"
-  s3_bucket         = aws_s3_object.daily_query.bucket
-  s3_key            = aws_s3_object.daily_query.key
-  s3_object_version = aws_s3_object.daily_query.version_id
+  s3_bucket         = aws_s3_object.daily_batch.bucket
+  s3_key            = aws_s3_object.daily_batch.key
+  s3_object_version = aws_s3_object.daily_batch.version_id
   timeout           = 900
 
   environment {
@@ -38,21 +38,22 @@ resource "aws_lambda_permission" "daily_batch" {
 # AWS Lambda Function - CloudTrail Process
 # ----------------------------------------------------------------------------------------------
 resource "aws_lambda_function" "cloudtrail_process" {
-  function_name     = "${local.project_name}-cloudtrail-process-${local.environment}"
-  handler           = "index.handler"
-  memory_size       = 256
-  role              = aws_iam_role.cloudtrail_process.arn
-  runtime           = "nodejs20.x"
-  s3_bucket         = aws_s3_object.cloudtrail_process.bucket
-  s3_key            = aws_s3_object.cloudtrail_process.key
-  s3_object_version = aws_s3_object.cloudtrail_process.version_id
-  timeout           = 300
+  function_name = "${local.project_name}-cloudtrail-process-${local.environment}"
+  handler       = "index.cloudtrail"
+  package_type  = "Image"
+  image_uri     = data.aws_ecr_image.latest.image_uri
+  memory_size   = 512
+  role          = aws_iam_role.cloudtrail_process.arn
+  runtime       = "nodejs20.x"
+  timeout       = 300
 
   environment {
     variables = {
       TABLE_NAME_EVENT_TYPE = aws_dynamodb_table.event_type.name
       TABLE_NAME_RESOURCES  = aws_dynamodb_table.resource.name
+      TABLE_NAME_SETTINGS   = aws_dynamodb_table.settings.name
       SNS_TOPIC_ARN         = aws_sns_topic.admin.arn
+      S3_BUCKET_MATERIALS   = aws_s3_bucket.material.bucket
     }
   }
 }

@@ -29,26 +29,11 @@ data "archive_file" "default" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# S3 Object - Athena Daily Query
+# S3 Object - Athena Daily Batch
 # ----------------------------------------------------------------------------------------------
-resource "aws_s3_object" "daily_query" {
+resource "aws_s3_object" "daily_batch" {
   bucket = aws_s3_bucket.material.bucket
-  key    = "modules/daily_query.zip"
-  source = data.archive_file.default.output_path
-
-  lifecycle {
-    ignore_changes = [
-      etag
-    ]
-  }
-}
-
-# ----------------------------------------------------------------------------------------------
-# S3 Object - CloudTrail Process
-# ----------------------------------------------------------------------------------------------
-resource "aws_s3_object" "cloudtrail_process" {
-  bucket = aws_s3_bucket.material.bucket
-  key    = "modules/cloudtrail_process.zip"
+  key    = "modules/daily_batch.zip"
   source = data.archive_file.default.output_path
 
   lifecycle {
