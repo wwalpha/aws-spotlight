@@ -39,12 +39,10 @@ resource "aws_lambda_permission" "daily_batch" {
 # ----------------------------------------------------------------------------------------------
 resource "aws_lambda_function" "cloudtrail_process" {
   function_name = "${local.project_name}-cloudtrail-process-${local.environment}"
-  handler       = "index.cloudtrail"
   package_type  = "Image"
   image_uri     = data.aws_ecr_image.latest.image_uri
-  memory_size   = 512
   role          = aws_iam_role.cloudtrail_process.arn
-  runtime       = "nodejs20.x"
+  memory_size   = 512
   timeout       = 300
 
   environment {
