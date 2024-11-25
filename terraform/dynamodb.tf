@@ -70,6 +70,46 @@ resource "aws_dynamodb_table" "resource" {
 }
 
 # ----------------------------------------------------------------------------------------------
+# Dynamodb Table Item - Resource
+# ----------------------------------------------------------------------------------------------
+resource "aws_dynamodb_table_item" "this" {
+  table_name = aws_dynamodb_table.resource.name
+  hash_key   = aws_dynamodb_table.resource.hash_key
+
+  item = <<ITEM
+{
+  "ResourceId": {
+    "S": "arn:aws:iam::334678299258:role/EC2Role"
+  },
+  "AWSRegion": {
+    "S": "us-east-1"
+  },
+  "EventId": {
+    "S": "99999999-6d19-4696-95f8-97e27ff57bad"
+  },
+  "EventName": {
+    "S": "CreateRole"
+  },
+  "EventSource": {
+    "S": "iam.amazonaws.com"
+  },
+  "EventTime": {
+    "S": "2020-10-12T05:21:23Z"
+  },
+  "Service": {
+    "S": "IAM"
+  },
+  "Status": {
+    "S": "Created"
+  },
+  "UserName": {
+    "S": "ktou@dxc.com"
+  }
+}
+ITEM
+}
+
+# ----------------------------------------------------------------------------------------------
 # Dynamodb Table - Unprocessed
 # ----------------------------------------------------------------------------------------------
 resource "aws_dynamodb_table" "unprocessed" {

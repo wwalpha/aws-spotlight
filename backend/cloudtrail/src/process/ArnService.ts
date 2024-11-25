@@ -31,13 +31,9 @@ export const start = async (record: CloudTrailRecord): Promise<Tables.TResource[
       ...regists,
       ...removes.filter((item): item is Exclude<typeof item, undefined> => item !== undefined),
     ];
-    // ユーザ名取得
-    const userName = await getUserName(
-      defaultTo(record.userIdentity?.username, record.userIdentity.sessioncontext?.sessionissuer?.username)
-    );
 
     return resources.map<Tables.TResource>((item) => ({
-      UserName: userName,
+      UserName: record.userName,
       ResourceId: item.id,
       ResourceName: item.name,
       EventName: record.eventName,
@@ -49,6 +45,7 @@ export const start = async (record: CloudTrailRecord): Promise<Tables.TResource[
       Status: regists.length > 0 ? Consts.ResourceStatus.CREATED : Consts.ResourceStatus.DELETED,
     }));
   } catch (err) {
+    console.log('error', err);
     Logger.error(`ArnService.start. EventId: ${record.eventId}`, record);
     throw err;
   }

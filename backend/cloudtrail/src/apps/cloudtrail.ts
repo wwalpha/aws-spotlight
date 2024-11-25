@@ -35,8 +35,7 @@ export const getRecords = async (bucket: string, key: string): Promise<CloudTrai
 
   return records.map<CloudTrailRecord>((record) => ({
     eventTime: record.eventTime,
-    eventVersion: record.eventVersion,
-    userIdentity: JSON.parse(record.userIdentity),
+    userName: record.userName,
     eventSource: record.eventSource,
     eventName: record.eventName,
     awsRegion: record.awsRegion,
@@ -47,14 +46,10 @@ export const getRecords = async (bucket: string, key: string): Promise<CloudTrai
     additionalEventData: record.additionalEventData !== '' ? record.additionalEventData : undefined,
     requestId: record.requestId,
     eventId: record.eventId,
-    eventType: record.eventType,
     resources: record.resources ? JSON.parse(record.resources) : undefined,
-    apiVersion: record.apiVersion !== '' ? record.apiVersion : undefined,
     recipientAccountId: record.recipientAccountId,
     serviceEventDetails: record.serviceEventDetails !== '' ? record.serviceEventDetails : undefined,
     sharedEventId: record.sharedEventId !== '' ? record.sharedEventId : undefined,
-    vpcEndpointId: record.vpcEndpointId !== '' ? record.vpcEndpointId : undefined,
-    tlsDetails: record.tlsDetails ? JSON.parse(record.tlsDetails) : undefined,
   }));
 };
 
