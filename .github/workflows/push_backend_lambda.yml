@@ -3,21 +3,34 @@ name: PUSH_B) Lambda Building
 on:
   push:
     paths:
-      - backend/src/daily_query/**
+      - backend/daily_batch/**
+      - backend/cloudtrail/**
       - .github/workflows/push_backend_lambda.yml
     branches-ignore:
       - releases/**
   workflow_dispatch:
 
 jobs:
-  DailyQuery:
+  DailyBatch:
     uses: ./.github/workflows/reuse_lambda.yml
     with:
       region: us-east-1
-      working-directory: backend/src/daily_query
+      working-directory: backend/daily_batch
       environment: dev
       outputs-bucket: spotlight-material
-      function-name: daily_query
+      function-name: daily_batch
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+  CloudTrailProcess:
+    uses: ./.github/workflows/reuse_lambda.yml
+    with:
+      region: us-east-1
+      working-directory: backend/cloudtrail
+      environment: dev
+      outputs-bucket: spotlight-material
+      function-name: cloudtrail_process
     secrets:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
