@@ -8,6 +8,7 @@
     "debug": "ts-node -r tsconfig-paths/register -r dotenv/config src/index.ts dotenv_config_path=.env.dev",
     "start": "node dist/index.js",
     "init:events": "ts-node -r tsconfig-paths/register -r dotenv/config test/initialize/index.ts dotenv_config_path=.env.dev",
+    "report": "ts-node -r tsconfig-paths/register -r dotenv/config src/apps/reports.ts dotenv_config_path=.env.dev",
     "imp": "ts-node -r tsconfig-paths/register -r dotenv/config test/import.ts dotenv_config_path=.env.dev"
   },
   "devDependencies": {

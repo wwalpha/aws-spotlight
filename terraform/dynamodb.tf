@@ -96,6 +96,9 @@ resource "aws_dynamodb_table_item" "this" {
   "EventTime": {
     "S": "2020-10-12T05:21:23Z"
   },
+  "ResourceName": {
+    "S": "EC2Role"
+  },
   "Service": {
     "S": "IAM"
   },

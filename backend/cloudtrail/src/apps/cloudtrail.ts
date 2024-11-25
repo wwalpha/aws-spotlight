@@ -117,7 +117,7 @@ const addNewEventType = async (record: CloudTrailRecord) => {
 };
 
 const registRecords = async (records: CloudTrailRecord[]) => {
-  Logger.info('Start execute process records...');
+  // Logger.info('Start execute process records...');
 
   // 処理対象のみ
   const filtered = records.filter((item) => {
@@ -158,6 +158,15 @@ const registRecords = async (records: CloudTrailRecord[]) => {
   // });
   // mergedItems.forEach((item) => console.log(item.ResourceId, item.Status, item.EventTime));
 
+  // 100件毎に分割し、実行する
+  const chunks = _.chunk(mergedItems, 100);
+
+  for (const chunk of chunks) {
+    await Promise.all(chunk.map((items) => ResourceService.registLatest(items)));
+  }
+
+  // await Promise.all(chunks.map((items) => ResourceService.registLatest(items)));
+
   // リソース情報を登録
-  await Promise.all(mergedItems.map((item) => ResourceService.registLatest(item)));
+  // await Promise.all(mergedItems.map((item) => ResourceService.registLatest(item)));
 };

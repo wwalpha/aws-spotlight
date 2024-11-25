@@ -31,9 +31,11 @@ export const start = async (record: CloudTrailRecord): Promise<Tables.TResource[
       ...regists,
       ...removes.filter((item): item is Exclude<typeof item, undefined> => item !== undefined),
     ];
+    // ユーザ名取得
+    const userName = await getUserName(record.userName);
 
     return resources.map<Tables.TResource>((item) => ({
-      UserName: record.userName,
+      UserName: userName,
       ResourceId: item.id,
       ResourceName: item.name,
       EventName: record.eventName,
@@ -54,7 +56,7 @@ export const start = async (record: CloudTrailRecord): Promise<Tables.TResource[
 const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
   const { awsRegion: region, recipientAccountId: account, eventSource: eventSource, eventName: eventName } = record;
 
-  const request = JSON.parse(record.requestParameters);
+  const request = record.requestParameters ? JSON.parse(record.requestParameters) : {};
   const response = record.responseElements ? JSON.parse(record.responseElements) : {};
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
   let name = '';
@@ -155,6 +157,7 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       break;
 
     case 'CLOUDFRONT_CreateDistribution':
+    case 'CLOUDFRONT_CopyDistribution':
       rets = [response.distribution.aRN, response.distribution.domainName];
       break;
 
@@ -575,7 +578,7 @@ const getRegistMultiResources = (record: CloudTrailRecord): ResourceInfo[] => {
 const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<ResourceInfo | undefined> => {
   const { awsRegion: region, recipientAccountId: account, eventSource: eventSource, eventName: eventName } = record;
 
-  const request = JSON.parse(record.requestParameters);
+  const request = record.requestParameters ? JSON.parse(record.requestParameters) : {};
   const response = record.responseElements ? JSON.parse(record.responseElements) : {};
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
   let arn = undefined;
@@ -989,7 +992,7 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
 const getRemoveMultiResources = (record: CloudTrailRecord): ResourceInfo[] => {
   const { awsRegion: region, recipientAccountId: account, eventSource: eventSource, eventName: eventName } = record;
 
-  const request = JSON.parse(record.requestParameters);
+  const request = record.requestParameters ? JSON.parse(record.requestParameters) : {};
   const response = record.responseElements ? JSON.parse(record.responseElements) : {};
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
 
@@ -1043,6 +1046,7 @@ const getServiceName = (serviceName: string) => {
 };
 
 const getUserName = async (userName: string) => {
+  if (userName === '') return userName;
   if (userName.startsWith('AWSServiceRole')) return userName;
   if (userName.startsWith('AWSBackupDefault')) return userName;
   if (userName.endsWith('@dxc.com')) return userName;
