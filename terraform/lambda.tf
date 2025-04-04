@@ -2,7 +2,7 @@
 # AWS Lambda Function - Athena Daily Batch
 # ----------------------------------------------------------------------------------------------
 resource "aws_lambda_function" "daily_batch" {
-  function_name     = "${local.project_name}-daily-batch-${local.environment}"
+  function_name     = "${local.project_name}-daily-${local.environment}"
   handler           = "index.handler"
   memory_size       = 128
   role              = aws_iam_role.daily_batch.arn
@@ -14,11 +14,7 @@ resource "aws_lambda_function" "daily_batch" {
 
   environment {
     variables = {
-      ATHENA_DATABASE        = var.athena_database_name
-      ATHENA_TABLE           = "${var.athena_table_name}_${local.environment}"
-      ATHENA_WORKGROUP       = aws_athena_workgroup.this.name
-      CLOUDTRAIL_BUCKET      = var.cloudtrail_bucket_name
-      CLOUDTRAIL_DEST_BUCKET = aws_s3_bucket.material.bucket
+      BUCKET_NAME = aws_s3_bucket.material.bucket
     }
   }
 }

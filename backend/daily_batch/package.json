@@ -11,10 +11,11 @@
   "dependencies": {
     "@alphax/dynamodb": "^1.2.16",
     "@aws-sdk/client-dynamodb": "^3.687.0",
-    "@aws-sdk/client-s3": "^3.688.0",
+    "@aws-sdk/client-s3": "^3.782.0",
     "csv-parse": "^5.5.6"
   },
   "devDependencies": {
+    "@aws-sdk/client-athena": "^3.782.0",
     "@types/aws-lambda": "^8.10.145",
     "@types/node": "^22.9.0",
     "dotenv": "^16.4.5",

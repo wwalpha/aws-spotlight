@@ -1,76 +1,167 @@
-import { DynamodbHelper } from '@alphax/dynamodb';
-import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3';
-import { S3Handler } from 'aws-lambda';
-import { parse } from 'csv-parse';
-import { Tables } from 'typings';
+import { AthenaClient, GetQueryExecutionCommand, StartQueryExecutionCommand } from '@aws-sdk/client-athena';
+import { CopyObjectCommand, S3Client } from '@aws-sdk/client-s3';
 
-const TABLE_NAME = process.env.TABLE_NAME as string;
+const athenaClient = new AthenaClient();
+const s3Client = new S3Client();
+const BUCKET_NAME = process.env.BUCKET_NAME;
 
-const client = new S3Client({});
-const helper = new DynamodbHelper();
-const parser = parse({
-  delimiter: ',',
-  skipEmptyLines: true,
-});
+export const handler = async () => {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
 
-export const handler: S3Handler = async (event) => {
-  // get the bucket and key
-  const bucket = event.Records[0].s3.bucket.name;
-  const key = event.Records[0].s3.object.key;
-
-  // create a command
-  const cmd = new GetObjectCommand({
-    Bucket: bucket,
-    Key: key,
-  });
-
-  // get the object
-  const res = await client.send(cmd);
-
-  // do something with the content
-  const contents = await res.Body?.transformToString();
-
-  // if the content is undefined, return
-  if (contents === undefined) {
-    throw new Error(`Cannot get file content. Bucket: ${bucket}, Key: ${key}`);
-  }
-
-  // parse the content
-  const dataRows = contents
-    .split('\n')
-    .splice(0, 1)
-    .map<Tables.TEvents>((item) => {
-      const items = item.split(',');
-
-      return {
-        AccountId: items[11],
-        AWSRegion: items[13],
-        EventId: items[8],
-        EventName: items[3],
-        EventSource: items[2],
-        EventTime: items[1],
-        RequestParameters: items[6],
-        ResponseElements: items[7],
-        UserName: items[0],
-      };
-    });
-
-  helper.bulk(TABLE_NAME, dataRows);
+  await startQuery(year.toString(), month, day);
 };
-// 1  UserIdentity,
-// 2  EventTime,
-// 3  EventSource,
-// 4  EventName,
-// 5 SourceIPAddress,
-// 6  RequestParameters,
-// 7  ResponseElements,
-// 8  RequestId,
-// 9  EventId,
-// 10  Resources,
-// 11  EventType,
-// 12 RecipientAccountId,
-// 13  ServiceEventDetails,
-// 14  region,
-// 15  year,
-// 16  month,
-// 17  day
+
+const startQuery = async (year: string, month: string, day: string) => {
+  const query = `
+    SELECT 
+      COALESCE(useridentity.username, useridentity.sessioncontext.sessionissuer.username) as userName,
+      eventTime,
+      eventSource,
+      eventName,
+      awsRegion,
+      sourceIPAddress,
+      userAgent,
+      requestParameters,
+      responseElements,
+      additionalEventData,
+      requestId,
+      eventId,
+      json_format(CAST(resources AS JSON)) AS resources,
+      recipientAccountId,
+      serviceEventDetails,
+      sharedEventId
+    FROM
+      default.cloudtrail_parquet2
+    WHERE
+      eventtime >= '${year}-${month}-${day}T00:00:00Z' 
+      AND eventtime < '${year}-${month}-${day}T99:99:99Z'
+      AND eventname not in (
+        'StartInstances',
+        'StopInstances',
+        'ConsoleLogin',
+        'BackupDeleted',
+        'CreateBackup',
+        'DeleteBackup',
+        'DriverExecute',
+        'CreateImage',
+        'CreateLogGroup',
+        'CreateLogStream',
+      )
+      and eventname not like 'Assume%'
+      and eventname not like 'Add%'
+      and eventname not like 'Assign%'
+      and eventname not like 'Attach%'
+      and eventname not like 'Associate%'
+      and eventname not like 'Activate%'
+      and eventname not like 'Admin%'
+      and eventname not like 'Alter%'
+      and eventname not like 'BackupJob%'
+      and eventname not like 'Change%'
+      and eventname not like 'Check%'
+      and eventname not like 'Complete%'
+      and eventname not like 'Deregister%'
+      and eventname not like 'Describe%'
+      and eventname not like 'Disable%'
+      and eventname not like 'Disassociate%'
+      and eventname not like 'Enable%'
+      and eventname not like 'Get%'
+      and eventname not like 'List%'
+      and eventname not like 'Initiate%'
+      and eventname not like 'Modify%'
+      and eventname not like 'Notify%'
+      and eventname not like 'Put%'
+      and eventname not like 'Publish%'
+      and eventname not like 'Resume%'
+      and eventname not like 'Refresh%'
+      and eventname not like 'Register%'
+      and eventname not like 'Retry%'
+      and eventname not like 'Reboot%'
+      and eventname not like 'Respond%'
+      and eventname not like 'List%'
+      and eventname not like 'Initiate%'
+      and eventname not like 'Modify%'
+      and eventname not like 'Notify%'
+      and eventname not like 'Put%'
+      and eventname not like 'Publish%'
+      and eventname not like 'List%'
+      and eventname not like 'Initiate%'
+      and eventname not like 'Modify%'
+      and eventname not like 'Notify%'
+      and eventname not like 'Put%'
+      and eventname not like 'Publish%'
+      and eventname not like 'Resume%'
+      and eventname not like 'Refresh%'
+      and eventname not like 'Register%'
+      and eventname not like 'Retry%'
+      and eventname not like 'Reboot%'
+      and eventname not like 'Respond%'
+      and eventname not like 'Remove%'
+      and eventname not like 'Suspend%'
+      and eventname not like 'Send%'
+      and eventname not like 'Start%'
+      and eventname not like 'Stream%'
+      and eventname not like 'Set%'
+      and eventname not like 'Stop%'
+      and eventname not like 'Test%'
+      and eventname not like 'Update%'
+      and eventname not like 'Upload%'
+      and eventname not like 'Use%'
+      and eventname not like 'Untag%'
+      and eventname not like 'Unsubscribe%'
+      and eventname not like 'Unassign%'
+      and eventname not like '%Tag%'
+      and eventname not like '%LogStream%'
+      and eventname not like '%Grant%'
+      and eventname not like '%RecoveryPoint%'
+      and eventname not like '%LayerUpload%'
+      and eventname not like '%SecurityGroup%'
+      and eventname not like '%Policy%'
+      and eventname not like '%Snapshot%'
+      and eventname not like '%Token%'
+      and eventname not like '%NetworkInterface%'
+      and eventname not like '%ForMgn'
+      and eventname not like '%ForDrs'
+      and eventname not like '%Session'
+      and eventname not like '%DataChannel'
+      and eventname not like '%Partition'
+      and eventsource <> 'cloudshell.amazonaws.com'
+      and not (eventsource = 'glue.amazonaws.com' and eventname = 'CreateTable')
+`;
+
+  // start athena query
+  const cmd = await athenaClient.send(new StartQueryExecutionCommand({ QueryString: query, WorkGroup: 'primary' }));
+
+  // wait for query to finish
+  const result = await waitQuery(cmd.QueryExecutionId!);
+
+  // copy result to s3 bucket
+  await s3Client.send(
+    new CopyObjectCommand({
+      Bucket: BUCKET_NAME,
+      CopySource: result.QueryExecution!.ResultConfiguration!.OutputLocation?.substring(5),
+      Key: `CloudTrail/year=${year}/month=${month}/${year}${month}${day}.csv`,
+    })
+  );
+
+  // repair index
+  await athenaClient.send(
+    new StartQueryExecutionCommand({ QueryString: 'MSCK REPAIR TABLE "cloudtrail_daily"', WorkGroup: 'primary' })
+  );
+};
+
+const waitQuery = async (queryExecutionId: string) => {
+  for (;;) {
+    sleep(1000);
+
+    const result = await athenaClient.send(new GetQueryExecutionCommand({ QueryExecutionId: queryExecutionId }));
+
+    if (result.QueryExecution?.Status?.State === 'SUCCEEDED') {
+      return result;
+    }
+  }
+};
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));

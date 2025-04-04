@@ -138,35 +138,10 @@ const registRecords = async (records: CloudTrailRecord[]) => {
     return [...prev, ...curr];
   }, [] as Tables.TResource[]);
 
-  // ARN でグルーピングする
-  // const groupedItems = _.groupBy(mergedItems, 'ResourceId');
-
-  // // ARN ごとに最新のイベントを取得
-  // const latestItems = Object.values(groupedItems).map((items) => {
-  //   return items.reduce((prev, curr) => {
-  //     return new Date(prev.EventTime) > new Date(curr.EventTime) ? prev : curr;
-  //   });
-  // });
-
-  // 重複を削除
-  // const jsonItems = mergedItems.map((item) => JSON.stringify(item));
-  // const uniqueItems = _.uniq(jsonItems).map((item) => JSON.parse(item));
-
-  // logging
-  // uniqueItems.forEach((item) => {
-  //   console.log(item.ResourceId, item.EventTime);
-  // });
-  // mergedItems.forEach((item) => console.log(item.ResourceId, item.Status, item.EventTime));
-
   // 100件毎に分割し、実行する
   const chunks = _.chunk(mergedItems, 100);
 
   for (const chunk of chunks) {
     await Promise.all(chunk.map((items) => ResourceService.registLatest(items)));
   }
-
-  // await Promise.all(chunks.map((items) => ResourceService.registLatest(items)));
-
-  // リソース情報を登録
-  // await Promise.all(mergedItems.map((item) => ResourceService.registLatest(item)));
 };

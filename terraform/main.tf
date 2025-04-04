@@ -10,8 +10,8 @@ provider "aws" {
 # ----------------------------------------------------------------------------------------------
 terraform {
   backend "s3" {
-    region = "ap-northeast-1"
-    bucket = "dxcpf-terraform-ap-northeast-1"
+    region = "us-east-1"
+    bucket = "arms-terraform-0606"
     key    = "spotlight/main.tfstate"
   }
 }
