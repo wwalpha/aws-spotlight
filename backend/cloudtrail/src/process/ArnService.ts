@@ -388,7 +388,12 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       break;
 
     case 'LAMBDA_CreateFunction20150331':
-      rets = [response.functionArn, response.functionName];
+      if (response === undefined || response.functionArn === undefined) {
+        rets = [ResourceARNs.LAMBDA_Function20150331(region, account, request.functionName), request.functionName];
+      } else {
+        rets = [response.functionArn, response.functionName];
+      }
+
       break;
 
     case 'NETWORK-FIREWALL_CreateFirewall':
