@@ -19,10 +19,13 @@ resource "aws_s3_bucket_versioning" "material" {
 # AWS S3 Bucket Notification - Enabled
 # ----------------------------------------------------------------------------------------------
 resource "aws_s3_bucket_notification" "cloudtrail" {
-  depends_on = [aws_lambda_function.cloudtrail_process]
+  depends_on = [aws_lambda_permission.cloudtrail_process]
   bucket     = aws_s3_bucket.material.id
 
   lambda_function {
+    id                  = "CloudTrailEvent"
+    filter_prefix       = "CloudTrail/"
+    filter_suffix       = ".csv"
     lambda_function_arn = aws_lambda_function.cloudtrail_process.arn
     events              = ["s3:ObjectCreated:*"]
   }

@@ -4,9 +4,14 @@ import { CopyObjectCommand, S3Client } from '@aws-sdk/client-s3';
 const athenaClient = new AthenaClient();
 const s3Client = new S3Client();
 const BUCKET_NAME = process.env.BUCKET_NAME;
+const ATHENA_WORKGROUP = process.env.ATHENA_WORKGROUP;
 
 export const handler = async () => {
-  const date = new Date();
+  const now = new Date();
+  // yesterday
+  const date = new Date(now);
+  date.setDate(now.getDate() - 1);
+
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
@@ -33,11 +38,31 @@ const startQuery = async (year: string, month: string, day: string) => {
       recipientAccountId,
       serviceEventDetails,
       sharedEventId
-    FROM
-      default.cloudtrail_parquet2
+    FROM "default"."cloudtrail_logs_global_v1"
     WHERE
-      eventtime >= '${year}-${month}-${day}T00:00:00Z' 
-      AND eventtime < '${year}-${month}-${day}T99:99:99Z'
+      region IN (
+        'ap-northeast-1',
+        'ap-northeast-2',
+        'ap-northeast-3',
+        'ap-south-1',
+        'ap-southeast-1',
+        'ap-southeast-2',
+        'ca-central-1',
+        'eu-central-1',
+        'eu-north-1',
+        'eu-west-1',
+        'eu-west-2',
+        'eu-west-3',
+        'me-central-1',
+        'sa-east-1',
+        'us-east-1',
+        'us-east-2',
+        'us-west-1',
+        'us-west-2'
+      )
+      AND timestamp = '${year}/${month}/${day}'
+      AND readonly = 'false'
+      AND errorcode IS NULL
       AND eventname not in (
         'StartInstances',
         'StopInstances',
@@ -48,91 +73,74 @@ const startQuery = async (year: string, month: string, day: string) => {
         'DriverExecute',
         'CreateImage',
         'CreateLogGroup',
-        'CreateLogStream',
+        'CreateLogStream'
       )
-      and eventname not like 'Assume%'
-      and eventname not like 'Add%'
-      and eventname not like 'Assign%'
-      and eventname not like 'Attach%'
-      and eventname not like 'Associate%'
-      and eventname not like 'Activate%'
-      and eventname not like 'Admin%'
-      and eventname not like 'Alter%'
-      and eventname not like 'BackupJob%'
-      and eventname not like 'Change%'
-      and eventname not like 'Check%'
-      and eventname not like 'Complete%'
-      and eventname not like 'Deregister%'
-      and eventname not like 'Describe%'
-      and eventname not like 'Disable%'
-      and eventname not like 'Disassociate%'
-      and eventname not like 'Enable%'
-      and eventname not like 'Get%'
-      and eventname not like 'List%'
-      and eventname not like 'Initiate%'
-      and eventname not like 'Modify%'
-      and eventname not like 'Notify%'
-      and eventname not like 'Put%'
-      and eventname not like 'Publish%'
-      and eventname not like 'Resume%'
-      and eventname not like 'Refresh%'
-      and eventname not like 'Register%'
-      and eventname not like 'Retry%'
-      and eventname not like 'Reboot%'
-      and eventname not like 'Respond%'
-      and eventname not like 'List%'
-      and eventname not like 'Initiate%'
-      and eventname not like 'Modify%'
-      and eventname not like 'Notify%'
-      and eventname not like 'Put%'
-      and eventname not like 'Publish%'
-      and eventname not like 'List%'
-      and eventname not like 'Initiate%'
-      and eventname not like 'Modify%'
-      and eventname not like 'Notify%'
-      and eventname not like 'Put%'
-      and eventname not like 'Publish%'
-      and eventname not like 'Resume%'
-      and eventname not like 'Refresh%'
-      and eventname not like 'Register%'
-      and eventname not like 'Retry%'
-      and eventname not like 'Reboot%'
-      and eventname not like 'Respond%'
-      and eventname not like 'Remove%'
-      and eventname not like 'Suspend%'
-      and eventname not like 'Send%'
-      and eventname not like 'Start%'
-      and eventname not like 'Stream%'
-      and eventname not like 'Set%'
-      and eventname not like 'Stop%'
-      and eventname not like 'Test%'
-      and eventname not like 'Update%'
-      and eventname not like 'Upload%'
-      and eventname not like 'Use%'
-      and eventname not like 'Untag%'
-      and eventname not like 'Unsubscribe%'
-      and eventname not like 'Unassign%'
-      and eventname not like '%Tag%'
-      and eventname not like '%LogStream%'
-      and eventname not like '%Grant%'
-      and eventname not like '%RecoveryPoint%'
-      and eventname not like '%LayerUpload%'
-      and eventname not like '%SecurityGroup%'
-      and eventname not like '%Policy%'
-      and eventname not like '%Snapshot%'
-      and eventname not like '%Token%'
-      and eventname not like '%NetworkInterface%'
-      and eventname not like '%ForMgn'
-      and eventname not like '%ForDrs'
-      and eventname not like '%Session'
-      and eventname not like '%DataChannel'
-      and eventname not like '%Partition'
-      and eventsource <> 'cloudshell.amazonaws.com'
-      and not (eventsource = 'glue.amazonaws.com' and eventname = 'CreateTable')
+      AND eventname not like 'Assume%'
+      AND eventname not like 'Add%'
+      AND eventname not like 'Assign%'
+      AND eventname not like 'Attach%'
+      AND eventname not like 'Associate%'
+      AND eventname not like 'Activate%'
+      AND eventname not like 'Admin%'
+      AND eventname not like 'Alter%'
+      AND eventname not like 'BackupJob%'
+      AND eventname not like 'Change%'
+      AND eventname not like 'Check%'
+      AND eventname not like 'Complete%'
+      AND eventname not like 'Deregister%'
+      AND eventname not like 'Describe%'
+      AND eventname not like 'Disable%'
+      AND eventname not like 'Disassociate%'
+      AND eventname not like 'Enable%'
+      AND eventname not like 'Get%'
+      AND eventname not like 'List%'
+      AND eventname not like 'Initiate%'
+      AND eventname not like 'Modify%'
+      AND eventname not like 'Notify%'
+      AND eventname not like 'Put%'
+      AND eventname not like 'Publish%'
+      AND eventname not like 'Resume%'
+      AND eventname not like 'Refresh%'
+      AND eventname not like 'Retry%'
+      AND eventname not like 'Reboot%'
+      AND eventname not like 'Respond%'
+      AND eventname not like 'Remove%'
+      AND eventname not like 'Suspend%'
+      AND eventname not like 'Send%'
+      AND eventname not like 'Start%'
+      AND eventname not like 'Stream%'
+      AND eventname not like 'Set%'
+      AND eventname not like 'Stop%'
+      AND eventname not like 'Test%'
+      AND eventname not like 'Update%'
+      AND eventname not like 'Upload%'
+      AND eventname not like 'Use%'
+      AND eventname not like 'Untag%'
+      AND eventname not like 'Unsubscribe%'
+      AND eventname not like 'Unassign%'
+      AND eventname not like '%Tag%'
+      AND eventname not like '%LogStream%'
+      AND eventname not like '%Grant%'
+      AND eventname not like '%RecoveryPoint%'
+      AND eventname not like '%LayerUpload%'
+      AND eventname not like '%SecurityGroup%'
+      AND eventname not like '%Policy%'
+      AND eventname not like '%Snapshot%'
+      AND eventname not like '%Token%'
+      AND eventname not like '%NetworkInterface%'
+      AND eventname not like '%ForMgn'
+      AND eventname not like '%ForDrs'
+      AND eventname not like '%Session'
+      AND eventname not like '%DataChannel'
+      AND eventname not like '%Partition'
+      AND eventsource <> 'cloudshell.amazonaws.com'
+      AND not (eventsource = 'glue.amazonaws.com' AND eventname = 'CreateTable')
 `;
 
   // start athena query
-  const cmd = await athenaClient.send(new StartQueryExecutionCommand({ QueryString: query, WorkGroup: 'primary' }));
+  const cmd = await athenaClient.send(
+    new StartQueryExecutionCommand({ QueryString: query, WorkGroup: ATHENA_WORKGROUP })
+  );
 
   // wait for query to finish
   const result = await waitQuery(cmd.QueryExecutionId!);
@@ -148,7 +156,7 @@ const startQuery = async (year: string, month: string, day: string) => {
 
   // repair index
   await athenaClient.send(
-    new StartQueryExecutionCommand({ QueryString: 'MSCK REPAIR TABLE "cloudtrail_daily"', WorkGroup: 'primary' })
+    new StartQueryExecutionCommand({ QueryString: 'MSCK REPAIR TABLE "cloudtrail_daily"', WorkGroup: ATHENA_WORKGROUP })
   );
 };
 

@@ -2,7 +2,7 @@
 # AWS Lambda Function - Athena Daily Batch
 # ----------------------------------------------------------------------------------------------
 resource "aws_lambda_function" "daily_batch" {
-  function_name     = "${local.project_name}-daily-${local.environment}"
+  function_name     = "${local.project_name}-dailybatch-${local.environment}"
   handler           = "index.handler"
   memory_size       = 128
   role              = aws_iam_role.daily_batch.arn
@@ -14,7 +14,8 @@ resource "aws_lambda_function" "daily_batch" {
 
   environment {
     variables = {
-      BUCKET_NAME = aws_s3_bucket.material.bucket
+      BUCKET_NAME      = aws_s3_bucket.material.bucket
+      ATHENA_WORKGROUP = aws_athena_workgroup.this.name
     }
   }
 }
@@ -50,4 +51,15 @@ resource "aws_lambda_function" "cloudtrail_process" {
       S3_BUCKET_MATERIALS   = aws_s3_bucket.material.bucket
     }
   }
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS Lambda Permission - CloudTrail Process
+# ----------------------------------------------------------------------------------------------
+resource "aws_lambda_permission" "cloudtrail_process" {
+  statement_id  = "AllowExecutionFromS3"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.cloudtrail_process.arn
+  principal     = "s3.amazonaws.com"
+  source_arn    = aws_s3_bucket.material.arn
 }

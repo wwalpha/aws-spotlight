@@ -32,10 +32,26 @@ resource "aws_iam_role_policy" "daily_batch_athena_execution" {
           "s3:ListBucket",
         ]
         Resource = [
-          aws_s3_bucket.material.arn,
+          "${aws_s3_bucket.material.arn}",
           "${aws_s3_bucket.material.arn}/*"
         ]
       },
     ]
   })
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS IAM Role Policy - CloudTrail Process DynamoDB FullAccess
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy_attachment" "cloudtrail_process_dynamodb" {
+  role       = aws_iam_role.cloudtrail_process.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS IAM Role Policy - CloudTrail Process ECR FullAccess
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy_attachment" "cloudtrail_process_ecr" {
+  role       = aws_iam_role.cloudtrail_process.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPullOnly"
 }
