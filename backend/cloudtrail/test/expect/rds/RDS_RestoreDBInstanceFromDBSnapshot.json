@@ -1,0 +1,12 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "ResourceName": "nestle-envtestdb2",
+  "Service": "RDS",
+  "EventId": "bfb7735b-7ea1-4f9d-bb22-bdf1b9d47589",
+  "Status": "Created",
+  "ResourceId": "arn:aws:rds:ap-northeast-1:999999999999:db:nestle-envtestdb2",
+  "EventTime": "2022-06-09T08:40:23Z",
+  "EventName": "RestoreDBInstanceFromDBSnapshot",
+  "EventSource": "rds.amazonaws.com",
+  "UserName": "test@test.com"
+}

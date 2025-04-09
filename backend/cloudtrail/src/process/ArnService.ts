@@ -574,7 +574,6 @@ const getRegistMultiResources = (record: CloudTrailRecord): ResourceInfo[] => {
           name: snapshotId,
         },
       ];
-    case 'RDS_ModifyDBInstance':
   }
 
   return [];

@@ -1,0 +1,12 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "ResourceName": "snp-database-3-20230209",
+  "Service": "RDS",
+  "EventId": "7ed902d8-fedd-45f0-8d57-4aca741295e1",
+  "Status": "Created",
+  "ResourceId": "arn:aws:rds:ap-northeast-1:999999999999:snapshot:snp-database-3-20230209",
+  "EventTime": "2023-02-09T04:35:54Z",
+  "EventName": "CreateDBSnapshot",
+  "EventSource": "rds.amazonaws.com",
+  "UserName": "test@test.com"
+}

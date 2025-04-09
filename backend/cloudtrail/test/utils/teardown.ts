@@ -23,10 +23,6 @@ const teardown = async () => {
   // await dbClient.send(new DeleteTableCommand({ TableName: process.env.TABLE_NAME_SETTINGS as string }));
   // await dbClient.send(new DeleteTableCommand({ TableName: process.env.TABLE_NAME_UNPROCESSED as string }));
 
-  await helper.truncateAll(process.env.TABLE_NAME_EVENT_TYPE as string);
-  await helper.truncateAll(process.env.TABLE_NAME_RESOURCES as string);
-  await helper.truncateAll(process.env.TABLE_NAME_SETTINGS as string);
-  await helper.truncateAll(process.env.TABLE_NAME_UNPROCESSED as string);
   console.log('jest teardown end...');
 };
 

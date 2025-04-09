@@ -124,6 +124,10 @@ const setup = async () => {
     await helper.truncateAll(TABLE_NAME_EVENT_TYPE);
     await helper.bulk(TABLE_NAME_EVENT_TYPE, getEvents());
 
+    await helper.truncateAll(process.env.TABLE_NAME_RESOURCES as string);
+    await helper.truncateAll(process.env.TABLE_NAME_SETTINGS as string);
+    await helper.truncateAll(process.env.TABLE_NAME_UNPROCESSED as string);
+
     console.log('jest setup end...');
   } catch (e) {
     console.error(e);
