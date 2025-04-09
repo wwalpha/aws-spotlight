@@ -1,0 +1,47 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIWODBMIFD5",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI2V76RXTE",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-02T00:52:55Z" }
+    }
+  },
+  "eventTime": "2021-04-02T00:55:05Z",
+  "eventSource": "s3.amazonaws.com",
+  "eventName": "CreateBucket",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.138",
+  "userAgent": "[S3Console/0.4, aws-internal/3 aws-sdk-java/1.11.965 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation]",
+  "requestParameters": {
+    "CreateBucketConfiguration": {
+      "LocationConstraint": "ap-northeast-1",
+      "xmlns": "http://s3.amazonaws.com/doc/2006-03-01/"
+    },
+    "bucketName": "test-backt-testfile01",
+    "Host": "s3-ap-northeast-1.amazonaws.com"
+  },
+  "responseElements": null,
+  "additionalEventData": {
+    "SignatureVersion": "SigV4",
+    "CipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
+    "bytesTransferredIn": 158,
+    "AuthenticationMethod": "AuthHeader",
+    "x-amz-id-2": "YKDpCe5BBLlhcV0kTBhbWxrg0ob1aBEZRbmNKHUA9iU/CJoNleafcuiEOYGIcyNUhhsfw5ea/ZY=",
+    "bytesTransferredOut": 0
+  },
+  "requestID": "1V0N3E5NM563WXWX",
+  "eventID": "16ab98c7-8007-4df8-9722-9b1732fa7f78",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999",
+  "vpcEndpointId": "vpce-c8e61da1"
+}

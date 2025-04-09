@@ -1,0 +1,69 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5DNPIUVEYF",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5LAM34GFQ",
+    "userName": "test@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2021-09-30T02:49:39Z",
+        "mfaAuthenticated": "false"
+      }
+    }
+  },
+  "eventTime": "2021-09-30T06:36:17Z",
+  "eventSource": "rds.amazonaws.com",
+  "eventName": "CreateDBClusterSnapshot",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.110.159",
+  "userAgent": "console.amazonaws.com",
+  "requestParameters": {
+    "dBClusterSnapshotIdentifier": "aurora-db-backup-20210930",
+    "dBClusterIdentifier": "aurora-db"
+  },
+  "responseElements": {
+    "availabilityZones": [
+      "ap-northeast-1a",
+      "ap-northeast-1c",
+      "ap-northeast-1d"
+    ],
+    "dBClusterSnapshotIdentifier": "aurora-db-backup-20210930",
+    "dBClusterIdentifier": "aurora-db",
+    "snapshotCreateTime": "Sep 30, 2021 6:36:17 AM",
+    "engine": "aurora-postgresql",
+    "engineMode": "provisioned",
+    "allocatedStorage": 1,
+    "status": "creating",
+    "port": 0,
+    "vpcId": "vpc-08f77b07c34029b7a",
+    "clusterCreateTime": "Jul 12, 2021 11:52:37 PM",
+    "masterUsername": "postgres",
+    "engineVersion": "11.9",
+    "licenseModel": "postgresql-license",
+    "snapshotType": "manual",
+    "percentProgress": 0,
+    "storageEncrypted": true,
+    "kmsKeyId": "arn:aws:kms:ap-northeast-1:999999999999:key/3c252dc0-7b1e-4181-ba49-c345022d5c1e",
+    "dBClusterSnapshotArn": "arn:aws:rds:ap-northeast-1:999999999999:cluster-snapshot:aurora-db-backup-20210930",
+    "iAMDatabaseAuthenticationEnabled": true,
+    "tagList": [
+      {
+        "key": "Owner",
+        "value": "test@test.com"
+      }
+    ]
+  },
+  "requestID": "c7cf82d9-dceb-494a-997e-af8d70e31c3a",
+  "eventID": "5bc8d82f-eaa9-44e2-863d-3018f0fa0faf",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management",
+  "sessionCredentialFromConsole": "true"
+}

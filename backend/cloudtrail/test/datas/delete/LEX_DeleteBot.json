@@ -1,0 +1,36 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5JFQ6TL6DZ",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5KATNUSFN",
+    "userName": "test@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-07-02T07:43:36Z"
+      }
+    }
+  },
+  "eventTime": "2021-07-02T09:24:08Z",
+  "eventSource": "lex.amazonaws.com",
+  "eventName": "DeleteBot",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.51",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.1009 Linux/5.4.102-52.177.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.292-b10 java/1.8.0_292 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "requestParameters": {
+    "name": "multichannel_lex_bot"
+  },
+  "responseElements": null,
+  "requestID": "4fe6c3c6-b25f-46b9-a8e6-2ab094a4e4d8",
+  "eventID": "f7f3b142-6e48-471e-b29c-193af7364844",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

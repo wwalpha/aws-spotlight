@@ -1,0 +1,214 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5LVFA5JHA",
+    "userName": "test@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2022-07-05T22:53:15Z",
+        "mfaAuthenticated": "true"
+      }
+    }
+  },
+  "eventTime": "2022-07-06T01:44:00Z",
+  "eventSource": "dms.amazonaws.com",
+  "eventName": "DeleteReplicationInstance",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
+  "requestParameters": {
+    "replicationInstanceArn": "arn:aws:dms:ap-northeast-1:999999999999:rep:IMG2PDS3YLM3PFGOMBNEY7LMODJ2Q4YA5AMOJLA"
+  },
+  "responseElements": {
+    "replicationInstance": {
+      "replicationInstanceIdentifier": "demo",
+      "replicationInstanceClass": "dms.t3.medium",
+      "replicationInstanceStatus": "deleting",
+      "allocatedStorage": 50,
+      "instanceCreateTime": "Jul 6, 2022 1:38:13 AM",
+      "vpcSecurityGroups": [
+        {
+          "vpcSecurityGroupId": "sg-0ab6c77a3ec5257d3",
+          "status": "active"
+        }
+      ],
+      "availabilityZone": "ap-northeast-1a",
+      "replicationSubnetGroup": {
+        "replicationSubnetGroupIdentifier": "default-vpc-08f77b07c34029b7a",
+        "replicationSubnetGroupDescription": "default group created by console for vpc id vpc-08f77b07c34029b7a",
+        "vpcId": "vpc-08f77b07c34029b7a",
+        "subnetGroupStatus": "Complete",
+        "subnets": [
+          {
+            "subnetIdentifier": "subnet-045904c3b7b8b25a0",
+            "subnetAvailabilityZone": {
+              "name": "ap-northeast-1a"
+            },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-0221940ce594a9f84",
+            "subnetAvailabilityZone": {
+              "name": "ap-northeast-1d"
+            },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-0d9599eccb5d9642f",
+            "subnetAvailabilityZone": {
+              "name": "ap-northeast-1c"
+            },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-0522ca94d58456f83",
+            "subnetAvailabilityZone": {
+              "name": "ap-northeast-1a"
+            },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-0b179dcf9e69c7cf4",
+            "subnetAvailabilityZone": {
+              "name": "ap-northeast-1a"
+            },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-0c8c5a9958f2f9169",
+            "subnetAvailabilityZone": {
+              "name": "ap-northeast-1a"
+            },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-090d1aba9ebf7ca63",
+            "subnetAvailabilityZone": {
+              "name": "ap-northeast-1a"
+            },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-0805196f981c3061b",
+            "subnetAvailabilityZone": {
+              "name": "ap-northeast-1a"
+            },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-085a73dcda9c0a119",
+            "subnetAvailabilityZone": {
+              "name": "ap-northeast-1a"
+            },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-0aaa39efb7fdae6f7",
+            "subnetAvailabilityZone": {
+              "name": "ap-northeast-1a"
+            },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-02b6eb7acc40c14f1",
+            "subnetAvailabilityZone": {
+              "name": "ap-northeast-1c"
+            },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-0d950c1a77269f980",
+            "subnetAvailabilityZone": {
+              "name": "ap-northeast-1a"
+            },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-003cfdcdbaf257d95",
+            "subnetAvailabilityZone": {
+              "name": "ap-northeast-1a"
+            },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-06e2aa4c049c4cc17",
+            "subnetAvailabilityZone": {
+              "name": "ap-northeast-1a"
+            },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-08b591d227107ffc5",
+            "subnetAvailabilityZone": {
+              "name": "ap-northeast-1d"
+            },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-0e86b4da772cc3350",
+            "subnetAvailabilityZone": {
+              "name": "ap-northeast-1c"
+            },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-0c007936732e02af4",
+            "subnetAvailabilityZone": {
+              "name": "ap-northeast-1a"
+            },
+            "subnetStatus": "Active"
+          },
+          {
+            "subnetIdentifier": "subnet-09964b248a48278cb",
+            "subnetAvailabilityZone": {
+              "name": "ap-northeast-1c"
+            },
+            "subnetStatus": "Active"
+          }
+        ],
+        "replicationSubnetGroupArn": "arn:aws:dms:ap-northeast-1:999999999999:subgrp:FN433LJYFTCGX7ZSIRXT3QZUW22LG5CIPWTQ5ZY"
+      },
+      "preferredMaintenanceWindow": "wed:08:42-wed:09:12",
+      "pendingModifiedValues": {},
+      "multiAZ": false,
+      "engineVersion": "3.4.7",
+      "autoMinorVersionUpgrade": true,
+      "kmsKeyId": "arn:aws:kms:ap-northeast-1:999999999999:key/bb436397-98c0-468d-a510-78e8a4b0c58f",
+      "replicationInstanceArn": "arn:aws:dms:ap-northeast-1:999999999999:rep:IMG2PDS3YLM3PFGOMBNEY7LMODJ2Q4YA5AMOJLA",
+      "replicationInstancePublicIpAddress": "54.168.80.234",
+      "replicationInstancePrivateIpAddress": "10.0.143.29",
+      "replicationInstancePublicIpAddresses": [
+        "54.168.80.234"
+      ],
+      "replicationInstancePrivateIpAddresses": [
+        "10.0.143.29"
+      ],
+      "publiclyAccessible": true,
+      "replicationInstanceEniId": "eni-0ef3a6dc2c11fade7",
+      "replicationInstanceEniIds": [
+        "eni-0ef3a6dc2c11fade7"
+      ],
+      "patchingPrecedence": 0,
+      "networkType": "IPV4"
+    }
+  },
+  "requestID": "b96e477e-3d59-47f4-adba-954be3dd13e1",
+  "eventID": "fbb11b4f-9253-4014-9a3c-fdbb67b640cb",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management",
+  "tlsDetails": {
+    "tlsVersion": "TLSv1.2",
+    "cipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
+    "clientProvidedHostHeader": "dms.ap-northeast-1.amazonaws.com"
+  },
+  "sessionCredentialFromConsole": "true"
+}

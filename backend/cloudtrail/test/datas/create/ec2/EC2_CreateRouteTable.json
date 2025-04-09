@@ -1,0 +1,77 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5NF2JV63UX",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5I2FEWGNW",
+    "userName": "test@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2023-01-06T04:16:51Z",
+        "mfaAuthenticated": "false"
+      }
+    }
+  },
+  "eventTime": "2023-01-06T04:40:04Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "CreateRouteTable",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "AWS Internal",
+  "userAgent": "AWS Internal",
+  "requestParameters": {
+    "vpcId": "vpc-08f77b07c34029b7a",
+    "tagSpecificationSet": {
+      "items": [
+        {
+          "resourceType": "route-table",
+          "tags": [
+            {
+              "key": "Name",
+              "value": "Sjin6-RouteTable-Private-1c"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "responseElements": {
+    "requestId": "19d39bba-2244-4b68-9efa-2cb5cbb84c01",
+    "routeTable": {
+      "routeTableId": "rtb-0eefcfcc620d67b94",
+      "vpcId": "vpc-08f77b07c34029b7a",
+      "ownerId": "999999999999",
+      "routeSet": {
+        "items": [
+          {
+            "destinationCidrBlock": "10.0.0.0/16",
+            "gatewayId": "local",
+            "state": "active",
+            "origin": "CreateRouteTable"
+          }
+        ]
+      },
+      "associationSet": {},
+      "propagatingVgwSet": {},
+      "tagSet": {
+        "items": [
+          {
+            "key": "Name",
+            "value": "Sjin6-RouteTable-Private-1c"
+          }
+        ]
+      }
+    }
+  },
+  "requestID": "19d39bba-2244-4b68-9efa-2cb5cbb84c01",
+  "eventID": "ba4c0841-6b1c-432d-8ceb-0e5f0abafa94",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management",
+  "sessionCredentialFromConsole": "true"
+}

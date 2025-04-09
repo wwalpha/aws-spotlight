@@ -1,0 +1,68 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5POKEWMRXJ",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5CGAVYR5V",
+    "userName": "test@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2023-01-19T00:43:09Z",
+        "mfaAuthenticated": "false"
+      }
+    },
+    "invokedBy": "rds.amazonaws.com"
+  },
+  "eventTime": "2023-01-19T06:05:49Z",
+  "eventSource": "rds.amazonaws.com",
+  "eventName": "DeleteDBProxy",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "rds.amazonaws.com",
+  "userAgent": "AWS Internal",
+  "requestParameters": {
+    "dBProxyName": "proxy-1674105823625-pointcampaign"
+  },
+  "responseElements": {
+    "dBProxy": {
+      "dBProxyName": "proxy-1674105823625-pointcampaign",
+      "dBProxyArn": "arn:aws:rds:ap-northeast-1:999999999999:db-proxy:prx-057abb09c838b8840",
+      "status": "deleting",
+      "engineFamily": "SQLSERVER",
+      "vpcId": "vpc-08f77b07c34029b7a",
+      "vpcSecurityGroupIds": [
+        "sg-09d92f4b8136ad23d"
+      ],
+      "vpcSubnetIds": [
+        "subnet-08b591d227107ffc5",
+        "subnet-0d950c1a77269f980"
+      ],
+      "auth": [
+        {
+          "authScheme": "SECRETS",
+          "secretArn": "arn:aws:secretsmanager:ap-northeast-1:999999999999:secret:rds-db-credentials/db-2Y3ZEW6ZLB3LS7SWCOLTZASPEA/admin/1674105822133-vQrjmw",
+          "iAMAuth": "DISABLED",
+          "clientPasswordAuthType": "SQL_SERVER_AUTHENTICATION"
+        }
+      ],
+      "roleArn": "arn:aws:iam::999999999999:role/service-role/rds-proxy-role-1674105822759",
+      "endpoint": "proxy-1674105823625-pointcampaign.proxy-c71cbtvdqkpj.ap-northeast-1.rds.amazonaws.com",
+      "requireTLS": false,
+      "idleClientTimeout": 1800,
+      "debugLogging": false,
+      "createdDate": "Jan 19, 2023 5:23:45 AM",
+      "updatedDate": "Jan 19, 2023 6:05:49 AM"
+    }
+  },
+  "requestID": "f20277dd-52b9-4b85-80b8-7c92552b359e",
+  "eventID": "6b0ed46a-442c-4aa6-98c6-38037904468d",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management",
+  "sessionCredentialFromConsole": "true"
+}

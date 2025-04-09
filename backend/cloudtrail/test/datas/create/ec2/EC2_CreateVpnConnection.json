@@ -1,0 +1,56 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "creationDate": "2021-07-22T23:24:13Z", "mfaAuthenticated": "true" }
+    }
+  },
+  "eventTime": "2021-07-22T23:35:53Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "CreateVpnConnection",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.58",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "type": "ipsec.1",
+    "customerGatewayId": "cgw-0bf90d6d3825b7bbd",
+    "vpnGatewayId": "vgw-08c87ca4468c13b6f",
+    "options": { "staticRoutesOnly": true, "tunnelInsideIpVersion": "ipv4" }
+  },
+  "responseElements": {
+    "requestId": "72254489-86cc-44e8-85bf-6e7badb43229",
+    "vpnConnection": {
+      "vpnConnectionId": "vpn-06d78c43438fa98fe",
+      "state": "pending",
+      "customerGatewayConfiguration": "<sensitiveDataRemoved>",
+      "customerGatewayId": "cgw-0bf90d6d3825b7bbd",
+      "vpnGatewayId": "vgw-08c87ca4468c13b6f",
+      "category": "VPN",
+      "tagSet": {},
+      "options": {
+        "enableAcceleration": false,
+        "staticRoutesOnly": true,
+        "localIpv4NetworkCidr": "0.0.0.0/0",
+        "remoteIpv4NetworkCidr": "0.0.0.0/0",
+        "tunnelInsideIpVersion": "ipv4",
+        "tunnelOptionSet": {}
+      },
+      "routes": {}
+    }
+  },
+  "requestID": "72254489-86cc-44e8-85bf-6e7badb43229",
+  "eventID": "c19e8892-4ff6-4fc7-9147-e1fa34e0a3e8",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management"
+}

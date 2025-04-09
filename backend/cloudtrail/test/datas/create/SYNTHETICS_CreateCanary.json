@@ -1,0 +1,72 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com"
+  },
+  "eventTime": "2021-07-02T13:21:10Z",
+  "eventSource": "synthetics.amazonaws.com",
+  "eventName": "CreateCanary",
+  "awsRegion": "us-east-1",
+  "sourceIPAddress": "23.102.139.95",
+  "userAgent": "APN/1.0 HashiCorp/1.0 Terraform/1.0.0 (+https://www.terraform.io) terraform-provider-aws/3.47.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.38.66 (go1.16; linux; amd64)",
+  "requestParameters": {
+    "ExecutionRoleArn": "arn:aws:iam::999999999999:role/ARMS_Lambda_SyntheticsRole",
+    "Schedule": {
+      "DurationInSeconds": 0,
+      "Expression": "cron(0 16 ? * * *)"
+    },
+    "SuccessRetentionPeriodInDays": 31,
+    "RuntimeVersion": "syn-nodejs-puppeteer-3.1",
+    "Code": {
+      "Handler": "apiCanaryBlueprint.handler",
+      "ZipFile": "UEsDBAoAAAAAAM4Q4lIAAAAAAAAAAAAAAAAHAAAAbm9kZWpzL1BLAwQKAAAAAADOEOJSAAAAAAAAAAAAAAAAFAAAAG5vZGVqcy9ub2RlX21vZHVsZXMvUEsDBAoAAAAAAM4Q4lJ3s3+IqAYAAKgGAAApAAAAbm9kZWpzL25vZGVfbW9kdWxlcy9hcGlDYW5hcnlCbHVlcHJpbnQuanN2YXIgc3ludGhldGljcyA9IHJlcXVpcmUoJ1N5bnRoZXRpY3MnKTsKY29uc3QgbG9nID0gcmVxdWlyZSgnU3ludGhldGljc0xvZ2dlcicpOwoKY29uc3QgYXBpQ2FuYXJ5Qmx1ZXByaW50ID0gYXN5bmMgZnVuY3Rpb24gKCkgewogICAgCiAgICAvLyBIYW5kbGUgdmFsaWRhdGlvbiBmb3IgcG9zaXRpdmUgc2NlbmFyaW8KICAgIGNvbnN0IHZhbGlkYXRlU3VjY2Vzc2Z1bCA9IGFzeW5jIGZ1bmN0aW9uKHJlcykgewogICAgICAgIHJldHVybiBuZXcgUHJvbWlzZSgocmVzb2x2ZSwgcmVqZWN0KSA9PiB7CiAgICAgICAgICAgIGlmIChyZXMuc3RhdHVzQ29kZSA8IDIwMCB8fCByZXMuc3RhdHVzQ29kZSA+IDI5OSkgewogICAgICAgICAgICAgICAgdGhyb3cgcmVzLnN0YXR1c0NvZGUgKyAnICcgKyByZXMuc3RhdHVzTWVzc2FnZTsKICAgICAgICAgICAgfQogICAgIAogICAgICAgICAgICBsZXQgcmVzcG9uc2VCb2R5ID0gJyc7CiAgICAgICAgICAgIHJlcy5vbignZGF0YScsIChkKSA9PiB7CiAgICAgICAgICAgICAgICByZXNwb25zZUJvZHkgKz0gZDsKICAgICAgICAgICAgfSk7CiAgICAgCiAgICAgICAgICAgIHJlcy5vbignZW5kJywgKCkgPT4gewogICAgICAgICAgICAgICAgLy8gQWRkIHZhbGlkYXRpb24gb24gJ3Jlc3BvbnNlQm9keScgaGVyZSBpZiByZXF1aXJlZC4KICAgICAgICAgICAgICAgIHJlc29sdmUoKTsKICAgICAgICAgICAgfSk7CiAgICAgICAgfSk7CiAgICB9OwogICAgCgogICAgLy8gU2V0IHJlcXVlc3Qgb3B0aW9uIGZvciBWZXJpZnkgL3Jlc291cmNlcy9hdWRpdC9yZWdpb24KICAgIGxldCByZXF1ZXN0T3B0aW9uc1N0ZXAxID0gewogICAgICAgIGhvc3RuYW1lOiAnYXBpLmFybXMuYXdzLWhhbmRzb24uY29tJywKICAgICAgICBtZXRob2Q6ICdHRVQnLAogICAgICAgIHBhdGg6ICcvcmVzb3VyY2VzL2F1ZGl0L3JlZ2lvbicsCiAgICAgICAgcG9ydDogJzQ0MycsCiAgICAgICAgcHJvdG9jb2w6ICdodHRwczonLAogICAgICAgIGJvZHk6ICIiLAogICAgICAgIGhlYWRlcnM6IHt9CiAgICB9OwogICAgcmVxdWVzdE9wdGlvbnNTdGVwMVsnaGVhZGVycyddWydVc2VyLUFnZW50J10gPSBbc3ludGhldGljcy5nZXRDYW5hcnlVc2VyQWdlbnRTdHJpbmcoKSwgcmVxdWVzdE9wdGlvbnNTdGVwMVsnaGVhZGVycyddWydVc2VyLUFnZW50J11dLmpvaW4oJyAnKTsKCiAgICAvLyBTZXQgc3RlcCBjb25maWcgb3B0aW9uIGZvciBWZXJpZnkgL3Jlc291cmNlcy9hdWRpdC9yZWdpb24KICAgbGV0IHN0ZXBDb25maWcxID0gewogICAgICAgIGluY2x1ZGVSZXF1ZXN0SGVhZGVyczogZmFsc2UsCiAgICAgICAgaW5jbHVkZVJlc3BvbnNlSGVhZGVyczogZmFsc2UsCiAgICAgICAgaW5jbHVkZVJlcXVlc3RCb2R5OiBmYWxzZSwKICAgICAgICBpbmNsdWRlUmVzcG9uc2VCb2R5OiBmYWxzZSwKICAgICAgICByZXN0cmljdGVkSGVhZGVyczogW10sCiAgICAgICAgY29udGludWVPbkh0dHBTdGVwRmFpbHVyZTogdHJ1ZQogICAgfTsKCiAgICBhd2FpdCBzeW50aGV0aWNzLmV4ZWN1dGVIdHRwU3RlcCgnVmVyaWZ5IC9yZXNvdXJjZXMvYXVkaXQvcmVnaW9uJywgcmVxdWVzdE9wdGlvbnNTdGVwMSwgdmFsaWRhdGVTdWNjZXNzZnVsLCBzdGVwQ29uZmlnMSk7CgogICAgCn07CgpleHBvcnRzLmhhbmRsZXIgPSBhc3luYyAoKSA9PiB7CiAgICByZXR1cm4gYXdhaXQgYXBpQ2FuYXJ5Qmx1ZXByaW50KCk7Cn07CgpQSwECFAAKAAAAAADOEOJSAAAAAAAAAAAAAAAABwAAAAAAAAAAABAAAAAAAAAAbm9kZWpzL1BLAQIUAAoAAAAAAM4Q4lIAAAAAAAAAAAAAAAAUAAAAAAAAAAAAEAAAACUAAABub2RlanMvbm9kZV9tb2R1bGVzL1BLAQIUAAoAAAAAAM4Q4lJ3s3+IqAYAAKgGAAApAAAAAAAAAAAAAAAAAFcAAABub2RlanMvbm9kZV9tb2R1bGVzL2FwaUNhbmFyeUJsdWVwcmludC5qc1BLBQYAAAAAAwADAM4AAABGBwAAAAA="
+    },
+    "ArtifactS3Location": "s3://arms-archive-44e2a0/synthetics",
+    "FailureRetentionPeriodInDays": 31,
+    "Name": "audit-region"
+  },
+  "responseElements": {
+    "Canary": {
+      "ArtifactS3Location": "arms-archive-44e2a0/synthetics",
+      "Code": {
+        "Handler": "apiCanaryBlueprint.handler"
+      },
+      "ExecutionRoleArn": "arn:aws:iam::999999999999:role/ARMS_Lambda_SyntheticsRole",
+      "FailureRetentionPeriodInDays": 31,
+      "Id": "c01136c1-61dc-405f-b57f-a3860bd48f9a",
+      "Name": "audit-region",
+      "RunConfig": {
+        "ActiveTracing": false,
+        "MemoryInMB": 1000,
+        "TimeoutInSeconds": 840
+      },
+      "RuntimeVersion": "syn-nodejs-puppeteer-3.1",
+      "Schedule": {
+        "DurationInSeconds": 0,
+        "Expression": "cron(0 16 ? * * *)"
+      },
+      "Status": {
+        "State": "CREATING",
+        "StateReasonCode": "CREATE_PENDING"
+      },
+      "SuccessRetentionPeriodInDays": 31,
+      "Tags": {},
+      "Timeline": {
+        "Created": 1625232070.246,
+        "LastModified": 1625232070.246
+      }
+    }
+  },
+  "requestID": "995666a2-fa52-42eb-96f8-1c7b713fb188",
+  "eventID": "633c390c-0e23-47ec-ba16-eea684ad24c3",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}
