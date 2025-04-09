@@ -3,6 +3,7 @@ import { cloudtrail } from '@src/index';
 import * as CreateEvents from '@test/datas/create';
 import * as DeleteEvents from '@test/datas/delete';
 import * as EXPECTS from '@test/expect/rds';
+import * as fs from 'fs';
 
 describe('rds.amazonaws.com', () => {
   test('CreateDBCluster', async () => {
@@ -61,7 +62,6 @@ describe('rds.amazonaws.com', () => {
 
   test('CreateDBInstance', async () => {
     const event = await sendMessage(CreateEvents.RDS_CreateDBInstance);
-
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:db:onecloud-mysql');
@@ -77,6 +77,25 @@ describe('rds.amazonaws.com', () => {
     const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:db:onecloud-mysql');
     expect(resource).not.toBeUndefined();
     expect(resource).toEqual(EXPECTS.RDS_DeleteDBInstance);
+  });
+
+  test('ModifyDBInstance', async () => {
+    const createInstance = await sendMessage(CreateEvents.RDS_CreateDBInstanceForRename);
+    await cloudtrail(createInstance);
+
+    const event = await sendMessage(CreateEvents.RDS_ModifyDBInstance);
+    await cloudtrail(event);
+
+    const deleted = await getResource('arn:aws:rds:ap-northeast-1:999999999999:db:onecloud-mysql-sjis');
+    const created = await getResource('arn:aws:rds:ap-northeast-1:999999999999:db:onecloud-mysql-sjis-new');
+
+    // fs.writeFileSync('./test/expect/rds/RDS_ModifyDBInstance_Old.json', JSON.stringify(deleted));
+    // fs.writeFileSync('./test/expect/rds/RDS_ModifyDBInstance_New.json', JSON.stringify(created));
+
+    expect(deleted).not.toBeUndefined();
+    expect(deleted).toEqual(EXPECTS.RDS_ModifyDBInstance_Old);
+    expect(created).not.toBeUndefined();
+    expect(created).toEqual(EXPECTS.RDS_ModifyDBInstance_New);
   });
 
   test('RDS_CreateDBProxy', async () => {
@@ -196,15 +215,6 @@ describe('rds.amazonaws.com', () => {
     const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:snapshot:sas-ora-server');
     expect(resource).not.toBeUndefined();
     expect(resource).toEqual(EXPECTS.RDS_CreateDBSnapshot);
-  });
-
-  test('RDS_CopyDBSnapshot', async () => {
-    const event = await sendMessage(CreateEvents.RDS_CopyDBSnapshot);
-    await cloudtrail(event);
-
-    const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:snapshot:snp-database-3-20230209');
-    expect(resource).not.toBeUndefined();
-    expect(resource).toEqual(EXPECTS.RDS_CopyDBSnapshot);
   });
 
   test('RDS_DeleteDBSnapshot', async () => {

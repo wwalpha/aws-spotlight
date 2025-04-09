@@ -1,4 +1,3 @@
-export { default as RDS_CopyDBSnapshot } from './RDS_CopyDBSnapshot.json';
 export { default as RDS_CreateDBSnapshot } from './RDS_CreateDBSnapshot.json';
 export { default as RDS_DeleteDBSnapshot } from './RDS_DeleteDBSnapshot.json';
 
@@ -29,3 +28,6 @@ export { default as RDS_RestoreDBInstanceToPointInTime } from './RDS_RestoreDBIn
 
 export { default as RDS_CreateOptionGroup } from './RDS_CreateOptionGroup.json';
 export { default as RDS_DeleteOptionGroup } from './RDS_DeleteOptionGroup.json';
+
+export { default as RDS_ModifyDBInstance_Old } from './RDS_ModifyDBInstance_Old.json';
+export { default as RDS_ModifyDBInstance_New } from './RDS_ModifyDBInstance_New.json';

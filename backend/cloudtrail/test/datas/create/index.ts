@@ -101,6 +101,8 @@ export { default as RDS_RestoreDBClusterFromSnapshot } from './rds/RDS_RestoreDB
 export { default as RDS_RestoreDBClusterToPointInTime } from './rds/RDS_RestoreDBClusterToPointInTime.json';
 export { default as RDS_RestoreDBInstanceFromDBSnapshot } from './rds/RDS_RestoreDBInstanceFromDBSnapshot.json';
 export { default as RDS_RestoreDBInstanceToPointInTime } from './rds/RDS_RestoreDBInstanceToPointInTime.json';
+export { default as RDS_ModifyDBInstance } from './rds/RDS_ModifyDBInstance.json';
+export { default as RDS_CreateDBInstanceForRename } from './rds/RDS_CreateDBInstanceForRename.json';
 
 export { default as REDSHIFT_CreateCluster } from './REDSHIFT_CreateCluster.json';
 export { default as ROUTE53_CreateHostedZone } from './ROUTE53_CreateHostedZone.json';
