@@ -5,6 +5,7 @@ const athenaClient = new AthenaClient();
 const s3Client = new S3Client();
 const BUCKET_NAME = process.env.BUCKET_NAME;
 const ATHENA_WORKGROUP = process.env.ATHENA_WORKGROUP;
+const ATHENA_TABLE_NAME = process.env.ATHENA_TABLE_NAME;
 
 export const handler = async () => {
   const now = new Date();
@@ -156,7 +157,10 @@ const startQuery = async (year: string, month: string, day: string) => {
 
   // repair index
   await athenaClient.send(
-    new StartQueryExecutionCommand({ QueryString: 'MSCK REPAIR TABLE "cloudtrail_daily"', WorkGroup: ATHENA_WORKGROUP })
+    new StartQueryExecutionCommand({
+      QueryString: `MSCK REPAIR TABLE ${ATHENA_TABLE_NAME}`,
+      WorkGroup: ATHENA_WORKGROUP,
+    })
   );
 };
 

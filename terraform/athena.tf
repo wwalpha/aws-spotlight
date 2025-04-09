@@ -15,6 +15,5 @@ resource "aws_athena_workgroup" "this" {
         s3_acl_option = "BUCKET_OWNER_FULL_CONTROL"
       }
     }
-
   }
 }
