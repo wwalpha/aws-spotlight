@@ -9,7 +9,7 @@ on:
       - releases/**
   workflow_run:
     workflows:
-      - PUSH_B) Lambda Building
+      - PUSH_B) Backend Build
     branches:
       - master
     types:
