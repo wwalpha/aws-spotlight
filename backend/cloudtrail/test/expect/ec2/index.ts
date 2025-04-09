@@ -1,82 +1,35 @@
-export { default as RunInstances_H } from './RunInstances_H.json';
-export { default as RunInstances_R } from './RunInstances_R.json';
-export { default as TerminateInstances_H } from './TerminateInstances_H.json';
-export { default as CreateImage_H } from './CreateImage_H.json';
-export { default as CreateImage_R } from './CreateImage_R.json';
-export { default as DeregisterImage_H } from './DeregisterImage_H.json';
+export { default as EC2_AllocateAddress } from './EC2_AllocateAddress.json';
+export { default as EC2_ReleaseAddress } from './EC2_ReleaseAddress.json';
 
-export { default as CreateSnapshot_R } from './CreateSnapshot_R.json';
-export { default as CreateSnapshot_H } from './CreateSnapshot_H.json';
-export { default as CreateSnapshots_R } from './CreateSnapshots_R.json';
-export { default as CreateSnapshots_H } from './CreateSnapshots_H.json';
-export { default as DeleteSnapshot_H } from './DeleteSnapshot_H.json';
+export { default as EC2_CreateClientVpnEndpoint } from './EC2_CreateClientVpnEndpoint.json';
+export { default as EC2_DeleteClientVpnEndpoint } from './EC2_DeleteClientVpnEndpoint.json';
 
-export { default as CreateNatGateway_H } from './CreateNatGateway_H.json';
-export { default as CreateNatGateway_R } from './CreateNatGateway_R.json';
-export { default as DeleteNatGateway_H } from './DeleteNatGateway_H.json';
+export { default as EC2_CreateCustomerGateway } from './EC2_CreateCustomerGateway.json';
+export { default as EC2_DeleteCustomerGateway } from './EC2_DeleteCustomerGateway.json';
 
-export { default as CreateClientVpnEndpoint_H } from './CreateClientVpnEndpoint_H.json';
-export { default as CreateClientVpnEndpoint_R } from './CreateClientVpnEndpoint_R.json';
-export { default as DeleteClientVpnEndpoint_H } from './DeleteClientVpnEndpoint_H.json';
+export { default as EC2_CreateInternetGateway } from './EC2_CreateInternetGateway.json';
+export { default as EC2_DeleteInternetGateway } from './EC2_DeleteInternetGateway.json';
 
-export { default as CreateVpcPeeringConnection_H } from './CreateVpcPeeringConnection_H.json';
-export { default as CreateVpcPeeringConnection_R } from './CreateVpcPeeringConnection_R.json';
-export { default as DeleteVpcPeeringConnection_H } from './DeleteVpcPeeringConnection_H.json';
+export { default as EC2_CreateNatGateway } from './EC2_CreateNatGateway.json';
+export { default as EC2_DeleteNatGateway } from './EC2_DeleteNatGateway.json';
 
-export { default as CreateVpc_H } from './CreateVpc_H.json';
-export { default as CreateVpc_R } from './CreateVpc_R.json';
-export { default as DeleteVpc_H } from './DeleteVpc_H.json';
+export { default as EC2_CreateTransitGateway } from './EC2_CreateTransitGateway.json';
+export { default as EC2_DeleteTransitGateway } from './EC2_DeleteTransitGateway.json';
 
-export { default as CreateVolume_H } from './CreateVolume_H.json';
-export { default as CreateVolume_R } from './CreateVolume_R.json';
-export { default as DeleteVolume_H } from './DeleteVolume_H.json';
+export { default as EC2_CreateVpc } from './EC2_CreateVpc.json';
+export { default as EC2_DeleteVpc } from './EC2_DeleteVpc.json';
 
-export { default as CreateVpcEndpoint_H } from './CreateVpcEndpoint_H.json';
-export { default as CreateVpcEndpoint_R } from './CreateVpcEndpoint_R.json';
-export { default as DeleteVpcEndpoints_H } from './DeleteVpcEndpoints_H.json';
+export { default as EC2_CreateVpcEndpoint } from './EC2_CreateVpcEndpoint.json';
+export { default as EC2_DeleteVpcEndpoints } from './EC2_DeleteVpcEndpoints.json';
 
-export { default as AllocateAddress_H } from './AllocateAddress_H.json';
-export { default as AllocateAddress_R } from './AllocateAddress_R.json';
-export { default as ReleaseAddress_H } from './ReleaseAddress_H.json';
+export { default as EC2_CreateVpcPeeringConnection } from './EC2_CreateVpcPeeringConnection.json';
+export { default as EC2_DeleteVpcPeeringConnection } from './EC2_DeleteVpcPeeringConnection.json';
 
-export { default as CreateVpnConnection_H } from './CreateVpnConnection_H.json';
-export { default as CreateVpnConnection_R } from './CreateVpnConnection_R.json';
-export { default as DeleteVpnConnection_H } from './DeleteVpnConnection_H.json';
+export { default as EC2_CreateVpnConnection } from './EC2_CreateVpnConnection.json';
+export { default as EC2_DeleteVpnConnection } from './EC2_DeleteVpnConnection.json';
 
-export { default as CreateCustomerGateway_H } from './CreateCustomerGateway_H.json';
-export { default as CreateCustomerGateway_R } from './CreateCustomerGateway_R.json';
-export { default as DeleteCustomerGateway_H } from './DeleteCustomerGateway_H.json';
+export { default as EC2_CreateVpnGateway } from './EC2_CreateVpnGateway.json';
+export { default as EC2_DeleteVpnGateway } from './EC2_DeleteVpnGateway.json';
 
-export { default as CreateVpnGateway_H } from './CreateVpnGateway_H.json';
-export { default as CreateVpnGateway_R } from './CreateVpnGateway_R.json';
-export { default as DeleteVpnGateway_H } from './DeleteVpnGateway_H.json';
-
-export { default as CreateTransitGateway_H } from './CreateTransitGateway_H.json';
-export { default as CreateTransitGateway_R } from './CreateTransitGateway_R.json';
-export { default as DeleteTransitGateway_H } from './DeleteTransitGateway_H.json';
-
-export { default as CreateSubnet_H } from './CreateSubnet_H.json';
-export { default as CreateSubnet_R } from './CreateSubnet_R.json';
-export { default as DeleteSubnet_H } from './DeleteSubnet_H.json';
-
-export { default as CreateSecurityGroup_H } from './CreateSecurityGroup_H.json';
-export { default as CreateSecurityGroup_R } from './CreateSecurityGroup_R.json';
-export { default as DeleteSecurityGroup_H } from './DeleteSecurityGroup_H.json';
-
-export { default as CreateInternetGateway_H } from './CreateInternetGateway_H.json';
-export { default as CreateInternetGateway_R } from './CreateInternetGateway_R.json';
-export { default as DeleteInternetGateway_H } from './DeleteInternetGateway_H.json';
-
-export { default as EC2_CreateNetworkInsightsPath_H } from './EC2_CreateNetworkInsightsPath_H.json';
-export { default as EC2_CreateNetworkInsightsPath_R } from './EC2_CreateNetworkInsightsPath_R.json';
-export { default as EC2_DeleteNetworkInsightsPath_H } from './EC2_DeleteNetworkInsightsPath_H.json';
-
-export { default as EC2_CreateLaunchTemplate_H } from './EC2_CreateLaunchTemplate_H.json';
-export { default as EC2_CreateLaunchTemplate_R } from './EC2_CreateLaunchTemplate_R.json';
-export { default as EC2_DeleteLaunchTemplate_H } from './EC2_DeleteLaunchTemplate_H.json';
-
-export { default as EC2_RestoreSnapshotFromRecycleBin_H } from './EC2_RestoreSnapshotFromRecycleBin_H.json';
-export { default as EC2_RestoreSnapshotFromRecycleBin_R } from './EC2_RestoreSnapshotFromRecycleBin_R.json';
-
-export { default as EC2_CopySnapshot_H } from './EC2_CopySnapshot_H.json';
-export { default as EC2_CopySnapshot_R } from './EC2_CopySnapshot_R.json';
+export { default as EC2_RunInstances } from './EC2_RunInstances.json';
+export { default as EC2_TerminateInstances } from './EC2_TerminateInstances.json';

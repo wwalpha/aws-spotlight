@@ -1,0 +1,11 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "Service": "EC2",
+  "EventId": "1c9916ba-eb47-4d50-8104-6901bc67a17d",
+  "Status": "Deleted",
+  "ResourceId": "arn:aws:ec2:ap-northeast-1:999999999999:instance/i-0fc5d99558e8357e8",
+  "EventTime": "2021-04-07T10:32:44Z",
+  "EventName": "TerminateInstances",
+  "EventSource": "ec2.amazonaws.com",
+  "UserName": "test001@test.com"
+}
