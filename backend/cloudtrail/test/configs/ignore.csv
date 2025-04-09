@@ -914,7 +914,6 @@ DisassociateResourceShare,ram.amazonaws.com,true
 CreateRule,rbin.amazonaws.com,true
 StartDBInstance,rds.amazonaws.com,true
 StopDBInstance,rds.amazonaws.com,true
-ModifyDBInstance,rds.amazonaws.com,true
 RegisterDBProxyTargets,rds.amazonaws.com,true
 StartDBCluster,rds.amazonaws.com,true
 ModifyDBParameterGroup,rds.amazonaws.com,true

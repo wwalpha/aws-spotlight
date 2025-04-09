@@ -151,6 +151,9 @@ export const ResourceARNs = {
   // rds db option group
   RDS_DBOptionGroup: (region: string, account: string, id?: string) => `arn:aws:rds:${region}:${account}:og:${id}`,
 
+  // rds db instance
+  RDS_DBInstance: (region: string, account: string, id?: string) => `arn:aws:rds:${region}:${account}:db:${id}`,
+
   // elasticache subnet group
   ELASTICACHE_CacheSubnetGroup: (region: string, account: string, id?: string) =>
     `arn:aws:elasticache:${region}:${account}:subnetgroup:${id}`,

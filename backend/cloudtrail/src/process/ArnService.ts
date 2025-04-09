@@ -43,13 +43,23 @@ export const start = async (record: CloudTrailRecord): Promise<Tables.TResource[
       AWSRegion: record.awsRegion,
       EventId: record.eventId,
       Service: getServiceName(serviceName),
-      Status: regists.length > 0 ? Consts.ResourceStatus.CREATED : Consts.ResourceStatus.DELETED,
+      Status: getStatus(item, regists.length, removes.length),
     }));
   } catch (err) {
     console.log('error', err);
     Logger.error(`ArnService.start. EventId: ${record.eventId}`, record);
     throw err;
   }
+};
+
+const getStatus = (item: ResourceInfo, registCount: number, removeCount: number): string => {
+  // 登録削除両方ある場合は
+  if (registCount === removeCount) {
+    // リソース名の有無で判断する;
+    return item.name !== undefined ? Consts.ResourceStatus.CREATED : Consts.ResourceStatus.DELETED;
+  }
+
+  return registCount > 0 ? Consts.ResourceStatus.CREATED : Consts.ResourceStatus.DELETED;
 };
 
 const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
@@ -459,9 +469,17 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       rets = [response.optionGroupArn, response.optionGroupName];
       break;
 
-    // case 'SERVICEDISCOVERY_CreatePrivateDnsNamespace':
-    //   name = request.name;
-    //   rets = [ResourceARNs.SERVICEDISCOVERY_Namespace(region, account, name), name];
+    case 'RDS_ModifyDBInstance':
+      if (request.newDBInstanceIdentifier === undefined) {
+        break;
+      }
+
+      rets = [
+        ResourceARNs.RDS_DBInstance(region, account, request.newDBInstanceIdentifier),
+        request.newDBInstanceIdentifier,
+      ];
+      break;
+
     case 'SERVERLESSREPO_CreateApplication':
       rets = [response.applicationId, response.name];
       break;
@@ -786,6 +804,14 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
 
     case 'RDS_DeleteOptionGroup':
       arn = ResourceARNs.RDS_DBOptionGroup(region, account, request.optionGroupName);
+      break;
+
+    case 'RDS_ModifyDBInstance':
+      if (request.newDBInstanceIdentifier === undefined) {
+        break;
+      }
+
+      arn = ResourceARNs.RDS_DBInstance(region, account, request.dBInstanceIdentifier);
       break;
 
     case 'S3_DeleteBucket':

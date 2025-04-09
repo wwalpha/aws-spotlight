@@ -7,17 +7,26 @@
     "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
     "build:image": "docker build -f Dockerfile.CloudTrail -t spotlight-cloudtrail .",
     "debug": "ts-node -r tsconfig-paths/register -r dotenv/config src/index.ts dotenv_config_path=.env.dev",
+    "test": "jest --detectOpenHandles --forceExit --runInBand",
+    "test:local": "jest test/services/rds.test.ts --forceExit --passWithNoTests",
     "start": "node dist/index.js",
     "init:events": "ts-node -r tsconfig-paths/register -r dotenv/config test/initialize/index.ts dotenv_config_path=.env.dev",
     "report": "ts-node -r tsconfig-paths/register -r dotenv/config src/apps/reports.ts dotenv_config_path=.env.dev",
     "imp": "ts-node -r tsconfig-paths/register -r dotenv/config test/import.ts dotenv_config_path=.env.dev"
   },
   "devDependencies": {
+    "@aws-sdk/client-dynamodb": "^3.782.0",
+    "@aws-sdk/lib-dynamodb": "^3.782.0",
     "@types/aws-lambda": "^8.10.145",
+    "@types/jest": "^29.5.14",
+    "@types/json2csv": "^5.0.7",
     "@types/lodash": "^4.17.13",
     "@types/node": "^22.9.2",
     "dotenv": "^16.4.5",
+    "jest": "^29.7.0",
+    "json2csv": "^6.0.0-alpha.2",
     "prettier": "^3.3.3",
+    "ts-jest": "^29.3.1",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.10",
     "tsconfig-paths": "^4.2.0",
@@ -25,8 +34,8 @@
   },
   "dependencies": {
     "@alphax/dynamodb": "^1.2.16",
-    "@aws-sdk/client-s3": "^3.699.0",
-    "@aws-sdk/client-sns": "^3.699.0",
+    "@aws-sdk/client-s3": "^3.782.0",
+    "@aws-sdk/client-sns": "^3.782.0",
     "csv-parse": "^5.6.0",
     "lodash": "^4.17.21"
   }
