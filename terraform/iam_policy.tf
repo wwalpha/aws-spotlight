@@ -61,6 +61,14 @@ resource "aws_iam_role_policy" "daily_batch_athena_execution" {
 }
 
 # ----------------------------------------------------------------------------------------------
+# AWS IAM Role Policy - CloudTrail Process Lambda Baisc
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy_attachment" "cloudtrail_process_lambda_basic" {
+  role       = aws_iam_role.cloudtrail_process.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
+# ----------------------------------------------------------------------------------------------
 # AWS IAM Role Policy - CloudTrail Process DynamoDB FullAccess
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role_policy_attachment" "cloudtrail_process_dynamodb" {
@@ -76,3 +84,18 @@ resource "aws_iam_role_policy_attachment" "cloudtrail_process_ecr" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPullOnly"
 }
 
+# ----------------------------------------------------------------------------------------------
+# AWS IAM Role Policy - CloudTrail Process S3 FullAccess
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy_attachment" "cloudtrail_process_s3" {
+  role       = aws_iam_role.cloudtrail_process.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS IAM Role Policy - CloudTrail Process SNS FullAccess
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy_attachment" "cloudtrail_process_sns" {
+  role       = aws_iam_role.cloudtrail_process.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSNSFullAccess"
+}

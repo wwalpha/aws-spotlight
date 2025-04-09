@@ -136,6 +136,8 @@ const startQuery = async (year: string, month: string, day: string) => {
       AND eventname not like '%Partition'
       AND eventsource <> 'cloudshell.amazonaws.com'
       AND not (eventsource = 'glue.amazonaws.com' AND eventname = 'CreateTable')
+      AND not (eventsource = 'sns.amazonaws.com' AND eventname = 'Subscribe')
+      AND not (eventsource = 'ec2.amazonaws.com' AND eventname IN ('DeleteRoute', 'CreateRoute', 'ReplaceRoute'))
 `;
 
   // start athena query

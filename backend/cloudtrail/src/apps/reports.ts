@@ -46,7 +46,7 @@ export const reports = async (): Promise<void> => {
   });
 
   const contents = dataRows.join('\n');
-  const objectKey = `reports/${new Date().toISOString()}.csv`;
+  const objectKey = `Reports/${new Date().toISOString()}.csv`;
 
   // upload
   await s3Client.send(
