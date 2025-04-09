@@ -1,9 +1,9 @@
 import _ from 'lodash';
-import { Handler, S3Event } from 'aws-lambda';
+import { S3Event } from 'aws-lambda';
 import { getRecords, initializeEvents, processRecords } from './apps/cloudtrail';
 import { Logger } from './apps/utils';
 
-export const cloudtrail: Handler = async (events: S3Event) => {
+export const cloudtrail = async (events: S3Event) => {
   Logger.info('events', events);
 
   const bucket = _.get(events, 'Records[0].s3.bucket.name');

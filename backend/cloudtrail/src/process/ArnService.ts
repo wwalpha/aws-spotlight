@@ -2,7 +2,6 @@ import { Consts, Logger, ResourceARNs } from '@src/apps/utils';
 import { capitalize, defaultTo } from 'lodash';
 import { CloudTrailRecord, ResourceInfo, Tables } from 'typings';
 import { ResourceService } from '@src/services';
-import { exit } from 'process';
 
 const MULTI_TASK = [
   'EC2_RunInstances',
@@ -575,6 +574,7 @@ const getRegistMultiResources = (record: CloudTrailRecord): ResourceInfo[] => {
           name: snapshotId,
         },
       ];
+    case 'RDS_ModifyDBInstance':
   }
 
   return [];
