@@ -11,7 +11,7 @@ export const cloudtrail: Handler = async (events: S3Event) => {
 
   try {
     // Get records from S3
-    const records = await getRecords(bucket, key);
+    const records = await getRecords(bucket, decodeURIComponent(key));
 
     // Initialize Event Type
     await initializeEvents();
