@@ -1,0 +1,11 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "Service": "Apigateway",
+  "EventId": "fdff2ab8-d543-4835-a464-b84c0c2257e0",
+  "Status": "Deleted",
+  "ResourceId": "arn:aws:apigateway:ap-northeast-1::/apis/gk09okoppi",
+  "EventTime": "2022-07-07T08:19:34Z",
+  "EventName": "DeleteApi",
+  "EventSource": "apigateway.amazonaws.com",
+  "UserName": "ktou@test.com"
+}
