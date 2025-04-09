@@ -1,0 +1,18 @@
+{
+  "Status": "Deleted",
+  "IdentityType": "IAMUser",
+  "UserName": "test001@test.com",
+  "ResourceName": "vpclink-test",
+  "AWSRegion": "ap-northeast-1",
+  "Service": "Apigateway",
+  "EventName": "CreateVpcLink",
+  "Revisions": [
+    "2021-07-03T04:39:10Z",
+    "2021-07-03T05:31:01Z"
+  ],
+  "EventSource": "apigateway.amazonaws.com",
+  "ResourceId": "arn:aws:apigateway:ap-northeast-1::/vpclinks/j0owmk",
+  "EventTime": "2021-07-03T04:39:10Z",
+  "UserAgent": "aws-internal/3 aws-sdk-java/1.11.1030 Linux/5.4.102-52.177.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.292-b10 java/1.8.0_292 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "EventId": "fa4eb46f-041f-4b09-8b67-1ecd72362754"
+}

@@ -1,0 +1,13 @@
+{
+  "IdentityType": "IAMUser",
+  "EventSource": "codedeploy.amazonaws.com",
+  "UserName": "test@test.com",
+  "ResourceId": "arn:aws:codedeploy:ap-northeast-1:999999999999:application/Nodejs",
+  "ResourceName": "Nodejs",
+  "EventTime": "2023-01-17T02:20:49Z",
+  "UserAgent": "AWS Internal",
+  "AWSRegion": "ap-northeast-1",
+  "EventId": "87555446-8cec-4984-801a-d3fbb4f3ff0a",
+  "Service": "Codedeploy",
+  "EventName": "CreateApplication"
+}

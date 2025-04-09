@@ -1,0 +1,13 @@
+{
+  "IdentityType": "IAMUser",
+  "EventSource": "cognito-idp.amazonaws.com",
+  "UserName": "test@test.com",
+  "ResourceId": "arn:aws:cognito-idp:ap-northeast-1:999999999999:userpool/ap-northeast-1_wy66UkJFG",
+  "ResourceName": "arms-admin268514",
+  "EventTime": "2021-06-03T10:52:25Z",
+  "UserAgent": "APN/1.0 HashiCorp/1.0 Terraform/0.15.3 (+https://www.terraform.io) terraform-provider-aws/3.43.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.38.49 (go1.16; linux; amd64)",
+  "AWSRegion": "ap-northeast-1",
+  "EventId": "427e9735-b0ca-42bd-aa18-a5c336e8d76d",
+  "Service": "Cognito-idp",
+  "EventName": "CreateUserPool"
+}

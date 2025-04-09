@@ -1,0 +1,9 @@
+{
+  "Origin": "{\"eventVersion\":\"1.08\",\"userIdentity\":{\"type\":\"IAMUser\",\"principalId\":\"AIDA2KEX3JLI473YYFTJB\",\"arn\":\"arn:aws:iam::999999999999:user/test001@test.com\",\"accountId\":\"999999999999\",\"accessKeyId\":\"ASIA2KEX3JLI5OPNZOXI\",\"userName\":\"test001@test.com\",\"sessionContext\":{\"sessionIssuer\":{},\"webIdFederationData\":{},\"attributes\":{\"mfaAuthenticated\":\"false\",\"creationDate\":\"2021-04-20T01:38:47Z\"}}},\"eventTime\":\"2021-04-20T05:41:35Z\",\"eventSource\":\"ec2.amazonaws.com\",\"eventName\":\"CreateSnapshot\",\"awsRegion\":\"ap-northeast-1\",\"sourceIPAddress\":\"165.225.111.50\",\"userAgent\":\"console.ec2.amazonaws.com\",\"requestParameters\":{\"volumeId\":\"vol-0a1cf44d8314c33cf\",\"description\":\"agnew-rhel6.8-15gb-202104201441\"},\"responseElements\":{\"requestId\":\"8c224d51-634a-4463-a45a-be094f95ea4b\",\"snapshotId\":\"snap-04233f8a0017f5a77\",\"volumeId\":\"vol-0a1cf44d8314c33cf\",\"status\":\"pending\",\"startTime\":1618897295000,\"ownerId\":\"999999999999\",\"volumeSize\":\"15\",\"encrypted\":false,\"description\":\"agnew-rhel6.8-15gb-202104201441\",\"tagSet\":{}},\"requestID\":\"8c224d51-634a-4463-a45a-be094f95ea4b\",\"eventID\":\"2fa6c467-0897-46c4-b9ff-7be10f73bb5c\",\"readOnly\":false,\"eventType\":\"AwsApiCall\",\"managementEvent\":true,\"eventCategory\":\"Management\",\"recipientAccountId\":\"999999999999\"}",
+  "EventSource": "ec2.amazonaws.com",
+  "UserName": "test001@test.com",
+  "EventTime": "2021-04-20T05:41:35Z",
+  "EventId": "2fa6c467-0897-46c4-b9ff-7be10f73bb5c",
+  "AWSRegion": "ap-northeast-1",
+  "EventName": "CreateSnapshot"
+}

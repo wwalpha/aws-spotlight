@@ -1,0 +1,13 @@
+{
+  "IdentityType": "IAMUser",
+  "EventSource": "ecs.amazonaws.com",
+  "UserName": "test@test.com",
+  "ResourceId": "arn:aws:ecs:ap-northeast-1:999999999999:cluster/arms-cluster",
+  "ResourceName": "arms-cluster",
+  "EventTime": "2021-06-03T10:52:41Z",
+  "UserAgent": "APN/1.0 HashiCorp/1.0 Terraform/0.15.3 (+https://www.terraform.io) terraform-provider-aws/3.43.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.38.49 (go1.16; linux; amd64)",
+  "AWSRegion": "ap-northeast-1",
+  "EventId": "6e0e93f5-1835-4ec9-bb1c-cb88ca640bb4",
+  "Service": "ECS",
+  "EventName": "CreateCluster"
+}

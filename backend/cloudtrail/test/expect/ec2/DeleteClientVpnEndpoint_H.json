@@ -1,0 +1,9 @@
+{
+  "Origin": "{\"eventVersion\":\"1.08\",\"userIdentity\":{\"type\":\"IAMUser\",\"principalId\":\"AIDA2KEX3JLIYUA7ET75O\",\"arn\":\"arn:aws:iam::999999999999:user/test001@test.com\",\"accountId\":\"999999999999\",\"accessKeyId\":\"ASIA2KEX3JLI6HXPN27T\",\"userName\":\"test001@test.com\",\"sessionContext\":{\"sessionIssuer\":{},\"webIdFederationData\":{},\"attributes\":{\"mfaAuthenticated\":\"false\",\"creationDate\":\"2021-04-08T00:22:39Z\"}}},\"eventTime\":\"2021-04-08T02:30:09Z\",\"eventSource\":\"ec2.amazonaws.com\",\"eventName\":\"DeleteClientVpnEndpoint\",\"awsRegion\":\"ap-northeast-1\",\"sourceIPAddress\":\"202.32.14.177\",\"userAgent\":\"console.ec2.amazonaws.com\",\"requestParameters\":{\"DeleteClientVpnEndpointRequest\":{\"ClientVpnEndpointId\":\"cvpn-endpoint-00979964d0389482a\"}},\"responseElements\":{\"DeleteClientVpnEndpointResponse\":{\"xmlns\":\"http://ec2.amazonaws.com/doc/2016-11-15/\",\"requestId\":\"421e6acd-d91d-4d6b-bc1e-5f815a21bddd\",\"status\":{\"code\":\"deleting\"}}},\"requestID\":\"421e6acd-d91d-4d6b-bc1e-5f815a21bddd\",\"eventID\":\"52240267-bf17-470c-8df3-245fb7139217\",\"readOnly\":false,\"eventType\":\"AwsApiCall\",\"managementEvent\":true,\"eventCategory\":\"Management\",\"recipientAccountId\":\"999999999999\"}",
+  "EventSource": "ec2.amazonaws.com",
+  "UserName": "test001@test.com",
+  "EventTime": "2021-04-08T02:30:09Z",
+  "EventId": "52240267-bf17-470c-8df3-245fb7139217",
+  "AWSRegion": "ap-northeast-1",
+  "EventName": "DeleteClientVpnEndpoint"
+}

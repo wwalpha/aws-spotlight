@@ -1,0 +1,13 @@
+{
+  "IdentityType": "IAMUser",
+  "EventSource": "ec2.amazonaws.com",
+  "UserName": "test001@test.com",
+  "ResourceId": "arn:aws:ec2:ap-northeast-1:999999999999:vpn-gateway/vgw-08c87ca4468c13b6f",
+  "ResourceName": "vgw-08c87ca4468c13b6f",
+  "EventTime": "2021-07-22T23:28:08Z",
+  "UserAgent": "console.ec2.amazonaws.com",
+  "AWSRegion": "ap-northeast-1",
+  "EventId": "16145533-d8be-4314-b3b0-f9e2b8c8c8cb",
+  "Service": "EC2",
+  "EventName": "CreateVpnGateway"
+}
