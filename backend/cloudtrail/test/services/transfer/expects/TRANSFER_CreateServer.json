@@ -1,1 +1,12 @@
-{"AWSRegion":"ap-northeast-1","ResourceName":"s-61ada58e71d74f8da","Service":"Transfer","EventId":"24a452f0-6d3b-497f-9f07-9d9f8b206b21","Status":"Created","ResourceId":"arn:aws:transfer:ap-northeast-1:999999999999:server/s-61ada58e71d74f8da","EventTime":"2022-04-14T05:20:33Z","EventName":"CreateServer","EventSource":"transfer.amazonaws.com","UserName":"chunhao.wang@test.com"}
+{
+  "AWSRegion": "ap-northeast-1",
+  "ResourceName": "s-61ada58e71d74f8da",
+  "Service": "Transfer",
+  "EventId": "24a452f0-6d3b-497f-9f07-9d9f8b206b21",
+  "Status": "Created",
+  "ResourceId": "arn:aws:transfer:ap-northeast-1:999999999999:server/s-61ada58e71d74f8da",
+  "EventTime": "2022-04-14T05:20:33Z",
+  "EventName": "CreateServer",
+  "EventSource": "transfer.amazonaws.com",
+  "UserName": "test@test.com"
+}

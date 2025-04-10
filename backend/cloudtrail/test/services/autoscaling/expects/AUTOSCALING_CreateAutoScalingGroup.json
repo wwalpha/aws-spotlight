@@ -8,5 +8,5 @@
   "EventTime": "2021-01-21T01:38:10Z",
   "EventName": "CreateAutoScalingGroup",
   "EventSource": "autoscaling.amazonaws.com",
-  "UserName": "{\"type\":\"Role\",\"principalId\":\"AROA2KEX3JLI2OU3QHN26\",\"arn\":\"arn:aws:iam::999999999999:role/test001@test.com_SwitchRole\",\"accountId\":\"999999999999\",\"userName\":\"test001@test.com_SwitchRole\"}"
+  "UserName": "test001@test.com_SwitchRole"
 }

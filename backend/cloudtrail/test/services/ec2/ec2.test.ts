@@ -207,7 +207,6 @@ describe('EXPECTS.amazonaws.com', () => {
 
   test('EC2_CreateTransitGateway', async () => {
     const event = await sendMessage(Events.EC2_CreateTransitGateway);
-
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:ec2:ap-northeast-3:999999999999:transit-gateway/tgw-02844bb728fca543c');

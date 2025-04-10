@@ -4,7 +4,7 @@ import * as Events from './datas';
 import * as EXPECTS from './expects';
 import * as fs from 'fs';
 
-describe.skip('timestream.amazonaws.com', () => {
+describe('timestream.amazonaws.com', () => {
   test('TIMESTREAM_CreateDatabase', async () => {
     const event = await sendMessage(Events.TIMESTREAM_CreateDatabase);
 

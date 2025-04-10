@@ -4,7 +4,7 @@ import * as Events from './datas';
 import * as EXPECTS from './expects';
 import * as fs from 'fs';
 
-describe.skip('transfer.amazonaws.com', () => {
+describe('transfer.amazonaws.com', () => {
   test('TRANSFER_CreateServer', async () => {
     const event = await sendMessage(Events.TRANSFER_CreateServer);
 

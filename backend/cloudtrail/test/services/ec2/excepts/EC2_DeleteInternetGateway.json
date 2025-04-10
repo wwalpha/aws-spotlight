@@ -7,5 +7,5 @@
   "EventTime": "2023-01-17T07:56:08Z",
   "EventName": "DeleteInternetGateway",
   "EventSource": "ec2.amazonaws.com",
-  "UserName": "{\"type\":\"Role\",\"principalId\":\"AROAU33DBSJ5DV737T25D\",\"arn\":\"arn:aws:iam::999999999999:role/EC2Role\",\"accountId\":\"999999999999\",\"userName\":\"EC2Role\"}"
+  "UserName": "EC2Role"
 }

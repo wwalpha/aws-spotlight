@@ -31,6 +31,6 @@ describe('elasticfilesystem.amazonaws.com', () => {
       'arn:aws:elasticfilesystem:us-east-1:999999999999:file-system/fs-0a49146a8cb95e621'
     );
     expect(resource).not.toBeUndefined();
-    expect(resource).toEqual(EXPECTS.ELASTICFILESYSTEM_CreateFileSystem);
+    expect(resource).toEqual(EXPECTS.ELASTICFILESYSTEM_CreateFileSystemForSagemaker);
   });
 });

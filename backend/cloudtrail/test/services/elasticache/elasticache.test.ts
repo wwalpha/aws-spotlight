@@ -10,7 +10,7 @@ describe('elasticache.amazonaws.com', () => {
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:elasticache:ap-northeast-1:999999999999:cluster:containersample-dev');
-    fs.writeFileSync('./test/expect/simple/ELASTICACHE_CreateCacheCluster.json', JSON.stringify(resource));
+    fs.writeFileSync('./expects/ELASTICACHE_CreateCacheCluster.json', JSON.stringify(resource));
     expect(resource).not.toBeUndefined();
     // expect(resource).toEqual(EXPECTS.ELASTICACHE_CreateCacheCluster);
   });
@@ -20,7 +20,7 @@ describe('elasticache.amazonaws.com', () => {
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:elasticache:ap-northeast-1:999999999999:cluster:containersample-dev');
-    fs.writeFileSync('./test/expect/simple/ELASTICACHE_DeleteCacheCluster.json', JSON.stringify(resource));
+    fs.writeFileSync('./expects/ELASTICACHE_DeleteCacheCluster.json', JSON.stringify(resource));
     expect(resource).not.toBeUndefined();
     // expect(resource).toEqual(EXPECTS.ELASTICACHE_DeleteCacheCluster);
   });

@@ -8,5 +8,5 @@
   "EventTime": "2022-08-05T15:45:35Z",
   "EventName": "RestoreDBInstanceToPointInTime",
   "EventSource": "rds.amazonaws.com",
-  "UserName": "{\"type\":\"Role\",\"principalId\":\"AROAU33DBSJ5IOXXJ3TNT\",\"arn\":\"arn:aws:iam::999999999999:role/service-role/AWSBackupDefaultServiceRole\",\"accountId\":\"999999999999\",\"userName\":\"AWSBackupDefaultServiceRole\"}"
+  "UserName": "AWSBackupDefaultServiceRole"
 }

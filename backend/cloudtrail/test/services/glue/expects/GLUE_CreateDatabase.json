@@ -8,5 +8,5 @@
   "EventTime": "2023-02-07T02:06:44Z",
   "EventName": "CreateDatabase",
   "EventSource": "glue.amazonaws.com",
-  "UserName": "{\"type\":\"Role\",\"principalId\":\"AROAU33DBSJ5DV737T25D\",\"arn\":\"arn:aws:iam::999999999999:role/EC2Role\",\"accountId\":\"999999999999\",\"userName\":\"EC2Role\"}"
+  "UserName": "EC2Role"
 }

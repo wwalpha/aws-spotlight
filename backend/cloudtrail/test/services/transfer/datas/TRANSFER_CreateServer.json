@@ -3,10 +3,10 @@
   "userIdentity": {
     "type": "IAMUser",
     "principalId": "AIDAU33DBSJ5FAG74LZSB",
-    "arn": "arn:aws:iam::999999999999:user/chunhao.wang@test.com",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
     "accountId": "999999999999",
     "accessKeyId": "ASIAU33DBSJ5NLD6XFVX",
-    "userName": "chunhao.wang@test.com",
+    "userName": "test@test.com",
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
