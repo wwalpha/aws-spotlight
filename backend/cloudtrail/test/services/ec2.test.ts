@@ -1,7 +1,7 @@
 import { getResource, sendMessage } from '@test/utils/utils';
 import { cloudtrail } from '@src/index';
 import * as CreateEvents from '@test/datas/create';
-import * as DeleteEvents from '@test/datas/delete';
+import * as DeleteEvents from '@test/datas/others';
 import * as EXPECTS from '@test/expect/ec2';
 
 describe('EXPECTS.amazonaws.com', () => {

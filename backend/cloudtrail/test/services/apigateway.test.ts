@@ -1,12 +1,11 @@
 import { getResource, sendMessage } from '@test/utils/utils';
 import { cloudtrail } from '@src/index';
-import * as CreateEvents from '@test/datas/create';
-import * as DeleteEvents from '@test/datas/delete';
+import * as Events from '@test/datas';
 import * as EXPECTS from '@test/expect/apigateway';
 
 describe('apigateway.amazonaws.com', () => {
   test('CreateRestApi', async () => {
-    const event = await sendMessage(CreateEvents.APIGATEWAY_CreateRestApi);
+    const event = await sendMessage(Events.APIGATEWAY_CreateRestApi);
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:apigateway:ap-northeast-1::/apis/jrrfh5tt86');
@@ -15,7 +14,7 @@ describe('apigateway.amazonaws.com', () => {
   });
 
   test('DeleteRestApi', async () => {
-    const event = await sendMessage(DeleteEvents.APIGATEWAY_DeleteRestApi);
+    const event = await sendMessage(Events.APIGATEWAY_DeleteRestApi);
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:apigateway:ap-northeast-1::/apis/jrrfh5tt86');
@@ -24,7 +23,7 @@ describe('apigateway.amazonaws.com', () => {
   });
 
   test('ImportRestApi', async () => {
-    const event = await sendMessage(CreateEvents.APIGATEWAY_ImportRestApi);
+    const event = await sendMessage(Events.APIGATEWAY_ImportRestApi);
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:apigateway:ap-northeast-1::/apis/lyppg996u0');
@@ -33,7 +32,7 @@ describe('apigateway.amazonaws.com', () => {
   });
 
   test('APIGATEWAY_CreateApi', async () => {
-    const event = await sendMessage(CreateEvents.APIGATEWAY_CreateApi);
+    const event = await sendMessage(Events.APIGATEWAY_CreateApi);
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:apigateway:ap-northeast-1::/apis/gk09okoppi');
@@ -42,7 +41,7 @@ describe('apigateway.amazonaws.com', () => {
   });
 
   test('APIGATEWAY_DeleteApi', async () => {
-    const event = await sendMessage(DeleteEvents.APIGATEWAY_DeleteApi);
+    const event = await sendMessage(Events.APIGATEWAY_DeleteApi);
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:apigateway:ap-northeast-1::/apis/gk09okoppi');
@@ -51,7 +50,7 @@ describe('apigateway.amazonaws.com', () => {
   });
 
   test('APIGATEWAY_CreateVpcLink', async () => {
-    const event = await sendMessage(CreateEvents.APIGATEWAY_CreateVpcLink);
+    const event = await sendMessage(Events.APIGATEWAY_CreateVpcLink);
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:apigateway:ap-northeast-1::/vpclinks/j0owmk');
@@ -60,7 +59,7 @@ describe('apigateway.amazonaws.com', () => {
   });
 
   test('APIGATEWAY_DeleteVpcLink', async () => {
-    const event = await sendMessage(DeleteEvents.APIGATEWAY_DeleteVpcLink);
+    const event = await sendMessage(Events.APIGATEWAY_DeleteVpcLink);
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:apigateway:ap-northeast-1::/vpclinks/j0owmk');
@@ -69,7 +68,7 @@ describe('apigateway.amazonaws.com', () => {
   });
 
   test('APIGATEWAY_CreateDomainName', async () => {
-    const event = await sendMessage(CreateEvents.APIGATEWAY_CreateDomainName);
+    const event = await sendMessage(Events.APIGATEWAY_CreateDomainName);
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:apigateway:ap-northeast-1::/domainnames/api.arms.onecloudlabo.com');
@@ -78,7 +77,7 @@ describe('apigateway.amazonaws.com', () => {
   });
 
   test('APIGATEWAY_DeleteDomainName', async () => {
-    const event = await sendMessage(DeleteEvents.APIGATEWAY_DeleteDomainName);
+    const event = await sendMessage(Events.APIGATEWAY_DeleteDomainName);
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:apigateway:ap-northeast-1::/domainnames/api.arms.onecloudlabo.com');

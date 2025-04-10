@@ -1,13 +1,12 @@
 import { getResource, sendMessage } from '@test/utils/utils';
 import { cloudtrail } from '@src/index';
-import * as CreateEvents from '@test/datas/create';
-import * as DeleteEvents from '@test/datas/delete';
+import * as Events from '@test/datas';
 import * as EXPECTS from '@test/expect/rds';
 import * as fs from 'fs';
 
 describe('rds.amazonaws.com', () => {
   test('CreateDBCluster', async () => {
-    const event = await sendMessage(CreateEvents.RDS_CreateDBCluster);
+    const event = await sendMessage(Events.RDS_CreateDBCluster);
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:cluster:database-4');
@@ -16,7 +15,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('DeleteDBCluster', async () => {
-    const event = await sendMessage(DeleteEvents.RDS_DeleteDBCluster);
+    const event = await sendMessage(Events.RDS_DeleteDBCluster);
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:cluster:database-4');
@@ -25,7 +24,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('RDS_RestoreDBClusterToPointInTime', async () => {
-    const event = await sendMessage(CreateEvents.RDS_RestoreDBClusterToPointInTime);
+    const event = await sendMessage(Events.RDS_RestoreDBClusterToPointInTime);
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:cluster:aurora-db-bk-cluster');
@@ -34,7 +33,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('RDS_RestoreDBClusterFromSnapshot', async () => {
-    const event = await sendMessage(CreateEvents.RDS_RestoreDBClusterFromSnapshot);
+    const event = await sendMessage(Events.RDS_RestoreDBClusterFromSnapshot);
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:cluster:aurora-db2-cluster');
@@ -43,7 +42,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('RDS_RestoreDBInstanceFromDBSnapshot', async () => {
-    const event = await sendMessage(CreateEvents.RDS_RestoreDBInstanceFromDBSnapshot);
+    const event = await sendMessage(Events.RDS_RestoreDBInstanceFromDBSnapshot);
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:db:nestle-envtestdb2');
@@ -52,7 +51,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('RDS_RestoreDBInstanceToPointInTime', async () => {
-    const event = await sendMessage(CreateEvents.RDS_RestoreDBInstanceToPointInTime);
+    const event = await sendMessage(Events.RDS_RestoreDBInstanceToPointInTime);
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:db:cis-rds-backup-test-recovery');
@@ -61,7 +60,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('CreateDBInstance', async () => {
-    const event = await sendMessage(CreateEvents.RDS_CreateDBInstance);
+    const event = await sendMessage(Events.RDS_CreateDBInstance);
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:db:onecloud-mysql');
@@ -70,7 +69,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('DeleteDBInstance', async () => {
-    const event = await sendMessage(DeleteEvents.RDS_DeleteDBInstance);
+    const event = await sendMessage(Events.RDS_DeleteDBInstance);
 
     await cloudtrail(event);
 
@@ -80,18 +79,14 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('ModifyDBInstance', async () => {
-    const createInstance = await sendMessage(CreateEvents.RDS_CreateDBInstanceForRename);
+    const createInstance = await sendMessage(Events.RDS_CreateDBInstanceForRename);
     await cloudtrail(createInstance);
 
-    const event = await sendMessage(CreateEvents.RDS_ModifyDBInstance);
+    const event = await sendMessage(Events.RDS_ModifyDBInstance);
     await cloudtrail(event);
 
     const deleted = await getResource('arn:aws:rds:ap-northeast-1:999999999999:db:onecloud-mysql-sjis');
     const created = await getResource('arn:aws:rds:ap-northeast-1:999999999999:db:onecloud-mysql-sjis-new');
-
-    // fs.writeFileSync('./test/expect/rds/RDS_ModifyDBInstance_Old.json', JSON.stringify(deleted));
-    // fs.writeFileSync('./test/expect/rds/RDS_ModifyDBInstance_New.json', JSON.stringify(created));
-
     expect(deleted).not.toBeUndefined();
     expect(deleted).toEqual(EXPECTS.RDS_ModifyDBInstance_Old);
     expect(created).not.toBeUndefined();
@@ -99,7 +94,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('RDS_CreateDBProxy', async () => {
-    const event = await sendMessage(CreateEvents.RDS_CreateDBProxy);
+    const event = await sendMessage(Events.RDS_CreateDBProxy);
 
     await cloudtrail(event);
 
@@ -109,7 +104,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('RDS_DeleteDBProxy', async () => {
-    const event = await sendMessage(DeleteEvents.RDS_DeleteDBProxy);
+    const event = await sendMessage(Events.RDS_DeleteDBProxy);
 
     await cloudtrail(event);
 
@@ -119,7 +114,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('RDS_CreateDBClusterParameterGroup', async () => {
-    const event = await sendMessage(CreateEvents.RDS_CreateDBClusterParameterGroup);
+    const event = await sendMessage(Events.RDS_CreateDBClusterParameterGroup);
 
     await cloudtrail(event);
 
@@ -129,7 +124,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('RDS_DeleteDBClusterParameterGroup', async () => {
-    const event = await sendMessage(DeleteEvents.RDS_DeleteDBClusterParameterGroup);
+    const event = await sendMessage(Events.RDS_DeleteDBClusterParameterGroup);
 
     await cloudtrail(event);
 
@@ -139,7 +134,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('RDS_CreateDBParameterGroup', async () => {
-    const event = await sendMessage(CreateEvents.RDS_CreateDBParameterGroup);
+    const event = await sendMessage(Events.RDS_CreateDBParameterGroup);
 
     await cloudtrail(event);
 
@@ -149,7 +144,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('RDS_DeleteDBParameterGroup', async () => {
-    const event = await sendMessage(DeleteEvents.RDS_DeleteDBParameterGroup);
+    const event = await sendMessage(Events.RDS_DeleteDBParameterGroup);
 
     await cloudtrail(event);
 
@@ -159,7 +154,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('RDS_CreateDBSubnetGroup', async () => {
-    const event = await sendMessage(CreateEvents.RDS_CreateDBSubnetGroup);
+    const event = await sendMessage(Events.RDS_CreateDBSubnetGroup);
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:subgrp:agnew-test-postgresql');
@@ -168,7 +163,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('RDS_DeleteDBSubnetGroup', async () => {
-    const event = await sendMessage(DeleteEvents.RDS_DeleteDBSubnetGroup);
+    const event = await sendMessage(Events.RDS_DeleteDBSubnetGroup);
 
     await cloudtrail(event);
 
@@ -178,7 +173,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('RDS_CreateDBClusterSnapshot', async () => {
-    const event = await sendMessage(CreateEvents.RDS_CreateDBClusterSnapshot);
+    const event = await sendMessage(Events.RDS_CreateDBClusterSnapshot);
     await cloudtrail(event);
 
     const resource = await getResource(
@@ -189,7 +184,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('RDS_CreateOptionGroup', async () => {
-    const event = await sendMessage(CreateEvents.RDS_CreateOptionGroup);
+    const event = await sendMessage(Events.RDS_CreateOptionGroup);
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:og:sas-ora-server-parameter-group');
@@ -198,7 +193,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('RDS_DeleteOptionGroup', async () => {
-    const event = await sendMessage(DeleteEvents.RDS_DeleteOptionGroup);
+    const event = await sendMessage(Events.RDS_DeleteOptionGroup);
 
     await cloudtrail(event);
 
@@ -208,7 +203,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('RDS_CreateDBSnapshot', async () => {
-    const event = await sendMessage(CreateEvents.RDS_CreateDBSnapshot);
+    const event = await sendMessage(Events.RDS_CreateDBSnapshot);
 
     await cloudtrail(event);
 
@@ -218,7 +213,7 @@ describe('rds.amazonaws.com', () => {
   });
 
   test('RDS_DeleteDBSnapshot', async () => {
-    const event = await sendMessage(DeleteEvents.RDS_DeleteDBSnapshot);
+    const event = await sendMessage(Events.RDS_DeleteDBSnapshot);
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:snapshot:sas-ora-server');
