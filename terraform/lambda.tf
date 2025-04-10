@@ -45,11 +45,12 @@ resource "aws_lambda_function" "cloudtrail_process" {
 
   environment {
     variables = {
-      TABLE_NAME_EVENT_TYPE = aws_dynamodb_table.event_type.name
-      TABLE_NAME_RESOURCES  = aws_dynamodb_table.resource.name
-      TABLE_NAME_SETTINGS   = aws_dynamodb_table.settings.name
-      SNS_TOPIC_ARN         = aws_sns_topic.admin.arn
-      S3_BUCKET_MATERIALS   = aws_s3_bucket.material.bucket
+      TABLE_NAME_EVENT_TYPE  = aws_dynamodb_table.event_type.name
+      TABLE_NAME_RESOURCES   = aws_dynamodb_table.resource.name
+      TABLE_NAME_SETTINGS    = aws_dynamodb_table.settings.name
+      TABLE_NAME_UNPROCESSED = aws_dynamodb_table.unprocessed.name
+      SNS_TOPIC_ARN          = aws_sns_topic.admin.arn
+      S3_BUCKET_MATERIALS    = aws_s3_bucket.material.bucket
     }
   }
 }

@@ -97,28 +97,6 @@ export namespace Tables {
     Service: string;
   }
 
-  // /**
-  //  * Table - History Key
-  //  */
-  // interface THistoryKey {
-  //   ResourceId: string;
-  //   EventTime: string;
-  // }
-
-  // /**
-  //  * Table - History
-  //  */
-  // interface THistory extends THistoryKey {
-  //   ResourceName?: string;
-  //   UserName: string;
-  //   EventSource: string;
-  //   EventName: string;
-  //   EventId: string;
-  //   AWSRegion: string;
-  //   Service: string;
-  //   Status?: string;
-  // }
-
   /**
    * Table - Unprocessed Key
    */
@@ -133,8 +111,23 @@ export namespace Tables {
   interface TUnprocessed extends TUnprocessedKey {
     EventSource: string;
     EventId: string;
-    ResourceId: string | string[];
-    Raw: string;
+    UserName: string;
+    AWSRegion: string;
+    SourceIPAddress: string;
+    UserAgent: string;
+    RequestParameters: any;
+    ResponseElements: any;
+    AdditionalEventData?: string;
+    RequestId: string;
+    EventId: string;
+    Resources?: {
+      ARN: string;
+      accountId: string;
+      type: string;
+    }[];
+    RecipientAccountId: string;
+    ServiceEventDetails?: string;
+    SharedEventId?: string;
   }
 
   interface UserKey {

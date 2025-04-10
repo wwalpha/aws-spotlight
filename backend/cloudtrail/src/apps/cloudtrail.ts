@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { parse } from 'csv-parse/sync';
-import { EventTypeService, ResourceService } from '@src/services';
+import { EventTypeService, ResourceService, UnprocessedService } from '@src/services';
 import * as ArnService from '@src/process/ArnService';
 import { CloudTrailRaw, CloudTrailRecord, EVENT_TYPE, Tables } from 'typings';
 import { Consts, DynamodbHelper, Logger, Utilities } from './utils';
@@ -113,12 +113,29 @@ const addNewEventType = async (record: CloudTrailRecord) => {
     };
 
     await Utilities.sendMail('New Event Type', `Event Source: ${record.eventSource}, Event Name: ${record.eventName}`);
+
+    await UnprocessedService.regist({
+      EventName: record.eventName,
+      EventTime: record.eventTime,
+      EventSource: record.eventSource,
+      UserName: record.userName,
+      AWSRegion: record.awsRegion,
+      SourceIPAddress: record.sourceIPAddress,
+      UserAgent: record.userAgent,
+      RequestParameters: record.requestParameters,
+      ResponseElements: record.responseElements,
+      AdditionalEventData: record.additionalEventData,
+      RequestId: record.requestId,
+      EventId: record.eventId,
+      Resources: record.resources,
+      RecipientAccountId: record.recipientAccountId,
+      ServiceEventDetails: record.serviceEventDetails,
+      SharedEventId: record.sharedEventId,
+    });
   }
 };
 
 const registRecords = async (records: CloudTrailRecord[]) => {
-  // Logger.info('Start execute process records...');
-
   // 処理対象のみ
   const filtered = records.filter((item) => {
     const service = item.eventSource.split('.')[0].toUpperCase();
