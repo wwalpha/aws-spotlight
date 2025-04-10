@@ -30,8 +30,9 @@ export const start = async (record: CloudTrailRecord): Promise<Tables.TResource[
       ...regists,
       ...removes.filter((item): item is Exclude<typeof item, undefined> => item !== undefined),
     ];
+
     // ユーザ名取得
-    const userName = await getUserName(record.userName);
+    const userName = await getUserName(record);
 
     return resources.map<Tables.TResource>((item) => ({
       UserName: userName,
@@ -63,7 +64,13 @@ const getStatus = (item: ResourceInfo, registCount: number, removeCount: number)
 };
 
 const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
-  const { awsRegion: region, recipientAccountId: account, eventSource: eventSource, eventName: eventName } = record;
+  const {
+    awsRegion: region,
+    recipientAccountId: account,
+    eventSource: eventSource,
+    eventName: eventName,
+    userAgent,
+  } = record;
 
   const request = record.requestParameters ? JSON.parse(record.requestParameters) : {};
   const response = record.responseElements ? JSON.parse(record.responseElements) : {};
@@ -213,6 +220,15 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       break;
 
     case 'ECS_CreateCluster':
+      // Batch用のクラスター作成の場合
+      if (userAgent === 'batch.amazonaws.com') {
+        const clusterArn = response.cluster.clusterArn as string;
+        const clusterName = response.cluster.clusterName as string;
+
+        rets = [clusterArn.substring(0, clusterArn.length - 37), clusterName.substring(0, clusterName.length - 37)];
+        break;
+      }
+
       rets = [response.cluster.clusterArn, response.cluster.clusterName];
       break;
 
@@ -487,6 +503,14 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
     case 'S3_CreateBucket':
       name = request.bucketName;
       rets = [ResourceARNs.S3_Bucket(region, account, name), name];
+      break;
+
+    case 'SAGEMAKER_CreateDomain':
+      rets = [response.domainArn, request.domainName];
+      break;
+
+    case 'SNS_CreateTopic':
+      rets = [response.topicArn, request.name];
       break;
 
     case 'SNS_CreateTopic':
@@ -818,6 +842,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       arn = ResourceARNs.S3_Bucket(region, account, request.bucketName);
       break;
 
+    case 'SAGEMAKER_DeleteDomain':
+      arn = ResourceARNs.SAGEMAKER_Domain(region, account, request.domainId);
+      break;
+
     case 'SNS_DeleteTopic':
       arn = request.topicArn;
       break;
@@ -1075,9 +1103,15 @@ const getServiceName = (serviceName: string) => {
   return capitalize(serviceName);
 };
 
-const getUserName = async (userName: string) => {
+const getUserName = async (record: CloudTrailRecord) => {
+  const { userName } = record;
+
   if (userName === '') return userName;
-  if (userName.startsWith('AWSServiceRole')) return userName;
+
+  if (userName.startsWith('AWSServiceRole')) {
+    return checkAWSServiceRole(record);
+  }
+
   if (userName.startsWith('AWSBackupDefault')) return userName;
   if (userName.endsWith('@dxc.com')) return userName;
   if (Object.keys(users).includes(userName)) return users[userName];
@@ -1090,4 +1124,42 @@ const getUserName = async (userName: string) => {
   users[userName] = result[0].UserName;
 
   return result[0].UserName;
+};
+
+const checkAWSServiceRole = async (record: CloudTrailRecord) => {
+  const { awsRegion: region, recipientAccountId: account, userName, userAgent } = record;
+  const serviceName = record.eventSource.split('.')[0].toUpperCase();
+  const key = `${serviceName}_${record.eventName}`;
+  const request = record.requestParameters ? JSON.parse(record.requestParameters) : {};
+  const response = record.responseElements ? JSON.parse(record.responseElements) : {};
+
+  // 対象外イベントの場合、そのまま返却
+  if (userName === 'AWSServiceRoleForBatch' && userAgent === 'batch.amazonaws.com') {
+    // イベント名チェック
+    if (key !== 'ECS_CreateCluster') return record.userName;
+
+    // ECS の場合、クラスター名を取得する
+    const clusterName = response.cluster.clusterName as string;
+    // クラスター名から ComputeEnvironment 名を取得する
+    const batchEnvName = clusterName.substring(9, clusterName.length - 37);
+    // ComputeEnvironment 名から ARN を取得する
+    const batchArn = ResourceARNs.BATCH_COMPUTE_ENVIRONMENT(region, account, batchEnvName);
+    // ユーザ名を取得する
+    const createdUser = await ResourceService.getUserName(batchArn);
+
+    return createdUser ? createdUser : record.userName;
+  }
+
+  if (userName === 'AWSServiceRoleForAmazonSageMakerNotebooks') {
+    // SageMaker の場合、ドメイン名を取得する
+    const creationToken = request.creationToken as string;
+    // ドメイン名から ARN を取得する
+    const domainArn = ResourceARNs.SAGEMAKER_Domain(region, account, creationToken);
+    // ユーザ名を取得する
+    const createdUser = await ResourceService.getUserName(domainArn);
+
+    return createdUser ? createdUser : record.userName;
+  }
+
+  return record.userName;
 };

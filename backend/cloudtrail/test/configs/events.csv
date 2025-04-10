@@ -230,6 +230,7 @@ CreateFleet,ec2.amazonaws.com,create
 DeleteWorkspace,grafana.amazonaws.com,delete
 CreateApp,sagemaker.amazonaws.com,create
 DeleteApp,sagemaker.amazonaws.com,delete
+CreateDomain,sagemaker.amazonaws.com,create
 DeleteDomain,sagemaker.amazonaws.com,delete
 DeleteSchedule,scheduler.amazonaws.com,delete
 CreateGraphqlApi,appsync.amazonaws.com,create

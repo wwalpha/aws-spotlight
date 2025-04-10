@@ -44,6 +44,16 @@ export const getByName = async (eventSource: string, name: string, filter?: stri
   return results.Items;
 };
 
+/** 詳細取得 */
+export const getUserName = async (resourceId: string): Promise<string | undefined> => {
+  const results = await describe({ ResourceId: resourceId });
+
+  if (!results) {
+    return undefined;
+  }
+  return results.UserName;
+};
+
 export const getListByEventSource = async (eventSource: string, eventTime?: string): Promise<Tables.TResource[]> => {
   const results = await DynamodbHelper.query<Tables.TResource>(Queries.getListByEventSource(eventSource, eventTime));
 

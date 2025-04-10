@@ -17,7 +17,8 @@ export const trancateAll = async () => {
 };
 
 export const sendMessage = async (record: Record<string, any>): Promise<S3Event> => {
-  record.userName = record.userIdentity?.userName || record.userIdentity?.sessionContext.sessionIssuer || 'unknown';
+  record.userName =
+    record.userIdentity?.userName || record.userIdentity?.sessionContext.sessionIssuer.userName || 'unknown';
   record.requestId = record.requestID;
   record.eventId = record.eventID;
 

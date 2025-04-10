@@ -1003,7 +1003,6 @@ StopNotebookInstance,sagemaker.amazonaws.com,true
 CreatePresignedNotebookInstanceUrl,sagemaker.amazonaws.com,true
 CreateNotebookInstance,sagemaker.amazonaws.com,true
 DeleteCodeRepository,sagemaker.amazonaws.com,true
-CreateDomain,sagemaker.amazonaws.com,true
 UpdateNotebookInstance,sagemaker.amazonaws.com,true
 CreatePresignedDomainUrl,sagemaker.amazonaws.com,true
 UpdateSchedule,scheduler.amazonaws.com,true

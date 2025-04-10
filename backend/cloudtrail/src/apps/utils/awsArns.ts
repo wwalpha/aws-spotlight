@@ -8,6 +8,10 @@ export const ResourceARNs = {
   // apigateway vpclink
   APIGATEWAY_VpcLink: (region: string, _: string, id?: string) => `arn:aws:apigateway:${region}::/vpclinks/${id}`,
 
+  // batch compute environment
+  BATCH_COMPUTE_ENVIRONMENT: (region: string, account: string, id?: string) =>
+    `arn:aws:batch:${region}:${account}:compute-environment/${id}`,
+
   // redshift
   REDSHIFT_Cluster: (region: string, account: string, id?: string) =>
     `arn:aws:redshift:${region}:${account}:cluster:${id}`,
@@ -113,6 +117,10 @@ export const ResourceARNs = {
 
   // s3
   S3_Bucket: (_: string, __?: string, id?: string) => `arn:aws:s3:::${id}`,
+
+  // sagemaker
+  SAGEMAKER_Domain: (region: string, account: string, id?: string) =>
+    `arn:aws:sagemaker:${region}:${account}:domain/${id}`,
 
   // sqs
   SQS_Queue: (region: string, account: string, id?: string) => `arn:aws:sqs:${region}:${account}:${id}`,
