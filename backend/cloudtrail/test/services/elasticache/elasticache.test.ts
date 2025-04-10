@@ -1,8 +1,9 @@
 import { getResource, sendMessage } from '@test/utils/utils';
 import { cloudtrail } from '@src/index';
 import * as Events from './datas';
-// import * as EXPECTS from './excepts';
+import * as EXPECTS from './expects';
 import * as fs from 'fs';
+import * as path from 'path';
 
 describe('elasticache.amazonaws.com', () => {
   test('ELASTICACHE_CreateCacheCluster', async () => {
@@ -10,9 +11,8 @@ describe('elasticache.amazonaws.com', () => {
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:elasticache:ap-northeast-1:999999999999:cluster:containersample-dev');
-    fs.writeFileSync('./expects/ELASTICACHE_CreateCacheCluster.json', JSON.stringify(resource));
     expect(resource).not.toBeUndefined();
-    // expect(resource).toEqual(EXPECTS.ELASTICACHE_CreateCacheCluster);
+    expect(resource).toEqual(EXPECTS.ELASTICACHE_CreateCacheCluster);
   });
 
   test('ELASTICACHE_DeleteCacheCluster', async () => {
@@ -20,8 +20,7 @@ describe('elasticache.amazonaws.com', () => {
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:elasticache:ap-northeast-1:999999999999:cluster:containersample-dev');
-    fs.writeFileSync('./expects/ELASTICACHE_DeleteCacheCluster.json', JSON.stringify(resource));
     expect(resource).not.toBeUndefined();
-    // expect(resource).toEqual(EXPECTS.ELASTICACHE_DeleteCacheCluster);
+    expect(resource).toEqual(EXPECTS.ELASTICACHE_DeleteCacheCluster);
   });
 });

@@ -22,14 +22,9 @@ export const start = async (record: CloudTrailRecord): Promise<Tables.TResource[
     // 登録リソース
     const regists = MULTI_TASK.includes(key) ? getRegistMultiResources(record) : getRegistSingleResource(record);
     // 削除リソース
-    const removes = MULTI_TASK.includes(key)
-      ? getRemoveMultiResources(record)
-      : [await getRemoveSingleResource(record)];
+    const removes = MULTI_TASK.includes(key) ? getRemoveMultiResources(record) : await getRemoveSingleResource(record);
     // 全部リソース
-    const resources = [
-      ...regists,
-      ...removes.filter((item): item is Exclude<typeof item, undefined> => item !== undefined),
-    ];
+    const resources = [...regists, ...removes];
 
     // ユーザ名取得
     const userName = await getUserName(record);
@@ -617,7 +612,7 @@ const getRegistMultiResources = (record: CloudTrailRecord): ResourceInfo[] => {
   return [];
 };
 
-const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<ResourceInfo | undefined> => {
+const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<ResourceInfo[]> => {
   const { awsRegion: region, recipientAccountId: account, eventSource: eventSource, eventName: eventName } = record;
 
   const request = record.requestParameters ? JSON.parse(record.requestParameters) : {};
@@ -1032,11 +1027,13 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
   }
 
   // 未対応のリソース
-  if (!arn) return;
+  if (!arn) return [];
 
-  return {
-    id: arn,
-  };
+  return [
+    {
+      id: arn,
+    },
+  ];
 };
 
 const getRemoveMultiResources = (record: CloudTrailRecord): ResourceInfo[] => {
