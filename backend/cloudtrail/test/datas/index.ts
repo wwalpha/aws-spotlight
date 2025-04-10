@@ -36,91 +36,20 @@ export { default as DS_CreateMicrosoftAD } from './ds/DS_CreateMicrosoftAD.json'
 export { default as DS_ConnectDirectory } from './ds/DS_ConnectDirectory.json';
 export { default as DS_CreateDirectory } from './ds/DS_CreateDirectory.json';
 
-export { default as DYNAMODB_CreateTable } from './simple/DYNAMODB_CreateTable.json';
-export { default as DYNAMODB_DeleteTable } from './simple/DYNAMODB_DeleteTable.json';
-
 export { default as DMS_CreateReplicationInstance } from './simple/DMS_CreateReplicationInstance.json';
 export { default as DMS_DeleteReplicationInstance } from './simple/DMS_DeleteReplicationInstance.json';
-
-export { default as ECR_CreateRepository } from './simple/ECR_CreateRepository.json';
-export { default as ECR_DeleteRepository } from './simple/ECR_DeleteRepository.json';
 
 export { default as ELASTICLOADBALANCING_CreateLoadBalancer } from './simple/ELASTICLOADBALANCING_CreateLoadBalancer.json';
 export { default as ELASTICLOADBALANCING_DeleteLoadBalancer } from './simple/ELASTICLOADBALANCING_DeleteLoadBalancer.json';
 export { default as ELASTICLOADBALANCING_CreateTargetGroup } from './simple/ELASTICLOADBALANCING_CreateTargetGroup.json';
 export { default as ELASTICLOADBALANCING_DeleteTargetGroup } from './simple/ELASTICLOADBALANCING_DeleteTargetGroup.json';
 
-export { default as EKS_CreateCluster } from './simple/EKS_CreateCluster.json';
-export { default as EKS_DeleteCluster } from './simple/EKS_DeleteCluster.json';
-
-export { default as ES_CreateElasticsearchDomain } from './simple/ES_CreateElasticsearchDomain.json';
-export { default as ES_DeleteElasticsearchDomain } from './simple/ES_DeleteElasticsearchDomain.json';
-
 export { default as FIREHOSE_CreateDeliveryStream } from './simple/FIREHOSE_CreateDeliveryStream.json';
 export { default as FIREHOSE_DeleteDeliveryStream } from './simple/FIREHOSE_DeleteDeliveryStream.json';
-
-export { default as FSX_CreateFileSystem } from './simple/FSX_CreateFileSystem.json';
-export { default as FSX_DeleteFileSystem } from './simple/FSX_DeleteFileSystem.json';
-
-export { default as GLUE_CreateDatabase } from './simple/GLUE_CreateDatabase.json';
-export { default as GLUE_DeleteDatabase } from './simple/GLUE_DeleteDatabase.json';
 
 export { default as IAM_CreateAccessKey } from './others/iam/IAM_CreateAccessKey.json';
 export { default as IAM_CreateRole } from './others/iam/IAM_CreateRole.json';
 export { default as IAM_CreateSAMLProvider } from './others/iam/IAM_CreateSAMLProvider.json';
 
-export { default as IOT_CreateTopicRule } from './simple/IOT_CreateTopicRule.json';
-export { default as IOT_DeleteTopicRule } from './simple/IOT_DeleteTopicRule.json';
-
-export { default as LAMBDA_CreateFunction20150331 } from './simple/LAMBDA_CreateFunction20150331.json';
-export { default as LAMBDA_DeleteFunction20150331 } from './simple/LAMBDA_DeleteFunction20150331.json';
-
-export { default as LEX_CreateBot } from './simple/LEX_CreateBot.json';
-export { default as LEX_DeleteBot } from './simple/LEX_DeleteBot.json';
-
-export { default as KINESIS_CreateStream } from './simple/KINESIS_CreateStream.json';
-export { default as KINESIS_DeleteStream } from './simple/KINESIS_DeleteStream.json';
-export { default as KINESIS_CreateApplication } from './simple/KINESIS_CreateApplication.json';
-export { default as KINESIS_DeleteApplication } from './simple/KINESIS_DeleteApplication.json';
-
 // export { default as MONITORING_PutMetricAlarm } from './monitoring/MONITORING_PutMetricAlarm.json';
 // export { default as MONITORING_PutDashboard } from './monitoring/MONITORING_PutDashboard.json';
-
-export { default as NFW_CreateFirewall } from './simple/NFW_CreateFirewall.json';
-export { default as NFW_DeleteFirewall } from './simple/NFW_DeleteFirewall.json';
-
-export { default as REDSHIFT_CreateCluster } from './simple/REDSHIFT_CreateCluster.json';
-export { default as REDSHIFT_DeleteCluster } from './simple/REDSHIFT_DeleteCluster.json';
-
-export { default as ROUTE53_CreateHostedZone } from './simple/ROUTE53_CreateHostedZone.json';
-export { default as ROUTE53_DeleteHostedZone } from './simple/ROUTE53_DeleteHostedZone.json';
-
-export { default as S3_CreateBucket } from './simple/S3_CreateBucket.json';
-export { default as S3_DeleteBucket } from './simple/S3_DeleteBucket.json';
-
-export { default as SAGEMAKER_CreateDomain } from './sagemaker/SAGEMAKER_CreateDomain.json';
-export { default as SAGEMAKER_DeleteDomain } from './sagemaker/SAGEMAKER_DeleteDomain.json';
-
-export { default as SNS_CreateTopic } from './simple/SNS_CreateTopic.json';
-export { default as SNS_DeleteTopic } from './simple/SNS_DeleteTopic.json';
-
-export { default as SYNTHETICS_CreateCanary } from './simple/SYNTHETICS_CreateCanary.json';
-export { default as SYNTHETICS_DeleteCanary } from './simple/SYNTHETICS_DeleteCanary.json';
-
-export { default as STATES_CreateStateMachine } from './simple/STATES_CreateStateMachine.json';
-export { default as STATES_DeleteStateMachine } from './simple/STATES_DeleteStateMachine.json';
-
-export { default as SQS_CreateQueue } from './simple/SQS_CreateQueue.json';
-export { default as SQS_DeleteQueue } from './simple/SQS_DeleteQueue.json';
-
-export { default as TRANSFER_CreateServer } from './simple/TRANSFER_CreateServer.json';
-export { default as TRANSFER_DeleteServer } from './simple/TRANSFER_DeleteServer.json';
-
-export { default as TIMESTREAM_CreateDatabase } from './simple/TIMESTREAM_CreateDatabase.json';
-export { default as TIMESTREAM_DeleteDatabase } from './simple/TIMESTREAM_DeleteDatabase.json';
-
-export { default as WAFV2_CreateIPSet } from './simple/WAFV2_CreateIPSet.json';
-export { default as WAFV2_DeleteIPSet } from './simple/WAFV2_DeleteIPSet.json';
-
-export { default as WAFV2_CreateWebACL } from './simple/WAFV2_CreateWebACL.json';
-export { default as WAFV2_DeleteWebACL } from './simple/WAFV2_DeleteWebACL.json';
