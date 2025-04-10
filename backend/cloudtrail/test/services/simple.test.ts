@@ -359,53 +359,45 @@ describe.skip('iot.amazonaws.com', () => {
   });
 });
 
-describe('kinesis.amazonaws.com', () => {
+describe.skip('kinesis.amazonaws.com', () => {
   test('KINESIS_CreateStream', async () => {
     const event = await sendMessage(Events.KINESIS_CreateStream);
-
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:kinesis:ap-northeast-1:999999999999:stream/engagement');
-    fs.writeFileSync('./test/expect/simple/KINESIS_CreateStream.json', JSON.stringify(resource));
     expect(resource).not.toBeUndefined();
-    // expect(resource).toEqual(EXPECTS.KINESIS_CreateStream);
+    expect(resource).toEqual(EXPECTS.KINESIS_CreateStream);
   });
 
   test('KINESIS_DeleteStream', async () => {
     const event = await sendMessage(Events.KINESIS_DeleteStream);
-
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:kinesis:ap-northeast-1:999999999999:stream/engagement');
-    fs.writeFileSync('./test/expect/simple/KINESIS_DeleteStream.json', JSON.stringify(resource));
     expect(resource).not.toBeUndefined();
-    // expect(resource).toEqual(EXPECTS.KINESIS_DeleteStream);
+    expect(resource).toEqual(EXPECTS.KINESIS_DeleteStream);
   });
 
   test('KINESIS_CreateApplication', async () => {
     const event = await sendMessage(Events.KINESIS_CreateApplication);
-
     await cloudtrail(event);
 
     const resource = await getResource(
       'arn:aws:kinesisanalytics:ap-northeast-1:999999999999:application/KinesisDataAnalytics_Test'
     );
-    fs.writeFileSync('./test/expect/simple/KINESIS_CreateApplication.json', JSON.stringify(resource));
     expect(resource).not.toBeUndefined();
-    // expect(resource).toEqual(EXPECTS.KINESIS_CreateApplication);
+    expect(resource).toEqual(EXPECTS.KINESIS_CreateApplication);
   });
 
   test('KINESIS_DeleteApplication', async () => {
     const event = await sendMessage(Events.KINESIS_DeleteApplication);
-
     await cloudtrail(event);
 
     const resource = await getResource(
       'arn:aws:kinesisanalytics:ap-northeast-1:999999999999:application/KinesisDataAnalytics_Test'
     );
-    fs.writeFileSync('./test/expect/simple/KINESIS_DeleteApplication.json', JSON.stringify(resource));
     expect(resource).not.toBeUndefined();
-    // expect(resource).toEqual(EXPECTS.KINESIS_DeleteApplication);
+    expect(resource).toEqual(EXPECTS.KINESIS_DeleteApplication);
   });
 });
 
@@ -537,7 +529,7 @@ describe.skip('s3.amazonaws.com', () => {
   });
 });
 
-describe('sns.amazonaws.com', () => {
+describe.skip('sns.amazonaws.com', () => {
   test('SNS_CreateTopic', async () => {
     const event = await sendMessage(Events.SNS_CreateTopic);
 

@@ -1,0 +1,1 @@
+{"AWSRegion":"ap-northeast-1","Service":"Kinesisanalytics","EventId":"7fc1e6bd-015a-42fb-bb4d-911d7a5de66a","Status":"Deleted","ResourceId":"arn:aws:kinesisanalytics:ap-northeast-1:999999999999:application/KinesisDataAnalytics_Test","EventTime":"2021-07-05T02:54:21Z","EventName":"DeleteApplication","EventSource":"kinesisanalytics.amazonaws.com","UserName":"test@test.com"}

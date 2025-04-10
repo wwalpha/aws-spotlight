@@ -43,6 +43,12 @@ export { default as GLUE_DeleteDatabase } from './GLUE_DeleteDatabase.json';
 export { default as IOT_CreateTopicRule } from './IOT_CreateTopicRule.json';
 export { default as IOT_DeleteTopicRule } from './IOT_DeleteTopicRule.json';
 
+export { default as KINESIS_CreateApplication } from './KINESIS_CreateApplication.json';
+export { default as KINESIS_DeleteApplication } from './KINESIS_DeleteApplication.json';
+
+export { default as KINESIS_CreateStream } from './KINESIS_CreateStream.json';
+export { default as KINESIS_DeleteStream } from './KINESIS_DeleteStream.json';
+
 export { default as LAMBDA_CreateFunction20150331 } from './LAMBDA_CreateFunction20150331.json';
 export { default as LAMBDA_DeleteFunction20150331 } from './LAMBDA_DeleteFunction20150331.json';
 
