@@ -1,1 +1,0 @@
-{"AWSRegion":"ap-northeast-1","Service":"Wafv2","EventId":"c0aa8749-274f-4d75-bd45-97747862e382","Status":"Deleted","ResourceId":"arn:aws:wafv2:ap-northeast-1:999999999999:regional/webacl/test","EventTime":"2021-08-31T01:16:14Z","EventName":"DeleteWebACL","EventSource":"wafv2.amazonaws.com","UserName":"test001@test.com"}

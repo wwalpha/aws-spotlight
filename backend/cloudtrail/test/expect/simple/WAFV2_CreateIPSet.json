@@ -1,1 +1,0 @@
-{"AWSRegion":"ap-northeast-1","ResourceName":"IPSET1","Service":"Wafv2","EventId":"994825f9-a888-4476-9119-7c433eaec82f","Status":"Created","ResourceId":"arn:aws:wafv2:ap-northeast-1:999999999999:regional/ipset/IPSET1","EventTime":"2021-07-29T07:06:39Z","EventName":"CreateIPSet","EventSource":"wafv2.amazonaws.com","UserName":"test001@test.com"}

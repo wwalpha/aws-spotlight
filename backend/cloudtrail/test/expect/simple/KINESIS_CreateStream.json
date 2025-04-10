@@ -1,1 +1,0 @@
-{"AWSRegion":"ap-northeast-1","ResourceName":"engagement","Service":"Kinesis","EventId":"8d5d04c0-502b-40c5-a26b-862e67a1e77a","Status":"Created","ResourceId":"arn:aws:kinesis:ap-northeast-1:999999999999:stream/engagement","EventTime":"2021-07-01T16:14:21Z","EventName":"CreateStream","EventSource":"kinesis.amazonaws.com","UserName":"test001@test.com"}

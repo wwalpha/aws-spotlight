@@ -1,1 +1,0 @@
-{"AWSRegion":"us-east-1","Service":"Synthetics","EventId":"166ef8a9-da17-4390-be3e-5fe4bd9b29b6","Status":"Deleted","ResourceId":"arn:aws:synthetics:us-east-1:999999999999:canary:audit-region","EventTime":"2021-07-03T06:50:56Z","EventName":"DeleteCanary","EventSource":"synthetics.amazonaws.com","UserName":"test001@test.com"}

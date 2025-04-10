@@ -1,1 +1,0 @@
-{"AWSRegion":"us-east-1","ResourceName":"arms.xxxxxxxxxx.com.","Service":"Route53","EventId":"1ef16a91-e677-4c56-936f-6bc68516b96a","Status":"Created","ResourceId":"arn:aws:route53:::hostedzone/AAAAAAAAAAAAAAAA","EventTime":"2021-06-06T02:31:54Z","EventName":"CreateHostedZone","EventSource":"route53.amazonaws.com","UserName":"test001@test.com"}

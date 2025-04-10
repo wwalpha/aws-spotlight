@@ -1,1 +1,0 @@
-{"AWSRegion":"us-east-1","Service":"Redshift","EventId":"e0fb538c-f822-4557-92bd-d60f1220058c","Status":"Deleted","ResourceId":"arn:aws:redshift:us-east-1:999999999999:cluster:redshift-cluster-1","EventTime":"2021-06-24T12:25:56Z","EventName":"DeleteCluster","EventSource":"redshift.amazonaws.com","UserName":"test001@test.com"}

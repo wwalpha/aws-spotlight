@@ -1,1 +1,0 @@
-{"AWSRegion":"ap-northeast-1","Service":"Kinesis","EventId":"d25d778d-9434-4097-bd61-ebaab3e98faa","Status":"Deleted","ResourceId":"arn:aws:kinesis:ap-northeast-1:999999999999:stream/engagement","EventTime":"2021-07-03T08:11:55Z","EventName":"DeleteStream","EventSource":"kinesis.amazonaws.com","UserName":"test001@test.com"}
