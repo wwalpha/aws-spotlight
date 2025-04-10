@@ -1,0 +1,1 @@
+{"AWSRegion":"us-east-1","Service":"Sagemaker","EventId":"870c6b1b-e36e-487e-93b9-31faed469ae6","Status":"Deleted","ResourceId":"arn:aws:sagemaker:us-east-1:999999999999:domain/d-dml2esvpdmj6","EventTime":"2023-10-04T08:42:40Z","EventName":"DeleteDomain","EventSource":"sagemaker.amazonaws.com","UserName":"test@test.com"}

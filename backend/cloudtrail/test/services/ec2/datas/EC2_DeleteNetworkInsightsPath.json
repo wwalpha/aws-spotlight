@@ -1,0 +1,45 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5ANWIMEUW",
+    "userName": "test@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2023-02-06T00:04:45Z",
+        "mfaAuthenticated": "true"
+      }
+    }
+  },
+  "eventTime": "2023-02-06T03:55:33Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "DeleteNetworkInsightsPath",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "AWS Internal",
+  "requestParameters": {
+    "DeleteNetworkInsightsPathRequest": {
+      "NetworkInsightsPathId": "nip-04cbb496cba822127"
+    }
+  },
+  "responseElements": {
+    "DeleteNetworkInsightsPathResponse": {
+      "xmlns": "http://ec2.amazonaws.com/doc/2016-11-15/",
+      "requestId": "2f613597-d4c9-483d-976a-9a7255674656",
+      "networkInsightsPathId": "nip-04cbb496cba822127"
+    }
+  },
+  "requestID": "2f613597-d4c9-483d-976a-9a7255674656",
+  "eventID": "34c53882-2100-4da6-bd6c-f544153cb771",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management",
+  "sessionCredentialFromConsole": "true"
+}

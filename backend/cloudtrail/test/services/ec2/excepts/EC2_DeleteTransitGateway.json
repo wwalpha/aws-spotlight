@@ -1,0 +1,11 @@
+{
+  "AWSRegion": "ap-northeast-3",
+  "Service": "EC2",
+  "EventId": "e3c7821b-46d2-49f2-bfcf-04aea44c303f",
+  "Status": "Deleted",
+  "ResourceId": "arn:aws:ec2:ap-northeast-3:999999999999:transit-gateway/tgw-02844bb728fca543c",
+  "EventTime": "2021-08-18T10:56:33Z",
+  "EventName": "DeleteTransitGateway",
+  "EventSource": "ec2.amazonaws.com",
+  "UserName": "test@test.com"
+}

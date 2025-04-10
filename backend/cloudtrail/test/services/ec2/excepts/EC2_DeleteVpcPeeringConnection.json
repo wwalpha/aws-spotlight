@@ -1,0 +1,11 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "Service": "EC2",
+  "EventId": "cfde640d-77a8-4150-8eeb-f4627fbf55b7",
+  "Status": "Deleted",
+  "ResourceId": "arn:aws:ec2:ap-northeast-1:999999999999:vpc-peering-connection/pcx-09cc395f56ffead9e",
+  "EventTime": "2021-06-08T07:53:32Z",
+  "EventName": "DeleteVpcPeeringConnection",
+  "EventSource": "ec2.amazonaws.com",
+  "UserName": "test@test.com"
+}

@@ -1,0 +1,11 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "Service": "ECS",
+  "EventId": "ac65a290-2302-4af8-8605-247e166d7969",
+  "Status": "Deleted",
+  "ResourceId": "arn:aws:ecs:ap-northeast-1:999999999999:cluster/arms-cluster",
+  "EventTime": "2021-06-06T01:55:08Z",
+  "EventName": "DeleteCluster",
+  "EventSource": "ecs.amazonaws.com",
+  "UserName": "test@test.com"
+}

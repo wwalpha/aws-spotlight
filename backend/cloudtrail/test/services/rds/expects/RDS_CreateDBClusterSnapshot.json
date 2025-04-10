@@ -1,0 +1,12 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "ResourceName": "aurora-db-backup-20210930",
+  "Service": "RDS",
+  "EventId": "5bc8d82f-eaa9-44e2-863d-3018f0fa0faf",
+  "Status": "Created",
+  "ResourceId": "arn:aws:rds:ap-northeast-1:999999999999:cluster-snapshot:aurora-db-backup-20210930",
+  "EventTime": "2021-09-30T06:36:17Z",
+  "EventName": "CreateDBClusterSnapshot",
+  "EventSource": "rds.amazonaws.com",
+  "UserName": "test@test.com"
+}

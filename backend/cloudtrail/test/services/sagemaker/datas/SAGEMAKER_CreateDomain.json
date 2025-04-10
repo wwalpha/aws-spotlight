@@ -1,0 +1,71 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AKIAU33DBSJ5I7MODBWM",
+    "userName": "test@test.com"
+  },
+  "eventTime": "2023-10-04T04:12:56Z",
+  "eventSource": "sagemaker.amazonaws.com",
+  "eventName": "CreateDomain",
+  "awsRegion": "us-east-1",
+  "sourceIPAddress": "52.191.190.82",
+  "userAgent": "APN/1.0 HashiCorp/1.0 Terraform/0.15.3 (+https://www.terraform.io) terraform-provider-aws/3.43.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.38.49 (go1.16; linux; amd64)",
+  "requestParameters": {
+    "domainName": "QuickSetupDomain-20231004T131215",
+    "authMode": "IAM",
+    "defaultUserSettings": {
+      "executionRole": "arn:aws:iam::999999999999:role/service-role/AmazonSageMaker-ExecutionRole-20231004T131216",
+      "sharingSettings": {
+        "notebookOutputOption": "Allowed",
+        "s3OutputPath": "s3://sagemaker-studio-k6ma8di8u3/sharing"
+      },
+      "jupyterServerAppSettings": {
+        "defaultResourceSpec": {
+          "sageMakerImageArn": "arn:aws:sagemaker:us-east-1:081325390199:image/jupyter-server-3",
+          "instanceType": "system"
+        }
+      },
+      "canvasAppSettings": {
+        "timeSeriesForecastingSettings": {
+          "status": "ENABLED",
+          "amazonForecastRoleArn": "arn:aws:iam::999999999999:role/service-role/AmazonSagemakerCanvasForecastRole-20231004T131215"
+        },
+        "modelRegisterSettings": {
+          "status": "ENABLED"
+        },
+        "workspaceSettings": {
+          "s3ArtifactPath": "s3://sagemaker-us-east-1-999999999999"
+        }
+      }
+    },
+    "subnetIds": [
+      "subnet-861055e0",
+      "subnet-fd5a65f3",
+      "subnet-6a1c0927",
+      "subnet-5435730b",
+      "subnet-86a1e1a7",
+      "subnet-b6b43d87"
+    ],
+    "vpcId": "vpc-446ff939",
+    "tags": [],
+    "appNetworkAccessType": "PublicInternetOnly",
+    "defaultSpaceSettings": {
+      "executionRole": "arn:aws:iam::999999999999:role/service-role/AmazonSageMaker-ExecutionRole-20231004T131216"
+    }
+  },
+  "responseElements": {
+    "domainArn": "arn:aws:sagemaker:us-east-1:999999999999:domain/d-dml2esvpdmj6",
+    "url": "https://d-dml2esvpdmj6.studio.us-east-1.sagemaker.aws"
+  },
+  "requestID": "d0944ce5-2577-4596-a392-e204e89971e3",
+  "eventID": "1aa2e32f-4012-448e-8d9b-de33c88a36ef",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management"
+}

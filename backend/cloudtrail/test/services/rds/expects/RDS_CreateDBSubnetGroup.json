@@ -1,0 +1,12 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "ResourceName": "agnew-test-postgresql",
+  "Service": "RDS",
+  "EventId": "888df3d3-b7d8-47c3-a245-5ae0a8a7dffc",
+  "Status": "Created",
+  "ResourceId": "arn:aws:rds:ap-northeast-1:999999999999:subgrp:agnew-test-postgresql",
+  "EventTime": "2021-07-30T08:10:43Z",
+  "EventName": "CreateDBSubnetGroup",
+  "EventSource": "rds.amazonaws.com",
+  "UserName": "test@test.com"
+}

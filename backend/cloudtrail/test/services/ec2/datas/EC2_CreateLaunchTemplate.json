@@ -1,0 +1,79 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "userName": "test@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2023-02-04T01:03:20Z",
+        "mfaAuthenticated": "true"
+      }
+    },
+    "invokedBy": "mgn.amazonaws.com"
+  },
+  "eventTime": "2023-02-04T01:07:09Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "CreateLaunchTemplate",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "mgn.amazonaws.com",
+  "userAgent": "mgn.amazonaws.com",
+  "requestParameters": {
+    "CreateLaunchTemplateRequest": {
+      "LaunchTemplateName": "created-and-used-by-application-migration-service-account_level_template-230402-010709",
+      "LaunchTemplateData": {
+        "TagSpecification": {
+          "ResourceType": "instance",
+          "tag": 1,
+          "Tag": {
+            "Value": "mgn.amazonaws.com",
+            "tag": 1,
+            "Key": "AWSApplicationMigrationServiceManaged"
+          }
+        }
+      },
+      "TagSpecification": {
+        "ResourceType": "launch-template",
+        "tag": 1,
+        "Tag": {
+          "Value": "mgn.amazonaws.com",
+          "tag": 1,
+          "Key": "AWSApplicationMigrationServiceManaged"
+        }
+      }
+    }
+  },
+  "responseElements": {
+    "CreateLaunchTemplateResponse": {
+      "xmlns": "http://ec2.amazonaws.com/doc/2016-11-15/",
+      "requestId": "74d2edf1-d67f-475d-942d-9bd6bea51af3",
+      "launchTemplate": {
+        "tagSet": {
+          "item": {
+            "value": "mgn.amazonaws.com",
+            "key": "AWSApplicationMigrationServiceManaged"
+          }
+        },
+        "createTime": "2023-02-04T01:07:09.000Z",
+        "createdBy": "arn:aws:iam::999999999999:user/test@test.com",
+        "launchTemplateId": "lt-09bcb085b7dc5d962",
+        "latestVersionNumber": 1,
+        "defaultVersionNumber": 1,
+        "launchTemplateName": "created-and-used-by-application-migration-service-account_level_template-230402-010709"
+      }
+    }
+  },
+  "requestID": "74d2edf1-d67f-475d-942d-9bd6bea51af3",
+  "eventID": "c48ec18c-8d8a-4b12-9646-5f4c6a39c86c",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "vpcEndpointId": "vpce-03ee04c27060ba4d4",
+  "eventCategory": "Management",
+  "sessionCredentialFromConsole": "true"
+}

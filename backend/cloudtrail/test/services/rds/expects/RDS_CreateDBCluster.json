@@ -1,0 +1,12 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "ResourceName": "database-4",
+  "Service": "RDS",
+  "EventId": "9f93308d-38b1-405b-bf1b-68e0fd1a3c09",
+  "Status": "Created",
+  "ResourceId": "arn:aws:rds:ap-northeast-1:999999999999:cluster:database-4",
+  "EventTime": "2021-01-26T17:40:38Z",
+  "EventName": "CreateDBCluster",
+  "EventSource": "rds.amazonaws.com",
+  "UserName": "test001@test.com"
+}

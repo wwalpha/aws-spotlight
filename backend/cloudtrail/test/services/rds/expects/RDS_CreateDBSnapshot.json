@@ -1,0 +1,12 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "ResourceName": "sas-ora-server",
+  "Service": "RDS",
+  "EventId": "ef91332a-0d23-4918-9330-32294fa7fa9e",
+  "Status": "Created",
+  "ResourceId": "arn:aws:rds:ap-northeast-1:999999999999:snapshot:sas-ora-server",
+  "EventTime": "2021-10-22T07:23:38Z",
+  "EventName": "CreateDBSnapshot",
+  "EventSource": "rds.amazonaws.com",
+  "UserName": "test@test.com"
+}

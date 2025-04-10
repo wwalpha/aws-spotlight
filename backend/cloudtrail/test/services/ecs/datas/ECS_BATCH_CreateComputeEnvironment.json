@@ -1,0 +1,51 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-07-15T01:52:35Z"
+      }
+    }
+  },
+  "eventTime": "2024-10-27T17:13:57Z",
+  "eventSource": "batch.amazonaws.com",
+  "eventName": "CreateComputeEnvironment",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "106.146.11.248",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+  "requestParameters": {
+    "computeResources": {
+      "type": "FARGATE",
+      "maxvCpus": 256,
+      "subnets": [
+        "subnet-00cad493108bb225e"
+      ],
+      "securityGroupIds": [
+        "sg-0ab6c77a3ec5257d3"
+      ]
+    },
+    "state": "ENABLED",
+    "type": "MANAGED",
+    "computeEnvironmentName": "getting-started-wizard-compute-env"
+  },
+  "responseElements": {
+    "computeEnvironmentName": "getting-started-wizard-compute-env",
+    "computeEnvironmentArn": "arn:aws:batch:ap-northeast-1:999999999999:compute-environment/getting-started-wizard-compute-env"
+  },
+  "requestID": "ceaf5181-49bb-4946-b0ee-27046a32ed13",
+  "eventID": "61b320ed-be82-44b0-9862-a90d97f75052",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

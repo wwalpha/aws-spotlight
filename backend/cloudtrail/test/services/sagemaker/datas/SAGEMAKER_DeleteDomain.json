@@ -1,0 +1,27 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AKIAU33DBSJ5I7MODBWM",
+    "userName": "test@test.com"
+  },
+  "eventTime": "2023-10-04T08:42:40Z",
+  "eventSource": "sagemaker.amazonaws.com",
+  "eventName": "DeleteDomain",
+  "awsRegion": "us-east-1",
+  "sourceIPAddress": "52.191.190.82",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
+  "requestParameters": {
+    "domainId": "d-dml2esvpdmj6"
+  },
+  "requestID": "0509a0e1-856c-43f6-8322-b6899326957f",
+  "eventID": "870c6b1b-e36e-487e-93b9-31faed469ae6",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management"
+}

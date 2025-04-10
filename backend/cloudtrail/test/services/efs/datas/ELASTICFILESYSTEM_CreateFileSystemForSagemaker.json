@@ -1,0 +1,72 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLI2OU3QHN26:AmazonSageMaker",
+    "arn": "arn=arn:aws:sts::999999999999:assumed-role/AWSServiceRoleForAmazonSageMakerNotebooks/AmazonSageMaker",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIV3QTDWCS",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROAU33DBSJ5IUJKY643J",
+        "arn": "arn:aws:iam::999999999999:role/aws-service-role/sagemaker.amazonaws.com/AWSServiceRoleForAmazonSageMakerNotebooks",
+        "accountId": "999999999999",
+        "userName": "AWSServiceRoleForAmazonSageMakerNotebooks"
+      },
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-02-19T10:39:22Z"
+      }
+    }
+  },
+  "eventTime": "2021-02-19T10:39:40Z",
+  "eventSource": "elasticfilesystem.amazonaws.com",
+  "eventName": "CreateFileSystem",
+  "awsRegion": "us-east-1",
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.12.552 Linux/4.14.255-318-256.530.amzn2.x86_64 OpenJDK_64-Bit_Server_VM/25.372-b07 java/1.8.0_372 vendor/Amazon.com_Inc. cfg/retry-mode/standard exec-env/AWS_Lambda_java8.al2",
+  "requestParameters": {
+    "creationToken": "d-i5xyilpzkest",
+    "encrypted": true,
+    "tags": [
+      {
+        "key": "ManagedByAmazonSageMakerResource",
+        "value": "arn:aws:sagemaker:us-east-1:999999999999:domain/d-i5xyilpzkest"
+      }
+    ]
+  },
+  "responseElements": {
+    "ownerId": "999999999999",
+    "creationToken": "d-i5xyilpzkest",
+    "fileSystemId": "fs-0a49146a8cb95e621",
+    "fileSystemArn": "arn:aws:elasticfilesystem:us-east-1:999999999999:file-system/fs-0a49146a8cb95e621",
+    "creationTime": "Oct 4, 2023, 4:51:08 AM",
+    "lifeCycleState": "creating",
+    "numberOfMountTargets": 0,
+    "sizeInBytes": {
+      "value": 0,
+      "valueInIA": 0,
+      "valueInStandard": 0
+    },
+    "performanceMode": "generalPurpose",
+    "encrypted": true,
+    "kmsKeyId": "arn:aws:kms:us-east-1:999999999999:key/eeaea88c-7510-4afe-944d-65aab5d8ef64",
+    "throughputMode": "bursting",
+    "tags": [
+      {
+        "key": "ManagedByAmazonSageMakerResource",
+        "value": "arn:aws:sagemaker:us-east-1:999999999999:domain/d-i5xyilpzkest"
+      }
+    ]
+  },
+  "requestID": "bf34e833-49f8-4e5e-bfb1-867e0ee2a81e",
+  "eventID": "1a4e0427-b0d2-496a-b2c1-45477cf36a6e",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2015-02-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

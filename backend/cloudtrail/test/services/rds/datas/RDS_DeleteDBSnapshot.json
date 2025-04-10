@@ -1,0 +1,64 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5CYGDGQWQG",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5KP3JN7PL",
+    "userName": "test@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2021-11-10T07:00:32Z",
+        "mfaAuthenticated": "false"
+      }
+    }
+  },
+  "eventTime": "2021-11-10T07:12:26Z",
+  "eventSource": "rds.amazonaws.com",
+  "eventName": "DeleteDBSnapshot",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "192.46.52.29",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.11.975 Linux/5.4.147-83.259.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.242-b08 java/1.8.0_242 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+  "requestParameters": {
+    "dBSnapshotIdentifier": "koya-wp-test-final-snapshot"
+  },
+  "responseElements": {
+    "allocatedStorage": 20,
+    "instanceCreateTime": "Sep 14, 2021 2:24:57 AM",
+    "dBSnapshotIdentifier": "koya-wp-test-final-snapshot",
+    "dbiResourceId": "db-VROTGYLOPEV7OYYGL5PAYIYPME",
+    "port": 3306,
+    "availabilityZone": "ap-northeast-1a",
+    "dBSnapshotArn": "arn:aws:rds:ap-northeast-1:999999999999:snapshot:sas-ora-server",
+    "processorFeatures": [],
+    "encrypted": false,
+    "percentProgress": 100,
+    "optionGroupName": "default:mysql-8-0",
+    "tagList": [],
+    "dBInstanceIdentifier": "koya-wp-test",
+    "storageType": "gp2",
+    "iAMDatabaseAuthenticationEnabled": false,
+    "vpcId": "vpc-08f77b07c34029b7a",
+    "storageThroughput": 0,
+    "snapshotCreateTime": "Sep 14, 2021 10:41:14 AM",
+    "status": "deleted",
+    "masterUsername": "admin",
+    "engine": "mysql",
+    "snapshotType": "manual",
+    "engineVersion": "8.0.23",
+    "licenseModel": "general-public-license",
+    "originalSnapshotCreateTime": "Sep 14, 2021 10:41:14 AM",
+    "snapshotTarget": "region"
+  },
+  "requestID": "29694c39-b859-45b5-87b2-d77bacc97293",
+  "eventID": "fa5608d9-983d-4568-9c76-272f9e5e3596",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management",
+  "sessionCredentialFromConsole": "true"
+}

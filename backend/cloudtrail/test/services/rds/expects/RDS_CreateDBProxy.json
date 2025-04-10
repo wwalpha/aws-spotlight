@@ -1,0 +1,12 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "ResourceName": "proxy-1674105823625-pointcampaign",
+  "Service": "RDS",
+  "EventId": "ef12b5b3-cfbf-4873-8abd-5c9e1729f2a8",
+  "Status": "Created",
+  "ResourceId": "arn:aws:rds:ap-northeast-1:999999999999:db-proxy:prx-057abb09c838b8840",
+  "EventTime": "2023-01-19T05:23:45Z",
+  "EventName": "CreateDBProxy",
+  "EventSource": "rds.amazonaws.com",
+  "UserName": "test@test.com"
+}

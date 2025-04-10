@@ -1,7 +1,7 @@
 import { getResource, sendMessage } from '@test/utils/utils';
 import { cloudtrail } from '@src/index';
 import * as Events from '@test/datas';
-import * as EXPECTS from '@test/expect/simple';
+import * as EXPECTS from '@test/expects/simple';
 import * as fs from 'fs';
 
 // fs.writeFileSync('./test/expect/simple/AUTOSCALING_CreateAutoScalingGroup.json', JSON.stringify(resource));
@@ -213,47 +213,6 @@ describe.skip('ecr.amazonaws.com', () => {
     const resource = await getResource('arn:aws:ecr:ap-northeast-1:999999999999:repository/nodejs-blue');
     expect(resource).not.toBeUndefined();
     expect(resource).toEqual(EXPECTS.ECR_DeleteRepository);
-  });
-});
-
-describe.skip('ecs.amazonaws.com', () => {
-  test('ECS_CreateCluster', async () => {
-    const event = await sendMessage(Events.ECS_CreateCluster);
-    await cloudtrail(event);
-
-    const resource = await getResource('arn:aws:ecs:ap-northeast-1:999999999999:cluster/arms-cluster');
-    expect(resource).not.toBeUndefined();
-    expect(resource).toEqual(EXPECTS.ECS_CreateCluster);
-  });
-
-  test('ECS_DeleteCluster', async () => {
-    const event = await sendMessage(Events.ECS_DeleteCluster);
-
-    await cloudtrail(event);
-
-    const resource = await getResource('arn:aws:ecs:ap-northeast-1:999999999999:cluster/arms-cluster');
-    expect(resource).not.toBeUndefined();
-    expect(resource).toEqual(EXPECTS.ECS_DeleteCluster);
-  });
-});
-
-describe.skip('elasticfilesystem.amazonaws.com', () => {
-  test('ELASTICFILESYSTEM_CreateFileSystem', async () => {
-    const event = await sendMessage(Events.ELASTICFILESYSTEM_CreateFileSystem);
-    await cloudtrail(event);
-
-    const resource = await getResource('arn:aws:elasticfilesystem:ap-northeast-1:999999999999:file-system/fs-d536f8f5');
-    expect(resource).not.toBeUndefined();
-    expect(resource).toEqual(EXPECTS.ELASTICFILESYSTEM_CreateFileSystem);
-  });
-
-  test('ELASTICFILESYSTEM_DeleteFileSystem', async () => {
-    const event = await sendMessage(Events.ELASTICFILESYSTEM_DeleteFileSystem);
-    await cloudtrail(event);
-
-    const resource = await getResource('arn:aws:elasticfilesystem:ap-northeast-1:999999999999:file-system/fs-d536f8f5');
-    expect(resource).not.toBeUndefined();
-    expect(resource).toEqual(EXPECTS.ELASTICFILESYSTEM_DeleteFileSystem);
   });
 });
 

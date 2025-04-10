@@ -1,7 +1,7 @@
 import { getResource, sendMessage } from '@test/utils/utils';
 import { cloudtrail } from '@src/index';
-import * as Events from '@test/datas';
-import * as EXPECTS from '@test/expect/apigateway';
+import * as Events from './datas';
+// import * as EXPECTS from './excepts';
 import * as fs from 'fs';
 
 describe('elasticache.amazonaws.com', () => {
