@@ -1,0 +1,12 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "ResourceName": "dar-database",
+  "Service": "Glue",
+  "EventId": "e86edf64-5b11-4f34-946c-69cd039b24b3",
+  "Status": "Created",
+  "ResourceId": "arn:aws:glue:ap-northeast-1:999999999999:database/dar-database",
+  "EventTime": "2023-02-07T02:06:44Z",
+  "EventName": "CreateDatabase",
+  "EventSource": "glue.amazonaws.com",
+  "UserName": "{\"type\":\"Role\",\"principalId\":\"AROAU33DBSJ5DV737T25D\",\"arn\":\"arn:aws:iam::999999999999:role/EC2Role\",\"accountId\":\"999999999999\",\"userName\":\"EC2Role\"}"
+}

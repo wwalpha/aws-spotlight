@@ -1,0 +1,1 @@
+{"AWSRegion":"us-east-1","ResourceName":"redshift-cluster-1","Service":"Redshift","EventId":"54677ea0-d177-495e-b418-5d7a84942d70","Status":"Created","ResourceId":"arn:aws:redshift:us-east-1:999999999999:cluster:redshift-cluster-1","EventTime":"2021-06-24T12:19:40Z","EventName":"CreateCluster","EventSource":"redshift.amazonaws.com","UserName":"test001@test.com"}

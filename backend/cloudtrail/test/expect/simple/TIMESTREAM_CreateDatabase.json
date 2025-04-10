@@ -1,0 +1,1 @@
+{"AWSRegion":"ap-northeast-1","ResourceName":"sampleDB","Service":"Timestream","EventId":"b6d683d4-a1ad-41fb-8ca3-19ae6fed66b4","Status":"Created","ResourceId":"arn:aws:timestream:ap-northeast-1:999999999999:database/sampleDB","EventTime":"2023-02-22T01:09:46Z","EventName":"CreateDatabase","EventSource":"timestream.amazonaws.com","UserName":"test@test.com"}

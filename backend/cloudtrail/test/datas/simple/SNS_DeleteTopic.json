@@ -16,7 +16,7 @@
       }
     }
   },
-  "eventTime": "2021-06-06T01:54:24Z",
+  "eventTime": "2021-06-06T06:54:24Z",
   "eventSource": "sns.amazonaws.com",
   "eventName": "DeleteTopic",
   "awsRegion": "us-east-1",

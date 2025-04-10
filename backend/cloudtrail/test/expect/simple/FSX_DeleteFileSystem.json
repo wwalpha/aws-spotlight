@@ -1,0 +1,11 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "Service": "Fsx",
+  "EventId": "31f024be-a955-43c4-bbe3-ad2e72e89b64",
+  "Status": "Deleted",
+  "ResourceId": "arn:aws:fsx:ap-northeast-1:999999999999:file-system/fs-01975f073c6852d99",
+  "EventTime": "2022-06-16T15:26:10Z",
+  "EventName": "DeleteFileSystem",
+  "EventSource": "fsx.amazonaws.com",
+  "UserName": "test@test.com"
+}

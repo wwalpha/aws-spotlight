@@ -1,0 +1,1 @@
+{"AWSRegion":"us-east-1","ResourceName":"audit-region","Service":"Synthetics","EventId":"633c390c-0e23-47ec-ba16-eea684ad24c3","Status":"Created","ResourceId":"arn:aws:synthetics:us-east-1:999999999999:canary:audit-region","EventTime":"2021-07-02T13:21:10Z","EventName":"CreateCanary","EventSource":"synthetics.amazonaws.com","UserName":"test001@test.com"}

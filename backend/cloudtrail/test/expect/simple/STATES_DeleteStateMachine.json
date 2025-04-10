@@ -1,0 +1,1 @@
+{"AWSRegion":"ap-northeast-1","Service":"StepFunction","EventId":"4ff266d5-4d9b-4c16-ad94-b8935b2f5f04","Status":"Deleted","ResourceId":"arn:aws:states:ap-northeast-1:999999999999:stateMachine:BLyi9R1Js89B","EventTime":"2021-07-03T08:07:04Z","EventName":"DeleteStateMachine","EventSource":"states.amazonaws.com","UserName":"test001@test.com"}

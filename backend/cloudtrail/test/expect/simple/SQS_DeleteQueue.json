@@ -1,0 +1,1 @@
+{"AWSRegion":"us-east-1","Service":"SQS","EventId":"0114a86d-87b7-4102-97b2-53a77d228154","Status":"Deleted","ResourceId":"arn:aws:sqs:us-east-1:999999999999:arms-deadletter","EventTime":"2021-07-03T09:42:28Z","EventName":"DeleteQueue","EventSource":"sqs.amazonaws.com","UserName":"test001@test.com"}

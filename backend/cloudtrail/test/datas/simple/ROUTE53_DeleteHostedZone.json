@@ -16,7 +16,7 @@
       }
     }
   },
-  "eventTime": "2021-06-06T02:01:02Z",
+  "eventTime": "2021-06-07T02:01:02Z",
   "eventSource": "route53.amazonaws.com",
   "eventName": "DeleteHostedZone",
   "awsRegion": "us-east-1",

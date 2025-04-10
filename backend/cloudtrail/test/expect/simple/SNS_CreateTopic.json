@@ -1,0 +1,1 @@
+{"AWSRegion":"us-east-1","ResourceName":"arms-admin","Service":"SNS","EventId":"797afcaf-3870-4203-a1fc-f902bde6349b","Status":"Created","ResourceId":"arn:aws:sns:us-east-1:999999999999:arms-admin","EventTime":"2021-06-06T06:39:35Z","EventName":"CreateTopic","EventSource":"sns.amazonaws.com","UserName":"test001@test.com"}

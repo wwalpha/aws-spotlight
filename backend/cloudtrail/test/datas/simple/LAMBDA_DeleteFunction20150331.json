@@ -10,17 +10,22 @@
     "sessionContext": {
       "sessionIssuer": {},
       "webIdFederationData": {},
-      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-04-08T00:22:39Z" }
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-04-08T00:22:39Z"
+      }
     },
     "invokedBy": "cloudformation.amazonaws.com"
   },
-  "eventTime": "2021-04-08T01:56:39Z",
+  "eventTime": "2021-04-18T01:56:39Z",
   "eventSource": "lambda.amazonaws.com",
   "eventName": "DeleteFunction20150331",
   "awsRegion": "ap-northeast-1",
   "sourceIPAddress": "cloudformation.amazonaws.com",
   "userAgent": "cloudformation.amazonaws.com",
-  "requestParameters": { "functionName": "RekogDemoSetupEngagementMeter" },
+  "requestParameters": {
+    "functionName": "RekogDemoSetupEngagementMeter"
+  },
   "responseElements": null,
   "requestID": "d2a7874c-fd0f-4fa1-9e06-77bc224942e8",
   "eventID": "78358ae7-e395-4813-a659-1cd40248272b",
