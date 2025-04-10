@@ -1,0 +1,11 @@
+{
+  "AWSRegion": "us-east-1",
+  "Service": "Cloudfront",
+  "EventId": "8853f4c6-cbd1-408d-addc-4f6591b07514",
+  "Status": "Deleted",
+  "ResourceId": "arn:aws:cloudfront::999999999999:distribution/E1AU9D0469FO98",
+  "EventTime": "2021-07-06T01:57:41Z",
+  "EventName": "DeleteDistribution",
+  "EventSource": "cloudfront.amazonaws.com",
+  "UserName": "test001@test.com"
+}
