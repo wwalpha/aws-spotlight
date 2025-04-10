@@ -1,0 +1,11 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "Service": "Dynamodb",
+  "EventId": "7bae1976-dd8e-4332-bc95-83c7844d515d",
+  "Status": "Deleted",
+  "ResourceId": "arn:aws:dynamodb:ap-northeast-1:999999999999:table/AutoNotification_AlarmConfigs",
+  "EventTime": "2021-04-16T11:46:29Z",
+  "EventName": "DeleteTable",
+  "EventSource": "dynamodb.amazonaws.com",
+  "UserName": "test001@test.com"
+}

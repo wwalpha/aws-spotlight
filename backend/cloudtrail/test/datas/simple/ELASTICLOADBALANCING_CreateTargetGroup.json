@@ -1,0 +1,60 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIUZVVMUQNP",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIRLYAO5W6",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": { "mfaAuthenticated": "false", "creationDate": "2021-03-17T08:32:47Z" }
+    }
+  },
+  "eventTime": "2021-03-17T08:37:10Z",
+  "eventSource": "elasticloadbalancing.amazonaws.com",
+  "eventName": "CreateTargetGroup",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "165.225.111.52",
+  "userAgent": "console.ec2.amazonaws.com",
+  "requestParameters": {
+    "unhealthyThresholdCount": 3,
+    "healthyThresholdCount": 3,
+    "protocol": "TCP",
+    "targetType": "ip",
+    "vpcId": "vpc-02c334b99fe4833d6",
+    "port": 8081,
+    "healthCheckProtocol": "TCP",
+    "healthCheckIntervalSeconds": 30,
+    "name": "TESTfontback-tgt"
+  },
+  "responseElements": {
+    "targetGroups": [
+      {
+        "targetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:999999999999:targetgroup/TESTfontback-tgt/297bf72439f1364c",
+        "healthCheckPort": "traffic-port",
+        "healthCheckEnabled": true,
+        "healthCheckTimeoutSeconds": 10,
+        "protocol": "TCP",
+        "healthCheckProtocol": "TCP",
+        "unhealthyThresholdCount": 3,
+        "healthCheckIntervalSeconds": 30,
+        "port": 8081,
+        "targetGroupName": "TESTfontback-tgt",
+        "vpcId": "vpc-02c334b99fe4833d6",
+        "targetType": "ip",
+        "healthyThresholdCount": 3
+      }
+    ]
+  },
+  "requestID": "12b28437-0087-4615-b2a7-3da1b9753bff",
+  "eventID": "7b009e94-e6da-4ddb-ba7e-9019dfb67722",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2015-12-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

@@ -1,0 +1,1 @@
+{"AWSRegion":"ap-northeast-1","Service":"Timestream","EventId":"646ffee5-dbc8-4ade-942d-a912964de936","Status":"Deleted","ResourceId":"arn:aws:timestream:ap-northeast-1:999999999999:database/sampleDB","EventTime":"2023-02-22T01:21:43Z","EventName":"DeleteDatabase","EventSource":"timestream.amazonaws.com","UserName":"test@test.com"}

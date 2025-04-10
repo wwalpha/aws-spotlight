@@ -1,0 +1,11 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "Service": "Codedeploy",
+  "EventId": "21591ff5-aac9-4e91-a426-1714d3199499",
+  "Status": "Deleted",
+  "ResourceId": "arn:aws:codedeploy:ap-northeast-1:999999999999:application/Nodejs",
+  "EventTime": "2023-01-17T02:30:53Z",
+  "EventName": "DeleteApplication",
+  "EventSource": "codedeploy.amazonaws.com",
+  "UserName": "test@test.com"
+}
