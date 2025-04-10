@@ -416,7 +416,7 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
 
     case 'ROUTE53_CreateHostedZone':
       rets = [
-        ResourceARNs.ROUTE53_HostedZone(region, account, (response.hostedZone.id as string).split('/')[2]),
+        ResourceARNs.ROUTE53_HostedZone((response.hostedZone.id as string).split('/')[2]),
         response.hostedZone.name,
       ];
       break;
@@ -771,7 +771,7 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       break;
 
     case 'ROUTE53_DeleteHostedZone':
-      arn = ResourceARNs.ROUTE53_HostedZone(region, account, request.id);
+      arn = ResourceARNs.ROUTE53_HostedZone(request.id);
       break;
 
     case 'RDS_DeleteDBCluster':

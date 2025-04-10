@@ -105,7 +105,7 @@ export const ResourceARNs = {
     `arn:aws:autoscaling:${region}:${account}:autoScalingGroup:*:autoScalingGroupName/${id}`,
 
   // route53
-  ROUTE53_HostedZone: (_: string, __?: string, id?: string) => `arn:aws:route53:::hostedzone/${id}`,
+  ROUTE53_HostedZone: (id: string) => `arn:aws:route53:::hostedzone/${id}`,
 
   // servicediscovery
   SERVICEDISCOVERY_Namespace: (region: string, account: string, id?: string) =>

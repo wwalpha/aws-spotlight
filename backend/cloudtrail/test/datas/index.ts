@@ -155,7 +155,9 @@ export { default as GLUE_DeleteDatabase } from './simple/GLUE_DeleteDatabase.jso
 export { default as IAM_CreateAccessKey } from './iam/IAM_CreateAccessKey.json';
 export { default as IAM_CreateRole } from './iam/IAM_CreateRole.json';
 export { default as IAM_CreateSAMLProvider } from './iam/IAM_CreateSAMLProvider.json';
+
 export { default as IOT_CreateTopicRule } from './simple/IOT_CreateTopicRule.json';
+export { default as IOT_DeleteTopicRule } from './simple/IOT_DeleteTopicRule.json';
 
 export { default as LAMBDA_CreateFunction20150331 } from './simple/LAMBDA_CreateFunction20150331.json';
 export { default as LAMBDA_DeleteFunction20150331 } from './simple/LAMBDA_DeleteFunction20150331.json';
@@ -163,8 +165,10 @@ export { default as LAMBDA_DeleteFunction20150331 } from './simple/LAMBDA_Delete
 export { default as LEX_CreateBot } from './simple/LEX_CreateBot.json';
 export { default as LEX_DeleteBot } from './simple/LEX_DeleteBot.json';
 
-// export { default as KINESIS_CreateStream } from './kinesis/KINESIS_CreateStream.json';
-// export { default as KINESIS_CreateApplication } from './kinesis/KINESIS_CreateApplication.json';
+export { default as KINESIS_CreateStream } from './kinesis/KINESIS_CreateStream.json';
+export { default as KINESIS_DeleteStream } from './kinesis/KINESIS_DeleteStream.json';
+export { default as KINESIS_CreateApplication } from './kinesis/KINESIS_CreateApplication.json';
+export { default as KINESIS_DeleteApplication } from './kinesis/KINESIS_DeleteApplication.json';
 
 // export { default as MONITORING_PutMetricAlarm } from './monitoring/MONITORING_PutMetricAlarm.json';
 // export { default as MONITORING_PutDashboard } from './monitoring/MONITORING_PutDashboard.json';
@@ -199,5 +203,8 @@ export { default as TRANSFER_DeleteServer } from './simple/TRANSFER_DeleteServer
 export { default as TIMESTREAM_CreateDatabase } from './simple/TIMESTREAM_CreateDatabase.json';
 export { default as TIMESTREAM_DeleteDatabase } from './simple/TIMESTREAM_DeleteDatabase.json';
 
-export { default as WAFV2_CreateIPSet } from './waf/WAFV2_CreateIPSet.json';
-export { default as WAFV2_CreateWebACL } from './waf/WAFV2_CreateWebACL.json';
+export { default as WAFV2_CreateIPSet } from './simple/WAFV2_CreateIPSet.json';
+export { default as WAFV2_DeleteIPSet } from './simple/WAFV2_DeleteIPSet.json';
+
+export { default as WAFV2_CreateWebACL } from './simple/WAFV2_CreateWebACL.json';
+export { default as WAFV2_DeleteWebACL } from './simple/WAFV2_DeleteWebACL.json';
