@@ -1,1 +1,0 @@
-{"AWSRegion":"ap-northeast-1","Service":"RDS","EventId":"7ed902d8-fedd-45f0-8d57-4aca741295e1","Status":"Deleted","ResourceId":"arn:aws:rds:ap-northeast-1:999999999999:db:onecloud-mysql-sjis","EventTime":"2022-08-08T06:21:48Z","EventName":"ModifyDBInstance","EventSource":"rds.amazonaws.com","UserName":"test@test.com"}
