@@ -198,11 +198,7 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
 
     case 'DMS_CreateReplicationInstance':
       rets = [
-        ResourceARNs.DMS_ReplicationInstance(
-          region,
-          account,
-          response.replicationInstance.replicationInstanceIdentifier
-        ),
+        response.replicationInstance.replicationInstanceArn,
         response.replicationInstance.replicationInstanceIdentifier,
       ];
       break;
@@ -716,11 +712,7 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       break;
 
     case 'DMS_DeleteReplicationInstance':
-      arn = ResourceARNs.DMS_ReplicationInstance(
-        region,
-        account,
-        response.replicationInstance.replicationInstanceIdentifier
-      );
+      arn = request.replicationInstanceArn;
       break;
 
     case 'ES_DeleteElasticsearchDomain':

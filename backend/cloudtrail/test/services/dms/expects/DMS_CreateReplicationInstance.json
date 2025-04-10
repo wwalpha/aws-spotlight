@@ -1,118 +1,12 @@
 {
-  "eventVersion": "1.08",
-  "userIdentity": {
-    "type": "IAMUser",
-    "principalId": "AIDAU33DBSJ5FAG74LZSB",
-    "arn": "arn:aws:iam::999999999999:user/test@test.com",
-    "accountId": "999999999999",
-    "accessKeyId": "ASIAU33DBSJ5DOURAK5B",
-    "userName": "test@test.com",
-    "sessionContext": {
-      "sessionIssuer": {},
-      "webIdFederationData": {},
-      "attributes": {
-        "creationDate": "2022-04-11T00:39:00Z",
-        "mfaAuthenticated": "false"
-      }
-    }
-  },
-  "eventTime": "2022-04-11T01:12:40Z",
-  "eventSource": "dms.amazonaws.com",
-  "eventName": "CreateReplicationInstance",
-  "awsRegion": "ap-northeast-1",
-  "sourceIPAddress": "AWS Internal",
-  "userAgent": "AWS Internal",
-  "requestParameters": {
-    "replicationInstanceIdentifier": "oracle-migration-ec2-to-rds",
-    "allocatedStorage": 100,
-    "replicationInstanceClass": "dms.t3.medium",
-    "vpcSecurityGroupIds": [
-      "sg-027f8017a2ca7ca2f",
-      "sg-0814d85f928db8218",
-      "sg-47ef9a05"
-    ],
-    "replicationSubnetGroupIdentifier": "default-vpc-08768b6e",
-    "preferredMaintenanceWindow": "mon:09:00-mon:09:30",
-    "multiAZ": false,
-    "engineVersion": "3.4.6",
-    "autoMinorVersionUpgrade": true,
-    "tags": [
-      {
-        "key": "description",
-        "value": "oracle-migration-ec2-to-rds"
-      }
-    ],
-    "publiclyAccessible": true,
-    "resourceIdentifier": ""
-  },
-  "responseElements": {
-    "replicationInstance": {
-      "replicationInstanceIdentifier": "oracle-migration-ec2-to-rds",
-      "replicationInstanceClass": "dms.t3.medium",
-      "replicationInstanceStatus": "creating",
-      "allocatedStorage": 100,
-      "vpcSecurityGroups": [
-        {
-          "vpcSecurityGroupId": "sg-47ef9a05",
-          "status": "active"
-        },
-        {
-          "vpcSecurityGroupId": "sg-0814d85f928db8218",
-          "status": "active"
-        },
-        {
-          "vpcSecurityGroupId": "sg-027f8017a2ca7ca2f",
-          "status": "active"
-        }
-      ],
-      "availabilityZone": "ap-northeast-1d",
-      "replicationSubnetGroup": {
-        "replicationSubnetGroupIdentifier": "default-vpc-08768b6e",
-        "replicationSubnetGroupDescription": "default group created by console for vpc id vpc-08768b6e",
-        "vpcId": "vpc-08768b6e",
-        "subnetGroupStatus": "Complete",
-        "subnets": [
-          {
-            "subnetIdentifier": "subnet-ff9819d4",
-            "subnetAvailabilityZone": {
-              "name": "ap-northeast-1d"
-            },
-            "subnetStatus": "Active"
-          },
-          {
-            "subnetIdentifier": "subnet-fc9d75a6",
-            "subnetAvailabilityZone": {
-              "name": "ap-northeast-1c"
-            },
-            "subnetStatus": "Active"
-          },
-          {
-            "subnetIdentifier": "subnet-fef04eb6",
-            "subnetAvailabilityZone": {
-              "name": "ap-northeast-1a"
-            },
-            "subnetStatus": "Active"
-          }
-        ],
-        "replicationSubnetGroupArn": "arn:aws:dms:ap-northeast-1:999999999999:subgrp:TXNCFV7QTNK77FXICIHDXKFUI3YYWPSDVJW3LPY"
-      },
-      "preferredMaintenanceWindow": "mon:09:00-mon:09:30",
-      "pendingModifiedValues": {},
-      "multiAZ": false,
-      "engineVersion": "3.4.6",
-      "autoMinorVersionUpgrade": true,
-      "kmsKeyId": "arn:aws:kms:ap-northeast-1:999999999999:key/bb436397-98c0-468d-a510-78e8a4b0c58f",
-      "replicationInstanceArn": "arn:aws:dms:ap-northeast-1:999999999999:rep:IMG2PDS3YLM3PFGOMBNEY7LMODJ2Q4YA5AMOJLA",
-      "publiclyAccessible": true,
-      "patchingPrecedence": 0
-    }
-  },
-  "requestID": "b54301c5-cbab-49dc-847e-967256ea7397",
-  "eventID": "f0e00796-9fe0-40f7-81ec-b8538f172176",
-  "readOnly": false,
-  "eventType": "AwsApiCall",
-  "managementEvent": true,
-  "recipientAccountId": "999999999999",
-  "eventCategory": "Management",
-  "sessionCredentialFromConsole": "true"
+  "AWSRegion": "ap-northeast-1",
+  "ResourceName": "oracle-migration-ec2-to-rds",
+  "Service": "DMS",
+  "EventId": "f0e00796-9fe0-40f7-81ec-b8538f172176",
+  "Status": "Created",
+  "ResourceId": "arn:aws:dms:ap-northeast-1:999999999999:rep:IMG2PDS3YLM3PFGOMBNEY7LMODJ2Q4YA5AMOJLA",
+  "EventTime": "2022-04-11T01:12:40Z",
+  "EventName": "CreateReplicationInstance",
+  "EventSource": "dms.amazonaws.com",
+  "UserName": "test@test.com"
 }

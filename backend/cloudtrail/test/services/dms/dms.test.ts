@@ -3,6 +3,7 @@ import { cloudtrail } from '@src/index';
 import * as Events from './datas';
 import * as EXPECTS from './expects';
 import * as fs from 'fs';
+import * as path from 'path';
 
 describe('dms.amazonaws.com', () => {
   test('DMS_CreateReplicationInstance', async () => {
@@ -12,9 +13,8 @@ describe('dms.amazonaws.com', () => {
     const resource = await getResource(
       'arn:aws:dms:ap-northeast-1:999999999999:rep:IMG2PDS3YLM3PFGOMBNEY7LMODJ2Q4YA5AMOJLA'
     );
-    fs.writeFileSync('./expects/DMS_CreateReplicationInstance.json', JSON.stringify(resource));
     expect(resource).not.toBeUndefined();
-    // expect(resource).toEqual(EXPECTS.DMS_CreateReplicationInstance);
+    expect(resource).toEqual(EXPECTS.DMS_CreateReplicationInstance);
   });
 
   test('DMS_DeleteReplicationInstance', async () => {
@@ -24,8 +24,7 @@ describe('dms.amazonaws.com', () => {
     const resource = await getResource(
       'arn:aws:dms:ap-northeast-1:999999999999:rep:IMG2PDS3YLM3PFGOMBNEY7LMODJ2Q4YA5AMOJLA'
     );
-    fs.writeFileSync('./expects/DMS_DeleteReplicationInstance.json', JSON.stringify(resource));
     expect(resource).not.toBeUndefined();
-    // expect(resource).toEqual(EXPECTS.DMS_DeleteReplicationInstance);
+    expect(resource).toEqual(EXPECTS.DMS_DeleteReplicationInstance);
   });
 });
