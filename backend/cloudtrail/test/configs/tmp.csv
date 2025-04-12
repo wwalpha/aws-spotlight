@@ -34,8 +34,7 @@ ActivateGateway,storagegateway.amazonaws.com,create
 DeleteGateway,storagegateway.amazonaws.com,delete
 CreateFleet,appstream.amazonaws.com,create
 StopFleet,appstream.amazonaws.com,true
-CreateTransitGatewayRouteTable,ec2.amazonaws.com,create
-DeleteTransitGatewayRouteTable,ec2.amazonaws.com,delete
+
 CreateApp,sagemaker.amazonaws.com,create
 DeleteApp,sagemaker.amazonaws.com,delete
 StartNotebookInstance,sagemaker.amazonaws.com,create
@@ -66,14 +65,8 @@ CreateResourceShare,ram.amazonaws.com,create
 DeleteResourceShare,ram.amazonaws.com,delete
 CreateApplication,servicecatalog-appregistry.amazonaws.com,create
 DeleteApplication,servicecatalog-appregistry.amazonaws.com,delete
-CreateProfile,route53profiles.amazonaws.com,create
-DeleteProfile,route53profiles.amazonaws.com,delete
-CreateFunction,cloudfront.amazonaws.com,create
-DeleteFunction,cloudfront.amazonaws.com,delete
-CreateDomain,es.amazonaws.com,create
-DeleteDomain,es.amazonaws.com,delete
-CreateService,apprunner.amazonaws.com,create
-DeleteService,apprunner.amazonaws.com,delete
+
+
 DeleteStackSet,cloudformation.amazonaws.com,delete
 CreateAccelerator,globalaccelerator.amazonaws.com,create
 DeleteAccelerator,globalaccelerator.amazonaws.com,delete
