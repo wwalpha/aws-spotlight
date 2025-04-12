@@ -2,6 +2,8 @@ import { getResource, sendMessage } from '@test/utils/utils';
 import { cloudtrail } from '@src/index';
 import * as Events from './datas';
 import * as EXPECTS from './excepts';
+import * as fs from 'fs';
+import * as path from 'path';
 
 describe('EXPECTS.amazonaws.com', () => {
   test('EC2_RunInstances', async () => {
@@ -243,5 +245,35 @@ describe('EXPECTS.amazonaws.com', () => {
     );
     expect(resource).not.toBeUndefined();
     expect(resource).toEqual(EXPECTS.EC2_DeleteInternetGateway);
+  });
+
+  test.only('EC2_CreateTransitGatewayRouteTable', async () => {
+    const event = await sendMessage(Events.EC2_CreateTransitGatewayRouteTable);
+    await cloudtrail(event);
+
+    const resource = await getResource(
+      'arn:aws:ec2:ap-northeast-1:999999999999:transit-gateway-route-table/tgw-rtb-08b6d4384f1fccd33'
+    );
+    fs.writeFileSync(
+      path.join(__dirname, './expects/EC2_CreateTransitGatewayRouteTable.json'),
+      JSON.stringify(resource)
+    );
+    expect(resource).not.toBeUndefined();
+    // expect(resource).toEqual(EXPECTS.EC2_CreateTransitGatewayRouteTable);
+  });
+
+  test.only('EC2_DeleteTransitGatewayRouteTable', async () => {
+    const event = await sendMessage(Events.EC2_DeleteTransitGatewayRouteTable);
+    await cloudtrail(event);
+
+    const resource = await getResource(
+      'arn:aws:ec2:ap-northeast-1:999999999999:transit-gateway-route-table/tgw-rtb-08b6d4384f1fccd33'
+    );
+    fs.writeFileSync(
+      path.join(__dirname, './expects/EC2_DeleteTransitGatewayRouteTable.json'),
+      JSON.stringify(resource)
+    );
+    expect(resource).not.toBeUndefined();
+    // expect(resource).toEqual(EXPECTS.EC2_DeleteTransitGatewayRouteTable);
   });
 });

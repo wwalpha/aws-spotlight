@@ -1,0 +1,51 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5H56NUBEK",
+    "userName": "test@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2021-08-18T06:58:53Z",
+        "mfaAuthenticated": "true"
+      }
+    }
+  },
+  "eventName": "DeleteTransitGatewayRouteTable",
+  "eventTime": "2023-10-21T01:50:01Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "5e26353b-613d-4cb8-b540-870069d88086",
+  "eventSource": "ec2.amazonaws.com",
+  "requestID": "20e584c5-231e-4caf-bae0-d5f53784323c",
+  "requestParameters": {
+    "DeleteTransitGatewayRouteTableRequest": {
+      "TransitGatewayRouteTableId": "tgw-rtb-08b6d4384f1fccd33"
+    }
+  },
+  "responseElements": {
+    "DeleteTransitGatewayRouteTableResponse": {
+      "xmlns": "http://ec2.amazonaws.com/doc/2016-11-15/",
+      "transitGatewayRouteTable": {
+        "defaultPropagationRouteTable": false,
+        "creationTime": "2023-10-21T01:47:37.000Z",
+        "transitGatewayId": "tgw-02d17c0ad2e9ecaa5",
+        "defaultAssociationRouteTable": false,
+        "state": "deleting",
+        "transitGatewayRouteTableId": "tgw-rtb-08b6d4384f1fccd33"
+      },
+      "requestId": "20e584c5-231e-4caf-bae0-d5f53784323c"
+    }
+  },
+  "sourceIPAddress": "219.110.69.24",
+  "userAgent": "AWS Internal",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management"
+}

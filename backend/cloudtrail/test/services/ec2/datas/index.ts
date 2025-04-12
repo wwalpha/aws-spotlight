@@ -15,6 +15,7 @@ export { default as EC2_CreateCustomerGateway } from './EC2_CreateCustomerGatewa
 export { default as EC2_CreateVpnConnection } from './EC2_CreateVpnConnection.json';
 export { default as EC2_CreateVpnGateway } from './EC2_CreateVpnGateway.json';
 export { default as EC2_CreateTransitGateway } from './EC2_CreateTransitGateway.json';
+export { default as EC2_CreateTransitGatewayRouteTable } from './EC2_CreateTransitGatewayRouteTable.json';
 export { default as EC2_CreateSubnet } from './EC2_CreateSubnet.json';
 export { default as EC2_CreateSecurityGroup } from './EC2_CreateSecurityGroup.json';
 export { default as EC2_CreateInternetGateway } from './EC2_CreateInternetGateway.json';
@@ -35,6 +36,8 @@ export { default as EC2_DeleteVpnConnection } from './EC2_DeleteVpnConnection.js
 export { default as EC2_DeleteVpnGateway } from './EC2_DeleteVpnGateway.json';
 export { default as EC2_DeleteCustomerGateway } from './EC2_DeleteCustomerGateway.json';
 export { default as EC2_DeleteTransitGateway } from './EC2_DeleteTransitGateway.json';
+export { default as EC2_DeleteTransitGatewayRouteTable } from './EC2_DeleteTransitGatewayRouteTable.json';
+
 export { default as EC2_DeleteSubnet } from './EC2_DeleteSubnet.json';
 export { default as EC2_DeleteSecurityGroup } from './EC2_DeleteSecurityGroup.json';
 export { default as EC2_DeleteInternetGateway } from './EC2_DeleteInternetGateway.json';

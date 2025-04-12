@@ -1,0 +1,66 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5I4ULUDR3",
+    "userName": "test@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2021-08-18T06:58:53Z",
+        "mfaAuthenticated": "true"
+      }
+    }
+  },
+  "eventName": "CreateTransitGatewayRouteTable",
+  "eventTime": "2023-10-15T23:48:36Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "dfbdbfc5-14b4-4110-9954-f2935bdf5456",
+  "eventSource": "ec2.amazonaws.com",
+  "requestID": "95037f7c-892d-4368-ba3b-0341b0c783b4",
+  "requestParameters": {
+    "CreateTransitGatewayRouteTableRequest": {
+      "TransitGatewayId": "tgw-0931011113cfa92e5",
+      "TagSpecifications": {
+        "ResourceType": "transit-gateway-route-table",
+        "tag": 1,
+        "Tag": {
+          "Value": "PeeringAttatchment-TGWRT",
+          "tag": 1,
+          "Key": "Name"
+        }
+      }
+    }
+  },
+  "responseElements": {
+    "CreateTransitGatewayRouteTableResponse": {
+      "xmlns": "http://ec2.amazonaws.com/doc/2016-11-15/",
+      "transitGatewayRouteTable": {
+        "tagSet": {
+          "item": {
+            "value": "PeeringAttatchment-TGWRT",
+            "key": "Name"
+          }
+        },
+        "defaultPropagationRouteTable": false,
+        "creationTime": "2023-10-15T23:48:36.000Z",
+        "transitGatewayId": "tgw-0931011113cfa92e5",
+        "defaultAssociationRouteTable": false,
+        "state": "pending",
+        "transitGatewayRouteTableId": "tgw-rtb-08b6d4384f1fccd33"
+      },
+      "requestId": "95037f7c-892d-4368-ba3b-0341b0c783b4"
+    }
+  },
+  "sourceIPAddress": "219.110.69.24",
+  "userAgent": "AWS Internal",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management"
+}
