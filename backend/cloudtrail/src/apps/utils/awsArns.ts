@@ -8,6 +8,10 @@ export const ResourceARNs = {
   // apigateway vpclink
   APIGATEWAY_VpcLink: (region: string, _: string, id?: string) => `arn:aws:apigateway:${region}::/vpclinks/${id}`,
 
+  // autoscaling
+  AUTOSCALING_AutoScalingGroup: (region: string, account: string, id?: string) =>
+    `arn:aws:autoscaling:${region}:${account}:autoScalingGroup:*:autoScalingGroupName/${id}`,
+
   // batch compute environment
   BATCH_COMPUTE_ENVIRONMENT: (region: string, account: string, id?: string) =>
     `arn:aws:batch:${region}:${account}:compute-environment/${id}`,
@@ -32,6 +36,9 @@ export const ResourceARNs = {
   // lambda
   LAMBDA_Function20150331: (region: string, account: string, id?: string) =>
     `arn:aws:lambda:${region}:${account}:function:${id}`,
+
+  // amazon mq
+  AMAZONMQ_Broker: (region: string, account: string, id?: string) => `arn:aws:mq:${region}:${account}:broker:${id}`,
 
   // kinesis
   KINESIS_Stream: (region: string, account: string, id?: string) => `arn:aws:kinesis:${region}:${account}:stream/${id}`,
@@ -100,13 +107,11 @@ export const ResourceARNs = {
   CLOUDFRONT_Distribution: (_: string, account: string, id?: string) =>
     `arn:aws:cloudfront::${account}:distribution/${id}`,
 
+  CLOUDFRONT_Function: (_: string, account: string, id?: string) => `arn:aws:cloudfront::${account}:function/${id}`,
+
   // connect
   CONNECT_Instance: (region: string, account: string, id?: string) =>
     `arn:aws:connect:${region}:${account}:instance/${id}`,
-
-  // autoscaling
-  AUTOSCALING_AutoScalingGroup: (region: string, account: string, id?: string) =>
-    `arn:aws:autoscaling:${region}:${account}:autoScalingGroup:*:autoScalingGroupName/${id}`,
 
   // route53
   ROUTE53_HostedZone: (id: string) => `arn:aws:route53:::hostedzone/${id}`,
@@ -209,6 +214,10 @@ export const ResourceARNs = {
   // ec2 transit gateway
   EC2_TransitGateway: (region: string, account: string, id?: string) =>
     `arn:aws:ec2:${region}:${account}:transit-gateway/${id}`,
+
+  // ec2 transit gateway Route Table
+  EC2_TransitGatewayRouteTable: (region: string, account: string, id?: string) =>
+    `arn:aws:ec2:${region}:${account}:transit-gateway-route-table/${id}`,
 
   // ec2 volumn
   EC2_Volume: (region: string, account: string, id?: string) => `arn:aws:ec2:${region}:${account}:volume/${id}`,

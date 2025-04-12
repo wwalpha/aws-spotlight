@@ -198,3 +198,11 @@ CreateRepository,ecr-public.amazonaws.com,create
 DeleteRepository,ecr-public.amazonaws.com,delete
 CreateBroker,amazonmq.amazonaws.com,create
 DeleteBroker,amazonmq.amazonaws.com,delete
+CreateService,apprunner.amazonaws.com,create
+DeleteService,apprunner.amazonaws.com,delete
+CreateFunction,cloudfront.amazonaws.com,create
+DeleteFunction,cloudfront.amazonaws.com,delete
+CreateProfile,route53profiles.amazonaws.com,create
+DeleteProfile,route53profiles.amazonaws.com,delete
+CreateTransitGatewayRouteTable,ec2.amazonaws.com,create
+DeleteTransitGatewayRouteTable,ec2.amazonaws.com,delete

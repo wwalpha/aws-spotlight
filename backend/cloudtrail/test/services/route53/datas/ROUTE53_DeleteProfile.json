@@ -1,0 +1,50 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "DeleteProfile",
+  "eventTime": "2024-05-21T08:05:22Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "c13f7472-9f7b-4eb1-b90f-735eb76cca50",
+  "eventSource": "route53profiles.amazonaws.com",
+  "requestID": "07a76101-d104-4f99-bd07-24418ec5c9d5",
+  "requestParameters": {
+    "ProfileId": "rp-2c619646259d48f0"
+  },
+  "responseElements": {
+    "Profile": {
+      "Arn": "arn:aws:route53profiles:ap-northeast-1:999999999999:profile/rp-2c619646259d48f0",
+      "ClientToken": "aff5430d-32aa-40d4-b59d-8a059a892a12",
+      "CreationTime": 1.716278206333E9,
+      "Id": "rp-2c619646259d48f0",
+      "ModificationTime": 1.716278206333E9,
+      "Name": "test",
+      "OwnerId": "999999999999",
+      "ShareStatus": "NOT_SHARED",
+      "Status": "DELETED",
+      "StatusMessage": "Deleted Profile"
+    }
+  },
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

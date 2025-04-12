@@ -1,0 +1,12 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "ResourceName": "tgw-rtb-08b6d4384f1fccd33",
+  "Service": "EC2",
+  "EventId": "dfbdbfc5-14b4-4110-9954-f2935bdf5456",
+  "Status": "Created",
+  "ResourceId": "arn:aws:ec2:ap-northeast-1:999999999999:transit-gateway-route-table/tgw-rtb-08b6d4384f1fccd33",
+  "EventTime": "2023-10-15T23:48:36Z",
+  "EventName": "CreateTransitGatewayRouteTable",
+  "EventSource": "ec2.amazonaws.com",
+  "UserName": "test@test.com"
+}

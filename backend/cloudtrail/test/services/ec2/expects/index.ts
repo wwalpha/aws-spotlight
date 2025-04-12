@@ -16,6 +16,9 @@ export { default as EC2_DeleteNatGateway } from './EC2_DeleteNatGateway.json';
 export { default as EC2_CreateTransitGateway } from './EC2_CreateTransitGateway.json';
 export { default as EC2_DeleteTransitGateway } from './EC2_DeleteTransitGateway.json';
 
+export { default as EC2_CreateTransitGatewayRouteTable } from './EC2_CreateTransitGatewayRouteTable.json';
+export { default as EC2_DeleteTransitGatewayRouteTable } from './EC2_DeleteTransitGatewayRouteTable.json';
+
 export { default as EC2_CreateVpc } from './EC2_CreateVpc.json';
 export { default as EC2_DeleteVpc } from './EC2_DeleteVpc.json';
 

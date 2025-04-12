@@ -1,11 +1,11 @@
 import { getResource, sendMessage } from '@test/utils/utils';
 import { cloudtrail } from '@src/index';
 import * as Events from './datas';
-import * as EXPECTS from './excepts';
+import * as EXPECTS from './expects';
 import * as fs from 'fs';
 import * as path from 'path';
 
-describe('EXPECTS.amazonaws.com', () => {
+describe('ec2.amazonaws.com', () => {
   test('EC2_RunInstances', async () => {
     const event = await sendMessage(Events.EC2_RunInstances);
     await cloudtrail(event);
@@ -254,12 +254,8 @@ describe('EXPECTS.amazonaws.com', () => {
     const resource = await getResource(
       'arn:aws:ec2:ap-northeast-1:999999999999:transit-gateway-route-table/tgw-rtb-08b6d4384f1fccd33'
     );
-    fs.writeFileSync(
-      path.join(__dirname, './expects/EC2_CreateTransitGatewayRouteTable.json'),
-      JSON.stringify(resource)
-    );
     expect(resource).not.toBeUndefined();
-    // expect(resource).toEqual(EXPECTS.EC2_CreateTransitGatewayRouteTable);
+    expect(resource).toEqual(EXPECTS.EC2_CreateTransitGatewayRouteTable);
   });
 
   test.only('EC2_DeleteTransitGatewayRouteTable', async () => {
@@ -269,11 +265,7 @@ describe('EXPECTS.amazonaws.com', () => {
     const resource = await getResource(
       'arn:aws:ec2:ap-northeast-1:999999999999:transit-gateway-route-table/tgw-rtb-08b6d4384f1fccd33'
     );
-    fs.writeFileSync(
-      path.join(__dirname, './expects/EC2_DeleteTransitGatewayRouteTable.json'),
-      JSON.stringify(resource)
-    );
     expect(resource).not.toBeUndefined();
-    // expect(resource).toEqual(EXPECTS.EC2_DeleteTransitGatewayRouteTable);
+    expect(resource).toEqual(EXPECTS.EC2_DeleteTransitGatewayRouteTable);
   });
 });

@@ -1,0 +1,51 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "CreateProfile",
+  "eventTime": "2024-05-21T07:56:46Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "24d8d271-1209-4732-b5f2-da399468b67a",
+  "eventSource": "route53profiles.amazonaws.com",
+  "requestID": "8264a6e2-8364-4c77-b7c3-2a5496422f3f",
+  "requestParameters": {
+    "ClientToken": "aff5430d-32aa-40d4-b59d-8a059a892a12",
+    "Name": "test"
+  },
+  "responseElements": {
+    "Profile": {
+      "Arn": "arn:aws:route53profiles:ap-northeast-1:999999999999:profile/rp-2c619646259d48f0",
+      "ClientToken": "aff5430d-32aa-40d4-b59d-8a059a892a12",
+      "CreationTime": 1.716278206333E9,
+      "Id": "rp-2c619646259d48f0",
+      "ModificationTime": 1.716278206333E9,
+      "Name": "test",
+      "OwnerId": "999999999999",
+      "ShareStatus": "NOT_SHARED",
+      "Status": "COMPLETE",
+      "StatusMessage": "Created Profile"
+    }
+  },
+  "sourceIPAddress": "35.74.1.217",
+  "userAgent": "aws-cli/2.15.54 md/awscrt#0.19.19 ua/2.0 os/linux#6.1.56-82.125.amzn2023.x86_64 md/arch#x86_64 lang/python#3.11.8 md/pyimpl#CPython cfg/retry-mode#standard md/installer#exe md/distrib#amzn.2023 md/prompt#off md/command#route53profiles.create-profile",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

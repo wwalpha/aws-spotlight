@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { DynamodbHelper } from '@src/apps/utils';
-import { Tables } from 'typings';
+import { CloudTrailRecord, Tables } from 'typings';
 import * as Queries from './queries';
 
 /** 詳細取得 */
@@ -18,13 +18,13 @@ export const regist = async (item: Tables.TUnprocessed): Promise<void> => {
 /** 内容更新 */
 export const update = async (item: Tables.TUnprocessed): Promise<void> => {
   const groupInfo = await describe({
-    EventName: item.EventName,
-    EventTime: item.EventTime,
+    eventName: item.eventName,
+    eventTime: item.eventTime,
   });
 
   // if exists
   if (!groupInfo) {
-    throw new Error(`Unprocessed record is not exists. ${item.EventName},${item.EventTime}`);
+    throw new Error(`Unprocessed record is not exists. ${item.eventName},${item.eventTime}`);
   }
 
   await DynamodbHelper.put(Queries.put(item));
@@ -41,4 +41,41 @@ export const getEvents = async () => {
 
   // 未処理のイベント一覧
   return _.uniqWith(results.Items, _.isEqual);
+};
+
+/** 全データ取得 */
+export const getAll = async (): Promise<Tables.TUnprocessed[]> => {
+  const results = await DynamodbHelper.scan<Tables.TUnprocessed>({
+    TableName: process.env.TABLE_NAME_UNPROCESSED,
+  });
+
+  return results.Items;
+};
+
+/**
+ * 一時保存
+ */
+export const tempSave = async (item: CloudTrailRecord): Promise<void> => {
+  await regist({
+    eventName: item.eventName,
+    eventTime: item.eventTime,
+    eventSource: item.eventSource,
+    eventId: item.eventId,
+    userName: item.userName,
+    awsRegion: item.awsRegion,
+    sourceIPAddress: item.sourceIPAddress,
+    userAgent: item.userAgent,
+    requestParameters: item.requestParameters,
+    responseElements: item.responseElements,
+    additionalEventData: item.additionalEventData,
+    requestID: item.requestId,
+    eventID: item.eventId,
+    recipientAccountId: item.recipientAccountId,
+    serviceEventDetails: item.serviceEventDetails,
+    sharedEventId: item.sharedEventId,
+  });
+};
+
+export const truncate = async (): Promise<void> => {
+  await DynamodbHelper.truncateAll(process.env.TABLE_NAME_UNPROCESSED as string);
 };

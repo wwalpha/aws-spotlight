@@ -1,0 +1,1 @@
+{"AWSRegion":"ap-northeast-1","Service":"Route53profiles","EventId":"c13f7472-9f7b-4eb1-b90f-735eb76cca50","Status":"Deleted","ResourceId":"arn:aws:route53profiles:ap-northeast-1:999999999999:profile/rp-2c619646259d48f0","EventTime":"2024-05-21T08:05:22Z","EventName":"DeleteProfile","EventSource":"route53profiles.amazonaws.com","UserName":"test001@test.com"}

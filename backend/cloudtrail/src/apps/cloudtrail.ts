@@ -131,8 +131,10 @@ const registRecords = async (records: CloudTrailRecord[]) => {
     return definition === undefined || definition.Unconfirmed === true;
   });
 
-  // 未確認のイベントは一次保存
-  await Promise.all(unconfirmed.map((item) => UnprocessedService.tempSave(item)));
+  if (unconfirmed.length > 0) {
+    // 未確認のイベントは一次保存
+    await Promise.all(unconfirmed.map((item) => UnprocessedService.tempSave(item)));
+  }
 
   // 処理対象のみ
   const filtered = records.filter((item) => {

@@ -1,7 +1,7 @@
 import { Consts, Logger, ResourceARNs } from '@src/apps/utils';
 import { capitalize, defaultTo } from 'lodash';
 import { CloudTrailRecord, ResourceInfo, Tables } from 'typings';
-import { ResourceService } from '@src/services';
+import { ResourceService, UnprocessedService } from '@src/services';
 
 const MULTI_TASK = [
   'EC2_RunInstances',
@@ -18,6 +18,7 @@ export const start = async (record: CloudTrailRecord): Promise<Tables.TResource[
   const serviceName = record.eventSource.split('.')[0].toUpperCase();
   const key = `${serviceName}_${record.eventName}`;
 
+  console.log(key);
   try {
     // 登録リソース
     const regists = MULTI_TASK.includes(key) ? getRegistMultiResources(record) : getRegistSingleResource(record);
@@ -25,6 +26,10 @@ export const start = async (record: CloudTrailRecord): Promise<Tables.TResource[
     const removes = MULTI_TASK.includes(key) ? getRemoveMultiResources(record) : await getRemoveSingleResource(record);
     // 全部リソース
     const resources = [...regists, ...removes];
+
+    if (resources.length === 0) {
+      console.log(`Cannot found process logic. EventId: ${key}`);
+    }
 
     // ユーザ名取得
     const userName = await getUserName(record);
@@ -43,6 +48,7 @@ export const start = async (record: CloudTrailRecord): Promise<Tables.TResource[
     }));
   } catch (err) {
     console.log('error', err);
+
     Logger.error(`ArnService.start. EventId: ${record.eventId}`, record);
     throw err;
   }
@@ -59,13 +65,7 @@ const getStatus = (item: ResourceInfo, registCount: number, removeCount: number)
 };
 
 const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
-  const {
-    awsRegion: region,
-    recipientAccountId: account,
-    eventSource: eventSource,
-    eventName: eventName,
-    userAgent,
-  } = record;
+  const { awsRegion: region, recipientAccountId: account, eventSource: eventSource, eventName: eventName } = record;
 
   const request = record.requestParameters ? JSON.parse(record.requestParameters) : {};
   const response = record.responseElements ? JSON.parse(record.responseElements) : {};
@@ -108,6 +108,10 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
 
     case 'APPMESH_CreateMesh':
       rets = [response.mesh.metadata.arn, response.mesh.meshName];
+      break;
+
+    case 'APPRUNNER_CreateService':
+      rets = [response.service.serviceArn, response.service.serviceName];
       break;
 
     case 'AUTOSCALING_CreateAutoScalingGroup':
@@ -172,6 +176,10 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       rets = [response.distribution.aRN, response.distribution.domainName];
       break;
 
+    case 'CLOUDFRONT_CreateFunction':
+      rets = [response.functionSummary.functionMetadata.functionARN, response.functionSummary.name];
+      break;
+
     case 'COGNITO-IDP_CreateUserPool':
       rets = [response.userPool.arn, response.userPool.name];
       break;
@@ -212,18 +220,22 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
 
     case 'ECS_CreateCluster':
       // Batch用のクラスター作成の場合
-      if (userAgent === 'batch.amazonaws.com') {
-        const clusterArn = response.cluster.clusterArn as string;
-        const clusterName = response.cluster.clusterName as string;
+      // if (userAgent === 'batch.amazonaws.com') {
+      //   const clusterArn = response.cluster.clusterArn as string;
+      //   const clusterName = response.cluster.clusterName as string;
 
-        rets = [clusterArn.substring(0, clusterArn.length - 37), clusterName.substring(0, clusterName.length - 37)];
-        break;
-      }
+      //   rets = [clusterArn.substring(0, clusterArn.length - 37), clusterName.substring(0, clusterName.length - 37)];
+      //   break;
+      // }
 
       rets = [response.cluster.clusterArn, response.cluster.clusterName];
       break;
 
     case 'ECR_CreateRepository':
+      rets = [response.repository.repositoryArn, response.repository.repositoryName];
+      break;
+
+    case 'ECR-PUBLIC_CreateRepository':
       rets = [response.repository.repositoryArn, response.repository.repositoryName];
       break;
 
@@ -281,6 +293,17 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
 
     case 'EC2_CreateTransitGateway':
       rets = [response.CreateTransitGatewayResponse.transitGateway.transitGatewayArn, response.publicIp];
+      break;
+
+    case 'EC2_CreateTransitGatewayRouteTable':
+      rets = [
+        ResourceARNs.EC2_TransitGatewayRouteTable(
+          region,
+          account,
+          response.CreateTransitGatewayRouteTableResponse.transitGatewayRouteTable.transitGatewayRouteTableId
+        ),
+        response.CreateTransitGatewayRouteTableResponse.transitGatewayRouteTable.transitGatewayRouteTableId,
+      ];
       break;
 
     case 'EC2_CreateVolume':
@@ -412,6 +435,11 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
 
       break;
 
+    case 'AMAZONMQ_CreateBroker':
+      console.log([ResourceARNs.AMAZONMQ_Broker(region, account, response.brokerId), request.brokerName]);
+      rets = [ResourceARNs.AMAZONMQ_Broker(region, account, response.brokerId), request.brokerName];
+      break;
+
     case 'NETWORK-FIREWALL_CreateFirewall':
       rets = [response.firewall.firewallArn, response.firewall.firewallName];
       break;
@@ -426,6 +454,10 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
         ResourceARNs.ROUTE53_HostedZone((response.hostedZone.id as string).split('/')[2]),
         response.hostedZone.name,
       ];
+      break;
+
+    case 'ROUTE53PROFILES_CreateProfile':
+      rets = [response.Profile.Arn, request.Name];
       break;
 
     case 'RDS_CreateDBCluster':
@@ -642,6 +674,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       arn = response.mesh.metadata.arn;
       break;
 
+    case 'APPRUNNER_DeleteService':
+      arn = response.service.serviceArn;
+      break;
+
     case 'AUTOSCALING_DeleteAutoScalingGroup':
       arn = ResourceARNs.AUTOSCALING_AutoScalingGroup(region, account, request.autoScalingGroupName);
       break;
@@ -691,6 +727,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       arn = ResourceARNs.CLOUDFRONT_Distribution(region, account, request.id);
       break;
 
+    case 'CLOUDFRONT_DeleteFunction':
+      arn = ResourceARNs.CLOUDFRONT_Function(region, account, request.name);
+      break;
+
     case 'COGNITO-IDP_DeleteUserPool':
       arn = ResourceARNs.COGNITO_USERPOOL(region, account, request.userPoolId);
       break;
@@ -727,6 +767,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       break;
 
     case 'ECR_DeleteRepository':
+      arn = response.repository.repositoryArn;
+      break;
+
+    case 'ECR-PUBLIC_DeleteRepository':
       arn = response.repository.repositoryArn;
       break;
 
@@ -773,6 +817,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       arn = ResourceARNs.LAMBDA_Function20150331(region, account, request.functionName);
       break;
 
+    case 'AMAZONMQ_DeleteBroker':
+      arn = ResourceARNs.AMAZONMQ_Broker(region, account, response.brokerId);
+      break;
+
     case 'NETWORK-FIREWALL_DeleteFirewall':
       arn = response.firewall.firewallArn;
       break;
@@ -783,6 +831,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
 
     case 'ROUTE53_DeleteHostedZone':
       arn = ResourceARNs.ROUTE53_HostedZone(request.id);
+      break;
+
+    case 'ROUTE53PROFILES_DeleteProfile':
+      arn = response.Profile.Arn;
       break;
 
     case 'RDS_DeleteDBCluster':
@@ -964,6 +1016,14 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       arn = ResourceARNs.EC2_TransitGateway(region, account, request.DeleteTransitGatewayRequest.TransitGatewayId);
       break;
 
+    case 'EC2_DeleteTransitGatewayRouteTable':
+      arn = ResourceARNs.EC2_TransitGatewayRouteTable(
+        region,
+        account,
+        request.DeleteTransitGatewayRouteTableRequest.TransitGatewayRouteTableId
+      );
+      break;
+
     case 'EC2_DeleteVolume':
       arn = ResourceARNs.EC2_Volume(region, account, request.volumeId);
       break;
@@ -1125,7 +1185,7 @@ const checkAWSServiceRole = async (record: CloudTrailRecord) => {
   // 対象外イベントの場合、そのまま返却
   if (userName === 'AWSServiceRoleForBatch' && userAgent === 'batch.amazonaws.com') {
     // イベント名チェック
-    if (key !== 'ECS_CreateCluster') return record.userName;
+    if (!['ECS_CreateCluster', 'ECS_DeleteCluster'].includes(key)) return record.userName;
 
     // ECS の場合、クラスター名を取得する
     const clusterName = response.cluster.clusterName as string;
@@ -1136,7 +1196,12 @@ const checkAWSServiceRole = async (record: CloudTrailRecord) => {
     // ユーザ名を取得する
     const createdUser = await ResourceService.getUserName(batchArn);
 
-    return createdUser ? createdUser : record.userName;
+    if (!createdUser) {
+      await UnprocessedService.tempSave(record);
+      return record.userName;
+    }
+
+    return createdUser;
   }
 
   if (userName === 'AWSServiceRoleForAmazonSageMakerNotebooks') {
