@@ -6,6 +6,10 @@ import {
   DeleteSubnetCommand,
   DescribeRouteTablesCommand,
   DeleteRouteTableCommand,
+  DescribeImagesCommand,
+  DeregisterImageCommand,
+  DescribeSnapshotsCommand,
+  DeleteSnapshotCommand,
 } from '@aws-sdk/client-ec2';
 import {
   DeleteLoginProfileCommand,
@@ -23,13 +27,12 @@ const ec2Client = new EC2Client();
 const iamClient = new IAMClient();
 
 export const handler = async () => {
-  await security_group();
-
-  await subnet();
-
-  await route_table();
-
-  await iam_user();
+  // await security_group();
+  // await subnet();
+  // await route_table();
+  // await ami();
+  await snapshots();
+  // await iam_user();
 };
 
 const security_group = async () => {
@@ -87,6 +90,76 @@ const route_table = async () => {
       await ec2Client.send(
         new DeleteRouteTableCommand({
           RouteTableId: rt.RouteTableId,
+        })
+      );
+    } catch (err) {}
+  });
+
+  await Promise.all(tasks);
+};
+
+const ami = async () => {
+  const response = await ec2Client.send(
+    new DescribeImagesCommand({
+      Owners: ['self'],
+      Filters: [
+        {
+          Name: 'state',
+          Values: ['available'],
+        },
+      ],
+    })
+  );
+
+  if (!response || !response.Images) {
+    return;
+  }
+
+  const tasks = response.Images.filter((ami) => {
+    const creationDate = new Date(ami.CreationDate || '');
+    const currentDate = new Date();
+    const diffTime = Math.abs(currentDate.getTime() - creationDate.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    return diffDays > 90;
+  }).map(async (ami) => {
+    try {
+      // delete unused AMIs
+      await ec2Client.send(
+        new DeregisterImageCommand({
+          ImageId: ami.ImageId,
+        })
+      );
+    } catch (err) {}
+  });
+
+  await Promise.all(tasks);
+};
+
+const snapshots = async () => {
+  const response = await ec2Client.send(
+    new DescribeSnapshotsCommand({
+      OwnerIds: ['self'],
+    })
+  );
+
+  if (!response || !response.Snapshots) {
+    return;
+  }
+
+  const tasks = response.Snapshots.filter((snapshot) => {
+    const creationDate = new Date(snapshot.StartTime || '');
+    const currentDate = new Date();
+    const diffTime = Math.abs(currentDate.getTime() - creationDate.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    return diffDays > 90;
+  }).map(async (snapshot) => {
+    try {
+      // delete unused AMIs
+      await ec2Client.send(
+        new DeleteSnapshotCommand({
+          SnapshotId: snapshot.SnapshotId,
         })
       );
     } catch (err) {}
@@ -171,4 +244,4 @@ const iam_user = async () => {
   await Promise.all(tasks);
 };
 
-// handler();
+handler();

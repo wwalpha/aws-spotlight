@@ -4,7 +4,8 @@
 resource "aws_cloudwatch_event_rule" "athena_daily_batch" {
   name                = "${local.project_name}-daily-batch-${local.environment}"
   schedule_expression = "cron(0 1 * * ? *)"
-  state               = local.isDev ? "DISABLED" : "ENABLED"
+  state               = "ENABLED"
+  # state               = local.isDev ? "DISABLED" : "ENABLED"
 }
 
 # ----------------------------------------------------------------------------------------------

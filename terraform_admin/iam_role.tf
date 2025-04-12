@@ -22,3 +22,11 @@ resource "aws_iam_role_policy_attachment" "monthly_cleanup_iam" {
   policy_arn = "arn:aws:iam::aws:policy/IAMFullAccess"
 }
 
+# ----------------------------------------------------------------------------------------------
+# AWS IAM Role Policy - Monthly Cleanup (AWSLambdaBasicExecutionRole)
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy_attachment" "monthly_cleanup_basic" {
+  role       = aws_iam_role.monthly_cleanup.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+

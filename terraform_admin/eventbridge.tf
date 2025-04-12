@@ -3,7 +3,7 @@
 # ----------------------------------------------------------------------------------------------
 resource "aws_cloudwatch_event_rule" "monthly_cleanup" {
   name                = "${local.project_name}-monthly-cleanup"
-  schedule_expression = "cron(0 1 * * ? *)"
+  schedule_expression = "cron(0 0 1 * ? *)"
   state               = "ENABLED"
 }
 
