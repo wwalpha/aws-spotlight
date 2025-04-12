@@ -2,6 +2,8 @@ import _ from 'lodash';
 import { S3Event } from 'aws-lambda';
 import { getRecords, initializeEvents, processRecords } from './apps/cloudtrail';
 import { Logger } from './apps/utils';
+import { UnprocessedService } from './services';
+import { CloudTrailRecord } from 'typings';
 
 export const cloudtrail = async (events: S3Event) => {
   Logger.info('events', events);
@@ -21,4 +23,39 @@ export const cloudtrail = async (events: S3Event) => {
   } catch (e) {
     Logger.error(e);
   }
+};
+
+export const unprocess = async () => {
+  // Initialize Event Type
+  await initializeEvents();
+
+  const dataRows = await UnprocessedService.getAll();
+
+  if (dataRows.length === 0) {
+    Logger.info('No unprocessed data found');
+    return;
+  }
+
+  // Truncate unprocessed table
+  await UnprocessedService.truncate();
+
+  const records = dataRows.map<CloudTrailRecord>((dataRow) => ({
+    eventTime: dataRow.eventTime,
+    userName: dataRow.userName,
+    eventSource: dataRow.eventSource,
+    eventName: dataRow.eventName,
+    awsRegion: dataRow.awsRegion,
+    sourceIPAddress: dataRow.sourceIPAddress,
+    userAgent: dataRow.userAgent,
+    requestParameters: dataRow.requestParameters,
+    responseElements: dataRow.responseElements,
+    additionalEventData: dataRow.additionalEventData,
+    requestId: dataRow.requestID,
+    eventId: dataRow.eventId,
+    recipientAccountId: dataRow.recipientAccountId,
+    serviceEventDetails: dataRow.serviceEventDetails,
+    sharedEventId: dataRow.sharedEventId,
+  }));
+
+  await processRecords(records);
 };

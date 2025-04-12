@@ -82,6 +82,12 @@ export const processRecords = async (records: CloudTrailRecord[]) => {
   await registRecords(records);
 };
 
+/**
+ * Check if new event type exists
+ * If exists, add new event type to EventType table
+ * and send notification
+ * @param records
+ */
 const checkNewEventType = async (records: CloudTrailRecord[]) => {
   const newEvents = records.filter((item) => {
     const service = item.eventSource.split('.')[0].toUpperCase();
@@ -113,39 +119,27 @@ const addNewEventType = async (record: CloudTrailRecord) => {
     };
 
     await Utilities.sendMail('New Event Type', `Event Source: ${record.eventSource}, Event Name: ${record.eventName}`);
-
-    await UnprocessedService.regist({
-      EventName: record.eventName,
-      EventTime: record.eventTime,
-      EventSource: record.eventSource,
-      UserName: record.userName,
-      AWSRegion: record.awsRegion,
-      SourceIPAddress: record.sourceIPAddress,
-      UserAgent: record.userAgent,
-      RequestParameters: record.requestParameters,
-      ResponseElements: record.responseElements,
-      AdditionalEventData: record.additionalEventData,
-      RequestId: record.requestId,
-      EventId: record.eventId,
-      Resources: record.resources,
-      RecipientAccountId: record.recipientAccountId,
-      ServiceEventDetails: record.serviceEventDetails,
-      SharedEventId: record.sharedEventId,
-    });
   }
 };
 
 const registRecords = async (records: CloudTrailRecord[]) => {
+  const unconfirmed = records.filter((item) => {
+    const service = item.eventSource.split('.')[0].toUpperCase();
+    const definition = EVENTS[`${service}_${item.eventName}`];
+
+    // 未確認のイベントタイプを除外
+    return definition === undefined || definition.Unconfirmed === true;
+  });
+
+  // 未確認のイベントは一次保存
+  await Promise.all(unconfirmed.map((item) => UnprocessedService.tempSave(item)));
+
   // 処理対象のみ
   const filtered = records.filter((item) => {
     const service = item.eventSource.split('.')[0].toUpperCase();
     const definition = EVENTS[`${service}_${item.eventName}`];
 
-    if (definition?.Create === true || definition?.Delete === true) {
-      return true;
-    }
-
-    return false;
+    return definition?.Create === true || definition?.Delete === true;
   });
 
   // リソースのARNを取得
