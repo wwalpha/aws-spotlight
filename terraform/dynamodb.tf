@@ -118,26 +118,26 @@ ITEM
 resource "aws_dynamodb_table" "unprocessed" {
   name         = local.dynamodb_name_unprocessed
   billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "EventName"
-  range_key    = "EventTime"
+  hash_key     = "eventName"
+  range_key    = "eventTime"
 
   attribute {
-    name = "EventName"
+    name = "eventName"
     type = "S"
   }
   attribute {
-    name = "EventTime"
+    name = "eventTime"
     type = "S"
   }
   attribute {
-    name = "EventSource"
+    name = "eventSource"
     type = "S"
   }
 
   global_secondary_index {
     name            = "gsiIdx1"
-    hash_key        = "EventSource"
-    range_key       = "EventName"
+    hash_key        = "eventSource"
+    range_key       = "eventName"
     projection_type = "ALL"
   }
 }

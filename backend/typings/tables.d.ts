@@ -101,33 +101,28 @@ export namespace Tables {
    * Table - Unprocessed Key
    */
   interface TUnprocessedKey {
-    EventName: string;
-    EventTime: string;
+    eventName: string;
+    eventTime: string;
   }
 
   /**
    * Table - Unprocessed
    */
   interface TUnprocessed extends TUnprocessedKey {
-    EventSource: string;
-    EventId: string;
-    UserName: string;
-    AWSRegion: string;
-    SourceIPAddress: string;
-    UserAgent: string;
-    RequestParameters: any;
-    ResponseElements: any;
-    AdditionalEventData?: string;
-    RequestId: string;
-    EventId: string;
-    Resources?: {
-      ARN: string;
-      accountId: string;
-      type: string;
-    }[];
-    RecipientAccountId: string;
-    ServiceEventDetails?: string;
-    SharedEventId?: string;
+    eventSource: string;
+    eventId: string;
+    userName: string;
+    awsRegion: string;
+    sourceIPAddress: string;
+    userAgent: string;
+    requestParameters: any;
+    responseElements: any;
+    additionalEventData?: string;
+    requestID: string;
+    eventID: string;
+    recipientAccountId: string;
+    serviceEventDetails?: string;
+    sharedEventId?: string;
   }
 
   interface UserKey {
