@@ -37,8 +37,8 @@ const start = async () => {
 
   await helper.bulk(TABLE_NAME_EVENT_TYPE, newEvents);
 
-  existEvents.forEach((item) => console.log(item.EventName, item.EventSource));
-  newEvents.forEach((item) => console.log(item.EventName, item.EventSource));
+  existEvents.forEach((item) => console.log('Exist:', item.EventName, item.EventSource));
+  newEvents.forEach((item) => console.log('New:', item.EventName, item.EventSource));
 };
 
 const getEvents = (): Tables.TEventType[] => {

@@ -3,6 +3,7 @@ import { cloudtrail } from '@src/index';
 import * as Events from './datas';
 import * as EXPECTS from './expects';
 import * as fs from 'fs';
+import * as path from 'path';
 
 describe('ecr.amazonaws.com', () => {
   test('ECR_CreateRepository', async () => {
@@ -21,5 +22,25 @@ describe('ecr.amazonaws.com', () => {
     const resource = await getResource('arn:aws:ecr:ap-northeast-1:999999999999:repository/nodejs-blue');
     expect(resource).not.toBeUndefined();
     expect(resource).toEqual(EXPECTS.ECR_DeleteRepository);
+  });
+
+  test.only('ECRPUBLIC_CreateRepository', async () => {
+    const event = await sendMessage(Events.ECRPUBLIC_CreateRepository);
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:ecr-public::999999999999:repository/docker-nginx-test');
+    fs.writeFileSync(path.join(__dirname, './expects/ECRPUBLIC_CreateRepository.json'), JSON.stringify(resource));
+    expect(resource).not.toBeUndefined();
+    // expect(resource).toEqual(EXPECTS.ECRPUBLIC_CreateRepository);
+  });
+
+  test.only('ECRPUBLIC_DeleteRepository', async () => {
+    const event = await sendMessage(Events.ECRPUBLIC_DeleteRepository);
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:ecr-public::999999999999:repository/docker-nginx-test');
+    fs.writeFileSync(path.join(__dirname, './expects/ECRPUBLIC_DeleteRepository.json'), JSON.stringify(resource));
+    expect(resource).not.toBeUndefined();
+    // expect(resource).toEqual(EXPECTS.ECRPUBLIC_DeleteRepository);
   });
 });

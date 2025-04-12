@@ -1,0 +1,1 @@
+{"AWSRegion":"us-east-1","Service":"Ecr-public","EventId":"7260e865-b58e-41e0-a3d4-9a85b8181c19","Status":"Deleted","ResourceId":"arn:aws:ecr-public::999999999999:repository/docker-nginx-test","EventTime":"2024-11-29T05:57:24Z","EventName":"DeleteRepository","EventSource":"ecr-public.amazonaws.com","UserName":"test001@test.com"}
