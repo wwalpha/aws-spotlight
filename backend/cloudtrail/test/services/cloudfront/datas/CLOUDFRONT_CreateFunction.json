@@ -1,0 +1,59 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-07-03T03:14:21Z"
+      }
+    }
+  },
+  "eventName": "CreateFunction",
+  "eventTime": "2024-08-01T08:00:06Z",
+  "awsRegion": "us-east-1",
+  "eventID": "7e5b03b5-06e4-4081-8363-5af606e7be02",
+  "eventSource": "cloudfront.amazonaws.com",
+  "requestID": "daac79f2-b1d9-465d-86db-67a062de8ad9",
+  "requestParameters": {
+    "functionConfig": {
+      "comment": "",
+      "runtime": "cloudfront-js-2.0"
+    },
+    "functionCode": "HIDDEN_DUE_TO_SECURITY_REASONS",
+    "name": "cloudwatch-tools-basic-auth"
+  },
+  "responseElements": {
+    "functionSummary": {
+      "name": "cloudwatch-tools-basic-auth",
+      "functionConfig": {
+        "comment": "",
+        "runtime": "cloudfront-js-2.0"
+      },
+      "status": "UNPUBLISHED",
+      "functionMetadata": {
+        "createdTime": "Aug 1, 2024, 8:00:06 AM",
+        "functionARN": "arn:aws:cloudfront::999999999999:function/cloudwatch-tools-basic-auth",
+        "stage": "DEVELOPMENT",
+        "lastModifiedTime": "Aug 1, 2024, 8:00:06 AM"
+      }
+    },
+    "location": "https://cloudfront.amazonaws.com/2020-05-31/function/arn:aws:cloudfront::999999999999:function/cloudwatch-tools-basic-auth",
+    "eTag": "ETVPDKIKX0DER"
+  },
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "AWS Internal",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2020_05_31",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

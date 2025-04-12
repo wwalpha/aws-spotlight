@@ -1,0 +1,38 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "DeleteFunction",
+  "eventTime": "2024-11-13T12:07:54Z",
+  "awsRegion": "us-east-1",
+  "eventId": "86b65a55-8ad2-4596-8681-01f0efb5d3c5",
+  "eventID": "86b65a55-8ad2-4596-8681-01f0efb5d3c5",
+  "eventSource": "cloudfront.amazonaws.com",
+  "requestID": "5daf5f40-1586-4d6a-bcba-eee13176c9bb",
+  "requestParameters": {
+    "ifMatch": "E3UN6WX5RRO2AG",
+    "name": "cloudwatch-tools-basic-auth"
+  },
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "AWS Internal",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2020_05_31",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

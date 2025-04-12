@@ -1,0 +1,1 @@
+{"AWSRegion":"ap-northeast-1","Service":"Apprunner","EventId":"f19d53b4-e3ec-435f-bac9-c8357f6239be","Status":"Deleted","ResourceId":"arn:aws:apprunner:ap-northeast-1:999999999999:service/ikeda-guild-chat-server/29a93580983c4c8ab5489607bdaab024","EventTime":"2025-04-04T07:57:42Z","EventName":"DeleteService","EventSource":"apprunner.amazonaws.com","UserName":"test001@test.com"}

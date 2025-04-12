@@ -1,0 +1,134 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5FB7SO5AB",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2023-01-17T01:07:17Z",
+        "mfaAuthenticated": "true"
+      }
+    }
+  },
+  "eventName": "CreateService",
+  "eventTime": "2025-04-04T04:54:30Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "236ccaba-5f5b-4c54-9245-39ce7316920c",
+  "eventSource": "apprunner.amazonaws.com",
+  "requestID": "b5d70098-70d8-4a74-bbaa-76ff41f3a930",
+  "sourceIPAddress": "32.114.125.6",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+  "requestParameters": {
+    "serviceName": "ikeda-guild-chat-server",
+    "sourceConfiguration": {
+      "imageRepository": {
+        "imageIdentifier": "999999999999.dkr.ecr.ap-northeast-1.amazonaws.com/ikeda-guild-chat-server:latest",
+        "imageConfiguration": {
+          "runtimeEnvironmentVariables": "HIDDEN_DUE_TO_SECURITY_REASONS",
+          "port": "8080"
+        },
+        "imageRepositoryType": "ECR"
+      },
+      "autoDeploymentsEnabled": false,
+      "authenticationConfiguration": {
+        "accessRoleArn": "arn:aws:iam::999999999999:role/service-role/ikeda-AppRunnerECRAccessRole-GuildChatServer"
+      }
+    },
+    "instanceConfiguration": {
+      "cpu": "1024",
+      "memory": "2048"
+    },
+    "healthCheckConfiguration": {
+      "protocol": "TCP",
+      "interval": 10,
+      "timeout": 5,
+      "healthyThreshold": 1,
+      "unhealthyThreshold": 5
+    },
+    "autoScalingConfigurationArn": "arn:aws:apprunner:ap-northeast-1:999999999999:autoscalingconfiguration/DefaultConfiguration/1/00000000000000000000000000000001",
+    "networkConfiguration": {
+      "egressConfiguration": {
+        "egressType": "DEFAULT"
+      },
+      "ingressConfiguration": {
+        "isPubliclyAccessible": true
+      },
+      "ipAddressType": "IPV4"
+    },
+    "observabilityConfiguration": {
+      "observabilityEnabled": false
+    }
+  },
+  "responseElements": {
+    "service": {
+      "serviceName": "ikeda-guild-chat-server",
+      "serviceId": "29a93580983c4c8ab5489607bdaab024",
+      "serviceArn": "arn:aws:apprunner:ap-northeast-1:999999999999:service/ikeda-guild-chat-server/29a93580983c4c8ab5489607bdaab024",
+      "serviceUrl": "tzm9hre3qg.ap-northeast-1.awsapprunner.com",
+      "createdAt": "Apr 4, 2025 4:54:30 AM",
+      "updatedAt": "Apr 4, 2025 4:54:30 AM",
+      "status": "OPERATION_IN_PROGRESS",
+      "sourceConfiguration": {
+        "imageRepository": {
+          "imageIdentifier": "999999999999.dkr.ecr.ap-northeast-1.amazonaws.com/ikeda-guild-chat-server:latest",
+          "imageConfiguration": {
+            "runtimeEnvironmentVariables": "HIDDEN_DUE_TO_SECURITY_REASONS",
+            "port": "8080"
+          },
+          "imageRepositoryType": "ECR"
+        },
+        "autoDeploymentsEnabled": false,
+        "authenticationConfiguration": {
+          "accessRoleArn": "arn:aws:iam::999999999999:role/service-role/ikeda-AppRunnerECRAccessRole-GuildChatServer"
+        }
+      },
+      "instanceConfiguration": {
+        "cpu": "1024",
+        "memory": "2048"
+      },
+      "healthCheckConfiguration": {
+        "protocol": "TCP",
+        "path": "/",
+        "interval": 10,
+        "timeout": 5,
+        "healthyThreshold": 1,
+        "unhealthyThreshold": 5
+      },
+      "autoScalingConfigurationSummary": {
+        "autoScalingConfigurationArn": "arn:aws:apprunner:ap-northeast-1:999999999999:autoscalingconfiguration/DefaultConfiguration/1/00000000000000000000000000000001",
+        "autoScalingConfigurationName": "DefaultConfiguration",
+        "autoScalingConfigurationRevision": 1
+      },
+      "networkConfiguration": {
+        "egressConfiguration": {
+          "egressType": "DEFAULT"
+        },
+        "ingressConfiguration": {
+          "isPubliclyAccessible": true
+        },
+        "ipAddressType": "IPV4"
+      },
+      "observabilityConfiguration": {
+        "observabilityEnabled": false
+      }
+    },
+    "operationId": "507c705ce4f14f74b3c090b513b3de42"
+  },
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management",
+  "tlsDetails": {
+    "tlsVersion": "TLSv1.2",
+    "cipherSuite": "ECDHE-RSA-AES128-SHA",
+    "clientProvidedHostHeader": "ecr.ap-northeast-1.amazonaws.com"
+  },
+  "sessionCredentialFromConsole": "true"
+}

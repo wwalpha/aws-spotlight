@@ -1,0 +1,1 @@
+{"AWSRegion":"us-east-1","Service":"Cloudfront","EventId":"86b65a55-8ad2-4596-8681-01f0efb5d3c5","Status":"Deleted","ResourceId":"arn:aws:cloudfront::999999999999:function/cloudwatch-tools-basic-auth","EventTime":"2024-11-13T12:07:54Z","EventName":"DeleteFunction","EventSource":"cloudfront.amazonaws.com","UserName":"test001@test.com"}

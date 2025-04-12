@@ -1,0 +1,1 @@
+{"AWSRegion":"us-east-1","ResourceName":"cloudwatch-tools-basic-auth","Service":"Cloudfront","EventId":"7e5b03b5-06e4-4081-8363-5af606e7be02","Status":"Created","ResourceId":"arn:aws:cloudfront::999999999999:function/cloudwatch-tools-basic-auth","EventTime":"2024-08-01T08:00:06Z","EventName":"CreateFunction","EventSource":"cloudfront.amazonaws.com","UserName":"test001@test.com"}
