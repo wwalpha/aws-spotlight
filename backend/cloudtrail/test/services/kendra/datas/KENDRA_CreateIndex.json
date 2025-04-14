@@ -1,0 +1,49 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5FB7SO5AB",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2023-01-17T01:07:17Z",
+        "mfaAuthenticated": "true"
+      }
+    }
+  },
+  "eventName": "CreateIndex",
+  "eventTime": "2023-12-11T06:30:32Z",
+  "awsRegion": "us-east-1",
+  "eventID": "1be3e154-9f70-4a5b-82b8-d9ab4b8ec5be",
+  "eventSource": "kendra.amazonaws.com",
+  "requestID": "b2cb5bef-f78f-4df4-897d-2679367b6656",
+  "requestParameters": {
+    "name": "generative-ai-use-cases-index",
+    "edition": "DEVELOPER_EDITION",
+    "roleArn": "arn:aws:iam::999999999999:role/GenerativeAiUseCasesStack-RagKendraIndexRole183684D-IM4rIXDqEOFU",
+    "clientToken": "68f9c235-1093-4efa-8342-3b700dc116e6",
+    "hybrid": false
+  },
+  "responseElements": {
+    "id": "83084183-4a5a-4bc1-afba-b5b6f1640c6b",
+    "indexArn": "arn:aws:kendra:us-east-1:999999999999:index/83084183-4a5a-4bc1-afba-b5b6f1640c6b"
+  },
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management",
+  "tlsDetails": {
+    "tlsVersion": "TLSv1.2",
+    "cipherSuite": "ECDHE-RSA-AES128-SHA",
+    "clientProvidedHostHeader": "ecr.ap-northeast-1.amazonaws.com"
+  },
+  "sessionCredentialFromConsole": "true"
+}

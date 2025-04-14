@@ -46,3 +46,49 @@ describe('route53.amazonaws.com', () => {
     expect(resource).toEqual(EXPECTS.ROUTE53_DeleteProfile);
   });
 });
+
+describe('route53resolver.amazonaws.com', () => {
+  test('ROUTE53RESOLVER_CreateResolverEndpoint', async () => {
+    const event = await sendMessage(Events.ROUTE53RESOLVER_CreateResolverEndpoint);
+    await cloudtrail(event);
+
+    const resource = await getResource(
+      'arn:aws:route53resolver:ap-northeast-1:999999999999:resolver-endpoint/rslvr-in-9747e1a641b34ad39'
+    );
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.ROUTE53RESOLVER_CreateResolverEndpoint);
+  });
+
+  test('ROUTE53RESOLVER_DeleteResolverEndpoint', async () => {
+    const event = await sendMessage(Events.ROUTE53RESOLVER_DeleteResolverEndpoint);
+    await cloudtrail(event);
+
+    const resource = await getResource(
+      'arn:aws:route53resolver:ap-northeast-1:999999999999:resolver-endpoint/rslvr-in-9747e1a641b34ad39'
+    );
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.ROUTE53RESOLVER_DeleteResolverEndpoint);
+  });
+
+  test('ROUTE53RESOLVER_CreateResolverRule', async () => {
+    const event = await sendMessage(Events.ROUTE53RESOLVER_CreateResolverRule);
+    await cloudtrail(event);
+
+    const resource = await getResource(
+      'arn:aws:route53resolver:ap-northeast-1:999999999999:resolver-rule/rslvr-rr-e9a0c626755e42dc9'
+    );
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.ROUTE53RESOLVER_CreateResolverRule);
+  });
+
+  test('ROUTE53RESOLVER_DeleteResolverRule', async () => {
+    const event = await sendMessage(Events.ROUTE53RESOLVER_DeleteResolverRule);
+    await cloudtrail(event);
+
+    const resource = await getResource(
+      'arn:aws:route53resolver:ap-northeast-1:999999999999:resolver-rule/rslvr-rr-e9a0c626755e42dc9'
+    );
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.ROUTE53RESOLVER_DeleteResolverRule);
+  });
+});

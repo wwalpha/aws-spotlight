@@ -1,0 +1,41 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5FB7SO5AB",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2023-01-17T01:07:17Z",
+        "mfaAuthenticated": "true"
+      }
+    }
+  },
+  "eventName": "DeleteIndex",
+  "eventTime": "2023-12-11T16:11:29Z",
+  "awsRegion": "us-east-1",
+  "eventID": "6f5774d0-fb98-4097-ab18-eb0021424f5c",
+  "eventSource": "kendra.amazonaws.com",
+  "requestID": "5dea7447-a82a-4fac-ab5b-3ec51582b882",
+  "requestParameters": {
+    "id": "83084183-4a5a-4bc1-afba-b5b6f1640c6b"
+  },
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999",
+  "tlsDetails": {
+    "tlsVersion": "TLSv1.2",
+    "cipherSuite": "ECDHE-RSA-AES128-SHA",
+    "clientProvidedHostHeader": "ecr.us-east-1.amazonaws.com"
+  },
+  "sessionCredentialFromConsole": "true"
+}

@@ -1,0 +1,58 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "DeleteResolverEndpoint",
+  "eventTime": "2024-03-12T05:05:19Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "57a4f416-78a0-4ba1-97f5-72d282f8ac69",
+  "eventSource": "route53resolver.amazonaws.com",
+  "requestID": "11e489c6-3a03-47a5-8691-2059fad6e7d6",
+  "requestParameters": {
+    "resolverEndpointId": "rslvr-in-9747e1a641b34ad39"
+  },
+  "responseElements": {
+    "resolverEndpoint": {
+      "id": "rslvr-in-9747e1a641b34ad39",
+      "creatorRequestId": "tf-r53-resolver-endpoint-20240312041717672500000005",
+      "arn": "arn:aws:route53resolver:ap-northeast-1:999999999999:resolver-endpoint/rslvr-in-9747e1a641b34ad39",
+      "name": "route53resolver-Endpoint",
+      "securityGroupIds": [
+        "sg-0457e110fbcd48b18"
+      ],
+      "direction": "INBOUND",
+      "ipAddressCount": 2,
+      "hostVPCId": "vpc-068bcad238411b8c7",
+      "status": "DELETING",
+      "statusMessage": "[Trace id: 1-65efe28f-69f690f62b625ab27c6e7d61] Deleting ResolverEndpoint.",
+      "creationTime": "2024-03-12T04:17:18.391671Z",
+      "modificationTime": "2024-03-12T05:05:19.471193Z",
+      "resolverEndpointType": "IPV4",
+      "protocols": [
+        "Do53"
+      ]
+    }
+  },
+  "sourceIPAddress": "35.72.180.242",
+  "userAgent": "APN/1.0 HashiCorp/1.0 Terraform/1.6.2 (+https://www.terraform.io) terraform-provider-aws/5.40.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.50.33 (go1.21.7; linux; amd64)",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

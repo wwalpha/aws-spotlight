@@ -1,0 +1,12 @@
+{
+  "AWSRegion": "us-east-1",
+  "ResourceName": "generative-ai-use-cases-index",
+  "Service": "Kendra",
+  "EventId": "1be3e154-9f70-4a5b-82b8-d9ab4b8ec5be",
+  "Status": "Created",
+  "ResourceId": "arn:aws:kendra:us-east-1:999999999999:index/83084183-4a5a-4bc1-afba-b5b6f1640c6b",
+  "EventTime": "2023-12-11T06:30:32Z",
+  "EventName": "CreateIndex",
+  "EventSource": "kendra.amazonaws.com",
+  "UserName": "test001@test.com"
+}

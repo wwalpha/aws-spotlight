@@ -1,0 +1,11 @@
+{
+  "AWSRegion": "us-east-1",
+  "Service": "Kendra",
+  "EventId": "6f5774d0-fb98-4097-ab18-eb0021424f5c",
+  "Status": "Deleted",
+  "ResourceId": "arn:aws:kendra:us-east-1:999999999999:index/83084183-4a5a-4bc1-afba-b5b6f1640c6b",
+  "EventTime": "2023-12-11T16:11:29Z",
+  "EventName": "DeleteIndex",
+  "EventSource": "kendra.amazonaws.com",
+  "UserName": "test001@test.com"
+}
