@@ -3,6 +3,7 @@ import { cloudtrail } from '@src/index';
 import * as Events from './datas';
 import * as EXPECTS from './expects';
 import * as fs from 'fs';
+import * as path from 'path';
 
 describe('lex.amazonaws.com', () => {
   test('LEX_CreateBot', async () => {
