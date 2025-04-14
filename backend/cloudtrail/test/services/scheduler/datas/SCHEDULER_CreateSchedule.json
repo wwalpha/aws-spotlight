@@ -1,0 +1,47 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "CreateSchedule",
+  "eventTime": "2023-06-21T02:04:09Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "13930d1b-519b-40ab-9d9c-fa987b54efd5",
+  "eventSource": "scheduler.amazonaws.com",
+  "requestID": "67bd9fa7-270e-43b7-9d3b-12ea3e9b3aa4",
+  "requestParameters": {
+    "name": "EC2-Stop-i-06f8415851cf64313",
+    "scheduleExpression": "cron(10 11 * * ? *)",
+    "description": "Stop EC2 Instance",
+    "scheduleExpressionTimezone": "Japan",
+    "state": "ENABLED",
+    "flexibleTimeWindow": {
+      "mode": "OFF"
+    },
+    "clientToken": "3d4c973e-204d-407b-a685-910c96e72ab1"
+  },
+  "responseElements": {
+    "scheduleArn": "arn:aws:scheduler:ap-northeast-1:999999999999:schedule/default/EC2-Stop-i-06f8415851cf64313"
+  },
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "AWS Internal",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

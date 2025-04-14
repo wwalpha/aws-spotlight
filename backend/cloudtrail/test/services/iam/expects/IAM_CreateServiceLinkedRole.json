@@ -1,0 +1,12 @@
+{
+  "AWSRegion": "us-east-1",
+  "ResourceName": "AWSServiceRoleForFIS",
+  "Service": "IAM",
+  "EventId": "d6b25f10-c5da-4ab1-a923-29016d1224e3",
+  "Status": "Created",
+  "ResourceId": "arn:aws:iam::999999999999:role/aws-service-role/fis.amazonaws.com/AWSServiceRoleForFIS",
+  "EventTime": "2023-01-23T06:16:26Z",
+  "EventName": "CreateServiceLinkedRole",
+  "EventSource": "iam.amazonaws.com",
+  "UserName": "test001@test.com"
+}

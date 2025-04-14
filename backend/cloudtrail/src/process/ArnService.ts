@@ -400,6 +400,10 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       rets = [ResourceARNs.IOT_TopicRule(region, account, name), name];
       break;
 
+    case 'KENDRA_CreateIndex':
+      rets = [response.indexArn, request.name];
+      break;
+
     case 'KINESIS_CreateStream':
       name = request.streamName;
       rets = [ResourceARNs.KINESIS_Stream(region, account, name), name];
@@ -458,6 +462,14 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
 
     case 'ROUTE53PROFILES_CreateProfile':
       rets = [response.Profile.Arn, request.Name];
+      break;
+
+    case 'ROUTE53RESOLVER_CreateResolverEndpoint':
+      rets = [response.resolverEndpoint.arn, response.resolverEndpoint.name];
+      break;
+
+    case 'ROUTE53RESOLVER_CreateResolverRule':
+      rets = [response.resolverRule.arn, response.resolverRule.id];
       break;
 
     case 'RDS_CreateDBCluster':
@@ -532,6 +544,10 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       rets = [response.domainArn, request.domainName];
       break;
 
+    case 'SCHEDULER_CreateSchedule':
+      rets = [response.scheduleArn, request.name];
+      break;
+
     case 'SNS_CreateTopic':
       rets = [response.topicArn, request.name];
       break;
@@ -579,8 +595,16 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       rets = [response.role.arn, request.roleName];
       break;
 
+    case 'IAM_CreateUser':
+      rets = [response.user.arn, response.user.userName];
+      break;
+
     case 'IAM_CreateSAMLProvider':
       rets = [response.sAMLProviderArn, request.name];
+      break;
+
+    case 'IAM_CreateServiceLinkedRole':
+      rets = [response.role.arn, response.role.roleName];
       break;
 
     case 'EVENTS_PutRule':
@@ -794,6 +818,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       arn = ResourceARNs.IOT_TopicRule(region, account, request.ruleName);
       break;
 
+    case 'KENDRA_DeleteIndex':
+      arn = ResourceARNs.KENDRA_Index(region, account, request.id);
+      break;
+
     case 'KINESIS_DeleteStream':
       arn = ResourceARNs.KINESIS_Stream(region, account, request.streamName);
       break;
@@ -835,6 +863,14 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
 
     case 'ROUTE53PROFILES_DeleteProfile':
       arn = response.Profile.Arn;
+      break;
+
+    case 'ROUTE53RESOLVER_DeleteResolverEndpoint':
+      arn = response.resolverEndpoint.arn;
+      break;
+
+    case 'ROUTE53RESOLVER_DeleteResolverRule':
+      arn = response.resolverRule.arn;
       break;
 
     case 'RDS_DeleteDBCluster':
@@ -883,6 +919,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
 
     case 'SAGEMAKER_DeleteDomain':
       arn = ResourceARNs.SAGEMAKER_Domain(region, account, request.domainId);
+      break;
+
+    case 'SCHEDULER_DeleteSchedule':
+      arn = ResourceARNs.SCHEDULER_Schedule(region, account, request.name);
       break;
 
     case 'SNS_DeleteTopic':
@@ -962,6 +1002,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
 
     case 'IAM_DeleteRole':
       arn = ResourceARNs.IAM_Role(region, account, request.roleName);
+      break;
+
+    case 'IAM_DeleteUser':
+      arn = ResourceARNs.IAM_User(region, account, request.userName);
       break;
 
     case 'IAM_DeleteSAMLProvider':

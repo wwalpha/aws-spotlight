@@ -206,3 +206,14 @@ CreateProfile,route53profiles.amazonaws.com,create
 DeleteProfile,route53profiles.amazonaws.com,delete
 CreateTransitGatewayRouteTable,ec2.amazonaws.com,create
 DeleteTransitGatewayRouteTable,ec2.amazonaws.com,delete
+CreateIndex,kendra.amazonaws.com,create
+DeleteIndex,kendra.amazonaws.com,delete
+CreateResolverEndpoint,route53resolver.amazonaws.com,create
+DeleteResolverEndpoint,route53resolver.amazonaws.com,delete
+CreateResolverRule,route53resolver.amazonaws.com,create
+DeleteResolverRule,route53resolver.amazonaws.com,delete
+CreateSchedule,scheduler.amazonaws.com,create
+DeleteSchedule,scheduler.amazonaws.com,delete
+CreateUser,iam.amazonaws.com,create
+DeleteUser,iam.amazonaws.com,delete
+CreateServiceLinkedRole,iam.amazonaws.com,create

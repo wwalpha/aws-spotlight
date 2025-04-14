@@ -1,0 +1,1 @@
+{"AWSRegion":"us-east-1","ResourceName":"test-user","Service":"IAM","EventId":"7713078b-935a-481c-8594-18f61f1caacb","Status":"Created","ResourceId":"arn:aws:iam::999999999999:user/test-user","EventTime":"2023-01-13T07:40:53Z","EventName":"CreateUser","EventSource":"iam.amazonaws.com","UserName":"test001@test.com"}

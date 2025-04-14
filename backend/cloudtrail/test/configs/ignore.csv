@@ -1580,3 +1580,7 @@ ForgotPassword_POST,cognito-idp.amazonaws.com,true
 forgotPassword_POST,cognito-idp.amazonaws.com,true
 Signup_POST,cognito-idp.amazonaws.com,true
 signup_POST,cognito-idp.amazonaws.com,true
+CreateApp,sagemaker.amazonaws.com,true
+DeleteApp,sagemaker.amazonaws.com,true
+CreateDataSource,kendra.amazonaws.com,true
+DeleteDataSource,kendra.amazonaws.com,true

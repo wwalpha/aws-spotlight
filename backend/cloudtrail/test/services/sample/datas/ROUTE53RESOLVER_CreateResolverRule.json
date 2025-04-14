@@ -1,0 +1,53 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "CreateResolverRule",
+  "eventTime": "2024-03-12T04:17:03Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "77329879-2f5e-421d-a503-d37c535c30a1",
+  "eventSource": "route53resolver.amazonaws.com",
+  "requestID": "b85a4e5f-7293-46ba-a76d-914e28575a0a",
+  "requestParameters": {
+    "creatorRequestId": "tf-r53-resolver-rule-20240312041703839600000002",
+    "ruleType": "SYSTEM",
+    "domainName": "aws.amazon.com"
+  },
+  "responseElements": {
+    "resolverRule": {
+      "id": "rslvr-rr-e9a0c626755e42dc9",
+      "creatorRequestId": "tf-r53-resolver-rule-20240312041703839600000002",
+      "arn": "arn:aws:route53resolver:ap-northeast-1:999999999999:resolver-rule/rslvr-rr-e9a0c626755e42dc9",
+      "domainName": "aws.amazon.com.",
+      "status": "COMPLETE",
+      "statusMessage": "[Trace id: 1-65efd73f-226b09b149028b5c394c0722] Successfully created Resolver Rule.",
+      "ruleType": "SYSTEM",
+      "ownerId": "999999999999",
+      "shareStatus": "NOT_SHARED",
+      "creationTime": "2024-03-12T04:17:03.882991Z",
+      "modificationTime": "2024-03-12T04:17:03.882991Z"
+    }
+  },
+  "sourceIPAddress": "35.72.180.242",
+  "userAgent": "APN/1.0 HashiCorp/1.0 Terraform/1.6.2 (+https://www.terraform.io) terraform-provider-aws/5.40.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.50.33 (go1.21.7; linux; amd64)",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

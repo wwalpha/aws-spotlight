@@ -1,0 +1,47 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "CreateServiceLinkedRole",
+  "eventTime": "2023-01-23T06:16:26Z",
+  "awsRegion": "us-east-1",
+  "eventID": "d6b25f10-c5da-4ab1-a923-29016d1224e3",
+  "eventSource": "iam.amazonaws.com",
+  "requestID": "aae92e84-093e-4718-97b3-a25971959980",
+  "requestParameters": {
+    "aWSServiceName": "fis.amazonaws.com",
+    "description": "Role to enable AWS FIS to manage monitoring and resource selection for experiments."
+  },
+  "responseElements": {
+    "role": {
+      "path": "/aws-service-role/fis.amazonaws.com/",
+      "roleName": "AWSServiceRoleForFIS",
+      "roleId": "AROAU33DBSJ5PI62AQB53",
+      "arn": "arn:aws:iam::999999999999:role/aws-service-role/fis.amazonaws.com/AWSServiceRoleForFIS",
+      "createDate": "Jan 23, 2023 6:16:26 AM",
+      "assumeRolePolicyDocument": "%7B%22Version%22%3A%20%222012-10-17%22%2C%20%22Statement%22%3A%20%5B%7B%22Action%22%3A%20%5B%22sts%3AAssumeRole%22%5D%2C%20%22Effect%22%3A%20%22Allow%22%2C%20%22Principal%22%3A%20%7B%22Service%22%3A%20%5B%22fis.amazonaws.com%22%5D%7D%7D%5D%7D"
+    }
+  },
+  "sourceIPAddress": "fis.amazonaws.com",
+  "userAgent": "fis.amazonaws.com",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

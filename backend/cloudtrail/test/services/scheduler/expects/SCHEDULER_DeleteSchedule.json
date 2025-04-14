@@ -1,0 +1,11 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "Service": "Scheduler",
+  "EventId": "244b3f43-67aa-46d6-beda-ff3c5949a004",
+  "Status": "Deleted",
+  "ResourceId": "arn:aws:scheduler:ap-northeast-1:999999999999:schedule/default/EC2-Stop-i-06f8415851cf64313",
+  "EventTime": "2023-06-21T04:42:49Z",
+  "EventName": "DeleteSchedule",
+  "EventSource": "scheduler.amazonaws.com",
+  "UserName": "test001@test.com"
+}

@@ -40,6 +40,9 @@ export const ResourceARNs = {
   // amazon mq
   AMAZONMQ_Broker: (region: string, account: string, id?: string) => `arn:aws:mq:${region}:${account}:broker:${id}`,
 
+  // KENDRA
+  KENDRA_Index: (region: string, account: string, id?: string) => `arn:aws:kendra:${region}:${account}:index/${id}`,
+
   // kinesis
   KINESIS_Stream: (region: string, account: string, id?: string) => `arn:aws:kinesis:${region}:${account}:stream/${id}`,
 
@@ -127,6 +130,10 @@ export const ResourceARNs = {
   SAGEMAKER_Domain: (region: string, account: string, id?: string) =>
     `arn:aws:sagemaker:${region}:${account}:domain/${id}`,
 
+  // scheduler
+  SCHEDULER_Schedule: (region: string, account: string, id?: string) =>
+    `arn:aws:scheduler:${region}:${account}:schedule/default/${id}`,
+
   // sqs
   SQS_Queue: (region: string, account: string, id?: string) => `arn:aws:sqs:${region}:${account}:${id}`,
 
@@ -173,6 +180,9 @@ export const ResourceARNs = {
 
   // iam
   IAM_Role: (_: string, account: string, id?: string) => `arn:aws:iam::${account}:role/${id}`,
+
+  // iam
+  IAM_User: (_: string, account: string, id?: string) => `arn:aws:iam::${account}:user/${id}`,
 
   // ec2 client vpn endpoint
   EC2_ClientVpnEndpoint: (region: string, account: string, id?: string) =>
