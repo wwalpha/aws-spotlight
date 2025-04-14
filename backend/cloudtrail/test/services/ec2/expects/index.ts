@@ -36,3 +36,5 @@ export { default as EC2_DeleteVpnGateway } from './EC2_DeleteVpnGateway.json';
 
 export { default as EC2_RunInstances } from './EC2_RunInstances.json';
 export { default as EC2_TerminateInstances } from './EC2_TerminateInstances.json';
+
+export { default as EC2_CreateFleet } from './EC2_CreateFleet.json';

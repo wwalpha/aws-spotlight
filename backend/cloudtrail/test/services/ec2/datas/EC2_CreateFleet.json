@@ -1,0 +1,132 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIXPVBZBZD",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-04-05T07:05:13Z"
+      }
+    }
+  },
+  "eventName": "CreateFleet",
+  "eventTime": "2023-08-21T06:35:41Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "e40a9c19-7a66-4bbe-b50e-3de4a77f0a63",
+  "eventSource": "ec2.amazonaws.com",
+  "requestID": "7f49aba8-9217-4eac-a6d7-63eab66c4a96",
+  "requestParameters": {
+    "CreateFleetRequest": {
+      "TargetCapacitySpecification": {
+        "DefaultTargetCapacityType": "on-demand",
+        "TotalTargetCapacity": 2,
+        "OnDemandTargetCapacity": 2,
+        "SpotTargetCapacity": 0
+      },
+      "Type": "instant",
+      "OnDemandOptions": {
+        "AllocationStrategy": "prioritized"
+      },
+      "SpotOptions": {
+        "AllocationStrategy": "lowestPrice",
+        "InstancePoolsToUseCount": 2
+      },
+      "LaunchTemplateConfigs": {
+        "LaunchTemplateSpecification": {
+          "Version": 1,
+          "LaunchTemplateId": "lt-0bc5092afca43d576"
+        },
+        "Overrides": {
+          "Priority": 1,
+          "AvailabilityZone": "ap-northeast-1c",
+          "tag": 1,
+          "SubnetId": "subnet-09eb1e899659e910a",
+          "InstanceType": "m5.2xlarge"
+        },
+        "tag": 1
+      },
+      "ClientToken": "6e96285b-3991-81a3-4459-1d9dba281fdaMIG",
+      "TagSpecification": {
+        "ResourceType": "instance",
+        "tag": 1,
+        "Tag": [
+          {
+            "Value": "eks-ng-3212fcc4-3cc50b66-baad-4d98-a45d-8aea7f683134",
+            "tag": 1,
+            "Key": "aws:autoscaling:groupName"
+          },
+          {
+            "Value": "owned",
+            "tag": 2,
+            "Key": "k8s.io/cluster-autoscaler/son-cluster"
+          },
+          {
+            "Value": "son-cluster",
+            "tag": 3,
+            "Key": "eks:cluster-name"
+          },
+          {
+            "Value": "ng-3212fcc4",
+            "tag": 4,
+            "Key": "eks:nodegroup-name"
+          },
+          {
+            "Value": true,
+            "tag": 5,
+            "Key": "k8s.io/cluster-autoscaler/enabled"
+          },
+          {
+            "Value": "owned",
+            "tag": 6,
+            "Key": "kubernetes.io/cluster/son-cluster"
+          }
+        ]
+      }
+    }
+  },
+  "responseElements": {
+    "CreateFleetResponse": {
+      "fleetInstanceSet": {
+        "item": {
+          "lifecycle": "on-demand",
+          "instanceIds": {
+            "item": [
+              "i-08c5275650cfd628a"
+            ]
+          },
+          "instanceType": "m5.2xlarge",
+          "launchTemplateAndOverrides": {
+            "overrides": {
+              "subnetId": "subnet-09eb1e899659e910a",
+              "instanceType": "m5.2xlarge",
+              "priority": 1,
+              "availabilityZone": "ap-northeast-1c"
+            },
+            "launchTemplateSpecification": {
+              "launchTemplateId": "lt-0bc5092afca43d576",
+              "version": 1
+            }
+          }
+        }
+      },
+      "xmlns": "http://ec2.amazonaws.com/doc/2016-11-15/",
+      "requestId": "7f49aba8-9217-4eac-a6d7-63eab66c4a96",
+      "fleetId": "fleet-64353c0d-01a7-ec36-ac3a-0f8829c34491",
+      "errorSet": ""
+    }
+  },
+  "sourceIPAddress": "autoscaling.amazonaws.com",
+  "userAgent": "autoscaling.amazonaws.com",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

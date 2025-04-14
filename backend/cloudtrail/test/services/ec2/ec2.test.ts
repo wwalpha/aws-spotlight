@@ -247,7 +247,7 @@ describe('ec2.amazonaws.com', () => {
     expect(resource).toEqual(EXPECTS.EC2_DeleteInternetGateway);
   });
 
-  test.only('EC2_CreateTransitGatewayRouteTable', async () => {
+  test('EC2_CreateTransitGatewayRouteTable', async () => {
     const event = await sendMessage(Events.EC2_CreateTransitGatewayRouteTable);
     await cloudtrail(event);
 
@@ -258,7 +258,7 @@ describe('ec2.amazonaws.com', () => {
     expect(resource).toEqual(EXPECTS.EC2_CreateTransitGatewayRouteTable);
   });
 
-  test.only('EC2_DeleteTransitGatewayRouteTable', async () => {
+  test('EC2_DeleteTransitGatewayRouteTable', async () => {
     const event = await sendMessage(Events.EC2_DeleteTransitGatewayRouteTable);
     await cloudtrail(event);
 
@@ -267,5 +267,14 @@ describe('ec2.amazonaws.com', () => {
     );
     expect(resource).not.toBeUndefined();
     expect(resource).toEqual(EXPECTS.EC2_DeleteTransitGatewayRouteTable);
+  });
+
+  test('EC2_CreateFleet', async () => {
+    const event = await sendMessage(Events.EC2_CreateFleet);
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:ec2:ap-northeast-1:999999999999:instance/i-08c5275650cfd628a');
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.EC2_CreateFleet);
   });
 });

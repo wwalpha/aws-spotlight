@@ -43,3 +43,5 @@ export { default as EC2_DeleteSecurityGroup } from './EC2_DeleteSecurityGroup.js
 export { default as EC2_DeleteInternetGateway } from './EC2_DeleteInternetGateway.json';
 export { default as EC2_DeleteNetworkInsightsPath } from './EC2_DeleteNetworkInsightsPath.json';
 export { default as EC2_DeleteLaunchTemplate } from './EC2_DeleteLaunchTemplate.json';
+
+export { default as EC2_CreateFleet } from './EC2_CreateFleet.json';

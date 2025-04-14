@@ -5,7 +5,6 @@ CreateEnvironment,airflow.amazonaws.com,create
 DeleteEnvironment,airflow.amazonaws.com,delete
 CreateServiceLinkedPublicHostedZone,route53.amazonaws.com,create
 DeleteBot,lex.amazonaws.com,delete
-CreateFleet,ec2.amazonaws.com,create
 CreatePipeline,codepipeline.amazonaws.com,create
 DeletePipeline,codepipeline.amazonaws.com,delete
 CreateGlobalCluster,rds.amazonaws.com,create
@@ -27,7 +26,6 @@ DeleteEventBus,events.amazonaws.com,delete
 CreateWorkflow,glue.amazonaws.com,create
 DeleteWorkflow,glue.amazonaws.com,delete
 
-DeleteAlarms,monitoring.amazonaws.com,delete
 
 CreateFleet,appstream.amazonaws.com,create
 StopFleet,appstream.amazonaws.com,true
@@ -63,9 +61,8 @@ CreateRecoveryInstanceForDrs,drs.amazonaws.com,create
 TerminateRecoveryInstances,drs.amazonaws.com,delete
 
 
-
-
 ActivateGateway,storagegateway.amazonaws.com,create
 DeleteGateway,storagegateway.amazonaws.com,delete
 StartNotebookInstance,sagemaker.amazonaws.com,create
 DeleteNotebookInstance,sagemaker.amazonaws.com,delete
+

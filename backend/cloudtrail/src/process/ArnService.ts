@@ -5,6 +5,7 @@ import { ResourceService, UnprocessedService } from '@src/services';
 
 const MULTI_TASK = [
   'EC2_RunInstances',
+  'EC2_CreateFleet',
   'EC2_CreateSnapshots',
   'EC2_TerminateInstances',
   'EC2_DeleteVpcEndpoints',
@@ -18,6 +19,7 @@ export const start = async (record: CloudTrailRecord): Promise<Tables.TResource[
   const serviceName = record.eventSource.split('.')[0].toUpperCase();
   const key = `${serviceName}_${record.eventName}`;
 
+  console.log(key);
   try {
     // 登録リソース
     const regists = MULTI_TASK.includes(key) ? getRegistMultiResources(record) : getRegistSingleResource(record);
@@ -26,6 +28,7 @@ export const start = async (record: CloudTrailRecord): Promise<Tables.TResource[
     // 全部リソース
     const resources = [...regists, ...removes];
 
+    console.log(resources);
     if (resources.length === 0) {
       console.log(`Cannot found process logic. EventId: ${key}`);
     }
@@ -638,12 +641,21 @@ const getRegistMultiResources = (record: CloudTrailRecord): ResourceInfo[] => {
 
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
 
+  console.log(key);
   switch (key) {
     case 'EC2_RunInstances':
       return (response.instancesSet.items as any[]).map<ResourceInfo>((item: { instanceId: any }) => ({
         id: ResourceARNs.EC2_Instances(region, account, item.instanceId),
         name: item.instanceId,
       }));
+
+    case 'EC2_CreateFleet':
+      return (response.CreateFleetResponse.fleetInstanceSet.item.instanceIds.item as string[]).map<ResourceInfo>(
+        (item) => ({
+          id: ResourceARNs.EC2_Instances(region, account, item),
+          name: item,
+        })
+      );
 
     case 'EC2_CreateSnapshots':
       const items = response.CreateSnapshotsResponse.snapshotSet.item;
@@ -1255,7 +1267,25 @@ const checkAWSServiceRole = async (record: CloudTrailRecord) => {
     // ユーザ名を取得する
     const createdUser = await ResourceService.getUserName(domainArn);
 
-    return createdUser ? createdUser : record.userName;
+    if (!createdUser) {
+      await UnprocessedService.tempSave(record);
+      return record.userName;
+    }
+
+    return createdUser;
+  }
+
+  if (userName === 'AWSServiceRoleForAutoScaling') {
+    const templateId = request.LaunchTemplateConfigs.LaunchTemplateSpecification.LaunchTemplateId as string;
+    const templateArn = ResourceARNs.EC2_LaunchTemplate(region, account, templateId);
+    const createdUser = await ResourceService.getUserName(templateArn);
+
+    if (!createdUser) {
+      await UnprocessedService.tempSave(record);
+      return record.userName;
+    }
+
+    return createdUser;
   }
 
   return record.userName;
