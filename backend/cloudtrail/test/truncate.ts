@@ -2,10 +2,12 @@ import { DynamodbHelper } from '@alphax/dynamodb';
 import { ResourceService } from '@src/services';
 
 const TABLE_NAME_RESOURCES = process.env.TABLE_NAME_RESOURCES as string;
+const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
 
 const start = async () => {
   const helper = new DynamodbHelper();
   await helper.truncateAll(TABLE_NAME_RESOURCES);
+  await helper.truncateAll(TABLE_NAME_EVENT_TYPE);
 
   await ResourceService.regist({
     ResourceId: 'arn:aws:iam::999999999999:role/EC2Role',

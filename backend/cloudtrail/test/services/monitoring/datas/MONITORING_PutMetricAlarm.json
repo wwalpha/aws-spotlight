@@ -1,0 +1,53 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventTime": "2022-04-12T13:45:22Z",
+  "eventSource": "monitoring.amazonaws.com",
+  "eventName": "PutMetricAlarm",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "192.0.2.10",
+  "userAgent": "aws-cli/2.14.0 Python/3.11.5",
+  "requestParameters": {
+    "alarmName": "demo0384-httpd-process",
+    "metricName": "CPUUtilization",
+    "namespace": "AWS/EC2",
+    "statistic": "Average",
+    "period": 300,
+    "evaluationPeriods": 1,
+    "threshold": 80.0,
+    "comparisonOperator": "GreaterThanThreshold",
+    "alarmActions": [
+      "arn:aws:sns:ap-northeast-1:123456789012:NotifyMe"
+    ],
+    "dimensions": [
+      {
+        "name": "InstanceId",
+        "value": "i-0123456789abcdef0"
+      }
+    ]
+  },
+  "responseElements": null,
+  "requestID": "a1b2c3d4-e5f6-7890-abcd-1234567890ef",
+  "eventID": "11111111-2222-3333-4444-555555555555",
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "readOnly": false,
+  "apiVersion": "2013-04-01",
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

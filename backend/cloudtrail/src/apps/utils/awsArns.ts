@@ -21,7 +21,8 @@ export const ResourceARNs = {
     `arn:aws:redshift:${region}:${account}:cluster:${id}`,
 
   // monitoring
-  MONITORING_Dashboard: (_: string, account: string, id?: string) => `arn:aws:cloudwatch::${account}:dashboard/${id}`,
+  MONITORING_Dashboard: (region: string, account: string, id?: string) =>
+    `arn:aws:cloudwatch:${region}:${account}:dashboard/${id}`,
 
   // monitoring
   MONITORING_Alarm: (region: string, account: string, id?: string) =>

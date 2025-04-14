@@ -1,0 +1,38 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "DeleteAlarms",
+  "eventTime": "2022-05-17T10:40:52Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "41b93212-6cfb-42e4-8e55-5c6816310e99",
+  "eventSource": "monitoring.amazonaws.com",
+  "requestID": "05591a2f-d2f4-4bdb-81cb-6b1c8b09f136",
+  "requestParameters": {
+    "alarmNames": [
+      "demo0384-httpd-process"
+    ]
+  },
+  "sourceIPAddress": "AWS Internal",
+  "userAgent": "AWS Internal",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

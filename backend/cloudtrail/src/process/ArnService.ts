@@ -18,7 +18,6 @@ export const start = async (record: CloudTrailRecord): Promise<Tables.TResource[
   const serviceName = record.eventSource.split('.')[0].toUpperCase();
   const key = `${serviceName}_${record.eventName}`;
 
-  console.log(key);
   try {
     // 登録リソース
     const regists = MULTI_TASK.includes(key) ? getRegistMultiResources(record) : getRegistSingleResource(record);

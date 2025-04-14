@@ -177,9 +177,6 @@ DeleteTopic,sns.amazonaws.com,delete
 CreateFileSystem,elasticfilesystem.amazonaws.com,create
 DeleteFileSystem,elasticfilesystem.amazonaws.com,delete
 CreateApplication,serverlessrepo.amazonaws.com,create
-PutMetricAlarm,monitoring.amazonaws.com,create
-PutDashboard,monitoring.amazonaws.com,create
-DeleteDashboards,monitoring.amazonaws.com,delete
 PutRule,events.amazonaws.com,create
 DeleteRule,events.amazonaws.com,delete
 CreateFileSystem,fsx.amazonaws.com,create
@@ -217,3 +214,7 @@ DeleteSchedule,scheduler.amazonaws.com,delete
 CreateUser,iam.amazonaws.com,create
 DeleteUser,iam.amazonaws.com,delete
 CreateServiceLinkedRole,iam.amazonaws.com,create
+PutMetricAlarm,monitoring.amazonaws.com,create
+DeleteAlarms,monitoring.amazonaws.com,delete
+PutDashboard,monitoring.amazonaws.com,create
+DeleteDashboards,monitoring.amazonaws.com,delete
