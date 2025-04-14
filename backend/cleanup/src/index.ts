@@ -27,12 +27,12 @@ const ec2Client = new EC2Client();
 const iamClient = new IAMClient();
 
 export const handler = async () => {
-  // await security_group();
-  // await subnet();
-  // await route_table();
-  // await ami();
+  await security_group();
+  await subnet();
+  await route_table();
+  await ami();
   await snapshots();
-  // await iam_user();
+  await iam_user();
 };
 
 const security_group = async () => {
