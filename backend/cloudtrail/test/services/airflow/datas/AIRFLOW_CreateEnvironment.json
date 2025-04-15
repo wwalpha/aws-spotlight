@@ -1,0 +1,85 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "CreateEnvironment",
+  "eventTime": "2025-01-17T00:51:10Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "d660d3a5-f142-4b60-8b50-b8bb860e4a0f",
+  "eventSource": "airflow.amazonaws.com",
+  "requestID": "71bbe907-2b29-4952-bb77-8612aa4c0c87",
+  "requestParameters": {
+    "MaxWorkers": 10,
+    "AirflowConfigurationOptions": "***",
+    "EnvironmentClass": "mw1.large",
+    "Schedulers": 2,
+    "MinWorkers": 1,
+    "AirflowVersion": "2.10.3",
+    "Name": "MyAirflowEnvironment",
+    "SourceBucketArn": "arn:aws:s3:::amzn-s3-poc-openmetadata",
+    "ExecutionRoleArn": "arn:aws:iam::999999999999:role/service-role/AmazonMWAA-MyAirflowEnvironment-zagiWm",
+    "WeeklyMaintenanceWindowStart": "MON:01:00",
+    "EndpointManagement": "SERVICE",
+    "LoggingConfiguration": {
+      "TaskLogs": {
+        "Enabled": true,
+        "LogLevel": "INFO"
+      },
+      "SchedulerLogs": {
+        "Enabled": false,
+        "LogLevel": "WARNING"
+      },
+      "WebserverLogs": {
+        "Enabled": false,
+        "LogLevel": "WARNING"
+      },
+      "WorkerLogs": {
+        "Enabled": false,
+        "LogLevel": "WARNING"
+      },
+      "DagProcessingLogs": {
+        "Enabled": false,
+        "LogLevel": "WARNING"
+      }
+    },
+    "DagS3Path": "DAG folder/",
+    "MaxWebservers": 2,
+    "MinWebservers": 2,
+    "WebserverAccessMode": "PRIVATE_ONLY",
+    "NetworkConfiguration": {
+      "SecurityGroupIds": [
+        "sg-0c164d2f42f161bb8"
+      ],
+      "SubnetIds": [
+        "subnet-010e7931dceeeb0ae",
+        "subnet-017ff659a10f049a7"
+      ]
+    }
+  },
+  "responseElements": {
+    "Access-Control-Expose-Headers": "x-amzn-RequestId,x-amzn-ErrorType,x-amzn-ErrorMessage,Date,smithy-protocol",
+    "Arn": "arn:aws:airflow:ap-northeast-1:999999999999:environment/MyAirflowEnvironment"
+  },
+  "sourceIPAddress": "210.224.74.41",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

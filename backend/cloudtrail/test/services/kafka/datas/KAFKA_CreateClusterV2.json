@@ -1,0 +1,65 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "CreateClusterV2",
+  "eventTime": "2024-02-08T01:24:32Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "9da6cabf-f580-42d8-b28c-d89bf405737d",
+  "eventSource": "kafka.amazonaws.com",
+  "requestID": "1bbbc425-7705-4962-b6ca-d9dbfe94106f",
+  "requestParameters": {
+    "serverless": {
+      "clientAuthentication": {
+        "sasl": {
+          "iam": {
+            "enabled": true
+          }
+        }
+      },
+      "vpcConfigs": [
+        {
+          "subnetIds": [
+            "subnet-0ab6c9b197d52e84d",
+            "subnet-09962a35e4d8447bb"
+          ],
+          "securityGroupIds": [
+            "sg-0a309c40e10d6cb44"
+          ]
+        }
+      ]
+    },
+    "clusterName": "msk-cluster-hashimoto",
+    "tags": {}
+  },
+  "responseElements": {
+    "clusterType": "SERVERLESS",
+    "Access-Control-Expose-Headers": "x-amzn-errortype,x-amzn-requestid,x-amzn-errormessage,x-amzn-trace-id,x-amz-apigw-id,date",
+    "clusterArn": "arn:aws:kafka:ap-northeast-1:999999999999:cluster/msk-cluster-hashimoto/50275221-135d-41d1-8004-2844259afa2d-s1",
+    "clusterName": "msk-cluster-hashimoto",
+    "state": "CREATING",
+    "Access-Control-Max-Age": "86400"
+  },
+  "sourceIPAddress": "124.219.195.107",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 Edg/121.0.0.0",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

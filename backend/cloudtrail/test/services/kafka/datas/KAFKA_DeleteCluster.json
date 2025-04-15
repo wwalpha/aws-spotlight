@@ -1,0 +1,43 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "DeleteCluster",
+  "eventTime": "2024-02-09T03:50:22Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "7ba0d52a-4bfe-4e3b-896e-6e559d562ac5",
+  "eventSource": "kafka.amazonaws.com",
+  "requestID": "86c98403-3d68-4f9f-aeac-854f3f4aa457",
+  "requestParameters": {
+    "clusterArn": "arn%3Aaws%3Akafka%3Aap-northeast-1%3A999999999999%3Acluster%2Fmsk-cluster-prov-hashimoto%2F74800922-5cf8-43a7-b02e-d23676efe1a6-4",
+    "currentVersion": "K3DWYIK6Y9EEQB"
+  },
+  "responseElements": {
+    "Access-Control-Expose-Headers": "x-amzn-errortype,x-amzn-requestid,x-amzn-errormessage,x-amzn-trace-id,x-amz-apigw-id,date",
+    "clusterArn": "arn:aws:kafka:ap-northeast-1:999999999999:cluster/msk-cluster-hashimoto/50275221-135d-41d1-8004-2844259afa2d-s1",
+    "state": "DELETING",
+    "Access-Control-Max-Age": "86400"
+  },
+  "sourceIPAddress": "124.219.195.107",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 Edg/121.0.0.0",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

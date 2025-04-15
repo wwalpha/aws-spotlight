@@ -9,3 +9,4 @@ export { default as ROUTE53RESOLVER_CreateResolverRule } from './ROUTE53RESOLVER
 export { default as ROUTE53RESOLVER_DeleteResolverRule } from './ROUTE53RESOLVER_DeleteResolverRule.json';
 
 export { default as ROUTE53_CreateServiceLinkedPrivateHostedZone } from './ROUTE53_CreateServiceLinkedPrivateHostedZone.json';
+export { default as ROUTE53_CreateServiceLinkedPublicHostedZone } from './ROUTE53_CreateServiceLinkedPublicHostedZone.json';

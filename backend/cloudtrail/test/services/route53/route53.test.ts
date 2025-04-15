@@ -32,6 +32,15 @@ describe('route53.amazonaws.com', () => {
     expect(resource).not.toBeUndefined();
     expect(resource).toEqual(EXPECTS.ROUTE53_CreateServiceLinkedPrivateHostedZone);
   });
+
+  test('ROUTE53_CreateServiceLinkedPublicHostedZone', async () => {
+    const event = await sendMessage(Events.ROUTE53_CreateServiceLinkedPublicHostedZone);
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:route53:::hostedzone/Z04954692NJ9IMDGXLB2N');
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.ROUTE53_CreateServiceLinkedPublicHostedZone);
+  });
 });
 
 describe('route53profiles.amazonaws.com', () => {
