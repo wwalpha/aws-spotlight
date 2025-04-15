@@ -1,0 +1,1 @@
+{"AWSRegion":"ap-northeast-1","ResourceName":"test-zhiyuanpan--apne1-az4--x-s3","Service":"S3express","EventId":"e77e53cc-5250-4992-873e-35ead70c9f5c","Status":"Created","ResourceId":"arn:aws:s3:::test-zhiyuanpan--apne1-az4--x-s3","EventTime":"2024-06-10T11:38:45Z","EventName":"CreateBucket","EventSource":"s3express.amazonaws.com","UserName":"test001@test.com"}

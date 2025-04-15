@@ -1,0 +1,51 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIXT76H6HJ",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-04-08T00:22:39Z"
+      }
+    }
+  },
+  "eventName": "DeleteBucket",
+  "eventTime": "2024-06-10T11:41:41Z",
+  "additionalEventData": {
+    "SignatureVersion": "SigV4",
+    "CipherSuite": "TLS_AES_128_GCM_SHA256",
+    "AvailabilityZone": "apne1-az4",
+    "AuthenticationMethod": "AuthHeader",
+    "x-amz-id-2": "OFQuYBW"
+  },
+  "awsRegion": "ap-northeast-1",
+  "eventID": "9c8ad252-075a-4562-8c79-f7f44db2b939",
+  "eventSource": "s3express.amazonaws.com",
+  "requestID": "01CE7A909301019001F4392707009A50B49EDD30",
+  "requestParameters": {
+    "bucketName": "test-zhiyuanpan--apne1-az4--x-s3",
+    "Host": "s3express-control.ap-northeast-1.amazonaws.com"
+  },
+  "sourceIPAddress": "192.46.123.135",
+  "userAgent": "AWS Internal",
+  "readOnly": false,
+  "resources": [
+    {
+      "accountId": "999999999999",
+      "type": "AWS::S3::Bucket",
+      "ARN": "arn:aws:s3:::amazon-connect-5f75c0e51b80"
+    }
+  ],
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999",
+  "vpcEndpointId": "vpce-c8e61da1"
+}

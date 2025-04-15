@@ -1,0 +1,54 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIWODBMIFD5",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI2V76RXTE",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-04-02T00:52:55Z"
+      }
+    }
+  },
+  "eventName": "CreateBucket",
+  "eventTime": "2024-06-10T11:38:45Z",
+  "additionalEventData": {
+    "SignatureVersion": "SigV4",
+    "CipherSuite": "TLS_AES_128_GCM_SHA256",
+    "AvailabilityZone": "apne1-az4",
+    "AuthenticationMethod": "AuthHeader",
+    "x-amz-id-2": "zyHEHOY1G453trEN7Gd"
+  },
+  "awsRegion": "ap-northeast-1",
+  "eventID": "e77e53cc-5250-4992-873e-35ead70c9f5c",
+  "eventSource": "s3express.amazonaws.com",
+  "requestID": "019A56113101019001F18183070036A803A70CC3",
+  "requestParameters": {
+    "bucketName": "test-zhiyuanpan--apne1-az4--x-s3",
+    "Host": "s3express-control.ap-northeast-1.amazonaws.com",
+    "CreateBucketConfiguration": {
+      "location": {
+        "type": "AvailabilityZone",
+        "name": "apne1-az4"
+      },
+      "bucketInfo": {
+        "dataRedundancy": "SingleAvailabilityZone",
+        "bucketType": "Directory"
+      }
+    }
+  },
+  "sourceIPAddress": "192.46.123.135",
+  "userAgent": "AWS Internal",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999",
+  "vpcEndpointId": "vpce-c8e61da1"
+}
