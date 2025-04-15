@@ -1,0 +1,37 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "CreateApplication",
+  "eventTime": "2022-08-01T05:32:15Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "1a34fd01-39aa-4961-9df9-17a2f48b05e1",
+  "eventSource": "elasticbeanstalk.amazonaws.com",
+  "requestID": "980e19e3-8ef1-49a1-9be4-e64115c284cf",
+  "requestParameters": {
+    "applicationName": "talend-join-table",
+    "tags": []
+  },
+  "sourceIPAddress": "AWS Internal",
+  "userAgent": "AWS Internal",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

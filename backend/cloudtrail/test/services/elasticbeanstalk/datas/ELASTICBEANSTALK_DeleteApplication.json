@@ -1,0 +1,37 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "DeleteApplication",
+  "eventTime": "2022-08-01T06:53:53Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "ce25b1aa-ded7-40f9-8364-bc8e5f243392",
+  "eventSource": "elasticbeanstalk.amazonaws.com",
+  "requestID": "61c6a3d5-908b-48b2-b3ff-32ce8cea2e12",
+  "requestParameters": {
+    "applicationName": "talend-join-table",
+    "terminateEnvByForce": true
+  },
+  "sourceIPAddress": "AWS Internal",
+  "userAgent": "AWS Internal",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

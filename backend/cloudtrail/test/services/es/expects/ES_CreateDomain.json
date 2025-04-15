@@ -1,0 +1,12 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "ResourceName": "test2",
+  "Service": "Elasticsearch",
+  "EventId": "1f618b2b-ed25-4c1e-9fd1-941c91160fb9",
+  "Status": "Created",
+  "ResourceId": "arn:aws:es:ap-northeast-1:999999999999:domain/test2",
+  "EventTime": "2021-06-24T12:21:37Z",
+  "EventName": "CreateElasticsearchDomain",
+  "EventSource": "es.amazonaws.com",
+  "UserName": "test001@test.com"
+}
