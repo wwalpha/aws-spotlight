@@ -1,0 +1,12 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "ResourceName": "mlj-notebook",
+  "Service": "Sagemaker",
+  "EventId": "1aa2e32f-4012-448e-8d9b-de33c88a36ef",
+  "Status": "Created",
+  "ResourceId": "arn:aws:sagemaker:ap-northeast-1:999999999999:notebook-instance/mlj-notebook",
+  "EventTime": "2022-10-18T00:24:38Z",
+  "EventName": "CreateNotebookInstance",
+  "EventSource": "sagemaker.amazonaws.com",
+  "UserName": "test@test.com"
+}

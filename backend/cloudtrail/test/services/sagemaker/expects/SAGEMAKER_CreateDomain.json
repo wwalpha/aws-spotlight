@@ -1,1 +1,12 @@
-{"AWSRegion":"us-east-1","ResourceName":"QuickSetupDomain-20231004T131215","Service":"Sagemaker","EventId":"1aa2e32f-4012-448e-8d9b-de33c88a36ef","Status":"Created","ResourceId":"arn:aws:sagemaker:us-east-1:999999999999:domain/d-dml2esvpdmj6","EventTime":"2023-10-04T04:12:56Z","EventName":"CreateDomain","EventSource":"sagemaker.amazonaws.com","UserName":"test@test.com"}
+{
+  "AWSRegion": "us-east-1",
+  "ResourceName": "QuickSetupDomain-20231004T131215",
+  "Service": "Sagemaker",
+  "EventId": "1aa2e32f-4012-448e-8d9b-de33c88a36ef",
+  "Status": "Created",
+  "ResourceId": "arn:aws:sagemaker:us-east-1:999999999999:domain/d-dml2esvpdmj6",
+  "EventTime": "2023-10-04T04:12:56Z",
+  "EventName": "CreateDomain",
+  "EventSource": "sagemaker.amazonaws.com",
+  "UserName": "test@test.com"
+}

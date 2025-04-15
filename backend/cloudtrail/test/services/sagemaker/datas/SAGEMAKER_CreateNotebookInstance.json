@@ -1,0 +1,40 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AKIAU33DBSJ5I7MODBWM",
+    "userName": "test@test.com"
+  },
+  "eventTime": "2022-10-18T00:24:38Z",
+  "eventSource": "sagemaker.amazonaws.com",
+  "eventName": "CreateNotebookInstance",
+  "awsRegion": "ap-northeast-1",
+  "sourceIPAddress": "52.191.190.82",
+  "userAgent": "APN/1.0 HashiCorp/1.0 Terraform/0.15.3 (+https://www.terraform.io) terraform-provider-aws/3.43.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.38.49 (go1.16; linux; amd64)",
+  "requestParameters": {
+    "notebookInstanceName": "mlj-notebook",
+    "instanceType": "ml.t3.medium",
+    "roleArn": "arn:aws:iam::999999999999:role/service-role/AmazonSageMaker-ExecutionRole-20221018T092291",
+    "directInternetAccess": "Enabled",
+    "volumeSizeInGB": 5,
+    "defaultCodeRepository": "machine-learning-journey",
+    "rootAccess": "Enabled",
+    "platformIdentifier": "notebook-al2-v1",
+    "instanceMetadataServiceConfiguration": {
+      "minimumInstanceMetadataServiceVersion": "1"
+    }
+  },
+  "responseElements": {
+    "notebookInstanceArn": "arn:aws:sagemaker:ap-northeast-1:999999999999:notebook-instance/mlj-notebook"
+  },
+  "requestID": "d0944ce5-2577-4596-a392-e204e89971e3",
+  "eventID": "1aa2e32f-4012-448e-8d9b-de33c88a36ef",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management"
+}

@@ -1,0 +1,27 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::999999999999:user/test@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AKIAU33DBSJ5I7MODBWM",
+    "userName": "test@test.com"
+  },
+  "eventName": "DeleteNotebookInstance",
+  "eventTime": "2023-10-05T14:16:28Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "7e7d49ca-475a-41f9-8c8b-4f09e68542ea",
+  "eventSource": "sagemaker.amazonaws.com",
+  "requestID": "de3e4838-48bb-4c07-ba99-ac9d64921e04",
+  "requestParameters": {
+    "notebookInstanceName": "mlj-notebook"
+  },
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management"
+}
