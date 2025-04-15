@@ -193,6 +193,10 @@ export const ResourceARNs = {
   // rds db instance
   RDS_DBInstance: (region: string, account: string, id?: string) => `arn:aws:rds:${region}:${account}:db:${id}`,
 
+  // elasticbeanstalk application
+  ELASTICBEANSTALK_Application: (region: string, account: string, id: string) =>
+    `arn:aws:elasticbeanstalk:${region}:${account}:application/${id}`,
+
   // elasticache subnet group
   ELASTICACHE_CacheSubnetGroup: (region: string, account: string, id?: string) =>
     `arn:aws:elasticache:${region}:${account}:subnetgroup:${id}`,

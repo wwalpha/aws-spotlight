@@ -222,6 +222,7 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       break;
 
     case 'ES_CreateElasticsearchDomain':
+    case 'ES_CreateDomain':
       rets = [response.domainStatus.aRN, response.domainStatus.domainName];
       break;
 
@@ -367,6 +368,13 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       rets = [
         ResourceARNs.EC2_RouteTable(region, account, response.routeTable.routeTableId),
         response.routeTable.routeTableId,
+      ];
+      break;
+
+    case 'ELASTICBEANSTALK_CreateApplication':
+      rets = [
+        ResourceARNs.ELASTICBEANSTALK_Application(region, account, request.applicationName),
+        request.applicationName,
       ];
       break;
 
@@ -845,6 +853,7 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       arn = request.replicationInstanceArn;
       break;
 
+    case 'ES_DeleteDomain':
     case 'ES_DeleteElasticsearchDomain':
       arn = response.domainStatus.aRN;
       break;
@@ -1056,6 +1065,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       }
 
       arn = ResourceARNs.WAFV2_WebACL(region, account, `${scope}/webacl/${request.name}`);
+      break;
+
+    case 'ELASTICBEANSTALK_DeleteApplication':
+      arn = ResourceARNs.ELASTICBEANSTALK_Application(region, account, request.applicationName);
       break;
 
     case 'ELASTICACHE_DeleteCacheCluster':

@@ -1592,3 +1592,7 @@ CreateJob,glue.amazonaws.com,true
 DeleteJob,glue.amazonaws.com,true
 CreateWorkflow,glue.amazonaws.com,true
 DeleteWorkflow,glue.amazonaws.com,true
+CreateMaintenanceWindow,ssm.amazonaws.com,true
+DeleteMaintenanceWindow,ssm.amazonaws.com,true
+CreateResourceDataSync,ssm.amazonaws.com,true
+DeleteResourceDataSync,ssm.amazonaws.com,true

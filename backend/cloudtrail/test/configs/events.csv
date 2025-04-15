@@ -233,3 +233,7 @@ CreateCrawler,glue.amazonaws.com,create
 DeleteCrawler,glue.amazonaws.com,delete
 CreateGlobalCluster,rds.amazonaws.com,create
 DeleteGlobalCluster,rds.amazonaws.com,delete
+CreateApplication,elasticbeanstalk.amazonaws.com,create
+DeleteApplication,elasticbeanstalk.amazonaws.com,delete
+CreateDomain,es.amazonaws.com,create
+DeleteDomain,es.amazonaws.com,delete

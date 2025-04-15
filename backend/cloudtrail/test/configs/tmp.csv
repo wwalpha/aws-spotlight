@@ -17,10 +17,7 @@ CreateBucket,s3express.amazonaws.com,create
 DeleteBucket,s3express.amazonaws.com,delete
 CreateGraphqlApi,appsync.amazonaws.com,create
 DeleteGraphqlApi,appsync.amazonaws.com,delete
-CreateMaintenanceWindow,ssm.amazonaws.com,create
-DeleteMaintenanceWindow,ssm.amazonaws.com,delete
-CreateResourceDataSync,ssm.amazonaws.com,create
-DeleteResourceDataSync,ssm.amazonaws.com,delete
+
 RenewDomain,route53domains.amazonaws.com,create
 CreateResourceShare,ram.amazonaws.com,create
 DeleteResourceShare,ram.amazonaws.com,delete
@@ -35,6 +32,4 @@ DeleteGateway,storagegateway.amazonaws.com,delete
 StartNotebookInstance,sagemaker.amazonaws.com,create
 DeleteNotebookInstance,sagemaker.amazonaws.com,delete
 
-DeleteDomain,es.amazonaws.com,delete
-CreateApplication,elasticbeanstalk.amazonaws.com,create
-DeleteApplication,elasticbeanstalk.amazonaws.com,delete
+
