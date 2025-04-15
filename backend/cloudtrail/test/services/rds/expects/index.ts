@@ -31,3 +31,6 @@ export { default as RDS_DeleteOptionGroup } from './RDS_DeleteOptionGroup.json';
 
 export { default as RDS_ModifyDBInstance_Old } from './RDS_ModifyDBInstance_Old.json';
 export { default as RDS_ModifyDBInstance_New } from './RDS_ModifyDBInstance_New.json';
+
+export { default as RDS_CreateGlobalCluster } from './RDS_CreateGlobalCluster.json';
+export { default as RDS_DeleteGlobalCluster } from './RDS_DeleteGlobalCluster.json';

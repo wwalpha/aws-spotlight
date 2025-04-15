@@ -11,9 +11,8 @@ describe('events.amazonaws.com', () => {
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:events:ap-northeast-1:999999999999:event-bus/data-mesh-bus');
-    fs.writeFileSync(path.join(__dirname, './expects/EVENTS_CreateEventBus.json'), JSON.stringify(resource));
     expect(resource).not.toBeUndefined();
-    // expect(resource).toEqual(EXPECTS.EVENTS_CreateEventBus);
+    expect(resource).toEqual(EXPECTS.EVENTS_CreateEventBus);
   });
 
   test('EVENTS_DeleteEventBus', async () => {
@@ -21,8 +20,7 @@ describe('events.amazonaws.com', () => {
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:events:ap-northeast-1:999999999999:event-bus/data-mesh-bus');
-    fs.writeFileSync(path.join(__dirname, './expects/EVENTS_DeleteEventBus.json'), JSON.stringify(resource));
     expect(resource).not.toBeUndefined();
-    // expect(resource).toEqual(EXPECTS.EVENTS_DeleteEventBus);
+    expect(resource).toEqual(EXPECTS.EVENTS_DeleteEventBus);
   });
 });

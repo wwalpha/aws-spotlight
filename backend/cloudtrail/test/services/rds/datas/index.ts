@@ -22,3 +22,6 @@ export { default as RDS_DeleteDBParameterGroup } from './RDS_DeleteDBParameterGr
 export { default as RDS_DeleteDBSnapshot } from './RDS_DeleteDBSnapshot.json';
 export { default as RDS_DeleteDBSubnetGroup } from './RDS_DeleteDBSubnetGroup.json';
 export { default as RDS_DeleteOptionGroup } from './RDS_DeleteOptionGroup.json';
+
+export { default as RDS_CreateGlobalCluster } from './RDS_CreateGlobalCluster.json';
+export { default as RDS_DeleteGlobalCluster } from './RDS_DeleteGlobalCluster.json';

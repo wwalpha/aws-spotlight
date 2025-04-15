@@ -1,0 +1,54 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLI6HXFBLO7X",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI75JLNMP4",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-01-26T05:55:17Z"
+      }
+    }
+  },
+  "eventName": "CreateGlobalCluster",
+  "eventTime": "2023-06-23T05:30:29Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "163077eb-eb1b-4941-b1cb-2d00552af698",
+  "eventSource": "rds.amazonaws.com",
+  "requestID": "ba089fd2-ce83-48c2-97cb-e7589ad7c1dc",
+  "requestParameters": {
+    "globalClusterIdentifier": "aurora-osaka",
+    "sourceDBClusterIdentifier": "arn:aws:rds:ap-northeast-1:999999999999:cluster:aurora-tokyo"
+  },
+  "responseElements": {
+    "globalClusterIdentifier": "aurora-osaka",
+    "globalClusterResourceId": "cluster-d4ece8929b5c6e96",
+    "globalClusterArn": "arn:aws:rds::999999999999:global-cluster:aurora-osaka",
+    "status": "available",
+    "engine": "aurora-postgresql",
+    "engineVersion": "11.17",
+    "storageEncrypted": true,
+    "deletionProtection": false,
+    "globalClusterMembers": [
+      {
+        "dBClusterArn": "arn:aws:rds:ap-northeast-1:999999999999:cluster:aurora-tokyo",
+        "readers": [],
+        "isWriter": true,
+        "synchronizationStatus": "connected"
+      }
+    ]
+  },
+  "sourceIPAddress": "113.154.25.100",
+  "userAgent": "AWS Internal",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

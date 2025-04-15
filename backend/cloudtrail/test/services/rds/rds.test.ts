@@ -3,6 +3,7 @@ import { cloudtrail } from '@src/index';
 import * as Events from './datas';
 import * as EXPECTS from './expects';
 import * as fs from 'fs';
+import * as path from 'path';
 
 describe('rds.amazonaws.com', () => {
   test('CreateDBCluster', async () => {
@@ -219,5 +220,23 @@ describe('rds.amazonaws.com', () => {
     const resource = await getResource('arn:aws:rds:ap-northeast-1:999999999999:snapshot:sas-ora-server');
     expect(resource).not.toBeUndefined();
     expect(resource).toEqual(EXPECTS.RDS_DeleteDBSnapshot);
+  });
+
+  test('RDS_CreateGlobalCluster', async () => {
+    const event = await sendMessage(Events.RDS_CreateGlobalCluster);
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:rds::999999999999:global-cluster:aurora-osaka');
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.RDS_CreateGlobalCluster);
+  });
+
+  test('RDS_DeleteGlobalCluster', async () => {
+    const event = await sendMessage(Events.RDS_DeleteGlobalCluster);
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:rds::999999999999:global-cluster:aurora-osaka');
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.RDS_DeleteGlobalCluster);
   });
 });

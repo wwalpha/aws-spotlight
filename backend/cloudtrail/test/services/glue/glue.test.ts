@@ -32,9 +32,8 @@ describe('glue.amazonaws.com', () => {
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:glue:ap-northeast-1:999999999999:database/dar-database');
-    fs.writeFileSync(path.join(__dirname, './expects/GLUE_CreateCrawler.json'), JSON.stringify(resource));
     expect(resource).not.toBeUndefined();
-    // expect(resource).toEqual(EXPECTS.GLUE_CreateCrawler);
+    expect(resource).toEqual(EXPECTS.GLUE_CreateCrawler);
   });
 
   test('GLUE_DeleteCrawler', async () => {
@@ -43,8 +42,7 @@ describe('glue.amazonaws.com', () => {
     await cloudtrail(event);
 
     const resource = await getResource('arn:aws:glue:ap-northeast-1:999999999999:database/dar-database');
-    fs.writeFileSync(path.join(__dirname, './expects/GLUE_DeleteCrawler.json'), JSON.stringify(resource));
     expect(resource).not.toBeUndefined();
-    // expect(resource).toEqual(EXPECTS.GLUE_DeleteCrawler);
+    expect(resource).toEqual(EXPECTS.GLUE_DeleteCrawler);
   });
 });
