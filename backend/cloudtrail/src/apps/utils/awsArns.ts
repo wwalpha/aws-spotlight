@@ -121,6 +121,10 @@ export const ResourceARNs = {
   CLOUDFORMATION_Stack: (region: string, account: string, stackName: string) =>
     `arn:aws:cloudformation:${region}:${account}:stack/${stackName}`,
 
+  // cloudformation
+  CLOUDFORMATION_StackSet: (region: string, account: string, stackName: string) =>
+    `arn:aws:cloudformation:${region}:${account}:stackset/${stackName}`,
+
   // cloudfront
   CLOUDFRONT_Distribution: (_: string, account: string, id?: string) =>
     `arn:aws:cloudfront::${account}:distribution/${id}`,

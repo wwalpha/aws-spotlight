@@ -26,7 +26,6 @@ CreateResourceShare,ram.amazonaws.com,create
 DeleteResourceShare,ram.amazonaws.com,delete
 CreateApplication,servicecatalog-appregistry.amazonaws.com,create
 DeleteApplication,servicecatalog-appregistry.amazonaws.com,delete
-DeleteStackSet,cloudformation.amazonaws.com,delete
 CreateAccelerator,globalaccelerator.amazonaws.com,create
 DeleteAccelerator,globalaccelerator.amazonaws.com,delete
 CreateRecoveryInstanceForDrs,drs.amazonaws.com,create

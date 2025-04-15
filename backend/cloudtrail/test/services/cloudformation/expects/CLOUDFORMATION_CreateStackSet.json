@@ -1,0 +1,12 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "ResourceName": "cfn-patch-baseline-inagaki",
+  "Service": "Cloudformation",
+  "EventId": "1bc8dadb-438f-4a35-a637-c1cfbf7d095f",
+  "Status": "Created",
+  "ResourceId": "arn:aws:cloudformation:ap-northeast-1:999999999999:stackset/cfn-patch-baseline-inagaki:4f201c7f-e109-49f0-a98c-a21626180d54",
+  "EventTime": "2024-11-10T05:49:07Z",
+  "EventName": "CreateStackSet",
+  "EventSource": "cloudformation.amazonaws.com",
+  "UserName": "AWS-QuickSetup-StackSet-Local-ExecutionRole"
+}

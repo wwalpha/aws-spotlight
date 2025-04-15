@@ -1,0 +1,11 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "Service": "Cloudformation",
+  "EventId": "a3a5c6e2-4531-4c04-ab9e-152d0ee35f62",
+  "Status": "Deleted",
+  "ResourceId": "arn:aws:cloudformation:ap-northeast-1:999999999999:stackset/cfn-patch-baseline-inagaki:4f201c7f-e109-49f0-a98c-a21626180d54",
+  "EventTime": "2024-11-10T05:52:56Z",
+  "EventName": "DeleteStackSet",
+  "EventSource": "cloudformation.amazonaws.com",
+  "UserName": "test001@test.com"
+}

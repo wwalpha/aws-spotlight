@@ -1,0 +1,35 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDA2KEX3JLIYUA7ET75O",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLI6IL34ECW",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-04-08T00:22:39Z"
+      }
+    }
+  },
+  "eventName": "DeleteStackSet",
+  "eventTime": "2024-11-10T05:52:56Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "a3a5c6e2-4531-4c04-ab9e-152d0ee35f62",
+  "eventSource": "cloudformation.amazonaws.com",
+  "requestID": "65ee0144-8d07-4b33-b85f-b7105e4d7851",
+  "requestParameters": {
+    "stackSetName": "cfn-patch-baseline-inagaki:4f201c7f-e109-49f0-a98c-a21626180d54"
+  },
+  "sourceIPAddress": "223.217.83.4",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

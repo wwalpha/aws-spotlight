@@ -1,0 +1,48 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "AROA2KEX3JLIR6UKLVKZS:80ab9ef6-3b36-4dcb-8b8f-fe6b4b783856",
+    "arn": "arn:aws:sts::999999999999:assumed-role/AWS-QuickSetup-StackSet-Local-ExecutionRole/80ab9ef6-3b36-4dcb-8b8f-fe6b4b783856",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIA2KEX3JLIZPPGZ5VI",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "AROA2KEX3JLIR6UKLVKZS",
+        "arn": "arn:aws:iam::999999999999:role/AWS-QuickSetup-StackSet-Local-ExecutionRole",
+        "accountId": "999999999999",
+        "userName": "AWS-QuickSetup-StackSet-Local-ExecutionRole"
+      },
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-04-14T11:17:49Z"
+      }
+    },
+    "invokedBy": "cloudformation.amazonaws.com"
+  },
+  "eventName": "CreateStackSet",
+  "eventTime": "2024-11-10T05:49:07Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "1bc8dadb-438f-4a35-a637-c1cfbf7d095f",
+  "eventSource": "cloudformation.amazonaws.com",
+  "requestID": "d3dfe046-0686-42fc-8fd6-9c1fc5694d7f",
+  "requestParameters": {
+    "executionRoleName": "AWSCloudFormationStackSetExecutionRole",
+    "stackSetName": "cfn-patch-baseline-inagaki",
+    "tags": [],
+    "description": "cfn-patch-baseline-inagaki",
+    "clientRequestToken": "c85a6f70-c9bb-cf2e-0204-ecb875bdbe46"
+  },
+  "responseElements": {
+    "stackSetId": "cfn-patch-baseline-inagaki:4f201c7f-e109-49f0-a98c-a21626180d54"
+  },
+  "sourceIPAddress": "223.217.83.4",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

@@ -174,6 +174,10 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       rets = [response.stackId.substring(0, createStackIndex), request.stackName];
       break;
 
+    case 'CLOUDFORMATION_CreateStackSet':
+      rets = [ResourceARNs.CLOUDFORMATION_StackSet(region, account, response.stackSetId), request.stackSetName];
+      break;
+
     case 'CLOUDFORMATION_CreateChangeSet':
       rets = [ResourceARNs.CLOUDFORMATION_Stack(region, account, request.stackName), request.stackName];
       break;
@@ -625,7 +629,12 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       break;
 
     case 'IAM_CreateServiceLinkedRole':
+      if (response.role === undefined) {
+        break;
+      }
+
       rets = [response.role.arn, response.role.roleName];
+
       break;
 
     case 'EVENTS_PutRule':
@@ -799,6 +808,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       }
 
       arn = ResourceARNs.CLOUDFORMATION_Stack(region, account, stackName);
+      break;
+
+    case 'CLOUDFORMATION_DeleteStackSet':
+      arn = ResourceARNs.CLOUDFORMATION_StackSet(region, account, request.stackSetName);
       break;
 
     case 'CLOUDFRONT_DeleteDistribution':
