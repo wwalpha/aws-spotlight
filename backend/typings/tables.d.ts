@@ -110,7 +110,6 @@ export namespace Tables {
    */
   interface TUnprocessed extends TUnprocessedKey {
     eventSource: string;
-    eventId: string;
     userName: string;
     awsRegion: string;
     sourceIPAddress: string;

@@ -5,24 +5,17 @@ CreateEnvironment,airflow.amazonaws.com,create
 DeleteEnvironment,airflow.amazonaws.com,delete
 CreateServiceLinkedPublicHostedZone,route53.amazonaws.com,create
 DeleteBot,lex.amazonaws.com,delete
-CreatePipeline,codepipeline.amazonaws.com,create
-DeletePipeline,codepipeline.amazonaws.com,delete
+
 CreateGlobalCluster,rds.amazonaws.com,create
 DeleteGlobalCluster,rds.amazonaws.com,delete
 
-
 CreateApplication,elasticbeanstalk.amazonaws.com,create
 DeleteApplication,elasticbeanstalk.amazonaws.com,delete
-CreateCrawler,glue.amazonaws.com,create
-DeleteCrawler,glue.amazonaws.com,delete
+
 CreateWorkspace,grafana.amazonaws.com,create
 DeleteWorkspace,grafana.amazonaws.com,delete
-CreateDataset,databrew.amazonaws.com,create
-DeleteDataset,databrew.amazonaws.com,delete
-CreateJob,glue.amazonaws.com,create
-DeleteJob,glue.amazonaws.com,delete
-CreateEventBus,events.amazonaws.com,create
-DeleteEventBus,events.amazonaws.com,delete
+
+
 CreateWorkflow,glue.amazonaws.com,create
 DeleteWorkflow,glue.amazonaws.com,delete
 
@@ -47,7 +40,6 @@ DeleteMaintenanceWindow,ssm.amazonaws.com,delete
 CreateResourceDataSync,ssm.amazonaws.com,create
 DeleteResourceDataSync,ssm.amazonaws.com,delete
 RenewDomain,route53domains.amazonaws.com,create
-CreateServiceLinkedPrivateHostedZone,route53.amazonaws.com,create
 CreateResourceShare,ram.amazonaws.com,create
 DeleteResourceShare,ram.amazonaws.com,delete
 CreateApplication,servicecatalog-appregistry.amazonaws.com,create
@@ -66,3 +58,4 @@ DeleteGateway,storagegateway.amazonaws.com,delete
 StartNotebookInstance,sagemaker.amazonaws.com,create
 DeleteNotebookInstance,sagemaker.amazonaws.com,delete
 
+DeleteDomain,es.amazonaws.com,delete

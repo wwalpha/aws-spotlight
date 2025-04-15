@@ -19,7 +19,6 @@ export const start = async (record: CloudTrailRecord): Promise<Tables.TResource[
   const serviceName = record.eventSource.split('.')[0].toUpperCase();
   const key = `${serviceName}_${record.eventName}`;
 
-  console.log(key);
   try {
     // 登録リソース
     const regists = MULTI_TASK.includes(key) ? getRegistMultiResources(record) : getRegistSingleResource(record);
@@ -28,9 +27,10 @@ export const start = async (record: CloudTrailRecord): Promise<Tables.TResource[
     // 全部リソース
     const resources = [...regists, ...removes];
 
-    console.log(resources);
     if (resources.length === 0) {
-      console.log(`Cannot found process logic. EventId: ${key}`);
+      if (!MULTI_TASK.includes(key)) {
+        console.error(`Cannot found process logic. EventId: ${key}`);
+      }
     }
 
     // ユーザ名取得
@@ -137,17 +137,22 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       rets = [response.Arn, request.InstanceAlias];
       break;
 
-    case 'CODEDEPLOY_CreateApplication':
-      name = request.applicationName;
-      rets = [ResourceARNs.CODEDEPLOY_Application(region, account, name), name];
-      break;
-
     case 'CODEBUILD_CreateProject':
       rets = [response.project.arn, response.project.name];
       break;
 
     case 'CODECOMMIT_CreateRepository':
       rets = [ResourceARNs.CODECOMMIT_Repository(region, account, request.repositoryName), request.repositoryName];
+      break;
+
+    case 'CODEDEPLOY_CreateApplication':
+      name = request.applicationName;
+      rets = [ResourceARNs.CODEDEPLOY_Application(region, account, name), name];
+      break;
+
+    case 'CODEPIPELINE_CreatePipeline':
+      name = response.pipeline.name;
+      rets = [ResourceARNs.CODEPIPELINE_Pipeline(region, account, name), name];
       break;
 
     case 'CLOUD9_CreateEnvironmentEC2':
@@ -188,6 +193,10 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
 
     case 'COGNITO-IDENTITY_CreateIdentityPool':
       rets = [ResourceARNs.COGNITO_IDENTITYPOOL(region, account, response.identityPoolId), response.identityPoolName];
+      break;
+
+    case 'DATABREW_CreateDataset':
+      rets = [ResourceARNs.DATABREW_Dataset(region, account, request.Name), request.name];
       break;
 
     case 'DYNAMODB_CreateTable':
@@ -392,6 +401,11 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       rets = [response.fileSystem.resourceARN, response.fileSystem.fileSystemId];
       break;
 
+    case 'GLUE_CreateCrawler':
+      name = request.name;
+      rets = [ResourceARNs.GLUE_Database(region, account, name), name];
+      break;
+
     case 'GLUE_CreateDatabase':
       name = request.databaseInput.name;
       rets = [ResourceARNs.GLUE_Database(region, account, name), name];
@@ -442,7 +456,6 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       break;
 
     case 'AMAZONMQ_CreateBroker':
-      console.log([ResourceARNs.AMAZONMQ_Broker(region, account, response.brokerId), request.brokerName]);
       rets = [ResourceARNs.AMAZONMQ_Broker(region, account, response.brokerId), request.brokerName];
       break;
 
@@ -456,10 +469,12 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       break;
 
     case 'ROUTE53_CreateHostedZone':
+    case 'ROUTE53_CreateServiceLinkedPrivateHostedZone':
       rets = [
         ResourceARNs.ROUTE53_HostedZone((response.hostedZone.id as string).split('/')[2]),
         response.hostedZone.name,
       ];
+
       break;
 
     case 'ROUTE53PROFILES_CreateProfile':
@@ -613,6 +628,10 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       rets = [response.ruleArn, request.name];
       break;
 
+    case 'EVENTS_CreateEventBus':
+      rets = [response.eventBusArn, request.name];
+      break;
+
     case 'MONITORING_PutDashboard':
       name = request.dashboardName;
       rets = [ResourceARNs.MONITORING_Dashboard(region, account, name), name];
@@ -641,7 +660,6 @@ const getRegistMultiResources = (record: CloudTrailRecord): ResourceInfo[] => {
 
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
 
-  console.log(key);
   switch (key) {
     case 'EC2_RunInstances':
       return (response.instancesSet.items as any[]).map<ResourceInfo>((item: { instanceId: any }) => ({
@@ -650,6 +668,23 @@ const getRegistMultiResources = (record: CloudTrailRecord): ResourceInfo[] => {
       }));
 
     case 'EC2_CreateFleet':
+      if (response.CreateFleetResponse.fleetInstanceSet === '') {
+        return [];
+      }
+
+      if (typeof response.CreateFleetResponse.fleetInstanceSet.item.instanceIds.item === 'string') {
+        return [
+          {
+            id: ResourceARNs.EC2_Instances(
+              region,
+              account,
+              response.CreateFleetResponse.fleetInstanceSet.item.instanceIds.item
+            ),
+            name: response.CreateFleetResponse.fleetInstanceSet.item.instanceIds.item,
+          },
+        ];
+      }
+
       return (response.CreateFleetResponse.fleetInstanceSet.item.instanceIds.item as string[]).map<ResourceInfo>(
         (item) => ({
           id: ResourceARNs.EC2_Instances(region, account, item),
@@ -734,6 +769,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       arn = ResourceARNs.CODEDEPLOY_Application(region, account, request.applicationName);
       break;
 
+    case 'CODEPIPELINE_DeletePipeline':
+      arn = ResourceARNs.CODEPIPELINE_Pipeline(region, account, request.name);
+      break;
+
     case 'CODEBUILD_DeleteProject':
       arn = request.name;
       break;
@@ -773,6 +812,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       arn = ResourceARNs.COGNITO_IDENTITYPOOL(region, account, request.identityPoolId);
       break;
 
+    case 'DATABREW_DeleteDataset':
+      arn = ResourceARNs.DATABREW_Dataset(region, account, request.name);
+      break;
+
     case 'DYNAMODB_DeleteTable':
       arn = response.tableDescription.tableArn;
       break;
@@ -809,8 +852,12 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       arn = response.repository.repositoryArn;
       break;
 
-    case 'EVENTS_DeleteRule':
+    case 'EVENTS_DeleteEventBus':
       arn = ResourceARNs.EVENTS_Rule(region, account, request.name);
+      break;
+
+    case 'EVENTS_DeleteRule':
+      arn = ResourceARNs.EVENTS_EventBus(region, account, request.name);
       break;
 
     case 'FIREHOSE_DeleteDeliveryStream':
@@ -819,6 +866,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
 
     case 'FSX_DeleteFileSystem':
       arn = ResourceARNs.FSX_FileSystem(region, account, request.fileSystemId);
+      break;
+
+    case 'GLUE_DeleteCrawler':
+      arn = ResourceARNs.GLUE_Crawler(region, account, request.name);
       break;
 
     case 'GLUE_DeleteDatabase':
@@ -1276,16 +1327,15 @@ const checkAWSServiceRole = async (record: CloudTrailRecord) => {
   }
 
   if (userName === 'AWSServiceRoleForAutoScaling') {
-    const templateId = request.LaunchTemplateConfigs.LaunchTemplateSpecification.LaunchTemplateId as string;
-    const templateArn = ResourceARNs.EC2_LaunchTemplate(region, account, templateId);
-    const createdUser = await ResourceService.getUserName(templateArn);
-
-    if (!createdUser) {
-      await UnprocessedService.tempSave(record);
-      return record.userName;
-    }
-
-    return createdUser;
+    // console.log(request, response);
+    // const templateId = request.LaunchTemplateConfigs.LaunchTemplateSpecification.LaunchTemplateId as string;
+    // const templateArn = ResourceARNs.EC2_LaunchTemplate(region, account, templateId);
+    // const createdUser = await ResourceService.getUserName(templateArn);
+    // if (!createdUser) {
+    //   await UnprocessedService.tempSave(record);
+    //   return record.userName;
+    // }
+    // return createdUser;
   }
 
   return record.userName;

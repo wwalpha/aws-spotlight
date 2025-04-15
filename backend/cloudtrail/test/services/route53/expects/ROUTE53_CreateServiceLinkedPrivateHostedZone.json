@@ -1,0 +1,12 @@
+{
+  "AWSRegion": "us-east-1",
+  "ResourceName": "arms.local.",
+  "Service": "Route53",
+  "EventId": "872e173a-bed1-4e0f-9b45-29cdcfda6428",
+  "Status": "Created",
+  "ResourceId": "arn:aws:route53:::hostedzone/Z09971761XYCZ6H5FF44X",
+  "EventTime": "2023-03-09T09:23:27Z",
+  "EventName": "CreateServiceLinkedPrivateHostedZone",
+  "EventSource": "route53.amazonaws.com",
+  "UserName": "test001@test.com"
+}

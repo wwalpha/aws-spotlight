@@ -1,0 +1,73 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "CreateServiceLinkedPrivateHostedZone",
+  "eventTime": "2023-03-09T09:23:27Z",
+  "awsRegion": "us-east-1",
+  "eventID": "872e173a-bed1-4e0f-9b45-29cdcfda6428",
+  "eventSource": "route53.amazonaws.com",
+  "requestID": "6b21e218-78f6-4f31-8afc-da59fc0ba42e",
+  "requestParameters": {
+    "name": "arms.local",
+    "vPC": {
+      "vPCRegion": "us-east-1",
+      "vPCId": "vpc-082ea80f80b2ed539"
+    },
+    "callerReference": "z3645tqhrsrvrscjkkkc2hqifqdntevm-2v0fswa0-4gxxuqgqy45eum3yr4o2odhho6uc7qvnrhnjxmk44du67cmaujtq====",
+    "hostedZoneConfig": {
+      "comment": "Created by AWS Cloud Map namespace with ARN arn:aws:servicediscovery:us-east-1:999999999999:namespace/ns-5ul375wscxoujgyy",
+      "privateZone": false
+    },
+    "linkedServiceDescription": "arn:aws:servicediscovery:us-east-1:999999999999:namespace/ns-5ul375wscxoujgyy",
+    "validRRSetAliasTarget": true
+  },
+  "responseElements": {
+    "hostedZone": {
+      "id": "/hostedzone/Z09971761XYCZ6H5FF44X",
+      "name": "arms.local.",
+      "callerReference": "z3645tqhrsrvrscjkkkc2hqifqdntevm-2v0fswa0-4gxxuqgqy45eum3yr4o2odhho6uc7qvnrhnjxmk44du67cmaujtq====",
+      "config": {
+        "comment": "Created by AWS Cloud Map namespace with ARN arn:aws:servicediscovery:us-east-1:999999999999:namespace/ns-5ul375wscxoujgyy",
+        "privateZone": true
+      },
+      "resourceRecordSetCount": 2,
+      "linkedService": {
+        "servicePrincipal": "servicediscovery.amazonaws.com",
+        "description": "arn:aws:servicediscovery:us-east-1:999999999999:namespace/ns-5ul375wscxoujgyy"
+      }
+    },
+    "changeInfo": {
+      "id": "/change/C06237372T29QOKWMNH6W",
+      "status": "PENDING",
+      "submittedAt": "Mar 9, 2023 9:23:27 AM"
+    },
+    "vPC": {
+      "vPCRegion": "us-east-1",
+      "vPCId": "vpc-082ea80f80b2ed539"
+    },
+    "location": "https://route53.amazonaws.com/2015-01-01/hostedzone/Z09971761XYCZ6H5FF44X"
+  },
+  "sourceIPAddress": "servicediscovery.amazonaws.com",
+  "userAgent": "servicediscovery.amazonaws.com",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

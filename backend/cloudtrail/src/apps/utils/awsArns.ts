@@ -16,6 +16,10 @@ export const ResourceARNs = {
   BATCH_COMPUTE_ENVIRONMENT: (region: string, account: string, id?: string) =>
     `arn:aws:batch:${region}:${account}:compute-environment/${id}`,
 
+  // databrew
+  DATABREW_Dataset: (region: string, account: string, id: string) =>
+    `arn:aws:databrew:${region}:${account}:dataset/${id}`,
+
   // redshift
   REDSHIFT_Cluster: (region: string, account: string, id?: string) =>
     `arn:aws:redshift:${region}:${account}:cluster:${id}`,
@@ -56,6 +60,8 @@ export const ResourceARNs = {
 
   // glue
   GLUE_Database: (region: string, account: string, id?: string) => `arn:aws:glue:${region}:${account}:database/${id}`,
+  // glue
+  GLUE_Crawler: (region: string, account: string, id?: string) => `arn:aws:glue:${region}:${account}:crawler/${id}`,
 
   // firehose
   FIREHOSE_DeliveryStream: (region: string, account: string, id?: string) =>
@@ -67,6 +73,10 @@ export const ResourceARNs = {
 
   // events
   EVENTS_Rule: (region: string, account: string, id?: string) => `arn:aws:events:${region}:${account}:rule/${id}`,
+
+  // events
+  EVENTS_EventBus: (region: string, account: string, id: string) =>
+    `arn:aws:events:${region}:${account}:event-bus/${id}`,
 
   // elasticfilesystem
   ELASTICFILESYSTEM_FileSystem: (region: string, account: string, id?: string) =>
@@ -89,8 +99,12 @@ export const ResourceARNs = {
     `arn:aws:codecommit:${region}:${account}:${id}`,
 
   // codedeploy
-  CODEDEPLOY_Application: (region: string, account: string, id?: string) =>
+  CODEDEPLOY_Application: (region: string, account: string, id: string) =>
     `arn:aws:codedeploy:${region}:${account}:application/${id}`,
+
+  // codepipeline
+  CODEPIPELINE_Pipeline: (region: string, account: string, id: string) =>
+    `arn:aws:codepipeline:${region}:${account}:${id}`,
 
   // cognito
   COGNITO_USERPOOL: (region: string, account: string, id?: string) =>

@@ -240,6 +240,7 @@ DisableStageTransition,codepipeline.amazonaws.com,true
 UpdateConnectionInstallation,codestar-connections.amazonaws.com,true
 UseConnection,codestar-connections.amazonaws.com,true
 CreateConnection,codestar-connections.amazonaws.com,true
+
 SetIdentityPoolRoles,cognito-identity.amazonaws.com,true
 SetPrincipalTagAttributeMap,cognito-identity.amazonaws.com,true
 UpdateIdentityPool,cognito-identity.amazonaws.com,true
@@ -1508,7 +1509,10 @@ CreateReplicator,kafka.amazonaws.com,true
 DeleteReplicatorReference,kafka.amazonaws.com,true
 CreateTopic,kafka-cluster.amazonaws.com,true
 CreateDomain,codeartifact.amazonaws.com,true
+RegisterAppCode,codeconnections.amazonaws.com,true
+CreateHost,codeconnections.amazonaws.com,true
 CreateConnection,codeconnections.amazonaws.com,true
+DeleteConnection,codeconnections.amazonaws.com,true
 CreateCodeReview,codeguru-reviewer.amazonaws.com,true
 DeleteConnection,codestar-connections.amazonaws.com,true
 PutInternalTargets,events.amazonaws.com,true
@@ -1584,3 +1588,5 @@ CreateApp,sagemaker.amazonaws.com,true
 DeleteApp,sagemaker.amazonaws.com,true
 CreateDataSource,kendra.amazonaws.com,true
 DeleteDataSource,kendra.amazonaws.com,true
+CreateJob,glue.amazonaws.com,true
+DeleteJob,glue.amazonaws.com,true

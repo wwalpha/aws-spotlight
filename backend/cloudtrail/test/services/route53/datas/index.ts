@@ -7,3 +7,5 @@ export { default as ROUTE53RESOLVER_CreateResolverEndpoint } from './ROUTE53RESO
 export { default as ROUTE53RESOLVER_DeleteResolverEndpoint } from './ROUTE53RESOLVER_DeleteResolverEndpoint.json';
 export { default as ROUTE53RESOLVER_CreateResolverRule } from './ROUTE53RESOLVER_CreateResolverRule.json';
 export { default as ROUTE53RESOLVER_DeleteResolverRule } from './ROUTE53RESOLVER_DeleteResolverRule.json';
+
+export { default as ROUTE53_CreateServiceLinkedPrivateHostedZone } from './ROUTE53_CreateServiceLinkedPrivateHostedZone.json';

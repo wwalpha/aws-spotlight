@@ -74,12 +74,20 @@ export const initializeEvents = async () => {
   return EVENTS;
 };
 
-export const processRecords = async (records: CloudTrailRecord[]) => {
+export const processNewRecords = async (records: CloudTrailRecord[]) => {
   // check new event type exists
   await checkNewEventType(records);
 
   // process records
-  await registRecords(records);
+  await newRecords(records);
+};
+
+export const processRenewRecords = async (records: CloudTrailRecord[]) => {
+  // check new event type exists
+  await checkNewEventType(records);
+
+  // process records
+  await renewRecords(records);
 };
 
 /**
@@ -122,17 +130,20 @@ const addNewEventType = async (record: CloudTrailRecord) => {
   }
 };
 
-const registRecords = async (records: CloudTrailRecord[]) => {
+const newRecords = async (records: CloudTrailRecord[]) => {
+  // 無視のデータを削除する
   const unconfirmed = records.filter((item) => {
     const service = item.eventSource.split('.')[0].toUpperCase();
     const definition = EVENTS[`${service}_${item.eventName}`];
 
-    // 未確認のイベントタイプを除外
-    return definition === undefined || definition.Unconfirmed === true;
+    if (definition === undefined) {
+      return true;
+    }
+
+    return definition?.Ignore === true && definition?.Unconfirmed === true;
   });
 
   if (unconfirmed.length > 0) {
-    // 未確認のイベントは一次保存
     await Promise.all(unconfirmed.map((item) => UnprocessedService.tempSave(item)));
   }
 
@@ -157,4 +168,51 @@ const registRecords = async (records: CloudTrailRecord[]) => {
   for (const chunk of chunks) {
     await Promise.all(chunk.map((items) => ResourceService.registLatest(items)));
   }
+};
+
+const renewRecords = async (records: CloudTrailRecord[]) => {
+  // 無視のデータを削除する
+  const ignored = records.filter((item) => {
+    const service = item.eventSource.split('.')[0].toUpperCase();
+    const definition = EVENTS[`${service}_${item.eventName}`];
+
+    return definition?.Ignore === true && definition?.Unconfirmed === undefined;
+  });
+
+  if (ignored.length > 0) {
+    await UnprocessedService.removeAll(ignored);
+  }
+
+  // 処理対象のみ
+  const filtered = records.filter((item) => {
+    const service = item.eventSource.split('.')[0].toUpperCase();
+    const definition = EVENTS[`${service}_${item.eventName}`];
+
+    return definition?.Create === true || definition?.Delete === true;
+  });
+
+  // リソースのARNを取得
+  const arns = await Promise.all(filtered.map((item) => ArnService.start(item)));
+  // 二次元配列を一次元に変換
+  const mergedItems = arns.reduce((prev, curr) => {
+    return [...prev, ...curr];
+  }, [] as Tables.TResource[]);
+
+  // 100件毎に分割し、実行する
+  const chunks = _.chunk(mergedItems, 100);
+
+  for (const chunk of chunks) {
+    await Promise.all(chunk.map((items) => ResourceService.registLatest(items)));
+  }
+
+  const items = _.uniqBy(
+    filtered.map<Tables.TUnprocessedKey>((item) => ({
+      eventName: item.eventName,
+      eventTime: item.eventTime,
+    })),
+    (key) => `${key.eventName}_${key.eventTime}`
+  );
+
+  // 処理済みのデータを削除する
+  await UnprocessedService.removeAll(items);
 };

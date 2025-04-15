@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { DynamodbHelper } from '@src/apps/utils';
+import { Consts, DynamodbHelper } from '@src/apps/utils';
 import { CloudTrailRecord, Tables } from 'typings';
 import * as Queries from './queries';
 
@@ -30,9 +30,12 @@ export const update = async (item: Tables.TUnprocessed): Promise<void> => {
   await DynamodbHelper.put(Queries.put(item));
 };
 
-/** グループ削除 */
 export const remove = async (key: Tables.TUnprocessedKey): Promise<void> => {
   await DynamodbHelper.delete(Queries.del(key));
+};
+
+export const removeAll = async (keys: Tables.TUnprocessedKey[]): Promise<void> => {
+  await DynamodbHelper.truncate(Consts.Environments.TABLE_NAME_UNPROCESSED, keys);
 };
 
 /** 未処理イベント一覧 */
@@ -45,9 +48,7 @@ export const getEvents = async () => {
 
 /** 全データ取得 */
 export const getAll = async (): Promise<Tables.TUnprocessed[]> => {
-  const results = await DynamodbHelper.scan<Tables.TUnprocessed>({
-    TableName: process.env.TABLE_NAME_UNPROCESSED,
-  });
+  const results = await DynamodbHelper.scan<Tables.TUnprocessed>(Queries.scan());
 
   return results.Items;
 };
@@ -60,7 +61,6 @@ export const tempSave = async (item: CloudTrailRecord): Promise<void> => {
     eventName: item.eventName,
     eventTime: item.eventTime,
     eventSource: item.eventSource,
-    eventId: item.eventId,
     userName: item.userName,
     awsRegion: item.awsRegion,
     sourceIPAddress: item.sourceIPAddress,

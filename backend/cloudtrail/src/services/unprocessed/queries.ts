@@ -1,4 +1,4 @@
-import { DeleteItemInput, GetItemInput, PutItemInput, QueryInput } from '@alphax/dynamodb';
+import { DeleteItemInput, GetItemInput, PutItemInput, QueryInput, ScanInput } from '@alphax/dynamodb';
 import { Consts } from '@src/apps/utils';
 import { Tables } from 'typings';
 
@@ -6,6 +6,11 @@ import { Tables } from 'typings';
 export const get = (key: Tables.TUnprocessedKey): GetItemInput => ({
   TableName: Consts.Environments.TABLE_NAME_UNPROCESSED,
   Key: key,
+});
+
+/** データ取得 */
+export const scan = (): ScanInput => ({
+  TableName: Consts.Environments.TABLE_NAME_UNPROCESSED,
 });
 
 /** データ登録 */

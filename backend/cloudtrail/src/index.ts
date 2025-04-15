@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { S3Event } from 'aws-lambda';
-import { getRecords, initializeEvents, processRecords } from './apps/cloudtrail';
+import { getRecords, initializeEvents, processNewRecords, processRenewRecords } from './apps/cloudtrail';
 import { Logger } from './apps/utils';
 import { UnprocessedService } from './services';
 import { CloudTrailRecord } from 'typings';
@@ -19,7 +19,7 @@ export const cloudtrail = async (events: S3Event) => {
     await initializeEvents();
 
     // Process records
-    await processRecords(records);
+    await processNewRecords(records);
   } catch (e) {
     Logger.error(e);
   }
@@ -36,9 +36,6 @@ export const unprocess = async () => {
     return;
   }
 
-  // Truncate unprocessed table
-  await UnprocessedService.truncate();
-
   const records = dataRows.map<CloudTrailRecord>((dataRow) => ({
     eventTime: dataRow.eventTime,
     userName: dataRow.userName,
@@ -51,11 +48,11 @@ export const unprocess = async () => {
     responseElements: dataRow.responseElements,
     additionalEventData: dataRow.additionalEventData,
     requestId: dataRow.requestID,
-    eventId: dataRow.eventId,
+    eventId: dataRow.eventID,
     recipientAccountId: dataRow.recipientAccountId,
     serviceEventDetails: dataRow.serviceEventDetails,
     sharedEventId: dataRow.sharedEventId,
   }));
 
-  await processRecords(records);
+  await processRenewRecords(records);
 };

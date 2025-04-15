@@ -126,6 +126,7 @@ DeleteApplication,kinesisanalytics.amazonaws.com,delete
 CreateFunction20150331,lambda.amazonaws.com,create
 DeleteFunction20150331,lambda.amazonaws.com,delete
 CreateBot,lex.amazonaws.com,create
+DeleteBot,lex.amazonaws.com,delete
 CreateLogGroup,logs.amazonaws.com,create
 DeleteLogGroup,logs.amazonaws.com,delete
 CreateDBCluster,rds.amazonaws.com,create
@@ -154,6 +155,7 @@ CreateDBClusterSnapshot,rds.amazonaws.com,create
 CreateCluster,redshift.amazonaws.com,create
 DeleteCluster,redshift.amazonaws.com,delete
 CreateHostedZone,route53.amazonaws.com,create
+CreateServiceLinkedPrivateHostedZone,route53.amazonaws.com,create
 DeleteHostedZone,route53.amazonaws.com,delete
 CreateFirewall,network-firewall.amazonaws.com,create
 DeleteFirewall,network-firewall.amazonaws.com,delete
@@ -219,3 +221,11 @@ PutMetricAlarm,monitoring.amazonaws.com,create
 DeleteAlarms,monitoring.amazonaws.com,delete
 PutDashboard,monitoring.amazonaws.com,create
 DeleteDashboards,monitoring.amazonaws.com,delete
+CreatePipeline,codepipeline.amazonaws.com,create
+DeletePipeline,codepipeline.amazonaws.com,delete
+CreateDataset,databrew.amazonaws.com,create
+DeleteDataset,databrew.amazonaws.com,delete
+CreateEventBus,events.amazonaws.com,create
+DeleteEventBus,events.amazonaws.com,delete
+CreateCrawler,glue.amazonaws.com,create
+DeleteCrawler,glue.amazonaws.com,delete
