@@ -1,0 +1,81 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "CreateGraphqlApi",
+  "eventTime": "2024-08-30T05:45:13Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "8850fda1-d01e-4ec4-a531-e0e67c023955",
+  "eventSource": "appsync.amazonaws.com",
+  "requestID": "fa1e97d6-256d-418b-9308-b33b95da0c83",
+  "requestParameters": {
+    "additionalAuthenticationProviders": [
+      {
+        "authenticationType": "AWS_IAM"
+      }
+    ],
+    "resolverCountLimit": 0,
+    "name": "amplifyapp-staging",
+    "authenticationType": "API_KEY",
+    "queryDepthLimit": 0,
+    "tags": {
+      "user:Application": "amplifyapp",
+      "user:Stack": "staging"
+    }
+  },
+  "responseElements": {
+    "graphqlApi": {
+      "name": "amplifyapp-staging",
+      "apiId": "xj5oswqxnzdfrnhfa7vu33cbde",
+      "authenticationType": "API_KEY",
+      "arn": "arn:aws:appsync:ap-northeast-1:999999999999:apis/xj5oswqxnzdfrnhfa7vu33cbde",
+      "uris": {
+        "REALTIME": "wss://g7ox6n5fdzbs3gy7xbua6phexi.appsync-realtime-api.ap-northeast-1.amazonaws.com/graphql",
+        "GRAPHQL": "https://g7ox6n5fdzbs3gy7xbua6phexi.appsync-api.ap-northeast-1.amazonaws.com/graphql"
+      },
+      "tags": {
+        "user:Application": "amplifyapp",
+        "user:Stack": "staging"
+      },
+      "additionalAuthenticationProviders": [
+        {
+          "authenticationType": "AWS_IAM"
+        }
+      ],
+      "xrayEnabled": false,
+      "dns": {
+        "REALTIME": "g7ox6n5fdzbs3gy7xbua6phexi.appsync-realtime-api.ap-northeast-1.amazonaws.com",
+        "GRAPHQL": "g7ox6n5fdzbs3gy7xbua6phexi.appsync-api.ap-northeast-1.amazonaws.com"
+      },
+      "visibility": "GLOBAL",
+      "apiType": "GRAPHQL",
+      "owner": "999999999999",
+      "ownerContact": "***",
+      "introspectionConfig": "ENABLED",
+      "queryDepthLimit": 0,
+      "resolverCountLimit": 0
+    }
+  },
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

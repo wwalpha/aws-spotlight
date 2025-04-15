@@ -1,0 +1,75 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "CreateWorkspace",
+  "eventTime": "2022-10-20T23:03:09Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "925cde3a-41ca-4c27-a148-32115ff9f169",
+  "eventSource": "grafana.amazonaws.com",
+  "requestID": "8bfa91c0-f97b-45b3-a3b1-ebc25277546a",
+  "requestParameters": {
+    "permissionType": "SERVICE_MANAGED",
+    "workspaceNotificationDestinations": [],
+    "workspaceDescription": "***",
+    "clientToken": "c7cf050c-fcbe-4f2f-8f86-23aeac8c7573",
+    "workspaceDataSources": [
+      "CLOUDWATCH"
+    ],
+    "authenticationProviders": [
+      "SAML"
+    ],
+    "accountAccessType": "CURRENT_ACCOUNT",
+    "workspaceName": "***",
+    "workspaceRoleArn": "***"
+  },
+  "responseElements": {
+    "Access-Control-Expose-Headers": "x-amzn-RequestId,x-amzn-ErrorType,x-amzn-ErrorMessage,Date",
+    "workspace": {
+      "accountAccessType": "CURRENT_ACCOUNT",
+      "authentication": {
+        "providers": [
+          "SAML"
+        ],
+        "samlConfigurationStatus": "NOT_CONFIGURED"
+      },
+      "created": 1.666306989293E9,
+      "dataSources": [
+        "CLOUDWATCH"
+      ],
+      "description": "***",
+      "freeTrialConsumed": false,
+      "grafanaVersion": "8.4",
+      "id": "g-e108f16930",
+      "modified": 1.666306989293E9,
+      "name": "***",
+      "notificationDestinations": [],
+      "permissionType": "SERVICE_MANAGED",
+      "status": "CREATING",
+      "tags": {},
+      "workspaceRoleArn": "***"
+    }
+  },
+  "sourceIPAddress": "202.32.14.177",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

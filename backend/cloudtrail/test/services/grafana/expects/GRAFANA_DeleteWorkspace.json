@@ -1,0 +1,11 @@
+{
+  "AWSRegion": "ap-northeast-1",
+  "Service": "Grafana",
+  "EventId": "2df1a1b2-06dd-4191-a5c9-b2994c431257",
+  "Status": "Deleted",
+  "ResourceId": "arn:aws:grafana:ap-northeast-1:999999999999:/workspaces/g-e108f16930",
+  "EventTime": "2023-04-10T01:15:46Z",
+  "EventName": "DeleteWorkspace",
+  "EventSource": "grafana.amazonaws.com",
+  "UserName": "test001@test.com"
+}
