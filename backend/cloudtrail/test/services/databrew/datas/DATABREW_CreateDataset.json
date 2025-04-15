@@ -1,0 +1,50 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "CreateDataset",
+  "eventTime": "2023-04-26T07:28:45Z",
+  "awsRegion": "us-east-1",
+  "eventID": "0c5f3245-f206-4acb-af60-ee936713aa0f",
+  "eventSource": "databrew.amazonaws.com",
+  "requestID": "1d1fb160-8184-443b-89c8-5f7142eba155",
+  "requestParameters": {
+    "Input": {
+      "S3InputDefinition": {
+        "Bucket": "sudo-bkt",
+        "Key": "clinical-trials-sample.jsonl"
+      }
+    },
+    "FormatOptions": {
+      "Json": {
+        "MultiLine": true
+      }
+    },
+    "Name": "Medline---Sample-1682559647556"
+  },
+  "responseElements": {
+    "Name": "Medline---Sample-1682559647556"
+  },
+  "sourceIPAddress": "153.232.40.18",
+  "userAgent": "aws-internal/3 aws-sdk-java/1.12.451 Linux/5.4.235-151.344.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.362-b11 java/1.8.0_362 vendor/Oracle_Corporation cfg/retry-mode/standard",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

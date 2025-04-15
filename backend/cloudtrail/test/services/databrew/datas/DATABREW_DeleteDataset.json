@@ -1,0 +1,39 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "DeleteDataset",
+  "eventTime": "2023-04-27T06:09:49Z",
+  "awsRegion": "us-east-1",
+  "eventID": "a3f4c56f-a842-4413-9144-914751038925",
+  "eventSource": "databrew.amazonaws.com",
+  "requestID": "53fba735-5232-4e38-8dee-ff09bff981f4",
+  "requestParameters": {
+    "name": "Medline---Sample-1682559647556"
+  },
+  "responseElements": {
+    "Name": "Medline---Sample-1682559647556"
+  },
+  "sourceIPAddress": "153.232.40.18",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 Edg/112.0.1722.58",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

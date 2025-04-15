@@ -1,0 +1,36 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "DeleteEventBus",
+  "eventTime": "2023-05-26T00:41:58Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "30dfb1cc-11a5-4d45-a52f-f8860fd4aa44",
+  "eventSource": "events.amazonaws.com",
+  "requestID": "6b9808ca-1afe-4c44-a3da-97f3bc3af7af",
+  "requestParameters": {
+    "name": "data-mesh-bus"
+  },
+  "sourceIPAddress": "cloudformation.amazonaws.com",
+  "userAgent": "cloudformation.amazonaws.com",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}
