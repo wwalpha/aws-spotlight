@@ -996,7 +996,6 @@ EnableSagemakerServicecatalogPortfolio,sagemaker.amazonaws.com,true
 CreateCodeRepository,sagemaker.amazonaws.com,true
 StopNotebookInstance,sagemaker.amazonaws.com,true
 CreatePresignedNotebookInstanceUrl,sagemaker.amazonaws.com,true
-CreateNotebookInstance,sagemaker.amazonaws.com,true
 DeleteCodeRepository,sagemaker.amazonaws.com,true
 UpdateNotebookInstance,sagemaker.amazonaws.com,true
 CreatePresignedDomainUrl,sagemaker.amazonaws.com,true
@@ -1604,3 +1603,4 @@ DeleteApplication,servicecatalog-appregistry.amazonaws.com,true
 CreateResourceShare,ram.amazonaws.com,true
 DeleteResourceShare,ram.amazonaws.com,true
 CreateHealthCheck,route53.amazonaws.com,true
+TerminateRecoveryInstances,drs.amazonaws.com,true

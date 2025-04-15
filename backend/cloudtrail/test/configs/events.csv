@@ -252,3 +252,5 @@ CreateBucket,s3express.amazonaws.com,create
 DeleteBucket,s3express.amazonaws.com,delete
 CreateRepository,codeartifact.amazonaws.com,create
 DeleteRepository,codeartifact.amazonaws.com,delete
+CreateNotebookInstance,sagemaker.amazonaws.com,create
+DeleteNotebookInstance,sagemaker.amazonaws.com,delete

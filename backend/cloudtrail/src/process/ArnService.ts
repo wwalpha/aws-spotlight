@@ -599,6 +599,10 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       rets = [response.domainArn, request.domainName];
       break;
 
+    case 'SAGEMAKER_CreateNotebookInstance':
+      rets = [response.notebookInstanceArn, request.notebookInstanceName];
+      break;
+
     case 'SCHEDULER_CreateSchedule':
       rets = [response.scheduleArn, request.name];
       break;
@@ -1050,6 +1054,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
     case 'S3_DeleteBucket':
     case 'S3EXPRESS_DeleteBucket':
       arn = ResourceARNs.S3_Bucket(region, account, request.bucketName);
+      break;
+
+    case 'SAGEMAKER_DeleteNotebookInstance':
+      arn = ResourceARNs.SAGEMAKER_NotebookInstance(region, account, request.notebookInstanceName);
       break;
 
     case 'SAGEMAKER_DeleteDomain':

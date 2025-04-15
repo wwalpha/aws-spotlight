@@ -161,6 +161,10 @@ export const ResourceARNs = {
   SAGEMAKER_Domain: (region: string, account: string, id?: string) =>
     `arn:aws:sagemaker:${region}:${account}:domain/${id}`,
 
+  // sagemaker
+  SAGEMAKER_NotebookInstance: (region: string, account: string, id: string) =>
+    `arn:aws:sagemaker:${region}:${account}:notebook-instance/${id}`,
+
   // scheduler
   SCHEDULER_Schedule: (region: string, account: string, id?: string) =>
     `arn:aws:scheduler:${region}:${account}:schedule/default/${id}`,
