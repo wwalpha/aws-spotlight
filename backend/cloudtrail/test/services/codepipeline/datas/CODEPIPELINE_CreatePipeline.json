@@ -1,0 +1,230 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "CreatePipeline",
+  "eventTime": "2023-07-25T04:29:08Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "a6e0bea3-d8dc-4718-a377-0de1bc5025f9",
+  "eventSource": "codepipeline.amazonaws.com",
+  "requestID": "d4be3823-c7e4-42c7-bb71-f3ac30e63872",
+  "requestParameters": {
+    "pipeline": {
+      "name": "cdcd_pipleline_testv1",
+      "roleArn": "arn:aws:iam::999999999999:role/service-role/AWSCodePipelineServiceRole-ap-northeast-1-cdcd_pipleline_testv1",
+      "artifactStore": {
+        "type": "S3",
+        "location": "codepipeline-ap-northeast-1-739074143844"
+      },
+      "stages": [
+        {
+          "name": "Source",
+          "actions": [
+            {
+              "name": "Source",
+              "actionTypeId": {
+                "category": "Source",
+                "owner": "AWS",
+                "provider": "CodeCommit",
+                "version": "1"
+              },
+              "configuration": {
+                "PollForSourceChanges": "false",
+                "RepositoryName": "cicd_test_by_haji",
+                "BranchName": "master",
+                "OutputArtifactFormat": "CODE_ZIP"
+              },
+              "outputArtifacts": [
+                {
+                  "name": "SourceArtifact"
+                }
+              ],
+              "inputArtifacts": [],
+              "region": "ap-northeast-1",
+              "namespace": "SourceVariables"
+            }
+          ]
+        },
+        {
+          "name": "Build",
+          "actions": [
+            {
+              "name": "Build",
+              "actionTypeId": {
+                "category": "Build",
+                "owner": "AWS",
+                "provider": "CodeBuild",
+                "version": "1"
+              },
+              "configuration": {
+                "ProjectName": "cdcd_code_build_testv1_haji"
+              },
+              "outputArtifacts": [
+                {
+                  "name": "BuildArtifact"
+                }
+              ],
+              "inputArtifacts": [
+                {
+                  "name": "SourceArtifact"
+                }
+              ],
+              "region": "ap-northeast-1",
+              "namespace": "BuildVariables"
+            }
+          ]
+        },
+        {
+          "name": "Deploy",
+          "actions": [
+            {
+              "name": "Deploy",
+              "actionTypeId": {
+                "category": "Deploy",
+                "owner": "AWS",
+                "provider": "CodeDeploy",
+                "version": "1"
+              },
+              "configuration": {
+                "ApplicationName": "test",
+                "DeploymentGroupName": "test"
+              },
+              "outputArtifacts": [],
+              "inputArtifacts": [
+                {
+                  "name": "BuildArtifact"
+                }
+              ],
+              "region": "ap-northeast-1",
+              "namespace": "DeployVariables"
+            }
+          ]
+        }
+      ],
+      "version": 1
+    },
+    "suppressExecuteOnCreate": false
+  },
+  "responseElements": {
+    "pipeline": {
+      "name": "cdcd_pipleline_testv1",
+      "roleArn": "arn:aws:iam::999999999999:role/service-role/AWSCodePipelineServiceRole-ap-northeast-1-cdcd_pipleline_testv1",
+      "artifactStore": {
+        "type": "S3",
+        "location": "codepipeline-ap-northeast-1-739074143844"
+      },
+      "stages": [
+        {
+          "name": "Source",
+          "actions": [
+            {
+              "name": "Source",
+              "actionTypeId": {
+                "category": "Source",
+                "owner": "AWS",
+                "provider": "CodeCommit",
+                "version": "1"
+              },
+              "runOrder": 1,
+              "configuration": {
+                "PollForSourceChanges": "false",
+                "RepositoryName": "cicd_test_by_haji",
+                "BranchName": "master",
+                "OutputArtifactFormat": "CODE_ZIP"
+              },
+              "outputArtifacts": [
+                {
+                  "name": "SourceArtifact"
+                }
+              ],
+              "inputArtifacts": [],
+              "region": "ap-northeast-1",
+              "namespace": "SourceVariables"
+            }
+          ]
+        },
+        {
+          "name": "Build",
+          "actions": [
+            {
+              "name": "Build",
+              "actionTypeId": {
+                "category": "Build",
+                "owner": "AWS",
+                "provider": "CodeBuild",
+                "version": "1"
+              },
+              "runOrder": 1,
+              "configuration": {
+                "ProjectName": "cdcd_code_build_testv1_haji"
+              },
+              "outputArtifacts": [
+                {
+                  "name": "BuildArtifact"
+                }
+              ],
+              "inputArtifacts": [
+                {
+                  "name": "SourceArtifact"
+                }
+              ],
+              "region": "ap-northeast-1",
+              "namespace": "BuildVariables"
+            }
+          ]
+        },
+        {
+          "name": "Deploy",
+          "actions": [
+            {
+              "name": "Deploy",
+              "actionTypeId": {
+                "category": "Deploy",
+                "owner": "AWS",
+                "provider": "CodeDeploy",
+                "version": "1"
+              },
+              "runOrder": 1,
+              "configuration": {
+                "ApplicationName": "test",
+                "DeploymentGroupName": "test"
+              },
+              "outputArtifacts": [],
+              "inputArtifacts": [
+                {
+                  "name": "BuildArtifact"
+                }
+              ],
+              "region": "ap-northeast-1",
+              "namespace": "DeployVariables"
+            }
+          ]
+        }
+      ],
+      "version": 1,
+      "executionMode": "SUPERSEDED"
+    }
+  },
+  "sourceIPAddress": "219.114.237.16",
+  "userAgent": "AWS Internal",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

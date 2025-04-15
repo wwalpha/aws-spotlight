@@ -1,0 +1,36 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "DeletePipeline",
+  "eventTime": "2023-12-08T07:42:45Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "d5dce513-b6a3-44fa-a057-900d57739d58",
+  "eventSource": "codepipeline.amazonaws.com",
+  "requestID": "c90340e3-f791-4013-b828-b1ea1744fce2",
+  "requestParameters": {
+    "name": "cdcd_pipleline_testv1"
+  },
+  "sourceIPAddress": "126.249.32.174",
+  "userAgent": "AWS Internal",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}
