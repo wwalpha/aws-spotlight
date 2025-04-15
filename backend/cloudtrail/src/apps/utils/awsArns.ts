@@ -1,4 +1,12 @@
 export const ResourceARNs = {
+  // airflow api
+  AIRFLOW_Environment: (region: string, account: string, id?: string) =>
+    `arn:aws:airflow:${region}:${account}:environment/${id}`,
+
+  // airflow api
+  APPSYNC_GraphqlApi: (region: string, account: string, id?: string) =>
+    `arn:aws:appsync:${region}:${account}:apis/${id}`,
+
   // apigateway api
   APIGATEWAY_Api: (region: string, _: string, id?: string) => `arn:aws:apigateway:${region}::/apis/${id}`,
 
@@ -57,6 +65,10 @@ export const ResourceARNs = {
 
   // iot
   IOT_TopicRule: (region: string, account: string, id?: string) => `arn:aws:iot:${region}:${account}:rule/${id}`,
+
+  // glue
+  GRAFANA_Workspace: (region: string, account: string, id?: string) =>
+    `arn:aws:grafana:${region}:${account}:/workspaces/${id}`,
 
   // glue
   GLUE_Database: (region: string, account: string, id?: string) => `arn:aws:glue:${region}:${account}:database/${id}`,

@@ -77,6 +77,18 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
   let rets: string[] = [];
 
   switch (key) {
+    case 'APPSYNC_CreateGraphqlApi':
+      rets = [response.graphqlApi.arn, response.graphqlApi.name];
+      break;
+
+    case 'AIRFLOW_CreateEnvironment':
+      rets = [ResourceARNs.AIRFLOW_Environment(region, account, request.Name), request.name];
+      break;
+
+    case 'AMAZONMQ_CreateBroker':
+      rets = [ResourceARNs.AMAZONMQ_Broker(region, account, response.brokerId), request.brokerName];
+      break;
+
     case 'APIGATEWAY_CreateApi':
       rets = [ResourceARNs.APIGATEWAY_Api(region, account, response.apiId), response.name];
       break;
@@ -135,6 +147,10 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
 
     case 'CONNECT_CreateInstance':
       rets = [response.Arn, request.InstanceAlias];
+      break;
+
+    case 'CODEARTIFACT_CreateRepository':
+      rets = [response.repository.arn, response.repository.name];
       break;
 
     case 'CODEBUILD_CreateProject':
@@ -413,6 +429,10 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       rets = [response.fileSystem.resourceARN, response.fileSystem.fileSystemId];
       break;
 
+    case 'GRAFANA_CreateWorkspace':
+      rets = [ResourceARNs.GRAFANA_Workspace(region, account, response.workspace.id), response.workspace.name];
+      break;
+
     case 'GLUE_CreateCrawler':
       name = request.name;
       rets = [ResourceARNs.GLUE_Crawler(region, account, name), name];
@@ -430,6 +450,10 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
 
     case 'KENDRA_CreateIndex':
       rets = [response.indexArn, request.name];
+      break;
+
+    case 'KAFKA_CreateClusterV2':
+      rets = [response.clusterArn, request.clusterName];
       break;
 
     case 'KINESIS_CreateStream':
@@ -467,10 +491,6 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
 
       break;
 
-    case 'AMAZONMQ_CreateBroker':
-      rets = [ResourceARNs.AMAZONMQ_Broker(region, account, response.brokerId), request.brokerName];
-      break;
-
     case 'NETWORK-FIREWALL_CreateFirewall':
       rets = [response.firewall.firewallArn, response.firewall.firewallName];
       break;
@@ -482,6 +502,7 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
 
     case 'ROUTE53_CreateHostedZone':
     case 'ROUTE53_CreateServiceLinkedPrivateHostedZone':
+    case 'ROUTE53_CreateServiceLinkedPublicHostedZone':
       rets = [
         ResourceARNs.ROUTE53_HostedZone((response.hostedZone.id as string).split('/')[2]),
         response.hostedZone.name,
@@ -569,6 +590,7 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       break;
 
     case 'S3_CreateBucket':
+    case 'S3EXPRESS_CreateBucket':
       name = request.bucketName;
       rets = [ResourceARNs.S3_Bucket(region, account, name), name];
       break;
@@ -745,6 +767,18 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
   let scope = undefined;
 
   switch (key) {
+    case 'AIRFLOW_DeleteEnvironment':
+      arn = ResourceARNs.AIRFLOW_Environment(region, account, request.Name);
+      break;
+
+    case 'AMAZONMQ_DeleteBroker':
+      arn = ResourceARNs.AMAZONMQ_Broker(region, account, response.brokerId);
+      break;
+
+    case 'APPSYNC_DeleteGraphqlApi':
+      arn = ResourceARNs.APPSYNC_GraphqlApi(region, account, request.apiId);
+      break;
+
     case 'APIGATEWAY_DeleteApi':
       arn = ResourceARNs.APIGATEWAY_Api(region, account, request.apiId);
       break;
@@ -792,6 +826,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
 
     case 'CODEPIPELINE_DeletePipeline':
       arn = ResourceARNs.CODEPIPELINE_Pipeline(region, account, request.name);
+      break;
+
+    case 'CODEARTIFACT_DeleteRepository':
+      arn = response.repository.arn;
       break;
 
     case 'CODEBUILD_DeleteProject':
@@ -894,6 +932,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       arn = ResourceARNs.FSX_FileSystem(region, account, request.fileSystemId);
       break;
 
+    case 'GRAFANA_DeleteWorkspace':
+      arn = ResourceARNs.GRAFANA_Workspace(region, account, request.workspaceId);
+      break;
+
     case 'GLUE_DeleteCrawler':
       arn = ResourceARNs.GLUE_Crawler(region, account, request.name);
       break;
@@ -904,6 +946,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
 
     case 'IOT_DeleteTopicRule':
       arn = ResourceARNs.IOT_TopicRule(region, account, request.ruleName);
+      break;
+
+    case 'KAFKA_DeleteCluster':
+      arn = response.clusterArn;
       break;
 
     case 'KENDRA_DeleteIndex':
@@ -931,10 +977,6 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
 
     case 'LAMBDA_DeleteFunction20150331':
       arn = ResourceARNs.LAMBDA_Function20150331(region, account, request.functionName);
-      break;
-
-    case 'AMAZONMQ_DeleteBroker':
-      arn = ResourceARNs.AMAZONMQ_Broker(region, account, response.brokerId);
       break;
 
     case 'NETWORK-FIREWALL_DeleteFirewall':
@@ -1006,6 +1048,7 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       break;
 
     case 'S3_DeleteBucket':
+    case 'S3EXPRESS_DeleteBucket':
       arn = ResourceARNs.S3_Bucket(region, account, request.bucketName);
       break;
 

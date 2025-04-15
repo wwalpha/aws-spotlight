@@ -1596,3 +1596,11 @@ CreateMaintenanceWindow,ssm.amazonaws.com,true
 DeleteMaintenanceWindow,ssm.amazonaws.com,true
 CreateResourceDataSync,ssm.amazonaws.com,true
 DeleteResourceDataSync,ssm.amazonaws.com,true
+RenewDomain,route53domains.amazonaws.com,true
+DeletePipeline,osis.amazonaws.com,true
+CreatePipeline,osis.amazonaws.com,true
+CreateApplication,servicecatalog-appregistry.amazonaws.com,true
+DeleteApplication,servicecatalog-appregistry.amazonaws.com,true
+CreateResourceShare,ram.amazonaws.com,true
+DeleteResourceShare,ram.amazonaws.com,true
+CreateHealthCheck,route53.amazonaws.com,true

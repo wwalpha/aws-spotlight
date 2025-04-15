@@ -1,0 +1,57 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "DeleteRepository",
+  "eventTime": "2024-04-08T07:11:35Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "b39b37e8-ae92-466c-b740-225486bf1d1d",
+  "eventSource": "codeartifact.amazonaws.com",
+  "requestID": "6c5126dd-c7e1-4e95-9a17-7eb101b3d3e5",
+  "requestParameters": {
+    "domain": "dxc-poc-cameldemo-jamin",
+    "domainOwner": "999999999999",
+    "repository": "maven-central-store"
+  },
+  "responseElements": {
+    "repository": {
+      "name": "maven-central-store",
+      "administratorAccount": "999999999999",
+      "domainName": "dxc-poc-cameldemo-jamin",
+      "domainOwner": "999999999999",
+      "arn": "arn:aws:codeartifact:ap-northeast-1:999999999999:repository/dxc-poc-cameldemo-jamin/maven-central-store",
+      "description": "Provides Maven artifacts from Maven Central Repository.",
+      "upstreams": [],
+      "externalConnections": [
+        {
+          "externalConnectionName": "public:maven-central",
+          "packageFormat": "maven",
+          "status": "AVAILABLE"
+        }
+      ],
+      "createdTime": "Mar 4, 2024, 2:05:39 AM"
+    }
+  },
+  "sourceIPAddress": "183.76.215.124",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

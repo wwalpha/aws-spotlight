@@ -1,30 +1,10 @@
 CreateWebACL,waf-regional.amazonaws.com,create
-DeletePipeline,osis.amazonaws.com,create
-CreatePipeline,osis.amazonaws.com,delete
-CreateEnvironment,airflow.amazonaws.com,create
-DeleteEnvironment,airflow.amazonaws.com,delete
-CreateServiceLinkedPublicHostedZone,route53.amazonaws.com,create
-CreateWorkspace,grafana.amazonaws.com,create
-DeleteWorkspace,grafana.amazonaws.com,delete
+
 
 CreateFleet,appstream.amazonaws.com,create
 StopFleet,appstream.amazonaws.com,true
-CreateClusterV2,kafka.amazonaws.com,create
-DeleteCluster,kafka.amazonaws.com,delete
-CreateRepository,codeartifact.amazonaws.com,create
-DeleteRepository,codeartifact.amazonaws.com,delete
-CreateBucket,s3express.amazonaws.com,create
-DeleteBucket,s3express.amazonaws.com,delete
-CreateGraphqlApi,appsync.amazonaws.com,create
-DeleteGraphqlApi,appsync.amazonaws.com,delete
 
-RenewDomain,route53domains.amazonaws.com,create
-CreateResourceShare,ram.amazonaws.com,create
-DeleteResourceShare,ram.amazonaws.com,delete
-CreateApplication,servicecatalog-appregistry.amazonaws.com,create
-DeleteApplication,servicecatalog-appregistry.amazonaws.com,delete
-CreateAccelerator,globalaccelerator.amazonaws.com,create
-DeleteAccelerator,globalaccelerator.amazonaws.com,delete
+
 CreateRecoveryInstanceForDrs,drs.amazonaws.com,create
 TerminateRecoveryInstances,drs.amazonaws.com,delete
 ActivateGateway,storagegateway.amazonaws.com,create
