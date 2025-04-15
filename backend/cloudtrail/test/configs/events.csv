@@ -229,3 +229,5 @@ CreateEventBus,events.amazonaws.com,create
 DeleteEventBus,events.amazonaws.com,delete
 CreateCrawler,glue.amazonaws.com,create
 DeleteCrawler,glue.amazonaws.com,delete
+CreateGlobalCluster,rds.amazonaws.com,create
+DeleteGlobalCluster,rds.amazonaws.com,delete

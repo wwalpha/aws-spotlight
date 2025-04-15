@@ -403,7 +403,7 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
 
     case 'GLUE_CreateCrawler':
       name = request.name;
-      rets = [ResourceARNs.GLUE_Database(region, account, name), name];
+      rets = [ResourceARNs.GLUE_Crawler(region, account, name), name];
       break;
 
     case 'GLUE_CreateDatabase':
@@ -493,6 +493,10 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
     case 'RDS_RestoreDBClusterToPointInTime':
     case 'RDS_RestoreDBClusterFromSnapshot':
       rets = [response.dBClusterArn, response.dBClusterIdentifier];
+      break;
+
+    case 'RDS_CreateGlobalCluster':
+      rets = [response.globalClusterArn, response.globalClusterIdentifier];
       break;
 
     case 'RDS_CreateDBClusterParameterGroup':
@@ -853,11 +857,11 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       break;
 
     case 'EVENTS_DeleteEventBus':
-      arn = ResourceARNs.EVENTS_Rule(region, account, request.name);
+      arn = ResourceARNs.EVENTS_EventBus(region, account, request.name);
       break;
 
     case 'EVENTS_DeleteRule':
-      arn = ResourceARNs.EVENTS_EventBus(region, account, request.name);
+      arn = ResourceARNs.EVENTS_Rule(region, account, request.name);
       break;
 
     case 'FIREHOSE_DeleteDeliveryStream':
@@ -937,6 +941,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
 
     case 'RDS_DeleteDBCluster':
       arn = response.dBClusterArn;
+      break;
+
+    case 'RDS_DeleteGlobalCluster':
+      arn = response.globalClusterArn;
       break;
 
     case 'RDS_DeleteDBClusterParameterGroup':

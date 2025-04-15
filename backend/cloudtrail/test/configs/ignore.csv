@@ -1590,3 +1590,5 @@ CreateDataSource,kendra.amazonaws.com,true
 DeleteDataSource,kendra.amazonaws.com,true
 CreateJob,glue.amazonaws.com,true
 DeleteJob,glue.amazonaws.com,true
+CreateWorkflow,glue.amazonaws.com,true
+DeleteWorkflow,glue.amazonaws.com,true
