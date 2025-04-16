@@ -1,4 +1,4 @@
-name: RESUABLE) Lambda Build
+name: RESUABLE) Lambda Build for Code Package
 
 on:
   workflow_call:

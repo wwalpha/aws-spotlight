@@ -1,4 +1,4 @@
-name: COM) Lambda Build
+name: RESUABLE) Lambda Build for Container Image
 
 on:
   workflow_call:

@@ -22,7 +22,7 @@ resource "aws_lambda_function" "daily_batch" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# AWS Lambda Permission - Athena Daily Query
+# AWS Lambda Permission - Athena Daily Batch
 # ----------------------------------------------------------------------------------------------
 resource "aws_lambda_permission" "daily_batch" {
   statement_id  = "AllowExecutionFromEventBridge"
