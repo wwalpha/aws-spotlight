@@ -2,19 +2,6 @@ import { ResourceService } from '@src/services';
 
 const start = async () => {
   await ResourceService.registLatest({
-    ResourceId: 'arn:aws:iam::999999999999:role/EC2Role',
-    AWSRegion: 'us-east-1',
-    EventId: '99999999-6d19-4696-95f8-97e27ff57bad',
-    EventName: 'CreateRole',
-    EventSource: 'iam.amazonaws.com',
-    EventTime: '2020-10-12T05:21:23Z',
-    ResourceName: 'EC2Role',
-    Service: 'IAM',
-    Status: 'Created',
-    UserName: 'ktou@dxc.com',
-  });
-
-  await ResourceService.registLatest({
     ResourceId: 'arn:aws:lex:ap-northeast-1:334678299258:bot:test',
     AWSRegion: 'ap-northeast-1',
     EventId: '99999999-6d19-4696-95f8-97e27ff57bad',
