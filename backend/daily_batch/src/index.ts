@@ -20,7 +20,7 @@ export const handler = async () => {
   await startQuery(year.toString(), month, day);
 };
 
-const startQuery = async (year: string, month: string, day: string) => {
+const startQuery = async (year: string, month: string, day?: string) => {
   const query = `
     SELECT 
       COALESCE(useridentity.username, useridentity.sessioncontext.sessionissuer.username) as userName,
@@ -61,7 +61,7 @@ const startQuery = async (year: string, month: string, day: string) => {
         'us-west-1',
         'us-west-2'
       )
-      AND timestamp = '${year}/${month}/${day}'
+      AND ${getCondition(year, month, day)}
       AND readonly = 'false'
       AND errorcode IS NULL
       AND eventname not in (
@@ -179,3 +179,11 @@ const waitQuery = async (queryExecutionId: string) => {
 };
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const getCondition = (year: string, month: string, day?: string) => {
+  if (day === undefined) {
+    return `timestamp like '${year}/${month}/%'`;
+  }
+
+  return `timestamp = '${year}/${month}/${day}'`;
+};

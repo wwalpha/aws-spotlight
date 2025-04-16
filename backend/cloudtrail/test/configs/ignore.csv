@@ -1604,3 +1604,4 @@ CreateResourceShare,ram.amazonaws.com,true
 DeleteResourceShare,ram.amazonaws.com,true
 CreateHealthCheck,route53.amazonaws.com,true
 TerminateRecoveryInstances,drs.amazonaws.com,true
+DeleteRolePermissionsBoundary,iam.amazonaws.com,true
