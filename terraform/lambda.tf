@@ -16,7 +16,7 @@ resource "aws_lambda_function" "daily_batch" {
     variables = {
       BUCKET_NAME       = aws_s3_bucket.material.bucket
       ATHENA_WORKGROUP  = aws_athena_workgroup.this.name
-      ATHENA_TABLE_NAME = var.athena_table_name
+      ATHENA_TABLE_NAME = "${var.athena_table_name}_${local.environment}"
     }
   }
 }
