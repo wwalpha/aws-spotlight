@@ -50,6 +50,6 @@ jobs:
       - name: Terraform Apply
         run: |
           terraform init
-          terraform workspace select ${{ env.Environment }}
+          terraform workspace select $ENVIRONMENT
           terraform plan -out=setup
           terraform apply "setup"
