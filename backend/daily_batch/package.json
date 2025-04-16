@@ -5,7 +5,7 @@
   "scripts": {
     "prebuild": "rm -rf dist",
     "build": "tsc",
-    "postbuild": "cd dist && zip -rq ../dist.zip .",
+    "postbuild": "cd dist && zip -rq ./dist.zip . && aws lambda update-function-code --function-name spotlight-dailybatch-dev --zip-file fileb://./dist.zip --region us-east-1",
     "debug": "ts-node -r dotenv/config src/index.ts"
   },
   "dependencies": {
