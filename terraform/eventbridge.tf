@@ -11,6 +11,7 @@ resource "aws_cloudwatch_event_rule" "athena_daily_batch" {
 # AWS CloudWatch Event Target - Athena Daily Batch
 # ----------------------------------------------------------------------------------------------
 resource "aws_cloudwatch_event_target" "athena_daily_batch" {
-  rule = aws_cloudwatch_event_rule.athena_daily_batch.name
-  arn  = aws_lambda_function.daily_batch.arn
+  depends_on = [aws_lambda_function.daily_batch]
+  rule       = aws_cloudwatch_event_rule.athena_daily_batch.name
+  arn        = aws_lambda_function.daily_batch.arn
 }
