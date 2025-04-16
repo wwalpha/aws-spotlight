@@ -19,6 +19,12 @@ resource "aws_lambda_function" "daily_batch" {
       ATHENA_TABLE_NAME = "${var.athena_table_name}_${local.environment}"
     }
   }
+
+  lifecycle {
+    ignore_changes = [
+      s3_object_version,
+    ]
+  }
 }
 
 # ----------------------------------------------------------------------------------------------
