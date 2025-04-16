@@ -35,8 +35,8 @@ jobs:
     concurrency: cloudtrail
     with:
       region: ap-northeast-1
-      working-directory: backend/daily_batch
-      function-name: spotlight-dailybatch-prod
+      working-directory: backend/cloudtrail
+      function-name: spotlight-cloudtrail-process-prod
       dockerfile: Dockerfile.CloudTrail
       repository: spotlight/cloudtrail-prod
     secrets:
