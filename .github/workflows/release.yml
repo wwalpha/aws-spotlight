@@ -43,3 +43,34 @@ jobs:
     secrets:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+  Patch:
+    needs: Terraform
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend/cloudtrail
+
+    steps:
+      # source checkout
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Setup Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      # Install and Patch
+      - name: Patch
+        run: |
+          yarn install
+          yarn patch
