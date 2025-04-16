@@ -6,16 +6,16 @@ on:
       function-name:
         required: true
         type: string
-      environment:
-        required: true
-        type: string
       region:
         required: true
         type: string
       working-directory:
         required: true
         type: string
-      outputs-bucket:
+      dockerfile:
+        required: true
+        type: string
+      repository:
         required: true
         type: string
     secrets:
@@ -29,9 +29,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AWS_DEFAULT_REGION: ${{ inputs.region }}
-      S3_BUCKET: ${{ inputs.outputs-bucket }}
       FUNCTION_NAME: ${{ inputs.function-name }}
-      Environment: ${{ inputs.environment }}
+      DOCKER_FILE: ${{ inputs.dockerfile }}
+      ECR_REPOSITORY: ${{ inputs.repository }}
     defaults:
       run:
         working-directory: ${{ inputs.working-directory }}
@@ -44,7 +44,7 @@ jobs:
       # Setup Node.js
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       # AWS Credentials
       - name: Configure AWS credentials
@@ -59,4 +59,29 @@ jobs:
         run: |
           yarn install
           yarn build
-          aws s3 cp dist.zip s3://$S3_BUCKET-$AWS_DEFAULT_REGION-$Environment/modules/$FUNCTION_NAME.zip
+
+      # ECR Login
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      # docker build and push
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -f $DOCKER_FILE -t $ECR_REPOSITORY .
+          docker tag $ECR_REPOSITORY $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker tag $ECR_REPOSITORY $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+      # Lambda Deploy
+      - name: Lambda Deploy
+        uses: appleboy/lambda-action@v0.2.0
+        with:
+          function_name: ${{ env.FUNCTION_NAME }}
+          image_uri: ${{ steps.build-image.outputs.image }}

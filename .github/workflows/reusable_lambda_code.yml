@@ -1,0 +1,60 @@
+name: RESUABLE) Lambda Build
+
+on:
+  workflow_call:
+    inputs:
+      function-name:
+        required: true
+        type: string
+      region:
+        required: true
+        type: string
+      working-directory:
+        required: true
+        type: string
+    secrets:
+      AWS_ACCESS_KEY_ID:
+        required: true
+      AWS_SECRET_ACCESS_KEY:
+        required: true
+
+jobs:
+  LAMBDA_BUILD:
+    runs-on: ubuntu-latest
+    env:
+      AWS_DEFAULT_REGION: ${{ inputs.region }}
+      FUNCTION_NAME: ${{ inputs.function-name }}
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+
+    steps:
+      # source checkout
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Setup Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Install and Build
+      - name: Build
+        run: |
+          yarn install
+          yarn build
+
+      # Install and Build
+      - name: Deploy
+        run: |
+          cd dist
+          zip -r ./module.zip .
+          aws lambda update-function-code --function-name $FUNCTION_NAME --zip-file fileb://./module.zip

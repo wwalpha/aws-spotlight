@@ -5,7 +5,7 @@ on:
     paths:
       - backend/daily_batch/**
       - backend/cloudtrail/**
-      - .github/workflows/push_backend_lambda.yml
+      - .github/workflows/push_backend.yml
     branches-ignore:
       - releases/**
   workflow_dispatch:
@@ -16,70 +16,24 @@ env:
   LAMBDA_FUNCTION_NAME_CLOUDTRAIL: spotlight-cloudtrail-process-dev
 
 jobs:
-  DailyBatch:
-    uses: ./.github/workflows/reuse_lambda.yml
+  Lambda_DailyBatch:
+    uses: ./.github/workflows/reusable_lambda_code.yml
     with:
       region: us-east-1
       working-directory: backend/daily_batch
-      environment: dev
-      outputs-bucket: spotlight-material
-      function-name: daily_batch
+      function-name: spotlight-dailybatch-dev
     secrets:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-  CloudTrailProcess:
-    runs-on: ubuntu-20.04
-    defaults:
-      run:
-        working-directory: backend/cloudtrail
-
-    steps:
-      # source checkout
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      # Setup Node.js
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      # Install and Build
-      - name: Build
-        run: |
-          yarn install
-          yarn build
-
-      # AWS Credentials
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-
-      # ECR Login
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
-
-      # docker build and push
-      - name: Build, tag, and push image to Amazon ECR
-        id: build-image
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          docker build -f "Dockerfile.CloudTrail" -t $ECR_REPOSITORY_CLOUDTRAIL .
-          docker tag $ECR_REPOSITORY_CLOUDTRAIL $ECR_REGISTRY/$ECR_REPOSITORY_CLOUDTRAIL:$IMAGE_TAG
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY_CLOUDTRAIL:$IMAGE_TAG
-          docker tag $ECR_REPOSITORY_CLOUDTRAIL $ECR_REGISTRY/$ECR_REPOSITORY_CLOUDTRAIL:latest
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY_CLOUDTRAIL:latest
-          echo "image_cloudtrail=$ECR_REGISTRY/$ECR_REPOSITORY_CLOUDTRAIL:$IMAGE_TAG" >> $GITHUB_OUTPUT
-
-      # Lambda Deploy
-      - name: Lambda Deploy
-        uses: appleboy/lambda-action@v0.2.0
-        with:
-          function_name: ${{ env.LAMBDA_FUNCTION_NAME_CLOUDTRAIL }}
-          image_uri: ${{ steps.build-image.outputs.image_cloudtrail }}
+  Lambda_CloudTrail:
+    uses: ./.github/workflows/reusable_lambda_container.yml
+    with:
+      region: us-east-1
+      working-directory: backend/cloudtrail
+      function-name: spotlight-cloudtrail-process-dev
+      dockerfile: Dockerfile.CloudTrail
+      repository: spotlight/cloudtrail-dev
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
