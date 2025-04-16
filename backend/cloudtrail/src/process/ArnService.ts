@@ -216,7 +216,7 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       break;
 
     case 'DATABREW_CreateDataset':
-      rets = [ResourceARNs.DATABREW_Dataset(region, account, request.Name), request.name];
+      rets = [ResourceARNs.DATABREW_Dataset(region, account, request.Name), request.Name];
       break;
 
     case 'DYNAMODB_CreateTable':
@@ -324,7 +324,8 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       break;
 
     case 'EC2_CreateTransitGateway':
-      rets = [response.CreateTransitGatewayResponse.transitGateway.transitGatewayArn, response.publicIp];
+      const tgw = response.CreateTransitGatewayResponse.transitGateway;
+      rets = [tgw.transitGatewayArn, tgw.transitGatewayId];
       break;
 
     case 'EC2_CreateTransitGatewayRouteTable':
@@ -702,13 +703,17 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
 };
 
 const getRegistMultiResources = (record: CloudTrailRecord): ResourceInfo[] => {
-  const { awsRegion: region, recipientAccountId: account, eventSource: eventSource, eventName: eventName } = record;
+  const { awsRegion: region, recipientAccountId: account, eventSource, eventName, userAgent } = record;
   const response = record.responseElements ? JSON.parse(record.responseElements) : {};
 
   const key = `${eventSource.split('.')[0].toUpperCase()}_${eventName}`;
 
   switch (key) {
     case 'EC2_RunInstances':
+      if (userAgent === 'elasticmapreduce.amazonaws.com') {
+        return [];
+      }
+
       return (response.instancesSet.items as any[]).map<ResourceInfo>((item: { instanceId: any }) => ({
         id: ResourceARNs.EC2_Instances(region, account, item.instanceId),
         name: item.instanceId,
@@ -762,7 +767,13 @@ const getRegistMultiResources = (record: CloudTrailRecord): ResourceInfo[] => {
 };
 
 const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<ResourceInfo[]> => {
-  const { awsRegion: region, recipientAccountId: account, eventSource: eventSource, eventName: eventName } = record;
+  const {
+    awsRegion: region,
+    recipientAccountId: account,
+    eventSource: eventSource,
+    eventName: eventName,
+    userAgent,
+  } = record;
 
   const request = record.requestParameters ? JSON.parse(record.requestParameters) : {};
   const response = record.responseElements ? JSON.parse(record.responseElements) : {};
@@ -980,7 +991,11 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       break;
 
     case 'LAMBDA_DeleteFunction20150331':
-      arn = ResourceARNs.LAMBDA_Function20150331(region, account, request.functionName);
+      if (userAgent === 'amplifybackend.amazonaws.com') {
+        arn = request.functionName;
+      } else {
+        arn = ResourceARNs.LAMBDA_Function20150331(region, account, request.functionName);
+      }
       break;
 
     case 'NETWORK-FIREWALL_DeleteFirewall':
