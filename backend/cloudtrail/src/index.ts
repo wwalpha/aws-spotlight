@@ -3,6 +3,8 @@ import { S3Event } from 'aws-lambda';
 import { getRecords, initializeEvents, processNewRecords, processRenewRecords } from './apps/cloudtrail';
 import { Logger } from './apps/utils';
 import { UnprocessedService } from './services';
+import { reports } from './apps/reports';
+
 import { CloudTrailRecord } from 'typings';
 
 export const cloudtrail = async (events: S3Event) => {
@@ -23,6 +25,8 @@ export const cloudtrail = async (events: S3Event) => {
 
     // Process unprocessed records
     await unprocess();
+
+    await reports();
   } catch (e) {
     Logger.error(e);
   }
