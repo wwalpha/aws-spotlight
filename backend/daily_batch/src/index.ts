@@ -148,12 +148,13 @@ const startQuery = async (year: string, month: string, day?: string) => {
   // wait for query to finish
   const result = await waitQuery(cmd.QueryExecutionId!);
 
+  const filename = day === undefined ? `${year}${month}.csv` : `${year}${month}${day}.csv`;
   // copy result to s3 bucket
   await s3Client.send(
     new CopyObjectCommand({
       Bucket: BUCKET_NAME,
       CopySource: result.QueryExecution!.ResultConfiguration!.OutputLocation?.substring(5),
-      Key: `CloudTrail/year=${year}/month=${month}/${year}${month}${day}.csv`,
+      Key: `CloudTrail/year=${year}/month=${month}/${filename}`,
     })
   );
 
