@@ -49,7 +49,7 @@ export const sendMessage = async (record: Record<string, any>): Promise<S3Event>
 
   const contents = parser.parse(record);
 
-  const key = `${getRandom()}.csv`;
+  const key = `test/${getRandom()}.csv`;
 
   await s3Client.send(
     new PutObjectCommand({
