@@ -9,8 +9,8 @@ on:
 
 env:
   ENVIRONMENT: prod
-  TABLE_NAME_EVENT_TYPE: spotlight-event-type
-  TABLE_NAME_UNPROCESSED: spotlight-unprocessed
+  TABLE_NAME_EVENT_TYPE: spotlight-eventtype-prod
+  TABLE_NAME_RESOURCES: spotlight-resources-prod
 
 jobs:
   Terraform:
@@ -77,8 +77,6 @@ jobs:
       # Install and Patch
       - name: Patch
         run: |
-          export TABLE_NAME_UNPROCESSED=$TABLE_NAME_UNPROCESSED-$ENVIRONMENT
-          printenv
           npm install -g ts-node typescript tsconfig-paths
           yarn install
           ts-node -r tsconfig-paths/register test/initialize/index.ts
