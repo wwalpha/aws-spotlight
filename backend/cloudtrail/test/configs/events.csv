@@ -244,8 +244,6 @@ CreateGraphqlApi,appsync.amazonaws.com,create
 DeleteGraphqlApi,appsync.amazonaws.com,delete
 CreateEnvironment,airflow.amazonaws.com,create
 DeleteEnvironment,airflow.amazonaws.com,delete
-CreateAccelerator,globalaccelerator.amazonaws.com,create
-DeleteAccelerator,globalaccelerator.amazonaws.com,delete
 CreateWorkspace,grafana.amazonaws.com,create
 DeleteWorkspace,grafana.amazonaws.com,delete
 CreateBucket,s3express.amazonaws.com,create
@@ -254,3 +252,5 @@ CreateRepository,codeartifact.amazonaws.com,create
 DeleteRepository,codeartifact.amazonaws.com,delete
 CreateNotebookInstance,sagemaker.amazonaws.com,create
 DeleteNotebookInstance,sagemaker.amazonaws.com,delete
+CreateAccelerator,globalaccelerator.amazonaws.com,create
+DeleteAccelerator,globalaccelerator.amazonaws.com,delete

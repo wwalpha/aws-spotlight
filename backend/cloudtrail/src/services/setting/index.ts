@@ -8,3 +8,8 @@ export const describe = async (key: string): Promise<Tables.Settings.ReportFilte
 
   return results?.Item;
 };
+
+/** 内容更新 */
+export const registReportFilter = async (item: Tables.Settings.ReportFilter): Promise<void> => {
+  await DynamodbHelper.put(Queries.putReportFilter(item));
+};

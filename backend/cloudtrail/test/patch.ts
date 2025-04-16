@@ -1,6 +1,14 @@
-import { ResourceService } from '@src/services';
+import { ResourceService, SettingService } from '@src/services';
 
 const start = async () => {
+  await SettingService.registReportFilter({
+    Id: 'REPORT_FILTERS',
+    Services: {
+      iam: [''],
+    },
+  });
+
+  // arn:aws:lex:ap-northeast-1:334678299258:bot:test
   await ResourceService.registLatest({
     ResourceId: 'arn:aws:lex:ap-northeast-1:334678299258:bot:test',
     AWSRegion: 'ap-northeast-1',
@@ -13,6 +21,7 @@ const start = async () => {
     UserName: 'Admin',
   });
 
+  // arn:aws:s3:::ma-bucket-sec
   await ResourceService.registLatest({
     ResourceId: 'arn:aws:s3:::ma-bucket-sec',
     AWSRegion: 'ap-northeast-1',
@@ -25,6 +34,7 @@ const start = async () => {
     UserName: 'Admin',
   });
 
+  // arn:aws:cloudformation:ap-northeast-1:334678299258:stackset/AWS-QuickSetup-SSMHostMgmt-LA-suwfw:aab47840-ccfd-4a08-84c3-fc8ccdac3eb4
   await ResourceService.registLatest({
     ResourceId:
       'arn:aws:cloudformation:ap-northeast-1:334678299258:stackset/AWS-QuickSetup-SSMHostMgmt-LA-suwfw:aab47840-ccfd-4a08-84c3-fc8ccdac3eb4',
@@ -38,6 +48,7 @@ const start = async () => {
     UserName: 'Admin',
   });
 
+  // arn:aws:ec2:ap-northeast-1:334678299258:instance/i-03e595673e21aa69a
   await ResourceService.registLatest({
     ResourceId: 'arn:aws:ec2:ap-northeast-1:334678299258:instance/i-03e595673e21aa69a',
     AWSRegion: 'ap-northeast-1',
@@ -50,6 +61,7 @@ const start = async () => {
     UserName: 'Admin',
   });
 
+  // arn:aws:cloudformation:ap-northeast-1:334678299258:stackset/AWS-QuickSetup-SSMHostMgmt-LA-t0x70:6dcebe54-c7aa-4637-b099-360f310d6845
   await ResourceService.registLatest({
     ResourceId:
       'arn:aws:cloudformation:ap-northeast-1:334678299258:stackset/AWS-QuickSetup-SSMHostMgmt-LA-t0x70:6dcebe54-c7aa-4637-b099-360f310d6845',

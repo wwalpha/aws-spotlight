@@ -16,34 +16,43 @@
       }
     }
   },
-  "eventName": "CreateResolverRule",
-  "eventTime": "2024-03-12T04:17:03Z",
-  "awsRegion": "ap-northeast-1",
-  "eventID": "77329879-2f5e-421d-a503-d37c535c30a1",
-  "eventSource": "route53resolver.amazonaws.com",
-  "requestID": "b85a4e5f-7293-46ba-a76d-914e28575a0a",
+  "eventName": "CreateAccelerator",
+  "eventTime": "2024-03-17T16:59:43Z",
+  "awsRegion": "us-west-2",
+  "eventID": "3c859938-f33e-442a-af46-0587172c0223",
+  "eventSource": "globalaccelerator.amazonaws.com",
+  "requestID": "db320171-60df-46f7-8af2-91a3b4dbe528",
   "requestParameters": {
-    "creatorRequestId": "tf-r53-resolver-rule-20240312041703839600000002",
-    "ruleType": "SYSTEM",
-    "domainName": "aws.amazon.com"
+    "name": "testGA",
+    "ipAddressType": "IPV4",
+    "enabled": false,
+    "idempotencyToken": "3473f3f6-0a22-452f-9196-b47f716c0847",
+    "tags": []
   },
   "responseElements": {
-    "resolverRule": {
-      "id": "rslvr-rr-e9a0c626755e42dc9",
-      "creatorRequestId": "tf-r53-resolver-rule-20240312041703839600000002",
-      "arn": "arn:aws:route53resolver:ap-northeast-1:999999999999:resolver-rule/rslvr-rr-e9a0c626755e42dc9",
-      "domainName": "aws.amazon.com.",
-      "status": "COMPLETE",
-      "statusMessage": "[Trace id: 1-65efd73f-226b09b149028b5c394c0722] Successfully created Resolver Rule.",
-      "ruleType": "SYSTEM",
-      "ownerId": "999999999999",
-      "shareStatus": "NOT_SHARED",
-      "creationTime": "2024-03-12T04:17:03.882991Z",
-      "modificationTime": "2024-03-12T04:17:03.882991Z"
+    "accelerator": {
+      "acceleratorArn": "arn:aws:globalaccelerator::999999999999:accelerator/3bcfb219-ffc0-46c8-801d-91510c236d87",
+      "name": "testGA",
+      "ipAddressType": "IPV4",
+      "enabled": false,
+      "ipSets": [
+        {
+          "ipFamily": "IPv4",
+          "ipAddresses": [
+            "15.197.173.94",
+            "3.33.153.170"
+          ],
+          "ipAddressFamily": "IPv4"
+        }
+      ],
+      "dnsName": "a17805c15e0252925.awsglobalaccelerator.com",
+      "status": "IN_PROGRESS",
+      "createdTime": "Mar 17, 2024, 4:59:42 PM",
+      "lastModifiedTime": "Mar 17, 2024, 4:59:43 PM"
     }
   },
-  "sourceIPAddress": "35.72.180.242",
-  "userAgent": "APN/1.0 HashiCorp/1.0 Terraform/1.6.2 (+https://www.terraform.io) terraform-provider-aws/5.40.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.50.33 (go1.21.7; linux; amd64)",
+  "sourceIPAddress": "126.126.254.16",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 Edg/121.0.0.0",
   "readOnly": false,
   "eventType": "AwsApiCall",
   "apiVersion": "2013-04-01",

@@ -10,7 +10,7 @@ const IGNORE_FILE = '../configs/ignore.csv';
 const helper = new DynamodbHelper();
 const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
 
-const start = async () => {
+export const start = async () => {
   const Events = [...getEvents(), ...getIgnore()];
 
   const allEvents = await helper.scan<Tables.TEventType>({
@@ -74,4 +74,4 @@ const getIgnore = (): Tables.TEventType[] => {
   });
 };
 
-start();
+// start();

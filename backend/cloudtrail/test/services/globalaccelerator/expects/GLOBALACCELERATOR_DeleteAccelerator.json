@@ -1,51 +1,11 @@
 {
-  "eventVersion": "1.08",
-  "userIdentity": {
-    "type": "IAMUser",
-    "principalId": "AAAAAAAAAAAAAAAAAA",
-    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
-    "accountId": "999999999999",
-    "accessKeyId": "AAAAAAAAAAAAAAAAAA",
-    "userName": "test001@test.com",
-    "sessionContext": {
-      "sessionIssuer": {},
-      "webIdFederationData": {},
-      "attributes": {
-        "mfaAuthenticated": "false",
-        "creationDate": "2021-06-05T23:37:12Z"
-      }
-    }
-  },
-  "eventName": "DeleteResolverRule",
-  "eventTime": "2024-03-12T05:06:34Z",
-  "awsRegion": "ap-northeast-1",
-  "eventID": "efc6be91-2a54-43a4-9b88-44e069196570",
-  "eventSource": "route53resolver.amazonaws.com",
-  "requestID": "b603a045-a8dc-4eb3-ba65-de25e07cc1ec",
-  "requestParameters": {
-    "resolverRuleId": "rslvr-rr-e9a0c626755e42dc9"
-  },
-  "responseElements": {
-    "resolverRule": {
-      "id": "rslvr-rr-e9a0c626755e42dc9",
-      "creatorRequestId": "tf-r53-resolver-rule-20240312041703839600000002",
-      "arn": "arn:aws:route53resolver:ap-northeast-1:999999999999:resolver-rule/rslvr-rr-e9a0c626755e42dc9",
-      "domainName": "aws.amazon.com.",
-      "status": "DELETING",
-      "statusMessage": "[Trace id: 1-65efe2da-60938737314a9e4a6e8a7a70] Deleting Resolver Rule.",
-      "ruleType": "SYSTEM",
-      "ownerId": "999999999999",
-      "shareStatus": "NOT_SHARED",
-      "creationTime": "2024-03-12T04:17:03.882991Z",
-      "modificationTime": "2024-03-12T05:06:34.948974Z"
-    }
-  },
-  "sourceIPAddress": "35.72.180.242",
-  "userAgent": "APN/1.0 HashiCorp/1.0 Terraform/1.6.2 (+https://www.terraform.io) terraform-provider-aws/5.40.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go/1.50.33 (go1.21.7; linux; amd64)",
-  "readOnly": false,
-  "eventType": "AwsApiCall",
-  "apiVersion": "2013-04-01",
-  "managementEvent": true,
-  "eventCategory": "Management",
-  "recipientAccountId": "999999999999"
+  "AWSRegion": "us-west-2",
+  "Service": "Globalaccelerator",
+  "EventId": "efc6be91-2a54-43a4-9b88-44e069196570",
+  "Status": "Deleted",
+  "ResourceId": "arn:aws:globalaccelerator::999999999999:accelerator/3bcfb219-ffc0-46c8-801d-91510c236d87",
+  "EventTime": "2024-04-13T08:00:00Z",
+  "EventName": "DeleteAccelerator",
+  "EventSource": "globalaccelerator.amazonaws.com",
+  "UserName": "test001@test.com"
 }

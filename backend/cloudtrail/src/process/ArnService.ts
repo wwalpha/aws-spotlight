@@ -430,6 +430,10 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       rets = [response.fileSystem.resourceARN, response.fileSystem.fileSystemId];
       break;
 
+    case 'GLOBALACCELERATOR_CreateAccelerator':
+      rets = [response.accelerator.acceleratorArn, response.accelerator.name];
+      break;
+
     case 'GRAFANA_CreateWorkspace':
       rets = [ResourceARNs.GRAFANA_Workspace(region, account, response.workspace.id), response.workspace.name];
       break;
@@ -945,6 +949,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
 
     case 'FSX_DeleteFileSystem':
       arn = ResourceARNs.FSX_FileSystem(region, account, request.fileSystemId);
+      break;
+
+    case 'GLOBALACCELERATOR_DeleteAccelerator':
+      arn = request.acceleratorArn;
       break;
 
     case 'GRAFANA_DeleteWorkspace':
