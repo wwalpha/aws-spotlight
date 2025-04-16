@@ -20,6 +20,9 @@ export const cloudtrail = async (events: S3Event) => {
 
     // Process records
     await processNewRecords(records);
+
+    // Process unprocessed records
+    await unprocess();
   } catch (e) {
     Logger.error(e);
   }
