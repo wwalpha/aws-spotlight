@@ -7,6 +7,9 @@ on:
       - edited
       - published
 
+env:
+  ENVIRONMENT: prod
+
 jobs:
   Terraform:
     uses: ./.github/workflows/reusable_terraform.yml
@@ -23,7 +26,7 @@ jobs:
     needs: Terraform
     concurrency: dailybatch
     with:
-      region: ap-northeast-1
+      region: us-east-1
       working-directory: backend/daily_batch
       function-name: spotlight-dailybatch-prod
     secrets:
@@ -35,7 +38,7 @@ jobs:
     needs: Terraform
     concurrency: cloudtrail
     with:
-      region: ap-northeast-1
+      region: us-east-1
       working-directory: backend/cloudtrail
       function-name: spotlight-cloudtrail-process-prod
       dockerfile: Dockerfile.CloudTrail
@@ -47,6 +50,8 @@ jobs:
   Patch:
     needs: Terraform
     runs-on: ubuntu-latest
+    env:
+      TABLE_NAME_UNPROCESSED: spotlight-unprocessed
     defaults:
       run:
         working-directory: backend/cloudtrail
@@ -72,5 +77,6 @@ jobs:
       # Install and Patch
       - name: Patch
         run: |
+          export TABLE_NAME_UNPROCESSED=$TABLE_NAME_UNPROCESSED-$ENVIRONMENT
           yarn install
-          yarn patch
+          ts-node -r tsconfig-paths/register test/patch.ts
