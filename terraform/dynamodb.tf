@@ -16,10 +16,6 @@ resource "aws_dynamodb_table" "event_type" {
     name = "EventSource"
     type = "S"
   }
-
-  lifecycle {
-    prevent_destroy = false
-  }
 }
 
 # ----------------------------------------------------------------------------------------------
@@ -62,10 +58,6 @@ resource "aws_dynamodb_table" "resource" {
     hash_key        = "EventSource"
     range_key       = "EventName"
     projection_type = "ALL"
-  }
-
-  lifecycle {
-    prevent_destroy = false
   }
 }
 
@@ -153,9 +145,5 @@ resource "aws_dynamodb_table" "settings" {
   attribute {
     name = "Id"
     type = "S"
-  }
-
-  lifecycle {
-    prevent_destroy = true
   }
 }
