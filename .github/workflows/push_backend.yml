@@ -17,6 +17,7 @@ env:
 
 jobs:
   Lambda_DailyBatch:
+    concurrency: dailybatch
     uses: ./.github/workflows/reusable_lambda_code.yml
     with:
       region: us-east-1
@@ -27,6 +28,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
   Lambda_CloudTrail:
+    concurrency: cloudtrail
     uses: ./.github/workflows/reusable_lambda_container.yml
     with:
       region: us-east-1
