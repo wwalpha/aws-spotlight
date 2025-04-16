@@ -8,13 +8,15 @@
     "build:image": "docker build -f Dockerfile.CloudTrail -t spotlight-cloudtrail .",
     "debug": "ts-node -r tsconfig-paths/register -r dotenv/config src/index.ts dotenv_config_path=.env.dev",
     "test": "jest --detectOpenHandles --forceExit --runInBand",
-    "test:local": "jest test/services/iam/iam.test.ts --forceExit --passWithNoTests",
+    "test:local": "jest test/services/sagemaker/sagemaker.test.ts --forceExit --passWithNoTests",
     "start": "node dist/index.js",
     "init:events": "ts-node -r tsconfig-paths/register -r dotenv/config test/initialize/index.ts dotenv_config_path=.env.dev",
     "report": "ts-node -r tsconfig-paths/register -r dotenv/config src/apps/reports.ts dotenv_config_path=.env.dev",
     "imp": "ts-node -r tsconfig-paths/register -r dotenv/config test/import.ts dotenv_config_path=.env.dev",
     "truncate": "ts-node -r tsconfig-paths/register -r dotenv/config test/truncate.ts dotenv_config_path=.env.dev",
-    "unpro": "npm run init:events && ts-node -r tsconfig-paths/register -r dotenv/config test/unprocess.ts dotenv_config_path=.env.dev"
+    "unpro": "ts-node -r tsconfig-paths/register -r dotenv/config test/unprocess.ts dotenv_config_path=.env.dev",
+    "reset": "npm run truncate && npm run patch && npm run init:events && npm run imp && npm run unpro && npm run report",
+    "patch": "ts-node -r tsconfig-paths/register -r dotenv/config test/patch.ts dotenv_config_path=.env.dev"
   },
   "devDependencies": {
     "@aws-sdk/client-dynamodb": "^3.782.0",

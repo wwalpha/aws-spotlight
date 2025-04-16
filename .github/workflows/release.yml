@@ -5,6 +5,7 @@ on:
     types:
       - prereleased
       - edited
+      - published
 
 jobs:
   Terraform:
