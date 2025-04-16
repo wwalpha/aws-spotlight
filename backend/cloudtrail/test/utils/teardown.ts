@@ -1,20 +1,15 @@
 import { DynamodbHelper } from '@alphax/dynamodb';
-import { DeleteTableCommand, DynamoDBClient } from '@aws-sdk/client-dynamodb';
-import { DeleteBucketCommand, DeleteObjectsCommand, ListObjectsV2Command, S3Client } from '@aws-sdk/client-s3';
+import { DeleteObjectsCommand, ListObjectsV2Command, S3Client } from '@aws-sdk/client-s3';
 
 require('dotenv').config({ path: '.env.test' });
 
 const S3_BUCKET_MATERIALS = process.env.S3_BUCKET_MATERIALS as string;
 const s3Client = new S3Client();
-const helper = new DynamodbHelper();
 
 const teardown = async () => {
-  // const s3Client = new S3Client();
-  // const dbClient = new DynamoDBClient();
-
   console.log('jest teardown start...');
 
-  // await emptyBucket(S3_BUCKET_MATERIALS);
+  await emptyBucket(S3_BUCKET_MATERIALS);
   // delete bucket
   // await s3Client.send(new DeleteBucketCommand({ Bucket: S3_BUCKET_MATERIALS }));
 
@@ -52,7 +47,5 @@ export const emptyBucket = async (bucketName: string, nextToken?: string): Promi
   // 再帰的に次のトークンを使用して続行
   await emptyBucket(bucketName, results.NextContinuationToken);
 };
-
-teardown();
 
 export default teardown;
