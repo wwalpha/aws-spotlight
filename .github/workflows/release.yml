@@ -78,5 +78,6 @@ jobs:
       - name: Patch
         run: |
           export TABLE_NAME_UNPROCESSED=$TABLE_NAME_UNPROCESSED-$ENVIRONMENT
+          npm install -g ts-node typescript tsconfig-paths
           yarn install
           ts-node -r tsconfig-paths/register test/patch.ts
