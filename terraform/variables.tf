@@ -7,6 +7,7 @@ variable "athena_database_name" {
 variable "athena_table_name" {
   description = "The name of the Athena table"
   type        = string
+  default     = "cloudtrail_daily"
 }
 
 # ----------------------------------------------------------------------------------------------
