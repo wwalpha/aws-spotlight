@@ -1,0 +1,44 @@
+name: RELEASE
+
+on:
+  release:
+    types:
+      - prereleased
+      - edited
+
+jobs:
+  Terraform:
+    uses: ./.github/workflows/reusable_terraform.yml
+    with:
+      environment: prod
+      region: us-east-1
+      working-directory: terraform
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+  Lambda_Daily_Batch:
+    uses: ./.github/workflows/reusable_lambda_code.yml
+    needs: Terraform
+    concurrency: dailybatch
+    with:
+      region: ap-northeast-1
+      working-directory: backend/daily_batch
+      function-name: spotlight-dailybatch-prod
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+  Lambda_CloudTrail:
+    uses: ./.github/workflows/reusable_lambda_container.yml
+    needs: Terraform
+    concurrency: cloudtrail
+    with:
+      region: ap-northeast-1
+      working-directory: backend/daily_batch
+      function-name: spotlight-dailybatch-prod
+      dockerfile: Dockerfile.CloudTrail
+      repository: spotlight/cloudtrail-prod
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

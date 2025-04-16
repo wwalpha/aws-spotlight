@@ -10,11 +10,6 @@ on:
       - releases/**
   workflow_dispatch:
 
-env:
-  AWS_DEFAULT_REGION: us-east-1
-  ECR_REPOSITORY_CLOUDTRAIL: spotlight/cloudtrail-dev
-  LAMBDA_FUNCTION_NAME_CLOUDTRAIL: spotlight-cloudtrail-process-dev
-
 jobs:
   Lambda_DailyBatch:
     concurrency: dailybatch
