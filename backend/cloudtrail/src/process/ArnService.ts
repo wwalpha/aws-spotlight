@@ -160,6 +160,10 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       break;
 
     case 'BACKUP_CreateBackupVault':
+      if (response.backupVaultName === 'Default') {
+        break;
+      }
+
       rets = [response.backupVaultArn, response.backupVaultName];
       break;
 
@@ -1464,7 +1468,7 @@ const checkAWSServiceRole = async (record: CloudTrailRecord) => {
   }
 
   if (userName === 'AWSServiceRoleForAutoScaling') {
-    console.log(request, response);
+    // console.log(request, response);
     // const templateId = request.LaunchTemplateConfigs.LaunchTemplateSpecification.LaunchTemplateId as string;
     // const templateArn = ResourceARNs.EC2_LaunchTemplate(region, account, templateId);
     // const createdUser = await ResourceService.getUserName(templateArn);
@@ -1484,6 +1488,7 @@ const isExcludeUser = (userName: string): Boolean => {
   if (userName === 'AWSServiceRoleForBatch') return true;
   if (userName === 'AWSServiceRoleForLambdaReplicator') return true;
   if (userName === 'AWSServiceRoleForAmazonElasticFileSystem') return true;
+  if (userName === 'AWSServiceRoleForCloudFormationStackSetsOrgMember') return true;
 
   return false;
 };
