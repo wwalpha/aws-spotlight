@@ -14,6 +14,7 @@ export const getUserName = async (record: CloudTrailRecord) => {
   // ユーザ名が空の場合、処理しない
   if (userName === '') return userName;
   if (userName === 'ARMS_GitHubService') return userName;
+  if (userName === 'test002') return userName;
 
   // AWSServiceRole から始まる場合は、ユーザ名を検索する
   if (userName.startsWith('AWSServiceRole')) {
