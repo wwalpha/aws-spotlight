@@ -44,19 +44,23 @@ export const getUserName = async (record: CloudTrailRecord) => {
     const functionName: string = request.functionName ?? response.functionName;
 
     // amplifyから作成されたリソースの場合、ユーザ名は変更しない
-    if (!functionName.startsWith('amplify-')) {
-      return userName;
+    if (functionName.startsWith('amplify-')) {
+      // amplify backendの場合、ユーザ名は変更しない
+      if (userAgent === 'amplifybackend.amazonaws.com' || userAgent === 'cloudformation.amazonaws.com') {
+        return userName;
+      }
+
+      // arn
+      const resourceId = ResourceARNs.AMPLIFY_App(region, account, functionName.split('-')[1]);
+
+      const results = await ResourceService.describe({
+        ResourceId: resourceId,
+      });
+
+      if (results !== undefined) {
+        return results.UserName;
+      }
     }
-
-    if (userAgent === 'amplifybackend.amazonaws.com' || userAgent === 'cloudformation.amazonaws.com') {
-      return userName;
-    }
-
-    // arn
-    const resourceId = ResourceARNs.AMPLIFY_App(region, account, functionName.split('-')[1]);
-
-    // ユーザ名を取得する
-    return await getResourceUserName(resourceId, record);
   }
 
   // S3 CreateBucket
@@ -64,14 +68,12 @@ export const getUserName = async (record: CloudTrailRecord) => {
     const bucketName = request.bucketName;
 
     // amplifyから作成されたリソースの場合、ユーザ名は変更しない
-    if (!bucketName.startsWith('amplify-')) {
-      return userName;
+    if (bucketName.startsWith('amplify-')) {
+      // arn
+      const resourceId = ResourceARNs.S3_Bucket(region, account, bucketName);
+      // ユーザ名を取得する
+      return await getResourceUserName(resourceId, record);
     }
-
-    // arn
-    const resourceId = ResourceARNs.S3_Bucket(region, account, bucketName);
-    // ユーザ名を取得する
-    return await getResourceUserName(resourceId, record);
   }
 
   if (Object.keys(users).includes(userName)) return users[userName];
