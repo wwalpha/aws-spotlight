@@ -96,7 +96,6 @@ const startQuery = async (year: string, month: string, day?: string) => {
       AND eventname not like 'Get%'
       AND eventname not like 'List%'
       AND eventname not like 'Initiate%'
-      AND eventname not like 'Modify%'
       AND eventname not like 'Notify%'
       AND eventname not like 'Put%'
       AND eventname not like 'Publish%'
