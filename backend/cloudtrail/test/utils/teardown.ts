@@ -1,22 +1,11 @@
-import { DynamodbHelper } from '@alphax/dynamodb';
 import { DeleteObjectsCommand, ListObjectsV2Command, S3Client } from '@aws-sdk/client-s3';
 
 require('dotenv').config({ path: '.env.test' });
 
-const S3_BUCKET_MATERIALS = process.env.S3_BUCKET_MATERIALS as string;
 const s3Client = new S3Client();
 
 const teardown = async () => {
   console.log('jest teardown start...');
-
-  await emptyBucket(S3_BUCKET_MATERIALS);
-  // delete bucket
-  // await s3Client.send(new DeleteBucketCommand({ Bucket: S3_BUCKET_MATERIALS }));
-
-  // await dbClient.send(new DeleteTableCommand({ TableName: process.env.TABLE_NAME_EVENT_TYPE as string }));
-  // await dbClient.send(new DeleteTableCommand({ TableName: process.env.TABLE_NAME_RESOURCES as string }));
-  // await dbClient.send(new DeleteTableCommand({ TableName: process.env.TABLE_NAME_SETTINGS as string }));
-  // await dbClient.send(new DeleteTableCommand({ TableName: process.env.TABLE_NAME_UNPROCESSED as string }));
 
   console.log('jest teardown end...');
 };

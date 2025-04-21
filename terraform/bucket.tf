@@ -43,18 +43,3 @@ data "archive_file" "default" {
     filename = "index.js"
   }
 }
-
-# ----------------------------------------------------------------------------------------------
-# S3 Object - Athena Daily Batch
-# ----------------------------------------------------------------------------------------------
-resource "aws_s3_object" "daily_batch" {
-  bucket = aws_s3_bucket.material.bucket
-  key    = "modules/daily_batch.zip"
-  source = data.archive_file.default.output_path
-
-  lifecycle {
-    ignore_changes = [
-      etag
-    ]
-  }
-}
