@@ -1449,10 +1449,10 @@ const getUserName = async (record: CloudTrailRecord) => {
   if (Object.keys(users).includes(userName)) return users[userName];
 
   // ロールの作成者を検索する
-  const result = await ResourceService.getByName('iam.amazonaws.com', userName);
+  const newUserName = await ResourceService.getUserName(ResourceARNs.IAM_Role(region, account, userName));
 
   // ユーザ名が見つからない場合、未処理テーブルの一次保管する
-  if (result.length !== 1) {
+  if (newUserName === undefined) {
     // cloudformation で代行生成の場合、ユーザ名は分からない
     if (userAgent === 'cloudformation.amazonaws.com') {
       return userName;
@@ -1463,9 +1463,9 @@ const getUserName = async (record: CloudTrailRecord) => {
   }
 
   // backup
-  users[userName] = result[0].UserName;
+  users[userName] = newUserName;
 
-  return result[0].UserName;
+  return newUserName;
 };
 
 const checkAWSServiceRole = async (record: CloudTrailRecord) => {
