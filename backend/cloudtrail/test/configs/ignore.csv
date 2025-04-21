@@ -1605,3 +1605,14 @@ DeleteResourceShare,ram.amazonaws.com,true
 CreateHealthCheck,route53.amazonaws.com,true
 TerminateRecoveryInstances,drs.amazonaws.com,true
 DeleteRolePermissionsBoundary,iam.amazonaws.com,true
+RegisterAppCode,codestar-connections.amazonaws.com,true
+CreateHoursOfOperationOverride,connect.amazonaws.com,true
+DeleteJob,databrew.amazonaws.com,true
+DeleteInstanceConnectEndpoint,ec2.amazonaws.com,true
+CreateDistributionConfiguration,imagebuilder.amazonaws.com,true
+CreateImagePipeline,imagebuilder.amazonaws.com,true
+CreateComponent,imagebuilder.amazonaws.com,true
+DeleteComponent,imagebuilder.amazonaws.com,true
+CreateImageRecipe,imagebuilder.amazonaws.com,true
+CreateInfrastructureConfiguration,imagebuilder.amazonaws.com,true
+CreateEmailContact,notifications-contacts.amazonaws.com,true
