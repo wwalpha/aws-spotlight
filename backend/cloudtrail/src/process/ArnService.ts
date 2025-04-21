@@ -1,5 +1,5 @@
 import { Consts, Logger, ResourceARNs } from '@src/apps/utils';
-import { capitalize, defaultTo } from 'lodash';
+import { capitalize, defaultTo, isEmpty } from 'lodash';
 import { CloudTrailRecord, ResourceInfo, Tables } from 'typings';
 import { ResourceService, UnprocessedService } from '@src/services';
 
@@ -93,6 +93,14 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
 
     case 'AIRFLOW_CreateEnvironment':
       rets = [ResourceARNs.AIRFLOW_Environment(region, account, request.Name), request.name];
+      break;
+
+    case 'AMPLIFY_CreateApp':
+      if (response.app === undefined || response.app.appArn === undefined) {
+        break;
+      }
+
+      rets = [response.app.appArn, request.name];
       break;
 
     case 'AMAZONMQ_CreateBroker':
@@ -800,6 +808,14 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       arn = ResourceARNs.AIRFLOW_Environment(region, account, request.Name);
       break;
 
+    case 'AMPLIFY_DeleteApp':
+      if (response.app === undefined || response.app.appArn === undefined) {
+        break;
+      }
+
+      arn = response.app.appArn;
+      break;
+
     case 'AMAZONMQ_DeleteBroker':
       arn = ResourceARNs.AMAZONMQ_Broker(region, account, response.brokerId);
       break;
@@ -1473,7 +1489,7 @@ const isExcludeUser = (userName: string): Boolean => {
 };
 
 const isExcludeRecord = (record: CloudTrailRecord): Boolean => {
-  if (record.sharedEventId !== undefined) return true;
+  if (!isEmpty(record.sharedEventId)) return true;
 
   return false;
 };

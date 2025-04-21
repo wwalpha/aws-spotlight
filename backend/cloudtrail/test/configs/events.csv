@@ -254,3 +254,5 @@ CreateNotebookInstance,sagemaker.amazonaws.com,create
 DeleteNotebookInstance,sagemaker.amazonaws.com,delete
 CreateAccelerator,globalaccelerator.amazonaws.com,create
 DeleteAccelerator,globalaccelerator.amazonaws.com,delete
+CreateApp,amplify.amazonaws.com,create
+DeleteApp,amplify.amazonaws.com,delete

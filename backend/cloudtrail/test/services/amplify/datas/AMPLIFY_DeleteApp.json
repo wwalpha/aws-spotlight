@@ -1,0 +1,74 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "DeleteApp",
+  "eventTime": "2024-08-30T06:08:17Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "4e2c8aae-304e-41f9-b549-a57130c63f8b",
+  "eventSource": "amplify.amazonaws.com",
+  "requestID": "a66412fb-6beb-45b9-8fc7-cec84117bccb",
+  "requestParameters": {
+    "appId": "d3dvp6yb0v6as5"
+  },
+  "responseElements": {
+    "app": {
+      "appArn": "arn:aws:amplify:ap-northeast-1:334678299258:apps/d3dvp6yb0v6as5",
+      "appId": "d3dvp6yb0v6as5",
+      "basicAuthCredentials": "***",
+      "buildSpec": "***",
+      "cacheConfig": {
+        "type": "AMPLIFY_MANAGED"
+      },
+      "createTime": 1.724998022887E9,
+      "customHeaders": "",
+      "customRules": [
+        {
+          "source": "/<*>",
+          "status": "404-200",
+          "target": "/index.html"
+        },
+        {
+          "source": "</^[^.]+$|\\\\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|ttf|map|json)$)([^.]+$)/>",
+          "status": "200",
+          "target": "/index.html"
+        }
+      ],
+      "defaultDomain": "d3dvp6yb0v6as5.amplifyapp.com",
+      "enableAutoBranchCreation": false,
+      "enableBasicAuth": false,
+      "enableBranchAutoBuild": false,
+      "enableBranchAutoDeletion": false,
+      "environmentVariables": "***",
+      "iamServiceRoleArn": "arn:aws:iam::334678299258:role/service-role/AmplifySSRLoggingRole-0d7a53d7-a46a-4a55-83d0-47a17b46d962",
+      "name": "amplify-angular-template",
+      "platform": "WEB",
+      "repository": "https://github.com/nyao-dxc/amplify-angular-template",
+      "repositoryCloneMethod": "TOKEN",
+      "updateTime": 1.724998022887E9,
+      "webhookCreateTime": 1.724998022661E9
+    }
+  },
+  "sourceIPAddress": "32.114.125.6",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 Edg/128.0.0.0",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

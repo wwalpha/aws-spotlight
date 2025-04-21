@@ -8,10 +8,8 @@ RequestCertificate,acm.amazonaws.com,true
 CancelAgreement,agreement-marketplace.amazonaws.com,true
 AcceptAgreementRequest,agreement-marketplace.amazonaws.com,true
 CreateBackendEnvironment,amplify.amazonaws.com,true
-CreateApp,amplify.amazonaws.com,true
 DeleteBackendEnvironment,amplify.amazonaws.com,true
 CreateBranch,amplify.amazonaws.com,true
-DeleteApp,amplify.amazonaws.com,true
 UpdateApp,amplify.amazonaws.com,true
 StartJob,amplify.amazonaws.com,true
 StartDeployment,amplify.amazonaws.com,true

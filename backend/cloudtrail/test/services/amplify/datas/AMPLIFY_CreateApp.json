@@ -1,0 +1,96 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "CreateApp",
+  "eventTime": "2024-08-30T06:07:03Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "2d05ac9c-a717-4593-93b7-958442d71a94",
+  "eventSource": "amplify.amazonaws.com",
+  "requestID": "313ab287-54e7-4970-a415-a297b1cc9e32",
+  "requestParameters": {
+    "customRules": [
+      {
+        "source": "/<*>",
+        "target": "/index.html",
+        "status": "404-200"
+      },
+      {
+        "source": "</^[^.]+$|\\\\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|ttf|map|json)$)([^.]+$)/>",
+        "status": "200",
+        "target": "/index.html"
+      }
+    ],
+    "iamServiceRoleArn": "arn:aws:iam::334678299258:role/service-role/AmplifySSRLoggingRole-0d7a53d7-a46a-4a55-83d0-47a17b46d962",
+    "environmentVariables": "***",
+    "buildSpec": "***",
+    "enableBasicAuth": false,
+    "name": "amplify-angular-template",
+    "cacheConfig": {
+      "type": "AMPLIFY_MANAGED"
+    },
+    "oauthToken": "***",
+    "repository": "https://github.com/nyao-dxc/amplify-angular-template",
+    "platform": "WEB"
+  },
+  "responseElements": {
+    "app": {
+      "appArn": "arn:aws:amplify:ap-northeast-1:334678299258:apps/d3dvp6yb0v6as5",
+      "appId": "d3dvp6yb0v6as5",
+      "basicAuthCredentials": "***",
+      "buildSpec": "***",
+      "cacheConfig": {
+        "type": "AMPLIFY_MANAGED"
+      },
+      "createTime": 1.724998022887E9,
+      "customHeaders": "",
+      "customRules": [
+        {
+          "source": "/<*>",
+          "status": "404-200",
+          "target": "/index.html"
+        },
+        {
+          "source": "</^[^.]+$|\\\\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|ttf|map|json)$)([^.]+$)/>",
+          "status": "200",
+          "target": "/index.html"
+        }
+      ],
+      "defaultDomain": "d3dvp6yb0v6as5.amplifyapp.com",
+      "enableAutoBranchCreation": false,
+      "enableBasicAuth": false,
+      "enableBranchAutoBuild": false,
+      "enableBranchAutoDeletion": false,
+      "environmentVariables": "***",
+      "iamServiceRoleArn": "arn:aws:iam::334678299258:role/service-role/AmplifySSRLoggingRole-0d7a53d7-a46a-4a55-83d0-47a17b46d962",
+      "name": "amplify-angular-template",
+      "platform": "WEB",
+      "repository": "https://github.com/nyao-dxc/amplify-angular-template",
+      "repositoryCloneMethod": "TOKEN",
+      "updateTime": 1.724998022887E9,
+      "webhookCreateTime": 1.724998022661E9
+    }
+  },
+  "sourceIPAddress": "32.114.125.6",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 Edg/128.0.0.0",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}
