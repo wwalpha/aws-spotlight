@@ -196,6 +196,18 @@ const renewRecords = async (records: CloudTrailRecord[]) => {
     return definition?.Create === true || definition?.Delete === true;
   });
 
+  // 重複を削除する
+  const items = _.uniqBy(
+    filtered.map<Tables.TUnprocessedKey>((item) => ({
+      eventName: item.eventName,
+      eventTime: item.eventTime,
+    })),
+    (key) => `${key.eventName}_${key.eventTime}`
+  );
+
+  // 処理予定のデータを一旦削除する
+  await UnprocessedService.removeAll(items);
+
   // リソースのARNを取得
   const arns = await Promise.all(filtered.map((item) => ArnService.start(item)));
   // 二次元配列を一次元に変換
@@ -209,15 +221,4 @@ const renewRecords = async (records: CloudTrailRecord[]) => {
   for (const chunk of chunks) {
     await Promise.all(chunk.map((items) => ResourceService.registLatest(items)));
   }
-
-  const items = _.uniqBy(
-    filtered.map<Tables.TUnprocessedKey>((item) => ({
-      eventName: item.eventName,
-      eventTime: item.eventTime,
-    })),
-    (key) => `${key.eventName}_${key.eventTime}`
-  );
-
-  // 処理済みのデータを削除する
-  await UnprocessedService.removeAll(items);
 };

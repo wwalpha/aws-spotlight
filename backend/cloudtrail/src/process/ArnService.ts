@@ -1386,7 +1386,7 @@ const getServiceName = (serviceName: string) => {
 };
 
 const getUserName = async (record: CloudTrailRecord) => {
-  const { awsRegion: region, recipientAccountId: account, userName, eventSource, eventName } = record;
+  const { awsRegion: region, recipientAccountId: account, userName, eventSource, eventName, userAgent } = record;
   const serviceName = eventSource.split('.')[0].toUpperCase();
   const key = `${serviceName}_${eventName}`;
   const request = record.requestParameters ? JSON.parse(record.requestParameters) : {};
@@ -1402,6 +1402,11 @@ const getUserName = async (record: CloudTrailRecord) => {
 
   // AWSBackupDefault から始まる場合は、ユーザ名は変更しない
   if (userName.startsWith('AWSBackupDefault')) return userName;
+  if (key === 'EC2_RunInstances' && userName.startsWith('ara-')) return userName;
+  if (key === 'EC2_TerminateInstances') return userName;
+  if (key === 'LAMBDA_DeleteFunction20150331') return userName;
+  if (key === 'COGNITO-IDP_DeleteUserPool') return userName;
+  if (key === 'CLOUDFORMATION_DeleteStack') return userName;
 
   // IAM DeleteRole
   if (key === 'IAM_DeleteRole') {
@@ -1418,6 +1423,14 @@ const getUserName = async (record: CloudTrailRecord) => {
 
     // amplifyから作成されたリソースの場合、ユーザ名は変更しない
     if (!functionName.startsWith('amplify-')) {
+      return userName;
+    }
+
+    if (userAgent === 'amplifybackend.amazonaws.com' || userAgent === 'cloudformation.amazonaws.com') {
+      return userName;
+    }
+
+    if (userName.endsWith('dxc.com')) {
       return userName;
     }
 
@@ -1453,6 +1466,11 @@ const getUserName = async (record: CloudTrailRecord) => {
 
   // ユーザ名が見つからない場合、未処理テーブルの一次保管する
   if (result.length !== 1) {
+    // cloudformation で代行生成の場合、ユーザ名は分からない
+    if (userAgent === 'cloudformation.amazonaws.com') {
+      return userName;
+    }
+
     await UnprocessedService.tempSave(record);
     return userName;
   }
@@ -1530,6 +1548,7 @@ const isExcludeUser = (userName: string): Boolean => {
   if (userName === 'AWSServiceRoleForLambdaReplicator') return true;
   if (userName === 'AWSServiceRoleForAmazonElasticFileSystem') return true;
   if (userName === 'AWSServiceRoleForCloudFormationStackSetsOrgMember') return true;
+  if (userName === 'AmazonEKSLoadBalancerControllerRole') return true;
 
   return false;
 };
