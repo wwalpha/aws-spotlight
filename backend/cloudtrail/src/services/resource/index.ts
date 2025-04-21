@@ -66,7 +66,7 @@ export const registLatest = async (item: Tables.TResource): Promise<void> => {
       TableName: Consts.Environments.TABLE_NAME_RESOURCES,
       Item: item,
       ConditionExpression:
-        'attribute_not_exists(ResourceId) OR EventTime < :EventTime OR (EventTime = :EventTime AND :Status = :STATUS) OR (EventTime = :EventTime AND UserName = :UserName)',
+        'attribute_not_exists(ResourceId) OR EventTime < :EventTime OR (EventTime = :EventTime AND :Status = :STATUS) OR (EventTime = :EventTime AND UserName <> :UserName)',
       ExpressionAttributeValues: {
         ':EventTime': item.EventTime,
         ':STATUS': 'Deleted',

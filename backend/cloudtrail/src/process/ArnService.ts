@@ -1381,7 +1381,10 @@ const getUserName = async (record: CloudTrailRecord) => {
 
   const result = await ResourceService.getByName('iam.amazonaws.com', userName);
 
-  if (result.length !== 1) return userName;
+  if (result.length !== 1) {
+    await UnprocessedService.tempSave(record);
+    return userName;
+  }
 
   // backup
   users[userName] = result[0].UserName;
@@ -1435,7 +1438,7 @@ const checkAWSServiceRole = async (record: CloudTrailRecord) => {
   }
 
   if (userName === 'AWSServiceRoleForAutoScaling') {
-    // console.log(request, response);
+    console.log(request, response);
     // const templateId = request.LaunchTemplateConfigs.LaunchTemplateSpecification.LaunchTemplateId as string;
     // const templateArn = ResourceARNs.EC2_LaunchTemplate(region, account, templateId);
     // const createdUser = await ResourceService.getUserName(templateArn);
