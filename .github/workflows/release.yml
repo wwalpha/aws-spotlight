@@ -11,6 +11,7 @@ env:
   ENVIRONMENT: prod
   TABLE_NAME_EVENT_TYPE: spotlight-eventtype-prod
   TABLE_NAME_RESOURCES: spotlight-resources-prod
+  TABLE_NAME_SETTINGS: spotlight-settings-prod
 
 jobs:
   Terraform:
