@@ -266,14 +266,6 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
 
     case 'ECS_CreateCluster':
       // Batch用のクラスター作成の場合
-      // if (userAgent === 'batch.amazonaws.com') {
-      //   const clusterArn = response.cluster.clusterArn as string;
-      //   const clusterName = response.cluster.clusterName as string;
-
-      //   rets = [clusterArn.substring(0, clusterArn.length - 37), clusterName.substring(0, clusterName.length - 37)];
-      //   break;
-      // }
-
       rets = [response.cluster.clusterArn, response.cluster.clusterName];
       break;
 
@@ -1399,6 +1391,8 @@ const getUserName = async (record: CloudTrailRecord) => {
   if (userName.startsWith('AWSServiceRole')) {
     return await checkAWSServiceRole(record);
   }
+  // dxc.com の場合、ユーザ名は変更しない
+  if (userName.endsWith('@dxc.com')) return userName;
 
   // AWSBackupDefault から始まる場合は、ユーザ名は変更しない
   if (userName.startsWith('AWSBackupDefault')) return userName;
@@ -1430,10 +1424,6 @@ const getUserName = async (record: CloudTrailRecord) => {
       return userName;
     }
 
-    if (userName.endsWith('dxc.com')) {
-      return userName;
-    }
-
     // arn
     const resourceId = ResourceARNs.AMPLIFY_App(region, account, functionName.split('-')[1]);
 
@@ -1455,9 +1445,6 @@ const getUserName = async (record: CloudTrailRecord) => {
     // ユーザ名を取得する
     return await getResourceUserName(resourceId, record);
   }
-
-  // dxc.com の場合、ユーザ名は変更しない
-  if (userName.endsWith('@dxc.com')) return userName;
 
   if (Object.keys(users).includes(userName)) return users[userName];
 
@@ -1548,7 +1535,6 @@ const isExcludeUser = (userName: string): Boolean => {
   if (userName === 'AWSServiceRoleForLambdaReplicator') return true;
   if (userName === 'AWSServiceRoleForAmazonElasticFileSystem') return true;
   if (userName === 'AWSServiceRoleForCloudFormationStackSetsOrgMember') return true;
-  if (userName === 'AmazonEKSLoadBalancerControllerRole') return true;
 
   return false;
 };

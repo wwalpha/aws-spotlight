@@ -27,6 +27,19 @@ const start = async () => {
     UserName: 'Admin',
   });
 
+  // arn:aws:iam::334678299258:role/ARMS_BatchServiceRole
+  await ResourceService.registLatest({
+    ResourceId: 'arn:aws:iam::334678299258:role/ARMS_BatchServiceRole',
+    AWSRegion: 'us-east-1',
+    EventId: '99999999-6d19-4696-95f8-97e27ff57bad',
+    EventName: 'DeleteRole',
+    EventSource: 'iam.amazonaws.com',
+    EventTime: '2023-04-30T05:21:23Z',
+    Service: 'IAM',
+    Status: 'Deleted',
+    UserName: 'ktou@dxc.com',
+  });
+
   // arn:aws:s3:::ma-bucket-sec
   await ResourceService.registLatest({
     ResourceId: 'arn:aws:s3:::ma-bucket-sec',
