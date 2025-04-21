@@ -13,13 +13,14 @@ export const getUserName = async (record: CloudTrailRecord) => {
 
   // ユーザ名が空の場合、処理しない
   if (userName === '') return userName;
+  if (userName === 'ARMS_GitHubService') return userName;
 
   // AWSServiceRole から始まる場合は、ユーザ名を検索する
   if (userName.startsWith('AWSServiceRole')) {
     return await checkAWSServiceRole(record);
   }
   // dxc.com の場合、ユーザ名は変更しない
-  if (userName.endsWith('@dxc.com')) return userName;
+  if (userName.endsWith('@dxc.com') || userName.endsWith('@amazon.co.jp')) return userName;
 
   // AWSBackupDefault から始まる場合は、ユーザ名は変更しない
   if (userName.startsWith('AWSBackupDefault')) return userName;
@@ -76,7 +77,11 @@ export const getUserName = async (record: CloudTrailRecord) => {
   if (Object.keys(users).includes(userName)) return users[userName];
 
   // ロールの作成者を検索する
-  const newUserName = await ResourceService.getUserName(ResourceARNs.IAM_Role(region, account, userName));
+  let newUserName = await ResourceService.getUserName(ResourceARNs.IAM_Role(region, account, userName));
+
+  if (newUserName === undefined) {
+    newUserName = await ResourceService.getUserName(ResourceARNs.IAM_ServiceRole(region, account, userName));
+  }
 
   // ユーザ名が見つからない場合、未処理テーブルの一次保管する
   if (newUserName === undefined) {

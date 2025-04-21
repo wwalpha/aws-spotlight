@@ -223,6 +223,9 @@ export const ResourceARNs = {
   IAM_Role: (_: string, account: string, id?: string) => `arn:aws:iam::${account}:role/${id}`,
 
   // iam
+  IAM_ServiceRole: (_: string, account: string, id?: string) => `arn:aws:iam::${account}:role/service-role/${id}`,
+
+  // iam
   IAM_User: (_: string, account: string, id?: string) => `arn:aws:iam::${account}:user/${id}`,
 
   // ec2 client vpn endpoint

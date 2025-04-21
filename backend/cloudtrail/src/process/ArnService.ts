@@ -48,7 +48,7 @@ export const start = async (record: CloudTrailRecord): Promise<Tables.TResource[
     }
 
     return resources.map<Tables.TResource>((item) => ({
-      UserName: userName,
+      UserName: isNotServiceRole(item) ? userName : 'Admin',
       ResourceId: item.id,
       ResourceName: item.name,
       EventName: record.eventName,
@@ -1406,4 +1406,8 @@ const isExcludeRecord = (record: CloudTrailRecord): Boolean => {
   }
 
   return false;
+};
+
+const isNotServiceRole = (item: ResourceInfo): Boolean => {
+  return !item.id.startsWith('arn:aws:iam::334678299258:role/aws-service-role/');
 };
