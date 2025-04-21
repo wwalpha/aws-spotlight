@@ -5,7 +5,10 @@ import { Consts } from './utils';
 const s3Client = new S3Client({ region: process.env.AWS_REGION });
 
 export const reports = async (): Promise<void> => {
-  const resources = await ResourceService.listResources();
+  // const resources = (await ResourceService.listResources()).filter(
+  //   (item) => item.EventTime <= '2025-02-01T00:00:00Z' && item.EventTime > '2023-01-01T00:00:00Z'
+  // );
+  const resources = (await ResourceService.listResources()).filter((item) => item.EventTime > '2023-01-01T00:00:00Z');
   const filters = await SettingService.describe('REPORT_FILTERS');
   const filterServices: Record<string, string[]> = filters?.Services || {};
   const filterServiceKeys = Object.keys(filterServices);

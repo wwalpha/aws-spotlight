@@ -19,6 +19,11 @@ export const start = async (record: CloudTrailRecord): Promise<Tables.TResource[
   const serviceName = record.eventSource.split('.')[0].toUpperCase();
   const key = `${serviceName}_${record.eventName}`;
 
+  // 除外対象
+  if (isExcludeRecord(record) === true) {
+    return [];
+  }
+
   try {
     // 登録リソース
     const regists = MULTI_TASK.includes(key) ? getRegistMultiResources(record) : getRegistSingleResource(record);
@@ -35,6 +40,11 @@ export const start = async (record: CloudTrailRecord): Promise<Tables.TResource[
 
     // ユーザ名取得
     const userName = await getUserName(record);
+
+    // 除外対象
+    if (isExcludeUser(userName) === true) {
+      return [];
+    }
 
     return resources.map<Tables.TResource>((item) => ({
       UserName: userName,
@@ -1450,4 +1460,20 @@ const checkAWSServiceRole = async (record: CloudTrailRecord) => {
   }
 
   return record.userName;
+};
+
+const isExcludeUser = (userName: string): Boolean => {
+  if (userName === 'AWSServiceRoleForAmazonSageMakerNotebooks') return true;
+  if (userName === 'AWSServiceRoleForAutoScaling') return true;
+  if (userName === 'AWSServiceRoleForBatch') return true;
+  if (userName === 'AWSServiceRoleForLambdaReplicator') return true;
+  if (userName === 'AWSServiceRoleForAmazonElasticFileSystem') return true;
+
+  return false;
+};
+
+const isExcludeRecord = (record: CloudTrailRecord): Boolean => {
+  if (record.sharedEventId !== undefined) return true;
+
+  return false;
 };
