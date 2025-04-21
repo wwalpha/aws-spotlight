@@ -3,6 +3,8 @@ export const ResourceARNs = {
   AIRFLOW_Environment: (region: string, account: string, id?: string) =>
     `arn:aws:airflow:${region}:${account}:environment/${id}`,
 
+  AMPLIFY_App: (region: string, account: string, id: string) => `arn:aws:amplify:${region}:${account}:apps/${id}`,
+
   // airflow api
   APPSYNC_GraphqlApi: (region: string, account: string, id?: string) =>
     `arn:aws:appsync:${region}:${account}:apis/${id}`,

@@ -96,10 +96,6 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       break;
 
     case 'AMPLIFY_CreateApp':
-      if (response.app === undefined || response.app.appArn === undefined) {
-        break;
-      }
-
       rets = [response.app.appArn, request.name];
       break;
 
@@ -160,10 +156,6 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       break;
 
     case 'BACKUP_CreateBackupVault':
-      if (response.backupVaultName === 'Default') {
-        break;
-      }
-
       rets = [response.backupVaultArn, response.backupVaultName];
       break;
 
@@ -1022,9 +1014,6 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       break;
 
     case 'LEX_DeleteBot':
-      if (!request.name) {
-        break;
-      }
       arn = ResourceARNs.LEX_Bot(region, account, request.name);
       break;
 
@@ -1397,20 +1386,72 @@ const getServiceName = (serviceName: string) => {
 };
 
 const getUserName = async (record: CloudTrailRecord) => {
-  const { userName } = record;
+  const { awsRegion: region, recipientAccountId: account, userName, eventSource, eventName } = record;
+  const serviceName = eventSource.split('.')[0].toUpperCase();
+  const key = `${serviceName}_${eventName}`;
+  const request = record.requestParameters ? JSON.parse(record.requestParameters) : {};
+  const response = record.responseElements ? JSON.parse(record.responseElements) : {};
 
+  // ユーザ名が空の場合、処理しない
   if (userName === '') return userName;
 
+  // AWSServiceRole から始まる場合は、ユーザ名を検索する
   if (userName.startsWith('AWSServiceRole')) {
-    return checkAWSServiceRole(record);
+    return await checkAWSServiceRole(record);
   }
 
+  // AWSBackupDefault から始まる場合は、ユーザ名は変更しない
   if (userName.startsWith('AWSBackupDefault')) return userName;
+
+  // IAM DeleteRole
+  if (key === 'IAM_DeleteRole') {
+    // arn
+    const resourceId = ResourceARNs.IAM_Role(region, account, request.roleName);
+
+    // ユーザ名を取得する
+    return await getResourceUserName(resourceId, record);
+  }
+
+  // Lambda CreateFunction
+  if (key === 'LAMBDA_CreateFunction20150331') {
+    const functionName: string = request.functionName ?? response.functionName;
+
+    // amplifyから作成されたリソースの場合、ユーザ名は変更しない
+    if (!functionName.startsWith('amplify-')) {
+      return userName;
+    }
+
+    // arn
+    const resourceId = ResourceARNs.AMPLIFY_App(region, account, functionName.split('-')[1]);
+
+    // ユーザ名を取得する
+    return await getResourceUserName(resourceId, record);
+  }
+
+  // S3 CreateBucket
+  if (key === 'S3_CreateBucket') {
+    const bucketName = request.bucketName;
+
+    // amplifyから作成されたリソースの場合、ユーザ名は変更しない
+    if (!bucketName.startsWith('amplify-')) {
+      return userName;
+    }
+
+    // arn
+    const resourceId = ResourceARNs.S3_Bucket(region, account, bucketName);
+    // ユーザ名を取得する
+    return await getResourceUserName(resourceId, record);
+  }
+
+  // dxc.com の場合、ユーザ名は変更しない
   if (userName.endsWith('@dxc.com')) return userName;
+
   if (Object.keys(users).includes(userName)) return users[userName];
 
+  // ロールの作成者を検索する
   const result = await ResourceService.getByName('iam.amazonaws.com', userName);
 
+  // ユーザ名が見つからない場合、未処理テーブルの一次保管する
   if (result.length !== 1) {
     await UnprocessedService.tempSave(record);
     return userName;
@@ -1494,7 +1535,35 @@ const isExcludeUser = (userName: string): Boolean => {
 };
 
 const isExcludeRecord = (record: CloudTrailRecord): Boolean => {
-  if (!isEmpty(record.sharedEventId)) return true;
+  const serviceName = record.eventSource.split('.')[0].toUpperCase();
+  const key = `${serviceName}_${record.eventName}`;
+  const request = record.requestParameters ? JSON.parse(record.requestParameters) : {};
+  const response = record.responseElements ? JSON.parse(record.responseElements) : {};
+
+  if (!isEmpty(record.sharedEventId)) {
+    return true;
+  }
+
+  if (key === 'AMPLIFY_CreateApp') {
+    return response.app === undefined || response.app.appArn === undefined;
+  }
+
+  if (key === 'LEX_DeleteBot' && !request.name) {
+    return true;
+  }
 
   return false;
+};
+
+const getResourceUserName = async (resourceId: string, record: CloudTrailRecord) => {
+  const results = await ResourceService.describe({
+    ResourceId: resourceId,
+  });
+
+  if (results === undefined) {
+    await UnprocessedService.tempSave(record);
+    return record.userName;
+  }
+
+  return results.UserName;
 };

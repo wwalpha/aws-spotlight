@@ -155,18 +155,23 @@ const newRecords = async (records: CloudTrailRecord[]) => {
     return definition?.Create === true || definition?.Delete === true;
   });
 
-  // リソースのARNを取得
-  const arns = await Promise.all(filtered.map((item) => ArnService.start(item)));
-  // 二次元配列を一次元に変換
-  const mergedItems = arns.reduce((prev, curr) => {
-    return [...prev, ...curr];
-  }, [] as Tables.TResource[]);
+  try {
+    // リソースのARNを取得
+    const arns = await Promise.all(filtered.map((item) => ArnService.start(item)));
 
-  // 100件毎に分割し、実行する
-  const chunks = _.chunk(mergedItems, 100);
+    // 二次元配列を一次元に変換
+    const mergedItems = arns.reduce((prev, curr) => {
+      return [...prev, ...curr];
+    }, [] as Tables.TResource[]);
 
-  for (const chunk of chunks) {
-    await Promise.all(chunk.map((items) => ResourceService.registLatest(items)));
+    // 100件毎に分割し、実行する
+    const chunks = _.chunk(mergedItems, 100);
+
+    for (const chunk of chunks) {
+      await Promise.all(chunk.map((items) => ResourceService.registLatest(items)));
+    }
+  } catch (e) {
+    console.log('Error', e);
   }
 };
 
