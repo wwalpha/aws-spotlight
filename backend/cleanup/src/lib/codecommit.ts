@@ -16,7 +16,7 @@ export const deleteCodeCommitRepository = async (arn: string): Promise<void> => 
 
   try {
     const command = new DeleteRepositoryCommand({ repositoryName });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete CodeCommit repository with repositoryName: ${repositoryName}`, error);
   }

@@ -17,7 +17,7 @@ export const deleteRoute53HostedZone = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteHostedZoneCommand({ Id: hostedZoneId });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Route53 Hosted Zone with hostedZoneId: ${hostedZoneId}`, error);
   }
@@ -42,7 +42,7 @@ export const deleteRoute53Profile = async (arn: string): Promise<void> => {
     const command = new DeleteProfileCommand({
       ProfileId: profileId,
     });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Route53 Profile with ID: ${profileId}`, error);
   }

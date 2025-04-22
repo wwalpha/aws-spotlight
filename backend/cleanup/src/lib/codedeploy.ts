@@ -16,7 +16,7 @@ export const deleteCodeDeployApplication = async (arn: string): Promise<void> =>
 
   try {
     const command = new DeleteApplicationCommand({ applicationName });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete CodeDeploy application with applicationName: ${applicationName}`, error);
   }

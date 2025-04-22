@@ -16,7 +16,7 @@ export const deleteS3Bucket = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteBucketCommand({ Bucket: bucketName });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete S3 Bucket with name: ${bucketName}`, error);
   }

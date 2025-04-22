@@ -16,7 +16,7 @@ export const deleteConnectInstance = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteInstanceCommand({ InstanceId: instanceId });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Amazon Connect instance with instanceId: ${instanceId}`, error);
   }

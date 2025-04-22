@@ -11,7 +11,7 @@ export const deleteCognitoIdentityPool = async (identityPoolId: string): Promise
 
   try {
     const command = new DeleteIdentityPoolCommand({ IdentityPoolId: identityPoolId });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Cognito Identity Pool with ID: ${identityPoolId}`, error);
   }
@@ -33,7 +33,7 @@ export const deleteCognitoUserPool = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteUserPoolCommand({ UserPoolId: userPoolId });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Cognito User Pool with userPoolId: ${userPoolId}`, error);
   }

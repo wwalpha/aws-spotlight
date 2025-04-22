@@ -23,7 +23,7 @@ export const deleteCloudFrontDistribution = async (arn: string): Promise<void> =
     const getConfigCommand = new GetDistributionConfigCommand({ Id: distributionId });
     const { ETag, DistributionConfig } = await client.send(getConfigCommand);
 
-    if (DistributionConfig.Enabled) {
+    if (DistributionConfig?.Enabled) {
       DistributionConfig.Enabled = false;
       const updateCommand = new UpdateDistributionCommand({
         Id: distributionId,

@@ -16,7 +16,7 @@ export const deleteECRRepository = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteRepositoryCommand({ repositoryName, force: true });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete ECR repository with repositoryName: ${repositoryName}`, error);
   }

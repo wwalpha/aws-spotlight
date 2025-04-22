@@ -16,7 +16,7 @@ export const deleteApiGatewayRestApi = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteRestApiCommand({ restApiId });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete API Gateway REST API with restApiId: ${restApiId}`, error);
   }

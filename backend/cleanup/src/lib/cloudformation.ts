@@ -16,7 +16,7 @@ export const deleteCloudFormationStack = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteStackCommand({ StackName: stackName });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete CloudFormation stack with stackName: ${stackName}`, error);
   }
