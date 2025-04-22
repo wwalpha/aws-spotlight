@@ -1,0 +1,67 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAU33DBSJ5M2LXKXXXS",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "ASIAU33DBSJ5FB7SO5AB",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2023-01-17T01:07:17Z",
+        "mfaAuthenticated": "true"
+      }
+    }
+  },
+  "eventName": "CreateBroker",
+  "eventTime": "2024-10-31T07:06:34Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "7ef9aa07-2264-4f8d-9ba3-c04245acbbb0",
+  "eventSource": "amazonmq.amazonaws.com",
+  "requestID": "6f6e5707-f396-49bf-adc0-fd1db08e64a8",
+  "sourceIPAddress": "124.219.195.107",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0",
+  "requestParameters": {
+    "engineVersion": "3.13",
+    "deploymentMode": "CLUSTER_MULTI_AZ",
+    "authenticationStrategy": "SIMPLE",
+    "engineType": "RABBITMQ",
+    "hostInstanceType": "mq.m5.large",
+    "users": [
+      {
+        "username": "abyssinian",
+        "password": "***"
+      }
+    ],
+    "tags": {},
+    "creatorRequestId": "e6294cba-3982-416d-ac36-db31c0fd68a1",
+    "publiclyAccessible": true,
+    "encryptionOptions": {
+      "useAwsOwnedKey": true
+    },
+    "storageType": "EBS",
+    "brokerName": "rabbitmq-hashimoto-broker",
+    "logs": {
+      "general": false
+    },
+    "autoMinorVersionUpgrade": true
+  },
+  "responseElements": {
+    "brokerId": "b-0d6d99ae-a214-4bd6-a124-6593a7036bb0",
+    "brokerArn": "arn:aws:mq:ap-northeast-1:999999999999:broker:rabbitmq-hashimoto-broker:b-0d6d99ae-a214-4bd6-a124-6593a7036bb0"
+  },
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "999999999999",
+  "eventCategory": "Management",
+  "tlsDetails": {
+    "tlsVersion": "TLSv1.2",
+    "cipherSuite": "ECDHE-RSA-AES128-SHA",
+    "clientProvidedHostHeader": "ecr.ap-northeast-1.amazonaws.com"
+  },
+  "sessionCredentialFromConsole": "true"
+}

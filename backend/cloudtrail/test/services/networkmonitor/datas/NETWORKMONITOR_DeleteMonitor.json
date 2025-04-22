@@ -1,0 +1,39 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "DeleteMonitor",
+  "eventTime": "2025-04-18T13:08:58Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "f162985c-76dc-4258-8d1d-948ca83d336a",
+  "eventSource": "networkmonitor.amazonaws.com",
+  "requestID": "021d6622-d8db-46d3-a0ca-5ad895ab5d28",
+  "requestParameters": {
+    "monitorName": "zdp-webserver04-monitor"
+  },
+  "responseElements": {
+    "Access-Control-Expose-Headers": "x-amzn-RequestId,x-amzn-ErrorType,x-amzn-ErrorMessage,Date"
+  },
+  "sourceIPAddress": "221.241.162.81",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

@@ -1,0 +1,97 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "CreateFleet",
+  "eventTime": "2023-08-09T04:27:57Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "0f7a1676-6750-4c1b-9040-a29eefb0503d",
+  "eventSource": "appstream.amazonaws.com",
+  "requestID": "3bc18a49-9a9c-4839-b7cd-06650d9f381c",
+  "requestParameters": {
+    "streamView": "APP",
+    "idleDisconnectTimeoutInSeconds": 900,
+    "disconnectTimeoutInSeconds": 900,
+    "vpcConfig": {
+      "subnetIds": [
+        "subnet-0081e32e39a363569",
+        "subnet-00cc9acde91b33943"
+      ],
+      "securityGroupIds": [
+        "sg-00ed25f7e79d74b94"
+      ]
+    },
+    "description": "",
+    "imageArn": "arn:aws:appstream:ap-northeast-1::image/AppStream-WinServer2019-06-12-2023",
+    "maxUserDurationInSeconds": 57600,
+    "displayName": "MW-Demo-01",
+    "computeCapacity": {
+      "desiredInstances": 1
+    },
+    "instanceType": "stream.standard.small",
+    "name": "MW-Demo-01",
+    "fleetType": "ON_DEMAND"
+  },
+  "responseElements": {
+    "fleet": {
+      "displayName": "MW-Demo-01",
+      "instanceType": "stream.standard.small",
+      "computeCapacityStatus": {
+        "available": 0,
+        "inUse": 0,
+        "activeUserSessions": 0,
+        "reserved": 0,
+        "actualUserSessions": 0,
+        "desired": 1,
+        "running": 0,
+        "availableUserSessions": 0
+      },
+      "createdTime": "Aug 9, 2023 4:27:57 AM",
+      "state": "STOPPED",
+      "fleetType": "ON_DEMAND",
+      "disconnectTimeoutInSeconds": 900,
+      "vpcConfig": {
+        "subnetIds": [
+          "subnet-0081e32e39a363569",
+          "subnet-00cc9acde91b33943"
+        ],
+        "securityGroupIds": [
+          "sg-00ed25f7e79d74b94"
+        ]
+      },
+      "description": "",
+      "fleetErrors": [],
+      "imageArn": "arn:aws:appstream:ap-northeast-1::image/AppStream-WinServer2019-06-12-2023",
+      "enableDefaultInternetAccess": false,
+      "poolFleet": false,
+      "maxUserDurationInSeconds": 57600,
+      "arn": "arn:aws:appstream:ap-northeast-1:999999999999:fleet/MW-Demo-01",
+      "idleDisconnectTimeoutInSeconds": 900,
+      "name": "MW-Demo-01",
+      "imageName": "AppStream-WinServer2019-06-12-2023",
+      "streamView": "APP"
+    }
+  },
+  "sourceIPAddress": "113.149.227.129",
+  "userAgent": "AWS Internal",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

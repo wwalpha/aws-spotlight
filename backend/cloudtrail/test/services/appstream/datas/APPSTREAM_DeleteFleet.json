@@ -1,0 +1,36 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventName": "DeleteFleet",
+  "eventTime": "2025-04-21T07:26:16Z",
+  "awsRegion": "ap-northeast-1",
+  "eventID": "efca341f-d340-4663-a834-e84ac501011f",
+  "eventSource": "appstream.amazonaws.com",
+  "requestID": "c7e3d7a0-6102-4c37-ba9c-3d1840ac0ed0",
+  "requestParameters": {
+    "name": "MW-Demo-01"
+  },
+  "sourceIPAddress": "221.241.162.81",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}
