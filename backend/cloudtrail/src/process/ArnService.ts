@@ -92,6 +92,10 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       rets = [response.graphqlApi.arn, response.graphqlApi.name];
       break;
 
+    case 'APPSTREAM_CreateFleet':
+      rets = [response.fleet.arn, request.name];
+      break;
+
     case 'AIRFLOW_CreateEnvironment':
       rets = [ResourceARNs.AIRFLOW_Environment(region, account, request.Name), request.name];
       break;
@@ -507,6 +511,10 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
       rets = [response.firewall.firewallArn, response.firewall.firewallName];
       break;
 
+    case 'NETWORKMONITOR_CreateMonitor':
+      rets = [response.monitorArn, request.monitorName];
+      break;
+
     case 'REDSHIFT_CreateCluster':
       name = response.clusterIdentifier;
       rets = [ResourceARNs.REDSHIFT_Cluster(region, account, name), name];
@@ -797,6 +805,10 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       arn = ResourceARNs.AIRFLOW_Environment(region, account, request.Name);
       break;
 
+    case 'AMAZONMQ_DeleteBroker':
+      arn = ResourceARNs.AMAZONMQ_Broker(region, account, response.brokerId);
+      break;
+
     case 'AMPLIFY_DeleteApp':
       if (response.app === undefined || response.app.appArn === undefined) {
         break;
@@ -805,12 +817,12 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
       arn = response.app.appArn;
       break;
 
-    case 'AMAZONMQ_DeleteBroker':
-      arn = ResourceARNs.AMAZONMQ_Broker(region, account, response.brokerId);
-      break;
-
     case 'APPSYNC_DeleteGraphqlApi':
       arn = ResourceARNs.APPSYNC_GraphqlApi(region, account, request.apiId);
+      break;
+
+    case 'APPSTREAM_DeleteFleet':
+      arn = ResourceARNs.APPSTREAM_Fleet(region, account, request.Name);
       break;
 
     case 'APIGATEWAY_DeleteApi':
@@ -1020,6 +1032,11 @@ const getRemoveSingleResource = async (record: CloudTrailRecord): Promise<Resour
 
     case 'NETWORK-FIREWALL_DeleteFirewall':
       arn = response.firewall.firewallArn;
+      break;
+
+    case 'NETWORKMONITOR_DeleteMonitor':
+      arn = ResourceARNs.NETWORKMONITOR_Monitor(region, account, request.monitorName);
+
       break;
 
     case 'REDSHIFT_DeleteCluster':

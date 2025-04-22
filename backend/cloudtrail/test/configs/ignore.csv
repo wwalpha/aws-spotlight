@@ -28,6 +28,7 @@ GetBackend,amplifybackend.amazonaws.com,true
 CreateToken,amplifybackend.amazonaws.com,true
 RemoveAllBackends,amplifybackend.amazonaws.com,true
 CreateBackend,amplifybackend.amazonaws.com,true
+DeleteBackend,amplifybackend.amazonaws.com,true
 DeleteToken,amplifybackend.amazonaws.com,true
 DeleteStage,apigateway.amazonaws.com,true
 CreateStage,apigateway.amazonaws.com,true
@@ -1561,7 +1562,6 @@ PauseService,apprunner.amazonaws.com,true
 CreateVpcEndpoint,aoss.amazonaws.com,true
 DeleteApi,appsync.amazonaws.com,true
 BatchAssociateScramSecret,kafka.amazonaws.com,true
-CreateMonitor,networkmonitor.amazonaws.com,true
 DeleteNamedQuery,athena.amazonaws.com,true
 DeleteVpcEndpoint,aoss.amazonaws.com,true
 login_continue_POST,cognito-idp.amazonaws.com,true
@@ -1614,3 +1614,5 @@ DeleteComponent,imagebuilder.amazonaws.com,true
 CreateImageRecipe,imagebuilder.amazonaws.com,true
 CreateInfrastructureConfiguration,imagebuilder.amazonaws.com,true
 CreateEmailContact,notifications-contacts.amazonaws.com,true
+ActivateGateway,storagegateway.amazonaws.com,true
+DeleteGateway,storagegateway.amazonaws.com,true

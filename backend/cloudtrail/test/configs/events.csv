@@ -256,3 +256,7 @@ CreateAccelerator,globalaccelerator.amazonaws.com,create
 DeleteAccelerator,globalaccelerator.amazonaws.com,delete
 CreateApp,amplify.amazonaws.com,create
 DeleteApp,amplify.amazonaws.com,delete
+CreateFleet,appstream.amazonaws.com,create
+DeleteFleet,appstream.amazonaws.com,delete
+CreateMonitor,networkmonitor.amazonaws.com,create
+DeleteMonitor,networkmonitor.amazonaws.com,delete

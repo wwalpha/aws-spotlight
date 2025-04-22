@@ -27,7 +27,7 @@
   },
   "responseElements": {
     "app": {
-      "appArn": "arn:aws:amplify:ap-northeast-1:334678299258:apps/d3dvp6yb0v6as5",
+      "appArn": "arn:aws:amplify:ap-northeast-1:999999999999:apps/d3dvp6yb0v6as5",
       "appId": "d3dvp6yb0v6as5",
       "basicAuthCredentials": "***",
       "buildSpec": "***",
@@ -54,7 +54,7 @@
       "enableBranchAutoBuild": false,
       "enableBranchAutoDeletion": false,
       "environmentVariables": "***",
-      "iamServiceRoleArn": "arn:aws:iam::334678299258:role/service-role/AmplifySSRLoggingRole-0d7a53d7-a46a-4a55-83d0-47a17b46d962",
+      "iamServiceRoleArn": "arn:aws:iam::999999999999:role/service-role/AmplifySSRLoggingRole-0d7a53d7-a46a-4a55-83d0-47a17b46d962",
       "name": "amplify-angular-template",
       "platform": "WEB",
       "repository": "https://github.com/nyao-dxc/amplify-angular-template",

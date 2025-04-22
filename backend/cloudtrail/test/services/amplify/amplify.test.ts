@@ -10,7 +10,7 @@ describe('amplify.amazonaws.com', () => {
     const event = await sendMessage(Events.AMPLIFY_CreateApp);
     await cloudtrail(event);
 
-    const resource = await getResource('arn:aws:amplify:ap-northeast-1:334678299258:apps/d3dvp6yb0v6as5');
+    const resource = await getResource('arn:aws:amplify:ap-northeast-1:999999999999:apps/d3dvp6yb0v6as5');
     // fs.writeFileSync(path.join(__dirname, './expects/AMPLIFY_CreateApp.json'), JSON.stringify(resource));
     expect(resource).not.toBeUndefined();
     expect(resource).toEqual(EXPECTS.AMPLIFY_CreateApp);
@@ -20,7 +20,7 @@ describe('amplify.amazonaws.com', () => {
     const event = await sendMessage(Events.AMPLIFY_DeleteApp);
     await cloudtrail(event);
 
-    const resource = await getResource('arn:aws:amplify:ap-northeast-1:334678299258:apps/d3dvp6yb0v6as5');
+    const resource = await getResource('arn:aws:amplify:ap-northeast-1:999999999999:apps/d3dvp6yb0v6as5');
     // fs.writeFileSync(path.join(__dirname, './expects/AMPLIFY_DeleteApp.json'), JSON.stringify(resource));
     expect(resource).not.toBeUndefined();
     expect(resource).toEqual(EXPECTS.AMPLIFY_DeleteApp);
