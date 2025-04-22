@@ -1,0 +1,36 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test002@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventTime": "2025-04-22T04:15:00Z",
+  "eventSource": "iam.amazonaws.com",
+  "eventName": "DeleteRole",
+  "awsRegion": "us-east-1",
+  "sourceIPAddress": "203.0.113.1",
+  "userAgent": "aws-cli/2.13.0 Python/3.11.2 Linux/5.15.0",
+  "requestParameters": {
+    "roleName": "MyTestRole"
+  },
+  "requestID": "c1f88f1b-1111-2222-3333-abcdefabcdef",
+  "eventID": "f0123456-7890-abcd-ef01-234567890abc",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

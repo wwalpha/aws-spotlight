@@ -1,7 +1,7 @@
 import { ResourceService, SettingService } from '@src/services';
 import { start as events } from './initialize/index';
 
-const start = async () => {
+export const start = async () => {
   await events();
 
   await SettingService.registReportFilter({

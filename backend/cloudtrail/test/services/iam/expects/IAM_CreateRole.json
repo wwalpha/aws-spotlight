@@ -1,0 +1,12 @@
+{
+  "AWSRegion": "us-east-1",
+  "ResourceName": "MyTestRole",
+  "Service": "IAM",
+  "EventId": "ab12cd34-5678-90ef-abcd-ef1234567890",
+  "Status": "Created",
+  "ResourceId": "arn:aws:iam::999999999999:role/MyTestRole",
+  "EventTime": "2025-04-22T03:20:44Z",
+  "EventName": "CreateRole",
+  "EventSource": "iam.amazonaws.com",
+  "UserName": "test001@test.com"
+}

@@ -41,7 +41,7 @@ export const start = async () => {
   newEvents.forEach((item) => console.log('New:', item.EventName, item.EventSource));
 };
 
-const getEvents = (): Tables.TEventType[] => {
+export const getEvents = (): Tables.TEventType[] => {
   const texts = fs.readFileSync(path.join(__dirname, EVENTS_FILE)).toString();
 
   const lines = texts.split('\n').filter((item) => item !== '');
@@ -58,7 +58,7 @@ const getEvents = (): Tables.TEventType[] => {
   });
 };
 
-const getIgnore = (): Tables.TEventType[] => {
+export const getIgnore = (): Tables.TEventType[] => {
   const texts = fs.readFileSync(path.join(__dirname, IGNORE_FILE)).toString();
 
   const lines = texts.split('\n').filter((item) => item !== '');

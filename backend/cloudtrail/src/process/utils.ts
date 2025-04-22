@@ -89,9 +89,9 @@ export const getUserName = async (record: CloudTrailRecord) => {
   // ユーザ名が見つからない場合、未処理テーブルの一次保管する
   if (newUserName === undefined) {
     // cloudformation で代行生成の場合、ユーザ名は分からない
-    if (userAgent === 'cloudformation.amazonaws.com') {
-      return userName;
-    }
+    // if (userAgent === 'cloudformation.amazonaws.com') {
+    //   return userName;
+    // }
 
     await UnprocessedService.tempSave(record);
     return userName;

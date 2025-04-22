@@ -1,0 +1,59 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AAAAAAAAAAAAAAAAAA",
+    "arn": "arn:aws:iam::999999999999:user/test001@test.com",
+    "accountId": "999999999999",
+    "accessKeyId": "AAAAAAAAAAAAAAAAA",
+    "userName": "test001@test.com",
+    "sessionContext": {
+      "sessionIssuer": {},
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-06-05T23:37:12Z"
+      }
+    }
+  },
+  "eventTime": "2025-04-22T03:20:44Z",
+  "eventSource": "iam.amazonaws.com",
+  "eventName": "CreateRole",
+  "awsRegion": "us-east-1",
+  "sourceIPAddress": "203.0.113.1",
+  "userAgent": "aws-cli/2.13.0 Python/3.11.2 Linux/5.15.0",
+  "requestParameters": {
+    "roleName": "MyTestRole",
+    "assumeRolePolicyDocument": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ec2.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}",
+    "description": "Test role for EC2",
+    "maxSessionDuration": 3600
+  },
+  "responseElements": {
+    "role": {
+      "assumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "ec2.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "roleId": "AROAEXAMPLEID",
+      "roleName": "MyTestRole",
+      "arn": "arn:aws:iam::999999999999:role/MyTestRole",
+      "createDate": "2025-04-22T03:20:44Z"
+    }
+  },
+  "requestID": "c4e41a1b-aaaa-bbbb-cccc-1234567890ab",
+  "eventID": "ab12cd34-5678-90ef-abcd-ef1234567890",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "apiVersion": "2013-04-01",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "999999999999"
+}

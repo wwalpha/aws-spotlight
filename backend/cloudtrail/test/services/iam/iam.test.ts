@@ -34,4 +34,22 @@ describe('iam.amazonaws.com', () => {
     expect(resource).not.toBeUndefined();
     expect(resource).toEqual(EXPECTS.IAM_CreateServiceLinkedRole);
   });
+
+  test('IAM_CreateRole', async () => {
+    const event = await sendMessage(Events.IAM_CreateRole);
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:iam::999999999999:role/MyTestRole');
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.IAM_CreateRole);
+  });
+
+  test('IAM_DeleteRole', async () => {
+    const event = await sendMessage(Events.IAM_DeleteRole);
+    await cloudtrail(event);
+
+    const resource = await getResource('arn:aws:iam::999999999999:role/MyTestRole');
+    expect(resource).not.toBeUndefined();
+    expect(resource).toEqual(EXPECTS.IAM_DeleteRole);
+  });
 });

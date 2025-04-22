@@ -1,0 +1,11 @@
+{
+  "AWSRegion": "us-east-1",
+  "Service": "IAM",
+  "EventId": "f0123456-7890-abcd-ef01-234567890abc",
+  "Status": "Deleted",
+  "ResourceId": "arn:aws:iam::999999999999:role/MyTestRole",
+  "EventTime": "2025-04-22T04:15:00Z",
+  "EventName": "DeleteRole",
+  "EventSource": "iam.amazonaws.com",
+  "UserName": "test001@test.com"
+}
