@@ -15,8 +15,7 @@
     "imp": "ts-node -r tsconfig-paths/register -r dotenv/config test/import.ts dotenv_config_path=.env.dev",
     "truncate": "ts-node -r tsconfig-paths/register -r dotenv/config test/truncate.ts dotenv_config_path=.env.dev",
     "unpro": "ts-node -r tsconfig-paths/register -r dotenv/config test/unprocess.ts dotenv_config_path=.env.dev",
-    "reset": "npm run truncate && npm run patch && npm run imp && npm run unpro && npm run report",
-    "reset1": "npm run truncate && npm run patch && npm run imp",
+    "reset": "npm run truncate && npm run patch && npm run imp",
     "patch": "ts-node -r tsconfig-paths/register -r dotenv/config test/patch.ts dotenv_config_path=.env.dev",
     "reload:prod": "ts-node -r tsconfig-paths/register -r dotenv/config test/utils/reload.ts dotenv_config_path=.env.prod"
   },

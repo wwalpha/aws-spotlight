@@ -1516,7 +1516,6 @@ DeleteConnection,codestar-connections.amazonaws.com,true
 PutInternalTargets,events.amazonaws.com,true
 CreateArchive,events.amazonaws.com,true
 BatchDeleteTable,glue.amazonaws.com,true
-DeleteEnvironment,m2.amazonaws.com,true
 CreateAgentStatus,connect.amazonaws.com,true
 CopyDBParameterGroup,rds.amazonaws.com,true
 CreateNamedQuery,athena.amazonaws.com,true

@@ -9,7 +9,6 @@ export const start = async () => {
     Services: {
       iam: ['user', 'role', 'group'],
       ec2: ['subnet', 'volume', 'snapshot', 'network-insights-path', 'route-table', 'launch-template', 'elastic-ip'],
-      cloud9: ['environment'],
       rds: ['pg', 'subgrp', 'og', 'cluster-pg'],
     },
   });
@@ -161,15 +160,16 @@ export const start = async () => {
 
   // arn:aws:rds:ap-northeast-1:334678299258:db:cis-rds-backup-test-recovery
   await ResourceService.registLatest({
-    ResourceId: 'arn:aws:rds:ap-northeast-1:334678299258:db:cis-rds-backup-test-recovery',
+    ResourceId: 'arn:aws:cloud9:ap-northeast-1:334678299258:environment:56d07bf600bc4f8f9dd304838f9ce9db',
     AWSRegion: 'ap-northeast-1',
-    EventId: '99999999-6d19-4696-95f8-97e27ff57bad',
-    EventName: 'DeleteDBInstance',
-    EventSource: 'rds.amazonaws.com',
-    EventTime: '2022-08-30T05:21:23Z',
-    Service: 'RDS',
-    Status: 'Deleted',
-    UserName: 'Admin',
+    EventId: '0d686831-8e8b-4f1b-b69e-d674308c3447',
+    EventName: 'CreateEnvironmentSSH',
+    EventSource: 'cloud9.amazonaws.com',
+    EventTime: '2024-01-17T03:50:13Z',
+    ResourceName: 'iot-nml-test-existing-compute',
+    Service: 'Cloud9',
+    Status: 'Created',
+    UserName: 'alvin.yee@dxc.com',
   });
 };
 

@@ -1,5 +1,5 @@
 import { Consts, Logger, ResourceARNs } from '@src/apps/utils';
-import { capitalize, defaultTo, isEmpty } from 'lodash';
+import { capitalize, isEmpty } from 'lodash';
 import { CloudTrailRecord, ResourceInfo, Tables } from 'typings';
 import { ResourceService } from '@src/services';
 import { getUserName } from './utils';
@@ -192,14 +192,7 @@ const getRegistSingleResource = (record: CloudTrailRecord): ResourceInfo[] => {
 
     case 'CLOUD9_CreateEnvironmentEC2':
     case 'CLOUD9_CreateEnvironmentSSH':
-      if (response !== null) {
-        rets = [
-          ResourceARNs.CLOUD9_Environment(region, account, defaultTo(response.environmentId, request.name)),
-          request.name,
-        ];
-      } else {
-        rets = [ResourceARNs.CLOUD9_Environment(region, account, request.name), request.name];
-      }
+      rets = [ResourceARNs.CLOUD9_Environment(region, account, response.environmentId), request.name];
 
       break;
 
@@ -1394,11 +1387,6 @@ const getServiceName = (serviceName: string) => {
 };
 
 const isExcludeUser = (userName: string): Boolean => {
-  if (userName === 'AWSServiceRoleForAmazonSageMakerNotebooks') return true;
-  if (userName === 'AWSServiceRoleForAutoScaling') return true;
-  if (userName === 'AWSServiceRoleForBatch') return true;
-  if (userName === 'AWSServiceRoleForLambdaReplicator') return true;
-  if (userName === 'AWSServiceRoleForAmazonElasticFileSystem') return true;
   if (userName === 'AWSServiceRoleForCloudFormationStackSetsOrgMember') return true;
 
   return false;
@@ -1419,6 +1407,10 @@ const isExcludeRecord = (record: CloudTrailRecord): Boolean => {
   }
 
   if (key === 'LEX_DeleteBot' && !request.name) {
+    return true;
+  }
+
+  if (key === 'CLOUD9_CreateEnvironmentEC2' && !response.environmentId === undefined) {
     return true;
   }
 
