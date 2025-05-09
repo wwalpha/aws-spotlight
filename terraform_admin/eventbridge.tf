@@ -2,9 +2,9 @@
 # AWS CloudWatch Event Rule - Monthly Clearnup
 # ----------------------------------------------------------------------------------------------
 resource "aws_cloudwatch_event_rule" "monthly_cleanup" {
-  name                = "${local.project_name}-monthly-cleanup"
+  name                = "${local.project_name}-monthly-cleanup-${local.environment}"
   schedule_expression = "cron(0 0 1 * ? *)"
-  state               = "ENABLED"
+  state               = "DISABLED"
 }
 
 # ----------------------------------------------------------------------------------------------

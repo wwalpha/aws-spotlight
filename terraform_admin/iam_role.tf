@@ -2,7 +2,7 @@
 # AWS IAM Role - Monthly Cleanup
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role" "monthly_cleanup" {
-  name               = "${local.project_name}-monthly-cleanup"
+  name               = "${local.project_name}-monthly-cleanup-${local.environment}"
   assume_role_policy = data.aws_iam_policy_document.lambda.json
 }
 

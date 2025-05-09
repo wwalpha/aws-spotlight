@@ -2,13 +2,19 @@
 # AWS Lambda Function - Monthly Cleanup
 # ----------------------------------------------------------------------------------------------
 resource "aws_lambda_function" "monthly_cleanup" {
-  function_name = "${local.project_name}-monthly-cleanup"
+  function_name = "${local.project_name}-monthly-cleanup-${local.environment}"
   handler       = "index.handler"
-  memory_size   = 128
+  memory_size   = 512
   role          = aws_iam_role.monthly_cleanup.arn
   runtime       = "nodejs22.x"
   filename      = data.archive_file.default.output_path
   timeout       = 900
+
+  environment {
+    variables = {
+      DYNAMODB_TABLE_NAME = aws_dynamodb_table.remain.name
+    }
+  }
 
   lifecycle {
     ignore_changes = [

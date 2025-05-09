@@ -1,7 +1,13 @@
 locals {
-  project_name = "admin"
+  project_name = "spotlight"
+  environment  = terraform.workspace == "dev" ? "dev" : "prod"
   region       = data.aws_region.this.name
   account_id   = data.aws_caller_identity.this.account_id
+
+  # ----------------------------------------------------------------------------------------------
+  # Dynamodb Tables
+  # ----------------------------------------------------------------------------------------------
+  dynamodb_name_remain = "${local.project_name}-remain-${local.environment}"
 
   lambda_default_content = <<EOT
 exports.handler = async (event) => {
