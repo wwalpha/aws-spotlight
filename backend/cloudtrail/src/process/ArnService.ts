@@ -1406,12 +1406,12 @@ const isExcludeRecord = (record: CloudTrailRecord): Boolean => {
     return response.app === undefined || response.app.appArn === undefined;
   }
 
-  if (key === 'LEX_DeleteBot' && !request.name) {
-    return true;
+  if (key === 'LEX_DeleteBot') {
+    return request.name === undefined;
   }
 
-  if (key === 'CLOUD9_CreateEnvironmentEC2' && !response.environmentId === undefined) {
-    return true;
+  if (key === 'CLOUD9_CreateEnvironmentEC2' || key === 'CLOUD9_CreateEnvironmentSSH') {
+    return response.environmentId === undefined;
   }
 
   return false;
