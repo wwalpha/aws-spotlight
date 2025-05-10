@@ -107,5 +107,3 @@ export const userReport = async (event: { userName: string }): Promise<string> =
 
   return url;
 };
-
-// userReport({ userName: 'ktou@dxc.com' });
