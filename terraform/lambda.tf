@@ -103,6 +103,17 @@ resource "aws_lambda_function" "report" {
 }
 
 # ----------------------------------------------------------------------------------------------
+# API Gateway REST API Integratoin - Report (POST)
+# ----------------------------------------------------------------------------------------------
+resource "aws_lambda_permission" "report" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.report.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_api_gateway_rest_api.this.execution_arn}/*/*"
+}
+
+# ----------------------------------------------------------------------------------------------
 # AWS Lambda Function - Monthly Cleanup
 # ----------------------------------------------------------------------------------------------
 resource "aws_lambda_function" "monthly_cleanup" {
