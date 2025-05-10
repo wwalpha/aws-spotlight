@@ -1,8 +1,8 @@
 # ----------------------------------------------------------------------------------------------
 # Dynamodb Table - Resource
 # ----------------------------------------------------------------------------------------------
-resource "aws_dynamodb_table" "remain" {
-  name         = local.dynamodb_name_remain
+resource "aws_dynamodb_table" "extend" {
+  name         = local.dynamodb_name_extend
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "ResourceId"
 

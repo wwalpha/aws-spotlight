@@ -7,7 +7,7 @@ locals {
   # ----------------------------------------------------------------------------------------------
   # Dynamodb Tables
   # ----------------------------------------------------------------------------------------------
-  dynamodb_name_remain = "${local.project_name}-remain-${local.environment}"
+  dynamodb_name_extend = "${local.project_name}-extend-${local.environment}"
 
   lambda_default_content = <<EOT
 exports.handler = async (event) => {

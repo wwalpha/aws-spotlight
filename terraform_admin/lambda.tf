@@ -12,7 +12,7 @@ resource "aws_lambda_function" "monthly_cleanup" {
 
   environment {
     variables = {
-      DYNAMODB_TABLE_NAME = aws_dynamodb_table.remain.name
+      DYNAMODB_TABLE_NAME = aws_dynamodb_table.extend.name
     }
   }
 
