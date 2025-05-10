@@ -5,7 +5,7 @@ import { Tables } from 'typings';
 
 const s3Client = new S3Client({ region: process.env.AWS_REGION });
 
-export const reports = async (): Promise<void> => {
+export const reports = async (): Promise<string[]> => {
   const resources = await ResourceService.listResources();
   const filters = await SettingService.describe('REPORT_FILTERS');
   const filterServices: Record<string, string[]> = filters?.Services || {};
@@ -36,11 +36,13 @@ export const reports = async (): Promise<void> => {
     return true;
   });
 
-  await montlyReports(filteredResources);
   await montlyReportsFullVer(filteredResources);
+
+  // 月次レポートデータ
+  return await montlyReports(filteredResources);
 };
 
-const montlyReports = async (resources: Tables.TResource[]) => {
+const montlyReports = async (resources: Tables.TResource[]): Promise<string[]> => {
   const dataRows: string[] = [];
   // title
   dataRows.push('"UserName","Region","Service","ResourceName","EventName","EventTime","ResourceId"');
@@ -81,6 +83,8 @@ const montlyReports = async (resources: Tables.TResource[]) => {
       Body: contents,
     })
   );
+
+  return dataRows;
 };
 
 const montlyReportsFullVer = async (resources: Tables.TResource[]): Promise<void> => {

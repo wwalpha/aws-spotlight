@@ -4,7 +4,7 @@ COPY package.json $LAMBDA_TASK_ROOT
 COPY dist $LAMBDA_TASK_ROOT
 
 RUN echo package-lock=false > .npmrc
-RUN npm install --production
+RUN npm install --omit=dev
 
 CMD ["index.cloudtrail"]
 

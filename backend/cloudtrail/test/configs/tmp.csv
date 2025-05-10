@@ -1,14 +1,11 @@
 CreateWebACL,waf-regional.amazonaws.com,create
 
 
-CreateFleet,appstream.amazonaws.com,create
-StopFleet,appstream.amazonaws.com,true
-
 
 CreateRecoveryInstanceForDrs,drs.amazonaws.com,create
 TerminateRecoveryInstances,drs.amazonaws.com,delete
-ActivateGateway,storagegateway.amazonaws.com,create
-DeleteGateway,storagegateway.amazonaws.com,delete
+
 StartNotebookInstance,sagemaker.amazonaws.com,create
 
 
+DeleteEnvironment,m2.amazonaws.com,true
