@@ -46,17 +46,8 @@ data "aws_caller_identity" "this" {}
 # ----------------------------------------------------------------------------------------------
 # CloudTrail Latest Image ID
 # ----------------------------------------------------------------------------------------------
-data "aws_ecr_image" "cloudtrail" {
+data "aws_ecr_image" "this" {
   depends_on      = [null_resource.cloudtrail]
   repository_name = aws_ecr_repository.cloudtrail.name
-  image_tag       = "latest"
-}
-
-# ----------------------------------------------------------------------------------------------
-# Report Latest Image ID
-# ----------------------------------------------------------------------------------------------
-data "aws_ecr_image" "report" {
-  depends_on      = [null_resource.report]
-  repository_name = aws_ecr_repository.report.name
   image_tag       = "latest"
 }

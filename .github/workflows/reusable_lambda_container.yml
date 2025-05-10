@@ -6,6 +6,8 @@ on:
       function-name:
         required: true
         type: string
+      function-name2:
+        type: string
       region:
         required: true
         type: string
@@ -30,6 +32,7 @@ jobs:
     env:
       AWS_DEFAULT_REGION: ${{ inputs.region }}
       FUNCTION_NAME: ${{ inputs.function-name }}
+      FUNCTION_NAME2: ${{ inputs.function-name2 }}
       DOCKER_FILE: ${{ inputs.dockerfile }}
       ECR_REPOSITORY: ${{ inputs.repository }}
     defaults:
@@ -84,4 +87,11 @@ jobs:
         uses: appleboy/lambda-action@v0.2.0
         with:
           function_name: ${{ env.FUNCTION_NAME }}
+          image_uri: ${{ steps.build-image.outputs.image }}
+
+      # Lambda Deploy
+      - name: Lambda Deploy
+        uses: appleboy/lambda-action@v0.2.0
+        with:
+          function_name: ${{ env.FUNCTION_NAME2 }}
           image_uri: ${{ steps.build-image.outputs.image }}

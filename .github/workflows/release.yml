@@ -44,22 +44,9 @@ jobs:
       region: us-east-1
       working-directory: backend/cloudtrail
       function-name: spotlight-cloudtrail-process-prod
-      dockerfile: Dockerfile.CloudTrail
+      function-name2: spotlight-report-prod
+      dockerfile: Dockerfile
       repository: spotlight/cloudtrail-prod
-    secrets:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-  Lambda_Report:
-    uses: ./.github/workflows/reusable_lambda_container.yml
-    needs: Terraform
-    concurrency: report
-    with:
-      region: us-east-1
-      working-directory: backend/cloudtrail
-      function-name: spotlight-report-prod
-      dockerfile: Dockerfile.Report
-      repository: spotlight/report-prod
     secrets:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

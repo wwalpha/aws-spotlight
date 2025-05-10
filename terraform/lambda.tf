@@ -43,7 +43,7 @@ resource "aws_lambda_permission" "daily_batch" {
 resource "aws_lambda_function" "cloudtrail_process" {
   function_name = "${local.project_name}-cloudtrail-process-${local.environment}"
   package_type  = "Image"
-  image_uri     = data.aws_ecr_image.cloudtrail.image_uri
+  image_uri     = data.aws_ecr_image.this.image_uri
   role          = aws_iam_role.cloudtrail_process.arn
   memory_size   = 512
   timeout       = 300
@@ -83,7 +83,7 @@ resource "aws_lambda_permission" "cloudtrail_process" {
 resource "aws_lambda_function" "report" {
   function_name = "${local.project_name}-report-${local.environment}"
   package_type  = "Image"
-  image_uri     = data.aws_ecr_image.report.image_uri
+  image_uri     = data.aws_ecr_image.this.image_uri
   role          = aws_iam_role.cloudtrail_process.arn
   memory_size   = 256
   timeout       = 30
@@ -92,7 +92,12 @@ resource "aws_lambda_function" "report" {
     variables = {
       TABLE_NAME_RESOURCES = aws_dynamodb_table.resource.name
       TABLE_NAME_SETTINGS  = aws_dynamodb_table.settings.name
+      TABLE_NAME_EXTEND    = aws_dynamodb_table.extend.name
     }
+  }
+
+  image_config {
+    command = ["index.userReport"]
   }
 
   lifecycle {
