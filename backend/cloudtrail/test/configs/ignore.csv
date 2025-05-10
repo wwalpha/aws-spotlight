@@ -182,6 +182,7 @@ DeleteChangeSet,cloudformation.amazonaws.com,true
 UpdateTerminationProtection,cloudformation.amazonaws.com,true
 UpdateStackSet,cloudformation.amazonaws.com,true
 RollbackStack,cloudformation.amazonaws.com,true
+DeleteGeneratedTemplate,cloudformation.amazonaws.com,true
 CreateOriginAccessControl,cloudfront.amazonaws.com,true
 UpdateDistribution,cloudfront.amazonaws.com,true
 DeleteOriginAccessControl,cloudfront.amazonaws.com,true
@@ -239,7 +240,6 @@ DisableStageTransition,codepipeline.amazonaws.com,true
 UpdateConnectionInstallation,codestar-connections.amazonaws.com,true
 UseConnection,codestar-connections.amazonaws.com,true
 CreateConnection,codestar-connections.amazonaws.com,true
-
 SetIdentityPoolRoles,cognito-identity.amazonaws.com,true
 SetPrincipalTagAttributeMap,cognito-identity.amazonaws.com,true
 UpdateIdentityPool,cognito-identity.amazonaws.com,true
@@ -290,6 +290,7 @@ ConfirmDevice,cognito-idp.amazonaws.com,true
 GlobalSignOut,cognito-idp.amazonaws.com,true
 ResendConfirmationCode,cognito-idp.amazonaws.com,true
 AdminUserGlobalSignOut,cognito-idp.amazonaws.com,true
+DeleteManagedLoginBranding,cognito-idp.amazonaws.com,true
 SetIdentityPoolConfiguration,cognito-sync.amazonaws.com,true
 SetCognitoEvents,cognito-sync.amazonaws.com,true
 UpdateEnrollmentStatus,compute-optimizer.amazonaws.com,true
@@ -519,6 +520,7 @@ TagResource,eks.amazonaws.com,true
 ListInsights,eks.amazonaws.com,true
 CreateReplicationGroup,elasticache.amazonaws.com,true
 DeleteReplicationGroup,elasticache.amazonaws.com,true
+BatchApplyUpdateAction,elasticache.amazonaws.com,true
 RestartAppServer,elasticbeanstalk.amazonaws.com,true
 DeleteConfigurationTemplate,elasticbeanstalk.amazonaws.com,true
 CreateConfigurationTemplate,elasticbeanstalk.amazonaws.com,true
@@ -778,6 +780,7 @@ RemovePermission20150331,lambda.amazonaws.com,true
 PublishVersion20150331,lambda.amazonaws.com,true
 UpdateEventSourceMapping20150331,lambda.amazonaws.com,true
 TagResource20170331v2,lambda.amazonaws.com,true
+CreateAlias20150331,lambda.amazonaws.com,true
 CreateExport,lex.amazonaws.com,true
 PutIntent,lex.amazonaws.com,true
 PutSlotType,lex.amazonaws.com,true
@@ -950,6 +953,7 @@ CreateIndex,resource-explorer-2.amazonaws.com,true
 CreateView,resource-explorer-2.amazonaws.com,true
 AssociateDefaultView,resource-explorer-2.amazonaws.com,true
 UpdateIndexType,resource-explorer-2.amazonaws.com,true
+CreateManagedView,resource-explorer-2.amazonaws.com,true
 ChangeResourceRecordSets,route53.amazonaws.com,true
 ChangeTagsForResource,route53.amazonaws.com,true
 DeleteHealthCheck,route53.amazonaws.com,true
@@ -1473,6 +1477,7 @@ CreateFargateProfile,eks.amazonaws.com,true
 UpdateNodegroupConfig,eks.amazonaws.com,true
 DeleteAccessEntry,eks.amazonaws.com,true
 AssociateAccessPolicy,eks.amazonaws.com,true
+CreatePodIdentityAssociation,eks.amazonaws.com,true
 SetRulePriorities,elasticloadbalancing.amazonaws.com,true
 DeleteRule,elasticloadbalancing.amazonaws.com,true
 DeregisterInstancesFromLoadBalancer,elasticloadbalancing.amazonaws.com,true
