@@ -147,3 +147,34 @@ resource "aws_dynamodb_table" "settings" {
     type = "S"
   }
 }
+
+# ----------------------------------------------------------------------------------------------
+# Dynamodb Table - Resource
+# ----------------------------------------------------------------------------------------------
+resource "aws_dynamodb_table" "extend" {
+  name         = local.dynamodb_name_extend
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "ResourceId"
+
+  attribute {
+    name = "ResourceId"
+    type = "S"
+  }
+
+  attribute {
+    name = "UserName"
+    type = "S"
+  }
+
+  ttl {
+    enabled        = true
+    attribute_name = "expiresAt"
+  }
+
+  global_secondary_index {
+    name            = "gsiIdx1"
+    hash_key        = "UserName"
+    range_key       = "ResourceId"
+    projection_type = "ALL"
+  }
+}

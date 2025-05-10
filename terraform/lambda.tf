@@ -43,7 +43,7 @@ resource "aws_lambda_permission" "daily_batch" {
 resource "aws_lambda_function" "cloudtrail_process" {
   function_name = "${local.project_name}-cloudtrail-process-${local.environment}"
   package_type  = "Image"
-  image_uri     = data.aws_ecr_image.latest.image_uri
+  image_uri     = data.aws_ecr_image.cloudtrail.image_uri
   role          = aws_iam_role.cloudtrail_process.arn
   memory_size   = 512
   timeout       = 300
@@ -58,6 +58,12 @@ resource "aws_lambda_function" "cloudtrail_process" {
       S3_BUCKET_MATERIALS    = aws_s3_bucket.material.bucket
     }
   }
+
+  lifecycle {
+    ignore_changes = [
+      image_uri
+    ]
+  }
 }
 
 # ----------------------------------------------------------------------------------------------
@@ -69,4 +75,65 @@ resource "aws_lambda_permission" "cloudtrail_process" {
   function_name = aws_lambda_function.cloudtrail_process.arn
   principal     = "s3.amazonaws.com"
   source_arn    = aws_s3_bucket.material.arn
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS Lambda Function - Report
+# ----------------------------------------------------------------------------------------------
+resource "aws_lambda_function" "report" {
+  function_name = "${local.project_name}-report-${local.environment}"
+  package_type  = "Image"
+  image_uri     = data.aws_ecr_image.report.image_uri
+  role          = aws_iam_role.cloudtrail_process.arn
+  memory_size   = 256
+  timeout       = 30
+
+  environment {
+    variables = {
+      TABLE_NAME_RESOURCES = aws_dynamodb_table.resource.name
+      TABLE_NAME_SETTINGS  = aws_dynamodb_table.settings.name
+    }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      image_uri
+    ]
+  }
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS Lambda Function - Monthly Cleanup
+# ----------------------------------------------------------------------------------------------
+resource "aws_lambda_function" "monthly_cleanup" {
+  function_name = "${local.project_name}-monthly-cleanup-${local.environment}"
+  handler       = "index.handler"
+  memory_size   = 256
+  role          = aws_iam_role.monthly_cleanup.arn
+  runtime       = "nodejs22.x"
+  filename      = data.archive_file.default.output_path
+  timeout       = 900
+
+  environment {
+    variables = {
+      DYNAMODB_TABLE_NAME = aws_dynamodb_table.extend.name
+    }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      source_code_hash
+    ]
+  }
+}
+
+# ----------------------------------------------------------------------------------------------
+# AWS Lambda Permission - Athena Daily Query
+# ----------------------------------------------------------------------------------------------
+resource "aws_lambda_permission" "monthly_cleanup" {
+  statement_id  = "AllowExecutionFromEventBridge"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.monthly_cleanup.arn
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.monthly_cleanup.arn
 }

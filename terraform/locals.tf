@@ -14,6 +14,7 @@ locals {
   dynamodb_name_unprocessed = "${local.project_name}-unprocessed-${local.environment}"
   dynamodb_name_user        = "${local.project_name}-users-${local.environment}"
   dynamodb_name_settings    = "${local.project_name}-settings-${local.environment}"
+  dynamodb_name_extend      = "${local.project_name}-extend-${local.environment}"
 
   # ----------------------------------------------------------------------------------------------
   # S3 Bucket
@@ -45,8 +46,17 @@ data "aws_caller_identity" "this" {}
 # ----------------------------------------------------------------------------------------------
 # CloudTrail Latest Image ID
 # ----------------------------------------------------------------------------------------------
-data "aws_ecr_image" "latest" {
+data "aws_ecr_image" "cloudtrail" {
   depends_on      = [null_resource.cloudtrail]
   repository_name = aws_ecr_repository.cloudtrail.name
+  image_tag       = "latest"
+}
+
+# ----------------------------------------------------------------------------------------------
+# Report Latest Image ID
+# ----------------------------------------------------------------------------------------------
+data "aws_ecr_image" "report" {
+  depends_on      = [null_resource.report]
+  repository_name = aws_ecr_repository.report.name
   image_tag       = "latest"
 }
