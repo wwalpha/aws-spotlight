@@ -6,7 +6,7 @@ resource "aws_lambda_function" "daily_batch" {
   handler          = "index.handler"
   memory_size      = 128
   role             = aws_iam_role.daily_batch.arn
-  runtime          = "nodejs20.x"
+  runtime          = "nodejs22.x"
   filename         = data.archive_file.default.output_path
   source_code_hash = data.archive_file.default.output_base64sha256
   timeout          = 900
