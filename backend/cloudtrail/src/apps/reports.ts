@@ -40,9 +40,9 @@ export const reports = async (): Promise<string[]> => {
   });
 
   // 月次レポートデータ
-  await montlyReports(filteredResources);
+  await montlyReportsFullVer(filteredResources);
 
-  return await montlyReportsFullVer(filteredResources);
+  return await montlyReports(filteredResources);
 };
 
 const montlyReports = async (resources: Tables.TResource[]): Promise<string[]> => {
