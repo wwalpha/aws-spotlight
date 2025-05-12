@@ -93,6 +93,7 @@ resource "aws_lambda_function" "report" {
       TABLE_NAME_RESOURCES = aws_dynamodb_table.resource.name
       TABLE_NAME_SETTINGS  = aws_dynamodb_table.settings.name
       TABLE_NAME_EXTEND    = aws_dynamodb_table.extend.name
+      S3_BUCKET_MATERIALS  = aws_s3_bucket.material.bucket
     }
   }
 
@@ -115,7 +116,7 @@ resource "aws_lambda_permission" "report" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.report.function_name
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_api_gateway_rest_api.this.execution_arn}/*/*"
+  source_arn    = "${aws_api_gateway_rest_api.this.execution_arn}/*/POST/report"
 }
 
 # ----------------------------------------------------------------------------------------------

@@ -1,9 +1,11 @@
-import { ResourceService, SettingService } from '@src/services';
-import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { ExtendService, ResourceService, SettingService } from '@src/services';
+import { GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { Consts } from './utils';
 import { Tables } from 'typings';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 const s3Client = new S3Client({ region: process.env.AWS_REGION });
+const HEADER = ['UserName', 'Region', 'Service', 'ResourceName', 'EventName', 'EventTime', 'ResourceId'];
 
 export const reports = async (): Promise<string[]> => {
   const resources = await ResourceService.listResources();
@@ -36,16 +38,16 @@ export const reports = async (): Promise<string[]> => {
     return true;
   });
 
-  await montlyReportsFullVer(filteredResources);
-
   // 月次レポートデータ
-  return await montlyReports(filteredResources);
+  await montlyReports(filteredResources);
+
+  return await montlyReportsFullVer(filteredResources);
 };
 
 const montlyReports = async (resources: Tables.TResource[]): Promise<string[]> => {
   const dataRows: string[] = [];
   // title
-  dataRows.push('"UserName","Region","Service","ResourceName","EventName","EventTime","ResourceId"');
+  dataRows.push(HEADER.join(','));
   const reportTime = getTwoMonthsAgoStartOfMonth();
 
   resources.forEach((item) => {
@@ -87,11 +89,11 @@ const montlyReports = async (resources: Tables.TResource[]): Promise<string[]> =
   return dataRows;
 };
 
-const montlyReportsFullVer = async (resources: Tables.TResource[]): Promise<void> => {
+const montlyReportsFullVer = async (resources: Tables.TResource[]): Promise<string[]> => {
   const dataRows: string[] = [];
 
   // title
-  dataRows.push('"UserName","Region","Service","ResourceName","EventName","EventTime","ResourceId"');
+  dataRows.push(HEADER.join(','));
 
   resources.forEach((item) => {
     // rows
@@ -114,10 +116,59 @@ const montlyReportsFullVer = async (resources: Tables.TResource[]): Promise<void
       Body: contents,
     })
   );
+
+  return dataRows;
 };
 
 const getTwoMonthsAgoStartOfMonth = (): string => {
   const date = new Date();
   date.setMonth(date.getMonth() - 2, 1); // 2か月前の月初に設定
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-01T00:00:00Z`;
+};
+
+export const personalResport = async (userName: string): Promise<string> => {
+  const resources = await reports();
+  const dataRows: string[] = [];
+  // title
+  dataRows.push(HEADER.join(','));
+
+  const tasks = resources.map(async (item) => {
+    // 同じ作成したリソースではない
+    if (!item.startsWith(`"${userName}"`)) return;
+
+    const resourceId = item.split(',')[6];
+
+    const result = await ExtendService.describe({
+      ResourceId: resourceId,
+    });
+
+    return result !== undefined ? item : undefined;
+  });
+
+  (await Promise.all(tasks)).filter((item) => item !== undefined).forEach((item) => dataRows.push(item));
+
+  const contents = dataRows.join('\n');
+  const objectKey = `Reports/${new Date().toISOString()}_${userName}.csv`;
+
+  const s3Client = new S3Client({ region: process.env.AWS_REGION });
+
+  // upload
+  await s3Client.send(
+    new PutObjectCommand({
+      Bucket: Consts.Environments.S3_BUCKET_MATERIALS,
+      Key: objectKey,
+      Body: contents,
+    })
+  );
+
+  const url = await getSignedUrl(
+    s3Client,
+    new GetObjectCommand({
+      Bucket: Consts.Environments.S3_BUCKET_MATERIALS,
+      Key: objectKey,
+    }),
+    { expiresIn: 3600 }
+  );
+
+  return url;
 };

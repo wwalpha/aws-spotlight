@@ -1,12 +1,10 @@
 import _ from 'lodash';
-import { S3Event } from 'aws-lambda';
+import { APIGatewayProxyHandler, S3Event } from 'aws-lambda';
 import { getRecords, initializeEvents, processNewRecords, processRenewRecords } from './apps/cloudtrail';
-import { Consts, Logger } from './apps/utils';
-import { reports } from './apps/reports';
+import { Logger } from './apps/utils';
+import { personalResport, reports } from './apps/reports';
 import { UnprocessedService } from './services';
 import { CloudTrailRecord } from 'typings';
-import { GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 export const cloudtrail = async (events: S3Event) => {
   Logger.info('events', events);
@@ -67,43 +65,16 @@ export const unprocess = async () => {
   await processRenewRecords(records);
 };
 
-export const userReport = async (event: { userName: string }): Promise<string> => {
-  const resources = await reports();
-  const dataRows: string[] = [];
-  // title
-  dataRows.push('"UserName","Region","Service","ResourceName","EventName","EventTime","ResourceId"');
+export const userReport: APIGatewayProxyHandler = async (event) => {
+  const datas = JSON.parse(event.body || '{}') as { userName: string };
 
-  resources.forEach((item) => {
-    if (item.startsWith(`"${event.userName}"`)) {
-      // rows
-      dataRows.push(item);
-    }
-  });
+  const url = await personalResport(datas.userName);
 
-  const contents = dataRows.join('\n');
-  const objectKey = `Reports/${new Date().toISOString()}_${event.userName}.csv`;
-
-  const s3Client = new S3Client({ region: process.env.AWS_REGION });
-
-  // upload
-  await s3Client.send(
-    new PutObjectCommand({
-      Bucket: Consts.Environments.S3_BUCKET_MATERIALS,
-      Key: objectKey,
-      Body: contents,
-    })
-  );
-
-  const url = await getSignedUrl(
-    s3Client,
-    new GetObjectCommand({
-      Bucket: Consts.Environments.S3_BUCKET_MATERIALS,
-      Key: objectKey,
+  return {
+    statusCode: 200,
+    body: JSON.stringify({
+      url,
     }),
-    { expiresIn: 3600 }
-  );
-
-  console.log(url);
-
-  return url;
+    isBase64Encoded: false,
+  };
 };

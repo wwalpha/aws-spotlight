@@ -38,27 +38,20 @@ export namespace Tables {
     ResponseElements?: string;
   }
 
-  // /**
-  //  * Table - Raw Key
-  //  */
-  // interface TRawKey {
-  //   EventId: string;
-  // }
+  /**
+   * Table - Extend Key
+   */
+  interface TExtendKey {
+    ResourceId: string;
+  }
 
-  // /**
-  //  * Table - Raw
-  //  */
-  // interface TRaw extends TRawKey {
-  //   UserName: string;
-  //   EventTime: string;
-  //   EventSource: string;
-  //   EventName: string;
-  //   AWSRegion: string;
-  //   AccountId: string;
-  //   RequestParameters: string;
-  //   ResponseElements?: string;
-  //   Origin: string;
-  // }
+  /**
+   * Table - Extend
+   */
+  interface TExtend extends TExtendKey {
+    UserName: string;
+    expiresAt: number;
+  }
 
   /**
    * Table - Resource Key
