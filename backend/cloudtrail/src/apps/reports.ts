@@ -1,8 +1,9 @@
 import { ExtendService, ResourceService, SettingService } from '@src/services';
 import { GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
-import { Consts } from './utils';
-import { Tables } from 'typings';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import { parse } from 'csv-parse/sync';
+import { Consts } from './utils';
+import { ResourcesCSV, Tables } from 'typings';
 
 const s3Client = new S3Client({ region: process.env.AWS_REGION });
 const HEADER = ['UserName', 'Region', 'Service', 'ResourceName', 'EventName', 'EventTime', 'ResourceId'];
@@ -132,20 +133,33 @@ export const personalResport = async (userName: string): Promise<string> => {
   // title
   dataRows.push(HEADER.join(','));
 
-  const tasks = resources.map(async (item) => {
-    // 同じ作成したリソースではない
-    if (!item.startsWith(`"${userName}"`)) return;
-
-    const resourceId = item.split(',')[6];
-
-    const result = await ExtendService.describe({
-      ResourceId: resourceId,
-    });
-
-    return result !== undefined ? item : undefined;
+  const records: ResourcesCSV[] = parse(resources.join('\n'), {
+    columns: true,
+    skip_empty_lines: true,
   });
 
-  (await Promise.all(tasks)).filter((item) => item !== undefined).forEach((item) => dataRows.push(item));
+  const tasks = records.map(async (item) => {
+    // 同じユーザの確認
+    if (item.UserName !== userName) return;
+
+    const result = await ExtendService.describe({
+      ResourceId: item.ResourceId,
+    });
+
+    if (result !== undefined) return;
+
+    return item;
+  });
+
+  const results = await Promise.all(tasks);
+
+  results
+    .filter((item) => item !== undefined)
+    .forEach((item) =>
+      dataRows.push(
+        `"${item.UserName}","${item.Region}","${item.Service}","${item.ResourceName}","${item.EventName}","${item.EventTime}","${item.ResourceId}"`
+      )
+    );
 
   const contents = dataRows.join('\n');
   const objectKey = `Reports/${new Date().toISOString()}_${userName}.csv`;

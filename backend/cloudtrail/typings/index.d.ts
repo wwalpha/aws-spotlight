@@ -48,3 +48,13 @@ export interface ResourceInfo {
   id: string;
   name?: string;
 }
+
+export interface ResourcesCSV {
+  UserName: string;
+  Region: string;
+  Service: string;
+  ResourceName: string;
+  EventName: string;
+  EventTime: string;
+  ResourceId: string;
+}
