@@ -68,19 +68,11 @@ jobs:
 
       # Lambda Deploy
       - name: Lambda Deploy
-        uses: appleboy/lambda-action@v0.2.0
-        with:
-          function_name: spotlight-report-prod
-          image_uri: 334678299258.dkr.ecr.us-east-1.amazonaws.com/spotlight/cloudtrail-prod:latest
-          aws_region: ${{ env.AWS_DEFAULT_REGION }}
-
-      # Lambda Deploy
-      - name: Lambda Deploy
-        uses: appleboy/lambda-action@v0.2.0
-        with:
-          function_name: spotlight-monthly-cleanup-prod
-          image_uri: 334678299258.dkr.ecr.us-east-1.amazonaws.com/spotlight/cloudtrail-prod:latest
-          aws_region: ${{ env.AWS_DEFAULT_REGION }}
+        run: |
+          aws lambda update-function-code --function-name spotlight-report-prod \
+            --image-uri 334678299258.dkr.ecr.us-east-1.amazonaws.com/spotlight/cloudtrail-prod:latest
+          aws lambda update-function-code --function-name spotlight-monthly-cleanup-prod \
+            --image-uri 334678299258.dkr.ecr.us-east-1.amazonaws.com/spotlight/cloudtrail-prod:latest
 
   Patch:
     needs: Terraform
