@@ -23,22 +23,6 @@ resource "aws_iam_role" "monthly_cleanup" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# AWS IAM Role Policy - Monthly Cleanup (AmazonEC2FullAccess)
-# ----------------------------------------------------------------------------------------------
-resource "aws_iam_role_policy_attachment" "monthly_cleanup_ec2" {
-  role       = aws_iam_role.monthly_cleanup.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
-}
-
-# ----------------------------------------------------------------------------------------------
-# AWS IAM Role Policy - Monthly Cleanup (IAM FullAccess)
-# ----------------------------------------------------------------------------------------------
-resource "aws_iam_role_policy_attachment" "monthly_cleanup_iam" {
-  role       = aws_iam_role.monthly_cleanup.name
-  policy_arn = "arn:aws:iam::aws:policy/IAMFullAccess"
-}
-
-# ----------------------------------------------------------------------------------------------
 # AWS IAM Role Policy - Monthly Cleanup (AWSLambdaBasicExecutionRole)
 # ----------------------------------------------------------------------------------------------
 resource "aws_iam_role_policy_attachment" "monthly_cleanup_basic" {
@@ -46,3 +30,10 @@ resource "aws_iam_role_policy_attachment" "monthly_cleanup_basic" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
+# ----------------------------------------------------------------------------------------------
+# AWS IAM Role Policy - Monthly Cleanup
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy_attachment" "monthly_cleanup" {
+  role       = aws_iam_role.cloudtrail_process.name
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+}

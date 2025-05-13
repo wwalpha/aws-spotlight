@@ -99,3 +99,5 @@ resource "aws_iam_role_policy_attachment" "cloudtrail_process_sns" {
   role       = aws_iam_role.cloudtrail_process.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSNSFullAccess"
 }
+
+

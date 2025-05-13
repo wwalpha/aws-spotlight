@@ -50,6 +50,7 @@ import { deleteTransferServer } from './lib/transfer';
 import { deleteGlobalAccelerator } from './lib/globalaccelerator';
 import { reports } from '@src/apps/reports';
 import { ResourcesCSV } from 'typings';
+import { deleteCloud9Environment } from './lib/cloud9';
 
 const unimplemented = async (id: string) => {
   console.error(`Unimplemented: ${id}`);
@@ -58,7 +59,7 @@ const unimplemented = async (id: string) => {
 const handlers: Record<string, (id: string) => Promise<void>> = {
   // appsync
   APPSYNC_CreateGraphqlApi: (id: string) => unimplemented(id),
-  // appsteam
+  // appstream
   APPSTREAM_FLEET: (id: string) => deleteAppStreamFleet(id),
   // airflow
   AIRFLOW_CreateEnvironment: (id: string) => unimplemented(id),
@@ -82,7 +83,7 @@ const handlers: Record<string, (id: string) => Promise<void>> = {
   BACKUP_BACKUPPLAN: (id: string) => unimplemented(id),
   BACKUP_BACKUPVAULT: (id: string) => deleteBackupVault(id),
   // cloud9
-  CLOUD9_ENVIRONMENT: (id: string) => unimplemented(id),
+  CLOUD9_ENVIRONMENT: (id: string) => deleteCloud9Environment(id),
   // cloud directory
   CLOUDDIRECTORY_DIRECTORY: (id: string) => deleteDirectoryServiceDirectory(id),
   // cloudformation
