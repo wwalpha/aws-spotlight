@@ -5,6 +5,7 @@ import { Logger } from './apps/utils';
 import { personalResport, reports } from './apps/reports';
 import { UnprocessedService } from './services';
 import { CloudTrailRecord } from 'typings';
+import { handler } from './cleanup';
 
 export const cloudtrail = async (events: S3Event) => {
   Logger.info('events', events);
@@ -70,6 +71,7 @@ export const userReport: APIGatewayProxyHandler = async (event) => {
 
   const url = await personalResport(datas.userName);
 
+  // console.log('url', url);
   return {
     statusCode: 200,
     body: JSON.stringify({
@@ -78,3 +80,32 @@ export const userReport: APIGatewayProxyHandler = async (event) => {
     isBase64Encoded: false,
   };
 };
+
+export const monthlyCleanup = async () => {
+  await handler();
+};
+
+// userReport(
+//   {
+//     body: JSON.stringify({
+//       userName: 'ktou@dxc.com',
+//     }),
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     httpMethod: 'POST',
+//     isBase64Encoded: false,
+//     multiValueHeaders: {
+//       'Content-Type': ['application/json'],
+//     },
+//     path: '/userReport',
+//     pathParameters: null,
+//     queryStringParameters: null,
+//     multiValueQueryStringParameters: null,
+//     stageVariables: null,
+//     requestContext: {} as any,
+//     resource: '/userReport',
+//   },
+//   {} as any,
+//   {} as any
+// );
