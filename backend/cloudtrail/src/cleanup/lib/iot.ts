@@ -18,7 +18,7 @@ export const deleteIotTopicRule = async (arn: string): Promise<void> => {
     const command = new DeleteTopicRuleCommand({
       ruleName: ruleName,
     });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(`Failed to delete IoT Topic Rule with name: ${ruleName}`, error);
   }

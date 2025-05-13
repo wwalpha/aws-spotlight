@@ -16,7 +16,7 @@ export const deleteElasticBeanstalkApplication = async (arn: string): Promise<vo
 
   try {
     const command = new DeleteApplicationCommand({ ApplicationName: applicationName, TerminateEnvByForce: true });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Elastic Beanstalk application with applicationName: ${applicationName}`, error);
   }

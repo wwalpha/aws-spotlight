@@ -11,7 +11,7 @@ export const deleteSNSTopic = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteTopicCommand({ TopicArn: arn });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(`Failed to delete SNS Topic with ARN: ${arn}`, error);
   }

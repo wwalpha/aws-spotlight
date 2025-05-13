@@ -184,7 +184,7 @@ export const terminateEC2Instance = async (arn: string): Promise<void> => {
 
   try {
     const command = new TerminateInstancesCommand({ InstanceIds: [instanceId] });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(error);
   }
@@ -205,7 +205,7 @@ export const deleteVpcEndpoint = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteVpcEndpointsCommand({ VpcEndpointIds: [endpointId] });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(error);
   }
@@ -226,7 +226,7 @@ export const deleteNatGateway = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteNatGatewayCommand({ NatGatewayId: natGatewayId });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(error);
   }
@@ -246,7 +246,7 @@ export const deleteInternetGateway = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteInternetGatewayCommand({ InternetGatewayId: internetGatewayId });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(error);
   }
@@ -266,7 +266,7 @@ export const deleteCustomerGateway = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteCustomerGatewayCommand({ CustomerGatewayId: customerGatewayId });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(error);
   }
@@ -287,7 +287,7 @@ export const deleteVpnGateway = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteVpnGatewayCommand({ VpnGatewayId: vpnGatewayId });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(error);
   }
@@ -310,7 +310,7 @@ export const deleteTransitGatewayRouteTable = async (arn: string): Promise<void>
     const command = new DeleteTransitGatewayRouteTableCommand({
       TransitGatewayRouteTableId: transitGatewayRouteTableId,
     });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(error);
   }

@@ -16,7 +16,7 @@ export const deleteLexBot = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteBotCommand({ botId });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Lex Bot with botId: ${botId}`, error);
   }

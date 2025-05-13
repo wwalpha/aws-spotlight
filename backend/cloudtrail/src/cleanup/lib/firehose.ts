@@ -16,7 +16,7 @@ export const deleteFirehoseDeliveryStream = async (arn: string): Promise<void> =
 
   try {
     const command = new DeleteDeliveryStreamCommand({ DeliveryStreamName: deliveryStreamName });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Firehose Delivery Stream with name: ${deliveryStreamName}`, error);
   }

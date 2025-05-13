@@ -16,7 +16,7 @@ export const deleteBackupVault = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteBackupVaultCommand({ BackupVaultName: backupVaultName });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Backup Vault with backupVaultName: ${backupVaultName}`, error);
   }

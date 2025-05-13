@@ -16,7 +16,7 @@ export const deleteDirectoryServiceDirectory = async (arn: string): Promise<void
 
   try {
     const command = new DeleteDirectoryCommand({ DirectoryId: directoryId });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Directory Service directory with directoryId: ${directoryId}`, error);
   }

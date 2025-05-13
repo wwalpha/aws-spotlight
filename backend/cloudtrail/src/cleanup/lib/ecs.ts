@@ -16,7 +16,7 @@ export const deleteECSCluster = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteClusterCommand({ cluster: clusterName });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(`Failed to delete ECS cluster with clusterName: ${clusterName}`, error);
   }

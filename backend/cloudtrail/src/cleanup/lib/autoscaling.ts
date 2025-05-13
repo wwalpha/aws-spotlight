@@ -19,7 +19,7 @@ export const deleteAutoScalingGroup = async (arn: string): Promise<void> => {
       AutoScalingGroupName: autoScalingGroupName,
       ForceDelete: true,
     });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Auto Scaling group with autoScalingGroupName: ${autoScalingGroupName}`, error);
   }

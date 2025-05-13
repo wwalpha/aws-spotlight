@@ -19,7 +19,7 @@ export const deleteRDSDBInstance = async (arn: string): Promise<void> => {
       DBInstanceIdentifier: dbInstanceIdentifier,
       SkipFinalSnapshot: true,
     });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(`Failed to delete RDS DBInstance with identifier: ${dbInstanceIdentifier}`, error);
   }
@@ -44,7 +44,7 @@ export const deleteRDSDBCluster = async (arn: string): Promise<void> => {
       DBClusterIdentifier: dbClusterIdentifier,
       SkipFinalSnapshot: true,
     });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(`Failed to delete RDS DBCluster with identifier: ${dbClusterIdentifier}`, error);
   }

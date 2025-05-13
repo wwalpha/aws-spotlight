@@ -16,7 +16,7 @@ export const deleteLambdaFunction = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteFunctionCommand({ FunctionName: functionName });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Lambda Function with name: ${functionName}`, error);
   }

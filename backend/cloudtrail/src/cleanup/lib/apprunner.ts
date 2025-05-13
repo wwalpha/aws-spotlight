@@ -16,7 +16,7 @@ export const deleteAppRunnerService = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteServiceCommand({ ServiceArn: serviceArn });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(`Failed to delete App Runner service with serviceArn: ${serviceArn}`, error);
   }

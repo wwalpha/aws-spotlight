@@ -16,7 +16,7 @@ export const deleteSageMakerNotebookInstance = async (arn: string): Promise<void
 
   try {
     const command = new DeleteNotebookInstanceCommand({ NotebookInstanceName: notebookInstanceName });
-    // await client.send(command);
+    await client.send(command);
   } catch (error) {
     console.error(`Failed to delete SageMaker Notebook Instance with name: ${notebookInstanceName}`, error);
   }
@@ -33,7 +33,7 @@ export const deleteSageMakerDomain = async (domainId: string): Promise<void> => 
   try {
     console.log(`Deleting SageMaker Domain with ID: ${domainId}`);
     const command = new DeleteDomainCommand({ DomainId: domainId });
-    // await client.send(command);
+    await client.send(command);
     console.log(`SageMaker Domain with ID: ${domainId} has been deleted successfully.`);
   } catch (error) {
     console.error(`Failed to delete SageMaker Domain with ID: ${domainId}`, error);
