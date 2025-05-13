@@ -125,10 +125,10 @@ resource "aws_lambda_permission" "report" {
 resource "aws_lambda_function" "monthly_cleanup" {
   function_name = "${local.project_name}-monthly-cleanup-${local.environment}"
   handler       = "index.handler"
-  memory_size   = 256
+  package_type  = "Image"
+  image_uri     = data.aws_ecr_image.this.image_uri
   role          = aws_iam_role.monthly_cleanup.arn
   runtime       = "nodejs22.x"
-  filename      = data.archive_file.default.output_path
   timeout       = 900
 
   environment {
@@ -137,9 +137,13 @@ resource "aws_lambda_function" "monthly_cleanup" {
     }
   }
 
+  image_config {
+    command = ["index.monthlyCleanup"]
+  }
+
   lifecycle {
     ignore_changes = [
-      source_code_hash
+      image_uri
     ]
   }
 }
