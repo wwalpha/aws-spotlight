@@ -19,7 +19,7 @@ export const deleteGlobalAccelerator = async (arn: string): Promise<void> => {
     const command = new DeleteAcceleratorCommand({
       AcceleratorArn: arn,
     });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Global Accelerator with ID: ${acceleratorId}`, error);
   }

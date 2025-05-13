@@ -18,7 +18,7 @@ export const deleteCloud9Environment = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteEnvironmentCommand({ environmentId });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Cloud9 Environment with ID: ${environmentId}`, error);
   }

@@ -16,7 +16,7 @@ export const deleteElasticsearchDomain = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteElasticsearchDomainCommand({ DomainName: domainName });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Elasticsearch Domain with domainName: ${domainName}`, error);
   }

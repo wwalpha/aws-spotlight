@@ -20,7 +20,7 @@ export const deleteLoadBalancer = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteLoadBalancerCommand({ LoadBalancerArn: loadBalancerArn });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Elastic Load Balancer with loadBalancerArn: ${loadBalancerArn}`, error);
   }
@@ -42,7 +42,7 @@ export const deleteTargetGroup = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteTargetGroupCommand({ TargetGroupArn: targetGroupArn });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Target Group with targetGroupArn: ${targetGroupArn}`, error);
   }

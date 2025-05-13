@@ -16,7 +16,7 @@ export const deleteTimestreamDatabase = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteDatabaseCommand({ DatabaseName: databaseName });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Timestream Database with name: ${databaseName}`, error);
   }

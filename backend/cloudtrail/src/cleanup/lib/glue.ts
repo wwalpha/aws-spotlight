@@ -10,7 +10,7 @@ export const deleteGlueCrawler = async (crawlerName: string): Promise<void> => {
 
   try {
     const command = new DeleteCrawlerCommand({ Name: crawlerName });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Glue Crawler with name: ${crawlerName}`, error);
   }
@@ -32,7 +32,7 @@ export const deleteGlueDatabase = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteDatabaseCommand({ Name: databaseName });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Glue Database with name: ${databaseName}`, error);
   }

@@ -16,7 +16,7 @@ export const deleteSchedulerSchedule = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteScheduleCommand({ Name: scheduleName });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete Scheduler Schedule with name: ${scheduleName}`, error);
   }

@@ -17,7 +17,7 @@ export const deleteAppStreamFleet = async (arn: string): Promise<void> => {
 
   try {
     const command = new DeleteFleetCommand({ Name: fleetName });
-    await client.send(command);
+    // await client.send(command);
   } catch (error) {
     console.error(`Failed to delete AppStream Fleet with name: ${fleetName}`, error);
   }
