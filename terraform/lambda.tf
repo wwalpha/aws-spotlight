@@ -124,16 +124,17 @@ resource "aws_lambda_permission" "report" {
 # ----------------------------------------------------------------------------------------------
 resource "aws_lambda_function" "monthly_cleanup" {
   function_name = "${local.project_name}-monthly-cleanup-${local.environment}"
-  handler       = "index.handler"
   package_type  = "Image"
   image_uri     = data.aws_ecr_image.this.image_uri
   role          = aws_iam_role.monthly_cleanup.arn
-  runtime       = "nodejs22.x"
   timeout       = 900
 
   environment {
     variables = {
-      DYNAMODB_TABLE_NAME = aws_dynamodb_table.extend.name
+      TABLE_NAME_RESOURCES = aws_dynamodb_table.resource.name
+      TABLE_NAME_SETTINGS  = aws_dynamodb_table.settings.name
+      TABLE_NAME_EXTEND    = aws_dynamodb_table.extend.name
+      S3_BUCKET_MATERIALS  = aws_s3_bucket.material.bucket
     }
   }
 
