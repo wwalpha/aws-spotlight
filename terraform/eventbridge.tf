@@ -20,8 +20,8 @@ resource "aws_cloudwatch_event_target" "athena_daily_batch" {
 # ----------------------------------------------------------------------------------------------
 resource "aws_cloudwatch_event_rule" "monthly_cleanup" {
   name                = "${local.project_name}-monthly-cleanup-${local.environment}"
-  schedule_expression = "cron(0 0 1 * ? *)"
-  state               = "DISABLED"
+  schedule_expression = "cron(0 0 25 * ? *)"
+  state               = local.isDev ? "DISABLED" : "ENABLED"
 }
 
 # ----------------------------------------------------------------------------------------------
