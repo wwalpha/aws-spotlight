@@ -175,7 +175,8 @@ export const snapshots = async () => {
  * @param instanceId - The ID of the EC2 instance to terminate.
  */
 export const terminateEC2Instance = async (arn: string): Promise<void> => {
-  const client = new EC2Client();
+  const region = arn.split(':')[3];
+  const client = new EC2Client({ region });
 
   const instanceId = arn.split('/').pop();
   if (!instanceId) {
@@ -186,7 +187,7 @@ export const terminateEC2Instance = async (arn: string): Promise<void> => {
     const command = new TerminateInstancesCommand({ InstanceIds: [instanceId] });
     await client.send(command);
   } catch (error) {
-    console.error(error);
+    console.error(`Failed to terminate EC2 instance with id: ${instanceId}`, error);
   }
 };
 
@@ -196,7 +197,8 @@ export const terminateEC2Instance = async (arn: string): Promise<void> => {
  * @param endpointId - The ID of the VPC Endpoint to delete.
  */
 export const deleteVpcEndpoint = async (arn: string): Promise<void> => {
-  const client = new EC2Client();
+  const region = arn.split(':')[3];
+  const client = new EC2Client({ region });
 
   const endpointId = arn.split('/').pop();
   if (!endpointId) {
@@ -207,7 +209,7 @@ export const deleteVpcEndpoint = async (arn: string): Promise<void> => {
     const command = new DeleteVpcEndpointsCommand({ VpcEndpointIds: [endpointId] });
     await client.send(command);
   } catch (error) {
-    console.error(error);
+    console.error(`Failed to delete VPC Endpoint with id: ${endpointId}`, error);
   }
 };
 
@@ -217,7 +219,8 @@ export const deleteVpcEndpoint = async (arn: string): Promise<void> => {
  * @param natGatewayId - The ID of the NAT Gateway to delete.
  */
 export const deleteNatGateway = async (arn: string): Promise<void> => {
-  const client = new EC2Client();
+  const region = arn.split(':')[3];
+  const client = new EC2Client({ region });
 
   const natGatewayId = arn.split('/').pop();
   if (!natGatewayId) {
@@ -237,7 +240,8 @@ export const deleteNatGateway = async (arn: string): Promise<void> => {
  * @param internetGatewayId - The ID of the Internet Gateway to delete.
  */
 export const deleteInternetGateway = async (arn: string): Promise<void> => {
-  const client = new EC2Client();
+  const region = arn.split(':')[3];
+  const client = new EC2Client({ region });
 
   const internetGatewayId = arn.split('/').pop();
   if (!internetGatewayId) {
@@ -257,7 +261,8 @@ export const deleteInternetGateway = async (arn: string): Promise<void> => {
  * @param customerGatewayId - The ID of the Customer Gateway to delete.
  */
 export const deleteCustomerGateway = async (arn: string): Promise<void> => {
-  const client = new EC2Client();
+  const region = arn.split(':')[3];
+  const client = new EC2Client({ region });
 
   const customerGatewayId = arn.split('/').pop();
   if (!customerGatewayId) {
@@ -278,7 +283,8 @@ export const deleteCustomerGateway = async (arn: string): Promise<void> => {
  * @param vpnGatewayId - The ID of the VPN Gateway to delete.
  */
 export const deleteVpnGateway = async (arn: string): Promise<void> => {
-  const client = new EC2Client();
+  const region = arn.split(':')[3];
+  const client = new EC2Client({ region });
 
   const vpnGatewayId = arn.split('/').pop();
   if (!vpnGatewayId) {
@@ -289,7 +295,7 @@ export const deleteVpnGateway = async (arn: string): Promise<void> => {
     const command = new DeleteVpnGatewayCommand({ VpnGatewayId: vpnGatewayId });
     await client.send(command);
   } catch (error) {
-    console.error(error);
+    console.error(`Failed to delete VPN Gateway with id: ${vpnGatewayId}`, error);
   }
 };
 
