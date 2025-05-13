@@ -6,23 +6,23 @@ import { S3Event } from 'aws-lambda';
 
 const TABLE_NAME_RESOURCES = process.env.TABLE_NAME_RESOURCES as string;
 const TABLE_NAME_EVENT_TYPE = process.env.TABLE_NAME_EVENT_TYPE as string;
-const BUCKCT_NAME = process.env.BUCKET_NAME as string;
+const BUCKCT_NAME = process.env.S3_BUCKET_MATERIALS as string;
 
 const start = async () => {
-  const helper = new DynamodbHelper();
+  // const helper = new DynamodbHelper();
 
-  for (;;) {
-    try {
-      await helper.truncateAll(TABLE_NAME_RESOURCES);
-      break;
-    } catch (e) {}
-  }
+  // for (;;) {
+  //   try {
+  //     await helper.truncateAll(TABLE_NAME_RESOURCES);
+  //     break;
+  //   } catch (e) {}
+  // }
 
-  await helper.truncateAll(TABLE_NAME_EVENT_TYPE);
-  const Events = [...getEvents(), ...getIgnore()];
-  await helper.bulk(TABLE_NAME_EVENT_TYPE, Events);
+  // await helper.truncateAll(TABLE_NAME_EVENT_TYPE);
+  // const Events = [...getEvents(), ...getIgnore()];
+  // await helper.bulk(TABLE_NAME_EVENT_TYPE, Events);
 
-  await patch();
+  // await patch();
 
   // Lambda 関数を呼び出す例
   await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2021, '06') as S3Event);
@@ -92,6 +92,26 @@ const start = async () => {
   await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '04', '19') as S3Event);
   await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '04', '20') as S3Event);
   await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '04', '21') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '04', '22') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '04', '23') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '04', '24') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '04', '25') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '04', '26') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '04', '27') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '04', '28') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '04', '29') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '04', '30') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '05', '01') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '05', '02') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '05', '03') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '05', '04') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '05', '05') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '05', '06') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '05', '07') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '05', '08') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '05', '09') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '05', '10') as S3Event);
+  await invokeLambda('spotlight-cloudtrail-process-prod', getInput(2025, '05', '11') as S3Event);
 };
 
 const invokeLambda = async (functionName: string, payload: object) => {
@@ -99,6 +119,7 @@ const invokeLambda = async (functionName: string, payload: object) => {
   const command = new InvokeCommand({
     FunctionName: functionName,
     Payload: Buffer.from(JSON.stringify(payload)),
+    InvocationType: 'RequestResponse',
   });
 
   try {
