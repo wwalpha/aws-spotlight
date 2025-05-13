@@ -51,6 +51,27 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
+  Lambda_Deploy:
+    needs: Lambda_CloudTrail
+    runs-on: ubuntu-latest
+
+    steps:
+      # Lambda Deploy
+      - name: Lambda Deploy
+        uses: appleboy/lambda-action@v0.2.0
+        with:
+          function_name: spotlight-report-prod
+          image_uri: 334678299258.dkr.ecr.us-east-1.amazonaws.com/spotlight/cloudtrail-prod:latest
+          aws_region: us-east-1
+
+      # Lambda Deploy
+      - name: Lambda Deploy
+        uses: appleboy/lambda-action@v0.2.0
+        with:
+          function_name: spotlight-monthly-cleanup-prod
+          image_uri: 334678299258.dkr.ecr.us-east-1.amazonaws.com/spotlight/cloudtrail-prod:latest
+          aws_region: us-east-1
+
   Patch:
     needs: Terraform
     runs-on: ubuntu-latest

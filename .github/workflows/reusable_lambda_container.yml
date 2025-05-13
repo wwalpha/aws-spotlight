@@ -91,10 +91,3 @@ jobs:
 
       - name: Wait for ECR sync
         run: sleep 10
-
-      # Lambda Deploy
-      - name: Lambda Deploy
-        uses: appleboy/lambda-action@v0.2.0
-        with:
-          function_name: ${{ env.FUNCTION_NAME2 }}
-          image_uri: ${{ steps.build-image.outputs.image }}
