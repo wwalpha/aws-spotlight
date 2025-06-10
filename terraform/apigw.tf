@@ -38,7 +38,39 @@ resource "aws_api_gateway_integration" "report" {
 }
 
 # ----------------------------------------------------------------------------------------------
-# API Gateway REST API Integratoin - Report (POST)
+# API Gateway REST API Resource - Renewal
+# ----------------------------------------------------------------------------------------------
+resource "aws_api_gateway_resource" "renewal" {
+  rest_api_id = aws_api_gateway_rest_api.this.id
+  parent_id   = aws_api_gateway_rest_api.this.root_resource_id
+  path_part   = "renewal"
+}
+
+# ----------------------------------------------------------------------------------------------
+# API Gateway REST API Method - Renewal (POST)
+# ----------------------------------------------------------------------------------------------
+resource "aws_api_gateway_method" "renewal_post" {
+  rest_api_id      = aws_api_gateway_rest_api.this.id
+  resource_id      = aws_api_gateway_resource.renewal.id
+  http_method      = "POST"
+  authorization    = "NONE"
+  api_key_required = true
+}
+
+# ----------------------------------------------------------------------------------------------
+# API Gateway REST API Integratoin - Renewal (POST)
+# ----------------------------------------------------------------------------------------------
+resource "aws_api_gateway_integration" "renewal" {
+  rest_api_id             = aws_api_gateway_rest_api.this.id
+  resource_id             = aws_api_gateway_resource.renewal.id
+  http_method             = aws_api_gateway_method.renewal_post.http_method
+  integration_http_method = "POST"
+  type                    = "AWS_PROXY"
+  uri                     = aws_lambda_function.renewal.invoke_arn
+}
+
+# ----------------------------------------------------------------------------------------------
+# API Gateway Deployment
 # ----------------------------------------------------------------------------------------------
 resource "aws_api_gateway_deployment" "this" {
   depends_on  = [aws_api_gateway_integration.report]

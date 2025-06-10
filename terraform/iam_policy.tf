@@ -100,4 +100,18 @@ resource "aws_iam_role_policy_attachment" "cloudtrail_process_sns" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonSNSFullAccess"
 }
 
+# ----------------------------------------------------------------------------------------------
+# AWS IAM Role Policy - Renewal
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy_attachment" "renewal_lambda_basic" {
+  role       = aws_iam_role.renewal.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
 
+# ----------------------------------------------------------------------------------------------
+# AWS IAM Role Policy - Renewal DynamoDB FullAccess
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role_policy_attachment" "renewal_process_dynamodb" {
+  role       = aws_iam_role.renewal.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+}

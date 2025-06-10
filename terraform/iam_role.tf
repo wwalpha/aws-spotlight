@@ -37,3 +37,11 @@ resource "aws_iam_role_policy_attachment" "monthly_cleanup" {
   role       = aws_iam_role.cloudtrail_process.name
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
+
+# ----------------------------------------------------------------------------------------------
+# AWS IAM Role - Resource renewal
+# ----------------------------------------------------------------------------------------------
+resource "aws_iam_role" "renewal" {
+  name               = "${upper(local.project_name)}-${upper(local.environment)}-RenewalRole"
+  assume_role_policy = data.aws_iam_policy_document.lambda.json
+}

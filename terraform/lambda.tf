@@ -159,3 +159,40 @@ resource "aws_lambda_permission" "monthly_cleanup" {
   principal     = "events.amazonaws.com"
   source_arn    = aws_cloudwatch_event_rule.monthly_cleanup.arn
 }
+
+# ----------------------------------------------------------------------------------------------
+# AWS Lambda Function - Renewal
+# ----------------------------------------------------------------------------------------------
+resource "aws_lambda_function" "renewal" {
+  function_name    = "${local.project_name}-renewal-${local.environment}"
+  handler          = "index.handler"
+  memory_size      = 128
+  role             = aws_iam_role.renewal.arn
+  runtime          = "nodejs22.x"
+  filename         = data.archive_file.default.output_path
+  source_code_hash = data.archive_file.default.output_base64sha256
+  timeout          = 10
+
+  environment {
+    variables = {
+      TABLE_NAME_EXTEND = aws_dynamodb_table.extend.name
+    }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      source_code_hash
+    ]
+  }
+}
+
+# ----------------------------------------------------------------------------------------------
+# API Gateway REST API Integratoin - Renewal (POST)
+# ----------------------------------------------------------------------------------------------
+resource "aws_lambda_permission" "renewal" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.renewal.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_api_gateway_rest_api.this.execution_arn}/*/POST/report"
+}
