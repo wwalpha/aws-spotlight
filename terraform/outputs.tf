@@ -22,3 +22,26 @@ output "api_key" {
 output "api_url" {
   value = "${aws_api_gateway_stage.this.invoke_url}/report"
 }
+
+# ----------------------------------------------------------------------------------------------
+# Cognito User Pool Client ID
+# ----------------------------------------------------------------------------------------------
+output "cognito_user_pool_client_id" {
+  value       = awscc_cognito_user_pool_client.this.id
+  description = "Cognito User Pool Client ID"
+}
+
+# ----------------------------------------------------------------------------------------------
+# Cognito User Pool ID
+# ----------------------------------------------------------------------------------------------
+output "cognito_user_pool_id" {
+  value       = aws_cognito_user_pool.this.id
+  description = "Cognito User Pool ID"
+}
+
+# ----------------------------------------------------------------------------------------------
+# Cognito User Pool ID
+# ----------------------------------------------------------------------------------------------
+output "cognito_user_pool_domain" {
+  value = "https://${aws_cognito_user_pool_domain.this.domain}.auth.${local.region}.amazoncognito.com"
+}
