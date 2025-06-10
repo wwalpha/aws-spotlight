@@ -22,6 +22,7 @@ export const handler = async (event: Event) => {
         expiresAt: time,
         UserName: userName,
       },
+      ConditionExpression: 'attribute_not_exists(ResourceId) OR expiresAt < :time',
     })
   );
 };

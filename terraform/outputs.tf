@@ -1,3 +1,6 @@
+# ----------------------------------------------------------------------------------------------
+# ECR Repository URL
+# ----------------------------------------------------------------------------------------------
 output "ecr_repository_url" {
   value = aws_ecr_repository.cloudtrail.repository_url
 }
@@ -20,14 +23,14 @@ output "api_key" {
 }
 
 output "api_url" {
-  value = "${aws_api_gateway_stage.this.invoke_url}/report"
+  value = aws_api_gateway_stage.this.invoke_url
 }
 
 # ----------------------------------------------------------------------------------------------
 # Cognito User Pool Client ID
 # ----------------------------------------------------------------------------------------------
 output "cognito_user_pool_client_id" {
-  value       = awscc_cognito_user_pool_client.this.id
+  value       = awscc_cognito_user_pool_client.this.client_id
   description = "Cognito User Pool Client ID"
 }
 
@@ -44,4 +47,11 @@ output "cognito_user_pool_id" {
 # ----------------------------------------------------------------------------------------------
 output "cognito_user_pool_domain" {
   value = "https://${aws_cognito_user_pool_domain.this.domain}.auth.${local.region}.amazoncognito.com"
+}
+
+# ----------------------------------------------------------------------------------------------
+# Cognito User Pool ID
+# ----------------------------------------------------------------------------------------------
+output "cloudfront_distribution_url" {
+  value = "https://${aws_cloudfront_distribution.this.domain_name}"
 }

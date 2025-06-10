@@ -2,7 +2,7 @@
 # Amazon Cognito User Pool
 # --------------------------------------------------------------------------------------------------------------
 resource "aws_cognito_user_pool" "this" {
-  name                     = "${local.project_name}_UserPool"
+  name                     = "${local.project_name}_UserPool_${local.environment}"
   auto_verified_attributes = ["email"]
   username_attributes      = ["email"]
   mfa_configuration        = "OPTIONAL"
@@ -97,4 +97,3 @@ resource "awscc_cognito_managed_login_branding" "this" {
     ]
   }
 }
-

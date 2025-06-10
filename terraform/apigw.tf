@@ -6,6 +6,18 @@ resource "aws_api_gateway_rest_api" "this" {
 }
 
 # ----------------------------------------------------------------------------------------------
+# API Gateway Authorizer - Cognito
+# ----------------------------------------------------------------------------------------------
+resource "aws_api_gateway_authorizer" "this" {
+  name            = "cognito"
+  rest_api_id     = aws_api_gateway_rest_api.this.id
+  authorizer_uri  = "arn:aws:apigateway:us-east-1:cognito-idp:path/userpools/${aws_cognito_user_pool.this.id}/authorizers"
+  identity_source = "method.request.header.Authorization"
+  type            = "COGNITO_USER_POOLS"
+  provider_arns   = [aws_cognito_user_pool.this.arn]
+}
+
+# ----------------------------------------------------------------------------------------------
 # API Gateway REST API Resource - Report
 # ----------------------------------------------------------------------------------------------
 resource "aws_api_gateway_resource" "report" {
@@ -18,11 +30,11 @@ resource "aws_api_gateway_resource" "report" {
 # API Gateway REST API Method - Report (POST)
 # ----------------------------------------------------------------------------------------------
 resource "aws_api_gateway_method" "report_post" {
-  rest_api_id      = aws_api_gateway_rest_api.this.id
-  resource_id      = aws_api_gateway_resource.report.id
-  http_method      = "POST"
-  authorization    = "NONE"
-  api_key_required = true
+  rest_api_id   = aws_api_gateway_rest_api.this.id
+  resource_id   = aws_api_gateway_resource.report.id
+  http_method   = "POST"
+  authorization = "COGNITO_USER_POOLS"
+  authorizer_id = aws_api_gateway_authorizer.this.id
 }
 
 # ----------------------------------------------------------------------------------------------
@@ -50,11 +62,11 @@ resource "aws_api_gateway_resource" "renewal" {
 # API Gateway REST API Method - Renewal (POST)
 # ----------------------------------------------------------------------------------------------
 resource "aws_api_gateway_method" "renewal_post" {
-  rest_api_id      = aws_api_gateway_rest_api.this.id
-  resource_id      = aws_api_gateway_resource.renewal.id
-  http_method      = "POST"
-  authorization    = "NONE"
-  api_key_required = true
+  rest_api_id   = aws_api_gateway_rest_api.this.id
+  resource_id   = aws_api_gateway_resource.renewal.id
+  http_method   = "POST"
+  authorization = "COGNITO_USER_POOLS"
+  authorizer_id = aws_api_gateway_authorizer.this.id
 }
 
 # ----------------------------------------------------------------------------------------------

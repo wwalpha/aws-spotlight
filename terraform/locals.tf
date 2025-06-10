@@ -21,6 +21,14 @@ locals {
   # ----------------------------------------------------------------------------------------------
   bucket_name_material = "${local.project_name}-material-${local.region}-${local.environment}"
 
+  # -----------------------------------------------
+  # CloudFront
+  # -----------------------------------------------
+  origin_id_frontend     = "frontend"
+  default_root_object    = "index.html"
+  viewer_protocol_policy = "redirect-to-https"
+  logging_prefix         = "frontend"
+
 
   lambda_default_content = <<EOT
 exports.handler = async (event) => {
